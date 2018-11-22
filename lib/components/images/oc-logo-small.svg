@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>Open Colleges&apos; Logo</title>
+	<defs>
+		<linearGradient x1="3.8288601%" y1="81.0175874%" x2="81.718601%" y2="4.82544349%" id="linearGradient-1">
+			<stop stop-color="#27BDBE" offset="0%"></stop>
+			<stop stop-color="#34BEB8" offset="11.03%"></stop>
+			<stop stop-color="#4CBFA8" offset="29.03%"></stop>
+			<stop stop-color="#67C28E" offset="51.76%"></stop>
+			<stop stop-color="#84C665" offset="78.05%"></stop>
+			<stop stop-color="#9ACA3C" offset="100%"></stop>
+		</linearGradient>
+		<linearGradient x1="18.2619492%" y1="95.2113026%" x2="96.1919647%" y2="19.0192093%" id="linearGradient-2">
+			<stop stop-color="#9ACA3C" offset="0%"></stop>
+			<stop stop-color="#84C665" offset="21.95%"></stop>
+			<stop stop-color="#67C28E" offset="48.24%"></stop>
+			<stop stop-color="#4CBFA8" offset="70.97%"></stop>
+			<stop stop-color="#34BEB8" offset="88.97%"></stop>
+			<stop stop-color="#27BDBE" offset="100%"></stop>
+		</linearGradient>
+	</defs>
+	<path d="M7.875,24.75 C7.3125,23.2875 7.0125,21.6875 7.0125,20.025 C7.0125,12.6875 12.9625,6.7375 20.3,6.7375 C21.6625,6.7375 22.975,6.9375 24.2125,7.325 C23.025,4.225 20.725,1.675 17.775,0.1875 C17.2,0.125 16.625,0.0875 16.0375,0.0875 C7.2375,0.0875 0.0875,7.225 0.0875,16.0375 C0.0875,16.975 0.175,17.8875 0.325,18.7875 C2,21.6125 4.675,23.775 7.875,24.75 Z" id="shape" fill="url(#linearGradient-1)"></path>
+	<path d="M24.2125,7.325 C27.4125,8.3125 30.0875,10.4625 31.75,13.2875 C30.55,6.35 24.8625,0.95 17.775,0.1875 C20.7125,1.675 23.025,4.225 24.2125,7.325 Z" id="shape" fill="#00A76D"></path>
+	<path d="M7.875,24.75 C4.675,23.7625 2,21.6125 0.3375,18.7875 C1.5375,25.725 7.225,31.125 14.3,31.8875 C11.3625,30.4 9.05,27.8625 7.875,24.75 Z" id="shape" fill="#00A76D"></path>
+	<path d="M31.9875,16.0375 C31.9875,15.1 31.9,14.1875 31.75,13.2875 C30.0875,10.4625 27.4,8.3 24.2125,7.325 C24.775,8.7875 25.075,10.3875 25.075,12.05 C25.075,19.3875 19.125,25.3375 11.7875,25.3375 C10.425,25.3375 9.1125,25.1375 7.875,24.75 C9.05,27.85 11.3625,30.4 14.3,31.8875 C14.875,31.95 15.45,31.9875 16.0375,31.9875 C24.85,31.9875 31.9875,24.85 31.9875,16.0375 Z" id="shape" fill="url(#linearGradient-2)"></path>
+</svg>

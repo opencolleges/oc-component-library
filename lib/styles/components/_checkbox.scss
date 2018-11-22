@@ -1,0 +1,321 @@
+// small // -------------------------------------------------------------------
+@include pre('.checkbox') {
+  position: relative;
+  margin: $space-stack-m;
+}
+
+@include pre('.checkbox__input') {
+  opacity: 0;
+  position: absolute;
+  width: rem(16px);
+  height: rem(16px);
+  margin: 0;
+}
+
+@include pre('.checkbox--left > .checkbox__input') {
+  top: rem(4px);
+  left: rem(8px);
+}
+@include pre('.checkbox--right > .checkbox__input') {
+  top: 50%;
+  right: rem(8px);
+  transform: translateY(-50%);
+}
+
+@include pre('.checkbox__label') {
+  color: $gunmetal;
+  font-size: rem(14px);
+  line-height: rem(24px);
+}
+
+@include pre('.checkbox--left > .checkbox__label') {
+  display: inline-block;
+  padding: 0 0 0 $space-xxl;
+}
+@include pre('.checkbox--right > .checkbox__label') {
+  display: block;
+  padding: 0 $space-xxl 0 0;
+}
+@include pre('.checkbox--reversed > .checkbox__label') {
+  color: rgba($blizzard, 0.89);
+}
+@include pre('.checkbox__input:disabled + .checkbox__label') {
+  color: $fossil;
+}
+@include pre('.checkbox__input:focus + .checkbox__label') {
+  color: $charcoal;
+}
+@include pre(
+  '.checkbox--reversed > .checkbox__input:focus + .checkbox__label'
+) {
+  color: $blizzard;
+}
+
+@include pre('.checkbox__label::before') {
+  content: '';
+  position: absolute;
+  box-sizing: border-box;
+  width: rem(16px);
+  height: rem(16px);
+  border: rem(1px) solid $viking-shade;
+  border-radius: $border-radius-s;
+}
+
+@include pre('.checkbox--left > .checkbox__label::before') {
+  top: rem(4px);
+  left: rem(8px);
+}
+@include pre('.checkbox--right > .checkbox__label::before') {
+  top: 50%;
+  right: rem(8px);
+  transform: translateY(-50%);
+}
+@include pre('.checkbox--error > .checkbox__label::before') {
+  border-color: $cinnabar-shade;
+}
+@include pre('.checkbox--success > .checkbox__label::before') {
+  border-color: $christi-shade;
+}
+@include pre('.checkbox--reversed > .checkbox__label::before') {
+  border-color: $blizzard;
+}
+@include pre('.checkbox__input:disabled + .checkbox__label::before') {
+  border-color: $state-disabled;
+}
+
+@include pre('.checkbox > .icon') {
+  opacity: 0;
+  position: absolute;
+  transition: opacity $transition-duration-x1 $transition-timing-default;
+  fill: $charcoal;
+}
+
+@include pre('.checkbox--left > .icon') {
+  top: rem(-2px);
+  left: rem(8px);
+}
+@include pre('.checkbox--right > .icon') {
+  top: 50%;
+  right: 0;
+  transform: translateY(calc(-50% - 2px));
+}
+@include pre('.checkbox--reversed > .icon') {
+  color: $blizzard;
+}
+@include pre('.checkbox__input:checked ~ .icon') {
+  opacity: 1;
+}
+@include pre('.checkbox__input:checked:disabled ~ .icon') {
+  fill: $fossil;
+}
+
+@include pre('.checkbox__border-outer') {
+  display: none;
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.checkbox__label') {
+    transition: color $transition-duration-x1 $transition-timing-default;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  @include pre('.checkbox__input:disabled + .checkbox__label') {
+    cursor: not-allowed;
+  }
+
+  @include pre('.checkbox__label::before') {
+    border: $input-border;
+    transition: border-color $transition-duration-x1 $transition-timing-default;
+  }
+  @include pre('.checkbox--reversed > .checkbox__label::before') {
+    border-color: rgba($blizzard, 0.55);
+  }
+
+  @include pre('.checkbox > .icon') {
+    pointer-events: none;
+  }
+
+  @include pre('.checkbox__border-outer') {
+    position: absolute;
+    display: block;
+    width: rem(16px);
+    height: rem(16px);
+    pointer-events: none;
+  }
+
+  @include pre('.checkbox--left > .checkbox__border-outer') {
+    top: rem(4px);
+    left: rem(8px);
+  }
+  @include pre('.checkbox--right > .checkbox__border-outer') {
+    top: 50%;
+    right: rem(8px);
+    transform: translateY(-50%);
+  }
+
+  @include pre('.checkbox__border') {
+    stroke: $viking;
+    stroke-width: 1;
+    stroke-dasharray: 0 ((circumference(1.5) + 52));
+    stroke-dashoffset: ((circumference(-1.5) + -58));
+    transition: stroke $transition-duration-x1 $transition-timing-default,
+      stroke-dasharray $transition-duration-x4 $transition-timing-default;
+    fill: none;
+  }
+
+  @include pre('.checkbox--error .checkbox__border') {
+    stroke: $cinnabar;
+  }
+  @include pre('.checkbox--success .checkbox__border') {
+    stroke: $christi;
+  }
+  @include pre('.checkbox--reversed .checkbox__border') {
+    stroke: $blizzard;
+  }
+  @include pre(
+    '.checkbox__input:hover ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke-dasharray: ((circumference(1.5) + 52)) 0;
+  }
+  @include pre(
+    '.checkbox__input:focus ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke-dasharray: ((circumference(1.5) + 52)) 0;
+  }
+  @include pre(
+    '.checkbox__input:active ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $viking-shade;
+  }
+  @include pre(
+    '.checkbox--error > .checkbox__input:active ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $cinnabar-shade;
+  }
+  @include pre(
+    '.checkbox--success > .checkbox__input:active ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $christi-shade;
+  }
+  @include pre(
+    '.checkbox--reversed > .checkbox__input:active ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $blizzard;
+  }
+  @include pre(
+    '.checkbox__input:checked ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $viking-shade;
+    stroke-dasharray: ((circumference(1.5) + 52)) 0;
+  }
+  @include pre(
+    '.checkbox__input:checked:hover ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $viking;
+  }
+  @include pre(
+    '.checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $viking;
+  }
+  @include pre(
+    '.checkbox__input:checked:active ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $viking-shade;
+  }
+  @include pre(
+    '.checkbox--error > .checkbox__input:checked ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $cinnabar-shade;
+  }
+  @include pre(
+    '.checkbox--error > .checkbox__input:checked:hover ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $cinnabar;
+  }
+  @include pre(
+    '.checkbox--error > .checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $cinnabar;
+  }
+  @include pre(
+    '.checkbox--error > .checkbox__input:checked:active ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $cinnabar-shade;
+  }
+  @include pre(
+    '.checkbox--success > .checkbox__input:checked ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $christi-shade;
+  }
+  @include pre(
+    ' .checkbox--success > .checkbox__input:checked:hover ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $christi;
+  }
+  @include pre(
+    '.checkbox--success > .checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $christi;
+  }
+  @include pre(
+    '.checkbox--success > .checkbox__input:checked:active ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $christi-shade;
+  }
+  @include pre(
+    '.checkbox--reversed > .checkbox__input:checked ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: rgba($blizzard, 0);
+  }
+  @include pre(
+    ' .checkbox--reversed > .checkbox__input:checked:hover ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $blizzard;
+  }
+  @include pre(
+    '.checkbox--reversed > .checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: $blizzard;
+  }
+  @include pre(
+    '.checkbox--reversed > .checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
+  ) {
+    stroke: rgba($blizzard, 0);
+  }
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.checkbox--left > .checkbox__input') {
+    top: rem(8px);
+  }
+
+  @include pre('.checkbox__label') {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.checkbox--left > .checkbox__label::before') {
+    top: rem(8px);
+  }
+
+  @include pre('.checkbox--left > .icon') {
+    top: rem(2px);
+  }
+  // no-touchevents // --------------------------------------------------------
+  @include pre('.no-touchevents') {
+    @include pre('.checkbox--left > .checkbox__border-outer') {
+      top: rem(8px);
+    }
+  }
+}
+
+// large // ------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.checkbox__label') {
+    font-size: rem(16px);
+  }
+}

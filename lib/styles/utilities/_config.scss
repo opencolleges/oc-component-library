@@ -1,0 +1,51 @@
+// global // ------------------------------------------------------------------
+// * style scroll bar in -webkit- browsers
+::-webkit-scrollbar {
+  // * for vertical scrollbars
+  width: rem(4px);
+
+  // * for horizontal scrollbars
+  height: rem(4px);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: $border-radius-s;
+  background: $fossil-transparent;
+}
+
+// * declare selection highlight color
+::-moz-selection {
+  background: $selection-background;
+}
+::selection {
+  background: $selection-background;
+}
+
+html,
+body {
+  background-color: $alabaster;
+  color: $charcoal;
+  font-family: $font-family-sans-serif;
+  font-size: rem(16px);
+  font-weight: 400;
+
+  // * font antialiasing in OSX
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // * text rendering
+  text-rendering: optimizeLegibility;
+
+  // * remove overlay when element is tapped in iOS
+  -webkit-tap-highlight-color: $blizzard-transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// * declare autofill highlight color
+input:-webkit-autofill {
+  box-shadow: rgba($viking, 0.13) rem(0, 0, 0, 24px) inset;
+}

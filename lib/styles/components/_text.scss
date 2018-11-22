@@ -1,0 +1,338 @@
+// small // -------------------------------------------------------------------
+@include pre('.text') {
+  position: relative;
+  height: rem(80px);
+  margin: $space-stack-m;
+}
+
+@include pre('.text.text--error::after') {
+  // icon declarations coming soon
+}
+@include pre('.text.text--success::after') {
+  // icon declarations coming soon
+}
+
+@include pre('.text__input') {
+  position: absolute;
+  top: rem(16px);
+  left: 0;
+  overflow: auto;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: rem(40px);
+  padding: 0 $space-xxl 0 0;
+  border: none;
+  border-bottom: $input-border;
+  border-radius: 0; // * iOS support
+  outline: none;
+  background: none;
+  color: inherit;
+  font-family: $font-family-sans-serif;
+  font-size: rem(14px);
+  line-height: rem(40px);
+  transition: color $transition-duration-x1 $transition-timing-default;
+
+  &:required {
+    box-shadow: none;
+  }
+
+  // * IE10+ support
+  &::-ms-clear {
+    display: none;
+  }
+
+  // * IE10+ support
+  &::-ms-reveal {
+    display: none;
+  }
+}
+
+@include pre('.text__input:disabled') {
+  border-color: $state-disabled;
+  color: $fossil;
+}
+
+@include pre('.text__input.active') {
+  color: $gunmetal;
+}
+
+@include pre('.text__input.active:disabled') {
+  color: $fossil;
+}
+
+@include pre('.text__input.active:focus') {
+  color: inherit;
+}
+
+// .#{$pre}-text--error .#{$pre}-text__input {
+//   @include rem(border-bottom, 1px solid color(cinnabar, shade));
+
+//   &:hover {
+//     @include rem(border-bottom, 1px solid color(cinnabar));
+//   }
+// }
+// .#{$pre}-text--success .#{$pre}-text__input {
+//   @include rem(border-bottom, 1px solid color(christi, shade));
+
+//   &:hover {
+//     @include rem(border-bottom, 1px solid color(christi));
+//   }
+// }
+
+@include pre('.text__textarea') {
+  position: absolute;
+  top: rem(16px);
+  left: 0;
+  overflow: hidden;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: rem(40px);
+
+  // * hack to remove scrollbar (to do with bottom border and box-sizing) maybe remove now that overflow is hidden
+  padding: rem(8px 0 7px);
+
+  outline: none;
+  border: none;
+  border-bottom: $input-border;
+
+  // * iOS round border removal
+  border-radius: 0;
+
+  background: none;
+  color: inherit;
+  font-family: $font-family-sans-serif;
+  font-size: rem(14px);
+  line-height: rem(24px);
+  transition: color $transition-duration-x1 $transition-timing-default;
+  resize: none;
+
+  &:required {
+    box-shadow: none;
+  }
+}
+
+@include pre('.text__textarea.active') {
+  color: $gunmetal;
+}
+@include pre('.text__textarea.active:focus') {
+  color: inherit;
+}
+
+@include pre('.text__label') {
+  position: absolute;
+  top: rem(24px);
+  left: 0;
+  color: $gunmetal;
+  font-size: rem(14px);
+  line-height: rem(24px);
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default,
+    font-size $transition-duration-x2 $transition-timing-default,
+    line-height $transition-duration-x2 $transition-timing-default;
+
+  user-select: none;
+  pointer-events: none;
+}
+
+@include pre('.text__input:focus + .text__label') {
+  top: 0;
+  font-size: rem(12px);
+  line-height: rem(16px);
+}
+
+@include pre('.text__input.active + .text__label') {
+  top: 0;
+  color: $hurricane;
+  font-size: rem(12px);
+  line-height: rem(16px);
+}
+
+@include pre('.text__input:disabled + .text__label') {
+  color: $state-disabled;
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents .text__input.active:hover + .text__label') {
+  color: $gunmetal;
+}
+
+@include pre('.no-touchevents .text__input.active:disabled') {
+  cursor: not-allowed;
+}
+
+@include pre(
+  '.no-touchevents .text__input.active:disabled:hover + .text__label'
+) {
+  color: $state-disabled;
+}
+
+@include pre('.text__input.active:focus + .text__label') {
+  color: $gunmetal;
+}
+
+@include pre('.text--required .text__input + .text__label::after') {
+  content: ' *';
+  position: relative;
+  top: 0;
+  color: $cinnabar;
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.text--required .text__input.active + .text__label::after') {
+  top: rem(-16px);
+  color: rgba($cinnabar, 0);
+}
+
+@include pre('.text__textarea:focus + .text__label') {
+  top: 0;
+  font-size: rem(12px);
+  line-height: rem(16px);
+}
+
+@include pre('.text__textarea.active + .text__label') {
+  top: 0;
+  color: $hurricane;
+  font-size: rem(12px);
+  line-height: rem(16px);
+}
+
+@include pre('.no-touchevents .text__textarea.active:hover + .text__label') {
+  color: $gunmetal;
+}
+
+@include pre('.text__textarea.active:focus + .text__label') {
+  color: $gunmetal;
+}
+
+@include pre('.text--required .text__textarea + .text__label::after') {
+  content: ' *';
+  position: relative;
+  top: 0;
+  color: $cinnabar;
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default;
+}
+@include pre('.text--required .text__textarea.active + .text__label::after') {
+  top: rem(-16px);
+  color: rgba($cinnabar, 0);
+}
+
+@include pre('.text__border') {
+  position: absolute;
+  top: rem(55px);
+  width: 0;
+  height: rem(1px);
+  background: $viking;
+  transition: width $transition-duration-x4 $transition-timing-default,
+    background $transition-duration-x1 $transition-timing-default;
+  pointer-events: none;
+}
+
+@include pre('.no-touchevents .text__input:hover ~ .text__border') {
+  width: 100%;
+}
+
+@include pre('.text__input:focus ~ .text__border') {
+  width: 100%;
+}
+
+@include pre('.text__input.active ~ .text__border') {
+  width: 100%;
+  background: $viking-shade;
+}
+
+@include pre('.no-touchevents .text__input.active:hover ~ .text__border') {
+  background: $viking;
+}
+
+@include pre('.text__input.active:focus ~ .text__border') {
+  background: $viking;
+}
+
+@include pre('.no-touchevents .text__textarea:hover ~ .text__border') {
+  width: 100%;
+}
+
+@include pre('.text__textarea:focus ~ .text__border') {
+  width: 100%;
+}
+
+@include pre('.text__textarea.active ~ .text__border') {
+  width: 100%;
+  background: $viking-shade;
+}
+
+@include pre('.no-touchevents .text__textarea.active:hover ~ .text__border') {
+  background: $viking;
+}
+
+@include pre('.text__textarea.active:focus ~ .text__border') {
+  background: $viking;
+}
+
+@include pre('.text__message') {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  // display: none;
+  color: rgba($viking, 0);
+  font-size: rem(11px);
+  line-height: rem(16px);
+  transition: color $transition-duration-x1 $transition-timing-default;
+  user-select: none;
+}
+@include pre('.text__textarea:focus ~ .text__message') {
+  // display: block;
+  color: $viking;
+}
+@include pre('.text__textarea.active ~ .text__message') {
+  color: $viking-shade;
+}
+
+@include pre('.no-touchevents .text__textarea.active:hover ~ .text__message') {
+  color: $viking;
+}
+
+@include pre('.text__textarea.active:focus ~ .text__message') {
+  color: $viking;
+}
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.text') {
+    margin: $space-stack-l;
+  }
+
+  @include pre('.text__input') {
+    font-size: rem(15px);
+  }
+
+  @include pre('.text__textarea') {
+    // * hack to remove scrollbar (to do with bottom border and box-sizing)
+    padding: rem(4px 0 3px);
+
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.text__label') {
+    font-size: rem(15px);
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.text__input') {
+    font-size: rem(16px);
+  }
+
+  @include pre('.text__textarea') {
+    font-size: rem(16px);
+  }
+
+  @include pre('.text__label') {
+    font-size: rem(16px);
+  }
+}

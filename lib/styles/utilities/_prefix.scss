@@ -1,0 +1,24 @@
+@mixin pre($value) {
+  $result: '';
+
+  $result: str-replace($value, '.', '.#{$pre}-');
+
+  #{$result} {
+    @content;
+  }
+}
+
+@function pre($selectors...) {
+  $result: '';
+
+  @each $selector in $selectors {
+    $result: '#{$result}.#{$pre}-#{$selector}';
+  }
+
+  @return $result;
+}
+
+// a mixin to assign a selector prefix and avoid the global namespace
+@mixin pre-assign($value) {
+  $pre: $value !global;
+}

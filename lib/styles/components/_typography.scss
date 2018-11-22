@@ -1,0 +1,404 @@
+// small // -------------------------------------------------------------------
+@for $index from 1 through 6 {
+  @include pre('.h#{$index}') {
+    display: block;
+    margin: $space-l 0 $space-s;
+    font-style: normal;
+    word-wrap: break-word;
+  }
+
+  @include pre('.h#{$index}--compact') {
+    margin: $space-m 0 0;
+  }
+  @include pre('.h#{$index}--reversed') {
+    color: $blizzard;
+  }
+  @include pre('.h#{$index}--left') {
+    text-align: left;
+  }
+  @include pre('.h#{$index}--center') {
+    text-align: center;
+  }
+  @include pre('.h#{$index}--right') {
+    text-align: right;
+  }
+  @include pre('.h#{$index}--justify') {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+@include pre('.h1') {
+  font-size: rem(30px);
+  font-weight: 300;
+  line-height: rem(40px);
+}
+
+@include pre('.h2') {
+  font-size: rem(26px);
+  font-weight: 300;
+  line-height: rem(40px);
+}
+
+@include pre('.h3') {
+  font-size: rem(22px);
+  font-weight: 700;
+  line-height: rem(32px);
+}
+
+@include pre('.h4') {
+  font-size: rem(20px);
+  font-weight: 700;
+  line-height: rem(32px);
+}
+
+@include pre('.h5') {
+  font-size: rem(16px);
+  font-weight: 700;
+  line-height: rem(24px);
+}
+
+@include pre('.h6') {
+  font-size: rem(14px);
+  font-weight: 700;
+  line-height: rem(24px);
+}
+
+@include pre('.p') {
+  display: block;
+  margin: $space-stack-m;
+  font-size: rem(14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: rem(24px);
+}
+
+@include pre('.p--compact') {
+  margin: $space-stack-s;
+}
+@include pre('.p--reversed') {
+  color: $blizzard;
+}
+@include pre('.p--left') {
+  text-align: left;
+}
+@include pre('.p--center') {
+  text-align: center;
+}
+@include pre('.p--right') {
+  text-align: right;
+}
+@include pre('.p--justify') {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+@include pre('.a:link') {
+  color: $viking-shade;
+}
+@include pre('.a:visited') {
+  color: $amethyst;
+}
+@include pre('.a:hover') {
+  color: $viking;
+  text-decoration: none;
+}
+@include pre('.a:focus') {
+  outline: $focus-outline;
+  color: $viking;
+  text-decoration: none;
+}
+@include pre('.a:active') {
+  color: $viking;
+  text-decoration: underline;
+}
+
+@include pre('.abbr') {
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+@include pre('.abbr:hover') {
+  text-decoration: none;
+}
+
+@include pre('.code') {
+  padding: rem(1px 3px);
+  border: rem(1px) solid $alto;
+  border-radius: $border-radius-s;
+  background-color: $concrete;
+  color: $gunmetal;
+  font-size: rem(13px);
+  font-family: $font-family-monospace;
+  font-weight: 700;
+}
+
+@include pre('.em') {
+  font-style: italic;
+}
+
+@include pre('.kbd') {
+  padding: rem(2px 4px);
+  border-radius: $border-radius-s;
+  background-color: $christi;
+  color: $blizzard;
+  font-size: rem(13px);
+  font-weight: 700;
+}
+
+@include pre('.mark') {
+  padding: rem(2px 4px);
+  border-radius: $border-radius-s;
+  background-color: rgba($candlelight, 0.89);
+}
+
+@include pre('.small') {
+  font-size: rem(11px);
+  line-height: rem(16px);
+}
+
+@include pre('.strong') {
+  font-weight: 700;
+}
+
+@include pre('.sub') {
+  position: relative;
+  top: rem(4px);
+  font-size: rem(10px);
+  vertical-align: baseline;
+}
+
+@include pre('.sup') {
+  position: relative;
+  top: rem(-4px);
+  font-size: rem(10px);
+  vertical-align: baseline;
+}
+
+@include pre('.label') {
+  color: $gunmetal;
+  font-size: rem(14px);
+  line-height: rem(24px);
+}
+
+@include pre('.ol') {
+  margin: 0 0 $space-m $space-xl;
+}
+
+@include pre('.ol .ol') {
+  margin: $space-s 0 0 $space-xl;
+}
+@include pre('.ul .ol') {
+  margin: $space-s 0 0 $space-xl;
+}
+
+@include pre('.ul') {
+  margin: 0 0 $space-m $space-xl;
+}
+
+@include pre('.ol .ul') {
+  margin: $space-s 0 0 $space-xl;
+}
+@include pre('.ul .ul') {
+  margin: $space-s 0 0 $space-xl;
+}
+
+@include pre('.li') {
+  position: relative;
+  margin: $space-stack-s;
+  font-size: rem(14px);
+  line-height: rem(24px);
+}
+
+@include pre('.ol > .li') {
+  counter-increment: number;
+}
+
+@include pre('.ol > .li::before') {
+  content: counter(number);
+  position: absolute;
+  top: rem(1px); // * visual hack to align with typography baseline
+  right: calc(100% + #{$space-m});
+  color: $christi-shade;
+  font-size: rem(12px);
+  font-weight: 700;
+  text-align: right;
+}
+@include pre('.ul > .li::before') {
+  content: '';
+  position: absolute;
+  top: rem(9px); // * visual hack to align with typography baseline
+  right: calc(100% + #{$space-m});
+  box-sizing: border-box;
+  width: rem(8px);
+  height: rem(8px);
+  border: rem(1px) solid $christi-shade;
+  border-radius: $border-radius-round;
+  background-color: $christi-shade;
+}
+@include pre('.ul .ul > .li::before') {
+  background-color: transparent;
+}
+
+@include pre('.pre') {
+  box-sizing: border-box;
+  margin: $space-stack-m;
+  padding: $space-inset-m;
+  border: rem(1px) solid $alto;
+  border-radius: $border-radius-m;
+  background-color: $concrete;
+  color: $gunmetal;
+  font-family: $font-family-monospace;
+  font-size: rem(13px);
+  line-height: rem(24px);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.h1') {
+    font-size: rem(34px);
+    line-height: rem(48px);
+  }
+
+  @include pre('.h2') {
+    font-size: rem(30px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.h3') {
+    font-size: rem(26px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.h4') {
+    font-size: rem(22px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.h5') {
+    font-size: rem(20px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.h6') {
+    font-size: rem(16px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.p') {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.code') {
+    font-size: rem(14px);
+  }
+
+  @include pre('.kbd') {
+    font-size: rem(14px);
+  }
+
+  @include pre('.small') {
+    font-size: rem(12px);
+  }
+
+  @include pre('.sub') {
+    font-size: rem(11px);
+  }
+
+  @include pre('.sup') {
+    font-size: rem(11px);
+  }
+
+  @include pre('.label') {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.li') {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+  @include pre('.ol > .li::before') {
+    top: rem(2px); // * visual hack to align with typography baseline
+    font-size: rem(13px);
+  }
+  @include pre('.ul > .li::before') {
+    top: rem(14px); // * visual hack to align with typography baseline
+  }
+
+  @include pre('.pre') {
+    font-size: rem(14px);
+    line-height: rem(32px);
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.h1') {
+    font-size: rem(38px);
+  }
+
+  @include pre('.h2') {
+    font-size: rem(34px);
+    line-height: rem(48px);
+  }
+
+  @include pre('.h3') {
+    font-size: rem(30px);
+  }
+
+  @include pre('.h4') {
+    font-size: rem(26px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.h5') {
+    font-size: rem(22px);
+  }
+
+  @include pre('.h6') {
+    font-size: rem(20px);
+  }
+
+  @include pre('.p') {
+    font-size: rem(16px);
+  }
+
+  @include pre('.code') {
+    font-size: rem(15px);
+  }
+
+  @include pre('.kbd') {
+    font-size: rem(15px);
+  }
+
+  @include pre('.small') {
+    font-size: rem(13px);
+  }
+
+  @include pre('.sub') {
+    font-size: rem(12px);
+  }
+
+  @include pre('.sup') {
+    font-size: rem(12px);
+  }
+
+  @include pre('.label') {
+    font-size: rem(16px);
+  }
+
+  @include pre('.li') {
+    font-size: rem(16px);
+  }
+  @include pre('.ol > .li::before') {
+    font-size: rem(14px);
+  }
+
+  @include pre('.pre') {
+    font-size: rem(15px);
+  }
+}

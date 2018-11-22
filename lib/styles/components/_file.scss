@@ -1,0 +1,215 @@
+// small // -------------------------------------------------------------------
+@include pre('.file') {
+  margin: $space-stack-m;
+}
+
+@include pre('.file__outer') {
+  position: relative;
+  box-sizing: border-box;
+  min-height: rem(360px);
+  border: rem(2px dashed $alto);
+  border-radius: $border-radius-l;
+  margin: $space-stack-m;
+  background-color: $daisy-transparent;
+}
+
+@include pre('.file--s > .file__outer') {
+  height: rem(360px);
+}
+@include pre('.file--m > .file__outer') {
+  height: rem(400px);
+}
+@include pre('.file--l > .file__outer') {
+  height: rem(440px);
+}
+
+@include pre('.file__input') {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@include pre('.file__inner') {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 50%;
+}
+
+@include pre('.file__image') {
+  width: rem(96px);
+  height: rem(96px);
+  margin: 0 auto rem(16px);
+}
+
+@include pre('.file__image > .icon') {
+  width: 100%;
+  height: 100%;
+  fill: $fossil;
+}
+
+@include pre('.file--s .file__image') {
+  width: rem(96px);
+  height: rem(96px);
+}
+@include pre('.file--m .file__image') {
+  width: rem(120px);
+  height: rem(120px);
+}
+@include pre('.file--l .file__image') {
+  width: rem(144px);
+  height: rem(144px);
+}
+
+@include pre('.file__blurb') {
+  display: none;
+}
+
+@include pre('.file__label') {
+  overflow: hidden;
+  display: table;
+  box-sizing: border-box;
+  height: rem(40px);
+  padding: rem(7px 15px);
+  border: rem(1px solid $viking-shade);
+  border-radius: $border-radius-s;
+  margin: 0 auto $space-m;
+  background-color: transparent;
+  color: $viking-shade;
+  font-family: $font-family-sans-serif;
+  font-size: rem(14px);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: rem(24px);
+  white-space: nowrap;
+  transition: $transition-duration-x1 $transition-timing-default;
+  transition-property: box-shadow, border, background-color, color;
+  cursor: pointer;
+  user-select: none;
+}
+
+@include pre('.file__types') {
+  display: block;
+  color: $hurricane;
+  font-size: rem(12px);
+  font-weight: 700;
+  text-align: center;
+  line-height: rem(16px);
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.file__input:focus') {
+    outline: none;
+  }
+  @include pre('.file__input.active') {
+    z-index: 1;
+    pointer-events: initial;
+  }
+
+  @include pre('.file__blurb') {
+    display: block;
+    margin-bottom: rem(8px);
+    font-size: rem(14px);
+    text-align: center;
+    line-height: rem(24px);
+  }
+
+  @include pre('.file__label:hover') {
+    border: rem(1px solid $viking);
+    background-color: $viking;
+    color: $blizzard;
+  }
+  @include pre('.file__label:active') {
+    border: rem(1px solid $viking-shade);
+    background-color: $viking-shade;
+    color: $fossil;
+  }
+  @include pre('.file__input:focus ~ .file__inner > .file__label') {
+    border: rem(1px solid $viking);
+    background-color: $viking;
+    color: $blizzard;
+    outline: $focus-outline;
+  }
+  @include pre('.file__input.active ~ .file__inner > .file__label') {
+    border: rem(1px solid $viking);
+    background-color: $viking;
+    color: $blizzard;
+  }
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.file') {
+    margin: $space-stack-l;
+  }
+
+  @include pre('.file--s > .file__outer') {
+    height: rem(400px);
+  }
+  @include pre('.file--m > .file__outer') {
+    height: rem(440px);
+  }
+  @include pre('.file--l > .file__outer') {
+    height: rem(480px);
+  }
+
+  @include pre('.file--s .file__image') {
+    width: rem(120px);
+    height: rem(120px);
+  }
+  @include pre('.file--m .file__image') {
+    width: rem(144px);
+    height: rem(144px);
+  }
+  @include pre('.file--l .file__image') {
+    width: rem(168px);
+    height: rem(168px);
+  }
+
+  @include pre('.file__blurb') {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.file--s > .file__outer') {
+    height: rem(440px);
+  }
+  @include pre('.file--m > .file__outer') {
+    height: rem(480px);
+  }
+  @include pre('.file--l > .file__outer') {
+    height: rem(520px);
+  }
+
+  @include pre('.file__image') {
+    margin-bottom: rem(32px);
+  }
+
+  @include pre('.file--s .file__image') {
+    width: rem(144px);
+    height: rem(144px);
+  }
+  @include pre('.file--m .file__image') {
+    width: rem(168px);
+    height: rem(168px);
+  }
+  @include pre('.file--l .file__image') {
+    width: rem(192px);
+    height: rem(192px);
+  }
+
+  @include pre('.file__blurb') {
+    font-size: rem(16px);
+  }
+}

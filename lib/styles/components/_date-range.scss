@@ -1,0 +1,20 @@
+// small // -------------------------------------------------------------------
+@include pre('.date-range') {
+  display: flex;
+}
+
+@include pre('.date-range > .date') {
+  width: rem(calc(50% - 20px));
+}
+
+@include pre('.date-range > .icon') {
+  position: relative;
+  top: rem(24px);
+  padding: 0 $space-s rem(7px); // * visual hack to align with 8px grid
+  border-bottom: $input-border;
+  fill: $gunmetal;
+}
+
+@include pre('.date-range .date__border') {
+  display: none;
+}

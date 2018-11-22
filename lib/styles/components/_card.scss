@@ -1,0 +1,63 @@
+// global // ------------------------------------------------------------------
+@include pre('.card') {
+  box-sizing: border-box;
+  background-color: $blizzard;
+}
+
+@include pre('.card--s') {
+  border-radius: $border-radius-s;
+}
+@include pre('.card--m') {
+  border-radius: $border-radius-m;
+}
+@include pre('.card--l') {
+  border-radius: $border-radius-l;
+}
+
+@include pre('.card--layer-1') {
+  box-shadow: $box-shadow-layer-1;
+}
+@include pre('.card--layer-2') {
+  box-shadow: $box-shadow-layer-2;
+}
+@include pre('.card--layer-3') {
+  box-shadow: $box-shadow-layer-3;
+}
+@include pre('.card--layer-4') {
+  box-shadow: $box-shadow-layer-4;
+}
+
+@include pre('.card--draggable') {
+  box-shadow: $box-shadow-layer-1;
+  transition: transform $transition-duration-x1 $transition-timing-default,
+    box-shadow $transition-duration-x1 $transition-timing-default;
+}
+@include pre('.card--draggable:focus') {
+  outline: $focus-outline;
+}
+
+@include pre('.mouse-down > .card--draggable') {
+  box-shadow: $box-shadow-layer-4;
+  cursor: grabbing;
+  user-select: none;
+}
+@include pre('.mouse-move > .card--draggable') {
+  box-shadow: $box-shadow-layer-4;
+  cursor: grabbing !important;
+  user-select: none;
+}
+
+@include pre('.mouse-move') {
+  transition: none !important;
+}
+
+@include pre('.foo') {
+  transition: $transition-duration-x1 $transition-timing-default;
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.card--draggable') {
+    cursor: grab;
+  }
+}

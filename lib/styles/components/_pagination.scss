@@ -1,0 +1,38 @@
+@include pre('.pagination') {
+  background-color: $blizzard;
+  box-shadow: $box-shadow-layer-1;
+}
+@include pre('.pagination > .pagination__list') {
+  padding: 8px;
+  user-select: none;
+}
+@include pre('.pagination__list > .pagination__navigation') {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  color: $hurricane;
+  line-height: 0;
+}
+@include pre('.pagination__list > .pagination__item') {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0px 8px;
+  line-height: 0;
+  cursor: pointer;
+  color: $gunmetal;
+  font-size: 12px;
+}
+@include pre('.pagination__list > .active > .pagination__label') {
+  color: $charcoal;
+  font-weight: 700;
+}
+@include pre('.pagination__navigation--of > .pagination__label') {
+  color: $hurricane;
+}
+
+@include pre('.pagination__label > .icon') {
+  fill: $hurricane;
+}
+@include pre('.active > .pagination__label > .icon') {
+  fill: $viking-shade;
+}
