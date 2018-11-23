@@ -32,6 +32,8 @@
 }
 
 @include pre('.select__input[readonly] ~ .select__input') {
+  width: auto;
+  padding: 0;
   border: none;
   color: $charcoal;
 }

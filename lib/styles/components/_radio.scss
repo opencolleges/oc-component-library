@@ -22,6 +22,10 @@
   transform: translateY(-50%);
 }
 
+@include pre('.radio__input[readonly]') {
+  pointer-events: none;
+}
+
 @include pre('.radio__label') {
   color: $gunmetal;
   font-size: rem(14px);
@@ -41,6 +45,10 @@
 }
 @include pre('.radio__input:disabled + .radio__label') {
   color: $fossil;
+}
+@include pre('.radio__input[readonly] + .radio__label') {
+  color: $charcoal;
+  pointer-events: none;
 }
 @include pre('.radio__input:focus + .radio__label') {
   color: $charcoal;
@@ -80,6 +88,9 @@
 @include pre('.radio__input:disabled + .radio__label::before') {
   border-color: $state-disabled;
 }
+@include pre('.radio__input[readonly] + .radio__label::before') {
+  border-color: $charcoal;
+}
 
 @include pre('.radio__label::after') {
   content: '';
@@ -110,8 +121,14 @@
 @include pre('.radio__input:disabled + .radio__label::after') {
   background-color: $fossil;
 }
+@include pre('.radio__input[readonly] + .radio__label::after') {
+  background-color: $charcoal;
+}
 @include pre('.radio__input:checked:disabled + .radio__label::after') {
   background-color: $fossil;
+}
+@include pre('.radio__input:checked[readonly] + .radio__label::after') {
+  background-color: $charcoal;
 }
 
 @include pre('.radio__border-outer') {
