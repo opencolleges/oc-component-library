@@ -31,7 +31,7 @@ npm install oc-component-library
 
 Import stylesheets:
 
-import 'oc-component/dist/style.css';
+import 'oc-component-library/dist/style.css';
 
 Import Component:
 
