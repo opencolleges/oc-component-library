@@ -25,7 +25,7 @@ Copyright © Open Colleges 2018
 
 #Using npm
 
-npm install oc-component-library
+npm install -save oc-component-library
 
 ## Usage
 
