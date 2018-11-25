@@ -45,7 +45,7 @@
 }
 
 @include pre('.avatar__border') {
-  stroke: $state-default-active;
+  stroke: $state-default;
   stroke-width: 1;
   fill: none;
 }
@@ -113,8 +113,18 @@
 
   @include pre('.avatar__border') {
     stroke: $state-default-hover;
-    transition: stroke-dasharray $transition-duration-x4
-      $transition-timing-default;
+    transition: stroke $transition-duration-x1 $transition-timing-default,
+      stroke-dasharray $transition-duration-x4 $transition-timing-default;
+  }
+
+  @include pre('.avatar:hover .avatar__border') {
+    stroke: $state-default-hover;
+  }
+  @include pre('.avatar:focus .avatar__border') {
+    stroke: $state-default-focus;
+  }
+  @include pre('.avatar:active .avatar__border') {
+    stroke: $state-default-active;
   }
 
   @include pre('.avatar--s .avatar__border') {

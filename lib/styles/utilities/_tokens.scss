@@ -158,9 +158,9 @@ $border-light: rem(1px) solid $gallery;
 $border-medium: rem(1px) solid $alto;
 $border-dark: rem(1px) solid $fossil;
 
-$border-radius-s: $space-xxs;
-$border-radius-m: $space-xs;
-$border-radius-l: $space-s;
+$border-radius-s: rem(2px);
+$border-radius-m: rem(4px);
+$border-radius-l: rem(8px);
 $border-radius-round: 50%;
 
 // box-shadow // --------------------------------------------------------------
@@ -178,6 +178,10 @@ $transition-duration-x1: 125ms;
 $transition-duration-x2: 250ms;
 $transition-duration-x3: 375ms;
 $transition-duration-x4: 500ms;
+$transition-duration-x5: 625ms;
+$transition-duration-x6: 750ms;
+$transition-duration-x7: 875ms;
+$transition-duration-x8: 1000ms;
 
 $transition-timing-default: ease-in-out;
 $transition-timing-bounce-out: cubic-bezier(0.6, 0, 0.5, 1.4);

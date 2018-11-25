@@ -30,7 +30,6 @@
   border-color: $state-disabled;
   color: $fossil;
 }
-
 @include pre('.select__input[readonly] ~ .select__input') {
   width: auto;
   padding: 0;
@@ -55,7 +54,6 @@
 @include pre('.select__input:disabled ~ .select__label') {
   color: $state-disabled;
 }
-
 @include pre('.select__input[readonly] ~ .select__label') {
   color: $christi-shade;
 }
@@ -65,15 +63,7 @@
   top: rem(26px); // * visual hack
   right: rem(8px);
   fill: $gunmetal;
-  transition: fill $transition-duration-x1 $transition-timing-default;
   pointer-events: none;
-}
-
-@include pre('.select__input:focus ~ .icon') {
-  fill: $charcoal;
-}
-@include pre('.active > .icon') {
-  fill: $charcoal;
 }
 
 @include pre('.select__input:disabled ~ .icon') {
@@ -93,8 +83,8 @@
   transform: rem(translateY(24px));
   box-sizing: border-box;
   width: 100%;
-  min-width: rem(304px);
-  max-width: rem(360px);
+  min-width: rem(296px);
+  max-width: rem(352px);
   max-height: rem(144px);
   padding: $space-s rem(4px) $space-m $space-s;
   border-radius: $border-radius-s;
@@ -102,11 +92,13 @@
   background-color: $blizzard;
   transition: opacity $transition-duration-x1 $transition-timing-default,
     transform $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
 }
 
-@include pre('.active > .select__list-outer') {
+@include pre('.select.active > .select__list-outer') {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: initial;
 }
 
 @include pre('.select__list') {
@@ -124,7 +116,7 @@
   box-sizing: border-box;
   min-height: rem(40px);
   padding: $space-s $space-xxl $space-s $space-s;
-  border-bottom: rem(1px) solid $gallery;
+  border-bottom: rem(1px) solid $gallery-transparent;
   outline: 0;
   font-size: rem(14px);
   line-height: rem(24px);
@@ -157,15 +149,14 @@
     display: none;
   }
 
+  @include pre('.select.active > .select__input') {
+    color: inherit;
+  }
   @include pre('.select__input:disabled ~ .select__input') {
     cursor: not-allowed;
   }
   @include pre('.select__input[readonly] ~ .select__input') {
     cursor: text;
-  }
-
-  @include pre('.active > .select__input') {
-    color: inherit;
   }
 
   @include pre('.select__label') {
@@ -176,8 +167,20 @@
   @include pre('.select__input:focus + .select__label') {
     color: $gunmetal;
   }
-  @include pre('.active > .select__label') {
+  @include pre('.select.active > .select__label') {
     color: $gunmetal;
+  }
+
+  @include pre('.select__input:focus ~ .icon') {
+    fill: $charcoal;
+  }
+
+  @include pre('.select > .icon') {
+    transition: fill $transition-duration-x1 $transition-timing-default;
+  }
+
+  @include pre('.select.active > .icon') {
+    fill: $charcoal;
   }
 
   @include pre('.select__border') {
@@ -198,10 +201,9 @@
   @include pre('.select__input:focus ~ .select__border') {
     width: 100%;
   }
-  @include pre('.active > .select__border') {
+  @include pre('.select.active > .select__border') {
     width: 100%;
   }
-
   @include pre('.selected > .select__border') {
     width: 100%;
     background-color: $state-default;
@@ -215,12 +217,10 @@
 
   @include pre('.select__list-outer') {
     user-select: none;
-    pointer-events: none;
   }
 
-  @include pre('.active > .select__list-outer') {
+  @include pre('.select.active > .select__list-outer') {
     cursor: pointer;
-    pointer-events: initial;
   }
 
   @include pre('.select__item') {

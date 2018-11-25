@@ -59,6 +59,8 @@
   height: rem(24px);
   border: rem(1px) solid $viking-shade;
   border-radius: rem(12px);
+  transition: background-color $transition-duration-x1
+    $transition-timing-default;
 }
 
 @include pre('.toggle--left > .toggle__label::before') {
@@ -151,8 +153,7 @@
 
   @include pre('.toggle__label::before') {
     border: $input-border;
-    transition: border-color $transition-duration-x1 $transition-timing-default,
-      background-color $transition-duration-x1 $transition-timing-default;
+    transition: border-color $transition-duration-x1 $transition-timing-default;
   }
   @include pre('.toggle__input:checked + .toggle__label::before') {
     border-color: $viking-shade;

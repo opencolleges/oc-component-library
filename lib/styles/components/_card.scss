@@ -38,12 +38,10 @@
 
 @include pre('.mouse-down > .card--draggable') {
   box-shadow: $box-shadow-layer-4;
-  cursor: grabbing;
   user-select: none;
 }
 @include pre('.mouse-move > .card--draggable') {
   box-shadow: $box-shadow-layer-4;
-  cursor: grabbing !important;
   user-select: none;
 }
 
@@ -59,5 +57,12 @@
 @include pre('.no-touchevents') {
   @include pre('.card--draggable') {
     cursor: grab;
+  }
+
+  @include pre('.mouse-down > .card--draggable') {
+    cursor: grabbing;
+  }
+  @include pre('.mouse-move > .card--draggable') {
+    cursor: grabbing !important;
   }
 }

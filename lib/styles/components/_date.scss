@@ -61,7 +61,7 @@
 @include pre('.date__input:focus ~ .icon') {
   fill: $charcoal;
 }
-@include pre('.active > .icon') {
+@include pre('.date.active > .icon') {
   fill: $charcoal;
 }
 
@@ -82,8 +82,8 @@
   transform: rem(translateY(24px));
   box-sizing: border-box;
   width: 100%;
-  min-width: rem(304px);
-  max-width: rem(360px);
+  min-width: rem(296px);
+  max-width: rem(352px);
   padding: $space-inset-s;
   border-radius: $border-radius-s;
   box-shadow: $box-shadow-layer-4;
@@ -92,7 +92,7 @@
     transform $transition-duration-x2 $transition-timing-bounce-out;
 }
 
-@include pre('.active > .date__list-outer') {
+@include pre('.date.active > .date__list-outer') {
   opacity: 1;
   transform: translateY(0);
 }
@@ -184,7 +184,7 @@
     cursor: not-allowed;
   }
 
-  @include pre('.active > .date__input') {
+  @include pre('.date.active > .date__input') {
     color: inherit;
   }
 
@@ -196,7 +196,7 @@
   @include pre('.date__input:focus + .date__label') {
     color: $gunmetal;
   }
-  @include pre('.active > .date__label') {
+  @include pre('.date.active > .date__label') {
     color: $gunmetal;
   }
 
@@ -218,7 +218,7 @@
   @include pre('.date__input:focus ~ .date__border') {
     width: 100%;
   }
-  @include pre('.active > .date__border') {
+  @include pre('.date.active > .date__border') {
     width: 100%;
   }
 
@@ -238,7 +238,7 @@
     pointer-events: none;
   }
 
-  @include pre('.active > .date__list-outer') {
+  @include pre('.date.active > .date__list-outer') {
     cursor: pointer;
     pointer-events: initial;
   }

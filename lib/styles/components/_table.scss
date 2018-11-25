@@ -54,6 +54,11 @@
 
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
+  @include pre('.tbody > .tr') {
+    transition: background-color $transition-duration-x1
+      $transition-timing-default;
+  }
+
   @include pre('.tbody > .tr:hover') {
     background-color: $selection-background;
   }

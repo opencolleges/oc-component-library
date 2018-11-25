@@ -319,6 +319,7 @@
   @include pre('.checkbox--left > .icon') {
     top: rem(2px);
   }
+
   // no-touchevents // --------------------------------------------------------
   @include pre('.no-touchevents') {
     @include pre('.checkbox--left > .checkbox__border-outer') {
