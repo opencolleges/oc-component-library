@@ -30,6 +30,12 @@
   border-color: $state-disabled;
   color: $fossil;
 }
+@include pre('.date__input[readonly] ~ .date__input') {
+  width: auto;
+  padding: 0;
+  border: none;
+  color: $charcoal;
+}
 
 @include pre('.date__input--hidden') {
   visibility: hidden;
@@ -48,21 +54,16 @@
 @include pre('.date__input:disabled ~ .date__label') {
   color: $state-disabled;
 }
+@include pre('.date__input[readonly] ~ .date__label') {
+  color: $christi-shade;
+}
 
 @include pre('.date > .icon') {
   position: absolute;
   top: rem(26px); // * visual hack
   right: rem(8px);
   fill: $gunmetal;
-  transition: fill $transition-duration-x1 $transition-timing-default;
   pointer-events: none;
-}
-
-@include pre('.date__input:focus ~ .icon') {
-  fill: $charcoal;
-}
-@include pre('.date.active > .icon') {
-  fill: $charcoal;
 }
 
 @include pre('.date__input:disabled ~ .icon') {
@@ -81,82 +82,62 @@
   left: 0;
   transform: rem(translateY(24px));
   box-sizing: border-box;
-  width: 100%;
-  min-width: rem(296px);
-  max-width: rem(352px);
+  width: rem(296px);
   padding: $space-inset-s;
   border-radius: $border-radius-s;
   box-shadow: $box-shadow-layer-4;
   background-color: $blizzard;
   transition: opacity $transition-duration-x1 $transition-timing-default,
     transform $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
 }
 
 @include pre('.date.active > .date__list-outer') {
   opacity: 1;
   transform: translateY(0);
-}
-
-@include pre('.date__navigation-outer') {
-  position: relative;
-  height: rem(40px);
-}
-
-@include pre('.date__navigation') {
-  width: rem(40px);
-  height: rem(40px);
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  color: $gunmetal;
-}
-
-@include pre('.date__navigation--next') {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-@include pre('.date__navigation > .icon') {
-  pointer-events: none;
-}
-
-@include pre('.date__heading') {
-  position: absolute;
-  top: rem(8px);
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: rem(12px);
-  font-weight: 700;
-  line-height: rem(24px);
-  text-align: center;
+  pointer-events: initial;
 }
 
 @include pre('.date__item') {
   float: left;
+  position: relative;
   width: rem(40px);
   height: rem(40px);
-  color: $charcoal;
+  outline: none;
+  color: $fossil;
   font-size: rem(12px);
   line-height: rem(40px);
   text-align: center;
 }
 
-@include pre('.date__item--heading') {
+@include pre('.date__item--month') {
+  width: rem(200px);
+  color: $charcoal;
+  font-weight: 700;
+  text-align: center;
+}
+@include pre('.date__item--weekend') {
+  color: $hurricane;
+  font-weight: 700;
+}
+@include pre('.date__item--weekday') {
   color: $gunmetal;
   font-weight: 700;
 }
-
-@include pre('.date__item--alt') {
-  color: $hurricane;
+@include pre('.date__item--selectable') {
+  color: $charcoal;
 }
 
-@include pre('.date__item--disabled') {
-  color: $fossil;
+@include pre('.date__item--selectable:focus') {
+  background-color: $selection-background;
 }
 
-@include pre('.date__item.selected') {
-  background: $selection-background;
+@include pre('.date__item > .icon') {
+  position: absolute;
+  top: rem(8px);
+  left: rem(8px);
+  fill: $gunmetal;
+  pointer-events: none;
 }
 
 // no-touchevents // ----------------------------------------------------------
@@ -164,7 +145,6 @@
   @include pre('.date__input') {
     border-bottom: $input-border;
     transition: color $transition-duration-x1 $transition-timing-default;
-    user-select: none;
     cursor: pointer;
   }
 
@@ -180,8 +160,12 @@
   @include pre('.date__input::-ms-expand') {
     display: none;
   }
+
   @include pre('.date__input:disabled ~ .date__input') {
     cursor: not-allowed;
+  }
+  @include pre('.date__input[readonly] ~ .date__input') {
+    cursor: text;
   }
 
   @include pre('.date.active > .date__input') {
@@ -198,6 +182,18 @@
   }
   @include pre('.date.active > .date__label') {
     color: $gunmetal;
+  }
+
+  @include pre('.date__input:focus ~ .icon') {
+    fill: $charcoal;
+  }
+
+  @include pre('.date > .icon') {
+    transition: fill $transition-duration-x1 $transition-timing-default;
+  }
+
+  @include pre('.date.active > .icon') {
+    fill: $charcoal;
   }
 
   @include pre('.date__border') {
@@ -235,37 +231,42 @@
 
   @include pre('.date__list-outer') {
     user-select: none;
-    pointer-events: none;
   }
 
-  @include pre('.date.active > .date__list-outer') {
-    cursor: pointer;
-    pointer-events: initial;
-  }
-
-  @include pre('.date__navigation') {
+  @include pre('.date__item--previous') {
     cursor: pointer;
   }
-
-  @include pre('.date__item') {
+  @include pre('.date__item--next') {
+    cursor: pointer;
+  }
+  @include pre('.date__item--selectable') {
     cursor: pointer;
   }
 
-  @include pre('.date__item:hover') {
-    background-color: rgba($viking, 0.08);
+  @include pre('.date__item--selectable:hover') {
+    background-color: $selection-background;
   }
 
-  @include pre('.date__item:focus') {
-    outline: $focus-outline;
-    background-color: rgba($viking, 0.08);
+  @include pre('.date__item--previous > .icon') {
+    transition: fill $transition-duration-x1 $transition-timing-default;
   }
 
-  @include pre('.date__item--heading') {
-    cursor: default;
+  @include pre('.date__item--previous:hover > .icon') {
+    fill: $state-default-hover;
+  }
+  @include pre('.date__item--previous:active > .icon') {
+    fill: $state-default-active;
   }
 
-  @include pre('.date__item--disabled') {
-    cursor: default;
+  @include pre('.date__item--next > .icon') {
+    transition: fill $transition-duration-x1 $transition-timing-default;
+  }
+
+  @include pre('.date__item--next:hover > .icon') {
+    fill: $state-default-hover;
+  }
+  @include pre('.date__item--next:active > .icon') {
+    fill: $state-default-active;
   }
 }
 

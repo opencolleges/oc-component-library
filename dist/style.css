@@ -2004,8 +2004,7 @@ input:-webkit-autofill {
   transform: translateY(24px);
   box-sizing: border-box;
   width: 100%;
-  min-width: 18.5rem;
-  max-width: 22rem;
+  max-width: 25rem;
   max-height: 9rem;
   padding: 0.5rem 0.25rem 1rem 0.5rem;
   border-radius: 0.125rem;
@@ -2034,9 +2033,12 @@ input:-webkit-autofill {
   min-height: 2.5rem;
   padding: 0.5rem 2.5rem 0.5rem 0.5rem;
   border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.08);
-  outline: 0;
+  outline: none;
   font-size: 0.875rem;
   line-height: 1.5rem; }
+
+.oc-select__item:focus {
+  background-color: rgba(17, 160, 173, 0.13); }
 
 .oc-select__item > .oc-icon {
   position: absolute;
@@ -2126,9 +2128,6 @@ input:-webkit-autofill {
   user-select: none; }
 
 .oc-no-touchevents .oc-select__item:hover {
-  background-color: rgba(17, 160, 173, 0.13); }
-
-.oc-no-touchevents .oc-select__item:focus {
   background-color: rgba(17, 160, 173, 0.13); }
 
 @media only screen and (min-width: 30.0625em) {
@@ -3221,6 +3220,12 @@ input:-webkit-autofill {
   border-color: #dedede;
   color: #c9c9c9; }
 
+.oc-date__input[readonly] ~ .oc-date__input {
+  width: auto;
+  padding: 0;
+  border: none;
+  color: #1c1c1c; }
+
 .oc-date__input--hidden {
   visibility: hidden;
   display: none; }
@@ -3236,19 +3241,15 @@ input:-webkit-autofill {
 .oc-date__input:disabled ~ .oc-date__label {
   color: #dedede; }
 
+.oc-date__input[readonly] ~ .oc-date__label {
+  color: #128c01; }
+
 .oc-date > .oc-icon {
   position: absolute;
   top: 1.625rem;
   right: 0.5rem;
   fill: #737373;
-  transition: fill 125ms ease-in-out;
   pointer-events: none; }
-
-.oc-date__input:focus ~ .oc-icon {
-  fill: #1c1c1c; }
-
-.oc-date.oc-active > .oc-icon {
-  fill: #1c1c1c; }
 
 .oc-date__input:disabled ~ .oc-icon {
   fill: #c9c9c9; }
@@ -3264,75 +3265,60 @@ input:-webkit-autofill {
   left: 0;
   transform: translateY(24px);
   box-sizing: border-box;
-  width: 100%;
-  min-width: 18.5rem;
-  max-width: 22rem;
+  width: 18.5rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-radius: 0.125rem;
   box-shadow: 0.125rem -0.125rem 0.125rem -0.125rem rgba(218, 32, 32, 0.05), 0 1.5rem 1.5rem -0.25rem rgba(83, 38, 38, 0.08);
   background-color: white;
-  transition: opacity 125ms ease-in-out, transform 250ms cubic-bezier(0.6, 0, 0.5, 1.4); }
+  transition: opacity 125ms ease-in-out, transform 250ms cubic-bezier(0.6, 0, 0.5, 1.4);
+  pointer-events: none; }
 
 .oc-date.oc-active > .oc-date__list-outer {
   opacity: 1;
-  transform: translateY(0); }
-
-.oc-date__navigation-outer {
-  position: relative;
-  height: 2.5rem; }
-
-.oc-date__navigation {
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  color: #737373; }
-
-.oc-date__navigation--next {
-  position: absolute;
-  top: 0;
-  right: 0; }
-
-.oc-date__navigation > .oc-icon {
-  pointer-events: none; }
-
-.oc-date__heading {
-  position: absolute;
-  top: 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.5rem;
-  text-align: center; }
+  transform: translateY(0);
+  pointer-events: initial; }
 
 .oc-date__item {
   float: left;
+  position: relative;
   width: 2.5rem;
   height: 2.5rem;
-  color: #1c1c1c;
+  outline: none;
+  color: #c9c9c9;
   font-size: 0.75rem;
   line-height: 2.5rem;
   text-align: center; }
 
-.oc-date__item--heading {
+.oc-date__item--month {
+  width: 12.5rem;
+  color: #1c1c1c;
+  font-weight: 700;
+  text-align: center; }
+
+.oc-date__item--weekend {
+  color: #a8a8a8;
+  font-weight: 700; }
+
+.oc-date__item--weekday {
   color: #737373;
   font-weight: 700; }
 
-.oc-date__item--alt {
-  color: #a8a8a8; }
+.oc-date__item--selectable {
+  color: #1c1c1c; }
 
-.oc-date__item--disabled {
-  color: #c9c9c9; }
+.oc-date__item--selectable:focus {
+  background-color: rgba(17, 160, 173, 0.13); }
 
-.oc-date__item.oc-selected {
-  background: rgba(17, 160, 173, 0.13); }
+.oc-date__item > .oc-icon {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  fill: #737373;
+  pointer-events: none; }
 
 .oc-no-touchevents .oc-date__input {
   border-bottom: 0.0625rem solid #c9c9c9;
   transition: color 125ms ease-in-out;
-  user-select: none;
   cursor: pointer; }
 
 .oc-no-touchevents .oc-date__input:focus {
@@ -3348,6 +3334,9 @@ input:-webkit-autofill {
 .oc-no-touchevents .oc-date__input:disabled ~ .oc-date__input {
   cursor: not-allowed; }
 
+.oc-no-touchevents .oc-date__input[readonly] ~ .oc-date__input {
+  cursor: text; }
+
 .oc-no-touchevents .oc-date.oc-active > .oc-date__input {
   color: inherit; }
 
@@ -3360,6 +3349,15 @@ input:-webkit-autofill {
 
 .oc-no-touchevents .oc-date.oc-active > .oc-date__label {
   color: #737373; }
+
+.oc-no-touchevents .oc-date__input:focus ~ .oc-icon {
+  fill: #1c1c1c; }
+
+.oc-no-touchevents .oc-date > .oc-icon {
+  transition: fill 125ms ease-in-out; }
+
+.oc-no-touchevents .oc-date.oc-active > .oc-icon {
+  fill: #1c1c1c; }
 
 .oc-no-touchevents .oc-date__border {
   position: absolute;
@@ -3391,31 +3389,37 @@ input:-webkit-autofill {
   background-color: #11a0ad; }
 
 .oc-no-touchevents .oc-date__list-outer {
-  user-select: none;
-  pointer-events: none; }
+  user-select: none; }
 
-.oc-no-touchevents .oc-date.oc-active > .oc-date__list-outer {
-  cursor: pointer;
-  pointer-events: initial; }
-
-.oc-no-touchevents .oc-date__navigation {
+.oc-no-touchevents .oc-date__item--previous {
   cursor: pointer; }
 
-.oc-no-touchevents .oc-date__item {
+.oc-no-touchevents .oc-date__item--next {
   cursor: pointer; }
 
-.oc-no-touchevents .oc-date__item:hover {
-  background-color: rgba(17, 160, 173, 0.08); }
+.oc-no-touchevents .oc-date__item--selectable {
+  cursor: pointer; }
 
-.oc-no-touchevents .oc-date__item:focus {
-  outline: 0.0625rem dashed #1c1c1c;
-  background-color: rgba(17, 160, 173, 0.08); }
+.oc-no-touchevents .oc-date__item--selectable:hover {
+  background-color: rgba(17, 160, 173, 0.13); }
 
-.oc-no-touchevents .oc-date__item--heading {
-  cursor: default; }
+.oc-no-touchevents .oc-date__item--previous > .oc-icon {
+  transition: fill 125ms ease-in-out; }
 
-.oc-no-touchevents .oc-date__item--disabled {
-  cursor: default; }
+.oc-no-touchevents .oc-date__item--previous:hover > .oc-icon {
+  fill: #11a0ad; }
+
+.oc-no-touchevents .oc-date__item--previous:active > .oc-icon {
+  fill: #056878; }
+
+.oc-no-touchevents .oc-date__item--next > .oc-icon {
+  transition: fill 125ms ease-in-out; }
+
+.oc-no-touchevents .oc-date__item--next:hover > .oc-icon {
+  fill: #11a0ad; }
+
+.oc-no-touchevents .oc-date__item--next:active > .oc-icon {
+  fill: #056878; }
 
 @media only screen and (min-width: 30.0625em) {
   .oc-date {

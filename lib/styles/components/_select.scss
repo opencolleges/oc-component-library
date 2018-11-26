@@ -83,8 +83,7 @@
   transform: rem(translateY(24px));
   box-sizing: border-box;
   width: 100%;
-  min-width: rem(296px);
-  max-width: rem(352px);
+  max-width: rem(400px);
   max-height: rem(144px);
   padding: $space-s rem(4px) $space-m $space-s;
   border-radius: $border-radius-s;
@@ -117,9 +116,13 @@
   min-height: rem(40px);
   padding: $space-s $space-xxl $space-s $space-s;
   border-bottom: rem(1px) solid $gallery-transparent;
-  outline: 0;
+  outline: none;
   font-size: rem(14px);
   line-height: rem(24px);
+}
+
+@include pre('.select__item:focus') {
+  background-color: $selection-background;
 }
 
 @include pre('.select__item > .icon') {
@@ -230,9 +233,6 @@
   }
 
   @include pre('.select__item:hover') {
-    background-color: $selection-background;
-  }
-  @include pre('.select__item:focus') {
     background-color: $selection-background;
   }
 }
