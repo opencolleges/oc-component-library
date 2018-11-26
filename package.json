@@ -1,5 +1,5 @@
 {
-  "name": "oc-component-library",
+  "name": "Uniform",
   "version": "0.1.1",
   "description": "React Component",
   "main": "dist/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/opencolleges/oc-component-library.git"
+    "url": "git+https://github.com/opencolleges/Uniform.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/opencolleges/oc-component-library/issues"
+    "url": "https://github.com/opencolleges/Uniform/issues"
   },
-  "homepage": "https://github.com/opencolleges/oc-component-library#readme",
+  "homepage": "https://github.com/opencolleges/Uniform#readme",
   "peerDependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
