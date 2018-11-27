@@ -106,9 +106,9 @@
   left: rem(8px);
 }
 @include pre('.checkbox--right > .icon') {
-  top: 50%;
+  top: calc(50% - 2px); // * IE11 visual hack
   right: 0;
-  transform: translateY(calc(-50% - 2px));
+  transform: translateY(-50%);
 }
 @include pre('.checkbox--reversed > .icon') {
   color: $blizzard;

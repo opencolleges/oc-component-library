@@ -92,6 +92,11 @@
   pointer-events: none;
 }
 
+@include pre('.date--right > .date__list-outer') {
+  right: 0;
+  left: auto;
+}
+
 @include pre('.date.active > .date__list-outer') {
   opacity: 1;
   transform: translateY(0);
@@ -179,6 +184,9 @@
 
   @include pre('.date__input:focus + .date__label') {
     color: $gunmetal;
+  }
+  @include pre('.date__input[readonly] ~ .date__label') {
+    color: $christi-shade;
   }
   @include pre('.date.active > .date__label') {
     color: $gunmetal;

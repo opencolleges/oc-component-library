@@ -170,6 +170,9 @@
   @include pre('.select__input:focus + .select__label') {
     color: $gunmetal;
   }
+  @include pre('.select__input[readonly] ~ .select__label') {
+    color: $christi-shade;
+  }
   @include pre('.select.active > .select__label') {
     color: $gunmetal;
   }

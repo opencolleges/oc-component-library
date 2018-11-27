@@ -1073,16 +1073,19 @@ input:-webkit-autofill {
   font-size: 0.875rem;
   line-height: 2.5rem;
   transition: color 125ms ease-in-out; }
-  .oc-text__input:required {
-    box-shadow: none; }
-  .oc-text__input::-ms-clear {
-    display: none; }
-  .oc-text__input::-ms-reveal {
-    display: none; }
 
 .oc-text__input:disabled {
   border-color: #dedede;
   color: #c9c9c9; }
+
+.oc-text__input:required {
+  box-shadow: none; }
+
+.oc-text__input::-ms-clear {
+  display: none; }
+
+.oc-text__input::-ms-reveal {
+  display: none; }
 
 .oc-text__input.oc-active {
   color: #737373; }
@@ -1114,8 +1117,9 @@ input:-webkit-autofill {
   line-height: 1.5rem;
   transition: color 125ms ease-in-out;
   resize: none; }
-  .oc-text__textarea:required {
-    box-shadow: none; }
+
+.oc-text__textarea:required {
+  box-shadow: none; }
 
 .oc-text__textarea.oc-active {
   color: #737373; }
@@ -1245,7 +1249,7 @@ input:-webkit-autofill {
   bottom: 0;
   left: 0;
   color: rgba(17, 160, 173, 0);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   line-height: 1rem;
   transition: color 125ms ease-in-out;
   user-select: none; }
@@ -2076,6 +2080,9 @@ input:-webkit-autofill {
 .oc-no-touchevents .oc-select__input:focus + .oc-select__label {
   color: #737373; }
 
+.oc-no-touchevents .oc-select__input[readonly] ~ .oc-select__label {
+  color: #128c01; }
+
 .oc-no-touchevents .oc-select.oc-active > .oc-select__label {
   color: #737373; }
 
@@ -2549,9 +2556,9 @@ input:-webkit-autofill {
   left: 0.5rem; }
 
 .oc-checkbox--right > .oc-icon {
-  top: 50%;
+  top: calc(50% - 2px);
   right: 0;
-  transform: translateY(calc(-50% - 2px)); }
+  transform: translateY(-50%); }
 
 .oc-checkbox--reversed > .oc-icon {
   color: white; }
@@ -3273,6 +3280,10 @@ input:-webkit-autofill {
   transition: opacity 125ms ease-in-out, transform 250ms cubic-bezier(0.6, 0, 0.5, 1.4);
   pointer-events: none; }
 
+.oc-date--right > .oc-date__list-outer {
+  right: 0;
+  left: auto; }
+
 .oc-date.oc-active > .oc-date__list-outer {
   opacity: 1;
   transform: translateY(0);
@@ -3346,6 +3357,9 @@ input:-webkit-autofill {
 
 .oc-no-touchevents .oc-date__input:focus + .oc-date__label {
   color: #737373; }
+
+.oc-no-touchevents .oc-date__input[readonly] ~ .oc-date__label {
+  color: #128c01; }
 
 .oc-no-touchevents .oc-date.oc-active > .oc-date__label {
   color: #737373; }

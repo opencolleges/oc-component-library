@@ -5,13 +5,6 @@
   margin: $space-stack-m;
 }
 
-@include pre('.text.text--error::after') {
-  // icon declarations coming soon
-}
-@include pre('.text.text--success::after') {
-  // icon declarations coming soon
-}
-
 @include pre('.text__input') {
   position: absolute;
   top: rem(16px);
@@ -32,25 +25,23 @@
   font-size: rem(14px);
   line-height: rem(40px);
   transition: color $transition-duration-x1 $transition-timing-default;
-
-  &:required {
-    box-shadow: none;
-  }
-
-  // * IE10+ support
-  &::-ms-clear {
-    display: none;
-  }
-
-  // * IE10+ support
-  &::-ms-reveal {
-    display: none;
-  }
 }
 
 @include pre('.text__input:disabled') {
   border-color: $state-disabled;
   color: $fossil;
+}
+@include pre('.text__input:required') {
+  box-shadow: none;
+}
+
+// * IE10+ support
+@include pre('.text__input::-ms-clear') {
+  display: none;
+}
+// * IE10+ support
+@include pre('.text__input::-ms-reveal') {
+  display: none;
 }
 
 @include pre('.text__input.active') {
@@ -65,21 +56,6 @@
   color: inherit;
 }
 
-// .#{$pre}-text--error .#{$pre}-text__input {
-//   @include rem(border-bottom, 1px solid color(cinnabar, shade));
-
-//   &:hover {
-//     @include rem(border-bottom, 1px solid color(cinnabar));
-//   }
-// }
-// .#{$pre}-text--success .#{$pre}-text__input {
-//   @include rem(border-bottom, 1px solid color(christi, shade));
-
-//   &:hover {
-//     @include rem(border-bottom, 1px solid color(christi));
-//   }
-// }
-
 @include pre('.text__textarea') {
   position: absolute;
   top: rem(16px);
@@ -89,17 +65,12 @@
   box-sizing: border-box;
   width: 100%;
   height: rem(40px);
-
   // * hack to remove scrollbar (to do with bottom border and box-sizing) maybe remove now that overflow is hidden
   padding: rem(8px 0 7px);
-
   outline: none;
   border: none;
   border-bottom: $input-border;
-
-  // * iOS round border removal
-  border-radius: 0;
-
+  border-radius: 0; // * iOS support
   background: none;
   color: inherit;
   font-family: $font-family-sans-serif;
@@ -107,10 +78,10 @@
   line-height: rem(24px);
   transition: color $transition-duration-x1 $transition-timing-default;
   resize: none;
+}
 
-  &:required {
-    box-shadow: none;
-  }
+@include pre('.text__textarea:required') {
+  box-shadow: none;
 }
 
 @include pre('.text__textarea.active') {
@@ -154,18 +125,17 @@
 }
 
 // no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents .text__input.active:hover + .text__label') {
-  color: $gunmetal;
-}
+@include pre('.no-touchevents') {
+  @include pre('.text__input.active:hover + .text__label') {
+    color: $gunmetal;
+  }
+  @include pre('.text__input.active:disabled') {
+    cursor: not-allowed;
+  }
 
-@include pre('.no-touchevents .text__input.active:disabled') {
-  cursor: not-allowed;
-}
-
-@include pre(
-  '.no-touchevents .text__input.active:disabled:hover + .text__label'
-) {
-  color: $state-disabled;
+  @include pre('.text__input.active:disabled:hover + .text__label') {
+    color: $state-disabled;
+  }
 }
 
 @include pre('.text__input.active:focus + .text__label') {
@@ -277,9 +247,8 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  // display: none;
   color: rgba($viking, 0);
-  font-size: rem(11px);
+  font-size: rem(12px);
   line-height: rem(16px);
   transition: color $transition-duration-x1 $transition-timing-default;
   user-select: none;
