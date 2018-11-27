@@ -16,20 +16,25 @@
   height: rem(40px);
   padding: 0 $space-xxl 0 0;
   border: none;
-  border-bottom: $input-border;
+  border-bottom: rem(1px) solid $viking-shade;
   border-radius: 0; // * iOS support
   outline: none;
-  background: none;
-  color: inherit;
+  background-color: transparent;
+  color: $gunmetal;
   font-family: $font-family-sans-serif;
   font-size: rem(14px);
   line-height: rem(40px);
-  transition: color $transition-duration-x1 $transition-timing-default;
 }
 
 @include pre('.text__input:disabled') {
   border-color: $state-disabled;
   color: $fossil;
+}
+@include pre('.text__input[readonly]') {
+  width: auto;
+  padding: 0;
+  border: none;
+  color: inherit;
 }
 @include pre('.text__input:required') {
   box-shadow: none;
@@ -44,16 +49,8 @@
   display: none;
 }
 
-@include pre('.text__input.active') {
-  color: $gunmetal;
-}
-
 @include pre('.text__input.active:disabled') {
   color: $fossil;
-}
-
-@include pre('.text__input.active:focus') {
-  color: inherit;
 }
 
 @include pre('.text__textarea') {
@@ -65,30 +62,44 @@
   box-sizing: border-box;
   width: 100%;
   height: rem(40px);
-  // * hack to remove scrollbar (to do with bottom border and box-sizing) maybe remove now that overflow is hidden
-  padding: rem(8px 0 7px);
+  padding: rem(8px 0 7px); // * hack to remove scrollbar
   outline: none;
   border: none;
-  border-bottom: $input-border;
+  border-bottom: rem(1px) solid $viking-shade;
   border-radius: 0; // * iOS support
   background: none;
-  color: inherit;
+  color: $gunmetal;
   font-family: $font-family-sans-serif;
   font-size: rem(14px);
   line-height: rem(24px);
-  transition: color $transition-duration-x1 $transition-timing-default;
   resize: none;
 }
 
+@include pre('.text__textarea:disabled') {
+  border-color: $state-disabled;
+  color: $fossil;
+}
+@include pre('.text__textarea[readonly]') {
+  width: auto;
+  padding: 0;
+  border: none;
+  color: inherit;
+}
 @include pre('.text__textarea:required') {
   box-shadow: none;
 }
 
-@include pre('.text__textarea.active') {
-  color: $gunmetal;
+// * IE10+ support
+@include pre('.text__textarea::-ms-clear') {
+  display: none;
 }
-@include pre('.text__textarea.active:focus') {
-  color: inherit;
+// * IE10+ support
+@include pre('.text__textarea::-ms-reveal') {
+  display: none;
+}
+
+@include pre('.text__textarea.active:disabled') {
+  color: $fossil;
 }
 
 @include pre('.text__label') {
@@ -102,13 +113,13 @@
     color $transition-duration-x1 $transition-timing-default,
     font-size $transition-duration-x2 $transition-timing-default,
     line-height $transition-duration-x2 $transition-timing-default;
-
   user-select: none;
   pointer-events: none;
 }
 
 @include pre('.text__input:focus + .text__label') {
   top: 0;
+  color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
 }
@@ -121,43 +132,22 @@
 }
 
 @include pre('.text__input:disabled + .text__label') {
+  color: $fossil;
+}
+@include pre('.text__input[readonly] + .text__label') {
+  color: $christi-shade;
+}
+
+@include pre('.text__input.active:disabled + .text__label') {
   color: $state-disabled;
 }
-
-// no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  @include pre('.text__input.active:hover + .text__label') {
-    color: $gunmetal;
-  }
-  @include pre('.text__input.active:disabled') {
-    cursor: not-allowed;
-  }
-
-  @include pre('.text__input.active:disabled:hover + .text__label') {
-    color: $state-disabled;
-  }
-}
-
-@include pre('.text__input.active:focus + .text__label') {
-  color: $gunmetal;
-}
-
-@include pre('.text--required .text__input + .text__label::after') {
-  content: ' *';
-  position: relative;
-  top: 0;
-  color: $cinnabar;
-  transition: top $transition-duration-x2 $transition-timing-default,
-    color $transition-duration-x1 $transition-timing-default;
-}
-
-@include pre('.text--required .text__input.active + .text__label::after') {
-  top: rem(-16px);
-  color: rgba($cinnabar, 0);
+@include pre('.text__input.active[readonly] + .text__label') {
+  color: $christi-shade;
 }
 
 @include pre('.text__textarea:focus + .text__label') {
   top: 0;
+  color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
 }
@@ -169,15 +159,21 @@
   line-height: rem(16px);
 }
 
-@include pre('.no-touchevents .text__textarea.active:hover + .text__label') {
-  color: $gunmetal;
+@include pre('.text__textarea:disabled + .text__label') {
+  color: $fossil;
+}
+@include pre('.text__textarea[readonly] + .text__label') {
+  color: $christi-shade;
 }
 
-@include pre('.text__textarea.active:focus + .text__label') {
-  color: $gunmetal;
+@include pre('.text__textarea.active:disabled + .text__label') {
+  color: $state-disabled;
+}
+@include pre('.text__textarea.active[readonly] + .text__label') {
+  color: $christi-shade;
 }
 
-@include pre('.text--required .text__textarea + .text__label::after') {
+@include pre('.text__input:required + .text__label::after') {
   content: ' *';
   position: relative;
   top: 0;
@@ -185,89 +181,212 @@
   transition: top $transition-duration-x2 $transition-timing-default,
     color $transition-duration-x1 $transition-timing-default;
 }
-@include pre('.text--required .text__textarea.active + .text__label::after') {
+
+@include pre('.text__input.active:required + .text__label::after') {
+  top: rem(-16px);
+  color: rgba($cinnabar, 0);
+}
+
+@include pre('.text__textarea:required + .text__label::after') {
+  content: ' *';
+  position: relative;
+  top: 0;
+  color: $cinnabar;
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.text__textarea.active:required + .text__label::after') {
   top: rem(-16px);
   color: rgba($cinnabar, 0);
 }
 
 @include pre('.text__border') {
-  position: absolute;
-  top: rem(55px);
-  width: 0;
-  height: rem(1px);
-  background: $viking;
-  transition: width $transition-duration-x4 $transition-timing-default,
-    background $transition-duration-x1 $transition-timing-default;
-  pointer-events: none;
-}
-
-@include pre('.no-touchevents .text__input:hover ~ .text__border') {
-  width: 100%;
-}
-
-@include pre('.text__input:focus ~ .text__border') {
-  width: 100%;
-}
-
-@include pre('.text__input.active ~ .text__border') {
-  width: 100%;
-  background: $viking-shade;
-}
-
-@include pre('.no-touchevents .text__input.active:hover ~ .text__border') {
-  background: $viking;
-}
-
-@include pre('.text__input.active:focus ~ .text__border') {
-  background: $viking;
-}
-
-@include pre('.no-touchevents .text__textarea:hover ~ .text__border') {
-  width: 100%;
-}
-
-@include pre('.text__textarea:focus ~ .text__border') {
-  width: 100%;
-}
-
-@include pre('.text__textarea.active ~ .text__border') {
-  width: 100%;
-  background: $viking-shade;
-}
-
-@include pre('.no-touchevents .text__textarea.active:hover ~ .text__border') {
-  background: $viking;
-}
-
-@include pre('.text__textarea.active:focus ~ .text__border') {
-  background: $viking;
+  display: none;
 }
 
 @include pre('.text__message') {
   position: absolute;
   bottom: 0;
   left: 0;
-  color: rgba($viking, 0);
+  color: rgba($state-default, 0);
   font-size: rem(12px);
   line-height: rem(16px);
   transition: color $transition-duration-x1 $transition-timing-default;
   user-select: none;
 }
+
 @include pre('.text__textarea:focus ~ .text__message') {
-  // display: block;
-  color: $viking;
-}
-@include pre('.text__textarea.active ~ .text__message') {
-  color: $viking-shade;
+  color: $state-default-focus;
 }
 
-@include pre('.no-touchevents .text__textarea.active:hover ~ .text__message') {
-  color: $viking;
+@include pre('.text__textarea.active ~ .text__message') {
+  color: $state-default;
 }
 
 @include pre('.text__textarea.active:focus ~ .text__message') {
-  color: $viking;
+  color: $state-default-focus;
 }
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.text__input') {
+    border-bottom: $input-border;
+    transition: color $transition-duration-x1 $transition-timing-default;
+  }
+
+  @include pre('.text__input:disabled') {
+    border-bottom-color: $state-disabled;
+  }
+  @include pre('.text__input[readonly]') {
+    border-bottom: none;
+  }
+
+  @include pre('.text__input.active:focus') {
+    color: inherit;
+  }
+
+  @include pre('.text__input.active:disabled') {
+    color: $fossil;
+    cursor: not-allowed;
+  }
+
+  @include pre('.text__textarea') {
+    border-bottom: $input-border;
+    transition: color $transition-duration-x1 $transition-timing-default;
+  }
+
+  @include pre('.text__textarea:disabled') {
+    border-bottom-color: $state-disabled;
+  }
+  @include pre('.text__textarea[readonly]') {
+    border-bottom: none;
+  }
+
+  @include pre('.text__textarea.active:focus') {
+    color: inherit;
+  }
+
+  @include pre('.text__textarea.active:disabled') {
+    color: $fossil;
+    cursor: not-allowed;
+  }
+
+  @include pre('.text__input:disabled + .text__label') {
+    color: $fossil;
+  }
+  @include pre('.text__input[readonly] + .text__label') {
+    color: $christi-shade;
+  }
+
+  @include pre('.text__input:focus + .text__label') {
+    color: $gunmetal;
+  }
+  @include pre('.text__input[readonly]:focus + .text__label') {
+    color: $christi-shade;
+  }
+
+  @include pre('.text__input.active + .text__label') {
+    color: $hurricane;
+  }
+
+  @include pre('.text__input.active:disabled + .text__label') {
+    color: $state-disabled;
+  }
+  @include pre('.text__input.active[readonly] + .text__label') {
+    color: $christi-shade;
+  }
+
+  @include pre('.text__input.active:focus + .text__label') {
+    color: $gunmetal;
+  }
+  @include pre('.text__input.active[readonly]:focus + .text__label') {
+    color: $christi-shade;
+  }
+
+  @include pre('.text__textarea:disabled + .text__label') {
+    color: $fossil;
+  }
+  @include pre('.text__textarea[readonly] + .text__label') {
+    color: $christi-shade;
+  }
+
+  @include pre('.text__textarea:focus + .text__label') {
+    color: $gunmetal;
+  }
+  @include pre('.text__textarea[readonly]:focus + .text__label') {
+    color: $christi-shade;
+  }
+
+  @include pre('.text__textarea.active + .text__label') {
+    color: $hurricane;
+  }
+
+  @include pre('.text__textarea.active:disabled + .text__label') {
+    color: $state-disabled;
+  }
+  @include pre('.text__textarea.active[readonly] + .text__label') {
+    color: $christi-shade;
+  }
+
+  @include pre('.text__textarea.active:focus + .text__label') {
+    color: $gunmetal;
+  }
+  @include pre('.text__textarea.active[readonly]:focus + .text__label') {
+    color: $christi-shade;
+  }
+
+  @include pre('.text__border') {
+    position: absolute;
+    top: rem(55px);
+    display: block;
+    width: 0;
+    height: rem(1px);
+    background: $viking;
+    transition: width $transition-duration-x4 $transition-timing-default,
+      background $transition-duration-x1 $transition-timing-default;
+    pointer-events: none;
+  }
+
+  @include pre('.text__input:hover ~ .text__border') {
+    width: 100%;
+  }
+  @include pre('.text__input:focus ~ .text__border') {
+    width: 100%;
+  }
+
+  @include pre('.text__input.active ~ .text__border') {
+    width: 100%;
+    background: $state-default;
+  }
+
+  @include pre('.text__input.active:hover ~ .text__border') {
+    background: $state-default-hover;
+  }
+  @include pre('.text__input.active:focus ~ .text__border') {
+    background: $state-default-focus;
+  }
+
+  @include pre('.text__textarea:hover ~ .text__border') {
+    width: 100%;
+  }
+  @include pre('.text__textarea:focus ~ .text__border') {
+    width: 100%;
+  }
+
+  @include pre('.text__textarea.active ~ .text__border') {
+    width: 100%;
+    background: $state-default;
+  }
+
+  @include pre('.text__textarea.active:hover ~ .text__border') {
+    background: $state-default-hover;
+  }
+  @include pre('.text__textarea.active:focus ~ .text__border') {
+    background: $state-default-focus;
+  }
+}
+
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
   @include pre('.text') {
@@ -279,9 +398,7 @@
   }
 
   @include pre('.text__textarea') {
-    // * hack to remove scrollbar (to do with bottom border and box-sizing)
-    padding: rem(4px 0 3px);
-
+    padding: rem(4px 0 3px); // * hack to remove scrollbar
     font-size: rem(15px);
     line-height: rem(32px);
   }

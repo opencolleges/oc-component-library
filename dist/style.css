@@ -1064,19 +1064,24 @@ input:-webkit-autofill {
   height: 2.5rem;
   padding: 0 2.5rem 0 0;
   border: none;
-  border-bottom: 0.0625rem solid #c9c9c9;
+  border-bottom: 0.0625rem solid #056878;
   border-radius: 0;
   outline: none;
-  background: none;
-  color: inherit;
+  background-color: transparent;
+  color: #737373;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
-  line-height: 2.5rem;
-  transition: color 125ms ease-in-out; }
+  line-height: 2.5rem; }
 
 .oc-text__input:disabled {
   border-color: #dedede;
   color: #c9c9c9; }
+
+.oc-text__input[readonly] {
+  width: auto;
+  padding: 0;
+  border: none;
+  color: inherit; }
 
 .oc-text__input:required {
   box-shadow: none; }
@@ -1087,14 +1092,8 @@ input:-webkit-autofill {
 .oc-text__input::-ms-reveal {
   display: none; }
 
-.oc-text__input.oc-active {
-  color: #737373; }
-
 .oc-text__input.oc-active:disabled {
   color: #c9c9c9; }
-
-.oc-text__input.oc-active:focus {
-  color: inherit; }
 
 .oc-text__textarea {
   position: absolute;
@@ -1108,24 +1107,36 @@ input:-webkit-autofill {
   padding: 0.5rem 0 0.4375rem;
   outline: none;
   border: none;
-  border-bottom: 0.0625rem solid #c9c9c9;
+  border-bottom: 0.0625rem solid #056878;
   border-radius: 0;
   background: none;
-  color: inherit;
+  color: #737373;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   line-height: 1.5rem;
-  transition: color 125ms ease-in-out;
   resize: none; }
+
+.oc-text__textarea:disabled {
+  border-color: #dedede;
+  color: #c9c9c9; }
+
+.oc-text__textarea[readonly] {
+  width: auto;
+  padding: 0;
+  border: none;
+  color: inherit; }
 
 .oc-text__textarea:required {
   box-shadow: none; }
 
-.oc-text__textarea.oc-active {
-  color: #737373; }
+.oc-text__textarea::-ms-clear {
+  display: none; }
 
-.oc-text__textarea.oc-active:focus {
-  color: inherit; }
+.oc-text__textarea::-ms-reveal {
+  display: none; }
+
+.oc-text__textarea.oc-active:disabled {
+  color: #c9c9c9; }
 
 .oc-text__label {
   position: absolute;
@@ -1140,6 +1151,7 @@ input:-webkit-autofill {
 
 .oc-text__input:focus + .oc-text__label {
   top: 0;
+  color: #a8a8a8;
   font-size: 0.75rem;
   line-height: 1rem; }
 
@@ -1150,33 +1162,20 @@ input:-webkit-autofill {
   line-height: 1rem; }
 
 .oc-text__input:disabled + .oc-text__label {
+  color: #c9c9c9; }
+
+.oc-text__input[readonly] + .oc-text__label {
+  color: #128c01; }
+
+.oc-text__input.oc-active:disabled + .oc-text__label {
   color: #dedede; }
 
-.oc-no-touchevents .oc-text__input.oc-active:hover + .oc-text__label {
-  color: #737373; }
-
-.oc-no-touchevents .oc-text__input.oc-active:disabled {
-  cursor: not-allowed; }
-
-.oc-no-touchevents .oc-text__input.oc-active:disabled:hover + .oc-text__label {
-  color: #dedede; }
-
-.oc-text__input.oc-active:focus + .oc-text__label {
-  color: #737373; }
-
-.oc-text--required .oc-text__input + .oc-text__label::after {
-  content: ' *';
-  position: relative;
-  top: 0;
-  color: #ed4a4a;
-  transition: top 250ms ease-in-out, color 125ms ease-in-out; }
-
-.oc-text--required .oc-text__input.oc-active + .oc-text__label::after {
-  top: -1rem;
-  color: rgba(237, 74, 74, 0); }
+.oc-text__input.oc-active[readonly] + .oc-text__label {
+  color: #128c01; }
 
 .oc-text__textarea:focus + .oc-text__label {
   top: 0;
+  color: #a8a8a8;
   font-size: 0.75rem;
   line-height: 1rem; }
 
@@ -1186,69 +1185,48 @@ input:-webkit-autofill {
   font-size: 0.75rem;
   line-height: 1rem; }
 
-.oc-no-touchevents .oc-text__textarea.oc-active:hover + .oc-text__label {
-  color: #737373; }
+.oc-text__textarea:disabled + .oc-text__label {
+  color: #c9c9c9; }
 
-.oc-text__textarea.oc-active:focus + .oc-text__label {
-  color: #737373; }
+.oc-text__textarea[readonly] + .oc-text__label {
+  color: #128c01; }
 
-.oc-text--required .oc-text__textarea + .oc-text__label::after {
+.oc-text__textarea.oc-active:disabled + .oc-text__label {
+  color: #dedede; }
+
+.oc-text__textarea.oc-active[readonly] + .oc-text__label {
+  color: #128c01; }
+
+.oc-text__input:required + .oc-text__label::after {
   content: ' *';
   position: relative;
   top: 0;
   color: #ed4a4a;
   transition: top 250ms ease-in-out, color 125ms ease-in-out; }
 
-.oc-text--required .oc-text__textarea.oc-active + .oc-text__label::after {
+.oc-text__input.oc-active:required + .oc-text__label::after {
+  top: -1rem;
+  color: rgba(237, 74, 74, 0); }
+
+.oc-text__textarea:required + .oc-text__label::after {
+  content: ' *';
+  position: relative;
+  top: 0;
+  color: #ed4a4a;
+  transition: top 250ms ease-in-out, color 125ms ease-in-out; }
+
+.oc-text__textarea.oc-active:required + .oc-text__label::after {
   top: -1rem;
   color: rgba(237, 74, 74, 0); }
 
 .oc-text__border {
-  position: absolute;
-  top: 3.4375rem;
-  width: 0;
-  height: 0.0625rem;
-  background: #11a0ad;
-  transition: width 500ms ease-in-out, background 125ms ease-in-out;
-  pointer-events: none; }
-
-.oc-no-touchevents .oc-text__input:hover ~ .oc-text__border {
-  width: 100%; }
-
-.oc-text__input:focus ~ .oc-text__border {
-  width: 100%; }
-
-.oc-text__input.oc-active ~ .oc-text__border {
-  width: 100%;
-  background: #056878; }
-
-.oc-no-touchevents .oc-text__input.oc-active:hover ~ .oc-text__border {
-  background: #11a0ad; }
-
-.oc-text__input.oc-active:focus ~ .oc-text__border {
-  background: #11a0ad; }
-
-.oc-no-touchevents .oc-text__textarea:hover ~ .oc-text__border {
-  width: 100%; }
-
-.oc-text__textarea:focus ~ .oc-text__border {
-  width: 100%; }
-
-.oc-text__textarea.oc-active ~ .oc-text__border {
-  width: 100%;
-  background: #056878; }
-
-.oc-no-touchevents .oc-text__textarea.oc-active:hover ~ .oc-text__border {
-  background: #11a0ad; }
-
-.oc-text__textarea.oc-active:focus ~ .oc-text__border {
-  background: #11a0ad; }
+  display: none; }
 
 .oc-text__message {
   position: absolute;
   bottom: 0;
   left: 0;
-  color: rgba(17, 160, 173, 0);
+  color: rgba(5, 104, 120, 0);
   font-size: 0.75rem;
   line-height: 1rem;
   transition: color 125ms ease-in-out;
@@ -1260,11 +1238,138 @@ input:-webkit-autofill {
 .oc-text__textarea.oc-active ~ .oc-text__message {
   color: #056878; }
 
-.oc-no-touchevents .oc-text__textarea.oc-active:hover ~ .oc-text__message {
-  color: #11a0ad; }
-
 .oc-text__textarea.oc-active:focus ~ .oc-text__message {
   color: #11a0ad; }
+
+.oc-no-touchevents .oc-text__input {
+  border-bottom: 0.0625rem solid #c9c9c9;
+  transition: color 125ms ease-in-out; }
+
+.oc-no-touchevents .oc-text__input:disabled {
+  border-bottom-color: #dedede; }
+
+.oc-no-touchevents .oc-text__input[readonly] {
+  border-bottom: none; }
+
+.oc-no-touchevents .oc-text__input.oc-active:focus {
+  color: inherit; }
+
+.oc-no-touchevents .oc-text__input.oc-active:disabled {
+  color: #c9c9c9;
+  cursor: not-allowed; }
+
+.oc-no-touchevents .oc-text__textarea {
+  border-bottom: 0.0625rem solid #c9c9c9;
+  transition: color 125ms ease-in-out; }
+
+.oc-no-touchevents .oc-text__textarea:disabled {
+  border-bottom-color: #dedede; }
+
+.oc-no-touchevents .oc-text__textarea[readonly] {
+  border-bottom: none; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active:focus {
+  color: inherit; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active:disabled {
+  color: #c9c9c9;
+  cursor: not-allowed; }
+
+.oc-no-touchevents .oc-text__input:disabled + .oc-text__label {
+  color: #c9c9c9; }
+
+.oc-no-touchevents .oc-text__input[readonly] + .oc-text__label {
+  color: #128c01; }
+
+.oc-no-touchevents .oc-text__input:focus + .oc-text__label {
+  color: #737373; }
+
+.oc-no-touchevents .oc-text__input[readonly]:focus + .oc-text__label {
+  color: #128c01; }
+
+.oc-no-touchevents .oc-text__input.oc-active + .oc-text__label {
+  color: #a8a8a8; }
+
+.oc-no-touchevents .oc-text__input.oc-active:disabled + .oc-text__label {
+  color: #dedede; }
+
+.oc-no-touchevents .oc-text__input.oc-active[readonly] + .oc-text__label {
+  color: #128c01; }
+
+.oc-no-touchevents .oc-text__input.oc-active:focus + .oc-text__label {
+  color: #737373; }
+
+.oc-no-touchevents .oc-text__input.oc-active[readonly]:focus + .oc-text__label {
+  color: #128c01; }
+
+.oc-no-touchevents .oc-text__textarea:disabled + .oc-text__label {
+  color: #c9c9c9; }
+
+.oc-no-touchevents .oc-text__textarea[readonly] + .oc-text__label {
+  color: #128c01; }
+
+.oc-no-touchevents .oc-text__textarea:focus + .oc-text__label {
+  color: #737373; }
+
+.oc-no-touchevents .oc-text__textarea[readonly]:focus + .oc-text__label {
+  color: #128c01; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active + .oc-text__label {
+  color: #a8a8a8; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active:disabled + .oc-text__label {
+  color: #dedede; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active[readonly] + .oc-text__label {
+  color: #128c01; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active:focus + .oc-text__label {
+  color: #737373; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active[readonly]:focus + .oc-text__label {
+  color: #128c01; }
+
+.oc-no-touchevents .oc-text__border {
+  position: absolute;
+  top: 3.4375rem;
+  display: block;
+  width: 0;
+  height: 0.0625rem;
+  background: #11a0ad;
+  transition: width 500ms ease-in-out, background 125ms ease-in-out;
+  pointer-events: none; }
+
+.oc-no-touchevents .oc-text__input:hover ~ .oc-text__border {
+  width: 100%; }
+
+.oc-no-touchevents .oc-text__input:focus ~ .oc-text__border {
+  width: 100%; }
+
+.oc-no-touchevents .oc-text__input.oc-active ~ .oc-text__border {
+  width: 100%;
+  background: #056878; }
+
+.oc-no-touchevents .oc-text__input.oc-active:hover ~ .oc-text__border {
+  background: #11a0ad; }
+
+.oc-no-touchevents .oc-text__input.oc-active:focus ~ .oc-text__border {
+  background: #11a0ad; }
+
+.oc-no-touchevents .oc-text__textarea:hover ~ .oc-text__border {
+  width: 100%; }
+
+.oc-no-touchevents .oc-text__textarea:focus ~ .oc-text__border {
+  width: 100%; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active ~ .oc-text__border {
+  width: 100%;
+  background: #056878; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active:hover ~ .oc-text__border {
+  background: #11a0ad; }
+
+.oc-no-touchevents .oc-text__textarea.oc-active:focus ~ .oc-text__border {
+  background: #11a0ad; }
 
 @media only screen and (min-width: 30.0625em) {
   .oc-text {
