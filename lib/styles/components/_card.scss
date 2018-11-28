@@ -28,6 +28,7 @@
 }
 
 @include pre('.card--draggable') {
+  padding: rem(8px 8px 8px 32px);
   box-shadow: $box-shadow-layer-1;
   transition: transform $transition-duration-x1 $transition-timing-default,
     box-shadow $transition-duration-x1 $transition-timing-default;
