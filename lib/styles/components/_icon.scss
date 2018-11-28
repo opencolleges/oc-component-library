@@ -1,0 +1,35 @@
+// global // ------------------------------------------------------------------
+@include pre('.icon') {
+  stroke: $gunmetal;
+  fill: none;
+}
+
+@include pre('.icon--tick .stroke--1') {
+  stroke-dasharray: 0 20;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default;
+}
+
+@include pre('.icon--tick.active .stroke--1') {
+  stroke-dasharray: 20 0;
+}
+
+@include pre('.icon--close .stroke--1') {
+  stroke-dasharray: 0 16;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default;
+}
+
+@include pre('.icon--close.active .stroke--1') {
+  stroke-dasharray: 16 0;
+}
+
+@include pre('.icon--close .stroke--2') {
+  stroke-dasharray: 0 16;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default $transition-duration-x2;
+}
+
+@include pre('.icon--close.active .stroke--2') {
+  stroke-dasharray: 16 0;
+}
