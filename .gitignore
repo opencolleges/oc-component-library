@@ -4,6 +4,9 @@
 # production
 /build
 
+# distributed version
+/dist
+
 # misc
 .DS_Store
 .env.local
