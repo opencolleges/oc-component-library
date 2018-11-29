@@ -3585,3 +3585,57 @@ input:-webkit-autofill {
 @media only screen and (min-width: 48.0625em) {
   .oc-pagination__item {
     font-size: 0.8125rem; } }
+
+.oc-progress {
+  position: relative;
+  height: 2.5rem;
+  width: 11.25rem; }
+
+.oc-progress__lable {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #737373;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem; }
+
+.oc-progress__bar-outer {
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  width: 100%; }
+
+.oc-progress__bar-inner {
+  background-color: #c9c9c9;
+  width: 9.375rem;
+  height: 0.5rem;
+  border-radius: 0.25rem; }
+
+.oc-progress__icon {
+  position: absolute;
+  right: 0;
+  top: 1rem; }
+
+.oc-progress__bar {
+  height: 100%;
+  transition: width 0.2s ease-in;
+  border-radius: inherit; }
+
+.oc-progress__bar--inprogress {
+  background-color: #31bc06; }
+
+.oc-progress__bar--success {
+  background-color: #31bc06; }
+
+.oc-progress__bar--error {
+  background-color: #ed4a4a; }
+
+.oc-progress__icon--inprogress > .oc-icon {
+  fill: #c9c9c9; }
+
+.oc-progress__icon--success > .oc-icon {
+  fill: #31bc06; }
+
+.oc-progress__icon--error > .oc-icon {
+  fill: #ed4a4a; }

@@ -1,0 +1,57 @@
+@include pre('.progress') {
+  position: relative;
+  height: rem(40px);
+  width: rem(180px);
+}
+@include pre('.progress__lable') {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: $gunmetal;
+  font-size: rem(12px);
+  font-weight: 700;
+  line-height: rem(16px);
+}
+@include pre('.progress__bar-outer') {
+  position: absolute;
+  top: rem(24px);
+  left: 0;
+  width: 100%;
+}
+
+@include pre('.progress__bar-inner') {
+  background-color: $fossil;
+  width: rem(150px);
+  height: rem(8px);
+  border-radius: rem(4px);
+}
+@include pre('.progress__icon') {
+  position: absolute;
+  right: 0;
+  top: rem(16px);
+}
+@include pre('.progress__bar') {
+  height: 100%;
+  transition: width 0.2s ease-in;
+  border-radius: inherit;
+}
+
+@include pre('.progress__bar--inprogress') {
+  background-color: $christi;
+}
+@include pre('.progress__bar--success') {
+  background-color: $christi;
+}
+@include pre('.progress__bar--error') {
+  background-color: $cinnabar;
+}
+
+@include pre('.progress__icon--inprogress > .icon') {
+  fill: $fossil;
+}
+@include pre('.progress__icon--success > .icon') {
+  fill: $christi;
+}
+@include pre('.progress__icon--error > .icon') {
+  fill: $cinnabar;
+}
