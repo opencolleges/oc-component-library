@@ -79,10 +79,6 @@
   display: none;
 }
 
-@include pre('.pagination__border-outer') {
-  display: none;
-}
-
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.pagination__item') {
@@ -124,38 +120,6 @@
   @include pre('.pagination__item:focus::before') {
     //outline: $focus-outline;
   }
-
-  @include pre('.pagination__border-outer') {
-    position: absolute;
-    top: rem(8px);
-    left: rem(8px);
-    display: block;
-    width: rem(32px);
-    height: rem(32px);
-    pointer-events: none;
-  }
-
-  @include pre('.pagination__item.active > .pagination__border-outer') {
-    display: none;
-  }
-
-  @include pre('.pagination__border') {
-    stroke: $state-default-hover;
-    stroke-dasharray: 0 circumference(31);
-    stroke-dashoffset: ((circumference(-31) / 4) * 3);
-    stroke-width: 1;
-    fill: none;
-    transition: stroke $transition-duration-x1 $transition-timing-default,
-      stroke-dasharray $transition-duration-x4 $transition-timing-default;
-    pointer-events: none;
-  }
-
-  @include pre('.pagination__item:hover .pagination__border') {
-    stroke-dasharray: circumference(31) 0;
-  }
-  @include pre('.pagination__item:focus .pagination__border') {
-    stroke-dasharray: circumference(31) 0;
-  }
 }
 
 // medium // ------------------------------------------------------------------
@@ -192,25 +156,6 @@
       left: rem(4px);
       width: rem(40px);
       height: rem(40px);
-    }
-
-    @include pre('.pagination__border-outer') {
-      top: rem(4px);
-      left: rem(4px);
-      width: rem(40px);
-      height: rem(40px);
-    }
-
-    @include pre('.pagination__border') {
-      stroke-dasharray: 0 circumference(39);
-      stroke-dashoffset: ((circumference(-39) / 4) * 3);
-    }
-
-    @include pre('.pagination__item:hover .pagination__border') {
-      stroke-dasharray: circumference(39) 0;
-    }
-    @include pre('.pagination__item:focus .pagination__border') {
-      stroke-dasharray: circumference(39) 0;
     }
   }
 }
