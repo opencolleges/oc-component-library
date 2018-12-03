@@ -128,7 +128,6 @@
   }
 
   @include pre('.avatar--s .avatar__border') {
-    transform-origin: rem(16px 16px);
     stroke-dasharray: 0 circumference(31);
     stroke-dashoffset: ((circumference(-31) / 4) * 3);
   }
@@ -140,7 +139,6 @@
   }
 
   @include pre('.avatar--m .avatar__border') {
-    transform-origin: rem(20px 20px);
     stroke-dasharray: 0 circumference(39);
     stroke-dashoffset: ((circumference(-39) / 4) * 3);
   }
@@ -152,7 +150,6 @@
   }
 
   @include pre('.avatar--l .avatar__border') {
-    transform-origin: rem(24px 24px);
     stroke-dasharray: 0 circumference(47);
     stroke-dashoffset: ((circumference(-47) / 4) * 3);
   }

@@ -98,7 +98,7 @@
   opacity: 0;
   position: absolute;
   transition: opacity $transition-duration-x1 $transition-timing-default;
-  fill: $charcoal;
+  stroke: $charcoal;
 }
 
 @include pre('.checkbox--left > .icon') {
@@ -106,9 +106,9 @@
   left: rem(8px);
 }
 @include pre('.checkbox--right > .icon') {
-  top: 50%;
+  top: calc(50% - 2px); // * IE11 visual hack
   right: 0;
-  transform: translateY(calc(-50% - 2px));
+  transform: translateY(-50%);
 }
 @include pre('.checkbox--reversed > .icon') {
   color: $blizzard;
@@ -117,10 +117,10 @@
   opacity: 1;
 }
 @include pre('.checkbox__input:checked:disabled ~ .icon') {
-  fill: $fossil;
+  stroke: $fossil;
 }
 @include pre('.checkbox__input:checked[readonly] ~ .icon') {
-  fill: $charcoal;
+  stroke: $charcoal;
 }
 
 @include pre('.checkbox__border-outer') {

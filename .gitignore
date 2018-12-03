@@ -1,4 +1,19 @@
+# dependencies
+/node_modules
+
+# production
+/build
+
+# distributed version
+/dist
+
+# misc
 .DS_Store
-build
-node_modules
-*.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
