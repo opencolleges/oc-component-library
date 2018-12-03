@@ -1,10 +1,44 @@
 // small // -------------------------------------------------------------------
 @include pre('.pagination') {
-  //position: fixed;
+  z-index: $z-index-nav;
+  position: fixed;
+  bottom: rem(24px);
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  width: rem(336px);
   height: rem(64px);
+  padding: $space-s 0;
   border-radius: $border-radius-s;
   box-shadow: $box-shadow-layer-4;
   background-color: $blizzard;
+}
+
+@include pre('.pagination__list-outer') {
+  position: relative;
+}
+
+@include pre('.pagination__highlight') {
+  position: absolute;
+  top: rem(8px);
+  left: rem(56px);
+  width: rem(32px);
+  height: rem(32px);
+  border-radius: $border-radius-round;
+  background-color: $selection-background;
+  transition: transform $transition-duration-x3 $transition-timing-bounce-out;
+}
+
+@include pre('.pagination__list::before') {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@include pre('.pagination__list::after') {
+  content: '';
+  display: table;
+  clear: both;
 }
 
 @include pre('.pagination__item') {
@@ -12,7 +46,6 @@
   float: left;
   width: rem(48px);
   height: rem(48px);
-  margin: $space-s 0;
   color: $gunmetal;
   text-align: center;
   font-size: rem(11px);
@@ -21,176 +54,213 @@
   user-select: none;
 }
 
+@include pre('.pagination__item--alt') {
+  width: rem(32px);
+  color: $fossil;
+}
+
 @include pre('.pagination__item.active') {
   color: $charcoal;
 }
 
-// ! amend
-@include pre('.pagination__item::before') {
-  content: '';
-  opacity: 0;
+@include pre('.pagination__item > .icon--chevron-left') {
   position: absolute;
-  top: rem(8px);
-  left: rem(8px);
-  transform: scale(0);
-  width: rem(32px);
-  height: rem(32px);
-  border-radius: $border-radius-round;
-  background-color: rgba($viking, 0.13);
-  transition: transform $transition-duration-x2 $transition-timing-bounce-out;
+  top: rem(12px);
+  left: rem(12px);
 }
 
-@include pre('.pagination__item.active::before') {
-  opacity: 1;
-  transform: scale(1);
-}
-
-// ! amend
-@include pre('.pagination__item--error::before') {
-  opacity: 1;
-  transform: scale(1);
-  background-color: $alabaster;
-}
-
-// ! amend
-@include pre('.pagination__item--success::before') {
-  opacity: 1;
-  transform: scale(1);
-  background-color: $alabaster;
-}
-
-@include pre('.pagination__item::after') {
-  content: '';
-  opacity: 0;
+@include pre('.pagination__item > .icon--chevron-right') {
   position: absolute;
-  top: rem(-2px);
-  right: rem(-2px);
-  transform: scale(0);
-  width: rem(24px);
-  height: rem(24px);
-  border-radius: $border-radius-round;
-  background-color: $blizzard;
-  transition: transform $transition-duration-x2 $transition-timing-bounce-out
-    $transition-duration-x2;
+  top: rem(12px);
+  right: rem(12px);
 }
 
-@include pre('.pagination__item--error::after') {
-  opacity: 1;
-  transform: scale(1);
+@include pre('.pagination__label') {
+  display: none;
 }
 
-@include pre('.pagination__item--success::after') {
-  opacity: 1;
-  transform: scale(1);
-}
-
-@include pre('.pagination__icon') {
-  z-index: 1;
-  position: absolute;
-  top: rem(-2px);
-  right: rem(-2px);
-  width: rem(24px);
-  height: rem(24px);
-  stroke-width: 1;
-  outline: none;
-  fill: none;
-}
-
-@include pre('.pagination__icon--error') {
-  stroke: $cinnabar;
-}
-
-@include pre('.pagination__icon--success') {
-  stroke: $christi;
-}
-
-@include pre('.pagination__icon--error > .pagination__line--1') {
-  stroke-dasharray: 0 8;
-  transition: stroke-dasharray $transition-duration-x2
-    $transition-timing-default $transition-duration-x4;
-}
-
-@include pre('.pagination__icon--error > .pagination__line--2') {
-  stroke-dasharray: 0 8;
-  transition: stroke-dasharray $transition-duration-x2
-    $transition-timing-default $transition-duration-x5;
-}
-
-@include pre('.pagination__icon--error > .pagination__line--3') {
-  stroke-dasharray: 0 circumference(20) 0 0;
-  stroke-dashoffset: ((circumference(-20) / 4) * 3);
-  transition: stroke-dasharray $transition-duration-x4
-    $transition-timing-default $transition-duration-x7;
-}
-
-@include pre(
-  '.pagination__item--error > .pagination__icon--error > .pagination__line--1'
-) {
-  stroke-dasharray: circumference(20) 0;
-}
-
-@include pre(
-  '.pagination__item--error > .pagination__icon--error > .pagination__line--2'
-) {
-  stroke-dasharray: 8 0;
-}
-
-@include pre(
-  '.pagination__item--error > .pagination__icon--error > .pagination__line--3'
-) {
-  stroke-dasharray: 8 0;
-}
-
-@include pre('.pagination__item--success .pagination__line--1') {
-  stroke-dasharray: 0 10;
-  transition: stroke-dasharray $transition-duration-x3
-    $transition-timing-default $transition-duration-x4;
-}
-
-@include pre('.pagination__item--success .pagination__line--2') {
-  stroke-dasharray: 0 circumference(20);
-  stroke-dashoffset: ((circumference(-20) / 4) * 3);
-  transition: stroke-dasharray $transition-duration-x4
-    $transition-timing-default $transition-duration-x7;
-}
-
-@include pre('.pagination__item--success.active .pagination__line--1') {
-  stroke-dasharray: circumference(20) 0;
-}
-
-@include pre('.pagination__item--success.active .pagination__line--2') {
-  stroke-dasharray: 10 0;
+@include pre('.pagination__border-outer') {
+  display: none;
 }
 
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.pagination__item') {
+    transition: color $transition-duration-x1 $transition-timing-default;
     cursor: pointer;
+  }
+
+  @include pre('.pagination__item:hover') {
+    color: $state-default-hover;
+  }
+  @include pre('.pagination__item:focus') {
+    outline: none;
+    color: $charcoal;
+  }
+
+  @include pre('.pagination__item--alt') {
+    cursor: default;
+  }
+
+  @include pre('.pagination__item--alt:hover') {
+    color: $fossil;
+  }
+
+  @include pre('.pagination__item::before') {
+    content: '';
+    position: absolute;
+    top: rem(8px);
+    left: rem(8px);
+    width: rem(32px);
+    height: rem(32px);
+    pointer-events: none;
+  }
+
+  @include pre('.pagination__item:last-of-type::before') {
+    right: rem(8px);
+    left: initial;
+  }
+
+  @include pre('.pagination__item:focus::before') {
+    //outline: $focus-outline;
+  }
+
+  @include pre('.pagination__border-outer') {
+    position: absolute;
+    top: rem(8px);
+    left: rem(8px);
+    display: block;
+    width: rem(32px);
+    height: rem(32px);
+    pointer-events: none;
+  }
+
+  @include pre('.pagination__item.active > .pagination__border-outer') {
+    display: none;
+  }
+
+  @include pre('.pagination__border') {
+    stroke: $state-default-hover;
+    stroke-dasharray: 0 circumference(31);
+    stroke-dashoffset: ((circumference(-31) / 4) * 3);
+    stroke-width: 1;
+    fill: none;
+    transition: stroke $transition-duration-x1 $transition-timing-default,
+      stroke-dasharray $transition-duration-x4 $transition-timing-default;
+    pointer-events: none;
+  }
+
+  @include pre('.pagination__item:hover .pagination__border') {
+    stroke-dasharray: circumference(31) 0;
+  }
+  @include pre('.pagination__item:focus .pagination__border') {
+    stroke-dasharray: circumference(31) 0;
   }
 }
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
   @include pre('.pagination') {
+    width: rem(496px);
     height: rem(72px);
+    padding: rem(12px) $space-s;
+  }
+
+  @include pre('.pagination__highlight') {
+    top: rem(4px);
+    left: rem(60px);
+    width: rem(40px);
+    height: rem(40px);
   }
 
   @include pre('.pagination__item') {
-    margin: rem(12px) 0;
+    margin: 0 $space-xs;
     font-size: rem(12px);
   }
 
-  @include pre('.pagination__item::before') {
-    top: rem(4px);
-    left: rem(4px);
-    width: rem(40px);
-    height: rem(40px);
+  @include pre('.pagination__item:first-of-type') {
+    margin: 0 $space-xs 0 0;
+  }
+
+  @include pre('.pagination__item:last-of-type') {
+    margin: 0 0 0 $space-xs;
+  }
+
+  @include pre('.no-touchevents') {
+    @include pre('.pagination__item::before') {
+      top: rem(4px);
+      left: rem(4px);
+      width: rem(40px);
+      height: rem(40px);
+    }
+
+    @include pre('.pagination__border-outer') {
+      top: rem(4px);
+      left: rem(4px);
+      width: rem(40px);
+      height: rem(40px);
+    }
+
+    @include pre('.pagination__border') {
+      stroke-dasharray: 0 circumference(39);
+      stroke-dashoffset: ((circumference(-39) / 4) * 3);
+    }
+
+    @include pre('.pagination__item:hover .pagination__border') {
+      stroke-dasharray: circumference(39) 0;
+    }
+    @include pre('.pagination__item:focus .pagination__border') {
+      stroke-dasharray: circumference(39) 0;
+    }
   }
 }
 
 // large // -------------------------------------------------------------------
 @media #{$media-l} {
+  @include pre('.pagination') {
+    width: rem(672px);
+    bottom: rem(120px);
+  }
+
+  @include pre('.pagination__highlight') {
+    left: rem(92px);
+  }
+
   @include pre('.pagination__item') {
     font-size: rem(13px);
+  }
+
+  @include pre('.pagination__item:first-of-type') {
+    width: rem(80px);
+  }
+
+  @include pre('.pagination__item:last-of-type') {
+    width: rem(80px);
+  }
+
+  @include pre('.pagination__item:first-of-type::before') {
+    width: rem(80px);
+  }
+
+  @include pre('.pagination__item:last-of-type::before') {
+    width: rem(80px);
+  }
+
+  @include pre('.pagination__label') {
+    display: inline-block;
+    color: $hurricane;
+  }
+
+  @include pre('.icon--chevron-left + .pagination__label') {
+    position: absolute;
+    top: 0;
+    left: rem(48px);
+  }
+
+  @include pre('.icon--chevron-right + .pagination__label') {
+    position: absolute;
+    top: 0;
+    right: rem(48px);
+    text-align: right;
   }
 }
