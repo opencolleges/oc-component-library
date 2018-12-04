@@ -209,3 +209,25 @@
     text-align: right;
   }
 }
+
+@include pre('.pagination__item--status--success::after') {
+  content: '.';
+  position: absolute;
+  top: rem(16px);
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  color: $viking-shade;
+  font-size: 24px;
+  line-height: 32px;
+}
+@include pre('.pagination__item--status--error::after') {
+  content: '*';
+  position: absolute;
+  top: rem(16px);
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  color: $cinnabar-shade;
+  font-size: 10px;
+}
