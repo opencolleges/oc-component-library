@@ -59,6 +59,52 @@
   color: $fossil;
 }
 
+@include pre('.pagination__item::before') {
+  content: '';
+  position: absolute;
+  top: rem(56px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: rem(4px);
+  height: rem(4px);
+  border-radius: $border-radius-round;
+  background-color: rgba($viking-shade, 0);
+  transition: top $transition-duration-x2 $transition-timing-bounce-out,
+    background-color $transition-duration-x1 $transition-timing-default;
+  pointer-events: none;
+}
+
+@include pre('.pagination__item--success::before') {
+  top: rem(40px);
+  background-color: $viking-shade;
+}
+
+@include pre('.pagination__item--success.active::before') {
+  top: rem(48px);
+}
+
+@include pre('.pagination__item::after') {
+  content: '*';
+  position: absolute;
+  top: rem(55px); // * visual hack
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba($cinnabar-shade, 0);
+  line-height: rem(8px);
+  transition: top $transition-duration-x2 $transition-timing-bounce-out,
+    color $transition-duration-x1 $transition-timing-default;
+  pointer-events: none;
+}
+
+@include pre('.pagination__item--error::after') {
+  top: rem(39px); // * visual hack
+  color: $cinnabar-shade;
+}
+
+@include pre('.pagination__item--error.active::after') {
+  top: rem(47px); // * visual hack
+}
+
 @include pre('.pagination__item.active') {
   color: $charcoal;
 }
@@ -101,25 +147,6 @@
   @include pre('.pagination__item--alt:hover') {
     color: $fossil;
   }
-
-  @include pre('.pagination__item::before') {
-    content: '';
-    position: absolute;
-    top: rem(8px);
-    left: rem(8px);
-    width: rem(32px);
-    height: rem(32px);
-    pointer-events: none;
-  }
-
-  @include pre('.pagination__item:last-of-type::before') {
-    right: rem(8px);
-    left: initial;
-  }
-
-  @include pre('.pagination__item:focus::before') {
-    //outline: $focus-outline;
-  }
 }
 
 // medium // ------------------------------------------------------------------
@@ -149,15 +176,6 @@
   @include pre('.pagination__item:last-of-type') {
     margin: 0 0 0 $space-xs;
   }
-
-  @include pre('.no-touchevents') {
-    @include pre('.pagination__item::before') {
-      top: rem(4px);
-      left: rem(4px);
-      width: rem(40px);
-      height: rem(40px);
-    }
-  }
 }
 
 // large // -------------------------------------------------------------------
@@ -183,14 +201,6 @@
     width: rem(80px);
   }
 
-  @include pre('.pagination__item:first-of-type::before') {
-    width: rem(80px);
-  }
-
-  @include pre('.pagination__item:last-of-type::before') {
-    width: rem(80px);
-  }
-
   @include pre('.pagination__label') {
     display: inline-block;
     color: $hurricane;
@@ -208,26 +218,4 @@
     right: rem(48px);
     text-align: right;
   }
-}
-
-@include pre('.pagination__item--status--success::after') {
-  content: '.';
-  position: absolute;
-  top: rem(16px);
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
-  color: $viking-shade;
-  font-size: 24px;
-  line-height: 32px;
-}
-@include pre('.pagination__item--status--error::after') {
-  content: '*';
-  position: absolute;
-  top: rem(16px);
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
-  color: $cinnabar-shade;
-  font-size: 10px;
 }

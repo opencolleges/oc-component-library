@@ -1,13 +1,13 @@
 @include pre('.progress') {
   position: relative;
+  box-sizing: border-box;
   height: rem(40px);
-  width: rem(180px);
 }
 
 @include pre('.progress__label') {
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
   color: $gunmetal;
   font-size: rem(12px);
   font-weight: 700;
@@ -18,46 +18,46 @@
   position: absolute;
   top: rem(24px);
   left: 0;
-  width: 100%;
-}
-
-@include pre('.progress__bar-inner') {
-  background-color: $fossil;
-  width: rem(150px);
+  width: rem(calc(100% - 40px));
   height: rem(8px);
   border-radius: rem(4px);
-}
-
-@include pre('.progress__icon') {
-  position: absolute;
-  top: rem(16px);
-  right: 0;
+  background-color: $alto;
 }
 
 @include pre('.progress__bar') {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   border-radius: inherit;
+  background-color: $viking;
   transition: width $transition-duration-x2 $transition-timing-bounce-out;
 }
 
-@include pre('.progress__bar--inprogress') {
+@include pre('.progress--success .progress__bar') {
   background-color: $christi;
 }
 
-@include pre('.progress__bar--success') {
-  background-color: $christi;
-}
-
-@include pre('.progress__bar--error') {
+@include pre('.progress--error .progress__bar') {
   background-color: $cinnabar;
 }
 
-@include pre('.progress__icon--inprogress > .icon') {
-  fill: $fossil;
+@include pre('.progress > .icon') {
+  position: absolute;
+  top: rem(16px);
+  right: rem(8px);
 }
-@include pre('.progress__icon--success > .icon') {
-  fill: $christi;
+
+@include pre('.progress--success > .icon') {
+  stroke: $christi;
 }
-@include pre('.progress__icon--error > .icon') {
-  fill: $cinnabar;
+@include pre('.progress--error > .icon') {
+  stroke: $cinnabar;
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.progress__label') {
+    user-select: none;
+  }
 }
