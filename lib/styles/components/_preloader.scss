@@ -1,11 +1,11 @@
 @include pre('.preloader') {
+  z-index: $z-index-overlay;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: $hurricane-transparent;
-  z-index: 1001;
+  // ? background-color: $hurricane-transparent;
 }
 
 @include pre('.preloader.hide') {
@@ -14,21 +14,21 @@
 @include pre('.preloader.show') {
   display: block;
 }
+
 @include pre('.preloader__stroke-outer') {
   position: relative;
   top: 50%;
   left: 50%;
-  width: 96px;
-  height: 96px;
   transform: translate(-50%, -50%);
+  width: rem(96px);
+  height: rem(96px);
 }
 
 @include pre('.preloader__stroke') {
   transform: rotate(-90deg);
-  transform-origin: 48px 48px;
-  transform-origin: 3rem 3rem;
-  stroke-dasharray: 301.44;
-  stroke-dashoffset: 301.43;
+  transform-origin: rem(48px 48px);
+  stroke-dasharray: circumference(96);
+  stroke-dashoffset: circumference(96);
   stroke-linecap: round;
   stroke-width: 8;
   fill: none;
@@ -36,16 +36,16 @@
 }
 
 @include pre('.preloader__stroke--1') {
-  stroke: #fada0a;
+  stroke: $candlelight;
   animation: stroke--1 1.25s infinite;
 }
 
 @include pre('.preloader__stroke--2') {
-  stroke: #11a0ad;
+  stroke: $viking;
   animation: stroke--2 1.25s infinite;
 }
 @include pre('.preloader__stroke--3') {
-  stroke: #31bc06;
+  stroke: $christi;
   animation: stroke--3 1.25s infinite;
 }
 
