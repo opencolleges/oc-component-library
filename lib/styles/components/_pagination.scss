@@ -79,6 +79,10 @@
   background-color: $viking-shade;
 }
 
+@include pre('.pagination__item--success.active::before') {
+  top: rem(48px);
+}
+
 @include pre('.pagination__item::after') {
   content: '*';
   position: absolute;
@@ -95,6 +99,10 @@
 @include pre('.pagination__item--error::after') {
   top: rem(39px); // * visual hack
   color: $cinnabar-shade;
+}
+
+@include pre('.pagination__item--error.active::after') {
+  top: rem(47px); // * visual hack
 }
 
 @include pre('.pagination__item.active') {

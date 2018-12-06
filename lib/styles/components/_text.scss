@@ -60,56 +60,6 @@
   color: $fossil;
 }
 
-@include pre('.text__textarea') {
-  position: absolute;
-  top: rem(16px);
-  left: 0;
-  overflow: hidden;
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  height: rem(40px);
-  padding: rem(8px 0 7px); // * hack to remove scrollbar
-  outline: none;
-  border: none;
-  border-bottom: rem(1px) solid $viking-shade;
-  border-radius: 0; // * iOS support
-  background: none;
-  color: $gunmetal;
-  font-family: $font-family-sans-serif;
-  font-size: rem(14px);
-  line-height: rem(24px);
-  transition: height $transition-duration-x2 $transition-timing-bounce-out;
-  resize: none;
-}
-
-@include pre('.text__textarea:disabled') {
-  border-color: $state-disabled;
-  color: $fossil;
-}
-@include pre('.text__textarea[readonly]') {
-  width: auto;
-  padding: 0;
-  border: none;
-  color: inherit;
-}
-@include pre('.text__textarea:required') {
-  box-shadow: none;
-}
-
-// * IE10+ support
-@include pre('.text__textarea::-ms-clear') {
-  display: none;
-}
-// * IE10+ support
-@include pre('.text__textarea::-ms-reveal') {
-  display: none;
-}
-
-@include pre('.text__textarea.active:disabled') {
-  color: $fossil;
-}
-
 @include pre('.text__label') {
   position: absolute;
   top: rem(24px);
@@ -153,34 +103,6 @@
   color: $christi-shade;
 }
 
-@include pre('.text__textarea:focus + .text__label') {
-  top: 0;
-  color: $hurricane;
-  font-size: rem(12px);
-  line-height: rem(16px);
-}
-
-@include pre('.text__textarea.active + .text__label') {
-  top: 0;
-  color: $hurricane;
-  font-size: rem(12px);
-  line-height: rem(16px);
-}
-
-@include pre('.text__textarea:disabled + .text__label') {
-  color: $fossil;
-}
-@include pre('.text__textarea[readonly] + .text__label') {
-  color: $christi-shade;
-}
-
-@include pre('.text__textarea.active:disabled + .text__label') {
-  color: $state-disabled;
-}
-@include pre('.text__textarea.active[readonly] + .text__label') {
-  color: $christi-shade;
-}
-
 @include pre('.text__input:required + .text__label::after') {
   content: ' *';
   position: relative;
@@ -202,11 +124,6 @@
   color: $state-error-focus;
   transition: top $transition-duration-x2 $transition-timing-default,
     color $transition-duration-x1 $transition-timing-default;
-}
-
-@include pre('.text__textarea.active:required + .text__label::after') {
-  top: rem(-16px);
-  color: rgba($state-error-focus, 0);
 }
 
 @include pre('.text > .icon') {
@@ -241,18 +158,6 @@
   user-select: none;
 }
 
-@include pre('.text__textarea:focus ~ .text__message') {
-  color: $state-default-focus;
-}
-
-@include pre('.text__textarea.active ~ .text__message') {
-  color: $state-default;
-}
-
-@include pre('.text__textarea.active:focus ~ .text__message') {
-  color: $state-default-focus;
-}
-
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.text__input') {
@@ -272,27 +177,6 @@
   }
 
   @include pre('.text__input.active:disabled') {
-    color: $fossil;
-    cursor: not-allowed;
-  }
-
-  @include pre('.text__textarea') {
-    border-bottom: $input-border;
-    transition: color $transition-duration-x1 $transition-timing-default;
-  }
-
-  @include pre('.text__textarea:disabled') {
-    border-bottom-color: $state-disabled;
-  }
-  @include pre('.text__textarea[readonly]') {
-    border-bottom: none;
-  }
-
-  @include pre('.text__textarea.active:focus') {
-    color: inherit;
-  }
-
-  @include pre('.text__textarea.active:disabled') {
     color: $fossil;
     cursor: not-allowed;
   }
@@ -326,38 +210,6 @@
     color: $gunmetal;
   }
   @include pre('.text__input.active[readonly]:focus + .text__label') {
-    color: $christi-shade;
-  }
-
-  @include pre('.text__textarea:disabled + .text__label') {
-    color: $fossil;
-  }
-  @include pre('.text__textarea[readonly] + .text__label') {
-    color: $christi-shade;
-  }
-
-  @include pre('.text__textarea:focus + .text__label') {
-    color: $gunmetal;
-  }
-  @include pre('.text__textarea[readonly]:focus + .text__label') {
-    color: $christi-shade;
-  }
-
-  @include pre('.text__textarea.active + .text__label') {
-    color: $hurricane;
-  }
-
-  @include pre('.text__textarea.active:disabled + .text__label') {
-    color: $state-disabled;
-  }
-  @include pre('.text__textarea.active[readonly] + .text__label') {
-    color: $christi-shade;
-  }
-
-  @include pre('.text__textarea.active:focus + .text__label') {
-    color: $gunmetal;
-  }
-  @include pre('.text__textarea.active[readonly]:focus + .text__label') {
     color: $christi-shade;
   }
 
@@ -416,25 +268,6 @@
   @include pre('.text--success > .text__input:focus ~ .text__border') {
     background-color: $state-success-focus;
   }
-
-  @include pre('.text__textarea:hover ~ .text__border') {
-    width: 100%;
-  }
-  @include pre('.text__textarea:focus ~ .text__border') {
-    width: 100%;
-  }
-
-  @include pre('.text__textarea.active ~ .text__border') {
-    width: 100%;
-    background-color: $state-default;
-  }
-
-  @include pre('.text__textarea.active:hover ~ .text__border') {
-    background-color: $state-default-hover;
-  }
-  @include pre('.text__textarea.active:focus ~ .text__border') {
-    background-color: $state-default-focus;
-  }
 }
 
 // medium // ------------------------------------------------------------------
@@ -447,12 +280,6 @@
     font-size: rem(15px);
   }
 
-  @include pre('.text__textarea') {
-    padding: rem(4px 0 3px); // * hack to remove scrollbar
-    font-size: rem(15px);
-    line-height: rem(32px);
-  }
-
   @include pre('.text__label') {
     font-size: rem(15px);
   }
@@ -461,10 +288,6 @@
 // large // -------------------------------------------------------------------
 @media #{$media-l} {
   @include pre('.text__input') {
-    font-size: rem(16px);
-  }
-
-  @include pre('.text__textarea') {
     font-size: rem(16px);
   }
 
