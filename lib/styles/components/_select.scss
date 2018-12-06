@@ -75,7 +75,7 @@
 }
 
 @include pre('.select__list-outer') {
-  z-index: 2;
+  z-index: $z-index-dropdown;
   opacity: 0;
   position: absolute;
   top: rem(64px);
