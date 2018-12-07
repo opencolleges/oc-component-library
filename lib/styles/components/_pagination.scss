@@ -1,52 +1,38 @@
 // small // -------------------------------------------------------------------
 @include pre('.pagination') {
-  z-index: $z-index-nav;
+  z-index: $z-index-pagination;
   position: fixed;
-  bottom: rem(24px);
+  bottom: rem(16px);
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;
-  width: rem(336px);
+  min-width: rem(320px);
+  width: 75%;
   height: rem(64px);
-  padding: $space-s 0;
+  padding: $space-s;
   border-radius: $border-radius-s;
   box-shadow: $box-shadow-layer-4;
   background-color: $blizzard;
 }
 
-@include pre('.pagination__list-outer') {
-  position: relative;
-}
-
-@include pre('.pagination__highlight') {
+@include pre('.pagination > .pagination__list') {
   position: absolute;
   top: rem(8px);
-  left: rem(56px);
-  width: rem(32px);
-  height: rem(32px);
-  border-radius: $border-radius-round;
-  background-color: $selection-background;
-  transition: transform $transition-duration-x3 $transition-timing-bounce-out;
 }
 
-@include pre('.pagination__list::before') {
-  content: '';
-  display: table;
-  clear: both;
+@include pre('.pagination > .pagination__list:first-child') {
+  left: rem(8px);
 }
-
-@include pre('.pagination__list::after') {
-  content: '';
-  display: table;
-  clear: both;
+@include pre('.pagination > .pagination__list:last-child') {
+  right: rem(8px);
 }
 
 @include pre('.pagination__item') {
   position: relative;
   float: left;
-  width: rem(48px);
+  width: rem(16px);
   height: rem(48px);
-  color: $gunmetal;
+  color: $fossil;
   text-align: center;
   font-size: rem(11px);
   font-weight: 700;
@@ -54,70 +40,118 @@
   user-select: none;
 }
 
-@include pre('.pagination__item--alt') {
-  width: rem(32px);
-  color: $fossil;
+@include pre('.pagination__item.pagination__item--previous') {
+  width: rem(48px);
+  color: $hurricane;
+}
+@include pre('.pagination__item.pagination__item--next') {
+  width: rem(48px);
+  color: $hurricane;
 }
 
-@include pre('.pagination__item::before') {
-  content: '';
-  position: absolute;
-  top: rem(56px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: rem(4px);
-  height: rem(4px);
-  border-radius: $border-radius-round;
-  background-color: rgba($viking-shade, 0);
-  transition: top $transition-duration-x2 $transition-timing-bounce-out,
-    background-color $transition-duration-x1 $transition-timing-default;
-  pointer-events: none;
-}
-
-@include pre('.pagination__item--success::before') {
-  top: rem(40px);
-  background-color: $viking-shade;
-}
-
-@include pre('.pagination__item--success.active::before') {
-  top: rem(48px);
-}
-
-@include pre('.pagination__item::after') {
-  content: '*';
-  position: absolute;
-  top: rem(55px); // * visual hack
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba($cinnabar-shade, 0);
-  line-height: rem(8px);
-  transition: top $transition-duration-x2 $transition-timing-bounce-out,
-    color $transition-duration-x1 $transition-timing-default;
-  pointer-events: none;
-}
-
-@include pre('.pagination__item--error::after') {
-  top: rem(39px); // * visual hack
-  color: $cinnabar-shade;
-}
-
-@include pre('.pagination__item--error.active::after') {
-  top: rem(47px); // * visual hack
+@include pre('.pagination__item.pagination__item--selectable') {
+  width: rem(48px);
+  color: $gunmetal;
 }
 
 @include pre('.pagination__item.active') {
   color: $charcoal;
 }
 
-@include pre('.pagination__item > .icon--chevron-left') {
-  position: absolute;
-  top: rem(12px);
-  left: rem(12px);
+@include pre('.pagination__item:focus') {
+  outline: none;
 }
 
-@include pre('.pagination__item > .icon--chevron-right') {
+@include pre('.pagination__item > .icon') {
   position: absolute;
   top: rem(12px);
+}
+
+@include pre('.pagination__item.pagination__item--selectable::before') {
+  content: '';
+  opacity: 0;
+  position: absolute;
+  top: rem(52px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: rem(4px);
+  height: rem(4px);
+  border-radius: $border-radius-round;
+  background-color: $christi-shade;
+  transition: opacity $transition-duration-x1 $transition-timing-default,
+    top $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
+}
+
+@include pre(
+  '.pagination__item.pagination__item--selectable.pagination__item--populated::before'
+) {
+  opacity: 1;
+  top: rem(36px);
+}
+
+@include pre(
+  '.pagination__item.pagination__item--selectable.pagination__item--populated:hover::before'
+) {
+  background-color: $christi;
+}
+@include pre(
+  '.pagination__item.pagination__item--selectable.pagination__item--populated:active::before'
+) {
+  background-color: $christi-shade;
+}
+
+@include pre(
+  '.pagination__item.pagination__item--selectable.pagination__item--populated.active::before'
+) {
+  background-color: $christi;
+}
+
+@include pre('.pagination__item.pagination__item--selectable::after') {
+  content: '*';
+  opacity: 0;
+  position: absolute;
+  top: rem(53px); // * visual hack
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: $border-radius-round;
+  color: $cinnabar-shade;
+  font-size: rem(11px);
+  text-align: center;
+  line-height: rem(4px);
+  transition: opacity $transition-duration-x1 $transition-timing-default,
+    top $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
+}
+
+@include pre(
+  '.pagination__item.pagination__item--selectable.pagination__item--required::after'
+) {
+  opacity: 1;
+  top: rem(37px); // * visual hack
+}
+
+@include pre(
+  '.pagination__item.pagination__item--selectable.pagination__item--required:hover::after'
+) {
+  color: $cinnabar;
+}
+@include pre(
+  '.pagination__item.pagination__item--selectable.pagination__item--required:active::after'
+) {
+  color: $cinnabar-shade;
+}
+
+@include pre(
+  '.pagination__item.pagination__item--selectable.pagination__item--required.active::after'
+) {
+  color: $cinnabar;
+}
+
+@include pre('.pagination__item > .icon--arrow-left') {
+  left: rem(12px);
+}
+@include pre('.pagination__item > .icon--arrow-right') {
   right: rem(12px);
 }
 
@@ -125,97 +159,128 @@
   display: none;
 }
 
+@include pre('.pagination__list-outer') {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: rem(208px);
+}
+
+@include pre('.pagination__highlight') {
+  position: absolute;
+  top: rem(4px);
+  left: rem(4px);
+  width: rem(40px);
+  height: rem(40px);
+  border-radius: $border-radius-round;
+  background-color: $selection-background;
+  transition: transform $transition-duration-x3 $transition-timing-bounce-out;
+}
+
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
-  @include pre('.pagination__item') {
-    transition: color $transition-duration-x1 $transition-timing-default;
-    cursor: pointer;
+  @include pre('.pagination:focus-within') {
+    outline: $focus-outline;
   }
 
   @include pre('.pagination__item:hover') {
     color: $state-default-hover;
   }
-  @include pre('.pagination__item:focus') {
-    outline: none;
-    color: $charcoal;
+  @include pre('.pagination__item:active') {
+    color: $state-default-active;
   }
 
-  @include pre('.pagination__item--alt') {
+  @include pre('.pagination__item:hover > .icon') {
+    stroke: $state-default-hover;
+  }
+  @include pre('.pagination__item:active > .icon') {
+    stroke: $state-default-active;
+  }
+
+  @include pre('.pagination__item.pagination__item--previous') {
+    cursor: pointer;
+  }
+  @include pre('.pagination__item.pagination__item--next') {
+    cursor: pointer;
+  }
+
+  @include pre('.pagination__item.pagination__item--selectable') {
+    cursor: pointer;
+  }
+
+  @include pre('.pagination__item.active') {
     cursor: default;
   }
 
-  @include pre('.pagination__item--alt:hover') {
-    color: $fossil;
+  @include pre('.pagination__item.active:hover') {
+    color: $charcoal;
+  }
+  @include pre('.pagination__item.active:active') {
+    color: $charcoal;
   }
 }
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
   @include pre('.pagination') {
-    width: rem(496px);
+    min-width: rem(464px);
     height: rem(72px);
     padding: rem(12px) $space-s;
   }
 
-  @include pre('.pagination__highlight') {
-    top: rem(4px);
-    left: rem(60px);
-    width: rem(40px);
-    height: rem(40px);
+  @include pre('.pagination > .pagination__list') {
+    top: rem(12px);
   }
 
   @include pre('.pagination__item') {
-    margin: 0 $space-xs;
     font-size: rem(12px);
   }
 
-  @include pre('.pagination__item:first-of-type') {
-    margin: 0 $space-xs 0 0;
+  @include pre('.pagination__list-outer') {
+    width: rem(352px);
   }
 
-  @include pre('.pagination__item:last-of-type') {
-    margin: 0 0 0 $space-xs;
+  @include pre('.pagination__item.pagination__item--selectable') {
+    width: rem(56px);
+  }
+
+  @include pre('.pagination__highlight') {
+    left: rem(8px);
   }
 }
 
 // large // -------------------------------------------------------------------
 @media #{$media-l} {
   @include pre('.pagination') {
-    width: rem(672px);
-    bottom: rem(120px);
-  }
-
-  @include pre('.pagination__highlight') {
-    left: rem(92px);
+    width: rem(656px);
+    bottom: rem(64px);
   }
 
   @include pre('.pagination__item') {
     font-size: rem(13px);
   }
 
-  @include pre('.pagination__item:first-of-type') {
-    width: rem(80px);
+  @include pre('.pagination__item.pagination__item--previous') {
+    width: rem(88px);
   }
-
-  @include pre('.pagination__item:last-of-type') {
-    width: rem(80px);
+  @include pre('.pagination__item.pagination__item--next') {
+    width: rem(88px);
   }
 
   @include pre('.pagination__label') {
-    display: inline-block;
-    color: $hurricane;
-  }
-
-  @include pre('.icon--chevron-left + .pagination__label') {
     position: absolute;
     top: 0;
+    display: block;
+  }
+
+  @include pre('.pagination__item--previous > .pagination__label') {
     left: rem(48px);
   }
-
-  @include pre('.icon--chevron-right + .pagination__label') {
-    position: absolute;
-    top: 0;
+  @include pre('.pagination__item--next > .pagination__label') {
     right: rem(48px);
-    text-align: right;
+  }
+
+  @include pre('.pagination__list-outer') {
+    width: rem(464px);
   }
 }
