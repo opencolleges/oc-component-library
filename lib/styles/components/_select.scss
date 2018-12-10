@@ -58,6 +58,20 @@
   color: $christi-shade;
 }
 
+@include pre('.select__input[required] ~ .select__label::after') {
+  content: ' *';
+  position: relative;
+  top: 0;
+  color: $state-error-focus;
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.selected > .select__input[required] ~ .select__label::after') {
+  top: rem(-16px);
+  color: rgba($state-error-focus, 0);
+}
+
 @include pre('.select > .icon') {
   position: absolute;
   top: rem(26px); // * visual hack
