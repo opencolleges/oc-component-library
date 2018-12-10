@@ -62,12 +62,12 @@
   position: absolute;
   top: rem(26px); // * visual hack
   right: rem(8px);
-  fill: $gunmetal;
+  stroke: $gunmetal;
   pointer-events: none;
 }
 
 @include pre('.select__input:disabled ~ .icon') {
-  fill: $fossil;
+  stroke: $fossil;
 }
 
 @include pre('.select__border') {
@@ -178,15 +178,15 @@
   }
 
   @include pre('.select__input:focus ~ .icon') {
-    fill: $charcoal;
+    stroke: $charcoal;
   }
 
   @include pre('.select > .icon') {
-    transition: fill $transition-duration-x1 $transition-timing-default;
+    transition: stroke $transition-duration-x1 $transition-timing-default;
   }
 
   @include pre('.select.active > .icon') {
-    fill: $charcoal;
+    stroke: $charcoal;
   }
 
   @include pre('.select__border') {

@@ -50,7 +50,7 @@
 @include pre('.file__image > .icon') {
   width: 100%;
   height: 100%;
-  fill: $fossil;
+  stroke: $fossil;
 }
 
 @include pre('.file--s .file__image') {

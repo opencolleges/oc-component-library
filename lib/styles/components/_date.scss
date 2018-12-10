@@ -62,12 +62,12 @@
   position: absolute;
   top: rem(26px); // * visual hack
   right: rem(8px);
-  fill: $gunmetal;
+  stroke: $gunmetal;
   pointer-events: none;
 }
 
 @include pre('.date__input:disabled ~ .icon') {
-  fill: $fossil;
+  stroke: $fossil;
 }
 
 @include pre('.date__border') {
@@ -141,7 +141,7 @@
   position: absolute;
   top: rem(8px);
   left: rem(8px);
-  fill: $gunmetal;
+  stroke: $gunmetal;
   pointer-events: none;
 }
 
@@ -193,15 +193,15 @@
   }
 
   @include pre('.date__input:focus ~ .icon') {
-    fill: $charcoal;
+    stroke: $charcoal;
   }
 
   @include pre('.date > .icon') {
-    transition: fill $transition-duration-x1 $transition-timing-default;
+    transition: stroke $transition-duration-x1 $transition-timing-default;
   }
 
   @include pre('.date.active > .icon') {
-    fill: $charcoal;
+    stroke: $charcoal;
   }
 
   @include pre('.date__border') {
@@ -256,25 +256,25 @@
   }
 
   @include pre('.date__item--previous > .icon') {
-    transition: fill $transition-duration-x1 $transition-timing-default;
+    transition: stroke $transition-duration-x1 $transition-timing-default;
   }
 
   @include pre('.date__item--previous:hover > .icon') {
-    fill: $state-default-hover;
+    stroke: $state-default-hover;
   }
   @include pre('.date__item--previous:active > .icon') {
-    fill: $state-default-active;
+    stroke: $state-default-active;
   }
 
   @include pre('.date__item--next > .icon') {
-    transition: fill $transition-duration-x1 $transition-timing-default;
+    transition: stroke $transition-duration-x1 $transition-timing-default;
   }
 
   @include pre('.date__item--next:hover > .icon') {
-    fill: $state-default-hover;
+    stroke: $state-default-hover;
   }
   @include pre('.date__item--next:active > .icon') {
-    fill: $state-default-active;
+    stroke: $state-default-active;
   }
 }
 

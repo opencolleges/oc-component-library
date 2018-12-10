@@ -95,9 +95,7 @@
 }
 
 @include pre('.checkbox > .icon') {
-  opacity: 0;
   position: absolute;
-  transition: opacity $transition-duration-x1 $transition-timing-default;
   stroke: $charcoal;
 }
 
@@ -112,9 +110,6 @@
 }
 @include pre('.checkbox--reversed > .icon') {
   color: $blizzard;
-}
-@include pre('.checkbox__input:checked ~ .icon') {
-  opacity: 1;
 }
 @include pre('.checkbox__input:checked:disabled ~ .icon') {
   stroke: $fossil;
