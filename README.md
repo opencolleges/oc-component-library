@@ -31,8 +31,8 @@ npm install -save oc-component-library
 
 Import stylesheets:
 
-import 'oc-component-library/dist/style.css';
+import 'oc-uniform/dist/style.css';
 
 Import Component:
 
-import { OCDate } from 'oc-component-library';
+import { OCDate } from 'oc-uniform';
