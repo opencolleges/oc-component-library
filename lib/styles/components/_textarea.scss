@@ -33,8 +33,6 @@
   color: $fossil;
 }
 @include pre('.textarea__input[readonly]') {
-  width: auto;
-  padding: 0;
   border: none;
   color: inherit;
 }
