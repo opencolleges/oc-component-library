@@ -174,9 +174,12 @@
     height: rem(168px);
   }
 
-  @include pre('.file__blurb') {
-    font-size: rem(15px);
-    line-height: rem(32px);
+  // no-touchevents // ----------------------------------------------------------
+  @include pre('.no-touchevents') {
+    @include pre('.file__blurb') {
+      font-size: rem(15px);
+      line-height: rem(32px);
+    }
   }
 }
 
@@ -209,7 +212,10 @@
     height: rem(192px);
   }
 
-  @include pre('.file__blurb') {
-    font-size: rem(16px);
+  // no-touchevents // ----------------------------------------------------------
+  @include pre('.no-touchevents') {
+    @include pre('.file__blurb') {
+      font-size: rem(16px);
+    }
   }
 }
