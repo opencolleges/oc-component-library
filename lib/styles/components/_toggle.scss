@@ -153,7 +153,8 @@
 
   @include pre('.toggle__label::before') {
     border: $input-border;
-    transition: border-color $transition-duration-x1 $transition-timing-default;
+    transition: border-color $transition-duration-x1 $transition-timing-default,
+      background-color $transition-duration-x1 $transition-timing-default;
   }
   @include pre('.toggle__input:checked + .toggle__label::before') {
     border-color: $viking-shade;
