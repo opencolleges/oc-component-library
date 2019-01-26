@@ -148,6 +148,10 @@
   color: $cinnabar;
 }
 
+@include pre('.pagination__item > .icon') {
+  stroke: $viking-shade;
+}
+
 @include pre('.pagination__item > .icon--arrow-left') {
   left: rem(12px);
 }
@@ -190,6 +194,9 @@
     color: $state-default-active;
   }
 
+  @include pre('.pagination__item > .icon') {
+    stroke: currentColor;
+  }
   @include pre('.pagination__item:hover > .icon') {
     stroke: $state-default-hover;
   }
