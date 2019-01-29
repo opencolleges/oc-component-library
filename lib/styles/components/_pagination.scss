@@ -15,9 +15,15 @@
   background-color: $blizzard;
 }
 
+@include pre('.pagination__list-outer') {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: rem(208px);
+}
+
 @include pre('.pagination > .pagination__list') {
   position: absolute;
-  top: rem(8px);
 }
 
 @include pre('.pagination > .pagination__list:first-child') {
@@ -30,7 +36,7 @@
 @include pre('.pagination__item') {
   position: relative;
   float: left;
-  width: rem(16px);
+  width: rem(48px);
   height: rem(48px);
   color: $fossil;
   text-align: center;
@@ -40,34 +46,23 @@
   user-select: none;
 }
 
-@include pre('.pagination__item.pagination__item--previous') {
-  width: rem(48px);
-  color: $hurricane;
-}
-@include pre('.pagination__item.pagination__item--next') {
-  width: rem(48px);
-  color: $hurricane;
-}
-
-@include pre('.pagination__item.pagination__item--selectable') {
-  width: rem(48px);
-  color: $gunmetal;
-}
-
-@include pre('.pagination__item.active') {
-  color: $charcoal;
+@include pre('.pagination__item:nth-last-child(2)') {
+  width: rem(16px);
 }
 
 @include pre('.pagination__item:focus') {
   outline: none;
 }
 
-@include pre('.pagination__item > .icon') {
-  position: absolute;
-  top: rem(12px);
+@include pre('.pagination__item--selectable') {
+  color: $gunmetal;
 }
 
-@include pre('.pagination__item.pagination__item--selectable::before') {
+@include pre('.pagination__item--selectable.active') {
+  color: $charcoal;
+}
+
+@include pre('.pagination__item--selectable::before') {
   content: '';
   opacity: 0;
   position: absolute;
@@ -84,30 +79,18 @@
 }
 
 @include pre(
-  '.pagination__item.pagination__item--selectable.pagination__item--populated::before'
+  '.pagination__item--selectable.pagination__item--populated::before'
 ) {
   opacity: 1;
   top: rem(36px);
 }
-
 @include pre(
-  '.pagination__item.pagination__item--selectable.pagination__item--populated:hover::before'
-) {
-  background-color: $christi;
-}
-@include pre(
-  '.pagination__item.pagination__item--selectable.pagination__item--populated:active::before'
-) {
-  background-color: $christi-shade;
-}
-
-@include pre(
-  '.pagination__item.pagination__item--selectable.pagination__item--populated.active::before'
+  '.pagination__item--selectable.pagination__item--populated.active::before'
 ) {
   background-color: $christi;
 }
 
-@include pre('.pagination__item.pagination__item--selectable::after') {
+@include pre('.pagination__item--selectable::after') {
   content: '*';
   opacity: 0;
   position: absolute;
@@ -125,31 +108,20 @@
 }
 
 @include pre(
-  '.pagination__item.pagination__item--selectable.pagination__item--required::after'
+  '.pagination__item--selectable.pagination__item--required::after'
 ) {
   opacity: 1;
   top: rem(37px); // * visual hack
 }
-
 @include pre(
-  '.pagination__item.pagination__item--selectable.pagination__item--required:hover::after'
-) {
-  color: $cinnabar;
-}
-@include pre(
-  '.pagination__item.pagination__item--selectable.pagination__item--required:active::after'
-) {
-  color: $cinnabar-shade;
-}
-
-@include pre(
-  '.pagination__item.pagination__item--selectable.pagination__item--required.active::after'
+  '.pagination__item--selectable.pagination__item--required.active::after'
 ) {
   color: $cinnabar;
 }
 
 @include pre('.pagination__item > .icon') {
-  stroke: $viking-shade;
+  position: absolute;
+  top: rem(12px);
 }
 
 @include pre('.pagination__item > .icon--arrow-left') {
@@ -159,15 +131,12 @@
   right: rem(12px);
 }
 
-@include pre('.pagination__label') {
-  display: none;
+@include pre('.pagination__item--selectable > .icon') {
+  stroke: $viking-shade;
 }
 
-@include pre('.pagination__list-outer') {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: rem(208px);
+@include pre('.pagination__label') {
+  display: none;
 }
 
 @include pre('.pagination__highlight') {
@@ -187,32 +156,15 @@
     outline: $focus-outline;
   }
 
-  @include pre('.pagination__item:hover') {
+  @include pre('.pagination__item--selectable') {
+    cursor: pointer;
+  }
+
+  @include pre('.pagination__item--selectable:hover') {
     color: $state-default-hover;
   }
-  @include pre('.pagination__item:active') {
+  @include pre('.pagination__item--selectable:active') {
     color: $state-default-active;
-  }
-
-  @include pre('.pagination__item > .icon') {
-    stroke: currentColor;
-  }
-  @include pre('.pagination__item:hover > .icon') {
-    stroke: $state-default-hover;
-  }
-  @include pre('.pagination__item:active > .icon') {
-    stroke: $state-default-active;
-  }
-
-  @include pre('.pagination__item.pagination__item--previous') {
-    cursor: pointer;
-  }
-  @include pre('.pagination__item.pagination__item--next') {
-    cursor: pointer;
-  }
-
-  @include pre('.pagination__item.pagination__item--selectable') {
-    cursor: pointer;
   }
 
   @include pre('.pagination__item.active') {
@@ -225,6 +177,42 @@
   @include pre('.pagination__item.active:active') {
     color: $charcoal;
   }
+
+  @include pre(
+    '.pagination__item--selectable.pagination__item--populated:hover::before'
+  ) {
+    background-color: $christi;
+  }
+  @include pre(
+    '.pagination__item--selectable.pagination__item--populated:active::before'
+  ) {
+    background-color: $christi-shade;
+  }
+
+  @include pre(
+    '.pagination__item--selectable.pagination__item--required:hover::after'
+  ) {
+    color: $cinnabar;
+  }
+  @include pre(
+    '.pagination__item--selectable.pagination__item--required:active::after'
+  ) {
+    color: $cinnabar-shade;
+  }
+
+  @include pre('.pagination__item--selectable > .icon') {
+    stroke: currentColor;
+  }
+  @include pre('.pagination__item--selectable:hover > .icon') {
+    stroke: $state-default-hover;
+  }
+  @include pre('.pagination__item--selectable:active > .icon') {
+    stroke: $state-default-active;
+  }
+
+  @include pre('.pagination__label') {
+    cursor: default;
+  }
 }
 
 // medium // ------------------------------------------------------------------
@@ -235,20 +223,20 @@
     padding: rem(12px) $space-s;
   }
 
-  @include pre('.pagination > .pagination__list') {
-    top: rem(12px);
-  }
-
-  @include pre('.pagination__item') {
-    font-size: rem(12px);
-  }
-
   @include pre('.pagination__list-outer') {
     width: rem(352px);
   }
 
-  @include pre('.pagination__item.pagination__item--selectable') {
+  @include pre('.pagination__item') {
     width: rem(56px);
+    font-size: rem(12px);
+  }
+
+  @include pre('.pagination__item--previous') {
+    width: rem(48px);
+  }
+  @include pre('.pagination__item--next') {
+    width: rem(48px);
   }
 
   @include pre('.pagination__highlight') {
@@ -263,14 +251,18 @@
     bottom: rem(64px);
   }
 
+  @include pre('.pagination__list-outer') {
+    width: rem(464px);
+  }
+
   @include pre('.pagination__item') {
     font-size: rem(13px);
   }
 
-  @include pre('.pagination__item.pagination__item--previous') {
+  @include pre('.pagination__item--previous') {
     width: rem(88px);
   }
-  @include pre('.pagination__item.pagination__item--next') {
+  @include pre('.pagination__item--next') {
     width: rem(88px);
   }
 
@@ -285,9 +277,5 @@
   }
   @include pre('.pagination__item--next > .pagination__label') {
     right: rem(48px);
-  }
-
-  @include pre('.pagination__list-outer') {
-    width: rem(464px);
   }
 }
