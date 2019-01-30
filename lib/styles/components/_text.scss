@@ -34,8 +34,10 @@
 }
 
 @include pre('.text__input:disabled') {
+  opacity: 1; // * iOS support
   border-color: $state-disabled;
   color: $fossil;
+  -webkit-text-fill-color: $fossil; // * iOS support
 }
 @include pre('.text__input[readonly]') {
   width: auto;
