@@ -101,6 +101,7 @@
   max-height: rem(144px);
   padding: $space-s rem(4px) $space-m $space-s;
   border-radius: $border-radius-s;
+  outline: none;
   box-shadow: $box-shadow-layer-4;
   background-color: $blizzard;
   transition: opacity $transition-duration-x1 $transition-timing-default,
