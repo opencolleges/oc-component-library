@@ -39,6 +39,12 @@
   color: $fossil;
   -webkit-text-fill-color: $fossil; // * iOS support
 }
+
+// * Firefox support
+@include pre('.text__input:invalid') {
+  box-shadow: none;
+}
+
 @include pre('.text__input[readonly]') {
   width: auto;
   padding: 0;
@@ -215,8 +221,14 @@
     color: $christi-shade;
   }
 
+  @include pre('.text--error > .text__input:hover ~ .icon') {
+    stroke: $state-error-hover;
+  }
   @include pre('.text--error > .text__input:focus ~ .icon') {
     stroke: $state-error-focus;
+  }
+  @include pre('.text--success > .text__input:hover ~ .icon') {
+    stroke: $state-success-hover;
   }
   @include pre('.text--success > .text__input:focus ~ .icon') {
     stroke: $state-success-focus;
@@ -224,7 +236,7 @@
 
   @include pre('.text__border') {
     position: absolute;
-    top: rem(55px);
+    bottom: rem(24px);
     display: block;
     width: 0;
     height: rem(1px);
@@ -258,6 +270,9 @@
     background-color: $state-error;
   }
 
+  @include pre('.text--error > .text__input:hover ~ .text__border') {
+    background-color: $state-error-hover;
+  }
   @include pre('.text--error > .text__input:focus ~ .text__border') {
     background-color: $state-error-focus;
   }
@@ -267,6 +282,9 @@
     background-color: $state-success;
   }
 
+  @include pre('.text--success > .text__input:hover ~ .text__border') {
+    background-color: $state-success-hover;
+  }
   @include pre('.text--success > .text__input:focus ~ .text__border') {
     background-color: $state-success-focus;
   }

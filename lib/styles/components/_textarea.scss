@@ -13,7 +13,7 @@
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: rem(40px);
+  height: auto;
   padding: rem(8px 0 7px); // * hack to remove scrollbar
   outline: none;
   border: none;
@@ -24,7 +24,6 @@
   font-family: $font-family-sans-serif;
   font-size: rem(14px);
   line-height: rem(24px);
-  transition: height $transition-duration-x2 $transition-timing-bounce-out;
   resize: none;
 }
 
@@ -128,15 +127,11 @@
 }
 
 @include pre('.textarea__input:focus ~ .textarea__message') {
-  color: $state-default-focus;
+  color: $state-default;
 }
 
 @include pre('.textarea__input.active ~ .textarea__message') {
   color: $state-default;
-}
-
-@include pre('.textarea__input.active:focus ~ .textarea__message') {
-  color: $state-default-focus;
 }
 
 // no-touchevents // ----------------------------------------------------------
@@ -196,7 +191,7 @@
 
   @include pre('.textarea__border') {
     position: absolute;
-    top: rem(55px);
+    bottom: rem(24px);
     display: block;
     width: 0;
     height: rem(1px);
@@ -223,6 +218,21 @@
   }
   @include pre('.textarea__input.active:focus ~ .textarea__border') {
     background-color: $state-default-focus;
+  }
+
+  @include pre('.textarea__input:focus ~ .textarea__message') {
+    color: $state-default-focus;
+  }
+
+  @include pre('.textarea__input.active ~ .textarea__message') {
+    color: $state-default;
+  }
+
+  @include pre('.textarea__input.active:hover ~ .textarea__message') {
+    color: $state-default-hover;
+  }
+  @include pre('.textarea__input.active:focus ~ .textarea__message') {
+    color: $state-default-focus;
   }
 }
 
