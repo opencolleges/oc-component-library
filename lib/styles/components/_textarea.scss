@@ -13,7 +13,7 @@
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: auto;
+  height: rem(40px);
   padding: rem(8px 0 7px); // * hack to remove scrollbar
   outline: none;
   border: none;
@@ -191,7 +191,7 @@
 
   @include pre('.textarea__border') {
     position: absolute;
-    bottom: rem(24px);
+    top: rem(55px);
     display: block;
     width: 0;
     height: rem(1px);
