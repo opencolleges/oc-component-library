@@ -30,6 +30,7 @@
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
+  transition: color $transition-duration-x1 $transition-timing-default;
 }
 
 @include pre('.toggle--left > .toggle__label') {
@@ -142,7 +143,6 @@
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.toggle__label') {
-    transition: color $transition-duration-x1 $transition-timing-default;
     user-select: none;
     cursor: pointer;
   }
