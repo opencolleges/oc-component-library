@@ -182,6 +182,7 @@
 }
 
 @include pre('.ol') {
+  counter-reset: item;
   margin: 0 0 $space-m $space-xl;
 }
 
@@ -210,12 +211,9 @@
   line-height: rem(24px);
 }
 
-@include pre('.ol > .li') {
-  counter-increment: number;
-}
-
 @include pre('.ol > .li::before') {
-  content: counter(number);
+  counter-increment: item;
+  content: counter(item);
   position: absolute;
   top: rem(1px); // * visual hack to align with typography baseline
   right: calc(100% + #{$space-m});
@@ -224,6 +222,10 @@
   font-weight: 700;
   text-align: right;
 }
+@include pre('.ol .ol > .li::before') {
+  content: counter(item, lower-alpha);
+}
+
 @include pre('.ul > .li::before') {
   content: '';
   position: absolute;
