@@ -339,6 +339,30 @@
       border-color: $state-default-active;
       background-color: $state-default-active;
     }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:hover + .likert__item.active >  .likert__label-outer'
+    ) {
+      border-left-color: $state-default-hover;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item.active + .likert__item:hover >  .likert__label-outer'
+    ) {
+      border-left-color: $state-default-hover;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:active + .likert__item.active >  .likert__label-outer'
+    ) {
+      border-left-color: $state-default-active;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item.active + .likert__item:active >  .likert__label-outer'
+    ) {
+      border-left-color: $state-default-active;
+    }
   }
 
   @include pre('.likert__number') {
