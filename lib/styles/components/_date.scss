@@ -267,6 +267,7 @@
   }
 
   @include pre('.date__item--selectable:hover') {
+    border-radius: $border-radius-round;
     background-color: $selection-background;
   }
 
