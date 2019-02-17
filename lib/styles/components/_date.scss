@@ -148,6 +148,7 @@
 }
 
 @include pre('.date__item--selectable:focus') {
+  border-radius: $border-radius-round;
   background-color: $selection-background;
 }
 
