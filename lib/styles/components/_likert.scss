@@ -11,7 +11,7 @@
 @for $index from 6 through 10 {
   $result: 100% / $index;
 
-  @include pre('.likert__list--#{$index}') {
+  @include pre('.likert__list--#{$index}-col') {
     margin: rem(48px) 0;
   }
 }
@@ -37,13 +37,13 @@
 @for $index from 1 through 5 {
   $result: 100% / $index;
 
-  @include pre('.likert__list--#{$index} > .likert__item') {
+  @include pre('.likert__list--#{$index}-col > .likert__item') {
     width: $result;
   }
 }
 
 @for $index from 6 through 10 {
-  @include pre('.likert__list--#{$index} > .likert__item') {
+  @include pre('.likert__list--#{$index}-col > .likert__item') {
     width: 100%;
   }
 }
@@ -83,19 +83,19 @@
 }
 
 @for $index from 1 through 5 {
-  @include pre('.likert__list--#{$index} .likert__button') {
+  @include pre('.likert__list--#{$index}-col .likert__button') {
     border-top: rem(1px) solid $state-default;
     border-bottom: rem(1px) solid $state-default;
     border-left: rem(1px) solid $state-default;
     margin: $space-stack-s;
   }
   @include pre(
-    '.likert__list--#{$index} > .likert__item:first-of-type .likert__button'
+    '.likert__list--#{$index}-col > .likert__item:first-of-type .likert__button'
   ) {
     border-radius: $button-border-radius 0 0 $button-border-radius;
   }
   @include pre(
-    '.likert__list--#{$index} > .likert__item:last-of-type .likert__button'
+    '.likert__list--#{$index}-col > .likert__item:last-of-type .likert__button'
   ) {
     border-radius: 0 $button-border-radius $button-border-radius 0;
     border-right: rem(1px) solid $state-default;
@@ -103,18 +103,18 @@
 }
 
 @for $index from 6 through 10 {
-  @include pre('.likert__list--#{$index} .likert__button') {
+  @include pre('.likert__list--#{$index}-col .likert__button') {
     border: rem(1px) solid $state-default;
     border-radius: $button-border-radius;
     margin: $space-stack-m;
   }
   @include pre(
-    '.likert--compact > .likert__list--#{$index} > .likert__item .likert__button'
+    '.likert--compact > .likert__list--#{$index}-col > .likert__item .likert__button'
   ) {
     margin: $space-stack-s;
   }
   @include pre(
-    '.likert__list--#{$index} > .likert__item:last-of-type .likert__button'
+    '.likert__list--#{$index}-col > .likert__item:last-of-type .likert__button'
   ) {
     margin: 0;
   }
@@ -133,18 +133,18 @@
 
 @for $index from 1 through 5 {
   @include pre(
-    '.likert__list--#{$index} .likert__input:focus + .likert__label-outer > .likert__button'
+    '.likert__list--#{$index}-col .likert__input:focus + .likert__label-outer > .likert__button'
   ) {
     border-top-color: $state-default-focus;
     border-bottom-color: $state-default-focus;
   }
   @include pre(
-    '.likert__list--#{$index} > .likert__item:first-child > .likert__input:focus + .likert__label-outer > .likert__button'
+    '.likert__list--#{$index}-col > .likert__item:first-child > .likert__input:focus + .likert__label-outer > .likert__button'
   ) {
     border-left-color: $state-default-focus;
   }
   @include pre(
-    '.likert__list--#{$index} > .likert__item:last-child > .likert__input:focus + .likert__label-outer > .likert__button'
+    '.likert__list--#{$index}-col > .likert__item:last-child > .likert__input:focus + .likert__label-outer > .likert__button'
   ) {
     border-right-color: $state-default-focus;
   }
@@ -152,7 +152,7 @@
 
 @for $index from 6 through 10 {
   @include pre(
-    '.likert__list--#{$index} .likert__input:focus + .likert__label-outer > .likert__button'
+    '.likert__list--#{$index}-col .likert__input:focus + .likert__label-outer > .likert__button'
   ) {
     border-color: $state-default-focus;
   }
@@ -169,17 +169,17 @@
 }
 
 @for $index from 1 through 5 {
-  @include pre('.likert__list--#{$index} .likert__label') {
+  @include pre('.likert__list--#{$index}-col .likert__label') {
     padding: 0 rem(8px);
   }
 }
 
 @for $index from 6 through 10 {
-  @include pre('.likert__list--#{$index} .likert__label') {
+  @include pre('.likert__list--#{$index}-col .likert__label') {
     display: none;
   }
   @include pre(
-    '.likert__list--#{$index} > .likert__item:first-of-type .likert__label'
+    '.likert__list--#{$index}-col > .likert__item:first-of-type .likert__label'
   ) {
     position: absolute;
     top: rem(-32px);
@@ -187,7 +187,7 @@
     width: 100%;
   }
   @include pre(
-    '.likert__list--#{$index} > .likert__item:last-of-type .likert__label'
+    '.likert__list--#{$index}-col > .likert__item:last-of-type .likert__label'
   ) {
     position: absolute;
     bottom: rem(-32px);
@@ -220,17 +220,17 @@
   @for $index from 1 through 5 {
     $result: 100% / $index;
 
-    @include pre('.likert__list--#{$index} > .likert__item') {
+    @include pre('.likert__list--#{$index}-col > .likert__item') {
       flex-basis: $result;
     }
   }
 
   @for $index from 6 through 10 {
-    @include pre('.likert__list--#{$index}') {
+    @include pre('.likert__list--#{$index}-col') {
       flex-wrap: wrap;
     }
 
-    @include pre('.likert__list--#{$index} > .likert__item') {
+    @include pre('.likert__list--#{$index}-col > .likert__item') {
       flex-basis: 100%;
     }
   }
@@ -243,25 +243,25 @@
   }
 
   @for $index from 1 through 5 {
-    @include pre('.likert__list--#{$index} .likert__button:hover') {
+    @include pre('.likert__list--#{$index}-col .likert__button:hover') {
       border-top-color: $state-default-hover;
       border-bottom-color: $state-default-hover;
       background-color: $state-default-hover;
       color: $blizzard;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item:first-of-type .likert__button:hover'
+      '.likert__list--#{$index}-col > .likert__item:first-of-type .likert__button:hover'
     ) {
       border-left-color: $state-default-hover;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item:last-of-type .likert__button:hover'
+      '.likert__list--#{$index}-col > .likert__item:last-of-type .likert__button:hover'
     ) {
       border-right-color: $state-default-hover;
     }
 
     @include pre(
-      '.likert__list--#{$index} > .likert__item .likert__button:active'
+      '.likert__list--#{$index}-col > .likert__item .likert__button:active'
     ) {
       border-top-color: $state-default-active;
       border-bottom-color: $state-default-active;
@@ -269,22 +269,22 @@
     }
 
     @include pre(
-      '.likert__list--#{$index} > .likert__item:hover + .likert__item.active .likert__button'
+      '.likert__list--#{$index}-col > .likert__item:hover + .likert__item.active .likert__button'
     ) {
       border-left-color: $state-default-hover;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item.active + .likert__item:hover .likert__button'
+      '.likert__list--#{$index}-col > .likert__item.active + .likert__item:hover .likert__button'
     ) {
       border-left-color: $state-default-hover;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item:active + .likert__item.active .likert__button'
+      '.likert__list--#{$index}-col > .likert__item:active + .likert__item.active .likert__button'
     ) {
       border-left-color: $state-default-active;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item.active + .likert__item:active .likert__button'
+      '.likert__list--#{$index}-col > .likert__item.active + .likert__item:active .likert__button'
     ) {
       border-left-color: $state-default-active;
     }
@@ -292,7 +292,7 @@
 
   @for $index from 6 through 10 {
     @include pre(
-      '.likert__list--#{$index} > .likert__item .likert__button:hover'
+      '.likert__list--#{$index}-col > .likert__item .likert__button:hover'
     ) {
       border-color: $state-default-hover;
       background-color: $state-default-hover;
@@ -300,29 +300,29 @@
     }
 
     @include pre(
-      '.likert__list--#{$index} > .likert__item .likert__button:active'
+      '.likert__list--#{$index}-col > .likert__item .likert__button:active'
     ) {
       border-color: $state-default-active;
       background-color: $state-default-active;
     }
 
     @include pre(
-      '.likert__list--#{$index} > .likert__item:hover + .likert__item.active .likert__button'
+      '.likert__list--#{$index}-col > .likert__item:hover + .likert__item.active .likert__button'
     ) {
       border-left-color: $state-default-hover;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item.active + .likert__item:hover .likert__button'
+      '.likert__list--#{$index}-col > .likert__item.active + .likert__item:hover .likert__button'
     ) {
       border-left-color: $state-default-hover;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item:active + .likert__item.active .likert__button'
+      '.likert__list--#{$index}-col > .likert__item:active + .likert__item.active .likert__button'
     ) {
       border-left-color: $state-default-active;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item.active + .likert__item:active .likert__button'
+      '.likert__list--#{$index}-col > .likert__item.active + .likert__item:active .likert__button'
     ) {
       border-left-color: $state-default-active;
     }
@@ -346,44 +346,44 @@
   @for $index from 6 through 10 {
     $result: 100% / $index;
 
-    @include pre('.likert__list--#{$index}') {
+    @include pre('.likert__list--#{$index}-col') {
       margin: 0;
     }
 
-    @include pre('.likert__list--#{$index} > .likert__item') {
+    @include pre('.likert__list--#{$index}-col > .likert__item') {
       width: $result;
     }
 
-    @include pre('.likert__list--#{$index} .likert__button') {
+    @include pre('.likert__list--#{$index}-col .likert__button') {
       border-right: none;
       border-radius: 0;
       margin: $space-stack-s;
     }
 
     @include pre(
-      '.likert__list--#{$index} > .likert__item:first-of-type .likert__button'
+      '.likert__list--#{$index}-col > .likert__item:first-of-type .likert__button'
     ) {
       border-radius: $button-border-radius 0 0 $button-border-radius;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item:last-of-type .likert__button'
+      '.likert__list--#{$index}-col > .likert__item:last-of-type .likert__button'
     ) {
       border-radius: 0 $button-border-radius $button-border-radius 0;
       border-right: rem(1px) solid $state-default;
       margin: $space-stack-s;
     }
     @include pre(
-      '.likert__list--#{$index} .likert__input:focus + .likert__label-outer > .likert__button'
+      '.likert__list--#{$index}-col .likert__input:focus + .likert__label-outer > .likert__button'
     ) {
       border-left-color: $state-default;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item:first-child > .likert__input:focus + .likert__label-outer > .likert__button'
+      '.likert__list--#{$index}-col > .likert__item:first-child > .likert__input:focus + .likert__label-outer > .likert__button'
     ) {
       border-color: $state-default-focus;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item:last-child > .likert__input:focus + .likert__label-outer > .likert__button'
+      '.likert__list--#{$index}-col > .likert__item:last-child > .likert__input:focus + .likert__label-outer > .likert__button'
     ) {
       border-color: $state-default-focus;
     }
@@ -393,7 +393,7 @@
       // ? line-height: rem(32px); | perhaps amend default label component line-height in tablet / desktop to 24px
     }
 
-    @include pre('.likert__list--#{$index} .likert__label') {
+    @include pre('.likert__list--#{$index}-col .likert__label') {
       position: relative;
       left: -100%;
       display: block;
@@ -401,7 +401,7 @@
       padding: 0 rem(8px);
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item:first-of-type .likert__label'
+      '.likert__list--#{$index}-col > .likert__item:first-of-type .likert__label'
     ) {
       position: relative;
       top: initial;
@@ -411,7 +411,7 @@
       text-align: left;
     }
     @include pre(
-      '.likert__list--#{$index} > .likert__item:last-of-type .likert__label'
+      '.likert__list--#{$index}-col > .likert__item:last-of-type .likert__label'
     ) {
       position: relative;
       bottom: initial;
@@ -428,7 +428,7 @@
     @for $index from 6 through 10 {
       $result: 100% / $index;
 
-      @include pre('.likert__list--#{$index} > .likert__item') {
+      @include pre('.likert__list--#{$index}-col > .likert__item') {
         flex-basis: $result;
       }
     }
@@ -438,19 +438,19 @@
   @include pre('.no-touchevents') {
     @for $index from 6 through 10 {
       @include pre(
-        '.likert__list--#{$index} > .likert__item .likert__button:hover'
+        '.likert__list--#{$index}-col > .likert__item .likert__button:hover'
       ) {
         border-left-color: $state-default;
       }
 
       @include pre(
-        '.likert__list--#{$index} > .likert__item:first-of-type .likert__button:hover'
+        '.likert__list--#{$index}-col > .likert__item:first-of-type .likert__button:hover'
       ) {
         border-left-color: $state-default-hover;
       }
 
       @include pre(
-        '.likert__list--#{$index} > .likert__item .likert__button:active'
+        '.likert__list--#{$index}-col > .likert__item .likert__button:active'
       ) {
         border-color: $state-default-active;
         background-color: $state-default-active;
