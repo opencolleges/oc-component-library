@@ -181,6 +181,39 @@
   line-height: rem(24px);
 }
 
+@include pre('.blockquote') {
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 $space-l;
+  margin: $space-stack-m;
+  font-size: rem(22px);
+  font-style: italic;
+  line-height: rem(32px);
+}
+
+@include pre('.blockquote::before') {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: rem(16px);
+  height: rem(12px);
+  background-image: url('../images/double-quote.svg');
+  background-size: cover;
+}
+
+@include pre('.blockquote::after') {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: rem(20px);
+  transform: rotate(180deg);
+  width: rem(16px);
+  height: rem(12px);
+  background-image: url('../images/double-quote.svg');
+  background-size: cover;
+}
+
 @include pre('.ol') {
   counter-reset: item;
   margin: 0 0 $space-m $space-xl;
@@ -319,6 +352,23 @@
     line-height: rem(32px);
   }
 
+  @include pre('.blockquote') {
+    padding: 0 $space-xxl;
+    font-size: rem(26px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.blockquote::before') {
+    width: rem(24px);
+    height: rem(18px);
+  }
+
+  @include pre('.blockquote::after') {
+    bottom: rem(22px);
+    width: rem(24px);
+    height: rem(18px);
+  }
+
   @include pre('.li') {
     font-size: rem(15px);
     line-height: rem(32px);
@@ -390,6 +440,23 @@
 
   @include pre('.label') {
     font-size: rem(16px);
+  }
+
+  @include pre('.blockquote') {
+    padding: 0 rem(56px);
+    font-size: rem(30px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.blockquote::before') {
+    width: rem(32px);
+    height: rem(24px);
+  }
+
+  @include pre('.blockquote::after') {
+    bottom: rem(16px);
+    width: rem(32px);
+    height: rem(24px);
   }
 
   @include pre('.li') {
