@@ -324,7 +324,6 @@
     line-height: rem(32px);
   }
   @include pre('.ol > .li::before') {
-    top: rem(2px); // * visual hack to align with typography baseline
     font-size: rem(13px);
   }
   @include pre('.ul > .li::before') {
