@@ -165,8 +165,11 @@
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
+$parent-index: 1;
+
 @for $index from 3 through 5 {
   $result: 100% * ($index / 2);
+  $result-2: (-100% / $index) * $parent-index;
 
   @include pre(
     '.likert__list--#{$index} > .likert__item:first-of-type .likert__label'
@@ -179,11 +182,13 @@
   @include pre(
     '.likert__list--#{$index} > .likert__item:last-of-type .likert__label'
   ) {
-    transform: translateX(-60%);
+    transform: translateX($result-2);
     display: block;
     width: $result;
     text-align: right;
   }
+
+  $parent-index: $parent-index + 1;
 }
 
 @for $index from 6 through 10 {
