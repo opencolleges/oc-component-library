@@ -258,6 +258,9 @@
 @include pre('.ol .ol > .li::before') {
   content: counter(item, lower-alpha);
 }
+@include pre('.ul .ol > .li::before') {
+  content: counter(item, lower-alpha);
+}
 
 @include pre('.ul > .li::before') {
   content: '';
@@ -270,6 +273,9 @@
   border: rem(1px) solid $christi-shade;
   border-radius: $border-radius-round;
   background-color: $christi-shade;
+}
+@include pre('.ol .ul > .li::before') {
+  background-color: transparent;
 }
 @include pre('.ul .ul > .li::before') {
   background-color: transparent;

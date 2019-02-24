@@ -14,7 +14,7 @@
   box-sizing: border-box;
   width: 100%;
   height: rem(40px);
-  padding: 0 $space-xxl 0 0;
+  padding: $space-s $space-xxl $space-s 0;
   border: none;
   border-bottom: rem(1px) solid $viking-shade;
   border-radius: 0; // * iOS support
@@ -23,7 +23,7 @@
   color: $gunmetal;
   font-family: $font-family-sans-serif;
   font-size: rem(14px);
-  line-height: rem(40px);
+  line-height: rem(24px);
 }
 
 @include pre('.text--error > .text__input') {
@@ -297,7 +297,9 @@
   }
 
   @include pre('.text__input') {
+    padding: $space-xs $space-xxl $space-xs 0;
     font-size: rem(15px);
+    line-height: rem(32px);
   }
 
   @include pre('.text__label') {
