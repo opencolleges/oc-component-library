@@ -152,6 +152,10 @@
   background-color: $selection-background;
 }
 
+@include pre('.date__item--current') {
+  font-weight: 700;
+}
+
 @include pre('.date__item > .icon') {
   position: absolute;
   top: rem(8px);
