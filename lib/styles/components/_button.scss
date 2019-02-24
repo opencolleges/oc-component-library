@@ -18,6 +18,8 @@
   text-overflow: ellipsis;
   line-height: rem(32px);
   white-space: nowrap;
+  transition: $transition-duration-x1 $transition-timing-default;
+  transition-property: box-shadow, border, background-color, color;
 }
 
 @include pre('.grid--reversed > .button') {
@@ -87,8 +89,6 @@
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.button') {
-    transition: $transition-duration-x1 $transition-timing-default;
-    transition-property: box-shadow, border, background-color, color;
     cursor: pointer;
     user-select: none;
   }

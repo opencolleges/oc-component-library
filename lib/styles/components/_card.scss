@@ -1,6 +1,7 @@
 // global // ------------------------------------------------------------------
 @include pre('.card') {
   box-sizing: border-box;
+  padding: $space-m;
   background-color: $blizzard;
 }
 
@@ -28,7 +29,8 @@
 }
 
 @include pre('.card--draggable') {
-  padding: rem(8px 8px 8px 32px);
+  position: relative;
+  padding-left: $space-xxl;
   box-shadow: $box-shadow-layer-1;
   transition: transform $transition-duration-x1 $transition-timing-default,
     box-shadow $transition-duration-x1 $transition-timing-default;
@@ -54,6 +56,20 @@
   transition: $transition-duration-x1 $transition-timing-default;
 }
 
+@include pre('.card :last-child') {
+  margin-bottom: 0;
+}
+
+@include pre('.card--draggable > .icon--draggable') {
+  position: absolute;
+  top: 50%;
+  left: rem(8px);
+  transform: translateY(-50%);
+  stroke: none;
+  fill: $fossil;
+  transition: $transition-duration-x1 $transition-timing-default;
+}
+
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.card--draggable') {
@@ -65,5 +81,15 @@
   }
   @include pre('.mouse-move > .card--draggable') {
     cursor: grabbing !important;
+  }
+
+  @include pre('.card--draggable:hover > .icon--draggable') {
+    fill: $hurricane;
+  }
+  @include pre('.card--draggable:focus > .icon--draggable') {
+    fill: $hurricane;
+  }
+  @include pre('.foo > .card--draggable > .icon--draggable') {
+    fill: $gunmetal;
   }
 }

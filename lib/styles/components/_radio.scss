@@ -30,6 +30,7 @@
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
+  transition: color $transition-duration-x1 $transition-timing-default;
 }
 
 @include pre('.radio--left > .radio__label') {
@@ -138,7 +139,6 @@
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.radio__label') {
-    transition: color $transition-duration-x1 $transition-timing-default;
     user-select: none;
     cursor: pointer;
   }

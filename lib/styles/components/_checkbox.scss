@@ -30,6 +30,7 @@
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
+  transition: color $transition-duration-x1 $transition-timing-default;
 }
 
 @include pre('.checkbox--left > .checkbox__label') {
@@ -125,7 +126,6 @@
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.checkbox__label') {
-    transition: color $transition-duration-x1 $transition-timing-default;
     user-select: none;
     cursor: pointer;
   }
