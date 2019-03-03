@@ -56,7 +56,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "browser-detect": "^0.2.28",
-    "react-countup": "^4.0.0"
+    "browser-detect": "^0.2.28"
   }
 }
