@@ -3,10 +3,15 @@
   box-sizing: border-box;
   height: rem(40px);
   padding-right: $space-xxl;
+  margin: $space-stack-m;
 }
 
 @include pre('.progress--alt') {
   padding-right: 0;
+}
+
+@include pre('.progress--compact') {
+  margin: 0;
 }
 
 @include pre('.progress__bar-outer') {
