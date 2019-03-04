@@ -1,20 +1,34 @@
 // small // -------------------------------------------------------------------
 @include pre('.table') {
   table-layout: fixed;
-  width: 100%;
-  margin: $space-stack-m;
+  margin: 0 auto $space-m;
   font-family: $font-family-condensed;
   font-size: rem(14px);
+  text-align: left;
   line-height: rem(24px);
 }
 
-@include pre('.table--left') {
+@include pre('.table:not([width])') {
+  min-width: 100%;
+}
+
+@include pre('.table--justify-left') {
   text-align: left;
 }
-@include pre('.table--center') {
+@include pre('.table--justify-center') {
   text-align: center;
 }
-@include pre('.table--right') {
+@include pre('.table--justify-right') {
+  text-align: right;
+}
+
+@include pre('.tr--justify-left') {
+  text-align: left;
+}
+@include pre('.tr--justify-center') {
+  text-align: center;
+}
+@include pre('.tr--justify-right') {
   text-align: right;
 }
 
@@ -30,6 +44,7 @@
 }
 
 @include pre('.th') {
+  box-sizing: border-box;
   padding: rem(8px);
   color: $christi-shade;
   font-weight: 700;
@@ -40,9 +55,48 @@
   color: $hurricane;
 }
 
+@include pre('.th--align-top') {
+  vertical-align: top;
+}
+@include pre('.th--align-center') {
+  vertical-align: middle;
+}
+@include pre('.th--align-bottom') {
+  vertical-align: bottom;
+}
+@include pre('.th--justify-left') {
+  text-align: left;
+}
+@include pre('.th--justify-center') {
+  text-align: center;
+}
+@include pre('.th--justify-right') {
+  text-align: right;
+}
+
 @include pre('.td') {
+  box-sizing: border-box;
   padding: $space-s $space-s rem(7px);
   vertical-align: top;
+}
+
+@include pre('.td--align-top') {
+  vertical-align: top;
+}
+@include pre('.td--align-center') {
+  vertical-align: middle;
+}
+@include pre('.td--align-bottom') {
+  vertical-align: bottom;
+}
+@include pre('.td--justify-left') {
+  text-align: left;
+}
+@include pre('.td--justify-center') {
+  text-align: center;
+}
+@include pre('.td--justify-right') {
+  text-align: right;
 }
 
 @include pre('.table--alt .td') {
