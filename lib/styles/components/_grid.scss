@@ -84,14 +84,14 @@
   padding: $space-s 0;
 }
 
-// @include pre('.grid--justify-start > .grid__item') {
+// @include pre('.grid--left > .grid__item') {
 //   float: left;
 // }
-// @include pre('.grid--justify-center > .grid__item') {
+// @include pre('.grid--center > .grid__item') {
 //   float: none;
 //   margin: 0 auto;
 // }
-// @include pre('.grid--justify-end > .grid__item') {
+// @include pre('.grid--right > .grid__item') {
 //   float: right;
 // }
 
@@ -103,14 +103,14 @@
   }
 }
 
-// @include pre('.grid__item--justify-start > *') {
+// @include pre('.grid__item--left > *') {
 //   float: left;
 // }
-// @include pre('.grid__item--justify-center > *') {
+// @include pre('.grid__item--center > *') {
 //   float: none;
 //   margin: 0 auto;
 // }
-// @include pre('.grid__item--justify-end > *') {
+// @include pre('.grid__item--right > *') {
 //   float: right;
 // }
 
@@ -171,26 +171,23 @@
     margin: 0;
   }
 
-  @include pre('.grid--align-start') {
+  @include pre('.grid--top') {
     align-items: start;
   }
-  @include pre('.grid--align-center') {
+  @include pre('.grid--middle') {
     align-items: center;
   }
-  @include pre('.grid--align-end') {
+  @include pre('.grid--bottom') {
     align-items: end;
   }
-  @include pre('.grid--justify-start') {
+  @include pre('.grid--left') {
     justify-items: start;
   }
-  @include pre('.grid--justify-center') {
+  @include pre('.grid--center') {
     justify-items: center;
   }
-  @include pre('.grid--justify-end') {
+  @include pre('.grid--right') {
     justify-items: end;
-  }
-  @include pre('.grid--reversed') {
-    direction: rtl;
   }
 
   @include pre('.grid::before') {
@@ -231,22 +228,22 @@
     }
   }
 
-  @include pre('.grid__item--align-start') {
+  @include pre('.grid__item--top') {
     align-self: start;
   }
-  @include pre('.grid__item--align-center') {
+  @include pre('.grid__item--middle') {
     align-self: center;
   }
-  @include pre('.grid__item--align-end') {
+  @include pre('.grid__item--bottom') {
     align-self: end;
   }
-  @include pre('.grid__item--justify-start') {
+  @include pre('.grid__item--left') {
     justify-self: start;
   }
-  @include pre('.grid__item--justify-center') {
+  @include pre('.grid__item--center') {
     justify-self: center;
   }
-  @include pre('.grid__item--justify-end') {
+  @include pre('.grid__item--right') {
     justify-self: end;
   }
 }
@@ -262,22 +259,22 @@
     margin: 0 rem(-8px);
   }
 
-  @include pre('.grid--align-start.grid--button') {
+  @include pre('.grid--top.grid--button') {
     align-items: flex-start;
   }
-  @include pre('.grid--align-center.grid--button') {
+  @include pre('.grid--middle.grid--button') {
     align-items: center;
   }
-  @include pre('.grid--align-end.grid--button') {
+  @include pre('.grid--bottom.grid--button') {
     align-items: flex-end;
   }
-  @include pre('.grid--justify-start.grid--button') {
+  @include pre('.grid--left.grid--button') {
     justify-content: flex-start;
   }
-  @include pre('.grid--justify-center.grid--button') {
+  @include pre('.grid--center.grid--button') {
     justify-content: center;
   }
-  @include pre('.grid--justify-end.grid--button') {
+  @include pre('.grid--right.grid--button') {
     justify-content: flex-end;
   }
 }

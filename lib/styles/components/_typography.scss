@@ -2,13 +2,13 @@
 @for $index from 1 through 6 {
   @include pre('.h#{$index}') {
     display: block;
-    margin: $space-l 0 $space-s;
+    margin: $space-l 0;
     font-style: normal;
     word-wrap: break-word;
   }
 
   @include pre('.h#{$index}--compact') {
-    margin: $space-m 0 0;
+    margin: $space-m 0;
   }
   @include pre('.h#{$index}--reversed') {
     color: $blizzard;
@@ -71,6 +71,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: rem(24px);
+}
+
+@for $index from 1 through 6 {
+  @include pre('.h#{$index} + .p') {
+    margin-top: rem(-16px);
+  }
 }
 
 @include pre('.p--compact') {
@@ -226,6 +232,12 @@
   margin: $space-s 0 0 $space-xl;
 }
 
+@for $index from 1 through 6 {
+  @include pre('.h#{$index} + .ol') {
+    margin-top: rem(-16px);
+  }
+}
+
 @include pre('.ul') {
   margin: 0 0 $space-m $space-xl;
 }
@@ -235,6 +247,12 @@
 }
 @include pre('.ul .ul') {
   margin: $space-s 0 0 $space-xl;
+}
+
+@for $index from 1 through 6 {
+  @include pre('.h#{$index} + .ul') {
+    margin-top: rem(-16px);
+  }
 }
 
 @include pre('.li') {

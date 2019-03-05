@@ -12,23 +12,23 @@
   min-width: 100%;
 }
 
-@include pre('.table--justify-left') {
+@include pre('.table--left') {
   text-align: left;
 }
-@include pre('.table--justify-center') {
+@include pre('.table--center') {
   text-align: center;
 }
-@include pre('.table--justify-right') {
+@include pre('.table--right') {
   text-align: right;
 }
 
-@include pre('.tr--justify-left') {
+@include pre('.tr--left') {
   text-align: left;
 }
-@include pre('.tr--justify-center') {
+@include pre('.tr--center') {
   text-align: center;
 }
-@include pre('.tr--justify-right') {
+@include pre('.tr--right') {
   text-align: right;
 }
 
@@ -55,22 +55,26 @@
   color: $hurricane;
 }
 
-@include pre('.th--align-top') {
+@include pre('.table--alt > .tbody .th:first-of-type') {
+  border-left: rem(1px) solid $gallery;
+}
+
+@include pre('.th--top') {
   vertical-align: top;
 }
-@include pre('.th--align-center') {
+@include pre('.th--middle') {
   vertical-align: middle;
 }
-@include pre('.th--align-bottom') {
+@include pre('.th--bottom') {
   vertical-align: bottom;
 }
-@include pre('.th--justify-left') {
+@include pre('.th--left') {
   text-align: left;
 }
-@include pre('.th--justify-center') {
+@include pre('.th--center') {
   text-align: center;
 }
-@include pre('.th--justify-right') {
+@include pre('.th--right') {
   text-align: right;
 }
 
@@ -80,22 +84,22 @@
   vertical-align: top;
 }
 
-@include pre('.td--align-top') {
+@include pre('.td--top') {
   vertical-align: top;
 }
-@include pre('.td--align-center') {
+@include pre('.td--middle') {
   vertical-align: middle;
 }
-@include pre('.td--align-bottom') {
+@include pre('.td--bottom') {
   vertical-align: bottom;
 }
-@include pre('.td--justify-left') {
+@include pre('.td--left') {
   text-align: left;
 }
-@include pre('.td--justify-center') {
+@include pre('.td--center') {
   text-align: center;
 }
-@include pre('.td--justify-right') {
+@include pre('.td--right') {
   text-align: right;
 }
 
