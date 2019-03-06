@@ -7,18 +7,17 @@
 @include pre('.checkbox__input') {
   opacity: 0;
   position: absolute;
+  top: rem(4px);
+  left: rem(8px);
   width: rem(16px);
   height: rem(16px);
   margin: 0;
 }
 
-@include pre('.checkbox--left > .checkbox__input') {
-  top: rem(4px);
-  left: rem(8px);
-}
 @include pre('.checkbox--right > .checkbox__input') {
   top: 50%;
   right: rem(8px);
+  left: auto;
   transform: translateY(-50%);
 }
 
@@ -27,16 +26,14 @@
 }
 
 @include pre('.checkbox__label') {
+  display: inline-block;
+  padding: 0 0 0 $space-xxl;
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.checkbox--left > .checkbox__label') {
-  display: inline-block;
-  padding: 0 0 0 $space-xxl;
-}
 @include pre('.checkbox--right > .checkbox__label') {
   display: block;
   padding: 0 $space-xxl 0 0;
@@ -63,6 +60,8 @@
 @include pre('.checkbox__label::before') {
   content: '';
   position: absolute;
+  top: rem(4px);
+  left: rem(8px);
   box-sizing: border-box;
   width: rem(16px);
   height: rem(16px);
@@ -70,13 +69,10 @@
   border-radius: $border-radius-s;
 }
 
-@include pre('.checkbox--left > .checkbox__label::before') {
-  top: rem(4px);
-  left: rem(8px);
-}
 @include pre('.checkbox--right > .checkbox__label::before') {
   top: 50%;
   right: rem(8px);
+  left: auto;
   transform: translateY(-50%);
 }
 @include pre('.checkbox--error > .checkbox__label::before') {
@@ -97,16 +93,15 @@
 
 @include pre('.checkbox > .icon') {
   position: absolute;
+  top: rem(-2px);
+  left: rem(8px);
   stroke: $charcoal;
 }
 
-@include pre('.checkbox--left > .icon') {
-  top: rem(-2px);
-  left: rem(8px);
-}
 @include pre('.checkbox--right > .icon') {
   top: calc(50% - 2px); // * IE11 visual hack
   right: 0;
+  left: auto;
   transform: translateY(-50%);
 }
 @include pre('.checkbox--reversed > .icon') {
@@ -148,19 +143,18 @@
 
   @include pre('.checkbox__border-outer') {
     position: absolute;
+    top: rem(4px);
+    left: rem(8px);
     display: block;
     width: rem(16px);
     height: rem(16px);
     pointer-events: none;
   }
 
-  @include pre('.checkbox--left > .checkbox__border-outer') {
-    top: rem(4px);
-    left: rem(8px);
-  }
   @include pre('.checkbox--right > .checkbox__border-outer') {
     top: 50%;
     right: rem(8px);
+    left: auto;
     transform: translateY(-50%);
   }
 
@@ -298,8 +292,12 @@
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.checkbox--left > .checkbox__input') {
+  @include pre('.checkbox__input') {
     top: rem(8px);
+  }
+
+  @include pre('.checkbox--right > .checkbox__input') {
+    top: 50%;
   }
 
   @include pre('.checkbox__label') {
@@ -307,18 +305,30 @@
     line-height: rem(32px);
   }
 
-  @include pre('.checkbox--left > .checkbox__label::before') {
+  @include pre('.checkbox__label::before') {
     top: rem(8px);
   }
 
-  @include pre('.checkbox--left > .icon') {
+  @include pre('.checkbox--right > .checkbox__label::before') {
+    top: 50%;
+  }
+
+  @include pre('.checkbox > .icon') {
     top: rem(2px);
+  }
+
+  @include pre('.checkbox--right > .icon') {
+    top: calc(50% - 2px); // * IE11 visual hack
   }
 
   // no-touchevents // --------------------------------------------------------
   @include pre('.no-touchevents') {
-    @include pre('.checkbox--left > .checkbox__border-outer') {
+    @include pre('.checkbox__border-outer') {
       top: rem(8px);
+    }
+
+    @include pre('.checkbox--right > .checkbox__border-outer') {
+      top: 50%;
     }
   }
 }

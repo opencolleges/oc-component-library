@@ -7,18 +7,17 @@
 @include pre('.radio__input') {
   opacity: 0;
   position: absolute;
+  top: rem(4px);
+  left: rem(8px);
   width: rem(16px);
   height: rem(16px);
   margin: 0;
 }
 
-@include pre('.radio--left > .radio__input') {
-  top: rem(4px);
-  left: rem(8px);
-}
 @include pre('.radio--right > .radio__input') {
   top: 50%;
   right: rem(8px);
+  left: auto;
   transform: translateY(-50%);
 }
 
@@ -27,16 +26,14 @@
 }
 
 @include pre('.radio__label') {
+  display: inline-block;
+  padding: 0 0 0 $space-xxl;
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.radio--left > .radio__label') {
-  display: inline-block;
-  padding: 0 0 0 $space-xxl;
-}
 @include pre('.radio--right > .radio__label') {
   display: block;
   padding: 0 $space-xxl 0 0;
@@ -61,6 +58,8 @@
 @include pre('.radio__label::before') {
   content: '';
   position: absolute;
+  top: rem(4px);
+  left: rem(8px);
   box-sizing: border-box;
   width: rem(16px);
   height: rem(16px);
@@ -68,13 +67,10 @@
   border-radius: $border-radius-round;
 }
 
-@include pre('.radio--left > .radio__label::before') {
-  top: rem(4px);
-  left: rem(8px);
-}
 @include pre('.radio--right > .radio__label::before') {
   top: 50%;
   right: rem(8px);
+  left: auto;
   transform: translateY(-50%);
 }
 @include pre('.radio--error > .radio__label::before') {
@@ -97,6 +93,8 @@
   content: '';
   opacity: 0;
   position: absolute;
+  top: rem(8px);
+  left: rem(12px);
   width: rem(8px);
   height: rem(8px);
   border-radius: $border-radius-round;
@@ -104,13 +102,10 @@
   transition: opacity $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.radio--left > .radio__label::after') {
-  top: rem(8px);
-  left: rem(12px);
-}
 @include pre('.radio--right > .radio__label::after') {
   top: 50%;
   right: rem(12px);
+  left: auto;
   transform: translateY(-50%);
 }
 @include pre('.radio--reversed > .radio__label::after') {
@@ -157,19 +152,18 @@
 
   @include pre('.radio__border-outer') {
     position: absolute;
+    top: rem(4px);
+    left: rem(8px);
     display: block;
     width: rem(16px);
     height: rem(16px);
     pointer-events: none;
   }
 
-  @include pre('.radio--left > .radio__border-outer') {
-    top: rem(4px);
-    left: rem(8px);
-  }
   @include pre('.radio--right > .radio__border-outer') {
     top: 50%;
     right: rem(8px);
+    left: auto;
     transform: translateY(-50%);
   }
 
@@ -302,8 +296,12 @@
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.radio--left > .radio__input') {
+  @include pre('.radio__input') {
     top: rem(8px);
+  }
+
+  @include pre('.radio--right > .radio__input') {
+    top: 50%;
   }
 
   @include pre('.radio__label') {
@@ -311,18 +309,30 @@
     line-height: rem(32px);
   }
 
-  @include pre('.radio--left > .radio__label::before') {
+  @include pre('.radio__label::before') {
     top: rem(8px);
   }
 
-  @include pre('.radio--left > .radio__label::after') {
+  @include pre('.radio--right > .radio__label::before') {
+    top: 50%;
+  }
+
+  @include pre('.radio__label::after') {
     top: rem(12px);
+  }
+
+  @include pre('.radio--right > .radio__label::after') {
+    top: 50%;
   }
 
   // no-touchevents // --------------------------------------------------------
   @include pre('.no-touchevents') {
-    @include pre('.radio--left > .radio__border-outer') {
+    @include pre('.radio__border-outer') {
       top: rem(8px);
+    }
+
+    @include pre('.radio--right > .radio__border-outer') {
+      top: 50%;
     }
   }
 }
