@@ -448,7 +448,7 @@ $parent-index: 1;
       '.likert__list--#{$index} > .likert__item:first-of-type .likert__label'
     ) {
       position: relative;
-      top: initial;
+      top: auto;
       left: 0;
       transform: none;
       width: $result;
@@ -459,9 +459,9 @@ $parent-index: 1;
       '.likert__list--#{$index} > .likert__item:last-of-type .likert__label'
     ) {
       position: relative;
-      bottom: initial;
+      bottom: auto;
       right: -100%;
-      left: initial;
+      left: auto;
       transform: translateX(-100%);
       width: $result;
       padding: 0 0 0 rem(8px);
