@@ -7,18 +7,17 @@
 @include pre('.toggle__input') {
   opacity: 0;
   position: absolute;
+  top: 0;
+  left: rem(8px);
   width: rem(40px);
   height: rem(24px);
   margin: 0;
 }
 
-@include pre('.toggle--left > .toggle__input') {
-  top: 0;
-  left: rem(8px);
-}
 @include pre('.toggle--right > .toggle__input') {
   top: 50%;
   right: rem(8px);
+  left: auto;
   transform: translateY(-50%);
 }
 
@@ -27,16 +26,14 @@
 }
 
 @include pre('.toggle__label') {
+  display: inline-block;
+  padding: 0 0 0 rem(64px);
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.toggle--left > .toggle__label') {
-  display: inline-block;
-  padding: 0 0 0 rem(64px);
-}
 @include pre('.toggle--right > .toggle__label') {
   display: block;
   padding: 0 rem(64px) 0 0;
@@ -55,6 +52,8 @@
 @include pre('.toggle__label::before') {
   content: '';
   position: absolute;
+  top: 0;
+  left: rem(8px);
   box-sizing: border-box;
   width: rem(40px);
   height: rem(24px);
@@ -64,13 +63,10 @@
     $transition-timing-default;
 }
 
-@include pre('.toggle--left > .toggle__label::before') {
-  top: 0;
-  left: rem(8px);
-}
 @include pre('.toggle--right > .toggle__label::before') {
   top: 50%;
   right: rem(8px);
+  left: auto;
   transform: translateY(-50%);
 }
 @include pre('.toggle--error > .toggle__label::before') {
@@ -109,6 +105,8 @@
   content: '';
   z-index: 1; // * ensures toggle is in the foreground for full bounce effect
   position: absolute;
+  top: rem(1px);
+  left: rem(9px);
   width: rem(22px);
   height: rem(22px);
   border-radius: $border-radius-round;
@@ -118,22 +116,22 @@
     left $transition-duration-x2 $transition-timing-bounce-out;
 }
 
-@include pre('.toggle--left > .toggle__label::after') {
-  top: rem(1px);
-  left: rem(9px);
+@include pre('.toggle__input:checked + .toggle__label::after') {
+  left: rem(25px);
 }
+
 @include pre('.toggle--right > .toggle__label::after') {
   top: 50%;
   right: rem(25px);
+  left: auto;
   transform: translateY(-50%);
 }
-@include pre('.toggle--left > .toggle__input:checked + .toggle__label::after') {
-  left: rem(25px);
-}
+
 @include pre(
   '.toggle--right > .toggle__input:checked + .toggle__label::after'
 ) {
   right: rem(9px);
+  left: auto;
 }
 
 @include pre('.toggle__border-outer') {
@@ -232,19 +230,18 @@
 
   @include pre('.toggle__border-outer') {
     position: absolute;
+    top: 0;
+    left: rem(8px);
     display: block;
     width: rem(40px);
     height: rem(24px);
     pointer-events: none;
   }
 
-  @include pre('.toggle--left > .toggle__border-outer') {
-    top: 0;
-    left: rem(8px);
-  }
   @include pre('.toggle--right > .toggle__border-outer') {
     top: 50%;
     right: rem(8px);
+    left: auto;
     transform: translateY(-50%);
   }
 
@@ -359,8 +356,12 @@
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.toggle--left > .toggle__input') {
+  @include pre('.toggle__input') {
     top: rem(4px);
+  }
+
+  @include pre('.toggle--right > .toggle__input') {
+    top: 50%;
   }
 
   @include pre('.toggle__label') {
@@ -368,18 +369,29 @@
     line-height: rem(32px);
   }
 
-  @include pre('.toggle--left > .toggle__label::before') {
+  @include pre('.toggle__label::before') {
     top: rem(4px);
   }
 
-  @include pre('.toggle--left > .toggle__label::after') {
+  @include pre('.toggle__label::after') {
     top: rem(5px);
+  }
+
+  @include pre('.toggle--right > .toggle__label::before') {
+    top: 50%;
+  }
+  @include pre('.toggle--right > .toggle__label::after') {
+    top: 50%;
   }
 
   // no-touchevents // --------------------------------------------------------
   @include pre('.no-touchevents') {
-    @include pre('.toggle--left > .toggle__border-outer') {
+    @include pre('.toggle__border-outer') {
       top: rem(4px);
+    }
+
+    @include pre('.toggle--right > .toggle__border-outer') {
+      top: 50%;
     }
   }
 }
