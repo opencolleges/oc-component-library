@@ -27,7 +27,7 @@
 
 @include pre('.radio__label') {
   display: inline-block;
-  padding: 0 0 0 $space-xxl;
+  padding: 0 $space-xxl;
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
@@ -129,6 +129,21 @@
 
 @include pre('.radio__border-outer') {
   display: none;
+}
+
+@include pre('.radio > .icon') {
+  position: absolute;
+  top: 50%;
+  right: rem(8px);
+  transform: translateY(-50%);
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.radio > .icon--close') {
+  stroke: $state-error;
+}
+@include pre('.radio > .icon--tick') {
+  stroke: $state-success;
 }
 
 // no-touchevents // ----------------------------------------------------------
@@ -291,6 +306,30 @@
     '.radio--reversed > .radio__input:checked:active ~ .radio__border-outer > .radio__border'
   ) {
     stroke: rgba($blizzard, 0);
+  }
+
+  @include pre('.radio > .icon') {
+    pointer-events: none;
+  }
+
+  @include pre('.radio__input:hover ~ .icon--close') {
+    stroke: $state-error-hover;
+  }
+  @include pre('.radio__input:focus ~ .icon--close') {
+    stroke: $state-error-focus;
+  }
+  @include pre('.radio__input:active ~ .icon--close') {
+    stroke: $state-error-active;
+  }
+
+  @include pre('.radio__input:hover ~ .icon--tick') {
+    stroke: $state-success-hover;
+  }
+  @include pre('.radio__input:focus ~ .icon--tick') {
+    stroke: $state-success-focus;
+  }
+  @include pre('.radio__input:active ~ .icon--tick') {
+    stroke: $state-success-active;
   }
 }
 

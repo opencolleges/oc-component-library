@@ -27,7 +27,7 @@
 
 @include pre('.checkbox__label') {
   display: inline-block;
-  padding: 0 0 0 $space-xxl;
+  padding: 0 $space-xxl;
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
@@ -91,31 +91,47 @@
   border-color: $charcoal;
 }
 
-@include pre('.checkbox > .icon') {
-  position: absolute;
-  top: rem(-2px);
-  left: rem(8px);
-  stroke: $charcoal;
+@include pre('.checkbox__border-outer') {
+  display: none;
 }
 
-@include pre('.checkbox--right > .icon') {
+@include pre('.checkbox > .icon') {
+  position: absolute;
+  top: 50%;
+  right: rem(8px);
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.checkbox > .icon--close') {
+  stroke: $state-error;
+}
+@include pre('.checkbox > .icon--tick') {
+  stroke: $state-success;
+}
+
+@include pre('.checkbox > .icon--tick:last-child') {
+  top: rem(-2px);
+  right: auto;
+  left: rem(8px);
+  transform: none;
+  stroke: $charcoal;
+}
+@include pre('.checkbox--right > .icon--tick:last-child') {
   top: calc(50% - 2px); // * IE11 visual hack
   right: 0;
   left: auto;
   transform: translateY(-50%);
 }
-@include pre('.checkbox--reversed > .icon') {
+@include pre('.checkbox--reversed > .icon--tick:last-child') {
   color: $blizzard;
 }
-@include pre('.checkbox__input:checked:disabled ~ .icon') {
+@include pre('.checkbox__input:checked:disabled ~ .icon--tick:last-child') {
   stroke: $fossil;
 }
-@include pre('.checkbox__input:checked[readonly] ~ .icon') {
+@include pre('.checkbox__input:checked[readonly] ~ .icon--tick:last-child') {
   stroke: $charcoal;
-}
-
-@include pre('.checkbox__border-outer') {
-  display: none;
 }
 
 // no-touchevents // ----------------------------------------------------------
@@ -135,10 +151,6 @@
   }
   @include pre('.checkbox--reversed > .checkbox__label::before') {
     border-color: rgba($blizzard, 0.55);
-  }
-
-  @include pre('.checkbox > .icon') {
-    pointer-events: none;
   }
 
   @include pre('.checkbox__border-outer') {
@@ -288,6 +300,34 @@
   ) {
     stroke: rgba($blizzard, 0);
   }
+
+  @include pre('.checkbox > .icon') {
+    pointer-events: none;
+  }
+
+  @include pre('.checkbox__input:hover ~ .icon--close') {
+    stroke: $state-error-hover;
+  }
+  @include pre('.checkbox__input:focus ~ .icon--close') {
+    stroke: $state-error-focus;
+  }
+  @include pre('.checkbox__input:active ~ .icon--close') {
+    stroke: $state-error-active;
+  }
+
+  @include pre('.checkbox__input:hover ~ .icon--tick') {
+    stroke: $state-success-hover;
+  }
+  @include pre('.checkbox__input:focus ~ .icon--tick') {
+    stroke: $state-success-focus;
+  }
+  @include pre('.checkbox__input:active ~ .icon--tick') {
+    stroke: $state-success-active;
+  }
+
+  @include pre('.checkbox > .icon--tick:last-child') {
+    stroke: $charcoal;
+  }
 }
 
 // medium // ------------------------------------------------------------------
@@ -313,11 +353,11 @@
     top: 50%;
   }
 
-  @include pre('.checkbox > .icon') {
+  @include pre('.checkbox > .icon:last-child') {
     top: rem(2px);
   }
 
-  @include pre('.checkbox--right > .icon') {
+  @include pre('.checkbox--right > .icon:last-child') {
     top: calc(50% - 2px); // * IE11 visual hack
   }
 
