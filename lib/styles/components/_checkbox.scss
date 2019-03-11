@@ -137,8 +137,8 @@
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.checkbox__label') {
-    user-select: none;
     cursor: pointer;
+    user-select: none;
   }
 
   @include pre('.checkbox__input:disabled + .checkbox__label') {

@@ -65,8 +65,8 @@
     color $transition-duration-x1 $transition-timing-default,
     font-size $transition-duration-x2 $transition-timing-default,
     line-height $transition-duration-x2 $transition-timing-default;
-  user-select: none;
   pointer-events: none;
+  user-select: none;
 }
 
 @include pre('.textarea__input:focus + .textarea__label') {

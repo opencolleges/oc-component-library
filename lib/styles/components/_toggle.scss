@@ -141,8 +141,8 @@
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.toggle__label') {
-    user-select: none;
     cursor: pointer;
+    user-select: none;
   }
 
   @include pre('.toggle__input:disabled + .toggle__label') {

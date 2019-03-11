@@ -149,8 +149,8 @@
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.radio__label') {
-    user-select: none;
     cursor: pointer;
+    user-select: none;
   }
 
   @include pre('.radio__input:disabled + .radio__label') {
