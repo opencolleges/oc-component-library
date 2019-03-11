@@ -1,7 +1,7 @@
 // small // -------------------------------------------------------------------
 @include pre('.checkbox-set') {
   position: relative;
-  padding: $space-stack-l;
+  padding: $space-stack-xxl;
   margin: $space-stack-m;
 }
 
@@ -28,4 +28,20 @@
   width: 100%;
   background-color: $state-success;
   transition: width $transition-duration-x4 $transition-timing-default 0ms;
+}
+
+@include pre('.checkbox-set__message') {
+  position: absolute;
+  bottom: 0;
+  font-size: rem(12px);
+  line-height: rem(16px);
+  user-select: none;
+}
+
+@include pre('.checkbox-set--error > .checkbox-set__message') {
+  color: $state-error;
+}
+
+@include pre('.checkbox-set--success > .checkbox-set__message') {
+  color: $state-success;
 }
