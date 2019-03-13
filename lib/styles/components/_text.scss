@@ -292,10 +292,6 @@
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.text') {
-    margin: $space-stack-l;
-  }
-
   @include pre('.text__input') {
     padding: $space-xs $space-xxl $space-xs 0;
     font-size: rem(15px);

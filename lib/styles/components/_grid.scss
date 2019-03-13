@@ -84,17 +84,6 @@
   padding: $space-s 0;
 }
 
-// @include pre('.grid--left > .grid__item') {
-//   float: left;
-// }
-// @include pre('.grid--center > .grid__item') {
-//   float: none;
-//   margin: 0 auto;
-// }
-// @include pre('.grid--right > .grid__item') {
-//   float: right;
-// }
-
 @for $index from 1 through $grid-columns {
   $result: (100% / $grid-columns) * $index;
 
@@ -102,17 +91,6 @@
     width: $result;
   }
 }
-
-// @include pre('.grid__item--left > *') {
-//   float: left;
-// }
-// @include pre('.grid__item--center > *') {
-//   float: none;
-//   margin: 0 auto;
-// }
-// @include pre('.grid__item--right > *') {
-//   float: right;
-// }
 
 @supports (display: grid) {
   @include pre('.grid') {

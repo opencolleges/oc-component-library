@@ -257,10 +257,6 @@
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.select') {
-    margin: $space-stack-l;
-  }
-
   @include pre('.select__input') {
     font-size: rem(15px);
   }

@@ -257,10 +257,6 @@
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.button') {
-    margin: 0 $space-s $space-l;
-  }
-
   @for $index from 1 through $grid-columns {
     $result: (100% / $grid-columns) * $index;
 
