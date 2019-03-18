@@ -1,0 +1,38 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.toast') {
+  z-index: $z-index-notification;
+  position: relative;
+  display: block;
+  padding: $space-m $space-m $space-m rem(72px);
+  border-radius: $border-radius-s;
+  box-shadow: $box-shadow-layer-4;
+  margin: $space-m;
+  background-color: $blizzard;
+}
+
+@include pre('.toast::before') {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: rem(4px);
+  height: 100%;
+  border-top-left-radius: $border-radius-s;
+  border-bottom-left-radius: $border-radius-s;
+  background-color: $state-default;
+}
+
+@include pre('.toast--error::before') {
+  background-color: $state-error;
+}
+
+@include pre('.toast--success::before') {
+  background-color: $state-success;
+}

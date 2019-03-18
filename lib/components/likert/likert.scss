@@ -1,0 +1,520 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.likert') {
+  position: relative;
+  margin: $space-stack-m;
+}
+
+@include pre('.likert--compact') {
+  margin: $space-stack-s;
+}
+
+@for $index from 6 through 10 {
+  @include pre('.likert__list--#{$index}') {
+    margin: rem(48px) 0;
+  }
+}
+
+@include pre('.likert__list::before') {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@include pre('.likert__list::after') {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@include pre('.likert__item') {
+  float: left;
+  box-sizing: border-box;
+  min-height: rem(1px);
+}
+
+@for $index from 3 through 5 {
+  $result: 100% / $index;
+
+  @include pre('.likert__list--#{$index} > .likert__item') {
+    width: $result;
+  }
+}
+
+@for $index from 6 through 10 {
+  @include pre('.likert__list--#{$index} > .likert__item') {
+    width: 100%;
+  }
+}
+
+@include pre('.likert__input') {
+  opacity: 0;
+  position: absolute;
+  width: rem(16px);
+  height: rem(16px);
+  margin: 0;
+}
+
+@include pre('.likert__button') {
+  display: block;
+  box-sizing: border-box;
+  height: rem(48px);
+  padding: $space-s 0;
+  background-color: transparent;
+  color: $state-default;
+  font-size: rem(14px);
+  font-weight: 700;
+  text-align: center;
+  line-height: rem(32px);
+  transition: $transition-duration-x1 $transition-timing-default;
+  transition-property: border-color, background-color, color;
+}
+
+@include pre('.likert--compact .likert__button') {
+  height: rem(40px);
+  font-size: rem(12px);
+  line-height: rem(24px);
+}
+
+@for $index from 3 through 5 {
+  @include pre('.likert__list--#{$index} .likert__button') {
+    border-top: rem(1px) solid $state-default;
+    border-bottom: rem(1px) solid $state-default;
+    border-left: rem(1px) solid $state-default;
+    margin: $space-stack-s;
+  }
+
+  @include pre(
+    '.likert__list--#{$index} > .likert__item:first-of-type .likert__button'
+  ) {
+    border-radius: $button-border-radius 0 0 $button-border-radius;
+  }
+  @include pre(
+    '.likert__list--#{$index} > .likert__item:last-of-type .likert__button'
+  ) {
+    border-radius: 0 $button-border-radius $button-border-radius 0;
+    border-right: rem(1px) solid $state-default;
+  }
+}
+
+@for $index from 6 through 10 {
+  @include pre('.likert__list--#{$index} .likert__button') {
+    border: rem(1px) solid $state-default;
+    border-radius: $button-border-radius;
+    margin: $space-stack-m;
+  }
+
+  @include pre(
+    '.likert--compact > .likert__list--#{$index} > .likert__item .likert__button'
+  ) {
+    margin: $space-stack-s;
+  }
+
+  @include pre(
+    '.likert__list--#{$index} > .likert__item:last-of-type .likert__button'
+  ) {
+    margin: 0;
+  }
+}
+
+@include pre(
+  '.likert__input:checked + .likert__label-outer > .likert__button'
+) {
+  background-color: $state-default;
+  color: $blizzard;
+}
+
+@include pre('.likert__input:focus + .likert__label-outer > .likert__button') {
+  background-color: $state-default-focus;
+  color: $blizzard;
+}
+
+@for $index from 3 through 5 {
+  @include pre(
+    '.likert__list--#{$index} .likert__input:focus + .likert__label-outer > .likert__button'
+  ) {
+    border-top-color: $state-default-focus;
+    border-bottom-color: $state-default-focus;
+  }
+
+  @include pre(
+    '.likert__list--#{$index} > .likert__item:first-of-type > .likert__input:focus + .likert__label-outer > .likert__button'
+  ) {
+    border-left-color: $state-default-focus;
+  }
+  @include pre(
+    '.likert__list--#{$index} > .likert__item:last-of-type > .likert__input:focus + .likert__label-outer > .likert__button'
+  ) {
+    border-right-color: $state-default-focus;
+  }
+}
+
+@for $index from 6 through 10 {
+  @include pre(
+    '.likert__list--#{$index} .likert__input:focus + .likert__label-outer > .likert__button'
+  ) {
+    border-color: $state-default-focus;
+  }
+}
+
+@include pre('.likert__label') {
+  display: none;
+  box-sizing: border-box;
+  color: $gunmetal;
+  font-size: rem(14px);
+  line-height: rem(24px);
+  transition: color $transition-duration-x1 $transition-timing-default;
+}
+
+$parent-index: 1;
+
+@for $index from 3 through 5 {
+  $result: 100% * ($index / 2);
+  $result-2: (-100% / $index) * $parent-index;
+
+  @include pre(
+    '.likert__list--#{$index} > .likert__item:first-of-type .likert__label'
+  ) {
+    display: block;
+    width: $result;
+    text-align: left;
+  }
+
+  @include pre(
+    '.likert__list--#{$index} > .likert__item:last-of-type .likert__label'
+  ) {
+    transform: translateX($result-2);
+    display: block;
+    width: $result;
+    text-align: right;
+  }
+
+  $parent-index: $parent-index + 1;
+}
+
+@for $index from 6 through 10 {
+  @include pre(
+    '.likert__list--#{$index} > .likert__item:first-of-type .likert__label'
+  ) {
+    position: absolute;
+    bottom: rem(calc(100% + 8px));
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  @include pre(
+    '.likert__list--#{$index} > .likert__item:last-of-type .likert__label'
+  ) {
+    position: absolute;
+    top: rem(calc(100% + 8px));
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+// flexbox // -----------------------------------------------------------------
+@supports (display: flex) {
+  @include pre('.likert__list') {
+    display: flex;
+  }
+
+  @include pre('.likert__list::before') {
+    display: none;
+  }
+
+  @include pre('.likert__list::after') {
+    display: none;
+  }
+
+  @include pre('.likert__item') {
+    float: none;
+  }
+
+  @for $index from 3 through 5 {
+    $result: 100% / $index;
+
+    @include pre('.likert__list--#{$index} > .likert__item') {
+      flex-basis: $result;
+    }
+  }
+
+  @for $index from 6 through 10 {
+    @include pre('.likert__list--#{$index}') {
+      flex-wrap: wrap;
+    }
+
+    @include pre('.likert__list--#{$index} > .likert__item') {
+      flex-basis: 100%;
+    }
+  }
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.likert__button') {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  @for $index from 3 through 5 {
+    @include pre('.likert__list--#{$index} .likert__button:hover') {
+      border-top-color: $state-default-hover;
+      border-bottom-color: $state-default-hover;
+      background-color: $state-default-hover;
+      color: $blizzard;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:first-of-type .likert__button:hover'
+    ) {
+      border-left-color: $state-default-hover;
+    }
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:last-of-type .likert__button:hover'
+    ) {
+      border-right-color: $state-default-hover;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item .likert__button:active'
+    ) {
+      border-top-color: $state-default-active;
+      border-bottom-color: $state-default-active;
+      background-color: $state-default-active;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:hover + .likert__item.active .likert__button'
+    ) {
+      border-left-color: $state-default-hover;
+    }
+    @include pre(
+      '.likert__list--#{$index} > .likert__item.active + .likert__item:hover .likert__button'
+    ) {
+      border-left-color: $state-default-hover;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:active + .likert__item.active .likert__button'
+    ) {
+      border-left-color: $state-default-active;
+    }
+    @include pre(
+      '.likert__list--#{$index} > .likert__item.active + .likert__item:active .likert__button'
+    ) {
+      border-left-color: $state-default-active;
+    }
+  }
+
+  @for $index from 6 through 10 {
+    @include pre(
+      '.likert__list--#{$index} > .likert__item .likert__button:hover'
+    ) {
+      border-color: $state-default-hover;
+      background-color: $state-default-hover;
+      color: $blizzard;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item .likert__button:active'
+    ) {
+      border-color: $state-default-active;
+      background-color: $state-default-active;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:hover + .likert__item.active .likert__button'
+    ) {
+      border-left-color: $state-default-hover;
+    }
+    @include pre(
+      '.likert__list--#{$index} > .likert__item.active + .likert__item:hover .likert__button'
+    ) {
+      border-left-color: $state-default-hover;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:active + .likert__item.active .likert__button'
+    ) {
+      border-left-color: $state-default-active;
+    }
+    @include pre(
+      '.likert__list--#{$index} > .likert__item.active + .likert__item:active .likert__button'
+    ) {
+      border-left-color: $state-default-active;
+    }
+  }
+
+  @include pre('.likert__label') {
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @for $index from 6 through 10 {
+    $result: 100% / $index;
+
+    @include pre('.likert__list--#{$index}') {
+      margin: 0;
+    }
+
+    @include pre('.likert__list--#{$index} > .likert__item') {
+      width: $result;
+    }
+
+    @include pre('.likert__list--#{$index} .likert__button') {
+      border-right: none;
+      border-radius: 0;
+      margin: $space-stack-s;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:first-of-type .likert__button'
+    ) {
+      border-radius: $button-border-radius 0 0 $button-border-radius;
+    }
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:last-of-type .likert__button'
+    ) {
+      border-radius: 0 $button-border-radius $button-border-radius 0;
+      border-right: rem(1px) solid $state-default;
+      margin: $space-stack-s;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} .likert__input:focus + .likert__label-outer > .likert__button'
+    ) {
+      border-left-color: $state-default;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:first-of-type > .likert__input:focus + .likert__label-outer > .likert__button'
+    ) {
+      border-color: $state-default-focus;
+    }
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:last-of-type > .likert__input:focus + .likert__label-outer > .likert__button'
+    ) {
+      border-color: $state-default-focus;
+    }
+  }
+
+  @include pre('.likert__label') {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  @for $index from 3 through 5 {
+    @include pre('.likert__list--#{$index} .likert__label') {
+      display: block;
+      text-align: center;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:first-of-type .likert__label'
+    ) {
+      width: 100%;
+      text-align: center;
+    }
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:last-of-type .likert__label'
+    ) {
+      transform: none;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @for $index from 6 through 10 {
+    $result: 100% * ($index / 2);
+
+    @if $index == 7 or $index == 9 {
+      $result: 100% * ($index / 3);
+    }
+
+    @include pre('.likert__list--#{$index} .likert__label') {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      width: $result;
+      padding: 0 rem(8px);
+      text-align: center;
+    }
+
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:first-of-type .likert__label'
+    ) {
+      position: relative;
+      top: auto;
+      left: 0;
+      transform: none;
+      width: $result;
+      padding: 0 rem(8px) 0 0;
+      text-align: left;
+    }
+    @include pre(
+      '.likert__list--#{$index} > .likert__item:last-of-type .likert__label'
+    ) {
+      position: relative;
+      bottom: auto;
+      right: -100%;
+      left: auto;
+      transform: translateX(-100%);
+      width: $result;
+      padding: 0 0 0 rem(8px);
+      text-align: right;
+    }
+  }
+
+  // flexbox // ---------------------------------------------------------------
+  @supports (display: flex) {
+    @for $index from 6 through 10 {
+      $result: 100% / $index;
+
+      @include pre('.likert__list--#{$index} > .likert__item') {
+        flex-basis: $result;
+      }
+    }
+  }
+
+  // no-touchevents // --------------------------------------------------------
+  @include pre('.no-touchevents') {
+    @for $index from 6 through 10 {
+      @include pre(
+        '.likert__list--#{$index} > .likert__item .likert__button:hover'
+      ) {
+        border-left-color: $state-default;
+      }
+
+      @include pre(
+        '.likert__list--#{$index} > .likert__item:first-of-type .likert__button:hover'
+      ) {
+        border-left-color: $state-default-hover;
+      }
+
+      @include pre(
+        '.likert__list--#{$index} > .likert__item .likert__button:active'
+      ) {
+        border-color: $state-default-active;
+        background-color: $state-default-active;
+      }
+    }
+  }
+}
+
+// large // ------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.likert__label') {
+    font-size: rem(16px);
+  }
+}

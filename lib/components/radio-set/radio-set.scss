@@ -1,0 +1,57 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.radio-set') {
+  position: relative;
+  padding: $space-stack-l;
+  margin: $space-stack-m;
+}
+
+@include pre('.radio-set__border') {
+  position: absolute;
+  bottom: rem(24px);
+  display: block;
+  width: 0;
+  height: rem(1px);
+  background-color: $state-default;
+  transition: width $transition-duration-x4 $transition-timing-default
+      $transition-duration-x0,
+    background-color $transition-duration-x1 $transition-timing-default
+      $transition-duration-x4;
+  pointer-events: none;
+}
+
+@include pre('.radio-set--error > .radio-set__border') {
+  width: 100%;
+  background-color: $state-error;
+  transition: width $transition-duration-x4 $transition-timing-default
+    $transition-duration-x0;
+}
+
+@include pre('.radio-set--success > .radio-set__border') {
+  width: 100%;
+  background-color: $state-success;
+  transition: width $transition-duration-x4 $transition-timing-default
+    $transition-duration-x0;
+}
+
+@include pre('.radio-set__message') {
+  position: absolute;
+  bottom: 0;
+  font-size: rem(12px);
+  line-height: rem(16px);
+  user-select: none;
+}
+
+@include pre('.radio-set--error > .radio-set__message') {
+  color: $state-error;
+}
+
+@include pre('.radio-set--success > .radio-set__message') {
+  color: $state-success;
+}

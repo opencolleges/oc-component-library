@@ -1,0 +1,135 @@
+// * utility imports
+@import '../partials/circumference';
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@for $index from 1 through 6 {
+  @include pre('.h#{$index}') {
+    display: block;
+    margin: $space-l 0;
+    font-style: normal;
+    word-wrap: break-word;
+  }
+
+  @include pre('.h#{$index}--compact') {
+    margin: $space-m 0;
+  }
+  @include pre('.h#{$index}--reversed') {
+    color: $blizzard;
+  }
+  @include pre('.h#{$index}--left') {
+    text-align: left;
+  }
+  @include pre('.h#{$index}--center') {
+    text-align: center;
+  }
+  @include pre('.h#{$index}--right') {
+    text-align: right;
+  }
+  @include pre('.h#{$index}--justify') {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+@include pre('.h1') {
+  font-size: rem(30px);
+  font-weight: 300;
+  line-height: rem(40px);
+}
+
+@include pre('.h2') {
+  font-size: rem(26px);
+  font-weight: 300;
+  line-height: rem(40px);
+}
+
+@include pre('.h3') {
+  font-size: rem(22px);
+  font-weight: 700;
+  line-height: rem(32px);
+}
+
+@include pre('.h4') {
+  font-size: rem(20px);
+  font-weight: 700;
+  line-height: rem(32px);
+}
+
+@include pre('.h5') {
+  font-size: rem(16px);
+  font-weight: 700;
+  line-height: rem(24px);
+}
+
+@include pre('.h6') {
+  font-size: rem(14px);
+  font-weight: 700;
+  line-height: rem(24px);
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.h1') {
+    font-size: rem(34px);
+    line-height: rem(48px);
+  }
+
+  @include pre('.h2') {
+    font-size: rem(30px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.h3') {
+    font-size: rem(26px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.h4') {
+    font-size: rem(22px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.h5') {
+    font-size: rem(20px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.h6') {
+    font-size: rem(16px);
+    line-height: rem(32px);
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.h1') {
+    font-size: rem(38px);
+  }
+
+  @include pre('.h2') {
+    font-size: rem(34px);
+    line-height: rem(48px);
+  }
+
+  @include pre('.h3') {
+    font-size: rem(30px);
+  }
+
+  @include pre('.h4') {
+    font-size: rem(26px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.h5') {
+    font-size: rem(22px);
+  }
+
+  @include pre('.h6') {
+    font-size: rem(20px);
+  }
+}

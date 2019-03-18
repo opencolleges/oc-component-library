@@ -1,0 +1,74 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.th') {
+  box-sizing: border-box;
+  padding: rem(8px);
+  color: $christi-shade;
+  font-weight: 700;
+  vertical-align: bottom;
+}
+
+@include pre('.table--alt .th') {
+  color: $hurricane;
+}
+
+@include pre('.table--alt > .tbody .th:first-of-type') {
+  border-left: rem(1px) solid $gallery;
+}
+
+@include pre('.th--top') {
+  vertical-align: top;
+}
+@include pre('.th--middle') {
+  vertical-align: middle;
+}
+@include pre('.th--bottom') {
+  vertical-align: bottom;
+}
+@include pre('.th--left') {
+  text-align: left;
+}
+@include pre('.th--center') {
+  text-align: center;
+}
+@include pre('.th--right') {
+  text-align: right;
+}
+
+@include pre('.td') {
+  box-sizing: border-box;
+  padding: $space-s $space-s rem(7px);
+  vertical-align: top;
+}
+
+@include pre('.td--top') {
+  vertical-align: top;
+}
+@include pre('.td--middle') {
+  vertical-align: middle;
+}
+@include pre('.td--bottom') {
+  vertical-align: bottom;
+}
+@include pre('.td--left') {
+  text-align: left;
+}
+@include pre('.td--center') {
+  text-align: center;
+}
+@include pre('.td--right') {
+  text-align: right;
+}
+
+@include pre('.table--alt .td') {
+  border-right: rem(1px) solid $gallery;
+}
+@include pre('.table--alt .td:first-of-type') {
+  border-left: rem(1px) solid $gallery;
+}

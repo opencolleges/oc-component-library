@@ -1,0 +1,288 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.pagination') {
+  z-index: $z-index-pagination;
+  position: fixed;
+  bottom: rem(16px);
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  min-width: rem(320px);
+  width: 75%;
+  height: rem(64px);
+  padding: $space-s;
+  border-radius: $border-radius-s;
+  box-shadow: $box-shadow-layer-4;
+  background-color: $blizzard;
+}
+
+@include pre('.pagination__list-outer') {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: rem(208px);
+}
+
+@include pre('.pagination > .pagination__list') {
+  position: absolute;
+}
+
+@include pre('.pagination > .pagination__list:first-child') {
+  left: rem(8px);
+}
+@include pre('.pagination > .pagination__list:last-child') {
+  right: rem(8px);
+}
+
+@include pre('.pagination__item') {
+  position: relative;
+  float: left;
+  width: rem(48px);
+  height: rem(48px);
+  color: $fossil;
+  text-align: center;
+  font-size: rem(11px);
+  font-weight: 700;
+  line-height: rem(48px);
+  user-select: none;
+}
+
+@include pre('.pagination__item:nth-last-child(2)') {
+  width: rem(16px);
+}
+
+@include pre('.pagination__item:focus') {
+  outline: none;
+}
+
+@include pre('.pagination__item--selectable') {
+  color: $gunmetal;
+}
+
+@include pre('.pagination__item--selectable.active') {
+  color: $charcoal;
+}
+
+@include pre('.pagination__item--selectable::before') {
+  content: '';
+  opacity: 0;
+  position: absolute;
+  top: rem(52px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: rem(4px);
+  height: rem(4px);
+  border-radius: $border-radius-round;
+  background-color: $christi-shade;
+  transition: opacity $transition-duration-x1 $transition-timing-default,
+    top $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
+}
+
+@include pre(
+  '.pagination__item--selectable.pagination__item--populated::before'
+) {
+  opacity: 1;
+  top: rem(36px);
+}
+@include pre(
+  '.pagination__item--selectable.pagination__item--populated.active::before'
+) {
+  background-color: $christi;
+}
+
+@include pre('.pagination__item--selectable::after') {
+  content: '*';
+  opacity: 0;
+  position: absolute;
+  top: rem(53px); // * visual hack
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: $border-radius-round;
+  color: $cinnabar-shade;
+  font-size: rem(11px);
+  text-align: center;
+  line-height: rem(4px);
+  transition: opacity $transition-duration-x1 $transition-timing-default,
+    top $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
+}
+
+@include pre(
+  '.pagination__item--selectable.pagination__item--required::after'
+) {
+  opacity: 1;
+  top: rem(37px); // * visual hack
+}
+@include pre(
+  '.pagination__item--selectable.pagination__item--required.active::after'
+) {
+  color: $cinnabar;
+}
+
+@include pre('.pagination__item > .icon') {
+  position: absolute;
+  top: rem(12px);
+}
+
+@include pre('.pagination__item > .icon--arrow-left') {
+  left: rem(12px);
+}
+@include pre('.pagination__item > .icon--arrow-right') {
+  right: rem(12px);
+}
+
+@include pre('.pagination__item--selectable > .icon') {
+  stroke: $viking-shade;
+}
+
+@include pre('.pagination__label') {
+  display: none;
+}
+
+@include pre('.pagination__highlight') {
+  position: absolute;
+  top: rem(4px);
+  left: rem(4px);
+  width: rem(40px);
+  height: rem(40px);
+  border-radius: $border-radius-round;
+  background-color: $selection-background;
+  transition: transform $transition-duration-x3 $transition-timing-bounce-out;
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.pagination:focus-within') {
+    outline: $focus-outline;
+  }
+
+  @include pre('.pagination__item--selectable') {
+    cursor: pointer;
+  }
+
+  @include pre('.pagination__item--selectable:hover') {
+    color: $state-default-hover;
+  }
+  @include pre('.pagination__item--selectable:active') {
+    color: $state-default-active;
+  }
+
+  @include pre('.pagination__item.active') {
+    cursor: default;
+  }
+
+  @include pre('.pagination__item.active:hover') {
+    color: $charcoal;
+  }
+  @include pre('.pagination__item.active:active') {
+    color: $charcoal;
+  }
+
+  @include pre(
+    '.pagination__item--selectable.pagination__item--populated:hover::before'
+  ) {
+    background-color: $christi;
+  }
+  @include pre(
+    '.pagination__item--selectable.pagination__item--populated:active::before'
+  ) {
+    background-color: $christi-shade;
+  }
+
+  @include pre(
+    '.pagination__item--selectable.pagination__item--required:hover::after'
+  ) {
+    color: $cinnabar;
+  }
+  @include pre(
+    '.pagination__item--selectable.pagination__item--required:active::after'
+  ) {
+    color: $cinnabar-shade;
+  }
+
+  @include pre('.pagination__item--selectable > .icon') {
+    stroke: currentColor;
+  }
+  @include pre('.pagination__item--selectable:hover > .icon') {
+    stroke: $state-default-hover;
+  }
+  @include pre('.pagination__item--selectable:active > .icon') {
+    stroke: $state-default-active;
+  }
+
+  @include pre('.pagination__label') {
+    cursor: default;
+  }
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.pagination') {
+    min-width: rem(464px);
+    height: rem(72px);
+    padding: rem(12px) $space-s;
+  }
+
+  @include pre('.pagination__list-outer') {
+    width: rem(352px);
+  }
+
+  @include pre('.pagination__item') {
+    width: rem(56px);
+    font-size: rem(12px);
+  }
+
+  @include pre('.pagination__item--previous') {
+    width: rem(48px);
+  }
+  @include pre('.pagination__item--next') {
+    width: rem(48px);
+  }
+
+  @include pre('.pagination__highlight') {
+    left: rem(8px);
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.pagination') {
+    width: rem(656px);
+    bottom: rem(64px);
+  }
+
+  @include pre('.pagination__list-outer') {
+    width: rem(464px);
+  }
+
+  @include pre('.pagination__item') {
+    font-size: rem(13px);
+  }
+
+  @include pre('.pagination__item--previous') {
+    width: rem(88px);
+  }
+  @include pre('.pagination__item--next') {
+    width: rem(88px);
+  }
+
+  @include pre('.pagination__label') {
+    position: absolute;
+    top: 0;
+    display: block;
+  }
+
+  @include pre('.pagination__item--previous > .pagination__label') {
+    left: rem(48px);
+  }
+  @include pre('.pagination__item--next > .pagination__label') {
+    right: rem(48px);
+  }
+}
