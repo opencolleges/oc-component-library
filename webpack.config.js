@@ -4,86 +4,15 @@ const pkg = require('./package.json');
 const path = require('path');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const libraryName = pkg.name;
 module.exports = {
-  entry:
-    process.env.entry === 'css'
-      ? {
-          avatar: path.join(__dirname, './lib/components/avatar/avatar.scss'),
-          badge: path.join(__dirname, './lib/components/badge/badge.scss'),
-          base: path.join(__dirname, './lib/base.scss'),
-          button: path.join(__dirname, './lib/components/button/button.scss'),
-          card: path.join(__dirname, './lib/components/card/card.scss'),
-          checkbox: path.join(
-            __dirname,
-            './lib/components/checkbox/checkbox.scss'
-          ),
-          checkboxSet: path.join(
-            __dirname,
-            './lib/components/checkbox-set/checkbox-set.scss'
-          ),
-          copy: path.join(__dirname, './lib/components/copy/copy.scss'),
-          date: path.join(__dirname, './lib/components/date/date.scss'),
-          divider: path.join(
-            __dirname,
-            './lib/components/divider/divider.scss'
-          ),
-          file: path.join(__dirname, './lib/components/file/file.scss'),
-          grid: path.join(__dirname, './lib/components/grid/grid.scss'),
-          gridItem: path.join(
-            __dirname,
-            './lib/components/grid-item/grid-item.scss'
-          ),
-          heading: path.join(
-            __dirname,
-            './lib/components/heading/heading.scss'
-          ),
-          icon: path.join(__dirname, './lib/components/icon/icon.scss'),
-          likert: path.join(__dirname, './lib/components/likert/likert.scss'),
-          pagination: path.join(
-            __dirname,
-            './lib/components/pagination/pagination.scss'
-          ),
-          preloader: path.join(
-            __dirname,
-            './lib/components/preloader/preloader.scss'
-          ),
-          progress: path.join(
-            __dirname,
-            './lib/components/progress/progress.scss'
-          ),
-          radio: path.join(__dirname, './lib/components/radio/radio.scss'),
-          radioSet: path.join(
-            __dirname,
-            './lib/components/radio-set/radio-set.scss'
-          ),
-          select: path.join(__dirname, './lib/components/select/select.scss'),
-          table: path.join(__dirname, './lib/components/table/table.scss'),
-          tableCell: path.join(
-            __dirname,
-            './lib/components/table-cell/table-cell.scss'
-          ),
-          tableRow: path.join(
-            __dirname,
-            './lib/components/table-row/table-row.scss'
-          ),
-          text: path.join(__dirname, './lib/components/text/text.scss'),
-          textarea: path.join(
-            __dirname,
-            './lib/components/textarea/textarea.scss'
-          ),
-          toast: path.join(__dirname, './lib/components/toast/toast.scss'),
-          toggle: path.join(__dirname, './lib/components/toggle/toggle.scss')
-        }
-      : {
-          all: path.join(__dirname, './lib/index.js')
-        },
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  entry: {},
   output: {
     path: path.join(__dirname, './dist'),
-    filename: chunkData => {
-      return chunkData.chunk.name === 'all' ? 'index.js' : '[name].js';
-    },
+    filename: '[name].js',
     library: libraryName,
     libraryTarget: 'umd',
     publicPath: '/dist/',
@@ -109,16 +38,6 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.*css$/,
-        use:
-          process.env.entry === 'css'
-            ? ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: ['css-loader', 'sass-loader']
-              })
-            : ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(js|jsx)$/,
@@ -160,13 +79,19 @@ module.exports = {
   }
 };
 
-if (process.env.NODE_ENV === 'production') {
-  module.exports.plugins = [
-    new CleanWebpackPlugin()
-  ];
-}
-
-if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
+// If environment is development
+if (process.env.NODE_ENV !== 'production') {
+  module.exports.entry = {
+    index: path.join(__dirname, './lib/index.js'),
+    all: path.join(__dirname, './lib/all.scss')
+  };
+  module.exports.module.rules.push({
+    test: /\.*css$/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: ['css-loader', 'sass-loader']
+    })
+  });
   module.exports.plugins = [
     new FixStyleOnlyEntriesPlugin(),
     new ExtractTextPlugin({
@@ -174,4 +99,82 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
       allChunks: true
     })
   ];
+}
+
+// If environment is production (NOT CSS)
+if (process.env.NODE_ENV === 'production') {
+  module.exports.entry = {
+    index: path.join(__dirname, './lib/index.js')
+  };
+  module.exports.plugins = [new CleanWebpackPlugin()];
+  module.exports.module.rules.push({
+    test: /\.*css$/,
+    use: 'ignore-loader'
+  });
+}
+
+// If environment is production (CSS)
+if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
+  module.exports.entry = {
+    all: path.join(__dirname, './lib/all.scss'),
+    avatar: path.join(__dirname, './lib/avatar/avatar.scss'),
+    badge: path.join(__dirname, './lib/badge/badge.scss'),
+    base: path.join(__dirname, './lib/base.scss'),
+    button: path.join(__dirname, './lib/button/button.scss'),
+    card: path.join(__dirname, './lib/card/card.scss'),
+    checkbox: path.join(__dirname, './lib/checkbox/checkbox.scss'),
+    'checkbox-set': [
+      path.join(__dirname, './lib/checkbox/checkbox.scss'),
+      path.join(__dirname, './lib/checkbox-set/checkbox-set.scss')
+    ],
+    copy: path.join(__dirname, './lib/copy/copy.scss'),
+    date: path.join(__dirname, './lib/date/date.scss'),
+    divider: path.join(__dirname, './lib/divider/divider.scss'),
+    file: path.join(__dirname, './lib/file/file.scss'),
+    grid: [
+      path.join(__dirname, './lib/grid/grid.scss'),
+      path.join(__dirname, './lib/grid-item/grid-item.scss')
+    ],
+    'grid-item': path.join(__dirname, './lib/grid-item/grid-item.scss'),
+    heading: path.join(__dirname, './lib/heading/heading.scss'),
+    icon: path.join(__dirname, './lib/icon/icon.scss'),
+    likert: path.join(__dirname, './lib/likert/likert.scss'),
+    pagination: path.join(__dirname, './lib/pagination/pagination.scss'),
+    preloader: path.join(__dirname, './lib/preloader/preloader.scss'),
+    progress: path.join(__dirname, './lib/progress/progress.scss'),
+    radio: path.join(__dirname, './lib/radio/radio.scss'),
+    'radio-set': [
+      path.join(__dirname, './lib/radio/radio.scss'),
+      path.join(__dirname, './lib/radio-set/radio-set.scss')
+    ],
+    select: path.join(__dirname, './lib/select/select.scss'),
+    table: path.join(__dirname, './lib/table/table.scss'),
+    'table-cell': path.join(__dirname, './lib/table-cell/table-cell.scss'),
+    'table-row': path.join(__dirname, './lib/table-row/table-row.scss'),
+    text: path.join(__dirname, './lib/text/text.scss'),
+    textarea: path.join(__dirname, './lib/textarea/textarea.scss'),
+    toast: path.join(__dirname, './lib/toast/toast.scss'),
+    toggle: path.join(__dirname, './lib/toggle/toggle.scss')
+  };
+
+  module.exports.plugins = [
+    new FixStyleOnlyEntriesPlugin(),
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      allChunks: true
+    })
+  ];
+  module.exports.optimization = {
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
+    splitChunks: {
+      chunks: 'all'
+    }
+  };
+  module.exports.module.rules.push({
+    test: /\.*css$/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: ['css-loader', 'sass-loader']
+    })
+  });
 }

@@ -1,66 +1,68 @@
 // * utility imports
-@import './components/partials/rem';
+@import './partials/rem';
 
 // * tokens
-@import './components/partials/tokens';
+@import './partials/tokens';
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700|Open+Sans+Condensed:300,700|Open+Sans:300,400,400i,700');
 
 :root {
   // * base
-  --cinnabar-shade: $cinnabar-shade;
-  --cinnabar: $cinnabar;
-  --cinnabar-tint: $cinnabar-tint;
+  --cinnabar-shade: #{$cinnabar-shade};
+  --cinnabar: #{$cinnabar};
+  --cinnabar-tint: #{$cinnabar-tint};
 
-  --crusta: $crusta;
+  --crusta: #{$crusta};
 
-  --candlelight: $candlelight;
+  --candlelight: #{$candlelight};
 
-  --christi-shade: $christi-shade;
-  --christi: $christi;
-  --christi-tint: $christi-tint;
+  --christi-shade: #{$christi-shade};
+  --christi: #{$christi};
+  --christi-tint: #{$christi-tint};
 
-  --viking-shade: $viking-shade;
-  --viking: $viking;
-  --viking-tint: $viking-tint;
+  --viking-shade: #{$viking-shade};
+  --viking: #{$viking};
+  --viking-tint: #{$viking-tint};
 
-  --amethyst: $amethyst;
+  --amethyst: #{$amethyst};
 
-  --saddle: $saddle;
+  --saddle: #{$saddle};
 
-  --alabaster: $alabaster;
+  --alabaster: #{$alabaster};
 
   // * neutral
-  --charcoal: $charcoal;
-  --charcoal-transparent: $charcoal-transparent;
+  --charcoal: #{$charcoal};
+  --charcoal-transparent: #{$charcoal-transparent};
 
-  --gunmetal: $gunmetal;
-  --gunmetal-transparent: $gunmetal-transparent;
+  --gunmetal: #{$gunmetal};
+  --gunmetal-transparent: #{$gunmetal-transparent};
 
-  --hurricane: $hurricane;
-  --hurricane-transparent: $hurricane-transparent;
+  --hurricane: #{$hurricane};
+  --hurricane-transparent: #{$hurricane-transparent};
 
-  --fossil: $fossil;
-  --fossil-transparent: $fossil-transparent;
+  --fossil: #{$fossil};
+  --fossil-transparent: #{$fossil-transparent};
 
-  --alto: $alto;
-  --alto-transparent: $alto-transparent;
+  --alto: #{$alto};
+  --alto-transparent: #{$alto-transparent};
 
-  --gallery: $gallery;
-  --gallery-transparent: $gallery-transparent;
+  --gallery: #{$gallery};
+  --gallery-transparent: #{$gallery-transparent};
 
-  --concrete: $concrete;
-  --concrete-transparent: $concrete-transparent;
+  --concrete: #{$concrete};
+  --concrete-transparent: #{$concrete-transparent};
 
-  --cotton: $cotton;
-  --cotton-transparent: $cotton-transparent;
+  --cotton: #{$cotton};
+  --cotton-transparent: #{$cotton-transparent};
 
-  --powder: $powder;
-  --powder-transparent: $powder-transparent;
+  --powder: #{$powder};
+  --powder-transparent: #{$powder-transparent};
 
-  --daisy: $daisy;
-  --daisy-transparent: $daisy-transparent;
+  --daisy: #{$daisy};
+  --daisy-transparent: #{$daisy-transparent};
 
-  --blizzard: $blizzard;
-  --blizzard-transparent: $blizzard-transparent;
+  --blizzard: #{$blizzard};
+  --blizzard-transparent: #{$blizzard-transparent};
 }
 
 // global // ------------------------------------------------------------------
