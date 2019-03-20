@@ -1,0 +1,44 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.table') {
+  table-layout: fixed;
+  margin: 0 auto $space-m;
+  font-family: $font-family-condensed;
+  font-size: rem(14px);
+  text-align: left;
+  line-height: rem(24px);
+}
+
+@include pre('.table:not([width])') {
+  min-width: 100%;
+}
+
+@include pre('.table--left') {
+  text-align: left;
+}
+@include pre('.table--center') {
+  text-align: center;
+}
+@include pre('.table--right') {
+  text-align: right;
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.table') {
+    font-size: rem(15px);
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.table') {
+    font-size: rem(16px);
+  }
+}

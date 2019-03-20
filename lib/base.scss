@@ -1,0 +1,250 @@
+// * utility imports
+@import './components/partials/rem';
+
+// * tokens
+@import './components/partials/tokens';
+
+:root {
+  // * base
+  --cinnabar-shade: $cinnabar-shade;
+  --cinnabar: $cinnabar;
+  --cinnabar-tint: $cinnabar-tint;
+
+  --crusta: $crusta;
+
+  --candlelight: $candlelight;
+
+  --christi-shade: $christi-shade;
+  --christi: $christi;
+  --christi-tint: $christi-tint;
+
+  --viking-shade: $viking-shade;
+  --viking: $viking;
+  --viking-tint: $viking-tint;
+
+  --amethyst: $amethyst;
+
+  --saddle: $saddle;
+
+  --alabaster: $alabaster;
+
+  // * neutral
+  --charcoal: $charcoal;
+  --charcoal-transparent: $charcoal-transparent;
+
+  --gunmetal: $gunmetal;
+  --gunmetal-transparent: $gunmetal-transparent;
+
+  --hurricane: $hurricane;
+  --hurricane-transparent: $hurricane-transparent;
+
+  --fossil: $fossil;
+  --fossil-transparent: $fossil-transparent;
+
+  --alto: $alto;
+  --alto-transparent: $alto-transparent;
+
+  --gallery: $gallery;
+  --gallery-transparent: $gallery-transparent;
+
+  --concrete: $concrete;
+  --concrete-transparent: $concrete-transparent;
+
+  --cotton: $cotton;
+  --cotton-transparent: $cotton-transparent;
+
+  --powder: $powder;
+  --powder-transparent: $powder-transparent;
+
+  --daisy: $daisy;
+  --daisy-transparent: $daisy-transparent;
+
+  --blizzard: $blizzard;
+  --blizzard-transparent: $blizzard-transparent;
+}
+
+// global // ------------------------------------------------------------------
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+q::before {
+  content: '';
+  content: none;
+}
+
+blockquote::after,
+q::after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// * style scroll bar in -webkit- browsers
+::-webkit-scrollbar {
+  // * for vertical scrollbars
+  width: rem(4px);
+
+  // * for horizontal scrollbars
+  height: rem(4px);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: $border-radius-s;
+  background: $fossil-transparent;
+}
+
+// * declare selection highlight color
+::-moz-selection {
+  background: $selection-background;
+}
+::selection {
+  background: $selection-background;
+}
+
+html,
+body {
+  background-color: $alabaster;
+  color: $charcoal;
+  font-family: $font-family-sans-serif;
+  font-size: rem(16px);
+  font-weight: 400;
+
+  // * font antialiasing in OSX
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // * text rendering
+  text-rendering: optimizeLegibility;
+
+  // * remove overlay when element is tapped in iOS
+  -webkit-tap-highlight-color: $blizzard-transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// * declare autofill highlight color
+input:-webkit-autofill {
+  box-shadow: rgba($viking, 0.13) rem(0, 0, 0, 24px) inset;
+}

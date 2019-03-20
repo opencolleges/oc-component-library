@@ -1,0 +1,198 @@
+// palette // -----------------------------------------------------------------
+
+// * base
+$cinnabar-shade: rgb(218, 32, 32);
+$cinnabar: rgb(237, 74, 74);
+$cinnabar-tint: rgb(248, 124, 124);
+
+$crusta: rgb(253, 120, 71);
+
+$candlelight: rgb(250, 218, 10);
+
+$christi-shade: rgb(18, 140, 1);
+$christi: rgb(49, 188, 6);
+$christi-tint: rgb(88, 226, 11);
+
+$viking-shade: rgb(5, 104, 120);
+$viking: rgb(17, 160, 173);
+$viking-tint: rgb(33, 208, 217);
+
+$amethyst: rgb(129, 67, 191);
+
+$saddle: rgb(83, 38, 38);
+
+$alabaster: rgb(249, 248, 248);
+
+// * neutral
+$charcoal: rgb(28, 28, 28);
+$charcoal-transparent: rgba(0, 0, 0, 0.89);
+
+$gunmetal: rgb(115, 115, 115);
+$gunmetal-transparent: rgba(0, 0, 0, 0.55);
+
+$hurricane: rgb(168, 168, 168);
+$hurricane-transparent: rgba(0, 0, 0, 0.34);
+
+$fossil: rgb(201, 201, 201);
+$fossil-transparent: rgba(0, 0, 0, 0.21);
+
+$alto: rgb(222, 222, 222);
+$alto-transparent: rgba(0, 0, 0, 0.13);
+
+$gallery: rgb(235, 235, 235);
+$gallery-transparent: rgba(0, 0, 0, 0.08);
+
+$concrete: rgb(242, 242, 242);
+$concrete-transparent: rgba(0, 0, 0, 0.05);
+
+$cotton: rgb(247, 247, 247);
+$cotton-transparent: rgba(0, 0, 0, 0.03);
+
+$powder: rgb(250, 250, 250);
+$powder-transparent: rgba(0, 0, 0, 0.02);
+
+$daisy: rgb(252, 252, 252);
+$daisy-transparent: rgba(0, 0, 0, 0.01);
+
+$blizzard: rgb(255, 255, 255);
+$blizzard-transparent: rgba(0, 0, 0, 0);
+
+// state // -------------------------------------------------------------------
+
+$state-default: $viking-shade;
+$state-default-hover: $viking;
+$state-default-focus: $viking;
+$state-default-active: $viking-shade;
+
+$state-disabled: $alto;
+
+$state-error: $cinnabar-shade;
+$state-error-hover: $cinnabar;
+$state-error-focus: $cinnabar;
+$state-error-active: $cinnabar-shade;
+
+$state-info: $amethyst;
+
+$state-success: $christi-shade;
+$state-success-hover: $christi;
+$state-success-focus: $christi;
+$state-success-active: $christi-shade;
+
+$state-reversed: rgba($blizzard, 0.55);
+$state-reversed-hover: $blizzard;
+$state-reversed-focus: $blizzard;
+$state-reversed-active: rgba($blizzard, 0.55);
+
+$state-warning: $crusta;
+
+// space // -------------------------------------------------------------------
+
+$space-inset-xxs: rem(2px 2px 2px 2px);
+$space-inset-xs: rem(4px 4px 4px 4px);
+$space-inset-s: rem(8px 8px 8px 8px);
+$space-inset-m: rem(16px 16px 16px 16px);
+$space-inset-l: rem(24px 24px 24px 24px);
+$space-inset-xl: rem(32px 32px 32px 32px);
+$space-inset-xxl: rem(40px 40px 40px 40px);
+
+$space-stack-xxs: 0 0 rem(2px) 0;
+$space-stack-xs: 0 0 rem(4px) 0;
+$space-stack-s: 0 0 rem(8px) 0;
+$space-stack-m: 0 0 rem(16px) 0;
+$space-stack-l: 0 0 rem(24px) 0;
+$space-stack-xl: 0 0 rem(32px) 0;
+$space-stack-xxl: 0 0 rem(40px) 0;
+
+$space-xxs: rem(2px);
+$space-xs: rem(4px);
+$space-s: rem(8px);
+$space-m: rem(16px);
+$space-l: rem(24px);
+$space-xl: rem(32px);
+$space-xxl: rem(40px);
+
+// scaffolding // -------------------------------------------------------------
+
+$focus-outline: rem(1px) dashed $charcoal;
+
+$selection-background: rgba($viking, 0.13);
+
+$body-background: $alabaster;
+$body-color: $charcoal;
+
+// media queries // -----------------------------------------------------------
+
+$media-s: 'only screen and (min-width: 0em)';
+$media-s-only: 'only screen and (min-width: 0em) and (max-width: 30em)';
+
+$media-m: 'only screen and (min-width: 30.0625em)';
+$media-m-only: 'only screen and (min-width: 30.0625em) and (max-width: 48em)';
+
+$media-l: 'only screen and (min-width: 48.0625em)';
+$media-l-only: 'only screen and (min-width: 48.0625em) and (max-width: 80em)';
+
+$media-xl: 'only screen and (min-width: 80.0625em)';
+$media-xl-only: 'only screen and (min-width: 80.0625em) and (max-width: 624.9375em)';
+
+// z-index // -----------------------------------------------------------------
+
+$z-index-pagination: 10;
+$z-index-nav: 10;
+$z-index-dropdown: 20;
+$z-index-overlay: 50;
+$z-index-modal: 100;
+$z-index-notification: 9999;
+
+// grid system // -------------------------------------------------------------
+
+$grid-columns: 12;
+
+// typography // --------------------------------------------------------------
+
+$font-family-sans-serif: 'Open Sans', Helvetica, Arial, sans-serif;
+$font-family-condensed: 'Open Sans Condensed', Helvetica, Arial, sans-serif;
+$font-family-monospace: 'Inconsolata', Menlo, Consolas, monospace;
+
+// border // ------------------------------------------------------------------
+
+$border-light: rem(1px) solid $gallery;
+$border-medium: rem(1px) solid $alto;
+$border-dark: rem(1px) solid $fossil;
+
+$border-radius-s: rem(2px);
+$border-radius-m: rem(4px);
+$border-radius-l: rem(8px);
+$border-radius-round: 50%;
+
+// box-shadow // --------------------------------------------------------------
+
+$top-shadow: rem(2px -2px 2px -2px) rgba($cinnabar-shade, 0.05);
+
+$box-shadow-layer-1: $top-shadow, 0 rem(4px 4px -2px) rgba($saddle, 0.21);
+$box-shadow-layer-2: $top-shadow, 0 rem(8px 8px -4px) rgba($saddle, 0.21);
+$box-shadow-layer-3: $top-shadow, 0 rem(16px 16px -4px) rgba($saddle, 0.13);
+$box-shadow-layer-4: $top-shadow, 0 rem(24px 24px -4px) rgba($saddle, 0.08);
+
+// transition // --------------------------------------------------------------
+
+$transition-duration-x0: 0ms;
+$transition-duration-x1: 125ms;
+$transition-duration-x2: 250ms;
+$transition-duration-x3: 375ms;
+$transition-duration-x4: 500ms;
+$transition-duration-x5: 625ms;
+$transition-duration-x6: 750ms;
+$transition-duration-x7: 875ms;
+$transition-duration-x8: 1000ms;
+
+$transition-timing-default: ease-in-out;
+$transition-timing-bounce-out: cubic-bezier(0.6, 0, 0.5, 1.4);
+
+// input // -------------------------------------------------------------------
+
+$input-border: $border-dark;
+
+// button // ------------------------------------------------------------------
+
+$button-border-radius: $border-radius-s;
+$button-font-weight: 700;

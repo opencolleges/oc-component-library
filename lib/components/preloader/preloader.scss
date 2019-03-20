@@ -1,0 +1,113 @@
+// * utility imports
+@import '../partials/circumference';
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.preloader') {
+  z-index: $z-index-overlay;
+  position: fixed; // ? absolute
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+@include pre('.preloader.active') {
+  display: block;
+}
+
+@include pre('.preloader__stroke-outer') {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: rem(96px);
+  height: rem(96px);
+}
+
+@include pre('.preloader__stroke') {
+  transform: rotate(-90deg);
+  transform-origin: rem(48px 48px);
+  stroke-dasharray: circumference(88);
+  stroke-dashoffset: (circumference(88) - 0.01);
+  stroke-linecap: round;
+  stroke-width: 8;
+  fill: none;
+  animation-timing-function: ease-in-out;
+}
+
+@include pre('.preloader__stroke--1') {
+  stroke: $candlelight;
+  animation: stroke--1 1.25s infinite;
+}
+
+@include pre('.preloader__stroke--2') {
+  stroke: $viking;
+  animation: stroke--2 1.25s infinite;
+}
+@include pre('.preloader__stroke--3') {
+  stroke: $christi;
+  animation: stroke--3 1.25s infinite;
+}
+
+@keyframes stroke--1 {
+  0% {
+    transform: rotate(-90deg);
+    stroke-dashoffset: (circumference(88) - 0.01);
+  }
+  13% {
+    stroke-dashoffset: circumference(64);
+  }
+  89% {
+    transform: rotate(270deg);
+    stroke-dashoffset: (circumference(88) - 0.01);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes stroke--2 {
+  0% {
+    transform: rotate(-90deg);
+  }
+  2% {
+    transform: rotate(-90deg);
+    stroke-dashoffset: (circumference(88) - 0.01);
+  }
+  21% {
+    stroke-dashoffset: circumference(72);
+  }
+  89% {
+    transform: rotate(270deg);
+    stroke-dashoffset: (circumference(88) - 0.01);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes stroke--3 {
+  0% {
+    transform: rotate(-90deg);
+  }
+  3% {
+    transform: rotate(-90deg);
+    stroke-dashoffset: (circumference(88) - 0.01);
+  }
+  34% {
+    stroke-dashoffset: circumference(80);
+  }
+  89% {
+    transform: rotate(270deg);
+    stroke-dashoffset: (circumference(88) - 0.01);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}

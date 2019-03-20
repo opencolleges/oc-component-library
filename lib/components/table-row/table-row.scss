@@ -1,0 +1,40 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.tr--left') {
+  text-align: left;
+}
+@include pre('.tr--center') {
+  text-align: center;
+}
+@include pre('.tr--right') {
+  text-align: right;
+}
+
+@include pre('.tbody > .tr') {
+  border-bottom: rem(1px) solid $gallery;
+}
+
+@include pre('.tbody > .tr:first-of-type') {
+  border-top: rem(1px) solid $gallery;
+}
+@include pre('.tbody > .tr:nth-of-type(2n)') {
+  background-color: $daisy-transparent;
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.tbody > .tr') {
+    transition: background-color $transition-duration-x1
+      $transition-timing-default;
+  }
+
+  @include pre('.tbody > .tr:hover') {
+    background-color: $selection-background;
+  }
+}
