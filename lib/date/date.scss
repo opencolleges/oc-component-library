@@ -1,0 +1,320 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.date') {
+  position: relative;
+  height: rem(80px);
+  margin: $space-stack-m;
+}
+
+@include pre('.date__input') {
+  overflow: hidden;
+  position: absolute;
+  top: rem(16px);
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: rem(40px);
+  padding: 0 rem(40px) 0 0;
+  border-bottom: rem(1px) solid $viking-shade;
+  border-radius: 0;
+  outline: none;
+  background: none;
+  color: $gunmetal;
+  font-family: $font-family-sans-serif;
+  font-size: rem(14px);
+  text-overflow: ellipsis;
+  line-height: rem(40px);
+  white-space: nowrap;
+}
+
+@include pre('.date__input:disabled ~ .date__input') {
+  border-color: $state-disabled;
+  color: $fossil;
+}
+@include pre('.date__input[readonly] ~ .date__input') {
+  width: auto;
+  padding: 0;
+  border: none;
+  color: $charcoal;
+}
+
+@include pre('.date__input--hidden') {
+  visibility: hidden;
+  display: none;
+}
+
+@include pre('.date__label') {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $hurricane;
+  font-size: rem(12px);
+  line-height: rem(16px);
+}
+
+@include pre('.date__input:disabled ~ .date__label') {
+  color: $state-disabled;
+}
+@include pre('.date__input[readonly] ~ .date__label') {
+  color: $christi-shade;
+}
+
+@include pre('.date__input[required] ~ .date__label::after') {
+  content: ' *';
+  position: relative;
+  top: 0;
+  color: $state-error-focus;
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.selected > .date__input[required] ~ .date__label::after') {
+  top: rem(-16px);
+  color: rgba($state-error-focus, 0);
+}
+
+@include pre('.date > .icon') {
+  position: absolute;
+  top: rem(26px); // * visual hack
+  right: rem(8px);
+  stroke: $gunmetal;
+  pointer-events: none;
+}
+
+@include pre('.date__input:disabled ~ .icon') {
+  stroke: $fossil;
+}
+
+@include pre('.date__border') {
+  display: none;
+}
+
+@include pre('.date__list-outer') {
+  z-index: $z-index-dropdown;
+  opacity: 0;
+  position: absolute;
+  top: rem(64px);
+  left: 0;
+  transform: rem(translateY(24px));
+  box-sizing: border-box;
+  width: rem(296px);
+  padding: $space-inset-s;
+  border-radius: $border-radius-s;
+  box-shadow: $box-shadow-layer-4;
+  background-color: $blizzard;
+  transition: opacity $transition-duration-x1 $transition-timing-default,
+    transform $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
+}
+
+@include pre('.date--right > .date__list-outer') {
+  right: 0;
+  left: auto;
+}
+
+@include pre('.date.active > .date__list-outer') {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: initial;
+}
+
+@include pre('.date__item') {
+  float: left;
+  position: relative;
+  width: rem(40px);
+  height: rem(40px);
+  outline: none;
+  color: $fossil;
+  font-size: rem(12px);
+  line-height: rem(40px);
+  text-align: center;
+}
+
+@include pre('.date__item--month') {
+  width: rem(200px);
+  color: $charcoal;
+  font-weight: 700;
+  text-align: center;
+}
+@include pre('.date__item--weekend') {
+  color: $hurricane;
+  font-weight: 700;
+}
+@include pre('.date__item--weekday') {
+  color: $gunmetal;
+  font-weight: 700;
+}
+@include pre('.date__item--selectable') {
+  color: $charcoal;
+}
+
+@include pre('.date__item--selectable:focus') {
+  border-radius: $border-radius-round;
+  background-color: $selection-background;
+}
+
+@include pre('.date__item--current') {
+  font-weight: 700;
+}
+
+@include pre('.date__item > .icon') {
+  position: absolute;
+  top: rem(8px);
+  left: rem(8px);
+  stroke: $gunmetal;
+  pointer-events: none;
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.date__input') {
+    border-bottom: $input-border;
+    transition: color $transition-duration-x1 $transition-timing-default;
+    cursor: pointer;
+  }
+
+  @include pre('.date__input:focus') {
+    color: inherit;
+  }
+  // * Firefox support
+  @include pre('.date__input:-moz-focusring') {
+    color: transparent;
+    text-shadow: 0 0 0 $charcoal;
+  }
+  // * IE support
+  @include pre('.date__input::-ms-expand') {
+    display: none;
+  }
+
+  @include pre('.date__input:disabled ~ .date__input') {
+    cursor: not-allowed;
+  }
+  @include pre('.date__input[readonly] ~ .date__input') {
+    cursor: text;
+  }
+
+  @include pre('.date.active > .date__input') {
+    color: inherit;
+  }
+
+  @include pre('.date__label') {
+    transition: color $transition-duration-x1 $transition-timing-default;
+    user-select: none;
+  }
+
+  @include pre('.date__input:focus + .date__label') {
+    color: $gunmetal;
+  }
+  @include pre('.date__input[readonly] ~ .date__label') {
+    color: $christi-shade;
+  }
+  @include pre('.date.active > .date__label') {
+    color: $gunmetal;
+  }
+
+  @include pre('.date__input:focus ~ .icon') {
+    stroke: $charcoal;
+  }
+
+  @include pre('.date > .icon') {
+    transition: stroke $transition-duration-x1 $transition-timing-default;
+  }
+
+  @include pre('.date.active > .icon') {
+    stroke: $charcoal;
+  }
+
+  @include pre('.date__border') {
+    position: absolute;
+    bottom: rem(24px);
+    display: block;
+    width: 0;
+    height: rem(1px);
+    background: $viking;
+    transition: width $transition-duration-x4 $transition-timing-default,
+      background $transition-duration-x1 $transition-timing-default;
+    pointer-events: none;
+  }
+
+  @include pre('.date__input:hover ~ .date__border') {
+    width: 100%;
+  }
+  @include pre('.date__input:focus ~ .date__border') {
+    width: 100%;
+  }
+  @include pre('.date.active > .date__border') {
+    width: 100%;
+  }
+
+  @include pre('.selected > .date__border') {
+    width: 100%;
+    background-color: $state-default;
+  }
+  @include pre('.selected > .date__input:hover ~ .date__border') {
+    background-color: $state-default-hover;
+  }
+  @include pre('.selected > .date__input:focus ~ .date__border') {
+    background-color: $state-default-focus;
+  }
+
+  @include pre('.date__list-outer') {
+    user-select: none;
+  }
+
+  @include pre('.date__item--previous') {
+    cursor: pointer;
+  }
+  @include pre('.date__item--next') {
+    cursor: pointer;
+  }
+  @include pre('.date__item--selectable') {
+    cursor: pointer;
+  }
+
+  @include pre('.date__item--selectable:hover') {
+    border-radius: $border-radius-round;
+    background-color: $selection-background;
+  }
+
+  @include pre('.date__item--previous > .icon') {
+    transition: stroke $transition-duration-x1 $transition-timing-default;
+  }
+
+  @include pre('.date__item--previous:hover > .icon') {
+    stroke: $state-default-hover;
+  }
+  @include pre('.date__item--previous:active > .icon') {
+    stroke: $state-default-active;
+  }
+
+  @include pre('.date__item--next > .icon') {
+    transition: stroke $transition-duration-x1 $transition-timing-default;
+  }
+
+  @include pre('.date__item--next:hover > .icon') {
+    stroke: $state-default-hover;
+  }
+  @include pre('.date__item--next:active > .icon') {
+    stroke: $state-default-active;
+  }
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.date__input') {
+    font-size: rem(15px);
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.date__input') {
+    font-size: rem(16px);
+  }
+}

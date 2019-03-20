@@ -1,0 +1,383 @@
+// * utility imports
+@import '../partials/circumference';
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.p') {
+  display: block;
+  margin: $space-stack-m;
+  font-size: rem(14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: rem(24px);
+}
+
+@for $index from 1 through 6 {
+  @include pre('.h#{$index} + .p') {
+    margin-top: rem(-16px);
+  }
+}
+
+@include pre('.p--compact') {
+  margin: $space-stack-s;
+}
+@include pre('.p--reversed') {
+  color: $blizzard;
+}
+@include pre('.p--left') {
+  text-align: left;
+}
+@include pre('.p--center') {
+  text-align: center;
+}
+@include pre('.p--right') {
+  text-align: right;
+}
+@include pre('.p--justify') {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+@include pre('.a:link') {
+  color: $viking-shade;
+}
+@include pre('.a:visited') {
+  color: $amethyst;
+}
+@include pre('.a:hover') {
+  color: $viking;
+  text-decoration: none;
+}
+@include pre('.a:focus') {
+  outline: $focus-outline;
+  color: $viking;
+  text-decoration: none;
+}
+@include pre('.a:active') {
+  color: $viking;
+  text-decoration: underline;
+}
+
+@include pre('.abbr') {
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+@include pre('.abbr:hover') {
+  text-decoration: none;
+}
+
+@include pre('.code') {
+  padding: rem(1px 3px);
+  border: rem(1px) solid $alto;
+  border-radius: $border-radius-s;
+  background-color: $concrete;
+  color: $gunmetal;
+  font-size: rem(13px);
+  font-family: $font-family-monospace;
+  font-weight: 700;
+}
+
+@include pre('.em') {
+  font-style: italic;
+}
+
+@include pre('.kbd') {
+  padding: rem(2px 4px);
+  border-radius: $border-radius-s;
+  background-color: $christi;
+  color: $blizzard;
+  font-size: rem(13px);
+  font-weight: 700;
+}
+
+@include pre('.mark') {
+  padding: rem(2px 4px);
+  border-radius: $border-radius-s;
+  background-color: rgba($candlelight, 0.89);
+}
+
+@include pre('.small') {
+  font-size: rem(11px);
+  line-height: rem(16px);
+}
+
+@include pre('.strong') {
+  font-weight: 700;
+}
+
+@include pre('.sub') {
+  position: relative;
+  top: rem(4px);
+  font-size: rem(10px);
+  vertical-align: baseline;
+}
+
+@include pre('.sup') {
+  position: relative;
+  top: rem(-4px);
+  font-size: rem(10px);
+  vertical-align: baseline;
+}
+
+@include pre('.label') {
+  color: $gunmetal;
+  font-size: rem(14px);
+  line-height: rem(24px);
+}
+
+@include pre('.blockquote') {
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 $space-l;
+  margin: $space-stack-m;
+  font-size: rem(22px);
+  font-style: italic;
+  line-height: rem(32px);
+}
+
+@include pre('.blockquote::before') {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: rem(16px);
+  height: rem(12px);
+  background-image: url('~assets/double-quote.svg');
+  background-size: cover;
+}
+
+@include pre('.blockquote::after') {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: rem(20px);
+  transform: rotate(180deg);
+  width: rem(16px);
+  height: rem(12px);
+  background-image: url('~assets/double-quote.svg');
+  background-size: cover;
+}
+
+@include pre('.ol') {
+  counter-reset: item;
+  margin: 0 0 $space-m $space-xl;
+}
+
+@include pre('.ol .ol') {
+  margin: $space-s 0 0 $space-xl;
+}
+@include pre('.ul .ol') {
+  margin: $space-s 0 0 $space-xl;
+}
+
+@for $index from 1 through 6 {
+  @include pre('.h#{$index} + .ol') {
+    margin-top: rem(-16px);
+  }
+}
+
+@include pre('.ul') {
+  margin: 0 0 $space-m $space-xl;
+}
+
+@include pre('.ol .ul') {
+  margin: $space-s 0 0 $space-xl;
+}
+@include pre('.ul .ul') {
+  margin: $space-s 0 0 $space-xl;
+}
+
+@for $index from 1 through 6 {
+  @include pre('.h#{$index} + .ul') {
+    margin-top: rem(-16px);
+  }
+}
+
+@include pre('.li') {
+  position: relative;
+  margin: $space-stack-s;
+  font-size: rem(14px);
+  line-height: rem(24px);
+}
+
+@include pre('.ol > .li::before') {
+  counter-increment: item;
+  content: counter(item);
+  position: absolute;
+  top: rem(1px); // * visual hack to align with typography baseline
+  right: calc(100% + #{$space-m});
+  color: $christi-shade;
+  font-size: rem(12px);
+  font-weight: 700;
+  text-align: right;
+}
+@include pre('.ol .ol > .li::before') {
+  content: counter(item, lower-alpha);
+}
+@include pre('.ul .ol > .li::before') {
+  content: counter(item, lower-alpha);
+}
+
+@include pre('.ul > .li::before') {
+  content: '';
+  position: absolute;
+  top: rem(9px); // * visual hack to align with typography baseline
+  right: calc(100% + #{$space-m});
+  box-sizing: border-box;
+  width: rem(8px);
+  height: rem(8px);
+  border: rem(1px) solid $christi-shade;
+  border-radius: $border-radius-round;
+  background-color: $christi-shade;
+}
+@include pre('.ol .ul > .li::before') {
+  background-color: transparent;
+}
+@include pre('.ul .ul > .li::before') {
+  background-color: transparent;
+}
+
+@include pre('.pre') {
+  box-sizing: border-box;
+  margin: $space-stack-m;
+  padding: $space-inset-m;
+  border: rem(1px) solid $alto;
+  border-radius: $border-radius-m;
+  background-color: $concrete;
+  color: $gunmetal;
+  font-family: $font-family-monospace;
+  font-size: rem(13px);
+  line-height: rem(24px);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.p') {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.code') {
+    font-size: rem(14px);
+  }
+
+  @include pre('.kbd') {
+    font-size: rem(14px);
+  }
+
+  @include pre('.small') {
+    font-size: rem(12px);
+  }
+
+  @include pre('.sub') {
+    font-size: rem(11px);
+  }
+
+  @include pre('.sup') {
+    font-size: rem(11px);
+  }
+
+  @include pre('.label') {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  @include pre('.blockquote') {
+    padding: 0 $space-xxl;
+    font-size: rem(26px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.blockquote::before') {
+    width: rem(24px);
+    height: rem(18px);
+  }
+
+  @include pre('.blockquote::after') {
+    bottom: rem(22px);
+    width: rem(24px);
+    height: rem(18px);
+  }
+
+  @include pre('.li') {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+  @include pre('.ol > .li::before') {
+    font-size: rem(13px);
+  }
+  @include pre('.ul > .li::before') {
+    top: rem(14px); // * visual hack to align with typography baseline
+  }
+
+  @include pre('.pre') {
+    font-size: rem(14px);
+    line-height: rem(32px);
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.p') {
+    font-size: rem(16px);
+  }
+
+  @include pre('.code') {
+    font-size: rem(15px);
+  }
+
+  @include pre('.kbd') {
+    font-size: rem(15px);
+  }
+
+  @include pre('.small') {
+    font-size: rem(13px);
+  }
+
+  @include pre('.sub') {
+    font-size: rem(12px);
+  }
+
+  @include pre('.sup') {
+    font-size: rem(12px);
+  }
+
+  @include pre('.label') {
+    font-size: rem(16px);
+  }
+
+  @include pre('.blockquote') {
+    padding: 0 rem(56px);
+    font-size: rem(30px);
+    line-height: rem(40px);
+  }
+
+  @include pre('.blockquote::before') {
+    width: rem(32px);
+    height: rem(24px);
+  }
+
+  @include pre('.blockquote::after') {
+    bottom: rem(16px);
+    width: rem(32px);
+    height: rem(24px);
+  }
+
+  @include pre('.li') {
+    font-size: rem(16px);
+  }
+  @include pre('.ol > .li::before') {
+    font-size: rem(14px);
+  }
+
+  @include pre('.pre') {
+    font-size: rem(15px);
+  }
+}

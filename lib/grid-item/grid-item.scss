@@ -1,0 +1,179 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.grid__item') {
+  float: left;
+  box-sizing: border-box;
+  min-height: rem(1px);
+}
+
+@include pre('.grid--gutter-fixed > .grid__item') {
+  padding: $space-s;
+}
+@include pre('.grid--gutter-x-fixed > .grid__item') {
+  padding: 0 $space-s;
+}
+@include pre('.grid--gutter-y-fixed > .grid__item') {
+  padding: $space-s 0;
+}
+@include pre('.grid--gutter-adaptive > .grid__item') {
+  padding: $space-s;
+}
+@include pre('.grid--gutter-x-adaptive > .grid__item') {
+  padding: 0 $space-s;
+}
+@include pre('.grid--gutter-y-adaptive > .grid__item') {
+  padding: $space-s 0;
+}
+
+@include pre('.grid--button > .grid__item') {
+  padding: 0 $space-s;
+}
+
+@for $index from 1 through $grid-columns {
+  $result: (100% / $grid-columns) * $index;
+
+  @include pre('.grid__item--s-#{$index}') {
+    width: $result;
+  }
+}
+
+@supports (display: grid) {
+  @include pre('.grid__item') {
+    min-height: initial;
+  }
+
+  @include pre('.grid--gutter-fixed > .grid__item') {
+    padding: 0;
+  }
+  @include pre('.grid--gutter-x-fixed > .grid__item') {
+    padding: 0;
+  }
+  @include pre('.grid--gutter-y-fixed > .grid__item') {
+    padding: 0;
+  }
+  @include pre('.grid--gutter-adaptive > .grid__item') {
+    padding: 0;
+  }
+  @include pre('.grid--gutter-x-adaptive > .grid__item') {
+    padding: 0;
+  }
+  @include pre('.grid--gutter-y-adaptive > .grid__item') {
+    padding: 0;
+  }
+
+  @include pre('.grid--button > .grid__item') {
+    padding: 0;
+  }
+
+  @for $index from 1 through $grid-columns {
+    @include pre('.grid__item--s-#{$index}') {
+      grid-column-end: span #{$index};
+      width: auto;
+    }
+  }
+
+  @include pre('.grid__item--top') {
+    align-self: start;
+  }
+  @include pre('.grid__item--middle') {
+    align-self: center;
+  }
+  @include pre('.grid__item--bottom') {
+    align-self: end;
+  }
+  @include pre('.grid__item--left') {
+    justify-self: start;
+  }
+  @include pre('.grid__item--center') {
+    justify-self: center;
+  }
+  @include pre('.grid__item--right') {
+    justify-self: end;
+  }
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @for $index from 1 through $grid-columns {
+    $result: (100% / $grid-columns) * $index;
+
+    @include pre('.grid__item--m-#{$index}') {
+      width: $result;
+    }
+  }
+
+  @include pre('.grid--gutter-adaptive > .grid__item') {
+    padding: rem(12px);
+  }
+  @include pre('.grid--gutter-x-adaptive > .grid__item') {
+    padding: 0 rem(12px);
+  }
+  @include pre('.grid--gutter-y-adaptive > .grid__item') {
+    padding: rem(12px) 0;
+  }
+
+  @supports (display: grid) {
+    @for $index from 1 through $grid-columns {
+      @include pre('.grid__item--m-#{$index}') {
+        grid-column-end: span #{$index};
+        width: auto;
+      }
+    }
+
+    @include pre('.grid--gutter-adaptive > .grid__item') {
+      padding: 0;
+    }
+    @include pre('.grid--gutter-x-adaptive > .grid__item') {
+      padding: 0;
+    }
+    @include pre('.grid--gutter-y-adaptive > .grid__item') {
+      padding: 0;
+    }
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @for $index from 1 through $grid-columns {
+    $result: (100% / $grid-columns) * $index;
+
+    @include pre('.grid__item--l-#{$index}') {
+      width: $result;
+    }
+  }
+
+  @include pre('.grid--gutter-adaptive > .grid__item') {
+    padding: $space-m;
+  }
+  @include pre('.grid--gutter-x-adaptive > .grid__item') {
+    padding: 0 $space-m;
+  }
+  @include pre('.grid--gutter-y-adaptive > .grid__item') {
+    padding: $space-m 0;
+  }
+
+  @supports (display: grid) {
+    @for $index from 1 through $grid-columns {
+      @include pre('.grid__item--l-#{$index}') {
+        grid-column-end: span #{$index};
+        width: auto;
+      }
+    }
+
+    @include pre('.grid--gutter-adaptive > .grid__item') {
+      padding: 0;
+    }
+    @include pre('.grid--gutter-x-adaptive > .grid__item') {
+      padding: 0;
+    }
+    @include pre('.grid--gutter-y-adaptive > .grid__item') {
+      padding: 0;
+    }
+  }
+}

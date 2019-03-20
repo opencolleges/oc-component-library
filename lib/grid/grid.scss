@@ -1,0 +1,279 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// small // -------------------------------------------------------------------
+@include pre('.grid') {
+  box-sizing: border-box;
+  max-width: rem(960px);
+  margin: 0 auto $space-m;
+}
+
+@include pre('.grid--gutter-fixed') {
+  max-width: rem(992px); // * 960px + gutters
+  padding: $space-s;
+  margin: 0 auto;
+}
+@include pre('.grid--gutter-x-fixed') {
+  max-width: rem(992px); // * 960px + gutters
+  padding: 0 $space-s;
+}
+@include pre('.grid--gutter-y-fixed') {
+  padding: $space-s 0;
+  margin: 0 auto;
+}
+@include pre('.grid--gutter-adaptive') {
+  max-width: rem(1024px); // * 960px + gutters
+  padding: $space-s;
+  margin: 0 auto;
+}
+@include pre('.grid--gutter-x-adaptive') {
+  max-width: rem(1024px); // * 960px + gutters
+  padding: 0 $space-s;
+}
+@include pre('.grid--gutter-y-adaptive') {
+  padding: $space-s 0;
+  margin: 0 auto;
+}
+
+@include pre('.grid--button') {
+  max-width: rem(992px); // * 960px + gutters
+  padding: 0 $space-s;
+  margin: 0 auto;
+}
+
+@include pre('.grid .grid--gutter-fixed') {
+  margin: rem(-16px) rem(-16px) 0;
+}
+@include pre('.grid .grid--gutter-x-fixed') {
+  margin: 0 rem(-16px) $space-m;
+}
+@include pre('.grid .grid--gutter-y-fixed') {
+  margin: rem(-16px) 0 0;
+}
+@include pre('.grid .grid--gutter-adaptive') {
+  margin: rem(-16px) rem(-16px) 0;
+}
+@include pre('.grid .grid--gutter-x-adaptive') {
+  margin: 0 rem(-16px) $space-m;
+}
+@include pre('.grid .grid--gutter-y-adaptive') {
+  margin: rem(-16px) 0 0;
+}
+
+@include pre('.grid .grid--button') {
+  margin: 0 rem(-16px);
+}
+
+@include pre('.grid::before') {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@include pre('.grid::after') {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@supports (display: grid) {
+  @include pre('.grid') {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: repeat($grid-columns, 1fr);
+    margin: 0 auto;
+    padding: 0 0 $space-m;
+  }
+
+  @include pre('.grid--gutter-fixed') {
+    grid-gap: $space-m;
+    padding: $space-m;
+  }
+  @include pre('.grid--gutter-x-fixed') {
+    grid-gap: 0 $space-m;
+    padding: 0 $space-m $space-m;
+  }
+  @include pre('.grid--gutter-y-fixed') {
+    grid-gap: $space-m 0;
+    padding: $space-m 0;
+  }
+  @include pre('.grid--gutter-adaptive') {
+    grid-gap: $space-m;
+    padding: $space-m;
+  }
+  @include pre('.grid--gutter-x-adaptive') {
+    grid-gap: 0 $space-m;
+    padding: 0 $space-m $space-m;
+  }
+  @include pre('.grid--gutter-y-adaptive') {
+    grid-gap: $space-m 0;
+    padding: $space-m 0;
+  }
+
+  @include pre('.grid--button') {
+    grid-gap: 0 $space-m;
+    padding: 0 $space-m 0;
+  }
+
+  @include pre('.grid .grid--gutter-fixed') {
+    padding: 0 0 $space-m;
+    margin: 0;
+  }
+  @include pre('.grid .grid--gutter-x-fixed') {
+    padding: 0 0 $space-m;
+    margin: 0;
+  }
+  @include pre('.grid .grid--gutter-y-fixed') {
+    padding: 0 0 $space-m;
+    margin: 0;
+  }
+  @include pre('.grid .grid--gutter-adaptive') {
+    padding: 0 0 $space-m;
+    margin: 0;
+  }
+  @include pre('.grid .grid--gutter-x-adaptive') {
+    padding: 0 0 $space-m;
+    margin: 0;
+  }
+  @include pre('.grid .grid--gutter-y-adaptive') {
+    padding: 0 0 $space-m;
+    margin: 0;
+  }
+
+  @include pre('.grid--top') {
+    align-items: start;
+  }
+  @include pre('.grid--middle') {
+    align-items: center;
+  }
+  @include pre('.grid--bottom') {
+    align-items: end;
+  }
+  @include pre('.grid--left') {
+    justify-items: start;
+  }
+  @include pre('.grid--center') {
+    justify-items: center;
+  }
+  @include pre('.grid--right') {
+    justify-items: end;
+  }
+
+  @include pre('.grid::before') {
+    display: none;
+  }
+
+  @include pre('.grid::after') {
+    display: none;
+  }
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include pre('.grid--gutter-adaptive') {
+    padding: rem(12px);
+  }
+  @include pre('.grid--gutter-x-adaptive') {
+    padding: 0 rem(12px);
+    margin: 0 auto $space-l;
+  }
+  @include pre('.grid--gutter-y-adaptive') {
+    padding: rem(12px) 0;
+  }
+
+  @include pre('.grid .grid--gutter-adaptive') {
+    margin: rem(-24px) rem(-24px) 0;
+  }
+  @include pre('.grid .grid--gutter-x-adaptive') {
+    margin: 0 rem(-24px) $space-l;
+  }
+  @include pre('.grid .grid--gutter-y-adaptive') {
+    margin: rem(-24px) 0 0;
+  }
+
+  @supports (display: grid) {
+    @include pre('.grid--gutter-adaptive') {
+      grid-gap: $space-l;
+      padding: $space-l;
+    }
+    @include pre('.grid--gutter-x-adaptive') {
+      grid-gap: 0 $space-l;
+      padding: 0 $space-l $space-l;
+      margin: 0 auto;
+    }
+    @include pre('.grid--gutter-y-adaptive') {
+      grid-gap: $space-l 0;
+      padding: $space-l 0;
+    }
+
+    @include pre('.grid .grid--gutter-adaptive') {
+      padding: 0 0 $space-l;
+      margin: 0;
+    }
+    @include pre('.grid .grid--gutter-x-adaptive') {
+      padding: 0 0 $space-l;
+      margin: 0;
+    }
+    @include pre('.grid .grid--gutter-y-adaptive') {
+      padding: 0 0 $space-l;
+      margin: 0;
+    }
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.grid--gutter-adaptive') {
+    padding: $space-m;
+  }
+  @include pre('.grid--gutter-x-adaptive') {
+    padding: 0 $space-m;
+    margin: 0 auto $space-xl;
+  }
+  @include pre('.grid--gutter-y-adaptive') {
+    padding: $space-m 0;
+  }
+
+  @include pre('.grid .grid--gutter-adaptive') {
+    margin: rem(-32px) rem(-32px) 0;
+  }
+  @include pre('.grid .grid--gutter-x-adaptive') {
+    margin: 0 rem(-32px) $space-xl;
+  }
+  @include pre('.grid .grid--gutter-y-adaptive') {
+    margin: rem(-32px) 0 0;
+  }
+
+  @supports (display: grid) {
+    @include pre('.grid--gutter-adaptive') {
+      grid-gap: $space-xl;
+      padding: $space-xl;
+    }
+    @include pre('.grid--gutter-x-adaptive') {
+      grid-gap: 0 $space-xl;
+      padding: 0 $space-xl $space-xl;
+      margin: 0 auto;
+    }
+    @include pre('.grid--gutter-y-adaptive') {
+      grid-gap: $space-xl 0;
+      padding: $space-xl 0;
+    }
+
+    @include pre('.grid .grid--gutter-adaptive') {
+      padding: 0 0 $space-xl;
+      margin: 0;
+    }
+    @include pre('.grid .grid--gutter-x-adaptive') {
+      padding: 0 0 $space-xl;
+      margin: 0;
+    }
+    @include pre('.grid .grid--gutter-y-adaptive') {
+      padding: 0 0 $space-xl;
+      margin: 0;
+    }
+  }
+}
