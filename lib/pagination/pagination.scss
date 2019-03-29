@@ -9,7 +9,7 @@
 @include pre('.pagination') {
   z-index: $z-index-pagination;
   position: fixed;
-  bottom: rem(16px);
+  bottom: rem(-80px);
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;
@@ -20,6 +20,11 @@
   border-radius: $border-radius-s;
   box-shadow: $box-shadow-layer-4;
   background-color: $blizzard;
+  transition: bottom $transition-duration-x4 $transition-timing-bounce-out;
+}
+
+@include pre('.pagination.mounted') {
+  bottom: rem(16px);
 }
 
 @include pre('.pagination__list-outer') {
@@ -159,10 +164,6 @@
 
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
-  @include pre('.pagination:focus-within') {
-    outline: $focus-outline;
-  }
-
   @include pre('.pagination__item--selectable') {
     cursor: pointer;
   }
@@ -225,9 +226,14 @@
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
   @include pre('.pagination') {
+    bottom: rem(-88px);
     min-width: rem(464px);
     height: rem(72px);
     padding: rem(12px) $space-s;
+  }
+
+  @include pre('.pagination.mounted') {
+    bottom: rem(16px);
   }
 
   @include pre('.pagination__list-outer') {
@@ -255,7 +261,11 @@
 @media #{$media-l} {
   @include pre('.pagination') {
     width: rem(656px);
-    bottom: rem(64px);
+    bottom: rem(-88px);
+  }
+
+  @include pre('.pagination.mounted') {
+    bottom: rem(88px);
   }
 
   @include pre('.pagination__list-outer') {
