@@ -15,6 +15,7 @@
   padding: $space-s $space-l;
   border: none;
   border-radius: $button-border-radius;
+  outline: none;
   margin: 0 0 $space-m;
   background-color: transparent;
   font-family: $font-family-sans-serif;
@@ -86,9 +87,6 @@
   @include pre('.button') {
     cursor: pointer;
     user-select: none;
-  }
-  @include pre('.button:focus') {
-    outline: $focus-outline;
   }
   @include pre('.button::-moz-focus-inner') {
     border: none; // * Firefox support

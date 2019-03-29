@@ -147,6 +147,7 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
       path.join(__dirname, './lib/radio/radio.scss'),
       path.join(__dirname, './lib/radio-set/radio-set.scss')
     ],
+    reset: path.join(__dirname, './lib/reset.scss'),
     select: path.join(__dirname, './lib/select/select.scss'),
     table: path.join(__dirname, './lib/table/table.scss'),
     'table-cell': path.join(__dirname, './lib/table-cell/table-cell.scss'),
@@ -154,7 +155,8 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
     text: path.join(__dirname, './lib/text/text.scss'),
     textarea: path.join(__dirname, './lib/textarea/textarea.scss'),
     toast: path.join(__dirname, './lib/toast/toast.scss'),
-    toggle: path.join(__dirname, './lib/toggle/toggle.scss')
+    toggle: path.join(__dirname, './lib/toggle/toggle.scss'),
+    variables: path.join(__dirname, './lib/variables.scss')
   };
 
   module.exports.plugins = [
