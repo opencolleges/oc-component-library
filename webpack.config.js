@@ -124,8 +124,8 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
     card: path.join(__dirname, './lib/card/card.scss'),
     checkbox: path.join(__dirname, './lib/checkbox/checkbox.scss'),
     'checkbox-set': [
-      path.join(__dirname, './lib/checkbox/checkbox.scss'),
-      path.join(__dirname, './lib/checkbox-set/checkbox-set.scss')
+      path.join(__dirname, './lib/checkbox/checkbox-set.scss'),
+      path.join(__dirname, './lib/checkbox-set/checkbox.scss')
     ],
     copy: path.join(__dirname, './lib/copy/copy.scss'),
     date: path.join(__dirname, './lib/date/date.scss'),
@@ -144,8 +144,8 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
     progress: path.join(__dirname, './lib/progress/progress.scss'),
     radio: path.join(__dirname, './lib/radio/radio.scss'),
     'radio-set': [
-      path.join(__dirname, './lib/radio/radio.scss'),
-      path.join(__dirname, './lib/radio-set/radio-set.scss')
+      path.join(__dirname, './lib/radio/radio-set.scss'),
+      path.join(__dirname, './lib/radio-set/radio.scss')
     ],
     reset: path.join(__dirname, './lib/reset.scss'),
     select: path.join(__dirname, './lib/select/select.scss'),
@@ -155,6 +155,10 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
     text: path.join(__dirname, './lib/text/text.scss'),
     textarea: path.join(__dirname, './lib/textarea/textarea.scss'),
     toast: path.join(__dirname, './lib/toast/toast.scss'),
+    toaster: [
+      path.join(__dirname, './lib/toaster/toaster.scss'),
+      path.join(__dirname, './lib/toast/toast.scss')
+    ],
     toggle: path.join(__dirname, './lib/toggle/toggle.scss'),
     variables: path.join(__dirname, './lib/variables.scss')
   };

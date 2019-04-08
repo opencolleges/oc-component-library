@@ -1,0 +1,19 @@
+// * utility imports
+@import '../partials/prefix';
+@import '../partials/rem';
+
+// * token imports
+@import '../partials/tokens';
+
+// global // ------------------------------------------------------------------
+@include pre('.toaster') {
+  z-index: $z-index-notification;
+  position: fixed;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: rem(352px); // 320px + 32px
+  height: 100vh;
+  pointer-events: none;
+}

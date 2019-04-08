@@ -5,16 +5,32 @@
 // * token imports
 @import '../partials/tokens';
 
-// small // -------------------------------------------------------------------
+// global // ------------------------------------------------------------------
 @include pre('.toast') {
-  z-index: $z-index-notification;
-  position: relative;
-  display: block;
-  padding: $space-m $space-m $space-m rem(72px);
-  border-radius: $border-radius-s;
+  position: absolute;
+
+  // * IE doesn't support calc in transformations.
+  // * Safari mobile ignores transition-timing-functions if different units
+  // * are used to declare states; i.e. right: -100%; doesn't play nicely
+  // * with right: 16px;. Both must be declared using the same unit.
+  right: rem(-352px);
+
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: rem(360px);
+  padding: $space-m rem(64px) $space-m rem(68px);
+  border-radius: $border-radius-m;
   box-shadow: $box-shadow-layer-4;
-  margin: $space-m;
+  margin: $space-stack-m;
   background-color: $blizzard;
+  transition: $transition-duration-x4 $transition-timing-bounce-out;
+  transition-property: top, right;
+  pointer-events: auto;
+}
+
+@include pre('.toast.mounted') {
+  right: rem(16px);
 }
 
 @include pre('.toast::before') {
@@ -24,8 +40,8 @@
   left: 0;
   width: rem(4px);
   height: 100%;
-  border-top-left-radius: $border-radius-s;
-  border-bottom-left-radius: $border-radius-s;
+  border-top-left-radius: $border-radius-m;
+  border-bottom-left-radius: $border-radius-m;
   background-color: $state-default;
 }
 
@@ -35,4 +51,64 @@
 
 @include pre('.toast--success::before') {
   background-color: $state-success;
+}
+
+@include pre('.toast__heading') {
+  color: $charcoal;
+  font-size: rem(14px);
+  font-weight: 700;
+  line-height: rem(24px);
+}
+
+@include pre('.toast__message') {
+  color: $gunmetal;
+  font-size: rem(14px);
+  line-height: rem(24px);
+}
+
+@include pre('.toast__button') {
+  position: absolute;
+  top: rem(8px);
+  right: rem(8px);
+  width: rem(24px);
+  height: rem(24px);
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+@include pre('.toast > .icon') {
+  position: absolute;
+  top: 50%;
+  left: rem(20px);
+  transform: translateY(-50%);
+  width: rem(32px);
+  height: rem(32px);
+  stroke: $state-default;
+}
+
+@include pre('.toast > .icon--close-ring') {
+  stroke: $state-error;
+}
+@include pre('.toast > .icon--tick-ring') {
+  stroke: $state-success;
+}
+
+// no-touchevents // ----------------------------------------------------------
+@include pre('.no-touchevents') {
+  @include pre('.toast') {
+    user-select: none;
+  }
+
+  @include pre('.toast__button') {
+    cursor: pointer;
+  }
+
+  @include pre('.toast__button:hover > .icon') {
+    stroke: $state-default-hover;
+  }
+  @include pre('.toast__button:active > .icon') {
+    stroke: $state-default-active;
+  }
 }
