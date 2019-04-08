@@ -124,8 +124,8 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
     card: path.join(__dirname, './lib/card/card.scss'),
     checkbox: path.join(__dirname, './lib/checkbox/checkbox.scss'),
     'checkbox-set': [
-      path.join(__dirname, './lib/checkbox/checkbox-set.scss'),
-      path.join(__dirname, './lib/checkbox-set/checkbox.scss')
+      path.join(__dirname, './lib/checkbox-set/checkbox-set.scss'),
+      path.join(__dirname, './lib/checkbox/checkbox.scss')
     ],
     copy: path.join(__dirname, './lib/copy/copy.scss'),
     date: path.join(__dirname, './lib/date/date.scss'),
@@ -144,8 +144,8 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
     progress: path.join(__dirname, './lib/progress/progress.scss'),
     radio: path.join(__dirname, './lib/radio/radio.scss'),
     'radio-set': [
-      path.join(__dirname, './lib/radio/radio-set.scss'),
-      path.join(__dirname, './lib/radio-set/radio.scss')
+      path.join(__dirname, './lib/radio-set/radio-set.scss'),
+      path.join(__dirname, './lib/radio/radio.scss')
     ],
     reset: path.join(__dirname, './lib/reset.scss'),
     select: path.join(__dirname, './lib/select/select.scss'),
