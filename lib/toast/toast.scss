@@ -29,6 +29,10 @@
   pointer-events: auto;
 }
 
+@include pre('.toast:focus-within') {
+  outline: $focus-outline;
+}
+
 @include pre('.toast.mounted') {
   right: rem(16px);
 }
@@ -107,6 +111,9 @@
 
   @include pre('.toast__button:hover > .icon') {
     stroke: $state-default-hover;
+  }
+  @include pre('.toast__button:focus > .icon') {
+    stroke: $state-default-focus;
   }
   @include pre('.toast__button:active > .icon') {
     stroke: $state-default-active;

@@ -23,6 +23,10 @@
   transition: bottom $transition-duration-x4 $transition-timing-bounce-out;
 }
 
+@include pre('.pagination:focus-within') {
+  outline: $focus-outline;
+}
+
 @include pre('.pagination.mounted') {
   bottom: rem(16px);
 }
