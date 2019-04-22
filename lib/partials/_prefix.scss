@@ -1,6 +1,16 @@
 // * utility imports
 @import 'str-replace';
 
+// @mixin pre($selectors...) {
+//   $result: '';
+
+//   @each $selector in $selectors {
+//     $result: '#{$result}.#{$pre}-#{$selector}';
+//   }
+
+//   @return $result;
+// }
+
 @mixin pre($value) {
   $result: '';
 

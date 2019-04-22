@@ -34,6 +34,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  min-width: rem(8px);
   height: 100%;
   border-radius: inherit;
   background-color: $viking-shade;
@@ -58,6 +59,11 @@
   font-size: rem(12px);
   font-weight: 700;
   line-height: rem(16px);
+}
+
+@include pre('.progress--error > .progress__label') {
+  color: $cinnabar-shade;
+  font-weight: 400;
 }
 
 @include pre('.progress > .icon') {

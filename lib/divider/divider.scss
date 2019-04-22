@@ -27,3 +27,17 @@
 @include pre('.divider--alt') {
   border-radius: 0;
 }
+
+@for $index from 1 through 6 {
+  @include pre('.h#{$index} + .divider--s') {
+    margin: rem(-17px) 0 $space-m; // * negative margin adheres element to 8px grid
+  }
+
+  @include pre('.h#{$index} + .divider--m') {
+    margin: rem(-18px) 0 $space-m; // * negative margin adheres element to 8px grid
+  }
+
+  @include pre('.h#{$index} + .divider--l') {
+    margin: rem(-19px) 0 $space-m; // * negative margin adheres element to 8px grid
+  }
+}

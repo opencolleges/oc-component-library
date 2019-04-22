@@ -111,6 +111,19 @@
   line-height: rem(16px);
 }
 
+@include pre('.file__button') {
+  width: rem(40px);
+  height: rem(40px);
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+@include pre('.file__button > .icon') {
+  stroke: $gunmetal;
+}
+
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.file__input:focus') {
@@ -149,6 +162,37 @@
     border: rem(1px) solid $viking;
     background-color: $viking;
     color: $blizzard;
+  }
+
+  @include pre('.file__item') {
+    font-family: $font-family-sans-serif;
+  }
+
+  @include pre('.file__name') {
+    display: block;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+  }
+
+  @include pre('.file__size') {
+    display: block;
+    color: $fossil;
+    font-size: rem(12px);
+    font-weight: 700;
+  }
+
+  @include pre('.file__button') {
+    cursor: pointer;
+  }
+
+  @include pre('.file__button:hover > .icon') {
+    stroke: $state-default-hover;
+  }
+  @include pre('.file__button:focus > .icon') {
+    stroke: $state-default-focus;
+  }
+  @include pre('.file__button:active > .icon') {
+    stroke: $state-default-active;
   }
 }
 
