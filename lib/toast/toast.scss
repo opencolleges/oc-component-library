@@ -7,7 +7,7 @@
 
 // global // ------------------------------------------------------------------
 @include pre('.toast') {
-  position: absolute;
+  position: fixed;
 
   // * IE doesn't support calc in transformations.
   // * Safari mobile ignores transition-timing-functions if different units
@@ -92,6 +92,7 @@
   transform: translateY(-50%);
   width: rem(24px);
   height: rem(24px);
+  stroke: $state-default;
 }
 
 @include pre('.toast > .icon--close-ring') {
