@@ -18,6 +18,7 @@
   transform: translateY(-50%);
   box-sizing: border-box;
   width: rem(calc(100% - 32px));
+  max-width: rem(343px); // iPhone 8 dimensions - 32px
   padding: $space-m rem(40px) $space-m rem(52px);
   border-radius: $border-radius-m;
   box-shadow: $box-shadow-layer-4;
