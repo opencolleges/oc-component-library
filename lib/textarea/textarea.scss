@@ -104,13 +104,20 @@
   color: $christi-shade;
 }
 
-@include pre('.textarea__input:required + .textarea__label::after') {
+// * This pseudo-selector exists to handle the asterisk transition when a
+// * required textarea input is toggled to a disabled text-input.
+@include pre('.textarea__input + .text__label::after') {
   content: ' *';
   position: relative;
-  top: 0;
-  color: $state-error-focus;
+  top: rem(-16px);
+  color: rgba($state-error-focus, 0);
   transition: top $transition-duration-x2 $transition-timing-default,
     color $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.textarea__input:required + .textarea__label::after') {
+  top: 0;
+  color: $state-error-focus;
 }
 
 @include pre('.textarea__input.active:required + .textarea__label::after') {
