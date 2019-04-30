@@ -11,6 +11,36 @@
   fill: none;
 }
 
+// @include pre('.icon--arrow-up .stroke--1') {
+//   opacity: 0; // * Safari hack
+//   stroke-dasharray: 0 15.29;
+//   transition: opacity 0 $transition-duration-x2,
+//     stroke-dasharray $transition-duration-x2 $transition-timing-default;
+// }
+
+// @include pre('.icon--arrow-up.active .stroke--1') {
+//   opacity: 1; // * Safari hack
+//   stroke-dasharray: 15.29 0;
+//   transition: opacity 0 0,
+//     stroke-dasharray $transition-duration-x2 $transition-timing-default;
+// }
+
+// @include pre('.icon--arrow-up .stroke--2') {
+//   opacity: 0; // * Safari hack
+//   stroke-dasharray: 0 6.5 0 6.5;
+//   transition: opacity 0 $transition-duration-x4,
+//     stroke-dasharray $transition-duration-x2 $transition-timing-default
+//       $transition-duration-x2;
+// }
+
+// @include pre('.icon--arrow-up.active .stroke--2') {
+//   opacity: 1;
+//   stroke-dasharray: 0 0 13 0;
+//   transition: opacity 0 $transition-duration-x2,
+//     stroke-dasharray $transition-duration-x2 $transition-timing-default
+//       $transition-duration-x2;
+// }
+
 @include pre('.icon--arrow-up .stroke--1') {
   stroke-dasharray: 0 15.29;
   transition: stroke-dasharray $transition-duration-x2
