@@ -12,6 +12,11 @@
   margin: $space-stack-m;
 }
 
+@include pre('.card--clickable > .radio') {
+  height: rem(calc(100% + 16px));
+  margin: rem(-8px);
+}
+
 @include pre('.radio__input') {
   opacity: 0;
   position: absolute;
@@ -22,11 +27,22 @@
   margin: 0;
 }
 
+@include pre('.card--clickable > .radio > .radio__input') {
+  top: rem(20px);
+  left: rem(24px);
+}
+
 @include pre('.radio--right > .radio__input') {
   top: 50%;
   right: rem(8px);
   left: auto;
   transform: translateY(-50%);
+}
+
+@include pre('.card--clickable > .radio--right > .radio__input') {
+  top: 50%;
+  right: rem(24px);
+  left: auto;
 }
 
 @include pre('.radio__input[readonly]') {
@@ -42,10 +58,21 @@
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
+@include pre('.card--clickable > .radio > .radio__label') {
+  display: block;
+  height: rem(calc(100% - 32px));
+  padding: rem(16px 56px);
+}
+
 @include pre('.radio--right > .radio__label') {
   display: block;
   padding: 0 $space-xxl 0 0;
 }
+
+@include pre('.card--clickable > .radio--right > .radio__label') {
+  padding: rem(16px 56px 16px 16px);
+}
+
 @include pre('.radio--reversed > .radio__label') {
   color: rgba($blizzard, 0.89);
 }
@@ -75,12 +102,24 @@
   border-radius: $border-radius-round;
 }
 
+@include pre('.card--clickable > .radio > .radio__label::before') {
+  top: rem(20px);
+  left: rem(24px);
+}
+
 @include pre('.radio--right > .radio__label::before') {
   top: 50%;
   right: rem(8px);
   left: auto;
   transform: translateY(-50%);
 }
+
+@include pre('.card--clickable > .radio--right > .radio__label::before') {
+  top: 50%;
+  right: rem(24px);
+  left: auto;
+}
+
 @include pre('.radio--error > .radio__label::before') {
   border-color: $cinnabar-shade;
 }
@@ -110,12 +149,24 @@
   transition: opacity $transition-duration-x1 $transition-timing-default;
 }
 
+@include pre('.card--clickable > .radio > .radio__label::after') {
+  top: rem(24px);
+  left: rem(28px);
+}
+
 @include pre('.radio--right > .radio__label::after') {
   top: 50%;
   right: rem(12px);
   left: auto;
   transform: translateY(-50%);
 }
+
+@include pre('.card--clickable > .radio--right > .radio__label::after') {
+  top: 50%;
+  right: rem(28px);
+  left: auto;
+}
+
 @include pre('.radio--reversed > .radio__label::after') {
   background-color: $blizzard;
 }
@@ -145,6 +196,10 @@
   right: rem(8px);
   transform: translateY(-50%);
   transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.card--clickable > .radio > .icon') {
+  right: rem(16px);
 }
 
 @include pre('.radio > .icon--close') {
@@ -183,11 +238,22 @@
     pointer-events: none;
   }
 
+  @include pre('.card--clickable > .radio > .radio__border-outer') {
+    top: rem(20px);
+    left: rem(24px);
+  }
+
   @include pre('.radio--right > .radio__border-outer') {
     top: 50%;
     right: rem(8px);
     left: auto;
     transform: translateY(-50%);
+  }
+
+  @include pre('.card--clickable > .radio--right > .radio__border-outer') {
+    top: 50%;
+    right: rem(24px);
+    left: auto;
   }
 
   @include pre('.radio__border') {
@@ -347,7 +413,15 @@
     top: rem(8px);
   }
 
+  @include pre('.card--clickable > .radio > .radio__input') {
+    top: rem(24px);
+  }
+
   @include pre('.radio--right > .radio__input') {
+    top: 50%;
+  }
+
+  @include pre('.card--clickable > .radio--right > .radio__input') {
     top: 50%;
   }
 
@@ -360,7 +434,15 @@
     top: rem(8px);
   }
 
+  @include pre('.card--clickable > .radio > .radio__label::before') {
+    top: rem(24px);
+  }
+
   @include pre('.radio--right > .radio__label::before') {
+    top: 50%;
+  }
+
+  @include pre('.card--clickable > .radio--right > .radio__label::before') {
     top: 50%;
   }
 
@@ -368,7 +450,15 @@
     top: rem(12px);
   }
 
+  @include pre('.card--clickable > .radio > .radio__label::after') {
+    top: rem(28px);
+  }
+
   @include pre('.radio--right > .radio__label::after') {
+    top: 50%;
+  }
+
+  @include pre('.card--clickable > .radio--right > .radio__label::after') {
     top: 50%;
   }
 
@@ -378,7 +468,15 @@
       top: rem(8px);
     }
 
+    @include pre('.card--clickable > .radio > .radio__border-outer') {
+      top: rem(24px);
+    }
+
     @include pre('.radio--right > .radio__border-outer') {
+      top: 50%;
+    }
+
+    @include pre('.card--clickable > .radio--right > .radio__border-outer') {
       top: 50%;
     }
   }
@@ -386,6 +484,10 @@
 
 // large // ------------------------------------------------------------------
 @media #{$media-l} {
+  @include pre('.card--clickable > .radio') {
+    margin: rem(-16px);
+  }
+
   @include pre('.radio__label') {
     font-size: rem(16px);
   }
