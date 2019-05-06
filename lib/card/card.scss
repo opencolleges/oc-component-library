@@ -5,10 +5,11 @@
 // * token imports
 @import '../partials/tokens';
 
-// global // ------------------------------------------------------------------
+// small // -------------------------------------------------------------------
 @include pre('.card') {
   box-sizing: border-box;
-  padding: $space-m;
+  display: block;
+  padding: $space-s;
   background-color: $blizzard;
 }
 
@@ -32,6 +33,15 @@
   box-shadow: $box-shadow-layer-3;
 }
 @include pre('.card--layer-4') {
+  box-shadow: $box-shadow-layer-4;
+}
+
+@include pre('.card--clickable') {
+  height: 100%;
+  transition: box-shadow $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.card--clickable:focus-within') {
   box-shadow: $box-shadow-layer-4;
 }
 
@@ -79,6 +89,18 @@
 
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
+  @include pre('.card--clickable') {
+    cursor: pointer;
+  }
+
+  @include pre('.card--clickable:hover') {
+    box-shadow: $box-shadow-layer-4;
+  }
+
+  @include pre('.card--clickable:active') {
+    box-shadow: $box-shadow-layer-1;
+  }
+
   @include pre('.card--draggable') {
     cursor: grab;
   }
@@ -98,5 +120,12 @@
   }
   @include pre('.foo > .card--draggable > .icon--draggable') {
     fill: $gunmetal;
+  }
+}
+
+// large // -------------------------------------------------------------------
+@media #{$media-l} {
+  @include pre('.card') {
+    padding: $space-m;
   }
 }

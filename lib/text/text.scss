@@ -118,8 +118,6 @@
   color: $christi-shade;
 }
 
-// ! Needs testing
-
 // * This pseudo-selector exists to handle the asterisk transition when a
 // * required text input is toggled to a disabled text-input.
 @include pre('.text__input + .text__label::after') {
