@@ -34,6 +34,13 @@
   resize: none;
 }
 
+@include pre('.textarea--error > .textarea__input') {
+  border-bottom: rem(1px) solid $state-error;
+}
+@include pre('.textarea--success > .textarea__input') {
+  border-bottom: rem(1px) solid $state-success;
+}
+
 @include pre('.textarea__input:disabled') {
   opacity: 1; // * iOS support
   border-color: $state-disabled;
@@ -232,6 +239,38 @@
   }
   @include pre('.textarea__input.active:focus ~ .textarea__border') {
     background-color: $state-default-focus;
+  }
+
+  @include pre('.textarea--error > .textarea__input ~ .textarea__border') {
+    width: 100%;
+    background-color: $state-error;
+  }
+
+  @include pre(
+    '.textarea--error > .textarea__input:hover ~ .textarea__border'
+  ) {
+    background-color: $state-error-hover;
+  }
+  @include pre(
+    '.textarea--error > .textarea__input:focus ~ .textarea__border'
+  ) {
+    background-color: $state-error-focus;
+  }
+
+  @include pre('.textarea--success > .textarea__input ~ .textarea__border') {
+    width: 100%;
+    background-color: $state-success;
+  }
+
+  @include pre(
+    '.textarea--success > .textarea__input:hover ~ .textarea__border'
+  ) {
+    background-color: $state-success-hover;
+  }
+  @include pre(
+    '.textarea--success > .textarea__input:focus ~ .textarea__border'
+  ) {
+    background-color: $state-success-focus;
   }
 
   @include pre('.textarea__input:focus ~ .textarea__message') {
