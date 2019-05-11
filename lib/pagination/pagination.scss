@@ -20,14 +20,6 @@
   box-shadow: $box-shadow-layer-4;
   background-color: $blizzard;
   transition: bottom $transition-duration-x4 $transition-timing-bounce-out;
-
-  // @at-root {
-  //   @supports (width: max-content) {
-  //     & {
-  //       width: max-content;
-  //     }
-  //   }
-  // }
 }
 
 @include pre('.pagination:focus-within') {
@@ -40,34 +32,26 @@
 
 @include pre('.pagination__list') {
   position: relative;
-  display: table;
+  height: rem(48px);
   margin: 0 auto;
-  white-space: nowrap;
-
-  // @at-root {
-  //   @supports (width: max-content) {
-  //     & {
-  //       margin: 0;
-  //     }
-  //   }
-  // }
 }
 
 @include pre('.pagination__list:first-child') {
   position: absolute;
   top: rem(8px);
   left: rem(8px);
+  margin: 0;
 }
 @include pre('.pagination__list:last-child') {
   position: absolute;
   top: rem(8px);
   right: rem(8px);
+  margin: 0;
 }
 
 @include pre('.pagination__item') {
   position: relative;
   float: left;
-  display: table-cell;
   width: rem(48px);
   height: rem(48px);
   color: $fossil;
@@ -250,14 +234,6 @@
     width: rem(464px);
     height: rem(72px);
     padding: rem(12px) rem(56px);
-
-    // @at-root {
-    //   @supports (width: max-content) {
-    //     & {
-    //       width: max-content;
-    //     }
-    //   }
-    // }
   }
 
   @include pre('.pagination.mounted') {
@@ -294,14 +270,6 @@
     width: rem(656px);
     bottom: rem(-88px);
     padding: rem(12px) rem(96px);
-
-    // @at-root {
-    //   @supports (width: max-content) {
-    //     & {
-    //       width: max-content;
-    //     }
-    //   }
-    // }
   }
 
   @include pre('.pagination.mounted') {
