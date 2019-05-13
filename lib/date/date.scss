@@ -33,6 +33,13 @@
   white-space: nowrap;
 }
 
+@include pre('.date--error > .date__input') {
+  border-bottom: rem(1px) solid $state-error;
+}
+@include pre('.date--success > .date__input') {
+  border-bottom: rem(1px) solid $state-success;
+}
+
 @include pre('.date__input:disabled ~ .date__input') {
   border-color: $state-disabled;
   color: $fossil;
@@ -171,6 +178,25 @@
   pointer-events: none;
 }
 
+@include pre('.date__message') {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: rgba($state-default, 0);
+  font-size: rem(12px);
+  line-height: rem(16px);
+  transition: color $transition-duration-x1 $transition-timing-default;
+  user-select: none;
+}
+
+@include pre('.date--error .date__message') {
+  color: $state-error;
+}
+
+@include pre('.date--success .date__message') {
+  color: $state-success;
+}
+
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.date__input') {
@@ -192,6 +218,7 @@
     display: none;
   }
 
+  // ? What do these two selectors do? No such siblings.
   @include pre('.date__input:disabled ~ .date__input') {
     cursor: not-allowed;
   }
@@ -250,6 +277,30 @@
   }
   @include pre('.date.active > .date__border') {
     width: 100%;
+  }
+
+  @include pre('.date--error > .date__input ~ .date__border') {
+    width: 100%;
+    background-color: $state-error;
+  }
+
+  @include pre('.date--error > .date__input:hover ~ .date__border') {
+    background-color: $state-error-hover;
+  }
+  @include pre('.date--error > .date__input:focus ~ .date__border') {
+    background-color: $state-error-focus;
+  }
+
+  @include pre('.date--success > .date__input ~ .date__border') {
+    width: 100%;
+    background-color: $state-success;
+  }
+
+  @include pre('.date--success > .date__input:hover ~ .date__border') {
+    background-color: $state-success-hover;
+  }
+  @include pre('.date--success > .date__input:focus ~ .date__border') {
+    background-color: $state-success-focus;
   }
 
   @include pre('.selected > .date__border') {

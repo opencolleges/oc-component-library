@@ -128,4 +128,8 @@
   @include pre('.card') {
     padding: $space-m;
   }
+
+  @include pre('.card--draggable') {
+    padding-left: $space-xxl;
+  }
 }

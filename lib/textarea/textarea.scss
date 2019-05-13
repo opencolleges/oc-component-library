@@ -16,7 +16,6 @@
   position: absolute;
   top: rem(16px);
   left: 0;
-  overflow: hidden;
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -83,37 +82,47 @@
   user-select: none;
 }
 
-@include pre('.textarea__input:focus + .textarea__label') {
+// * Using ~ instead of + means Grammarly can inject its markup and play
+// * nicely with the textarea component.
+
+// @include pre('.textarea__input:focus + .textarea__label') {
+@include pre('.textarea__input:focus ~ .textarea__label') {
   top: 0;
   color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
 }
 
-@include pre('.textarea__input.active + .textarea__label') {
+// @include pre('.textarea__input.active + .textarea__label') {
+@include pre('.textarea__input.active ~ .textarea__label') {
   top: 0;
   color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
 }
 
-@include pre('.textarea__input:disabled + .textarea__label') {
+// @include pre('.textarea__input:disabled + .textarea__label') {
+@include pre('.textarea__input:disabled ~ .textarea__label') {
   color: $fossil;
 }
-@include pre('.textarea__input[readonly] + .textarea__label') {
+// @include pre('.textarea__input:disabled + .textarea__label') {
+@include pre('.textarea__input[readonly] ~ .textarea__label') {
   color: $christi-shade;
 }
 
-@include pre('.textarea__input.active:disabled + .textarea__label') {
+// @include pre('.textarea__input.active:disabled + .textarea__label') {
+@include pre('.textarea__input.active:disabled ~ .textarea__label') {
   color: $state-disabled;
 }
-@include pre('.textarea__input.active[readonly] + .textarea__label') {
+// @include pre('.textarea__input.active[readonly] + .textarea__label') {
+@include pre('.textarea__input.active[readonly] ~ .textarea__label') {
   color: $christi-shade;
 }
 
 // * This pseudo-selector exists to handle the asterisk transition when a
 // * required textarea input is toggled to a disabled text-input.
-@include pre('.textarea__input + .text__label::after') {
+// @include pre('.textarea__input + .text__label::after') {
+@include pre('.textarea__input ~ .text__label::after') {
   content: ' *';
   position: relative;
   top: rem(-16px);
@@ -122,12 +131,14 @@
     color $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.textarea__input:required + .textarea__label::after') {
+// @include pre('.textarea__input:required + .textarea__label::after') {
+@include pre('.textarea__input:required ~ .textarea__label::after') {
   top: 0;
   color: $state-error-focus;
 }
 
-@include pre('.textarea__input.active:required + .textarea__label::after') {
+// @include pre('.textarea__input.active:required + .textarea__label::after') {
+@include pre('.textarea__input.active:required ~ .textarea__label::after') {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
 }
@@ -178,35 +189,44 @@
     cursor: not-allowed;
   }
 
-  @include pre('.textarea__input:disabled + .textarea__label') {
+  // @include pre('.textarea__input:disabled + .textarea__label') {
+  @include pre('.textarea__input:disabled ~ .textarea__label') {
     color: $fossil;
   }
-  @include pre('.textarea__input[readonly] + .textarea__label') {
+  // @include pre('.textarea__input[readonly] + .textarea__label') {
+  @include pre('.textarea__input[readonly] ~ .textarea__label') {
     color: $christi-shade;
   }
 
-  @include pre('.textarea__input:focus + .textarea__label') {
+  // @include pre('.textarea__input:focus + .textarea__label') {
+  @include pre('.textarea__input:focus ~ .textarea__label') {
     color: $gunmetal;
   }
-  @include pre('.textarea__input[readonly]:focus + .textarea__label') {
+  // @include pre('.textarea__input[readonly]:focus + .textarea__label') {
+  @include pre('.textarea__input[readonly]:focus ~ .textarea__label') {
     color: $christi-shade;
   }
 
-  @include pre('.textarea__input.active + .textarea__label') {
+  // @include pre('.textarea__input.active + .textarea__label') {
+  @include pre('.textarea__input.active ~ .textarea__label') {
     color: $hurricane;
   }
 
-  @include pre('.textarea__input.active:disabled + .textarea__label') {
+  // @include pre('.textarea__input.active:disabled + .textarea__label') {
+  @include pre('.textarea__input.active:disabled ~ .textarea__label') {
     color: $state-disabled;
   }
-  @include pre('.textarea__input.active[readonly] + .textarea__label') {
+  // @include pre('.textarea__input.active[readonly] + .textarea__label') {
+  @include pre('.textarea__input.active[readonly] ~ .textarea__label') {
     color: $christi-shade;
   }
 
-  @include pre('.textarea__input.active:focus + .textarea__label') {
+  // @include pre('.textarea__input.active:focus + .textarea__label') {
+  @include pre('.textarea__input.active:focus ~ .textarea__label') {
     color: $gunmetal;
   }
-  @include pre('.textarea__input.active[readonly]:focus + .textarea__label') {
+  // @include pre('.textarea__input.active[readonly]:focus + .textarea__label') {
+  @include pre('.textarea__input.active[readonly]:focus ~ .textarea__label') {
     color: $christi-shade;
   }
 
@@ -289,16 +309,30 @@
   }
 }
 
+// vendor // ------------------------------------------------------------------
+.afterthedeadline-button {
+  @include pre('& + .textarea__input') {
+    padding: $space-s $space-xxl rem(7px) 0;
+  }
+}
+
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
   @include pre('.textarea__input') {
-    padding: rem(4px 0 3px); // * hack to remove scrollbar
+    padding: $space-xs 0 rem(3px); // * hack to remove scrollbar
     font-size: rem(15px);
     line-height: rem(32px);
   }
 
   @include pre('.textarea__label') {
     font-size: rem(15px);
+  }
+
+  // vendor // ------------------------------------------------------------------
+  .afterthedeadline-button {
+    @include pre('& + .textarea__input') {
+      padding: $space-xs $space-xxl rem(3px) 0;
+    }
   }
 }
 

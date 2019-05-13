@@ -45,6 +45,10 @@ body {
 
   // * remove overlay when element is tapped in iOS
   -webkit-tap-highlight-color: $blizzard-transparent;
+
+  // * progressivlely enhance the caret for browsers that support caret-color.
+  caret-color: $viking;
+  // ? caret-color: $charcoal;
 }
 
 img {

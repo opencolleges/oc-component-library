@@ -43,10 +43,6 @@
       width: $result;
     }
   }
-
-  @include pre('.grid__item--nudge-s-#{$index}') {
-    margin-left: $result;
-  }
 }
 
 @supports (display: grid) {
@@ -87,7 +83,6 @@
 
     @include pre('.grid__item--nudge-s-#{$index}') {
       grid-column-start: $index + 1;
-      margin-left: 0;
     }
   }
 
@@ -121,10 +116,6 @@
         width: $result;
       }
     }
-
-    @include pre('.grid__item--nudge-m-#{$index}') {
-      margin-left: $result;
-    }
   }
 
   @include pre('.grid--gutter-adaptive > .grid__item') {
@@ -148,7 +139,6 @@
 
       @include pre('.grid__item--nudge-m-#{$index}') {
         grid-column-start: $index + 1;
-        margin-left: 0;
       }
     }
 
@@ -174,10 +164,6 @@
         width: $result;
       }
     }
-
-    @include pre('.grid__item--nudge-l-#{$index}') {
-      margin-left: $result;
-    }
   }
 
   @include pre('.grid--gutter-adaptive > .grid__item') {
@@ -201,7 +187,6 @@
 
       @include pre('.grid__item--nudge-l-#{$index}') {
         grid-column-start: $index + 1;
-        margin-left: 0;
       }
     }
 
