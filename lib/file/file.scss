@@ -156,7 +156,7 @@
     border: rem(1px) solid $viking;
     background-color: $viking;
     color: $blizzard;
-    outline: $focus-outline;
+    // outline: $focus-outline;
   }
   @include pre('.file__input.active ~ .file__inner > .file__label') {
     border: rem(1px) solid $viking;
