@@ -15,7 +15,7 @@
   margin: $space-stack-s;
 }
 
-@for $index from 6 through 10 {
+@for $index from 6 through 11 {
   @include pre('.likert__list--#{$index}') {
     margin: rem(48px) 0;
   }
@@ -47,7 +47,7 @@
   }
 }
 
-@for $index from 6 through 10 {
+@for $index from 6 through 11 {
   @include pre('.likert__list--#{$index} > .likert__item') {
     width: 100%;
   }
@@ -103,7 +103,7 @@
   }
 }
 
-@for $index from 6 through 10 {
+@for $index from 6 through 11 {
   @include pre('.likert__list--#{$index} .likert__button') {
     border: rem(1px) solid $state-default;
     border-radius: $button-border-radius;
@@ -155,7 +155,7 @@
   }
 }
 
-@for $index from 6 through 10 {
+@for $index from 6 through 11 {
   @include pre(
     '.likert__list--#{$index} .likert__input:focus + .likert__label-outer > .likert__button'
   ) {
@@ -198,7 +198,7 @@ $parent-index: 1;
   $parent-index: $parent-index + 1;
 }
 
-@for $index from 6 through 10 {
+@for $index from 6 through 11 {
   @include pre(
     '.likert__list--#{$index} > .likert__item:first-of-type .likert__label'
   ) {
@@ -237,21 +237,9 @@ $parent-index: 1;
     float: none;
   }
 
-  @for $index from 3 through 5 {
-    $result: 100% / $index;
-
-    @include pre('.likert__list--#{$index} > .likert__item') {
-      flex-basis: $result;
-    }
-  }
-
-  @for $index from 6 through 10 {
+  @for $index from 6 through 11 {
     @include pre('.likert__list--#{$index}') {
       flex-wrap: wrap;
-    }
-
-    @include pre('.likert__list--#{$index} > .likert__item') {
-      flex-basis: 100%;
     }
   }
 }
@@ -313,7 +301,7 @@ $parent-index: 1;
     }
   }
 
-  @for $index from 6 through 10 {
+  @for $index from 6 through 11 {
     @include pre(
       '.likert__list--#{$index} > .likert__item .likert__button:hover'
     ) {
@@ -360,7 +348,7 @@ $parent-index: 1;
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @for $index from 6 through 10 {
+  @for $index from 6 through 11 {
     $result: 100% / $index;
 
     @include pre('.likert__list--#{$index}') {
@@ -434,10 +422,10 @@ $parent-index: 1;
     }
   }
 
-  @for $index from 6 through 10 {
+  @for $index from 6 through 11 {
     $result: 100% * ($index / 2);
 
-    @if $index == 7 or $index == 9 {
+    @if $index == 7 or $index == 9 or $index == 11 {
       $result: 100% * ($index / 3);
     }
 
@@ -478,18 +466,18 @@ $parent-index: 1;
 
   // flexbox // ---------------------------------------------------------------
   @supports (display: flex) {
-    @for $index from 6 through 10 {
+    @for $index from 6 through 11 {
       $result: 100% / $index;
 
-      @include pre('.likert__list--#{$index} > .likert__item') {
-        flex-basis: $result;
+      @include pre('.likert__list--#{$index}') {
+        flex-wrap: nowrap;
       }
     }
   }
 
   // no-touchevents // --------------------------------------------------------
   @include pre('.no-touchevents') {
-    @for $index from 6 through 10 {
+    @for $index from 6 through 11 {
       @include pre(
         '.likert__list--#{$index} > .likert__item .likert__button:hover'
       ) {
