@@ -7,6 +7,8 @@
 
 // small // -------------------------------------------------------------------
 @include pre('.file') {
+  position: relative;
+  padding: $space-stack-l;
   margin: $space-stack-m;
 }
 
@@ -14,9 +16,8 @@
   position: relative;
   box-sizing: border-box;
   min-height: rem(360px);
-  border: rem(2px) dashed $alto;
+  border: rem(1px) dashed $fossil;
   border-radius: $border-radius-l;
-  margin: $space-stack-m;
   background-color: $daisy-transparent;
 }
 
@@ -28,6 +29,18 @@
 }
 @include pre('.file--l > .file__outer') {
   height: rem(440px);
+}
+
+@include pre('.file--error > .file__outer') {
+  border-color: $state-error;
+}
+
+@include pre('.file--success > .file__outer') {
+  border-color: $state-success;
+}
+
+@include pre('.file__list') {
+  margin: $space-m 0 rem(-16px);
 }
 
 @include pre('.file__input') {
@@ -73,7 +86,7 @@
   height: rem(144px);
 }
 
-@include pre('.file__message') {
+@include pre('.file__description') {
   display: none;
 }
 
@@ -124,6 +137,25 @@
   stroke: $gunmetal;
 }
 
+@include pre('.file__message') {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: rgba($state-default, 0);
+  font-size: rem(12px);
+  line-height: rem(16px);
+  transition: color $transition-duration-x1 $transition-timing-default;
+  user-select: none;
+}
+
+@include pre('.file--error .file__message') {
+  color: $state-error;
+}
+
+@include pre('.file--success .file__message') {
+  color: $state-success;
+}
+
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.file__input:focus') {
@@ -134,7 +166,7 @@
     pointer-events: initial;
   }
 
-  @include pre('.file__message') {
+  @include pre('.file__description') {
     display: block;
     margin-bottom: rem(8px);
     font-size: rem(14px);
@@ -223,7 +255,7 @@
 
   // no-touchevents // ----------------------------------------------------------
   @include pre('.no-touchevents') {
-    @include pre('.file__message') {
+    @include pre('.file__description') {
       font-size: rem(15px);
       line-height: rem(32px);
     }
@@ -261,7 +293,7 @@
 
   // no-touchevents // ----------------------------------------------------------
   @include pre('.no-touchevents') {
-    @include pre('.file__message') {
+    @include pre('.file__description') {
       font-size: rem(16px);
     }
   }
