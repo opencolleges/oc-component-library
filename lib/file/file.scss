@@ -19,6 +19,7 @@
   border: rem(1px) dashed $fossil;
   border-radius: $border-radius-l;
   background-color: $daisy-transparent;
+  transition: border-color $transition-duration-x1 $transition-timing-default;
 }
 
 @include pre('.file--s > .file__outer') {
@@ -202,8 +203,6 @@
 
   @include pre('.file__name') {
     display: block;
-    // text-overflow: ellipsis;
-    // white-space: nowrap;
   }
 
   @include pre('.file__size') {
