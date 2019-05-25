@@ -1,38 +1,59 @@
-# Open Colleges style guide
+# Uniform Design System (UDS)
 
-## Introduction
+UDS is a living, breathing product. Designed to convey Open College's visual language and promote product consistency across a wide range of contexts and technologies.
 
-The OpenSpace style guide is a living, breathing system. Designed to convey our visual language and encourage product consistency across all contexts and technologies.
+UDS' aim is to deliver reusable components and front-end patterns that ensure efficient implementation and a unified user experience. Improving build times and reducing user's cognitive load by minimising product inconsistencies.
 
-### Strategy
+## Live demo
 
-Our aim is to deliver a system comprised of reusable components that ensures efficient implementation and a unified user experience. Learn more about these components using [our Wiki](https://github.com/opencolleges/oc-ui-library-master/wiki 'our Wiki') on GitHub.
+To view a live demo of UDS, check out the [Uniform Staging Environment](http://54.206.26.4 'Uniform Staging Environment').
 
-The OpenSpace style guide will be updated regularly, mature over its iterations and improve the workflow between design and development. To learn more about upcoming features, view [our progress](https://opencolleges.jira.com/browse/MM-1146 'our releases') in Jira, or check out some of [our library](https://sketch.cloud/s/qK522 'our library') on Sketch Cloud.
+## License
 
-### Landscape
+Uniform Design System is released under the MIT License.
 
-Open Colleges has had a number of competing style guides, all relevant in their own right. However, to eliminate fragmentation we’ve deprecated other style guides and created this single reference for your convenience.
+Copyright © 2018–2019 Open Colleges Pty Ltd
 
-Copyright © Open Colleges 2018
-
-## Scripts
-
-- `npm run build or npm run prepublish` - produces production version of your library under the `lib` folder
-- `npm run start` - produces development version of your library and runs a watcher
+Copyright © 2018–2019 The Uniform Authors
 
 ## Installation
 
-#Using npm
+Install UDS using npm.
 
-npm install -save oc-component-library
+```bash
+npm install oc-uniform --save
+```
 
 ## Usage
 
-Import stylesheets:
+```jsx
+// UDS patterns
+import { OCHeading, OCCopy } from 'oc-uniform';
 
-import 'oc-uniform/dist/style.css';
+// UDS styles
+import 'oc-uniform/dist/heading.css';
+import 'oc-uniform/dist/copy.css';
 
-Import Component:
+// Your component
+const Header = () => {
+  return (
+    <header role="banner">
+      <OCHeading>Hello world!</OCHeading>
+      <OCCopy>I'm an Open Colleges product...</OCCopy>
+    </header>
+  );
+};
+```
 
-import { OCDate } from 'oc-uniform';
+### Output
+
+```html
+<header role="banner">
+  <h1 class="oc-h1">Hello world!</h1>
+  <p class="oc-p">I'm an Open Colleges product...</p>
+</header>
+```
+
+## Extended documentation
+
+Check out the [Uniform Wiki](https://github.com/opencolleges/Uniform/wiki 'Uniform Wiki') for more examples and in-depth documentation.
