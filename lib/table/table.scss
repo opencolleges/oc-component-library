@@ -6,6 +6,7 @@
 @import '../utilities/scss/functions/rem';
 @import '../utilities/scss/mixins/bem';
 @import '../utilities/scss/mixins/device';
+@import '../utilities/scss/mixins/pseudo';
 
 // Rules
 @include b(table) {

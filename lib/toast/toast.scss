@@ -9,6 +9,7 @@
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
 @import '../utilities/scss/mixins/bem';
+@import '../utilities/scss/mixins/pseudo';
 
 // Rules
 @include b(toast) {
