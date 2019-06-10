@@ -1,11 +1,13 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .grid__item
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.grid__item') {
   float: left;
   box-sizing: border-box;

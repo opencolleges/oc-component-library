@@ -1,11 +1,13 @@
-// * utility imports
-@import '../partials/circumference';
-@import '../partials/prefix';
+// Pattern outline
+// * .icon
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/get-circumference';
+@import '../utilities/scss/mixins/bem';
 
-// global // ------------------------------------------------------------------
+// Rules
 @include pre('.icon') {
   stroke: currentColor;
   fill: none;
@@ -225,13 +227,13 @@
 }
 
 @include pre('.icon--close-ring .stroke--1') {
-  stroke-dasharray: 0 circumference(15.5);
+  stroke-dasharray: 0 get-circumference(15.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
 @include pre('.icon--close-ring.active .stroke--1') {
-  stroke-dasharray: circumference(15.5) 0;
+  stroke-dasharray: get-circumference(15.5) 0;
 }
 
 @include pre('.icon--close-ring .stroke--2') {
@@ -365,13 +367,13 @@
 }
 
 @include pre('.icon--minus-ring .stroke--1') {
-  stroke-dasharray: 0 circumference(15.5);
+  stroke-dasharray: 0 get-circumference(15.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
 @include pre('.icon--minus-ring.active .stroke--1') {
-  stroke-dasharray: circumference(15.5) 0;
+  stroke-dasharray: get-circumference(15.5) 0;
 }
 
 @include pre('.icon--minus-ring .stroke--2') {
@@ -405,13 +407,13 @@
 }
 
 @include pre('.icon--plus-ring .stroke--1') {
-  stroke-dasharray: 0 circumference(15.5);
+  stroke-dasharray: 0 get-circumference(15.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
 @include pre('.icon--plus-ring.active .stroke--1') {
-  stroke-dasharray: circumference(15.5) 0;
+  stroke-dasharray: get-circumference(15.5) 0;
 }
 
 @include pre('.icon--plus-ring .stroke--2') {
@@ -435,13 +437,13 @@
 }
 
 @include pre('.icon--search .stroke--1') {
-  stroke-dasharray: 0 circumference(9.5);
+  stroke-dasharray: 0 get-circumference(9.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
 @include pre('.icon--search.active .stroke--1') {
-  stroke-dasharray: circumference(9.5) 0;
+  stroke-dasharray: get-circumference(9.5) 0;
 }
 
 @include pre('.icon--search .stroke--2') {
@@ -465,13 +467,13 @@
 }
 
 @include pre('.icon--tick-ring .stroke--1') {
-  stroke-dasharray: 0 circumference(15.5);
+  stroke-dasharray: 0 get-circumference(15.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
 @include pre('.icon--tick-ring.active .stroke--1') {
-  stroke-dasharray: circumference(15.5) 0;
+  stroke-dasharray: get-circumference(15.5) 0;
 }
 
 @include pre('.icon--tick-ring .stroke--2') {

@@ -1,12 +1,17 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .toast
+// *   .toast__heading
+// *   .toast__message
+// *   .toast__button
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// global // ------------------------------------------------------------------
-@include pre('.toast') {
+// Rules
+@include b(toast) {
   position: fixed;
 
   // * IE doesn't support calc in transformations.
@@ -18,7 +23,10 @@
   transform: translateY(-50%);
   box-sizing: border-box;
   width: rem(calc(100% - 32px));
-  max-width: rem(343px); // iPhone 8 dimensions - 32px
+
+  // * iPhone 8 dimensions - 32px
+  max-width: rem(343px);
+
   padding: $space-m rem(40px) $space-m rem(52px);
   border-radius: $border-radius-m;
   box-shadow: $box-shadow-layer-4;
@@ -27,10 +35,22 @@
   transition: $transition-duration-x4 $transition-timing-bounce-out;
   transition-property: top, right;
   pointer-events: auto;
-}
 
-@include pre('.toast:focus-within') {
-  outline: $focus-outline;
+  @include pseudo(focus-within) {
+    outline: $focus-outline;
+  }
+
+  @include pseudo(before) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: rem(4px);
+    height: 100%;
+    border-top-left-radius: $border-radius-m;
+    border-bottom-left-radius: $border-radius-m;
+    background-color: $state-default;
+  }
 }
 
 @include pre('.toast.mounted') {
@@ -38,15 +58,6 @@
 }
 
 @include pre('.toast::before') {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: rem(4px);
-  height: 100%;
-  border-top-left-radius: $border-radius-m;
-  border-bottom-left-radius: $border-radius-m;
-  background-color: $state-default;
 }
 
 @include pre('.toast--error::before') {
@@ -103,7 +114,6 @@
   stroke: $state-success;
 }
 
-// no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
   @include pre('.toast') {
     user-select: none;

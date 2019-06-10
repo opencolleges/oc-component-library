@@ -1,12 +1,29 @@
-// * utility imports
-@import '../partials/circumference';
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .p
+// * .a
+// * .abbr
+// * .code
+// * .em
+// * .kbd
+// * .mark
+// * .small
+// * .strong
+// * .sub
+// * .sup
+// * .label
+// * .blockquote
+// * .ol
+// * .ul
+// * .li
+// * .pre
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.p') {
   display: block;
   margin: $space-stack-m;

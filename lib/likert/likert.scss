@@ -1,11 +1,19 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .likert
+// *   .likert__list
+// *   .likert__item
+// *     .likert__input
+// *     .likert__label-outer
+// *       .likert__button
+// *       .likert__label
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.likert') {
   position: relative;
   margin: $space-stack-m;

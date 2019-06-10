@@ -1,19 +1,23 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .toaster
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// global // ------------------------------------------------------------------
-@include pre('.toaster') {
+// Rules
+@include b(toaster) {
   z-index: $z-index-notification;
   position: fixed;
   top: 0;
   right: 0;
   box-sizing: border-box;
   width: 100%;
-  max-width: rem(375px); // iPhone 8 dimensions
+
+  // * iPhone 8 dimensions
+  max-width: rem(375px);
+
   height: 100%;
   pointer-events: none;
 }

@@ -1,5 +1,0 @@
-// a function to return the circumference of a given value
-@function circumference($diameter) {
-  $circumference: $diameter * 3.14159;
-  @return $circumference;
-}

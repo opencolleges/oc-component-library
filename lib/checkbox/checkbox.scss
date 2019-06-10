@@ -1,12 +1,18 @@
-// * utility imports
-@import '../partials/circumference';
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .checkbox
+// *   .checkbox__input
+// *   .checkbox__label
+// *   .checkbox__border-outer
+// *     .checkbox__border
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/get-circumference';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.checkbox') {
   position: relative;
   margin: $space-stack-m;
@@ -249,8 +255,8 @@
   @include pre('.checkbox__border') {
     stroke: $viking;
     stroke-width: 1;
-    stroke-dasharray: 0 ((circumference(1.5) + 52));
-    stroke-dashoffset: ((circumference(-1.5) + -58));
+    stroke-dasharray: 0 ((get-circumference(1.5) + 52));
+    stroke-dashoffset: ((get-circumference(-1.5) + -58));
     transition: stroke $transition-duration-x1 $transition-timing-default,
       stroke-dasharray $transition-duration-x4 $transition-timing-default;
     fill: none;
@@ -268,12 +274,12 @@
   @include pre(
     '.checkbox__input:hover ~ .checkbox__border-outer > .checkbox__border'
   ) {
-    stroke-dasharray: ((circumference(1.5) + 52)) 0;
+    stroke-dasharray: ((get-circumference(1.5) + 52)) 0;
   }
   @include pre(
     '.checkbox__input:focus ~ .checkbox__border-outer > .checkbox__border'
   ) {
-    stroke-dasharray: ((circumference(1.5) + 52)) 0;
+    stroke-dasharray: ((get-circumference(1.5) + 52)) 0;
   }
   @include pre(
     '.checkbox__input:active ~ .checkbox__border-outer > .checkbox__border'
@@ -299,7 +305,7 @@
     '.checkbox__input:checked ~ .checkbox__border-outer > .checkbox__border'
   ) {
     stroke: $viking-shade;
-    stroke-dasharray: ((circumference(1.5) + 52)) 0;
+    stroke-dasharray: ((get-circumference(1.5) + 52)) 0;
   }
   @include pre(
     '.checkbox__input:checked:hover ~ .checkbox__border-outer > .checkbox__border'

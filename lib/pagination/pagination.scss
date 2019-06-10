@@ -1,9 +1,18 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .pagination
+// *   .pagination__list
+// *     .pagination__item
+// *   .pagination__list
+// *     .pagination__highlight
+// *     .pagination__item
+// *   .pagination__list
+// *     .pagination__item
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
 // small // -------------------------------------------------------------------
 @include pre('.pagination') {

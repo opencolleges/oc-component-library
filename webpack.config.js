@@ -139,6 +139,7 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
     heading: path.join(__dirname, './lib/heading/heading.scss'),
     icon: path.join(__dirname, './lib/icon/icon.scss'),
     likert: path.join(__dirname, './lib/likert/likert.scss'),
+    modal: path.join(__dirname, './lib/modal/modal.scss'),
     pagination: path.join(__dirname, './lib/pagination/pagination.scss'),
     preloader: path.join(__dirname, './lib/preloader/preloader.scss'),
     progress: path.join(__dirname, './lib/progress/progress.scss'),

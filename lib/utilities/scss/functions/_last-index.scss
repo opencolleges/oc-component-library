@@ -1,0 +1,10 @@
+/// Return the last index of a list.
+
+/// @author Hugo Giraudel
+
+/// @param {List} $list - initial list
+/// @return {String} - value of last index from $list
+
+@function last-index($list) {
+  @return nth($list, length($list));
+}

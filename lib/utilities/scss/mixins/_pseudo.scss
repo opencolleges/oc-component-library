@@ -1,0 +1,18 @@
+@mixin pseudo($pseudo-selector) {
+  $selector: &;
+
+  @if $pseudo-selector == before or $pseudo-selector == after {
+    @at-root {
+      #{$selector+'::'+$pseudo-selector} {
+        content: '';
+        @content;
+      }
+    }
+  } @else {
+    @at-root {
+      #{$selector+':'+$pseudo-selector} {
+        @content;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+/// Return last index of `$search` in `$string`.
+
+/// @author Hugo Giraudel
+
+/// @param {String} $string - initial string
+/// @param {String} $search - substring to search for
+/// @return {Number} - last index of substring
+
+@function str-last-index($string, $search) {
+  $indices: str-index($string, $search);
+
+  $result: $indices;
+
+  @if $indices {
+    @for $index from $indices + str-length($search) through str-length($string)
+    {
+      @if str-slice($string, $index, $index + str-length($search) - 1) ==
+        $search
+      {
+        $result: $index;
+      }
+    }
+  }
+
+  @return $result;
+}

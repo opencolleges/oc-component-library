@@ -1,0 +1,27 @@
+// Imports
+@import './b';
+@import '../variables/tokens';
+
+@mixin device($device, $range: upwards) {
+  $selector: &;
+
+  @if $device == no-touch {
+    @at-root {
+      @include b(no-touchevents) {
+        #{$selector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    $device: map-get($media-queries, $device);
+
+    @at-root {
+      @media #{map-get($device, $range)} {
+        #{$selector} {
+          @content;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+/// Returns last class in `$selector`.
+
+/// @author Daniel Maddison
+
+/// @param {String, List} $selector - initial selector
+/// @return {String} - last class from selector
+
+// Imports
+@import './str-coerce';
+@import './str-last-index';
+
+@function get-last-class($selector) {
+  $selector: str-coerce($selector);
+
+  $last-class-index: str-last-index($selector, '.');
+
+  $selector: str-slice($selector, $last-class-index, -3);
+
+  @return $selector;
+}

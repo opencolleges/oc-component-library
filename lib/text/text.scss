@@ -1,11 +1,17 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .text
+// *   .text__input
+// *   .text__label
+// *   .text__border
+// *   .text__message
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.text') {
   position: relative;
   height: rem(80px);
@@ -172,6 +178,14 @@
   line-height: rem(16px);
   transition: color $transition-duration-x1 $transition-timing-default;
   user-select: none;
+}
+
+@include pre('.text--error > .text__message') {
+  color: $state-error;
+}
+
+@include pre('.text--success > .text__message') {
+  color: $state-success;
 }
 
 // no-touchevents // ----------------------------------------------------------

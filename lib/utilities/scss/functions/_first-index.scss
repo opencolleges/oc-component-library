@@ -1,0 +1,10 @@
+/// Return the first index of a list.
+
+/// @author Hugo Giraudel
+
+/// @param {List} $list - initial list
+/// @return {String} - value of first index from $list
+
+@function first-index($list) {
+  @return nth($list, 1);
+}

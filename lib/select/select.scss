@@ -1,11 +1,20 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .select
+// *   .select__input
+// *   .select__input
+// *   .select__label
+// *   .select__border
+// *   .select__list-outer
+// *     .select__list
+// *       .select__item
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.select') {
   position: relative;
   height: rem(80px);

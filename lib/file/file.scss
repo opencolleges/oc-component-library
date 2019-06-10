@@ -1,11 +1,23 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .file
+// *   .file__outer
+// *     .file__input
+// *     .file__inner
+// *       .file__image
+// *       .file__description
+// *       .file__label
+// *       .file__types
+// *     .file__message
+// *     .file__list
+// *       .file__item
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.file') {
   position: relative;
   padding: $space-stack-l;

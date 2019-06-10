@@ -1,11 +1,22 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .date
+// *   .date__input
+// *   .date__input
+// *   .date__label
+// *   .date__border
+// *   .date__list-outer
+// *     .date__list
+// *       .date__item
+// *     .date__list
+// *       .date__item
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.date') {
   position: relative;
   height: rem(80px);

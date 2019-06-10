@@ -1,0 +1,188 @@
+// Pattern outline
+// * .modal
+// *   .modal__outer
+// *     .modal__image
+// *     .modal__inner
+// *     .modal__actions
+
+// Imports
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
+
+@include b(modal) {
+  z-index: $z-index-modal;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $fossil-transparent;
+  transition: opacity $transition-duration-x2 $transition-timing-default
+    $transition-duration-x4;
+  pointer-events: none;
+
+  @include m(mounted) {
+    opacity: 1;
+    transition: opacity $transition-duration-x2 $transition-timing-default 0ms;
+    pointer-events: auto;
+
+    @include e(outer, child) {
+      top: rem(50%);
+      transition: top $transition-duration-x4 $transition-timing-bounce-out
+        $transition-duration-x2;
+    }
+  }
+
+  @include e(outer) {
+    position: absolute;
+    top: rem(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    width: rem(calc(100% - 32px));
+    max-width: rem(400px);
+    padding: rem(16px);
+    border-radius: $border-radius-m;
+    box-shadow: $box-shadow-layer-4;
+    background-color: $blizzard;
+    transition: top $transition-duration-x4 $transition-timing-bounce-out 0ms;
+  }
+
+  @include e(image) {
+    display: block;
+    width: auto;
+    height: rem(144px);
+    margin: rem(8px) auto rem(-8px);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  @include e(inner) {
+    overflow-y: scroll;
+    box-sizing: border-box;
+    max-height: rem(120px);
+    padding-right: 4px;
+    margin: rem(-16px -8px 24px) 0;
+
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @include e(actions) {
+    @include b(grid, child) {
+      padding: 0;
+    }
+
+    @include b(button) {
+      margin-bottom: 0;
+    }
+  }
+
+  // * Prototype SCSS
+  @include b(humanoid) {
+    transform-origin: 149.28px 187.755px;
+    animation: humanoid 375ms ease-in-out 2125ms 1 normal forwards;
+
+    @at-root {
+      @keyframes humanoid {
+        0% {
+          transform: translate(-12px, 1px) rotate(0deg);
+        }
+        100% {
+          transform: translate(-12px, 1px) rotate(-5deg);
+        }
+      }
+    }
+
+    @include e(head) {
+      transform-origin: 40.815px 104.22px;
+      animation: humanoid-head 500ms ease-in-out 2125ms 1 normal forwards;
+
+      @at-root {
+        @keyframes humanoid-head {
+          0% {
+            transform: translate(104.533px, 0) rotate(0deg);
+          }
+          100% {
+            transform: translate(104.533px, 0) rotate(-15deg);
+          }
+        }
+      }
+    }
+
+    @include e(bun) {
+      transform-origin: 32.545px 39.195px;
+      animation: humanoid-bun 500ms ease-in-out 2250ms 1 normal forwards;
+
+      @at-root {
+        @keyframes humanoid-bun {
+          0% {
+            transform: translate(13.079px, 0) rotate(0deg);
+          }
+          80% {
+            transform: translate(13.079px, 0) rotate(-18deg);
+          }
+          100% {
+            transform: translate(13.079px, 0) rotate(-15deg);
+          }
+        }
+      }
+    }
+
+    @include e(right-eyebrow) {
+      animation: humanoid-right-eyebrow 250ms ease-in-out 2125ms 1 normal
+        forwards;
+
+      @at-root {
+        @keyframes humanoid-right-eyebrow {
+          0% {
+            d: path(
+              'M44.0409614,26.8552471 C42.8592635,26.4375375 41.5876099,26.210248 40.26287,26.210248 C38.9383389,26.210248 37.6668773,26.4374659 36.4853373,26.8550496'
+            );
+          }
+          100% {
+            d: path(
+              'M44.0377778,25.8384537 C42.9262228,24.8736021 41.6355894,24.3213591 40.2589671,24.3213591 C38.8835431,24.3213591 37.5939583,24.8726412 36.4830594,25.8359353'
+            );
+          }
+        }
+      }
+    }
+
+    @include e(left-arm) {
+      opacity: 0;
+    }
+
+    @include e(right-arm) {
+      opacity: 0;
+    }
+  }
+}
+
+// medium // ------------------------------------------------------------------
+@media #{$media-m} {
+  @include b(modal) {
+    @include e(image) {
+      height: rem(176px);
+      margin: rem(8px) auto 0;
+    }
+
+    @include e(inner) {
+      max-height: rem(168px);
+      margin: rem(-16px -8px 32px) 0;
+    }
+  }
+}
+
+// large // ------------------------------------------------------------------
+@media #{$media-l} {
+  @include b(modal) {
+    @include e(image) {
+      height: rem(192px);
+      margin: rem(16px) auto 0;
+    }
+  }
+}

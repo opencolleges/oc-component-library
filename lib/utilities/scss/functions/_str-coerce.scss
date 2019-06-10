@@ -1,0 +1,10 @@
+/// Return `$value` as a string.
+
+/// @author Hugo Giraudel
+
+/// @param {Number, Bool, Color, List, Map, Null} $value - initial value
+/// @return {String} - string value
+
+@function str-coerce($value) {
+  @return inspect($value);
+}
