@@ -1,36 +1,51 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .badge
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// global // ------------------------------------------------------------------
-@include pre('.badge') {
+// Rules
+@include b(badge) {
   display: inline-block;
-  min-width: rem(8px);
-  height: rem(24px);
-  padding: 0 $space-s;
+  min-width: $space-s;
+  height: $space-l;
+  padding-left: $space-s;
+  padding-right: $space-s;
   border-radius: rem(12px);
   background-color: $hurricane-transparent;
   color: $blizzard;
   font-size: rem(11px);
   font-weight: 700;
   text-align: center;
-  line-height: rem(24px);
+  line-height: $space-l;
   user-select: none;
-}
 
-@include pre('.badge--error') {
-  background-color: $state-error-hover;
-}
-@include pre('.badge--success') {
-  background-color: $state-success-hover;
-}
+  @at-root {
+    @include b(avatar) {
+      @include b(badge, child) {
+        position: absolute;
+        top: rem(-8px);
+      }
 
-// no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  @include pre('.badge') {
-    cursor: default;
+      @include m(m) {
+        @include b(badge, child) {
+          left: $space-l;
+        }
+      }
+      @include m(l) {
+        @include b(badge, child) {
+          left: $space-xl;
+        }
+      }
+    }
+  }
+
+  @include m(error) {
+    background-color: $state-error-hover;
+  }
+  @include m(success) {
+    background-color: $state-success-hover;
   }
 }

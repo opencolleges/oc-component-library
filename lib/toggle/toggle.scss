@@ -1,12 +1,18 @@
-// * utility imports
-@import '../partials/circumference';
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .toggle
+// *   .toggle__input
+// *   .toggle__label
+// *   .toggle__border-outer
+// *     .toggle__border
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/get-circumference';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.toggle') {
   position: relative;
   margin: $space-stack-m;
@@ -256,8 +262,8 @@
   @include pre('.toggle__border') {
     fill: none;
     stroke: $viking;
-    stroke-dasharray: 0 ((circumference(23) + 40));
-    stroke-dashoffset: ((circumference(-23) + -48));
+    stroke-dasharray: 0 ((get-circumference(23) + 40));
+    stroke-dashoffset: ((get-circumference(-23) + -48));
     stroke-width: 1;
     transition: stroke $transition-duration-x1 $transition-timing-default,
       stroke-dasharray $transition-duration-x4 $transition-timing-default;
@@ -272,12 +278,12 @@
   @include pre(
     '.toggle__input:hover ~ .toggle__border-outer > .toggle__border'
   ) {
-    stroke-dasharray: ((circumference(23) + 40)) 0;
+    stroke-dasharray: ((get-circumference(23) + 40)) 0;
   }
   @include pre(
     '.toggle__input:focus ~ .toggle__border-outer > .toggle__border'
   ) {
-    stroke-dasharray: ((circumference(23) + 40)) 0;
+    stroke-dasharray: ((get-circumference(23) + 40)) 0;
   }
   @include pre(
     '.toggle__input:active ~ .toggle__border-outer > .toggle__border'
@@ -303,7 +309,7 @@
     '.toggle__input:checked ~ .toggle__border-outer > .toggle__border'
   ) {
     stroke: $viking-shade;
-    stroke-dasharray: ((circumference(23) + 40)) 0;
+    stroke-dasharray: ((get-circumference(23) + 40)) 0;
   }
   @include pre(
     '.toggle__input:checked:hover ~ .toggle__border-outer > .toggle__border'

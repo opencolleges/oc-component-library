@@ -1,18 +1,43 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .th
+// * .td
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
-@include pre('.th') {
+// Rules
+@include b(th) {
   box-sizing: border-box;
   padding: rem(8px);
   color: $christi-shade;
   font-weight: 700;
   vertical-align: bottom;
+
+  @include m(top) {
+    vertical-align: top;
+  }
+  @include m(middle) {
+    vertical-align: middle;
+  }
+  @include m(bottom) {
+    vertical-align: bottom;
+  }
+  @include m(left) {
+    text-align: left;
+  }
+  @include m(center) {
+    text-align: center;
+  }
+  @include m(right) {
+    text-align: right;
+  }
 }
+
+// @include pre('.th') {
+// }
 
 @include pre('.table--alt .th') {
   color: $hurricane;
@@ -22,49 +47,59 @@
   border-left: rem(1px) solid $gallery;
 }
 
-@include pre('.th--top') {
-  vertical-align: top;
-}
-@include pre('.th--middle') {
-  vertical-align: middle;
-}
-@include pre('.th--bottom') {
-  vertical-align: bottom;
-}
-@include pre('.th--left') {
-  text-align: left;
-}
-@include pre('.th--center') {
-  text-align: center;
-}
-@include pre('.th--right') {
-  text-align: right;
-}
+// @include pre('.th--top') {
+// }
+// @include pre('.th--middle') {
+// }
+// @include pre('.th--bottom') {
+// }
+// @include pre('.th--left') {
+// }
+// @include pre('.th--center') {
+// }
+// @include pre('.th--right') {
+// }
 
-@include pre('.td') {
+@include b(td) {
   box-sizing: border-box;
   padding: $space-s $space-s rem(7px);
   vertical-align: top;
+
+  @include m(top) {
+    vertical-align: top;
+  }
+  @include m(middle) {
+    vertical-align: middle;
+  }
+  @include m(bottom) {
+    vertical-align: bottom;
+  }
+  @include m(left) {
+    text-align: left;
+  }
+  @include m(center) {
+    text-align: center;
+  }
+  @include m(right) {
+    text-align: right;
+  }
 }
 
-@include pre('.td--top') {
-  vertical-align: top;
-}
-@include pre('.td--middle') {
-  vertical-align: middle;
-}
-@include pre('.td--bottom') {
-  vertical-align: bottom;
-}
-@include pre('.td--left') {
-  text-align: left;
-}
-@include pre('.td--center') {
-  text-align: center;
-}
-@include pre('.td--right') {
-  text-align: right;
-}
+// @include pre('.td') {
+// }
+
+// @include pre('.td--top') {
+// }
+// @include pre('.td--middle') {
+// }
+// @include pre('.td--bottom') {
+// }
+// @include pre('.td--left') {
+// }
+// @include pre('.td--center') {
+// }
+// @include pre('.td--right') {
+// }
 
 @include pre('.table--alt .td') {
   border-right: rem(1px) solid $gallery;

@@ -110,6 +110,7 @@ $space-m: rem(16px);
 $space-l: rem(24px);
 $space-xl: rem(32px);
 $space-xxl: rem(40px);
+$space-xxxl: rem(48px);
 
 // scaffolding // -------------------------------------------------------------
 
@@ -121,6 +122,25 @@ $body-background: $alabaster;
 $body-color: $charcoal;
 
 // media queries // -----------------------------------------------------------
+
+$media-queries: (
+  s: (
+    only: 'only screen and (min-width: 0em) and (max-width: 30em)',
+    upwards: 'only screen and (min-width: 0em)'
+  ),
+  m: (
+    only: 'only screen and (min-width: 30.0625em) and (max-width: 48em)',
+    upwards: 'only screen and (min-width: 30.0625em)'
+  ),
+  l: (
+    only: 'only screen and (min-width: 48.0625em) and (max-width: 80em)',
+    upwards: 'only screen and (min-width: 48.0625em)'
+  ),
+  xl: (
+    only: 'only screen and (min-width: 80.0625em) and (max-width: 624.9375em)',
+    upwards: 'only screen and (min-width: 80.0625em)'
+  )
+);
 
 $media-s: 'only screen and (min-width: 0em)';
 $media-s-only: 'only screen and (min-width: 0em) and (max-width: 30em)';

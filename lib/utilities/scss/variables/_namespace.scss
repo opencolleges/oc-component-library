@@ -1,0 +1,14 @@
+// * utility imports
+@import '../functions/str-replace';
+
+@mixin pre($value) {
+  $result: '';
+
+  $result: str-replace($value, '.', '.#{$prefix}-');
+
+  #{$result} {
+    @content;
+  }
+}
+
+$prefix: 'oc' !global;

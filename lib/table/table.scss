@@ -1,44 +1,64 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .table
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
+@import '../utilities/scss/mixins/device';
 
-// small // -------------------------------------------------------------------
-@include pre('.table') {
+// Rules
+@include b(table) {
   table-layout: fixed;
   margin: 0 auto $space-m;
   font-family: $font-family-condensed;
   font-size: rem(14px);
   text-align: left;
   line-height: rem(24px);
-}
 
-@include pre('.table:not([width])') {
-  min-width: 100%;
-}
+  @include pseudo(unquote('not([width])')) {
+    min-width: 100%;
+  }
 
-@include pre('.table--left') {
-  text-align: left;
-}
-@include pre('.table--center') {
-  text-align: center;
-}
-@include pre('.table--right') {
-  text-align: right;
-}
+  @include m(left) {
+    text-align: left;
+  }
+  @include m(center) {
+    text-align: center;
+  }
+  @include m(right) {
+    text-align: right;
+  }
 
-// medium // ------------------------------------------------------------------
-@media #{$media-m} {
-  @include pre('.table') {
+  @include device(m) {
     font-size: rem(15px);
   }
-}
-
-// large // -------------------------------------------------------------------
-@media #{$media-l} {
-  @include pre('.table') {
+  @include device(l) {
     font-size: rem(16px);
   }
 }
+
+// @include pre('.table') {
+// }
+
+// @include pre('.table:not([width])') {
+// }
+
+// @include pre('.table--left') {
+// }
+// @include pre('.table--center') {
+// }
+// @include pre('.table--right') {
+// }
+
+// // medium // ------------------------------------------------------------------
+// @media #{$media-m} {
+//   @include pre('.table') {
+//   }
+// }
+
+// // large // -------------------------------------------------------------------
+// @media #{$media-l} {
+//   @include pre('.table') {
+//   }
+// }

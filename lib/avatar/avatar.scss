@@ -1,13 +1,19 @@
-// * utility imports
-@import '../partials/circumference';
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .avatar
+// *   .avatar__border-outer
+// *     .avatar__border
+// *   .avatar__image
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/get-circumference';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
+@import '../utilities/scss/mixins/device';
+@import '../utilities/scss/mixins/pseudo';
 
-// global // ------------------------------------------------------------------
-@include pre('.avatar') {
+// Rules
+@include b(avatar) {
   position: relative;
   display: inline-block;
   box-sizing: border-box;
@@ -17,176 +23,199 @@
   border-radius: $border-radius-round;
   margin-bottom: $space-m;
 
-  // * Fixes an issue with phantom margin-bottom applied to image elements.
+  // * Fixes an issue with intermittent margin-bottom applied to image
+  // * elements.
   vertical-align: bottom;
-}
 
-@include pre('.avatar--s') {
-  width: rem(32px);
-  height: rem(32px);
-  padding-top: 0;
-  margin-bottom: 0;
-}
-@include pre('.avatar--m') {
-  width: rem(40px);
-  height: rem(40px);
-  padding-top: 0;
-  margin-bottom: 0;
-}
-@include pre('.avatar--l') {
-  width: rem(48px);
-  height: rem(48px);
-  padding-top: 0;
-  margin-bottom: 0;
-}
+  @include m(s) {
+    width: $space-xl;
+    height: $space-xl;
+    padding-top: 0;
+    margin-bottom: 0;
 
-@include pre('.avatar--reversed') {
-  border-color: $state-reversed;
-}
+    @include e(border-outer, child) {
+      width: $space-xl;
+      height: $space-xl;
+    }
 
-@include pre('.avatar__border-outer') {
-  position: absolute;
-  top: rem(-1px);
-  left: rem(-1px);
-}
+    @include device(no-touch) {
+      @include pseudo(hover) {
+        @include e(border) {
+          stroke-dasharray: get-circumference(31) 0;
+        }
+      }
+      @include pseudo(focus) {
+        @include e(border) {
+          stroke-dasharray: get-circumference(31) 0;
+        }
+      }
 
-@include pre('.avatar--s > .avatar__border-outer') {
-  width: rem(32px);
-  height: rem(32px);
-}
-@include pre('.avatar--m > .avatar__border-outer') {
-  width: rem(40px);
-  height: rem(40px);
-}
-@include pre('.avatar--l > .avatar__border-outer') {
-  width: rem(48px);
-  height: rem(48px);
-}
+      @include e(border) {
+        stroke-dasharray: 0 get-circumference(31);
+        stroke-dashoffset: ((get-circumference(-31) / 4) * 3);
+      }
+    }
+  }
+  @include m(m) {
+    width: $space-xxl;
+    height: $space-xxl;
+    padding-top: 0;
+    margin-bottom: 0;
 
-@include pre('.avatar__border') {
-  stroke: $state-default;
-  stroke-width: 1;
-  fill: none;
-}
+    @include e(border-outer, child) {
+      width: $space-xxl;
+      height: $space-xxl;
+    }
 
-@include pre('.avatar--reversed .avatar__border') {
-  stroke: $state-reversed-hover;
-}
+    @include device(no-touch) {
+      @include pseudo(hover) {
+        @include e(border) {
+          stroke-dasharray: get-circumference(39) 0;
+        }
+      }
+      @include pseudo(focus) {
+        @include e(border) {
+          stroke-dasharray: get-circumference(39) 0;
+        }
+      }
 
-@include pre('.avatar__image') {
-  position: absolute;
-  top: rem(2px);
-  left: rem(2px);
-  width: rem(calc(100% - 4px));
-  height: rem(calc(100% - 4px));
-  border-radius: $border-radius-round;
-}
+      @include e(border) {
+        stroke-dasharray: 0 get-circumference(39);
+        stroke-dashoffset: ((get-circumference(-39) / 4) * 3);
+      }
+    }
+  }
+  @include m(l) {
+    width: $space-xxxl;
+    height: $space-xxxl;
+    padding-top: 0;
+    margin-bottom: 0;
 
-@include pre('.avatar__image--female-1') {
-  background: url('~assets/avatar__image--female-1.svg'),
-    linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
-    $blizzard;
-  background-position: center bottom rem(-1px), 0; // * -1px is a visual hack
-  background-repeat: no-repeat, repeat;
-  background-size: auto 85%, cover;
-}
-@include pre('.avatar__image--female-2') {
-  background: url('~assets/avatar__image--female-2.svg'),
-    linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
-    $blizzard;
-  background-position: center bottom rem(-1px), 0; // * -1px is a visual hack
-  background-repeat: no-repeat, repeat;
-  background-size: auto 85%, cover;
-}
-@include pre('.avatar__image--male-1') {
-  background: url('~assets/avatar__image--male-1.svg'),
-    linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
-    $blizzard;
-  background-position: center bottom rem(-1px), 0; // * -1px is a visual hack
-  background-repeat: no-repeat, repeat;
-  background-size: auto 85%, cover;
-}
-@include pre('.avatar__image--male-2') {
-  background: url('~assets/avatar__image--male-2.svg'),
-    linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
-    $blizzard;
-  background-position: center bottom rem(-1px), 0; // * -1px is a visual hack
-  background-repeat: no-repeat, repeat;
-  background-size: auto 85%, cover;
-}
+    @include e(border-outer, child) {
+      width: $space-xxxl;
+      height: $space-xxxl;
+    }
 
-@include pre('.avatar > .badge') {
-  position: absolute;
-  top: rem(-8px);
-}
+    @include device(no-touch) {
+      @include pseudo(hover) {
+        @include e(border) {
+          stroke-dasharray: get-circumference(47) 0;
+        }
+      }
+      @include pseudo(focus) {
+        @include e(border) {
+          stroke-dasharray: get-circumference(47) 0;
+        }
+      }
 
-@include pre('.avatar--m > .badge') {
-  left: rem(24px);
-}
-@include pre('.avatar--l > .badge') {
-  left: rem(32px);
-}
-
-// no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  @include pre('.avatar:focus') {
-    outline: $focus-outline;
+      @include e(border) {
+        stroke-dasharray: 0 get-circumference(47);
+        stroke-dashoffset: ((get-circumference(-47) / 4) * 3);
+      }
+    }
   }
 
-  @include pre('.avatar__border') {
-    stroke: $state-default-hover;
-    transition: stroke $transition-duration-x1 $transition-timing-default,
-      stroke-dasharray $transition-duration-x4 $transition-timing-default;
+  @include m(reversed) {
+    border-color: $state-reversed;
+
+    @include e(border) {
+      stroke: $state-reversed-hover;
+    }
+
+    @include device(no-touch) {
+      @include e(border) {
+        stroke: $state-reversed-hover;
+      }
+    }
   }
 
-  @include pre('.avatar:hover .avatar__border') {
-    stroke: $state-default-hover;
+  @include e(border-outer) {
+    position: absolute;
+    top: rem(-1px);
+    left: rem(-1px);
   }
-  @include pre('.avatar:focus .avatar__border') {
-    stroke: $state-default-focus;
+  @include e(border) {
+    stroke: $state-default;
+    stroke-width: 1;
+    fill: none;
+
+    @include device(no-touch) {
+      stroke: $state-default-hover;
+      transition: stroke $transition-duration-x1 $transition-timing-default,
+        stroke-dasharray $transition-duration-x4 $transition-timing-default;
+    }
   }
-  @include pre('.avatar:active .avatar__border') {
-    stroke: $state-default-active;
+  @include e(image) {
+    position: absolute;
+    top: $space-xxs;
+    left: $space-xxs;
+    width: calc(100% - #{rem(4px)});
+    height: calc(100% - #{rem(4px)});
+    border-radius: $border-radius-round;
+
+    @include m(female-1) {
+      background: url('~assets/avatar__image--female-1.svg'),
+        linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
+        $blizzard;
+
+      // * A visual hack to position images correctly.
+      background-position: center bottom rem(-1px), 0;
+
+      background-repeat: no-repeat, repeat;
+      background-size: auto 85%, cover;
+    }
+    @include m(female-2) {
+      background: url('~assets/avatar__image--female-2.svg'),
+        linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
+        $blizzard;
+
+      // * A visual hack to position images correctly.
+      background-position: center bottom rem(-1px), 0;
+
+      background-repeat: no-repeat, repeat;
+      background-size: auto 85%, cover;
+    }
+    @include m(male-1) {
+      background: url('~assets/avatar__image--male-1.svg'),
+        linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
+        $blizzard;
+
+      // * A visual hack to position images correctly.
+      background-position: center bottom rem(-1px), 0;
+
+      background-repeat: no-repeat, repeat;
+      background-size: auto 85%, cover;
+    }
+    @include m(male-2) {
+      background: url('~assets/avatar__image--male-2.svg'),
+        linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
+        $blizzard;
+
+      // * A visual hack to position images correctly.
+      background-position: center bottom rem(-1px), 0;
+
+      background-repeat: no-repeat, repeat;
+      background-size: auto 85%, cover;
+    }
   }
 
-  @include pre('.avatar--s .avatar__border') {
-    stroke-dasharray: 0 circumference(31);
-    stroke-dashoffset: ((circumference(-31) / 4) * 3);
-  }
-  @include pre('.avatar--s:hover .avatar__border') {
-    stroke-dasharray: circumference(31) 0;
-  }
-  @include pre('.avatar--s:focus .avatar__border') {
-    stroke-dasharray: circumference(31) 0;
-  }
+  @include device(no-touch) {
+    @include pseudo(hover) {
+      @include e(border) {
+        stroke: $state-default-hover;
+      }
+    }
+    @include pseudo(focus) {
+      outline: $focus-outline;
 
-  @include pre('.avatar--m .avatar__border') {
-    stroke-dasharray: 0 circumference(39);
-    stroke-dashoffset: ((circumference(-39) / 4) * 3);
-  }
-  @include pre('.avatar--m:hover .avatar__border') {
-    stroke-dasharray: circumference(39) 0;
-  }
-  @include pre('.avatar--m:focus .avatar__border') {
-    stroke-dasharray: circumference(39) 0;
-  }
-
-  @include pre('.avatar--l .avatar__border') {
-    stroke-dasharray: 0 circumference(47);
-    stroke-dashoffset: ((circumference(-47) / 4) * 3);
-  }
-  @include pre('.avatar--l:hover .avatar__border') {
-    stroke-dasharray: circumference(47) 0;
-  }
-  @include pre('.avatar--l:focus .avatar__border') {
-    stroke-dasharray: circumference(47) 0;
-  }
-
-  @include pre('.avatar--reversed .avatar__border') {
-    stroke: $state-reversed-hover;
-  }
-
-  @include pre('.avatar > .badge') {
-    cursor: pointer;
+      @include e(border) {
+        stroke: $state-default-focus;
+      }
+    }
+    @include pseudo(active) {
+      @include e(border) {
+        stroke: $state-default-active;
+      }
+    }
   }
 }

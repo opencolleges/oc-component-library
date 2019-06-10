@@ -1,13 +1,17 @@
-// * utility imports
-@import '../partials/circumference';
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .preloader
+// *   .preloader__stroke
+// *   .preloader__stroke-outer
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/get-circumference';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
-@include pre('.preloader') {
+// Rules
+@include b(preloader) {
   z-index: $z-index-overlay;
   position: fixed; // ? absolute
   top: 0;
@@ -15,57 +19,73 @@
   display: none;
   width: 100%;
   height: 100%;
+
+  @include e(stroke-outer) {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: rem(96px);
+    height: rem(96px);
+  }
+  @include e(stroke) {
+    transform: rotate(-90deg);
+    transform-origin: rem(48px 48px);
+    stroke-dasharray: get-circumference(88);
+    stroke-dashoffset: (get-circumference(88) - 0.01);
+    stroke-linecap: round;
+    stroke-width: 8;
+    fill: none;
+    animation-timing-function: ease-in-out;
+
+    @include m(1) {
+      stroke: $candlelight;
+      animation: stroke--1 1.25s infinite;
+    }
+    @include m(2) {
+      stroke: $viking;
+      animation: stroke--2 1.25s infinite;
+    }
+    @include m(3) {
+      stroke: $christi;
+      animation: stroke--3 1.25s infinite;
+    }
+  }
 }
+
+// @include pre('.preloader') {
+// }
 
 @include pre('.preloader.active') {
   display: block;
 }
 
-@include pre('.preloader__stroke-outer') {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: rem(96px);
-  height: rem(96px);
-}
+// @include pre('.preloader__stroke-outer') {
+// }
 
-@include pre('.preloader__stroke') {
-  transform: rotate(-90deg);
-  transform-origin: rem(48px 48px);
-  stroke-dasharray: circumference(88);
-  stroke-dashoffset: (circumference(88) - 0.01);
-  stroke-linecap: round;
-  stroke-width: 8;
-  fill: none;
-  animation-timing-function: ease-in-out;
-}
+// @include pre('.preloader__stroke') {
+// }
 
-@include pre('.preloader__stroke--1') {
-  stroke: $candlelight;
-  animation: stroke--1 1.25s infinite;
-}
+// @include pre('.preloader__stroke--1') {
+// }
 
-@include pre('.preloader__stroke--2') {
-  stroke: $viking;
-  animation: stroke--2 1.25s infinite;
-}
-@include pre('.preloader__stroke--3') {
-  stroke: $christi;
-  animation: stroke--3 1.25s infinite;
-}
+// @include pre('.preloader__stroke--2') {
+// }
+
+// @include pre('.preloader__stroke--3') {
+// }
 
 @keyframes stroke--1 {
   0% {
     transform: rotate(-90deg);
-    stroke-dashoffset: (circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.01);
   }
   13% {
-    stroke-dashoffset: circumference(64);
+    stroke-dashoffset: get-circumference(64);
   }
   89% {
     transform: rotate(270deg);
-    stroke-dashoffset: (circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.01);
   }
   100% {
     transform: rotate(270deg);
@@ -78,14 +98,14 @@
   }
   2% {
     transform: rotate(-90deg);
-    stroke-dashoffset: (circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.01);
   }
   21% {
-    stroke-dashoffset: circumference(72);
+    stroke-dashoffset: get-circumference(72);
   }
   89% {
     transform: rotate(270deg);
-    stroke-dashoffset: (circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.01);
   }
   100% {
     transform: rotate(270deg);
@@ -98,14 +118,14 @@
   }
   3% {
     transform: rotate(-90deg);
-    stroke-dashoffset: (circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.01);
   }
   34% {
-    stroke-dashoffset: circumference(80);
+    stroke-dashoffset: get-circumference(80);
   }
   89% {
     transform: rotate(270deg);
-    stroke-dashoffset: (circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.01);
   }
   100% {
     transform: rotate(270deg);

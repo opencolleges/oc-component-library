@@ -1,12 +1,18 @@
-// * utility imports
-@import '../partials/circumference';
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .h1
+// * .h2
+// * .h3
+// * .h4
+// * .h5
+// * .h6
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @for $index from 1 through 6 {
   @include pre('.h#{$index}') {
     display: block;

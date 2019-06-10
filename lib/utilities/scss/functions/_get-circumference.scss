@@ -1,0 +1,12 @@
+// Return the circumference of `$diameter`.
+
+/// @author Daniel Maddison
+
+/// @param {Number} $diameter - initial diameter
+/// @return {Number} - circumference of diameter
+
+@function get-circumference($diameter) {
+  $circumference: $diameter * 3.14159;
+
+  @return $circumference;
+}

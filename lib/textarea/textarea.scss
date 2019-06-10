@@ -1,11 +1,17 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .textarea
+// *   .textarea__input
+// *   .textarea__label
+// *   .textarea__border
+// *   .textarea__message
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.textarea') {
   position: relative;
   height: rem(80px);
@@ -165,6 +171,14 @@
 
 @include pre('.textarea__input.active ~ .textarea__message') {
   color: $state-default;
+}
+
+@include pre('.textarea--error > .textarea__message') {
+  color: $state-error;
+}
+
+@include pre('.textarea--success > .textarea__message') {
+  color: $state-success;
 }
 
 // no-touchevents // ----------------------------------------------------------

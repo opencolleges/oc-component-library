@@ -1,59 +1,61 @@
-// * utility imports
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .card
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
-@include pre('.card') {
+// Rules
+@include b(card) {
   box-sizing: border-box;
   display: block;
   padding: $space-s;
   background-color: $blizzard;
-}
 
-@include pre('.card--s') {
-  border-radius: $border-radius-s;
-}
-@include pre('.card--m') {
-  border-radius: $border-radius-m;
-}
-@include pre('.card--l') {
-  border-radius: $border-radius-l;
-}
+  @include m(s) {
+    border-radius: $border-radius-s;
+  }
+  @include m(m) {
+    border-radius: $border-radius-m;
+  }
+  @include m(l) {
+    border-radius: $border-radius-l;
+  }
 
-@include pre('.card--layer-1') {
-  box-shadow: $box-shadow-layer-1;
-}
-@include pre('.card--layer-2') {
-  box-shadow: $box-shadow-layer-2;
-}
-@include pre('.card--layer-3') {
-  box-shadow: $box-shadow-layer-3;
-}
-@include pre('.card--layer-4') {
-  box-shadow: $box-shadow-layer-4;
-}
+  @include m(layer-1) {
+    box-shadow: $box-shadow-layer-1;
+  }
+  @include m(layer-2) {
+    box-shadow: $box-shadow-layer-2;
+  }
+  @include m(layer-3) {
+    box-shadow: $box-shadow-layer-3;
+  }
+  @include m(layer-4) {
+    box-shadow: $box-shadow-layer-4;
+  }
 
-@include pre('.card--clickable') {
-  height: 100%;
-  transition: box-shadow $transition-duration-x1 $transition-timing-default;
-}
+  @include m(clickable) {
+    height: 100%;
+    transition: box-shadow $transition-duration-x1 $transition-timing-default;
 
-@include pre('.card--clickable:focus-within') {
-  box-shadow: $box-shadow-layer-4;
-}
+    &:focus-within {
+      box-shadow: $box-shadow-layer-4;
+    }
+  }
+  @include m(draggable) {
+    position: relative;
+    padding-left: $space-xxl;
+    box-shadow: $box-shadow-layer-1;
+    transition: transform $transition-duration-x1 $transition-timing-default,
+      box-shadow $transition-duration-x1 $transition-timing-default;
 
-@include pre('.card--draggable') {
-  position: relative;
-  padding-left: $space-xxl;
-  box-shadow: $box-shadow-layer-1;
-  transition: transform $transition-duration-x1 $transition-timing-default,
-    box-shadow $transition-duration-x1 $transition-timing-default;
-}
-@include pre('.card--draggable:focus') {
-  outline: $focus-outline;
+    &:focus {
+      outline: $focus-outline;
+    }
+  }
 }
 
 @include pre('.mouse-down > .card--draggable') {
@@ -87,24 +89,26 @@
   transition: $transition-duration-x1 $transition-timing-default;
 }
 
-// no-touchevents // ----------------------------------------------------------
+// Contextual -----------------------------------------------------------------
+@include b(no-touchevents) {
+  @include b(card) {
+    @include m(clickable) {
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: $box-shadow-layer-4;
+      }
+      &:active {
+        box-shadow: $box-shadow-layer-1;
+      }
+    }
+    @include m(draggable) {
+      cursor: grab;
+    }
+  }
+}
+
 @include pre('.no-touchevents') {
-  @include pre('.card--clickable') {
-    cursor: pointer;
-  }
-
-  @include pre('.card--clickable:hover') {
-    box-shadow: $box-shadow-layer-4;
-  }
-
-  @include pre('.card--clickable:active') {
-    box-shadow: $box-shadow-layer-1;
-  }
-
-  @include pre('.card--draggable') {
-    cursor: grab;
-  }
-
   @include pre('.mouse-down > .card--draggable') {
     cursor: grabbing;
   }

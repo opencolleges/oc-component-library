@@ -1,12 +1,18 @@
-// * utility imports
-@import '../partials/circumference';
-@import '../partials/prefix';
-@import '../partials/rem';
+// Pattern outline
+// * .radio
+// *   .radio__input
+// *   .radio__label
+// *   .radio__border-outer
+// *     .radio__border
 
-// * token imports
-@import '../partials/tokens';
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/get-circumference';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/bem';
 
-// small // -------------------------------------------------------------------
+// Rules
 @include pre('.radio') {
   position: relative;
   margin: $space-stack-m;
@@ -259,8 +265,8 @@
   @include pre('.radio__border') {
     stroke: $viking;
     stroke-width: 1;
-    stroke-dasharray: 0 circumference(15.5);
-    stroke-dashoffset: ((circumference(-15) / 4) * 3);
+    stroke-dasharray: 0 get-circumference(15.5);
+    stroke-dashoffset: ((get-circumference(-15) / 4) * 3);
     transition: stroke $transition-duration-x1 $transition-timing-default,
       stroke-dasharray $transition-duration-x4 $transition-timing-default;
     fill: none;
@@ -276,10 +282,10 @@
     stroke: $blizzard;
   }
   @include pre('.radio__input:hover ~ .radio__border-outer > .radio__border') {
-    stroke-dasharray: circumference(15.5) 0;
+    stroke-dasharray: get-circumference(15.5) 0;
   }
   @include pre('.radio__input:focus ~ .radio__border-outer > .radio__border') {
-    stroke-dasharray: circumference(15.5) 0;
+    stroke-dasharray: get-circumference(15.5) 0;
   }
   @include pre('.radio__input:active ~ .radio__border-outer > .radio__border') {
     stroke: $viking-shade;
@@ -303,7 +309,7 @@
     '.radio__input:checked ~ .radio__border-outer > .radio__border'
   ) {
     stroke: $viking-shade;
-    stroke-dasharray: circumference(15.5) 0;
+    stroke-dasharray: get-circumference(15.5) 0;
   }
   @include pre(
     '.radio__input:checked:hover ~ .radio__border-outer > .radio__border'

@@ -18,7 +18,7 @@ Copyright © 2018–2019 The Uniform Authors
 
 ## Installation
 
-Install UDS using npm.
+Install UDS using [npm](https://www.npmjs.com 'npm').
 
 ```bash
 npm install oc-uniform --save
@@ -27,7 +27,7 @@ npm install oc-uniform --save
 ## Usage
 
 ```jsx
-// UDS patterns
+// UDS components
 import { OCHeading, OCCopy } from 'oc-uniform';
 
 // UDS styles

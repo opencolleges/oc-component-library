@@ -1,0 +1,33 @@
+/// Block
+
+/// @author Daniel Maddison
+
+/// @param {List} $block - Gradient direction
+/// @param {List} $combinator - Gradient direction
+/// @output `background-image` if several colors, `background-color` if only one
+
+// Imports
+@import '../variables/namespace';
+@import '../variables/combinators';
+
+// Variables
+$block-prefix: $prefix !default;
+
+@mixin b($block, $combinator: null) {
+
+  @if $combinator {
+    $selector: &;
+
+    @at-root {
+      #{$selector #{map-get($combinators, $combinator)} '.' + $block-prefix + '-' + $block} {
+        @content;
+      }
+    }
+  } @else {
+    @at-root {
+      #{'.' + $block-prefix + '-' + $block} {
+        @content;
+      }
+    }
+  }
+}
