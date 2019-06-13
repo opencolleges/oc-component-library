@@ -4,58 +4,56 @@
 // *   .radio-set__message
 
 // Imports
+@import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
 
 // Rules
-@include b(radio-set) {
+.#{$pre}-radio-set {
   position: relative;
   padding: $space-stack-l;
   margin: $space-stack-m;
+}
 
-  @include m(error) {
-    @include e(border, child) {
-      width: 100%;
-      background-color: $state-error;
-      transition: width $transition-duration-x4 $transition-timing-default
-        $transition-duration-x0;
-    }
-    @include e(message, child) {
-      color: $state-error;
-    }
-  }
-  @include m(success) {
-    @include e(border, child) {
-      width: 100%;
-      background-color: $state-success;
-      transition: width $transition-duration-x4 $transition-timing-default
-        $transition-duration-x0;
-    }
-    @include e(message, child) {
-      color: $state-success;
-    }
-  }
+.#{$pre}-radio-set__border {
+  position: absolute;
+  bottom: $space-l;
+  display: block;
+  width: 0;
+  height: rem(1px);
+  background-color: $state-default;
+  transition: width $transition-duration-x4 $transition-timing-default
+      $transition-duration-x0,
+    background-color $transition-duration-x1 $transition-timing-default
+      $transition-duration-x4;
+  pointer-events: none;
+}
 
-  @include e(border) {
-    position: absolute;
-    bottom: rem(24px);
-    display: block;
-    width: 0;
-    height: rem(1px);
-    background-color: $state-default;
-    transition: width $transition-duration-x4 $transition-timing-default
-        $transition-duration-x0,
-      background-color $transition-duration-x1 $transition-timing-default
-        $transition-duration-x4;
-    pointer-events: none;
-  }
-  @include e(message) {
-    position: absolute;
-    bottom: 0;
-    font-size: rem(12px);
-    line-height: rem(16px);
-    transition: color $transition-duration-x1 $transition-timing-default;
-    user-select: none;
-  }
+.#{$pre}-radio-set--error > .#{$pre}-radio-set__border {
+  width: 100%;
+  background-color: $state-error;
+  transition: width $transition-duration-x4 $transition-timing-default
+    $transition-duration-x0;
+}
+.#{$pre}-radio-set--success > .#{$pre}-radio-set__border {
+  width: 100%;
+  background-color: $state-success;
+  transition: width $transition-duration-x4 $transition-timing-default
+    $transition-duration-x0;
+}
+
+.#{$pre}-radio-set__message {
+  position: absolute;
+  bottom: 0;
+  font-size: rem(12px);
+  line-height: $space-m;
+  transition: color $transition-duration-x1 $transition-timing-default;
+  user-select: none;
+}
+
+.#{$pre}-radio-set--error > .#{$pre}-radio-set__message {
+  color: $state-error;
+}
+.#{$pre}-radio-set--success > .#{$pre}-radio-set__message {
+  color: $state-success;
 }

@@ -14,16 +14,15 @@
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
 
 // Rules
-@include pre('.date') {
+.#{$pre}-date {
   position: relative;
   height: rem(80px);
   margin: $space-stack-m;
 }
 
-@include pre('.date__input') {
+.#{$pre}-date__input {
   overflow: hidden;
   position: absolute;
   top: rem(16px);
@@ -44,30 +43,30 @@
   white-space: nowrap;
 }
 
-@include pre('.date--error > .date__input') {
+.#{$pre}-date--error > .#{$pre}-date__input {
   border-bottom: rem(1px) solid $state-error;
 }
-@include pre('.date--success > .date__input') {
+.#{$pre}-date--success > .#{$pre}-date__input {
   border-bottom: rem(1px) solid $state-success;
 }
 
-@include pre('.date__input:disabled ~ .date__input') {
+.#{$pre}-date__input:disabled ~ .#{$pre}-date__input {
   border-color: $state-disabled;
   color: $fossil;
 }
-@include pre('.date__input[readonly] ~ .date__input') {
+.#{$pre}-date__input[readonly] ~ .#{$pre}-date__input {
   width: auto;
   padding: 0;
   border: none;
   color: $charcoal;
 }
 
-@include pre('.date__input--hidden') {
+.#{$pre}-date__input--hidden {
   visibility: hidden;
   display: none;
 }
 
-@include pre('.date__label') {
+.#{$pre}-date__label {
   position: absolute;
   top: 0;
   left: 0;
@@ -76,14 +75,14 @@
   line-height: rem(16px);
 }
 
-@include pre('.date__input:disabled ~ .date__label') {
+.#{$pre}-date__input:disabled ~ .#{$pre}-date__label {
   color: $state-disabled;
 }
-@include pre('.date__input[readonly] ~ .date__label') {
+.#{$pre}-date__input[readonly] ~ .#{$pre}-date__label {
   color: $christi-shade;
 }
 
-@include pre('.date__input[required] ~ .date__label::after') {
+.#{$pre}-date__input[required] ~ .#{$pre}-date__label::after {
   content: ' *';
   position: relative;
   top: 0;
@@ -92,28 +91,33 @@
     color $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.selected > .date__input[required] ~ .date__label::after') {
+.#{$pre}-selected
+  > .#{$pre}-date__input[required]
+  ~ .#{$pre}-date__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
 }
 
-@include pre('.date > .icon') {
+.#{$pre}-date > .#{$pre}-icon {
   position: absolute;
-  top: rem(26px); // * visual hack
+
+  // * Visual hack.
+  top: rem(26px);
+
   right: rem(8px);
   stroke: $gunmetal;
   pointer-events: none;
 }
 
-@include pre('.date__input:disabled ~ .icon') {
+.#{$pre}-date__input:disabled ~ .#{$pre}-icon {
   stroke: $fossil;
 }
 
-@include pre('.date__border') {
+.#{$pre}-date__border {
   display: none;
 }
 
-@include pre('.date__list-outer') {
+.#{$pre}-date__list-outer {
   z-index: $z-index-dropdown;
   opacity: 0;
   position: absolute;
@@ -131,18 +135,18 @@
   pointer-events: none;
 }
 
-@include pre('.date--right > .date__list-outer') {
+.#{$pre}-date--right > .#{$pre}-date__list-outer {
   right: 0;
   left: auto;
 }
 
-@include pre('.date.active > .date__list-outer') {
+.#{$pre}-date.#{$pre}-active > .#{$pre}-date__list-outer {
   opacity: 1;
   transform: translateY(0);
   pointer-events: initial;
 }
 
-@include pre('.date__item') {
+.#{$pre}-date__item {
   float: left;
   position: relative;
   width: rem(40px);
@@ -154,34 +158,34 @@
   text-align: center;
 }
 
-@include pre('.date__item--month') {
+.#{$pre}-date__item--month {
   width: rem(200px);
   color: $charcoal;
   font-weight: 700;
   text-align: center;
 }
-@include pre('.date__item--weekend') {
+.#{$pre}-date__item--weekend {
   color: $hurricane;
   font-weight: 700;
 }
-@include pre('.date__item--weekday') {
+.#{$pre}-date__item--weekday {
   color: $gunmetal;
   font-weight: 700;
 }
-@include pre('.date__item--selectable') {
+.#{$pre}-date__item--selectable {
   color: $charcoal;
 }
 
-@include pre('.date__item--selectable:focus') {
+.#{$pre}-date__item--selectable:focus {
   border-radius: $border-radius-round;
   background-color: $selection-background;
 }
 
-@include pre('.date__item--current') {
+.#{$pre}-date__item--current {
   font-weight: 700;
 }
 
-@include pre('.date__item > .icon') {
+.#{$pre}-date__item > .#{$pre}-icon {
   position: absolute;
   top: rem(8px);
   left: rem(8px);
@@ -189,7 +193,7 @@
   pointer-events: none;
 }
 
-@include pre('.date__message') {
+.#{$pre}-date__message {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -200,75 +204,75 @@
   user-select: none;
 }
 
-@include pre('.date--error .date__message') {
+.#{$pre}-date--error .#{$pre}-date__message {
   color: $state-error;
 }
 
-@include pre('.date--success .date__message') {
+.#{$pre}-date--success .#{$pre}-date__message {
   color: $state-success;
 }
 
 // no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  @include pre('.date__input') {
+.#{$pre}-no-touchevents {
+  .#{$pre}-date__input {
     border-bottom: $input-border;
     transition: color $transition-duration-x1 $transition-timing-default;
     cursor: pointer;
   }
 
-  @include pre('.date__input:focus') {
+  .#{$pre}-date__input:focus {
     color: inherit;
   }
   // * Firefox support
-  @include pre('.date__input:-moz-focusring') {
+  .#{$pre}-date__input:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 $charcoal;
   }
   // * IE support
-  @include pre('.date__input::-ms-expand') {
+  .#{$pre}-date__input::-ms-expand {
     display: none;
   }
 
   // ? What do these two selectors do? No such siblings.
-  @include pre('.date__input:disabled ~ .date__input') {
+  .#{$pre}-date__input:disabled ~ .#{$pre}-date__input {
     cursor: not-allowed;
   }
-  @include pre('.date__input[readonly] ~ .date__input') {
+  .#{$pre}-date__input[readonly] ~ .#{$pre}-date__input {
     cursor: text;
   }
 
-  @include pre('.date.active > .date__input') {
+  .#{$pre}-date.#{$pre}-active > .#{$pre}-date__input {
     color: inherit;
   }
 
-  @include pre('.date__label') {
+  .#{$pre}-date__label {
     transition: color $transition-duration-x1 $transition-timing-default;
     user-select: none;
   }
 
-  @include pre('.date__input:focus + .date__label') {
+  .#{$pre}-date__input:focus + .#{$pre}-date__label {
     color: $gunmetal;
   }
-  @include pre('.date__input[readonly] ~ .date__label') {
+  .#{$pre}-date__input[readonly] ~ .#{$pre}-date__label {
     color: $christi-shade;
   }
-  @include pre('.date.active > .date__label') {
+  .#{$pre}-date.#{$pre}-active > .#{$pre}-date__label {
     color: $gunmetal;
   }
 
-  @include pre('.date__input:focus ~ .icon') {
+  .#{$pre}-date__input:focus ~ .#{$pre}-icon {
     stroke: $charcoal;
   }
 
-  @include pre('.date > .icon') {
+  .#{$pre}-date > .#{$pre}-icon {
     transition: stroke $transition-duration-x1 $transition-timing-default;
   }
 
-  @include pre('.date.active > .icon') {
+  .#{$pre}-date.#{$pre}-active > .#{$pre}-icon {
     stroke: $charcoal;
   }
 
-  @include pre('.date__border') {
+  .#{$pre}-date__border {
     position: absolute;
     bottom: rem(24px);
     display: block;
@@ -280,103 +284,103 @@
     pointer-events: none;
   }
 
-  @include pre('.date__input:hover ~ .date__border') {
+  .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
     width: 100%;
   }
-  @include pre('.date__input:focus ~ .date__border') {
+  .#{$pre}-date__input:focus ~ .#{$pre}-date__border {
     width: 100%;
   }
-  @include pre('.date.active > .date__border') {
+  .#{$pre}-date.#{$pre}-active > .#{$pre}-date__border {
     width: 100%;
   }
 
-  @include pre('.date--error > .date__input ~ .date__border') {
+  .#{$pre}-date--error > .#{$pre}-date__input ~ .#{$pre}-date__border {
     width: 100%;
     background-color: $state-error;
   }
 
-  @include pre('.date--error > .date__input:hover ~ .date__border') {
+  .#{$pre}-date--error > .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
     background-color: $state-error-hover;
   }
-  @include pre('.date--error > .date__input:focus ~ .date__border') {
+  .#{$pre}-date--error > .#{$pre}-date__input:focus ~ .#{$pre}-date__border {
     background-color: $state-error-focus;
   }
 
-  @include pre('.date--success > .date__input ~ .date__border') {
+  .#{$pre}-date--success > .#{$pre}-date__input ~ .#{$pre}-date__border {
     width: 100%;
     background-color: $state-success;
   }
 
-  @include pre('.date--success > .date__input:hover ~ .date__border') {
+  .#{$pre}-date--success > .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
     background-color: $state-success-hover;
   }
-  @include pre('.date--success > .date__input:focus ~ .date__border') {
+  .#{$pre}-date--success > .#{$pre}-date__input:focus ~ .#{$pre}-date__border {
     background-color: $state-success-focus;
   }
 
-  @include pre('.selected > .date__border') {
+  .#{$pre}-selected > .#{$pre}-date__border {
     width: 100%;
     background-color: $state-default;
   }
-  @include pre('.selected > .date__input:hover ~ .date__border') {
+  .#{$pre}-selected > .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
     background-color: $state-default-hover;
   }
-  @include pre('.selected > .date__input:focus ~ .date__border') {
+  .#{$pre}-selected > .#{$pre}-date__input:focus ~ .#{$pre}-date__border {
     background-color: $state-default-focus;
   }
 
-  @include pre('.date__list-outer') {
+  .#{$pre}-date__list-outer {
     user-select: none;
   }
 
-  @include pre('.date__item--previous') {
+  .#{$pre}-date__item--previous {
     cursor: pointer;
   }
-  @include pre('.date__item--next') {
+  .#{$pre}-date__item--next {
     cursor: pointer;
   }
-  @include pre('.date__item--selectable') {
+  .#{$pre}-date__item--selectable {
     cursor: pointer;
   }
 
-  @include pre('.date__item--selectable:hover') {
+  .#{$pre}-date__item--selectable:hover {
     border-radius: $border-radius-round;
     background-color: $selection-background;
   }
 
-  @include pre('.date__item--previous > .icon') {
+  .#{$pre}-date__item--previous > .#{$pre}-icon {
     transition: stroke $transition-duration-x1 $transition-timing-default;
   }
 
-  @include pre('.date__item--previous:hover > .icon') {
+  .#{$pre}-date__item--previous:hover > .#{$pre}-icon {
     stroke: $state-default-hover;
   }
-  @include pre('.date__item--previous:active > .icon') {
+  .#{$pre}-date__item--previous:active > .#{$pre}-icon {
     stroke: $state-default-active;
   }
 
-  @include pre('.date__item--next > .icon') {
+  .#{$pre}-date__item--next > .#{$pre}-icon {
     transition: stroke $transition-duration-x1 $transition-timing-default;
   }
 
-  @include pre('.date__item--next:hover > .icon') {
+  .#{$pre}-date__item--next:hover > .#{$pre}-icon {
     stroke: $state-default-hover;
   }
-  @include pre('.date__item--next:active > .icon') {
+  .#{$pre}-date__item--next:active > .#{$pre}-icon {
     stroke: $state-default-active;
   }
 }
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.date__input') {
+  .#{$pre}-date__input {
     font-size: rem(15px);
   }
 }
 
 // large // -------------------------------------------------------------------
 @media #{$media-l} {
-  @include pre('.date__input') {
+  .#{$pre}-date__input {
     font-size: rem(16px);
   }
 }

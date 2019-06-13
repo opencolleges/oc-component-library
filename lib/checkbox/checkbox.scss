@@ -13,17 +13,17 @@
 @import '../utilities/scss/mixins/bem';
 
 // Rules
-@include pre('.checkbox') {
+.#{$pre}-checkbox {
   position: relative;
   margin: $space-stack-m;
 }
 
-@include pre('.card--clickable > .checkbox') {
-  height: rem(calc(100% + 16px));
+.#{$pre}-card--clickable > .#{$pre}-checkbox {
+  height: calc(100% + #{rem(16px)});
   margin: rem(-8px);
 }
 
-@include pre('.checkbox__input') {
+.#{$pre}-checkbox__input {
   opacity: 0;
   position: absolute;
   top: rem(4px);
@@ -33,29 +33,29 @@
   margin: 0;
 }
 
-@include pre('.card--clickable > .checkbox > .checkbox__input') {
-  top: rem(20px);
-  left: rem(24px);
+.#{$pre}-checkbox__input[readonly] {
+  pointer-events: none;
 }
 
-@include pre('.checkbox--right > .checkbox__input') {
+.#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
   top: 50%;
   right: rem(8px);
   left: auto;
   transform: translateY(-50%);
 }
 
-@include pre('.card--clickable > .checkbox--right > .checkbox__input') {
+.card--clickable > .checkbox > .checkbox__input {
+  top: rem(20px);
+  left: rem(24px);
+}
+
+.card--clickable > .checkbox--right > .checkbox__input {
   top: 50%;
   right: rem(24px);
   left: auto;
 }
 
-@include pre('.checkbox__input[readonly]') {
-  pointer-events: none;
-}
-
-@include pre('.checkbox__label') {
+.#{$pre}-checkbox__label {
   display: inline-block;
   padding: 0 $space-xxl;
   color: $gunmetal;
@@ -64,41 +64,44 @@
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.card--clickable > .checkbox > .checkbox__label') {
-  display: block;
-  height: rem(calc(100% - 32px));
-  padding: rem(16px 56px);
-}
-
-@include pre('.checkbox--right > .checkbox__label') {
+.#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
   display: block;
   padding: 0 $space-xxl 0 0;
 }
 
-@include pre('.card--clickable > .checkbox--right > .checkbox__label') {
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__label {
+  display: block;
+  height: calc(100% - #{rem(32px)});
+  padding: rem(16px 56px);
+}
+
+.#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
   padding: rem(16px 56px 16px 16px);
 }
 
-@include pre('.checkbox--reversed > .checkbox__label') {
+.#{$pre}-checkbox--reversed > .#{$pre}-checkbox__label {
   color: rgba($blizzard, 0.89);
 }
-@include pre('.checkbox__input:disabled + .checkbox__label') {
+.#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label {
   color: $fossil;
 }
-@include pre('.checkbox__input[readonly] + .checkbox__label') {
+.#{$pre}-checkbox__input[readonly] + .#{$pre}-checkbox__label {
   color: $charcoal;
   pointer-events: none;
 }
-@include pre('.checkbox__input:focus + .checkbox__label') {
+.#{$pre}-checkbox__input:focus + .#{$pre}-checkbox__label {
   color: $charcoal;
 }
 @include pre(
-  '.checkbox--reversed > .checkbox__input:focus + .checkbox__label'
+  '.#{$pre}-checkbox--reversed > .#{$pre}-checkbox__input:focus + .#{$pre}-checkbox__label'
 ) {
   color: $blizzard;
 }
 
-@include pre('.checkbox__label::before') {
+.#{$pre}-checkbox__label::before {
   content: '';
   position: absolute;
   top: rem(4px);
@@ -110,45 +113,49 @@
   border-radius: $border-radius-s;
 }
 
-@include pre('.card--clickable > .checkbox > .checkbox__label::before') {
+.#{$pre}-card--clickable
+  > .#{$pre}-checkbox
+  > .#{$pre}-checkbox__label::before {
   top: rem(20px);
   left: rem(24px);
 }
 
-@include pre('.checkbox--right > .checkbox__label::before') {
+.#{$pre}-checkbox--right > .#{$pre}-checkbox__label::before {
   top: 50%;
   right: rem(8px);
   left: auto;
   transform: translateY(-50%);
 }
 
-@include pre('.card--clickable > .checkbox--right > .checkbox__label::before') {
+.#{$pre}-card--clickable
+  > .#{$pre}-checkbox--right
+  > .#{$pre}-checkbox__label::before {
   top: 50%;
   right: rem(24px);
   left: auto;
 }
 
-@include pre('.checkbox--error > .checkbox__label::before') {
+.#{$pre}-checkbox--error > .#{$pre}-checkbox__label::before {
   border-color: $cinnabar-shade;
 }
-@include pre('.checkbox--success > .checkbox__label::before') {
+.#{$pre}-checkbox--success > .#{$pre}-checkbox__label::before {
   border-color: $christi-shade;
 }
-@include pre('.checkbox--reversed > .checkbox__label::before') {
+.#{$pre}-checkbox--reversed > .#{$pre}-checkbox__label::before {
   border-color: $blizzard;
 }
-@include pre('.checkbox__input:disabled + .checkbox__label::before') {
+.#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label::before {
   border-color: $state-disabled;
 }
-@include pre('.checkbox__input[readonly] + .checkbox__label::before') {
+.#{$pre}-checkbox__input[readonly] + .#{$pre}-checkbox__label::before {
   border-color: $charcoal;
 }
 
-@include pre('.checkbox__border-outer') {
+.#{$pre}-checkbox__border-outer {
   display: none;
 }
 
-@include pre('.checkbox > .icon') {
+.#{$pre}-checkbox > .#{$pre}-icon {
   position: absolute;
   top: 50%;
   right: rem(8px);
@@ -157,18 +164,18 @@
   transition: stroke $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.card--clickable > .checkbox > .icon') {
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon {
   right: rem(16px);
 }
 
-@include pre('.checkbox > .icon--close') {
+.#{$pre}-checkbox > .#{$pre}-icon--close {
   stroke: $state-error;
 }
-@include pre('.checkbox > .icon--tick') {
+.#{$pre}-checkbox > .#{$pre}-icon--tick {
   stroke: $state-success;
 }
 
-@include pre('.checkbox > .icon--tick:last-child') {
+.#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
   top: rem(-2px);
   right: auto;
   left: rem(8px);
@@ -176,53 +183,53 @@
   stroke: $charcoal;
 }
 
-@include pre('.card--clickable > .checkbox > .icon:last-child') {
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
   top: rem(14px);
   left: rem(24px);
 }
 
-@include pre('.checkbox--right > .icon--tick:last-child') {
-  top: calc(50% - 2px); // * IE11 visual hack
+.#{$pre}-checkbox--right > .#{$pre}-icon--tick:last-child {
+  top: calc(50% - #{rem(2px)}); // * IE11 visual hack
   right: 0;
   left: auto;
   transform: translateY(-50%);
 }
 
-@include pre('.card--clickable > .checkbox--right > .icon:last-child') {
-  top: calc(50% - 2px); // * IE11 visual hack
+.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
+  top: calc(50% - #{rem(2px)}); // * IE11 visual hack
   left: auto;
 }
 
-@include pre('.checkbox--reversed > .icon--tick:last-child') {
+.#{$pre}-checkbox--reversed > .#{$pre}-icon--tick:last-child {
   color: $blizzard;
 }
-@include pre('.checkbox__input:checked:disabled ~ .icon--tick:last-child') {
+.#{$pre}-checkbox__input:checked:disabled ~ .#{$pre}-icon--tick:last-child {
   stroke: $fossil;
 }
-@include pre('.checkbox__input:checked[readonly] ~ .icon--tick:last-child') {
+.#{$pre}-checkbox__input:checked[readonly] ~ .#{$pre}-icon--tick:last-child {
   stroke: $charcoal;
 }
 
 // no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  @include pre('.checkbox__label') {
+.#{$pre}-no-touchevents {
+  .#{$pre}-checkbox__label {
     cursor: pointer;
     user-select: none;
   }
 
-  @include pre('.checkbox__input:disabled + .checkbox__label') {
+  .#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label {
     cursor: not-allowed;
   }
 
-  @include pre('.checkbox__label::before') {
+  .#{$pre}-checkbox__label::before {
     border: $input-border;
     transition: border-color $transition-duration-x1 $transition-timing-default;
   }
-  @include pre('.checkbox--reversed > .checkbox__label::before') {
+  .#{$pre}-checkbox--reversed > .#{$pre}-checkbox__label::before {
     border-color: rgba($blizzard, 0.55);
   }
 
-  @include pre('.checkbox__border-outer') {
+  .#{$pre}-checkbox__border-outer {
     position: absolute;
     top: rem(4px);
     left: rem(8px);
@@ -232,27 +239,29 @@
     pointer-events: none;
   }
 
-  @include pre('.card--clickable > .checkbox > .checkbox__border-outer') {
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox
+    > .#{$pre}-checkbox__border-outer {
     top: rem(20px);
     left: rem(24px);
   }
 
-  @include pre('.checkbox--right > .checkbox__border-outer') {
+  .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
     top: 50%;
     right: rem(8px);
     left: auto;
     transform: translateY(-50%);
   }
 
-  @include pre(
-    '.card--clickable > .checkbox--right > .checkbox__border-outer'
-  ) {
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox--right
+    > .#{$pre}-checkbox__border-outer {
     top: 50%;
     right: rem(24px);
     left: auto;
   }
 
-  @include pre('.checkbox__border') {
+  .#{$pre}-checkbox__border {
     stroke: $viking;
     stroke-width: 1;
     stroke-dasharray: 0 ((get-circumference(1.5) + 52));
@@ -262,230 +271,253 @@
     fill: none;
   }
 
-  @include pre('.checkbox--error .checkbox__border') {
+  .#{$pre}-checkbox--error .#{$pre}-checkbox__border {
     stroke: $cinnabar;
   }
-  @include pre('.checkbox--success .checkbox__border') {
+  .#{$pre}-checkbox--success .#{$pre}-checkbox__border {
     stroke: $christi;
   }
-  @include pre('.checkbox--reversed .checkbox__border') {
+  .#{$pre}-checkbox--reversed .#{$pre}-checkbox__border {
     stroke: $blizzard;
   }
-  @include pre(
-    '.checkbox__input:hover ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox__input:hover
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke-dasharray: ((get-circumference(1.5) + 52)) 0;
   }
-  @include pre(
-    '.checkbox__input:focus ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox__input:focus
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke-dasharray: ((get-circumference(1.5) + 52)) 0;
   }
-  @include pre(
-    '.checkbox__input:active ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox__input:active
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $viking-shade;
   }
-  @include pre(
-    '.checkbox--error > .checkbox__input:active ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:active
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $cinnabar-shade;
   }
-  @include pre(
-    '.checkbox--success > .checkbox__input:active ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--success
+    > .#{$pre}-checkbox__input:active
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $christi-shade;
   }
-  @include pre(
-    '.checkbox--reversed > .checkbox__input:active ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--reversed
+    > .#{$pre}-checkbox__input:active
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $blizzard;
   }
-  @include pre(
-    '.checkbox__input:checked ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox__input:checked
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $viking-shade;
     stroke-dasharray: ((get-circumference(1.5) + 52)) 0;
   }
-  @include pre(
-    '.checkbox__input:checked:hover ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox__input:checked:hover
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $viking;
   }
-  @include pre(
-    '.checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox__input:checked:focus
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $viking;
   }
-  @include pre(
-    '.checkbox__input:checked:active ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox__input:checked:active
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $viking-shade;
   }
-  @include pre(
-    '.checkbox--error > .checkbox__input:checked ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:checked
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $cinnabar-shade;
   }
-  @include pre(
-    '.checkbox--error > .checkbox__input:checked:hover ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:checked:hover
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $cinnabar;
   }
-  @include pre(
-    '.checkbox--error > .checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:checked:focus
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $cinnabar;
   }
-  @include pre(
-    '.checkbox--error > .checkbox__input:checked:active ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:checked:active
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $cinnabar-shade;
   }
-  @include pre(
-    '.checkbox--success > .checkbox__input:checked ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--success
+    > .#{$pre}-checkbox__input:checked
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $christi-shade;
   }
-  @include pre(
-    ' .checkbox--success > .checkbox__input:checked:hover ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--success
+    > .#{$pre}-checkbox__input:checked:hover
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $christi;
   }
-  @include pre(
-    '.checkbox--success > .checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--success
+    > .#{$pre}-checkbox__input:checked:focus
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $christi;
   }
-  @include pre(
-    '.checkbox--success > .checkbox__input:checked:active ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--success
+    > .#{$pre}-checkbox__input:checked:active
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $christi-shade;
   }
-  @include pre(
-    '.checkbox--reversed > .checkbox__input:checked ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--reversed
+    > .#{$pre}-checkbox__input:checked
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: rgba($blizzard, 0);
   }
-  @include pre(
-    ' .checkbox--reversed > .checkbox__input:checked:hover ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--reversed
+    > .#{$pre}-checkbox__input:checked:hover
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $blizzard;
   }
-  @include pre(
-    '.checkbox--reversed > .checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--reversed
+    > .#{$pre}-checkbox__input:checked:focus
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: $blizzard;
   }
-  @include pre(
-    '.checkbox--reversed > .checkbox__input:checked:focus ~ .checkbox__border-outer > .checkbox__border'
-  ) {
+  .#{$pre}-checkbox--reversed
+    > .#{$pre}-checkbox__input:checked:focus
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
     stroke: rgba($blizzard, 0);
   }
 
-  @include pre('.checkbox > .icon') {
+  .#{$pre}-checkbox > .#{$pre}-icon {
     pointer-events: none;
   }
 
-  @include pre('.checkbox__input:hover ~ .icon--close') {
+  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--close {
     stroke: $state-error-hover;
   }
-  @include pre('.checkbox__input:focus ~ .icon--close') {
+  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--close {
     stroke: $state-error-focus;
   }
-  @include pre('.checkbox__input:active ~ .icon--close') {
+  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--close {
     stroke: $state-error-active;
   }
 
-  @include pre('.checkbox__input:hover ~ .icon--tick') {
+  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--tick {
     stroke: $state-success-hover;
   }
-  @include pre('.checkbox__input:focus ~ .icon--tick') {
+  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--tick {
     stroke: $state-success-focus;
   }
-  @include pre('.checkbox__input:active ~ .icon--tick') {
+  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--tick {
     stroke: $state-success-active;
   }
 
-  @include pre('.checkbox > .icon--tick:last-child') {
+  .#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
     stroke: $charcoal;
   }
 }
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.checkbox__input') {
+  .#{$pre}-checkbox__input {
     top: rem(8px);
   }
 
-  @include pre('.card--clickable > .checkbox > .checkbox__input') {
+  .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__input {
     top: rem(24px);
   }
 
-  @include pre('.checkbox--right > .checkbox__input') {
+  .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
     top: 50%;
   }
 
-  @include pre('.card--clickable > .checkbox--right > .checkbox__input') {
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox--right
+    > .#{$pre}-checkbox__input {
     top: 50%;
   }
 
-  @include pre('.checkbox__label') {
+  .#{$pre}-checkbox__label {
     font-size: rem(15px);
     line-height: rem(32px);
   }
 
-  @include pre('.checkbox__label::before') {
+  .#{$pre}-checkbox__label::before {
     top: rem(8px);
   }
 
-  @include pre('.card--clickable > .checkbox > .checkbox__label::before') {
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox
+    > .#{$pre}-checkbox__label::before {
     top: rem(24px);
   }
 
-  @include pre('.checkbox--right > .checkbox__label::before') {
+  .#{$pre}-checkbox--right > .#{$pre}-checkbox__label::before {
     top: 50%;
   }
 
-  @include pre(
-    '.card--clickable > .checkbox--right > .checkbox__label::before'
-  ) {
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox--right
+    > .#{$pre}-checkbox__label::before {
     top: 50%;
   }
 
-  @include pre('.checkbox > .icon:last-child') {
+  .#{$pre}-checkbox > .#{$pre}-icon:last-child {
     top: rem(2px);
   }
 
-  @include pre('.card--clickable > .checkbox > .icon:last-child') {
+  .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
     top: rem(18px);
   }
 
-  @include pre('.checkbox--right > .icon:last-child') {
-    top: calc(50% - 2px); // * IE11 visual hack
+  .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
+    top: calc(50% - #{rem(2px)}); // * IE11 visual hack
   }
 
-  @include pre('.card--clickable > .checkbox--right > .icon:last-child') {
-    top: calc(50% - 2px); // * IE11 visual hack
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox--right
+    > .#{$pre}-icon:last-child {
+    top: calc(50% - #{rem(2px)}); // * IE11 visual hack
   }
 
   // no-touchevents // --------------------------------------------------------
-  @include pre('.no-touchevents') {
-    @include pre('.checkbox__border-outer') {
+  .#{$pre}-no-touchevents {
+    .#{$pre}-checkbox__border-outer {
       top: rem(8px);
     }
 
-    @include pre('.card--clickable > .checkbox > .checkbox__border-outer') {
+    .#{$pre}-card--clickable
+      > .#{$pre}-checkbox
+      > .#{$pre}-checkbox__border-outer {
       top: rem(24px);
     }
 
-    @include pre('.checkbox--right > .checkbox__border-outer') {
+    .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
       top: 50%;
     }
 
-    @include pre(
-      '.card--clickable > .checkbox--right > .checkbox__border-outer'
-    ) {
+    .#{$pre}-card--clickable
+      > .#{$pre}-checkbox--right
+      > .#{$pre}-checkbox__border-outer {
       top: 50%;
     }
   }
@@ -493,11 +525,11 @@
 
 // large // ------------------------------------------------------------------
 @media #{$media-l} {
-  @include pre('.card--clickable > .checkbox') {
+  .#{$pre}-card--clickable > .#{$pre}-checkbox {
     margin: rem(-16px);
   }
 
-  @include pre('.checkbox__label') {
+  .#{$pre}-checkbox__label {
     font-size: rem(16px);
   }
 }

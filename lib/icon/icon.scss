@@ -485,3 +485,102 @@
 @include pre('.icon--tick-ring.active .stroke--2') {
   stroke-dasharray: 14 0;
 }
+
+@include pre('.card--draggable > .icon--draggable') {
+  position: absolute;
+  top: 50%;
+  left: rem(8px);
+  transform: translateY(-50%);
+  stroke: none;
+  fill: $fossil;
+  transition: $transition-duration-x1 $transition-timing-default;
+}
+
+@include pre('.no-touchevents') {
+  @include pre('.card--draggable:hover > .icon--draggable') {
+    fill: $hurricane;
+  }
+  @include pre('.card--draggable:focus > .icon--draggable') {
+    fill: $hurricane;
+  }
+  @include pre('.foo > .card--draggable > .icon--draggable') {
+    fill: $gunmetal;
+  }
+}
+
+@include pre('.progress > .icon') {
+  position: absolute;
+  top: 0;
+  right: rem(8px);
+}
+
+@include pre('.progress--success > .icon') {
+  stroke: $christi-shade;
+}
+@include pre('.progress--error > .icon') {
+  stroke: $cinnabar-shade;
+}
+
+@include pre('.toast__button > .icon') {
+  stroke: $gunmetal;
+}
+
+@include pre('.toast > .icon') {
+  position: absolute;
+  top: 50%;
+  left: rem(16px);
+  transform: translateY(-50%);
+  width: rem(24px);
+  height: rem(24px);
+  stroke: $state-default;
+}
+
+@include pre('.toast > .icon--close-ring') {
+  stroke: $state-error;
+}
+@include pre('.toast > .icon--tick-ring') {
+  stroke: $state-success;
+}
+
+@include pre('.no-touchevents') {
+  @include pre('.toast__button:hover > .icon') {
+    stroke: $state-default-hover;
+  }
+  @include pre('.toast__button:focus > .icon') {
+    stroke: $state-default-focus;
+  }
+  @include pre('.toast__button:active > .icon') {
+    stroke: $state-default-active;
+  }
+}
+
+@include pre('.pagination__item > .icon') {
+  position: absolute;
+  top: rem(12px);
+}
+
+@include pre('.pagination__item > .icon--arrow-left') {
+  left: rem(12px);
+}
+@include pre('.pagination__item > .icon--arrow-right') {
+  right: rem(12px);
+}
+
+@include pre('.pagination__item--selectable > .icon') {
+  stroke: $viking-shade;
+}
+
+@include pre('.select > .icon') {
+  position: absolute;
+
+  // * Visual hack.
+  top: rem(26px);
+
+  right: rem(8px);
+  stroke: $gunmetal;
+  pointer-events: none;
+}
+
+@include pre('.select__input:disabled ~ .icon') {
+  stroke: $fossil;
+}

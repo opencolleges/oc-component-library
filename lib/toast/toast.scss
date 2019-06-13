@@ -8,11 +8,9 @@
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
-@import '../utilities/scss/mixins/pseudo';
 
 // Rules
-@include b(toast) {
+.#{$pre}-toast {
   position: fixed;
 
   // * IE doesn't support calc in transformations.
@@ -23,9 +21,9 @@
 
   transform: translateY(-50%);
   box-sizing: border-box;
-  width: rem(calc(100% - 32px));
+  width: calc(100% - #{rem(32px)});
 
-  // * iPhone 8 dimensions - 32px
+  // * iPhone 8 dimensions - 32px.
   max-width: rem(343px);
 
   padding: $space-m rem(40px) $space-m rem(52px);
@@ -36,53 +34,49 @@
   transition: $transition-duration-x4 $transition-timing-bounce-out;
   transition-property: top, right;
   pointer-events: auto;
-
-  @include pseudo(focus-within) {
-    outline: $focus-outline;
-  }
-
-  @include pseudo(before) {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: rem(4px);
-    height: 100%;
-    border-top-left-radius: $border-radius-m;
-    border-bottom-left-radius: $border-radius-m;
-    background-color: $state-default;
-  }
 }
 
-@include pre('.toast.mounted') {
-  right: rem(16px);
+.#{$pre}-toast:focus-within {
+  outline: $focus-outline;
 }
 
-@include pre('.toast::before') {
+.#{$pre}-toast::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: rem(4px);
+  height: 100%;
+  border-top-left-radius: $border-radius-m;
+  border-bottom-left-radius: $border-radius-m;
+  background-color: $state-default;
 }
 
-@include pre('.toast--error::before') {
+.#{$pre}-toast--mounted {
+  right: $space-m;
+}
+
+.#{$pre}-toast--error::before {
   background-color: $state-error;
 }
-
-@include pre('.toast--success::before') {
+.#{$pre}-toast--success::before {
   background-color: $state-success;
 }
 
-@include pre('.toast__heading') {
+.#{$pre}-toast__heading {
   color: $charcoal;
   font-size: rem(14px);
   font-weight: 700;
   line-height: rem(24px);
 }
 
-@include pre('.toast__message') {
+.#{$pre}-toast__message {
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
 }
 
-@include pre('.toast__button') {
+.#{$pre}-toast__button {
   position: absolute;
   top: rem(8px);
   right: rem(8px);
@@ -94,43 +88,12 @@
   background-color: transparent;
 }
 
-@include pre('.toast__button > .icon') {
-  stroke: $gunmetal;
-}
-
-@include pre('.toast > .icon') {
-  position: absolute;
-  top: 50%;
-  left: rem(16px);
-  transform: translateY(-50%);
-  width: rem(24px);
-  height: rem(24px);
-  stroke: $state-default;
-}
-
-@include pre('.toast > .icon--close-ring') {
-  stroke: $state-error;
-}
-@include pre('.toast > .icon--tick-ring') {
-  stroke: $state-success;
-}
-
-@include pre('.no-touchevents') {
-  @include pre('.toast') {
+.#{$pre}-no-touchevents {
+  .#{$pre}-toast {
     user-select: none;
   }
 
-  @include pre('.toast__button') {
+  .#{$pre}-toast__button {
     cursor: pointer;
-  }
-
-  @include pre('.toast__button:hover > .icon') {
-    stroke: $state-default-hover;
-  }
-  @include pre('.toast__button:focus > .icon') {
-    stroke: $state-default-focus;
-  }
-  @include pre('.toast__button:active > .icon') {
-    stroke: $state-default-active;
   }
 }

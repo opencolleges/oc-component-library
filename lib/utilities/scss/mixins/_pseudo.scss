@@ -1,16 +1,29 @@
-@mixin pseudo($pseudo-selector) {
+// Imports
+@import '../variables/combinators';
+
+@mixin pseudo($pseudo-selector, $combinator: '') {
   $selector: &;
 
-  @if $pseudo-selector == before or $pseudo-selector == after {
+  @if $combinator != '' {
+    $selector: #{$selector#{map-get($combinators, $combinator)}};
+  }
+
+  @if $pseudo-selector ==
+    before or
+    $pseudo-selector ==
+    after or
+    $pseudo-selector == -moz-focus-inner or
+    $pseudo-selector == -webkit-scrollbar or
+    $pseudo-selector == -webkit-scrollbar-thumb
+  {
     @at-root {
-      #{$selector+'::'+$pseudo-selector} {
-        content: '';
+      #{$selector + '::' + $pseudo-selector} {
         @content;
       }
     }
   } @else {
     @at-root {
-      #{$selector+':'+$pseudo-selector} {
+      #{$selector + ':' + $pseudo-selector} {
         @content;
       }
     }

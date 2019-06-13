@@ -2,12 +2,12 @@
 // * .button
 
 // Imports
+@import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
 
 // Rules
-@include b(button) {
+.#{$pre}-button {
   overflow: hidden;
   display: block;
   box-sizing: border-box;
@@ -28,244 +28,226 @@
   white-space: nowrap;
   transition: $transition-duration-x1 $transition-timing-default;
   transition-property: box-shadow, border, background-color, color;
-
-  // @at-root {
-  //   @include b(modal) {
-  //     @include e(actions) {
-  //       @include b(button, descendant) {
-  //         margin-bottom: 0;
-  //       }
-  //     }
-  //   }
-  // }
-
-  @include m(compact) {
-    height: $space-xxl;
-    padding: $space-s $space-m;
-    margin: 0 0 $space-s;
-    font-size: rem(12px);
-    line-height: $space-m;
-  }
-  @include m(primary) {
-    border: rem(1px) solid $state-default;
-    background-color: $state-default;
-    color: $blizzard;
-
-    &:disabled {
-      border: rem(1px) solid $state-disabled;
-      background-color: $state-disabled;
-    }
-
-    @include m(error) {
-      border: rem(1px) solid $state-error;
-      background-color: $state-error;
-    }
-    @include m(success) {
-      border: rem(1px) solid $state-success;
-      background-color: $state-success;
-    }
-    @include m(reversed) {
-      border: rem(1px) solid $blizzard;
-      background-color: $blizzard;
-      color: $state-default;
-    }
-  }
-
-  @include m(secondary) {
-    border: rem(1px) solid $state-default;
-    color: $state-default;
-
-    &:disabled {
-      border: rem(1px) solid $state-disabled;
-      color: $state-disabled;
-    }
-
-    @include m(error) {
-      border: rem(1px) solid $state-error;
-      color: $state-error;
-    }
-    @include m(success) {
-      border: rem(1px) solid $state-success;
-      color: $state-success;
-    }
-    @include m(reversed) {
-      border: rem(1px) solid $blizzard;
-      color: $blizzard;
-    }
-  }
 }
 
-// Contextual -----------------------------------------------------------------
-@include b(no-touchevents) {
-  @include b(button) {
+.#{$pre}-modal__actions .#{$pre}-button {
+  margin-bottom: 0;
+}
+
+.#{$pre}-button--compact {
+  height: $space-xxl;
+  padding: $space-s $space-m;
+  margin: 0 0 $space-s;
+  font-size: rem(12px);
+  line-height: $space-m;
+}
+
+.#{$pre}-button--primary {
+  border: rem(1px) solid $state-default;
+  background-color: $state-default;
+  color: $blizzard;
+}
+
+.#{$pre}-button--primary:disabled {
+  border: rem(1px) solid $state-disabled;
+  background-color: $state-disabled;
+}
+
+.#{$pre}-button--primary.#{$pre}-button--error {
+  border: rem(1px) solid $state-error;
+  background-color: $state-error;
+}
+.#{$pre}-button--primary.#{$pre}-button--success {
+  border: rem(1px) solid $state-success;
+  background-color: $state-success;
+}
+.#{$pre}-button--primary.#{$pre}-button--reversed {
+  border: rem(1px) solid $blizzard;
+  background-color: $blizzard;
+  color: $state-default;
+}
+
+.#{$pre}-button--secondary {
+  border: rem(1px) solid $state-default;
+  color: $state-default;
+}
+
+.#{$pre}-button--secondary:disabled {
+  border: rem(1px) solid $state-disabled;
+  color: $state-disabled;
+}
+
+.#{$pre}-button--secondary.#{$pre}-button--error {
+  border: rem(1px) solid $state-error;
+  color: $state-error;
+}
+.#{$pre}-button--secondary.#{$pre}-button--success {
+  border: rem(1px) solid $state-success;
+  color: $state-success;
+}
+.#{$pre}-button--secondary.#{$pre}-button--reversed {
+  border: rem(1px) solid $blizzard;
+  color: $blizzard;
+}
+
+.#{$pre}-no-touchevents {
+  .#{$pre}-button {
     cursor: pointer;
     user-select: none;
+  }
 
-    @include m(primary) {
-      &:disabled {
-        cursor: not-allowed;
+  .#{$pre}-button::-moz-focus-inner {
+    // * Support for Firefox browsers.
+    border: none;
+  }
 
-        &:hover {
-          border-color: $state-disabled;
-          background-color: $state-disabled;
-        }
-        &:active {
-          color: $blizzard;
-        }
-      }
+  .#{$pre}-button--primary:hover {
+    border-color: $state-default-hover;
+    background-color: $state-default-hover;
+  }
+  .#{$pre}-button--primary:focus {
+    border-color: $state-default-focus;
+    background-color: $state-default-focus;
+  }
+  .#{$pre}-button--primary:active {
+    border-color: $state-default-active;
+    background-color: $state-default-active;
+    color: $fossil-transparent;
+  }
 
-      &:hover {
-        border-color: $state-default-hover;
-        background-color: $state-default-hover;
-      }
-      &:focus {
-        border-color: $state-default-focus;
-        background-color: $state-default-focus;
-      }
-      &:active {
-        border-color: $state-default-active;
-        background-color: $state-default-active;
-        color: $fossil-transparent;
-      }
+  .#{$pre}-button--primary:disabled {
+    cursor: not-allowed;
+  }
 
-      @include m(error) {
-        &:hover {
-          border-color: $state-error-hover;
-          background-color: $state-error-hover;
-        }
-        &:focus {
-          border-color: $state-error-focus;
-          background-color: $state-error-focus;
-        }
-        &:active {
-          border-color: $state-error-active;
-          background-color: $state-error-active;
-          color: $fossil-transparent;
-        }
-      }
-      @include m(success) {
-        &:hover {
-          border-color: $state-success-hover;
-          background-color: $state-success-hover;
-        }
-        &:focus {
-          border-color: $state-success-focus;
-          background-color: $state-success-focus;
-        }
-        &:active {
-          border-color: $state-success-active;
-          background-color: $state-success-active;
-          color: $fossil-transparent;
-        }
-      }
-      @include m(reversed) {
-        &:hover {
-          border-color: $blizzard;
-          box-shadow: $box-shadow-layer-1;
-          background-color: $blizzard;
-          color: $state-default-hover;
-        }
-        &:focus {
-          border-color: $blizzard;
-          box-shadow: $box-shadow-layer-1;
-          background-color: $blizzard;
-          color: $state-default-focus;
-        }
-        &:active {
-          border-color: $blizzard;
-          box-shadow: none;
-          color: rgba($state-default-active, 0.21);
-        }
-      }
-    }
+  .#{$pre}-button--primary:disabled:hover {
+    border-color: $state-disabled;
+    background-color: $state-disabled;
+  }
+  .#{$pre}-button--primary:disabled:active {
+    color: $blizzard;
+  }
 
-    @include m(secondary) {
-      &:disabled {
-        cursor: not-allowed;
+  .#{$pre}-button--primary.#{$pre}-button--error:hover {
+    border-color: $state-error-hover;
+    background-color: $state-error-hover;
+  }
+  .#{$pre}-button--primary.#{$pre}-button--error:focus {
+    border-color: $state-error-focus;
+    background-color: $state-error-focus;
+  }
+  .#{$pre}-button--primary.#{$pre}-button--error:active {
+    border-color: $state-error-active;
+    background-color: $state-error-active;
+    color: $fossil-transparent;
+  }
 
-        &:hover {
-          border-color: $state-disabled;
-          background-color: transparent;
-          color: $state-disabled;
-        }
-        &:active {
-          color: $state-disabled;
-        }
-      }
+  .#{$pre}-button--primary.#{$pre}-button--success:hover {
+    border-color: $state-success-hover;
+    background-color: $state-success-hover;
+  }
+  .#{$pre}-button--primary.#{$pre}-button--success:focus {
+    border-color: $state-success-focus;
+    background-color: $state-success-focus;
+  }
+  .#{$pre}-button--primary.#{$pre}-button--success:active {
+    border-color: $state-success-active;
+    background-color: $state-success-active;
+    color: $fossil-transparent;
+  }
 
-      &:hover {
-        border-color: $state-default-hover;
-        background-color: $state-default-hover;
-        color: $blizzard;
-      }
-      &:focus {
-        border-color: $state-default-focus;
-        background-color: $state-default-focus;
-        color: $blizzard;
-      }
-      &:active {
-        border-color: $state-default-active;
-        background-color: $state-default-active;
-        color: $fossil-transparent;
-      }
+  .#{$pre}-button--primary.#{$pre}-button--reversed:hover {
+    border-color: $blizzard;
+    box-shadow: $box-shadow-layer-1;
+    background-color: $blizzard;
+    color: $state-default-hover;
+  }
+  .#{$pre}-button--primary.#{$pre}-button--reversed:focus {
+    border-color: $blizzard;
+    box-shadow: $box-shadow-layer-1;
+    background-color: $blizzard;
+    color: $state-default-focus;
+  }
+  .#{$pre}-button--primary.#{$pre}-button--reversed:active {
+    border-color: $blizzard;
+    box-shadow: none;
+    color: rgba($state-default-active, 0.21);
+  }
 
-      @include m(error) {
-        &:hover {
-          border-color: $state-error-hover;
-          background-color: $state-error-hover;
-          color: $blizzard;
-        }
-        &:focus {
-          border-color: $state-error-focus;
-          background-color: $state-error-focus;
-          color: $blizzard;
-        }
-        &:active {
-          border-color: $state-error-active;
-          background-color: $state-error-active;
-          color: $fossil-transparent;
-        }
-      }
-      @include m(success) {
-        &:hover {
-          border-color: $state-success-hover;
-          background-color: $state-success-hover;
-          color: $blizzard;
-        }
-        &:focus {
-          border-color: $state-success-focus;
-          background-color: $state-success-focus;
-          color: $blizzard;
-        }
-        &:active {
-          border-color: $state-success-active;
-          background-color: $state-success-active;
-          color: $fossil-transparent;
-        }
-      }
-      @include m(reversed) {
-        &:hover {
-          border-color: $blizzard;
-          box-shadow: $box-shadow-layer-1;
-          background-color: $blizzard;
-          color: $state-default-hover;
-        }
-        &:focus {
-          border-color: $blizzard;
-          box-shadow: $box-shadow-layer-1;
-          background-color: $blizzard;
-          color: $state-default-focus;
-        }
-        &:active {
-          box-shadow: none;
-          color: rgba($state-default-active, 0.21);
-        }
-      }
-    }
+  .#{$pre}-button--secondary:hover {
+    border-color: $state-default-hover;
+    background-color: $state-default-hover;
+    color: $blizzard;
+  }
+  .#{$pre}-button--secondary:focus {
+    border-color: $state-default-focus;
+    background-color: $state-default-focus;
+    color: $blizzard;
+  }
+  .#{$pre}-button--secondary:active {
+    border-color: $state-default-active;
+    background-color: $state-default-active;
+    color: $fossil-transparent;
+  }
 
-    &::-moz-focus-inner {
-      // * Support for Firefox browsers.
-      border: none;
-    }
+  .#{$pre}-button--secondary:disabled {
+    cursor: not-allowed;
+  }
+
+  .#{$pre}-button--secondary:disabled:hover {
+    border-color: $state-disabled;
+    background-color: transparent;
+    color: $state-disabled;
+  }
+  .#{$pre}-button--secondary:disabled:active {
+    color: $state-disabled;
+  }
+
+  .#{$pre}-button--secondary.#{$pre}-button--error:hover {
+    border-color: $state-error-hover;
+    background-color: $state-error-hover;
+    color: $blizzard;
+  }
+  .#{$pre}-button--secondary.#{$pre}-button--error:focus {
+    border-color: $state-error-focus;
+    background-color: $state-error-focus;
+    color: $blizzard;
+  }
+  .#{$pre}-button--secondary.#{$pre}-button--error:active {
+    border-color: $state-error-active;
+    background-color: $state-error-active;
+    color: $fossil-transparent;
+  }
+
+  .#{$pre}-button--secondary.#{$pre}-button--success:hover {
+    border-color: $state-success-hover;
+    background-color: $state-success-hover;
+    color: $blizzard;
+  }
+  .#{$pre}-button--secondary.#{$pre}-button--success:focus {
+    border-color: $state-success-focus;
+    background-color: $state-success-focus;
+    color: $blizzard;
+  }
+  .#{$pre}-button--secondary.#{$pre}-button--success:active {
+    border-color: $state-success-active;
+    background-color: $state-success-active;
+    color: $fossil-transparent;
+  }
+
+  .#{$pre}-button--secondary.#{$pre}-button--reversed:hover {
+    border-color: $blizzard;
+    box-shadow: $box-shadow-layer-1;
+    background-color: $blizzard;
+    color: $state-default-hover;
+  }
+  .#{$pre}-button--secondary.#{$pre}-button--reversed:focus {
+    border-color: $blizzard;
+    box-shadow: $box-shadow-layer-1;
+    background-color: $blizzard;
+    color: $state-default-focus;
+  }
+  .#{$pre}-button--secondary.#{$pre}-button--reversed:active {
+    box-shadow: none;
+    color: rgba($state-default-active, 0.21);
   }
 }

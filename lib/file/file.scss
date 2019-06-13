@@ -15,16 +15,15 @@
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
 
 // Rules
-@include pre('.file') {
+.#{$pre}-file {
   position: relative;
   padding: $space-stack-l;
   margin: $space-stack-m;
 }
 
-@include pre('.file__outer') {
+.#{$pre}-file__outer {
   position: relative;
   box-sizing: border-box;
   min-height: rem(360px);
@@ -34,29 +33,29 @@
   transition: border-color $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.file--s > .file__outer') {
+.#{$pre}-file--s > .#{$pre}-file__outer {
   height: rem(360px);
 }
-@include pre('.file--m > .file__outer') {
+.#{$pre}-file--m > .#{$pre}-file__outer {
   height: rem(400px);
 }
-@include pre('.file--l > .file__outer') {
+.#{$pre}-file--l > .#{$pre}-file__outer {
   height: rem(440px);
 }
 
-@include pre('.file--error > .file__outer') {
+.#{$pre}-file--error > .#{$pre}-file__outer {
   border-color: $state-error;
 }
 
-@include pre('.file--success > .file__outer') {
+.#{$pre}-file--success > .#{$pre}-file__outer {
   border-color: $state-success;
 }
 
-@include pre('.file__list') {
+.#{$pre}-file__list {
   margin: $space-m 0 rem(-16px);
 }
 
-@include pre('.file__input') {
+.#{$pre}-file__input {
   position: absolute;
   top: 0;
   left: 0;
@@ -66,7 +65,7 @@
   pointer-events: none;
 }
 
-@include pre('.file__inner') {
+.#{$pre}-file__inner {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -74,36 +73,36 @@
   max-width: 50%;
 }
 
-@include pre('.file__image') {
+.#{$pre}-file__image {
   width: rem(96px);
   height: rem(96px);
   margin: 0 auto rem(16px);
 }
 
-@include pre('.file__image > .icon') {
+.#{$pre}-file__image > .#{$pre}-icon {
   width: 100%;
   height: 100%;
   stroke: $fossil;
 }
 
-@include pre('.file--s .file__image') {
+.#{$pre}-file--s .#{$pre}-file__image {
   width: rem(96px);
   height: rem(96px);
 }
-@include pre('.file--m .file__image') {
+.#{$pre}-file--m .#{$pre}-file__image {
   width: rem(120px);
   height: rem(120px);
 }
-@include pre('.file--l .file__image') {
+.#{$pre}-file--l .#{$pre}-file__image {
   width: rem(144px);
   height: rem(144px);
 }
 
-@include pre('.file__description') {
+.#{$pre}-file__description {
   display: none;
 }
 
-@include pre('.file__label') {
+.#{$pre}-file__label {
   overflow: hidden;
   display: table;
   box-sizing: border-box;
@@ -128,7 +127,7 @@
   user-select: none;
 }
 
-@include pre('.file__types') {
+.#{$pre}-file__types {
   display: block;
   color: $hurricane;
   font-size: rem(12px);
@@ -137,7 +136,7 @@
   line-height: rem(16px);
 }
 
-@include pre('.file__button') {
+.#{$pre}-file__button {
   width: rem(40px);
   height: rem(40px);
   padding: 0;
@@ -146,11 +145,11 @@
   background-color: transparent;
 }
 
-@include pre('.file__button > .icon') {
+.#{$pre}-file__button > .#{$pre}-icon {
   stroke: $gunmetal;
 }
 
-@include pre('.file__message') {
+.#{$pre}-file__message {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -161,25 +160,25 @@
   user-select: none;
 }
 
-@include pre('.file--error .file__message') {
+.#{$pre}-file--error .#{$pre}-file__message {
   color: $state-error;
 }
 
-@include pre('.file--success .file__message') {
+.#{$pre}-file--success .#{$pre}-file__message {
   color: $state-success;
 }
 
 // no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  @include pre('.file__input:focus') {
+.#{$pre}-no-touchevents {
+  .#{$pre}-file__input:focus {
     outline: none;
   }
-  @include pre('.file__input.active') {
+  .#{$pre}-file__input.#{$pre}-active {
     z-index: 1;
     pointer-events: initial;
   }
 
-  @include pre('.file__description') {
+  .#{$pre}-file__description {
     display: block;
     margin-bottom: rem(8px);
     font-size: rem(14px);
@@ -187,86 +186,88 @@
     line-height: rem(24px);
   }
 
-  @include pre('.file__label:hover') {
+  .#{$pre}-file__label:hover {
     border: rem(1px) solid $viking;
     background-color: $viking;
     color: $blizzard;
   }
-  @include pre('.file__label:active') {
+  .#{$pre}-file__label:active {
     border: rem(1px) solid $viking-shade;
     background-color: $viking-shade;
     color: $fossil;
   }
-  @include pre('.file__input:focus ~ .file__inner > .file__label') {
+  .#{$pre}-file__input:focus ~ .#{$pre}-file__inner > .#{$pre}-file__label {
     border: rem(1px) solid $viking;
     background-color: $viking;
     color: $blizzard;
     // outline: $focus-outline;
   }
-  @include pre('.file__input.active ~ .file__inner > .file__label') {
+  .#{$pre}-file__input.#{$pre}-active
+    ~ .#{$pre}-file__inner
+    > .#{$pre}-file__label {
     border: rem(1px) solid $viking;
     background-color: $viking;
     color: $blizzard;
   }
 
-  @include pre('.file__item') {
+  .#{$pre}-file__item {
     font-family: $font-family-sans-serif;
   }
 
-  @include pre('.file__name') {
+  .#{$pre}-file__name {
     display: block;
   }
 
-  @include pre('.file__size') {
+  .#{$pre}-file__size {
     display: block;
     color: $fossil;
     font-size: rem(12px);
     font-weight: 700;
   }
 
-  @include pre('.file__button') {
+  .#{$pre}-file__button {
     cursor: pointer;
   }
 
-  @include pre('.file__button:hover > .icon') {
+  .#{$pre}-file__button:hover > .#{$pre}-icon {
     stroke: $state-default-hover;
   }
-  @include pre('.file__button:focus > .icon') {
+  .#{$pre}-file__button:focus > .#{$pre}-icon {
     stroke: $state-default-focus;
   }
-  @include pre('.file__button:active > .icon') {
+  .#{$pre}-file__button:active > .#{$pre}-icon {
     stroke: $state-default-active;
   }
 }
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.file--s > .file__outer') {
+  .#{$pre}-file--s > .#{$pre}-file__outer {
     height: rem(400px);
   }
-  @include pre('.file--m > .file__outer') {
+  .#{$pre}-file--m > .#{$pre}-file__outer {
     height: rem(440px);
   }
-  @include pre('.file--l > .file__outer') {
+  .#{$pre}-file--l > .#{$pre}-file__outer {
     height: rem(480px);
   }
 
-  @include pre('.file--s .file__image') {
+  .#{$pre}-file--s .#{$pre}-file__image {
     width: rem(120px);
     height: rem(120px);
   }
-  @include pre('.file--m .file__image') {
+  .#{$pre}-file--m .#{$pre}-file__image {
     width: rem(144px);
     height: rem(144px);
   }
-  @include pre('.file--l .file__image') {
+  .#{$pre}-file--l .#{$pre}-file__image {
     width: rem(168px);
     height: rem(168px);
   }
 
   // no-touchevents // ----------------------------------------------------------
-  @include pre('.no-touchevents') {
-    @include pre('.file__description') {
+  .#{$pre}-no-touchevents {
+    .#{$pre}-file__description {
       font-size: rem(15px);
       line-height: rem(32px);
     }
@@ -275,36 +276,36 @@
 
 // large // -------------------------------------------------------------------
 @media #{$media-l} {
-  @include pre('.file--s > .file__outer') {
+  .#{$pre}-file--s > .#{$pre}-file__outer {
     height: rem(440px);
   }
-  @include pre('.file--m > .file__outer') {
+  .#{$pre}-file--m > .#{$pre}-file__outer {
     height: rem(480px);
   }
-  @include pre('.file--l > .file__outer') {
+  .#{$pre}-file--l > .#{$pre}-file__outer {
     height: rem(520px);
   }
 
-  @include pre('.file__image') {
+  .#{$pre}-file__image {
     margin-bottom: rem(32px);
   }
 
-  @include pre('.file--s .file__image') {
+  .#{$pre}-file--s .#{$pre}-file__image {
     width: rem(144px);
     height: rem(144px);
   }
-  @include pre('.file--m .file__image') {
+  .#{$pre}-file--m .#{$pre}-file__image {
     width: rem(168px);
     height: rem(168px);
   }
-  @include pre('.file--l .file__image') {
+  .#{$pre}-file--l .#{$pre}-file__image {
     width: rem(192px);
     height: rem(192px);
   }
 
   // no-touchevents // ----------------------------------------------------------
-  @include pre('.no-touchevents') {
-    @include pre('.file__description') {
+  .#{$pre}-no-touchevents {
+    .#{$pre}-file__description {
       font-size: rem(16px);
     }
   }

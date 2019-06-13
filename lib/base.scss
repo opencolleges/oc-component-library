@@ -1,30 +1,17 @@
-// * vendor imports
-@import url('https://fonts.googleapis.com/css?family=Inconsolata:700|Open+Sans+Condensed:300,700|Open+Sans:300,400,400i,700');
-
-// * utility imports
+// Imports
+@import './utilities/scss/variables/tokens';
 @import './utilities/scss/functions/rem';
 
-// * token imports
-@import './utilities/scss/variables/tokens';
+// Vendor imports
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700|Open+Sans+Condensed:300,700|Open+Sans:300,400,400i,700');
 
-// * style scroll bar in -webkit- browsers
-::-webkit-scrollbar {
-  // * for vertical scrollbars
-  width: rem(4px);
-
-  // * for horizontal scrollbars
-  height: rem(4px);
-}
-::-webkit-scrollbar-thumb {
-  border-radius: $border-radius-s;
-  background: $fossil-transparent;
-}
-
-// * declare selection highlight color
+// Rules
 ::-moz-selection {
+  // * Declare selection highlight color.
   background: $selection-background;
 }
 ::selection {
+  // * Declare selection highlight color.
   background: $selection-background;
 }
 
@@ -36,17 +23,17 @@ body {
   font-size: rem(16px);
   font-weight: 400;
 
-  // * font antialiasing in OSX
+  // * Font antialiasing on Mac OS.
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  // * text rendering
+  // * Text rendering.
   text-rendering: optimizeLegibility;
 
-  // * remove overlay when element is tapped in iOS
+  // * Remove overlay when element is tapped in iOS.
   -webkit-tap-highlight-color: $blizzard-transparent;
 
-  // * progressivlely enhance the caret for browsers that support caret-color.
+  // * Progressivlely enhance the caret for browsers that support caret-color.
   caret-color: $charcoal;
 }
 
@@ -56,7 +43,7 @@ img {
   height: auto;
 }
 
-// * declare autofill highlight color
 input:-webkit-autofill {
-  box-shadow: rgba($viking, 0.13) rem(0, 0, 0, 24px) inset;
+  // * Autofill highlight color.
+  box-shadow: rgba($viking, 0.13) 0, 0, 0, rem(24px) inset !important;
 }

@@ -5,38 +5,36 @@
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
 
 // Rules
-@include pre('.tr--left') {
-  text-align: left;
-}
-@include pre('.tr--center') {
-  text-align: center;
-}
-@include pre('.tr--right') {
-  text-align: right;
-}
-
-@include pre('.tbody > .tr') {
+.#{$pre}-tbody > .#{$pre}-tr {
   border-bottom: rem(1px) solid $gallery;
 }
 
-@include pre('.tbody > .tr:first-of-type') {
+.#{$pre}-tbody > .#{$pre}-tr:first-of-type {
   border-top: rem(1px) solid $gallery;
 }
-@include pre('.tbody > .tr:nth-of-type(2n)') {
+.#{$pre}-tbody > .#{$pre}-tr:nth-of-type(2n) {
   background-color: $daisy-transparent;
 }
 
-// no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  @include pre('.tbody > .tr') {
+.#{$pre}-tr--left {
+  text-align: left;
+}
+.#{$pre}-tr--center {
+  text-align: center;
+}
+.#{$pre}-tr--right {
+  text-align: right;
+}
+
+.#{$pre}-no-touchevents {
+  .#{$pre}-tbody > .#{$pre}-tr {
     transition: background-color $transition-duration-x1
       $transition-timing-default;
   }
 
-  @include pre('.tbody > .tr:hover') {
+  .#{$pre}-tbody > .#{$pre}-tr:hover {
     background-color: $selection-background;
   }
 }

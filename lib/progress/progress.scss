@@ -5,103 +5,73 @@
 // *   .progress__label
 
 // Imports
-@import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
 @import '../utilities/scss/mixins/bem';
+@import '../utilities/scss/mixins/device';
 
 // Rules
-@include b(progress) {
+.#{$pre}-progress {
   position: relative;
   box-sizing: border-box;
   height: rem(40px);
   padding-right: $space-xxl;
   margin: $space-stack-m;
-
-  @include m(alt) {
-    padding-right: 0;
-  }
-  @include m(compact) {
-    margin: 0;
-  }
-
-  @include e(bar-outer) {
-    position: relative;
-    top: rem(8px);
-    height: rem(8px);
-    border-radius: $border-radius-m;
-    background-color: $alto;
-  }
-  @include e(bar) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: rem(8px);
-    height: 100%;
-    border-radius: inherit;
-    background-color: $viking-shade;
-    transition: width $transition-duration-x2 $transition-timing-bounce-out,
-      background-color $transition-duration-x1 $transition-timing-default;
-  }
-  @include e(label) {
-    position: absolute;
-    top: rem(24px);
-    left: 0;
-    color: $gunmetal;
-    font-family: $font-family-sans-serif;
-    font-size: rem(12px);
-    font-weight: 700;
-    line-height: rem(16px);
-  }
 }
 
-// @include pre('.progress') {
-// }
-
-// @include pre('.progress--alt') {
-// }
-
-// @include pre('.progress--compact') {
-// }
-
-// @include pre('.progress__bar-outer') {
-// }
-
-// @include pre('.progress__bar') {
-// }
-
-@include pre('.progress--success .progress__bar') {
-  background-color: $christi-shade;
+.#{$pre}-progress--compact {
+  margin: 0;
 }
 
-@include pre('.progress--error .progress__bar') {
-  background-color: $cinnabar-shade;
+.#{$pre}-progress--alt {
+  padding-right: 0;
 }
 
-@include pre('.progress__label') {
+.#{$pre}-progress__bar-outer {
+  position: relative;
+  top: $space-s;
+  height: $space-s;
+  border-radius: $border-radius-m;
+  background-color: $alto;
 }
 
-@include pre('.progress--error > .progress__label') {
+.#{$pre}-progress__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: $space-s;
+  height: 100%;
+  border-radius: inherit;
+  background-color: $viking-shade;
+  transition: width $transition-duration-x2 $transition-timing-bounce-out,
+    background-color $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-progress--error .#{$pre}-progress__bar {
+  background-color: $state-error;
+}
+.#{$pre}-progress--success .#{$pre}-progress__bar {
+  background-color: $state-error;
+}
+
+.#{$pre}-progress__label {
+  position: absolute;
+  top: $space-l;
+  left: 0;
+  color: $gunmetal;
+  font-family: $font-family-sans-serif;
+  font-size: rem(12px);
+  font-weight: 700;
+  line-height: $space-m;
+}
+
+.#{$pre}-progress--error > .#{$pre}-progress__label {
   color: $cinnabar-shade;
   font-weight: 400;
 }
 
-@include pre('.progress > .icon') {
-  position: absolute;
-  top: 0;
-  right: rem(8px);
-}
-
-@include pre('.progress--success > .icon') {
-  stroke: $christi-shade;
-}
-@include pre('.progress--error > .icon') {
-  stroke: $cinnabar-shade;
-}
-
-// no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  @include pre('.progress__label') {
+.#{$pre}-no-touchevents {
+  .#{$pre}-progress__label {
     user-select: none;
   }
 }

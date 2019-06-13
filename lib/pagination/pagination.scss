@@ -13,9 +13,11 @@
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
 @import '../utilities/scss/mixins/bem';
+@import '../utilities/scss/mixins/device';
+@import '../utilities/scss/mixins/pseudo';
 
-// small // -------------------------------------------------------------------
-@include pre('.pagination') {
+// Rules
+@include b(pagination) {
   z-index: $z-index-pagination;
   position: fixed;
   bottom: rem(-80px);
@@ -29,175 +31,272 @@
   box-shadow: $box-shadow-layer-4;
   background-color: $blizzard;
   transition: bottom $transition-duration-x4 $transition-timing-bounce-out;
+
+  @include pseudo(focus-within) {
+    outline: $focus-outline;
+  }
+
+  @include m(mounted) {
+    bottom: $space-m;
+
+    @include device(m) {
+      bottom: rem(16px);
+    }
+    @include device(l) {
+      bottom: rem(88px);
+    }
+  }
+
+  @include e(list) {
+    position: relative;
+    height: $space-xxxl;
+    margin: 0 auto;
+
+    @include pseudo(first-child) {
+      position: absolute;
+      top: $space-s;
+      left: $space-s;
+      margin: 0;
+
+      @include device(m) {
+        top: rem(12px);
+      }
+    }
+    @include pseudo(last-child) {
+      position: absolute;
+      top: $space-s;
+      right: $space-s;
+      margin: 0;
+
+      @include device(m) {
+        top: rem(12px);
+      }
+    }
+  }
+  @include e(item) {
+    position: relative;
+    float: left;
+    width: $space-xxxl;
+    height: $space-xxxl;
+    color: $fossil;
+    text-align: center;
+    font-size: rem(11px);
+    font-weight: 700;
+    line-height: $space-xxxl;
+    user-select: none;
+
+    @include pseudo(nth-last-child(2)) {
+      width: $space-m;
+    }
+
+    @include pseudo(focus) {
+      outline: none;
+    }
+
+    @include m(selectable) {
+      color: $gunmetal;
+
+      @include pseudo(before) {
+        content: '';
+        opacity: 0;
+        position: absolute;
+        top: rem(52px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: rem(4px);
+        height: rem(4px);
+        border-radius: $border-radius-round;
+        background-color: $christi-shade;
+        transition: opacity $transition-duration-x1 $transition-timing-default,
+          top $transition-duration-x2 $transition-timing-bounce-out;
+        pointer-events: none;
+      }
+      @include pseudo(after) {
+        content: '*';
+        opacity: 0;
+        position: absolute;
+
+        // * Visual hack.
+        top: rem(53px);
+
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: $border-radius-round;
+        color: $cinnabar-shade;
+        font-size: rem(11px);
+        text-align: center;
+        line-height: rem(4px);
+        transition: opacity $transition-duration-x1 $transition-timing-default,
+          top $transition-duration-x2 $transition-timing-bounce-out;
+        pointer-events: none;
+      }
+
+      @include m(active) {
+        color: $charcoal;
+
+        @include device(no-touch) {
+          cursor: default;
+
+          @include pseudo(hover) {
+            color: $charcoal;
+          }
+          @include pseudo(active) {
+            color: $charcoal;
+          }
+        }
+      }
+
+      @include m(populated) {
+        @include pseudo(before) {
+          opacity: 1;
+          top: rem(36px);
+        }
+
+        @include m(active) {
+          @include pseudo(before) {
+            background-color: $christi;
+          }
+        }
+      }
+
+      @include m(required) {
+        @include pseudo(after) {
+          opacity: 1;
+
+          // * Visual hack.
+          top: rem(37px);
+
+          @include m(active) {
+            @include pseudo(after) {
+              color: $cinnabar;
+            }
+          }
+        }
+      }
+
+      @include device(no-touch) {
+        cursor: pointer;
+
+        @include pseudo(hover) {
+          color: $state-default-hover;
+        }
+        @include pseudo(active) {
+          color: $state-default-active;
+        }
+      }
+    }
+
+    @include device(m) {
+      width: rem(56px);
+      font-size: rem(12px);
+    }
+  }
+  @include e(label) {
+    display: none;
+  }
+  @include e(highlight) {
+    position: absolute;
+    top: rem(4px);
+    left: rem(4px);
+    width: rem(40px);
+    height: rem(40px);
+    border-radius: $border-radius-round;
+    background-color: $selection-background;
+    transition: transform $transition-duration-x3 $transition-timing-bounce-out;
+  }
+
+  @include device(m) {
+    bottom: rem(-88px);
+    width: rem(464px);
+    height: rem(72px);
+    padding: rem(12px) rem(56px);
+  }
+  @include device(l) {
+    width: rem(656px);
+    bottom: rem(-88px);
+    padding: rem(12px) rem(96px);
+  }
 }
 
-@include pre('.pagination:focus-within') {
-  outline: $focus-outline;
-}
+// @include pre('.pagination') {
+// }
 
-@include pre('.pagination.mounted') {
-  bottom: rem(16px);
-}
+// @include pre('.pagination:focus-within') {
+// }
 
-@include pre('.pagination__list') {
-  position: relative;
-  height: rem(48px);
-  margin: 0 auto;
-}
+// @include pre('.pagination.mounted') {
+// }
 
-@include pre('.pagination__list:first-child') {
-  position: absolute;
-  top: rem(8px);
-  left: rem(8px);
-  margin: 0;
-}
-@include pre('.pagination__list:last-child') {
-  position: absolute;
-  top: rem(8px);
-  right: rem(8px);
-  margin: 0;
-}
+// @include pre('.pagination__list') {
+// }
 
-@include pre('.pagination__item') {
-  position: relative;
-  float: left;
-  width: rem(48px);
-  height: rem(48px);
-  color: $fossil;
-  text-align: center;
-  font-size: rem(11px);
-  font-weight: 700;
-  line-height: rem(48px);
-  user-select: none;
-}
+// @include pre('.pagination__list:first-child') {
+// }
+// @include pre('.pagination__list:last-child') {
+// }
 
-@include pre('.pagination__item:nth-last-child(2)') {
-  width: rem(16px);
-}
+// @include pre('.pagination__item') {
+// }
 
-@include pre('.pagination__item:focus') {
-  outline: none;
-}
+// @include pre('.pagination__item:nth-last-child(2)') {
+// }
 
-@include pre('.pagination__item--selectable') {
-  color: $gunmetal;
-}
+// @include pre('.pagination__item:focus') {
+// }
 
-@include pre('.pagination__item--selectable.active') {
-  color: $charcoal;
-}
+// @include pre('.pagination__item--selectable') {
+// }
 
-@include pre('.pagination__item--selectable::before') {
-  content: '';
-  opacity: 0;
-  position: absolute;
-  top: rem(52px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: rem(4px);
-  height: rem(4px);
-  border-radius: $border-radius-round;
-  background-color: $christi-shade;
-  transition: opacity $transition-duration-x1 $transition-timing-default,
-    top $transition-duration-x2 $transition-timing-bounce-out;
-  pointer-events: none;
-}
+// @include pre('.pagination__item--selectable.active') {
+// }
 
-@include pre(
-  '.pagination__item--selectable.pagination__item--populated::before'
-) {
-  opacity: 1;
-  top: rem(36px);
-}
-@include pre(
-  '.pagination__item--selectable.pagination__item--populated.active::before'
-) {
-  background-color: $christi;
-}
+// @include pre('.pagination__item--selectable::before') {
+// }
 
-@include pre('.pagination__item--selectable::after') {
-  content: '*';
-  opacity: 0;
-  position: absolute;
-  top: rem(53px); // * visual hack
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: $border-radius-round;
-  color: $cinnabar-shade;
-  font-size: rem(11px);
-  text-align: center;
-  line-height: rem(4px);
-  transition: opacity $transition-duration-x1 $transition-timing-default,
-    top $transition-duration-x2 $transition-timing-bounce-out;
-  pointer-events: none;
-}
+// @include pre(
+//   '.pagination__item--selectable.pagination__item--populated::before'
+// ) {
+// }
+// @include pre(
+//   '.pagination__item--selectable.pagination__item--populated.active::before'
+// ) {
+// }
 
-@include pre(
-  '.pagination__item--selectable.pagination__item--required::after'
-) {
-  opacity: 1;
-  top: rem(37px); // * visual hack
-}
-@include pre(
-  '.pagination__item--selectable.pagination__item--required.active::after'
-) {
-  color: $cinnabar;
-}
+// @include pre('.pagination__item--selectable::after') {
+// }
 
-@include pre('.pagination__item > .icon') {
-  position: absolute;
-  top: rem(12px);
-}
+// @include pre(
+//   '.pagination__item--selectable.pagination__item--required::after'
+// ) {
+// }
+// @include pre(
+//   '.pagination__item--selectable.pagination__item--required.active::after'
+// ) {
+// }
 
-@include pre('.pagination__item > .icon--arrow-left') {
-  left: rem(12px);
-}
-@include pre('.pagination__item > .icon--arrow-right') {
-  right: rem(12px);
-}
+// @include pre('.pagination__label') {
+// }
 
-@include pre('.pagination__item--selectable > .icon') {
-  stroke: $viking-shade;
-}
-
-@include pre('.pagination__label') {
-  display: none;
-}
-
-@include pre('.pagination__highlight') {
-  position: absolute;
-  top: rem(4px);
-  left: rem(4px);
-  width: rem(40px);
-  height: rem(40px);
-  border-radius: $border-radius-round;
-  background-color: $selection-background;
-  transition: transform $transition-duration-x3 $transition-timing-bounce-out;
-}
+// @include pre('.pagination__highlight') {
+// }
 
 // no-touchevents // ----------------------------------------------------------
 @include pre('.no-touchevents') {
-  @include pre('.pagination__item--selectable') {
-    cursor: pointer;
-  }
+  // @include pre('.pagination__item--selectable') {
+  // }
 
-  @include pre('.pagination__item--selectable:hover') {
-    color: $state-default-hover;
-  }
-  @include pre('.pagination__item--selectable:active') {
-    color: $state-default-active;
-  }
+  // @include pre('.pagination__item--selectable:hover') {
+  // }
+  // @include pre('.pagination__item--selectable:active') {
+  // }
 
-  @include pre('.pagination__item.active') {
-    cursor: default;
-  }
+  // @include pre('.pagination__item.active') {
+  // }
 
-  @include pre('.pagination__item.active:hover') {
-    color: $charcoal;
-  }
-  @include pre('.pagination__item.active:active') {
-    color: $charcoal;
-  }
+  // @include pre('.pagination__item.active:hover') {
+  // }
+  // @include pre('.pagination__item.active:active') {
+  // }
 
   @include pre(
     '.pagination__item--selectable.pagination__item--populated:hover::before'
@@ -238,28 +337,20 @@
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.pagination') {
-    bottom: rem(-88px);
-    width: rem(464px);
-    height: rem(72px);
-    padding: rem(12px) rem(56px);
-  }
+  // @include pre('.pagination') {
+  // }
 
-  @include pre('.pagination.mounted') {
-    bottom: rem(16px);
-  }
+  // @include pre('.pagination.mounted') {
+  // }
 
-  @include pre('.pagination__list:first-child') {
-    top: rem(12px);
-  }
-  @include pre('.pagination__list:last-child') {
-    top: rem(12px);
-  }
+  // @include pre('.pagination__list:first-child') {
+  // }
 
-  @include pre('.pagination__item') {
-    width: rem(56px);
-    font-size: rem(12px);
-  }
+  // @include pre('.pagination__list:last-child') {
+  // }
+
+  // @include pre('.pagination__item') {
+  // }
 
   @include pre('.pagination__item--previous') {
     width: rem(48px);
@@ -275,15 +366,11 @@
 
 // large // -------------------------------------------------------------------
 @media #{$media-l} {
-  @include pre('.pagination') {
-    width: rem(656px);
-    bottom: rem(-88px);
-    padding: rem(12px) rem(96px);
-  }
+  // @include pre('.pagination') {
+  // }
 
-  @include pre('.pagination.mounted') {
-    bottom: rem(88px);
-  }
+  // @include pre('.pagination.mounted') {
+  // }
 
   @include pre('.pagination__item') {
     font-size: rem(13px);

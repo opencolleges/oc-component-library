@@ -2,12 +2,12 @@
 // * .toaster
 
 // Imports
+@import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
 
 // Rules
-@include b(toaster) {
+.#{$pre}-toaster {
   z-index: $z-index-notification;
   position: fixed;
   top: 0;
@@ -15,7 +15,7 @@
   box-sizing: border-box;
   width: 100%;
 
-  // * iPhone 8 dimensions
+  // * iPhone 8 dimensions.
   max-width: rem(375px);
 
   height: 100%;

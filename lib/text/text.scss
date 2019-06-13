@@ -9,16 +9,15 @@
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
 
 // Rules
-@include pre('.text') {
+.#{$pre}-text {
   position: relative;
   height: rem(80px);
   margin: $space-stack-m;
 }
 
-@include pre('.text__input') {
+.#{$pre}-text__input {
   position: absolute;
   top: rem(16px);
   left: 0;
@@ -39,14 +38,14 @@
   line-height: rem(24px);
 }
 
-@include pre('.text--error > .text__input') {
+.#{$pre}-text--error > .#{$pre}-text__input {
   border-bottom: rem(1px) solid $state-error;
 }
-@include pre('.text--success > .text__input') {
+.#{$pre}-text--success > .#{$pre}-text__input {
   border-bottom: rem(1px) solid $state-success;
 }
 
-@include pre('.text__input:disabled') {
+.#{$pre}-text__input:disabled {
   opacity: 1; // * iOS support
   border-color: $state-disabled;
   color: $fossil;
@@ -54,34 +53,34 @@
 }
 
 // * Firefox support
-@include pre('.text__input:invalid') {
+.#{$pre}-text__input:invalid {
   box-shadow: none;
 }
 
-@include pre('.text__input[readonly]') {
+.#{$pre}-text__input[readonly] {
   width: auto;
   padding: 0;
   border: none;
   color: inherit;
 }
-@include pre('.text__input:required') {
+.#{$pre}-text__input:required {
   box-shadow: none;
 }
 
 // * IE10+ support
-@include pre('.text__input::-ms-clear') {
+.#{$pre}-text__input::-ms-clear {
   display: none;
 }
 // * IE10+ support
-@include pre('.text__input::-ms-reveal') {
+.#{$pre}-text__input::-ms-reveal {
   display: none;
 }
 
-@include pre('.text__input.active:disabled') {
+.#{$pre}-text__input.#{$pre}-active:disabled {
   color: $fossil;
 }
 
-@include pre('.text__label') {
+.#{$pre}-text__label {
   position: absolute;
   top: rem(24px);
   left: 0;
@@ -96,37 +95,37 @@
   user-select: none;
 }
 
-@include pre('.text__input:focus + .text__label') {
+.#{$pre}-text__input:focus + .#{$pre}-text__label {
   top: 0;
   color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
 }
 
-@include pre('.text__input.active + .text__label') {
+.#{$pre}-text__input.#{$pre}-active + .#{$pre}-text__label {
   top: 0;
   color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
 }
 
-@include pre('.text__input:disabled + .text__label') {
+.#{$pre}-text__input:disabled + .#{$pre}-text__label {
   color: $fossil;
 }
-@include pre('.text__input[readonly] + .text__label') {
+.#{$pre}-text__input[readonly] + .#{$pre}-text__label {
   color: $christi-shade;
 }
 
-@include pre('.text__input.active:disabled + .text__label') {
+.#{$pre}-text__input.#{$pre}-active:disabled + .#{$pre}-text__label {
   color: $state-disabled;
 }
-@include pre('.text__input.active[readonly] + .text__label') {
+.#{$pre}-text__input.#{$pre}-active[readonly] + .#{$pre}-text__label {
   color: $christi-shade;
 }
 
 // * This pseudo-selector exists to handle the asterisk transition when a
-// * required text input is toggled to a disabled text-input.
-@include pre('.text__input + .text__label::after') {
+// * required text input is toggled to a disabled text-input.#{$pre}-
+.#{$pre}-text__input + .#{$pre}-text__label::after {
   content: ' *';
   position: relative;
   top: rem(-16px);
@@ -135,20 +134,20 @@
     color $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.text__input:required + .text__label::after') {
+.#{$pre}-text__input:required + .#{$pre}-text__label::after {
   top: 0;
   color: $state-error-focus;
 }
 
-@include pre('.text__input.active:required + .text__label::after') {
+.#{$pre}-text__input.#{$pre}-active:required + .#{$pre}-text__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
 }
 
-@include pre('.text__input:disabled + .text__label::after') {
+.#{$pre}-text__input:disabled + .#{$pre}-text__label::after {
 }
 
-@include pre('.text > .icon') {
+.#{$pre}-text > .#{$pre}-icon {
   position: absolute;
   top: rem(24px);
   right: rem(8px);
@@ -158,18 +157,18 @@
   pointer-events: none;
 }
 
-@include pre('.text > .icon--close') {
+.#{$pre}-text > .#{$pre}-icon--close {
   stroke: $state-error;
 }
-@include pre('.text > .icon--tick') {
+.#{$pre}-text > .#{$pre}-icon--tick {
   stroke: $state-success;
 }
 
-@include pre('.text__border') {
+.#{$pre}-text__border {
   display: none;
 }
 
-@include pre('.text__message') {
+.#{$pre}-text__message {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -180,83 +179,83 @@
   user-select: none;
 }
 
-@include pre('.text--error > .text__message') {
+.#{$pre}-text--error > .#{$pre}-text__message {
   color: $state-error;
 }
 
-@include pre('.text--success > .text__message') {
+.#{$pre}-text--success > .#{$pre}-text__message {
   color: $state-success;
 }
 
 // no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  @include pre('.text__input') {
+.#{$pre}-no-touchevents {
+  .#{$pre}-text__input {
     border-bottom: $input-border;
     transition: color $transition-duration-x1 $transition-timing-default;
   }
 
-  @include pre('.text__input:disabled') {
+  .#{$pre}-text__input:disabled {
     border-bottom-color: $state-disabled;
   }
-  @include pre('.text__input[readonly]') {
+  .#{$pre}-text__input[readonly] {
     border-bottom: none;
   }
 
-  @include pre('.text__input.active:focus') {
+  .#{$pre}-text__input.#{$pre}-active:focus {
     color: inherit;
   }
 
-  @include pre('.text__input.active:disabled') {
+  .#{$pre}-text__input.#{$pre}-active:disabled {
     color: $fossil;
     cursor: not-allowed;
   }
 
-  @include pre('.text__input:disabled + .text__label') {
+  .#{$pre}-text__input:disabled + .#{$pre}-text__label {
     color: $fossil;
   }
-  @include pre('.text__input[readonly] + .text__label') {
+  .#{$pre}-text__input[readonly] + .#{$pre}-text__label {
     color: $christi-shade;
   }
 
-  @include pre('.text__input:focus + .text__label') {
+  .#{$pre}-text__input:focus + .#{$pre}-text__label {
     color: $gunmetal;
   }
-  @include pre('.text__input[readonly]:focus + .text__label') {
+  .#{$pre}-text__input[readonly]:focus + .#{$pre}-text__label {
     color: $christi-shade;
   }
 
-  @include pre('.text__input.active + .text__label') {
+  .#{$pre}-text__input.#{$pre}-active + .#{$pre}-text__label {
     color: $hurricane;
   }
 
-  @include pre('.text__input.active:disabled + .text__label') {
+  .#{$pre}-text__input.#{$pre}-active:disabled + .#{$pre}-text__label {
     color: $state-disabled;
   }
-  @include pre('.text__input.active[readonly] + .text__label') {
+  .#{$pre}-text__input.#{$pre}-active[readonly] + .#{$pre}-text__label {
     color: $christi-shade;
   }
 
-  @include pre('.text__input.active:focus + .text__label') {
+  .#{$pre}-text__input.#{$pre}-active:focus + .#{$pre}-text__label {
     color: $gunmetal;
   }
-  @include pre('.text__input.active[readonly]:focus + .text__label') {
+  .#{$pre}-text__input.#{$pre}-active[readonly]:focus + .#{$pre}-text__label {
     color: $christi-shade;
   }
 
-  @include pre('.text--error > .text__input:hover ~ .icon') {
+  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
     stroke: $state-error-hover;
   }
-  @include pre('.text--error > .text__input:focus ~ .icon') {
+  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
     stroke: $state-error-focus;
   }
-  @include pre('.text--success > .text__input:hover ~ .icon') {
+  .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
     stroke: $state-success-hover;
   }
-  @include pre('.text--success > .text__input:focus ~ .icon') {
+  .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
     stroke: $state-success-focus;
   }
 
-  @include pre('.text__border') {
+  .#{$pre}-text__border {
     position: absolute;
     top: rem(55px);
     display: block;
@@ -268,70 +267,71 @@
     pointer-events: none;
   }
 
-  @include pre('.text__input:hover ~ .text__border') {
+  .#{$pre}-text__input:hover ~ .#{$pre}-text__border {
     width: 100%;
   }
-  @include pre('.text__input:focus ~ .text__border') {
+  .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
     width: 100%;
   }
 
-  @include pre('.text__input.active ~ .text__border') {
+  .#{$pre}-text__input.#{$pre}-active ~ .#{$pre}-text__border {
     width: 100%;
     background-color: $state-default;
   }
 
-  @include pre('.text__input.active:hover ~ .text__border') {
+  .#{$pre}-text__input.#{$pre}-active:hover ~ .#{$pre}-text__border {
     background-color: $state-default-hover;
   }
-  @include pre('.text__input.active:focus ~ .text__border') {
+  .#{$pre}-text__input.#{$pre}-active:focus ~ .#{$pre}-text__border {
     background-color: $state-default-focus;
   }
 
-  @include pre('.text--error > .text__input ~ .text__border') {
+  .#{$pre}-text--error > .#{$pre}-text__input ~ .#{$pre}-text__border {
     width: 100%;
     background-color: $state-error;
   }
 
-  @include pre('.text--error > .text__input:hover ~ .text__border') {
+  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-text__border {
     background-color: $state-error-hover;
   }
-  @include pre('.text--error > .text__input:focus ~ .text__border') {
+  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
     background-color: $state-error-focus;
   }
 
-  @include pre('.text--success > .text__input ~ .text__border') {
+  .#{$pre}-text--success > .#{$pre}-text__input ~ .#{$pre}-text__border {
     width: 100%;
     background-color: $state-success;
   }
 
-  @include pre('.text--success > .text__input:hover ~ .text__border') {
+  .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-text__border {
     background-color: $state-success-hover;
   }
-  @include pre('.text--success > .text__input:focus ~ .text__border') {
+
+  .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
     background-color: $state-success-focus;
   }
 }
 
 // medium // ------------------------------------------------------------------
 @media #{$media-m} {
-  @include pre('.text__input') {
+  .#{$pre}-text__input {
     padding: $space-xs $space-xxl $space-xs 0;
     font-size: rem(15px);
     line-height: rem(32px);
   }
 
-  @include pre('.text__label') {
+  .#{$pre}-text__label {
     font-size: rem(15px);
   }
 }
 
 // large // -------------------------------------------------------------------
 @media #{$media-l} {
-  @include pre('.text__input') {
+  .#{$pre}-text__input {
     font-size: rem(16px);
   }
 
-  @include pre('.text__label') {
+  .#{$pre}-text__label {
     font-size: rem(16px);
   }
 }

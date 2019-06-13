@@ -5,40 +5,47 @@
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
 
-@include b(divider) {
+// Rules
+.#{$pre}-divider {
   border-radius: $border-radius-s;
   background-color: $gallery;
+}
 
-  @include m(s) {
-    height: rem(1px);
-    margin: rem(-1px) 0 $space-m; // * negative margin adheres element to 8px grid
-  }
-  @include m(m) {
-    height: rem(2px);
-    margin: rem(-2px) 0 $space-m; // * negative margin adheres element to 8px grid
-  }
-  @include m(l) {
-    height: rem(3px);
-    margin: rem(-3px) 0 $space-m; // * negative margin adheres element to 8px grid
-  }
+.#{$pre}-divider--s {
+  height: rem(1px);
 
-  @include m(alt) {
-    border-radius: 0;
-  }
+  // * Negative margin ensures divider adheres to 8px grid.
+  margin: rem(-1px) 0 $space-m;
+}
+.#{$pre}-divider--m {
+  height: rem(2px);
+
+  // * Negative margin ensures divider adheres to 8px grid.
+  margin: rem(-2px) 0 $space-m;
+}
+.#{$pre}-divider--l {
+  height: rem(3px);
+
+  // * Negative margin ensures divider adheres to 8px grid.
+  margin: rem(-3px) 0 $space-m;
 }
 
 @for $index from 1 through 6 {
-  @include pre('.h#{$index} + .divider--s') {
-    margin: rem(-17px) 0 $space-m; // * negative margin adheres element to 8px grid
+  .#{$pre}-h#{$index} + .#{$pre}-divider--s {
+    // * Negative margin ensures divider adheres to 8px grid.
+    margin: rem(-17px) 0 $space-m;
   }
+  .#{$pre}-h#{$index} + .#{$pre}-divider--m {
+    // * Negative margin ensures divider adheres to 8px grid.
+    margin: rem(-18px) 0 $space-m;
+  }
+  .#{$pre}-h#{$index} + .#{$pre}-divider--l {
+    // * Negative margin ensures divider adheres to 8px grid.
+    margin: rem(-19px) 0 $space-m;
+  }
+}
 
-  @include pre('.h#{$index} + .divider--m') {
-    margin: rem(-18px) 0 $space-m; // * negative margin adheres element to 8px grid
-  }
-
-  @include pre('.h#{$index} + .divider--l') {
-    margin: rem(-19px) 0 $space-m; // * negative margin adheres element to 8px grid
-  }
+.#{$pre}-divider--alt {
+  border-radius: 0;
 }
