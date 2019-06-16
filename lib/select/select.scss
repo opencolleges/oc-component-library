@@ -12,9 +12,6 @@
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
-@import '../utilities/scss/mixins/device';
-@import '../utilities/scss/mixins/pseudo';
 
 // Rules
 .#{$pre}-select {
@@ -34,7 +31,7 @@
   padding: 0 rem(40px) 0 0;
   border-bottom: rem(1px) solid $viking-shade;
 
-  // * iOS support
+  // * Support for Mobile Safari.
   border-radius: 0;
 
   outline: none;
@@ -63,6 +60,15 @@
   display: none;
 }
 
+.#{$pre}-select__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $hurricane;
+  font-size: rem(12px);
+  line-height: rem(16px);
+}
+
 .#{$pre}-select__input:disabled ~ .#{$pre}-select__label {
   color: $state-disabled;
 }
@@ -70,228 +76,156 @@
   color: $christi-shade;
 }
 
-@include b(select) {
-  @include e(input) {
-    @include pseudo(disabled) {
-      @include e(input, general) {
-        @include device(no-touch) {
-          cursor: not-allowed;
-        }
-      }
-    }
-    &[readonly] {
-      @include e(input, general) {
-        @include device(no-touch) {
-          cursor: text;
-        }
-      }
-    }
-    &[required] {
-      @include e(label, general) {
-        @include pseudo(after) {
-          content: ' *';
-          position: relative;
-          top: 0;
-          color: $state-error-focus;
-          transition: top $transition-duration-x2 $transition-timing-default,
-            color $transition-duration-x1 $transition-timing-default;
-        }
-      }
-    }
-
-    @include device(no-touch) {
-      border-bottom: $input-border;
-      transition: color $transition-duration-x1 $transition-timing-default;
-      cursor: pointer;
-
-      @include pseudo(focus) {
-        color: inherit;
-      }
-      @include pseudo(-moz-focusring) {
-        // * Firefox support.
-        color: transparent;
-        text-shadow: 0 0 0 $charcoal;
-      }
-      @include pseudo(-ms-expand) {
-        // * IE support.
-        display: none;
-      }
-    }
-
-    @include device(m) {
-      font-size: rem(15px);
-    }
-    @include device(l) {
-      font-size: rem(16px);
-    }
-  }
-  @include e(label) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: $hurricane;
-    font-size: rem(12px);
-    line-height: rem(16px);
-  }
-  @include e(border) {
-    display: none;
-  }
-  @include e(list-outer) {
-    z-index: $z-index-dropdown;
-    opacity: 0;
-    position: absolute;
-    top: rem(64px);
-    left: 0;
-    transform: rem(translateY(24px));
-    box-sizing: border-box;
-    width: 100%;
-    max-width: rem(400px);
-    max-height: rem(144px);
-    padding: $space-s rem(4px) $space-m $space-s;
-    border-radius: $border-radius-s;
-    outline: none;
-    box-shadow: $box-shadow-layer-4;
-    background-color: $blizzard;
-    transition: opacity $transition-duration-x1 $transition-timing-default,
-      transform $transition-duration-x2 $transition-timing-bounce-out;
-    pointer-events: none;
-  }
-  @include e(list) {
-    overflow: visible;
-    overflow-y: scroll;
-    display: inline-block;
-    box-sizing: border-box;
-    width: 100%;
-    max-height: rem(120px);
-    padding-right: rem(8px);
-
-    @include pseudo(-webkit-scrollbar) {
-      // * Style scroll bar in -webkit- browsers.
-      width: rem(4px);
-      height: rem(4px);
-    }
-    @include pseudo(-webkit-scrollbar-thumb) {
-      // * Style scroll bar in -webkit- browsers.
-      border-radius: $border-radius-s;
-      background: $fossil-transparent;
-    }
-  }
-  @include e(item) {
-    position: relative;
-    box-sizing: border-box;
-    min-height: rem(40px);
-    padding: $space-s $space-xxl $space-s $space-s;
-    border-bottom: rem(1px) solid $gallery-transparent;
-    outline: none;
-    font-size: rem(14px);
-    line-height: rem(24px);
-
-    @include pseudo(focus) {
-      background-color: $selection-background;
-    }
-
-    @include device(m) {
-      font-size: rem(15px);
-    }
-    @include device(l) {
-      font-size: rem(16px);
-    }
-  }
+.#{$pre}-select__input[required] ~ .#{$pre}-select__label::after {
+  content: ' *';
+  position: relative;
+  top: 0;
+  color: $state-error-focus;
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default;
 }
 
-// @include pre('.select__input--hidden') {
-// }
-
-// @include pre('.select__label') {
-// }
-
-// @include pre('.select__input:disabled ~ .select__label') {
-// }
-// @include pre('.select__input[readonly] ~ .select__label') {
-// }
-
-// @include pre('.select__input[required] ~ .select__label::after') {
-// }
-
-@include pre('.selected > .select__input[required] ~ .select__label::after') {
+.#{$pre}-selected
+  > .#{$pre}-select__input[required]
+  ~ .#{$pre}-select__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
 }
 
-// @include pre('.select__border') {
-// }
+.#{$pre}-select__border {
+  display: none;
+}
 
-// @include pre('.select__list-outer') {
-// }
+.#{$pre}-select__list-outer {
+  z-index: $z-index-dropdown;
+  opacity: 0;
+  position: absolute;
+  top: rem(64px);
+  left: 0;
+  transform: translateY(#{rem(24px)});
+  box-sizing: border-box;
+  width: 100%;
+  max-width: rem(400px);
+  max-height: rem(144px);
+  padding: $space-s rem(4px) $space-m $space-s;
+  border-radius: $border-radius-s;
+  outline: none;
+  box-shadow: $box-shadow-layer-4;
+  background-color: $blizzard;
+  transition: opacity $transition-duration-x1 $transition-timing-default,
+    transform $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
+}
 
-@include pre('.select.active > .select__list-outer') {
+.#{$pre}-select.#{$pre}-active > .#{$pre}-select__list-outer {
   opacity: 1;
   transform: translateY(0);
   pointer-events: initial;
 }
 
-// @include pre('.select__list') {
-// }
+.#{$pre}-select__list {
+  overflow: visible;
+  overflow-y: scroll;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: rem(120px);
+  padding-right: rem(8px);
+}
 
-// @include pre('.select__item') {
-// }
+// * Support for WebKit.
+.#{$pre}-select__list::-webkit-scrollbar {
+  width: rem(4px);
+  height: rem(4px);
+}
+// * Support for WebKit.
+.#{$pre}-select__list::-webkit-scrollbar-thumb {
+  border-radius: $border-radius-s;
+  background: $fossil-transparent;
+}
 
-// @include pre('.select__item:focus') {
-// }
+.#{$pre}-select__item {
+  position: relative;
+  box-sizing: border-box;
+  min-height: rem(40px);
+  padding: $space-s $space-xxl $space-s $space-s;
+  border-bottom: rem(1px) solid $gallery-transparent;
+  outline: none;
+  font-size: rem(14px);
+  line-height: rem(24px);
+}
 
-@include pre('.select__item > .icon') {
+.#{$pre}-select__item:focus {
+  background-color: $selection-background;
+}
+
+.#{$pre}-select__item > .#{$pre}-icon {
   position: absolute;
   top: rem(8px);
   right: rem(8px);
 }
 
-// no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  // @include pre('.select__input') {
-  // }
+.#{$pre}-no-touchevents {
+  .#{$pre}-select__input {
+    border-bottom: $input-border;
+    transition: color $transition-duration-x1 $transition-timing-default;
+    cursor: pointer;
+  }
 
-  // @include pre('.select__input:focus') {
-  // }
-
-  // @include pre('.select__input:-moz-focusring') {
-  // }
-  // @include pre('.select__input:-ms-expand') {
-  // }
-
-  @include pre('.select.active > .select__input') {
+  .#{$pre}-select__input:focus {
     color: inherit;
   }
-  // @include pre('.select__input:disabled ~ .select__input') {
-  // }
-  // @include pre('.select__input[readonly] ~ .select__input') {
-  // }
-
-  @include pre('.select__label') {
+  // * Support for Firefox.
+  .#{$pre}-select__input:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $charcoal;
+  }
+  // * Support for IE11.
+  .#{$pre}-select__input:-ms-expand {
+    display: none;
   }
 
-  @include pre('.select__input:focus + .select__label') {
+  .#{$pre}-select__input:disabled ~ .#{$pre}-select__input {
+    cursor: not-allowed;
+  }
+  .#{$pre}-select__input[readonly] ~ .#{$pre}-select__input {
+    cursor: text;
+  }
+
+  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__input {
+    color: inherit;
+  }
+
+  .#{$pre}-select__label {
+    transition: color $transition-duration-x1 $transition-timing-default;
+    user-select: none;
+  }
+
+  .#{$pre}-select__input:focus + .#{$pre}-select__label {
     color: $gunmetal;
   }
-  @include pre('.select__input[readonly] ~ .select__label') {
+
+  .#{$pre}-select__input[readonly] ~ .#{$pre}-select__label {
     color: $christi-shade;
   }
-  @include pre('.select.active > .select__label') {
+
+  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__label {
     color: $gunmetal;
   }
 
-  @include pre('.select__input:focus ~ .icon') {
+  .#{$pre}-select__input:focus ~ .#{$pre}-icon {
     stroke: $charcoal;
   }
 
-  @include pre('.select > .icon') {
+  .#{$pre}-select > .#{$pre}-icon {
     transition: stroke $transition-duration-x1 $transition-timing-default;
   }
 
-  @include pre('.select.active > .icon') {
+  .#{$pre}-select.#{$pre}-active > .#{$pre}-icon {
     stroke: $charcoal;
   }
 
-  @include pre('.select__border') {
+  .#{$pre}-select__border {
     position: absolute;
     bottom: rem(24px);
     display: block;
@@ -303,59 +237,64 @@
     pointer-events: none;
   }
 
-  @include pre('.select__input:hover ~ .select__border') {
+  .#{$pre}-select__input:hover ~ .#{$pre}-select__border {
     width: 100%;
   }
-  @include pre('.select__input:focus ~ .select__border') {
+  .#{$pre}-select__input:focus ~ .#{$pre}-select__border {
     width: 100%;
   }
-  @include pre('.select.active > .select__border') {
+
+  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__border {
     width: 100%;
   }
-  @include pre('.selected > .select__border') {
+
+  .#{$pre}-selected > .#{$pre}-select__border {
     width: 100%;
     background-color: $state-default;
   }
-  @include pre('.selected > .select__input:hover ~ .select__border') {
+
+  .#{$pre}-selected > .#{$pre}-select__input:hover ~ .#{$pre}-select__border {
     background-color: $state-default-hover;
   }
-  @include pre('.selected > .select__input:focus ~ .select__border') {
+  .#{$pre}-selected > .#{$pre}-select__input:focus ~ .#{$pre}-select__border {
     background-color: $state-default-focus;
   }
 
-  @include pre('.select__list-outer') {
+  .#{$pre}-select__list-outer {
     user-select: none;
   }
 
-  @include pre('.select.active > .select__list-outer') {
+  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__list-outer {
     cursor: pointer;
   }
 
-  @include pre('.select__item') {
+  .#{$pre}-select__item {
     transition: background-color $transition-duration-x1
       $transition-timing-default;
     user-select: none;
   }
 
-  @include pre('.select__item:hover') {
+  .#{$pre}-select__item:hover {
     background-color: $selection-background;
   }
 }
 
-// // medium // ------------------------------------------------------------------
-// @media #{$media-m} {
-//   // @include pre('.select__input') {
-//   // }
+@media #{$media-m} {
+  .#{$pre}-select__input {
+    font-size: rem(15px);
+  }
 
-//   @include pre('.select__item') {
-//   }
-// }
+  .#{$pre}-select__item {
+    font-size: rem(15px);
+  }
+}
 
-// // large // -------------------------------------------------------------------
-// @media #{$media-l} {
-//   // @include pre('.select__input') {
-//   // }
+@media #{$media-l} {
+  .#{$pre}-select__input {
+    font-size: rem(16px);
+  }
 
-//   @include pre('.select__item') {
-//   }
-// }
+  .#{$pre}-select__item {
+    font-size: rem(16px);
+  }
+}

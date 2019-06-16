@@ -25,7 +25,7 @@
   pointer-events: none;
 }
 
-.#{$pre}-modal--mounted {
+.#{$pre}-modal.#{$pre}-mounted {
   opacity: 1;
   transition: opacity $transition-duration-x2 $transition-timing-default 0ms;
   pointer-events: auto;
@@ -46,7 +46,7 @@
   transition: top $transition-duration-x4 $transition-timing-bounce-out 0ms;
 }
 
-.#{$pre}-modal--mounted > .#{$pre}-modal__outer {
+.#{$pre}-mounted > .#{$pre}-modal__outer {
   top: rem(50%);
   transition: top $transition-duration-x4 $transition-timing-bounce-out
     $transition-duration-x2;
@@ -69,14 +69,13 @@
   margin: rem(-16px -8px 24px) 0;
 }
 
+// * Support for WebKit.
 .#{$pre}-modal__inner::-webkit-scrollbar {
-  // * Style scroll bar in -webkit- browsers.
   width: rem(4px);
   height: rem(4px);
 }
-
+// * Support for WebKit.
 .#{$pre}-modal__inner::-webkit-scrollbar-thumb {
-  // * Style scroll bar in -webkit- browsers.
   border-radius: $border-radius-s;
   background: $fossil-transparent;
 }
@@ -104,7 +103,7 @@
   }
 }
 
-// * Prototype SCSS.
+// ! Inital animation prototype CSS. WIP.
 .#{$pre}-humanoid {
   transform-origin: 149.28px 187.755px;
   animation: humanoid 375ms ease-in-out 2125ms 1 normal forwards;

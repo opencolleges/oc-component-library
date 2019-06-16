@@ -12,12 +12,9 @@
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
-@import '../utilities/scss/mixins/device';
-@import '../utilities/scss/mixins/pseudo';
 
 // Rules
-@include b(pagination) {
+.#{$pre}-pagination {
   z-index: $z-index-pagination;
   position: fixed;
   bottom: rem(-80px);
@@ -31,368 +28,245 @@
   box-shadow: $box-shadow-layer-4;
   background-color: $blizzard;
   transition: bottom $transition-duration-x4 $transition-timing-bounce-out;
+}
 
-  @include pseudo(focus-within) {
-    outline: $focus-outline;
+.#{$pre}-pagination:focus-within {
+  outline: $focus-outline;
+}
+
+.#{$pre}-pagination.#{$pre}-mounted {
+  bottom: rem(16px);
+}
+
+.#{$pre}-pagination__list {
+  position: relative;
+  height: rem(48px);
+  margin: 0 auto;
+}
+
+.#{$pre}-pagination__list:first-child {
+  position: absolute;
+  top: rem(8px);
+  left: rem(8px);
+  margin: 0;
+}
+.#{$pre}-pagination__list:last-child {
+  position: absolute;
+  top: rem(8px);
+  right: rem(8px);
+  margin: 0;
+}
+
+.#{$pre}-pagination__item {
+  position: relative;
+  float: left;
+  width: rem(48px);
+  height: rem(48px);
+  color: $fossil;
+  text-align: center;
+  font-size: rem(11px);
+  font-weight: 700;
+  line-height: rem(48px);
+  user-select: none;
+}
+
+.#{$pre}-pagination__item:nth-last-child(2) {
+  width: rem(16px);
+}
+
+.#{$pre}-pagination__item:focus {
+  outline: none;
+}
+
+.#{$pre}-pagination__item--selectable {
+  color: $gunmetal;
+}
+
+.#{$pre}-pagination__item--selectable.#{$pre}-active {
+  color: $charcoal;
+}
+
+.#{$pre}-pagination__item--selectable::before {
+  content: '';
+  opacity: 0;
+  position: absolute;
+  top: rem(52px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: rem(4px);
+  height: rem(4px);
+  border-radius: $border-radius-round;
+  background-color: $christi-shade;
+  transition: opacity $transition-duration-x1 $transition-timing-default,
+    top $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
+}
+
+.#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--populated::before {
+  opacity: 1;
+  top: rem(36px);
+}
+
+.#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--populated.#{$pre}-active::before {
+  background-color: $christi;
+}
+
+.#{$pre}-pagination__item--selectable::after {
+  content: '*';
+  opacity: 0;
+  position: absolute;
+
+  // * A visual adjustment.
+  top: rem(53px);
+
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: $border-radius-round;
+  color: $cinnabar-shade;
+  font-size: rem(11px);
+  text-align: center;
+  line-height: rem(4px);
+  transition: opacity $transition-duration-x1 $transition-timing-default,
+    top $transition-duration-x2 $transition-timing-bounce-out;
+  pointer-events: none;
+}
+
+.#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required::after {
+  opacity: 1;
+
+  // * A visual adjustment.
+  top: rem(37px);
+}
+
+.#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required.#{$pre}-active::after {
+  color: $cinnabar;
+}
+
+.#{$pre}-pagination__label {
+  display: none;
+}
+
+.#{$pre}-pagination__highlight {
+  position: absolute;
+  top: rem(4px);
+  left: rem(4px);
+  width: rem(40px);
+  height: rem(40px);
+  border-radius: $border-radius-round;
+  background-color: $selection-background;
+  transition: transform $transition-duration-x3 $transition-timing-bounce-out;
+}
+
+.#{$pre}-no-touchevents {
+  .#{$pre}-pagination__item--selectable {
+    cursor: pointer;
   }
 
-  @include m(mounted) {
-    bottom: $space-m;
-
-    @include device(m) {
-      bottom: rem(16px);
-    }
-    @include device(l) {
-      bottom: rem(88px);
-    }
+  .#{$pre}-pagination__item--selectable:hover {
+    color: $state-default-hover;
+  }
+  .#{$pre}-pagination__item--selectable:active {
+    color: $state-default-active;
   }
 
-  @include e(list) {
-    position: relative;
-    height: $space-xxxl;
-    margin: 0 auto;
-
-    @include pseudo(first-child) {
-      position: absolute;
-      top: $space-s;
-      left: $space-s;
-      margin: 0;
-
-      @include device(m) {
-        top: rem(12px);
-      }
-    }
-    @include pseudo(last-child) {
-      position: absolute;
-      top: $space-s;
-      right: $space-s;
-      margin: 0;
-
-      @include device(m) {
-        top: rem(12px);
-      }
-    }
-  }
-  @include e(item) {
-    position: relative;
-    float: left;
-    width: $space-xxxl;
-    height: $space-xxxl;
-    color: $fossil;
-    text-align: center;
-    font-size: rem(11px);
-    font-weight: 700;
-    line-height: $space-xxxl;
-    user-select: none;
-
-    @include pseudo(nth-last-child(2)) {
-      width: $space-m;
-    }
-
-    @include pseudo(focus) {
-      outline: none;
-    }
-
-    @include m(selectable) {
-      color: $gunmetal;
-
-      @include pseudo(before) {
-        content: '';
-        opacity: 0;
-        position: absolute;
-        top: rem(52px);
-        left: 50%;
-        transform: translateX(-50%);
-        width: rem(4px);
-        height: rem(4px);
-        border-radius: $border-radius-round;
-        background-color: $christi-shade;
-        transition: opacity $transition-duration-x1 $transition-timing-default,
-          top $transition-duration-x2 $transition-timing-bounce-out;
-        pointer-events: none;
-      }
-      @include pseudo(after) {
-        content: '*';
-        opacity: 0;
-        position: absolute;
-
-        // * Visual hack.
-        top: rem(53px);
-
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: $border-radius-round;
-        color: $cinnabar-shade;
-        font-size: rem(11px);
-        text-align: center;
-        line-height: rem(4px);
-        transition: opacity $transition-duration-x1 $transition-timing-default,
-          top $transition-duration-x2 $transition-timing-bounce-out;
-        pointer-events: none;
-      }
-
-      @include m(active) {
-        color: $charcoal;
-
-        @include device(no-touch) {
-          cursor: default;
-
-          @include pseudo(hover) {
-            color: $charcoal;
-          }
-          @include pseudo(active) {
-            color: $charcoal;
-          }
-        }
-      }
-
-      @include m(populated) {
-        @include pseudo(before) {
-          opacity: 1;
-          top: rem(36px);
-        }
-
-        @include m(active) {
-          @include pseudo(before) {
-            background-color: $christi;
-          }
-        }
-      }
-
-      @include m(required) {
-        @include pseudo(after) {
-          opacity: 1;
-
-          // * Visual hack.
-          top: rem(37px);
-
-          @include m(active) {
-            @include pseudo(after) {
-              color: $cinnabar;
-            }
-          }
-        }
-      }
-
-      @include device(no-touch) {
-        cursor: pointer;
-
-        @include pseudo(hover) {
-          color: $state-default-hover;
-        }
-        @include pseudo(active) {
-          color: $state-default-active;
-        }
-      }
-    }
-
-    @include device(m) {
-      width: rem(56px);
-      font-size: rem(12px);
-    }
-  }
-  @include e(label) {
-    display: none;
-  }
-  @include e(highlight) {
-    position: absolute;
-    top: rem(4px);
-    left: rem(4px);
-    width: rem(40px);
-    height: rem(40px);
-    border-radius: $border-radius-round;
-    background-color: $selection-background;
-    transition: transform $transition-duration-x3 $transition-timing-bounce-out;
+  .#{$pre}-pagination__item.#{$pre}-active {
+    cursor: default;
   }
 
-  @include device(m) {
+  .#{$pre}-pagination__item.#{$pre}-active:hover {
+    color: $charcoal;
+  }
+  .#{$pre}-pagination__item.#{$pre}-active:active {
+    color: $charcoal;
+  }
+
+  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--populated:hover::before {
+    background-color: $christi;
+  }
+  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--populated:active::before {
+    background-color: $christi-shade;
+  }
+
+  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required:hover::after {
+    color: $cinnabar;
+  }
+  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required:active::after {
+    color: $cinnabar-shade;
+  }
+
+  .#{$pre}-pagination__label {
+    cursor: default;
+  }
+}
+
+@media #{$media-m} {
+  .#{$pre}-pagination {
     bottom: rem(-88px);
     width: rem(464px);
     height: rem(72px);
     padding: rem(12px) rem(56px);
   }
-  @include device(l) {
-    width: rem(656px);
-    bottom: rem(-88px);
-    padding: rem(12px) rem(96px);
-  }
-}
 
-// @include pre('.pagination') {
-// }
-
-// @include pre('.pagination:focus-within') {
-// }
-
-// @include pre('.pagination.mounted') {
-// }
-
-// @include pre('.pagination__list') {
-// }
-
-// @include pre('.pagination__list:first-child') {
-// }
-// @include pre('.pagination__list:last-child') {
-// }
-
-// @include pre('.pagination__item') {
-// }
-
-// @include pre('.pagination__item:nth-last-child(2)') {
-// }
-
-// @include pre('.pagination__item:focus') {
-// }
-
-// @include pre('.pagination__item--selectable') {
-// }
-
-// @include pre('.pagination__item--selectable.active') {
-// }
-
-// @include pre('.pagination__item--selectable::before') {
-// }
-
-// @include pre(
-//   '.pagination__item--selectable.pagination__item--populated::before'
-// ) {
-// }
-// @include pre(
-//   '.pagination__item--selectable.pagination__item--populated.active::before'
-// ) {
-// }
-
-// @include pre('.pagination__item--selectable::after') {
-// }
-
-// @include pre(
-//   '.pagination__item--selectable.pagination__item--required::after'
-// ) {
-// }
-// @include pre(
-//   '.pagination__item--selectable.pagination__item--required.active::after'
-// ) {
-// }
-
-// @include pre('.pagination__label') {
-// }
-
-// @include pre('.pagination__highlight') {
-// }
-
-// no-touchevents // ----------------------------------------------------------
-@include pre('.no-touchevents') {
-  // @include pre('.pagination__item--selectable') {
-  // }
-
-  // @include pre('.pagination__item--selectable:hover') {
-  // }
-  // @include pre('.pagination__item--selectable:active') {
-  // }
-
-  // @include pre('.pagination__item.active') {
-  // }
-
-  // @include pre('.pagination__item.active:hover') {
-  // }
-  // @include pre('.pagination__item.active:active') {
-  // }
-
-  @include pre(
-    '.pagination__item--selectable.pagination__item--populated:hover::before'
-  ) {
-    background-color: $christi;
-  }
-  @include pre(
-    '.pagination__item--selectable.pagination__item--populated:active::before'
-  ) {
-    background-color: $christi-shade;
+  .#{$pre}-pagination.#{$pre}-mounted {
+    bottom: rem(16px);
   }
 
-  @include pre(
-    '.pagination__item--selectable.pagination__item--required:hover::after'
-  ) {
-    color: $cinnabar;
+  .#{$pre}-pagination__list:first-child {
+    top: rem(12px);
   }
-  @include pre(
-    '.pagination__item--selectable.pagination__item--required:active::after'
-  ) {
-    color: $cinnabar-shade;
+  .#{$pre}-pagination__list:last-child {
+    top: rem(12px);
   }
 
-  @include pre('.pagination__item--selectable > .icon') {
-    stroke: currentColor;
-  }
-  @include pre('.pagination__item--selectable:hover > .icon') {
-    stroke: $state-default-hover;
-  }
-  @include pre('.pagination__item--selectable:active > .icon') {
-    stroke: $state-default-active;
+  .#{$pre}-pagination__item {
+    width: rem(56px);
+    font-size: rem(12px);
   }
 
-  @include pre('.pagination__label') {
-    cursor: default;
-  }
-}
-
-// medium // ------------------------------------------------------------------
-@media #{$media-m} {
-  // @include pre('.pagination') {
-  // }
-
-  // @include pre('.pagination.mounted') {
-  // }
-
-  // @include pre('.pagination__list:first-child') {
-  // }
-
-  // @include pre('.pagination__list:last-child') {
-  // }
-
-  // @include pre('.pagination__item') {
-  // }
-
-  @include pre('.pagination__item--previous') {
+  .#{$pre}-pagination__item--previous {
     width: rem(48px);
   }
-  @include pre('.pagination__item--next') {
+  .#{$pre}-pagination__item--next {
     width: rem(48px);
   }
 
-  @include pre('.pagination__highlight') {
+  .#{$pre}-pagination__highlight {
     left: rem(8px);
   }
 }
 
-// large // -------------------------------------------------------------------
 @media #{$media-l} {
-  // @include pre('.pagination') {
-  // }
+  .#{$pre}-pagination {
+    width: rem(656px);
+    bottom: rem(-88px);
+    padding: rem(12px) rem(96px);
+  }
 
-  // @include pre('.pagination.mounted') {
-  // }
+  .#{$pre}-pagination.#{$pre}-mounted {
+    bottom: rem(88px);
+  }
 
-  @include pre('.pagination__item') {
+  .#{$pre}-pagination__item {
     font-size: rem(13px);
   }
 
-  @include pre('.pagination__item--previous') {
+  .#{$pre}-pagination__item--previous {
     width: rem(88px);
   }
-  @include pre('.pagination__item--next') {
+  .#{$pre}-pagination__item--next {
     width: rem(88px);
   }
 
-  @include pre('.pagination__label') {
+  .#{$pre}-pagination__label {
     position: absolute;
     top: 0;
     display: block;
   }
 
-  @include pre('.pagination__item--previous > .pagination__label') {
+  .#{$pre}-pagination__item--previous > .#{$pre}-pagination__label {
     left: rem(48px);
   }
-  @include pre('.pagination__item--next > .pagination__label') {
+  .#{$pre}-pagination__item--next > .#{$pre}-pagination__label {
     right: rem(48px);
   }
 }

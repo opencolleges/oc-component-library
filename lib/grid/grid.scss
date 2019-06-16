@@ -18,24 +18,6 @@
   padding-left: 0;
 }
 
-.#{$pre}-grid--gutter-fixed {
-  // * 960px + gutters.
-  max-width: rem(992px);
-
-  padding: $space-s;
-  margin: 0 auto;
-}
-.#{$pre}-grid--gutter-x-fixed {
-  // * 960px + gutters.
-  max-width: rem(992px);
-
-  padding: 0 $space-s;
-}
-.#{$pre}-grid--gutter-y-fixed {
-  padding: $space-s 0;
-  margin: 0 auto;
-}
-
 .#{$pre}-grid--gutter-adaptive {
   // * 960px + gutters.
   max-width: rem(1024px);
@@ -54,22 +36,30 @@
   margin: 0 auto;
 }
 
+.#{$pre}-grid--gutter-fixed {
+  // * 960px + gutters.
+  max-width: rem(992px);
+
+  padding: $space-s;
+  margin: 0 auto;
+}
+.#{$pre}-grid--gutter-x-fixed {
+  // * 960px + gutters.
+  max-width: rem(992px);
+
+  padding: 0 $space-s;
+}
+.#{$pre}-grid--gutter-y-fixed {
+  padding: $space-s 0;
+  margin: 0 auto;
+}
+
 .#{$pre}-grid--button {
   // * 960px + gutters.
   max-width: rem(992px);
 
   padding: 0 $space-s;
   margin: 0 auto;
-}
-
-.#{$pre}-grid .#{$pre}-grid--gutter-fixed {
-  margin: rem(-16px) rem(-16px) 0;
-}
-.#{$pre}-grid .#{$pre}-grid--gutter-x-fixed {
-  margin: 0 rem(-16px) $space-m;
-}
-.#{$pre}-grid .#{$pre}-grid--gutter-y-fixed {
-  margin: rem(-16px) 0 0;
 }
 
 .#{$pre}-grid .#{$pre}-grid--gutter-adaptive {
@@ -79,6 +69,16 @@
   margin: 0 rem(-16px) $space-m;
 }
 .#{$pre}-grid .#{$pre}-grid--gutter-y-adaptive {
+  margin: rem(-16px) 0 0;
+}
+
+.#{$pre}-grid .#{$pre}-grid--gutter-fixed {
+  margin: rem(-16px) rem(-16px) 0;
+}
+.#{$pre}-grid .#{$pre}-grid--gutter-x-fixed {
+  margin: 0 rem(-16px) $space-m;
+}
+.#{$pre}-grid .#{$pre}-grid--gutter-y-fixed {
   margin: rem(-16px) 0 0;
 }
 
@@ -107,18 +107,6 @@
     padding: 0 0 $space-m;
   }
 
-  .#{$pre}-grid--gutter-fixed {
-    grid-gap: $space-m;
-    padding: $space-m;
-  }
-  .#{$pre}-grid--gutter-x-fixed {
-    grid-gap: 0 $space-m;
-    padding: 0 $space-m $space-m;
-  }
-  .#{$pre}-grid--gutter-y-fixed {
-    grid-gap: $space-m 0;
-    padding: $space-m 0;
-  }
   .#{$pre}-grid--gutter-adaptive {
     grid-gap: $space-m;
     padding: $space-m;
@@ -132,9 +120,35 @@
     padding: $space-m 0;
   }
 
+  .#{$pre}-grid--gutter-fixed {
+    grid-gap: $space-m;
+    padding: $space-m;
+  }
+  .#{$pre}-grid--gutter-x-fixed {
+    grid-gap: 0 $space-m;
+    padding: 0 $space-m $space-m;
+  }
+  .#{$pre}-grid--gutter-y-fixed {
+    grid-gap: $space-m 0;
+    padding: $space-m 0;
+  }
+
   .#{$pre}-grid--button {
     grid-gap: 0 $space-m;
     padding: 0 $space-m 0;
+  }
+
+  .#{$pre}-grid .#{$pre}-grid--gutter-adaptive {
+    padding: 0 0 $space-m;
+    margin: 0;
+  }
+  .#{$pre}-grid .#{$pre}-grid--gutter-x-adaptive {
+    padding: 0 0 $space-m;
+    margin: 0;
+  }
+  .#{$pre}-grid .#{$pre}-grid--gutter-y-adaptive {
+    padding: 0 0 $space-m;
+    margin: 0;
   }
 
   .#{$pre}-grid .#{$pre}-grid--gutter-fixed {
@@ -149,18 +163,6 @@
     padding: 0 0 $space-m;
     margin: 0;
   }
-  .#{$pre}-grid .#{$pre}-grid--gutter-adaptive {
-    padding: 0 0 $space-m;
-    margin: 0;
-  }
-  .#{$pre}-grid .#{$pre}-grid--gutter-x-adaptive {
-    padding: 0 0 $space-m;
-    margin: 0;
-  }
-  .#{$pre}-grid .#{$pre}-grid--gutter-y-adaptive {
-    padding: 0 0 $space-m;
-    margin: 0;
-  }
 
   .#{$pre}-grid--top {
     align-items: start;
@@ -171,6 +173,7 @@
   .#{$pre}-grid--bottom {
     align-items: end;
   }
+
   .#{$pre}-grid--left {
     justify-items: start;
   }
@@ -190,7 +193,6 @@
   }
 }
 
-// medium // ------------------------------------------------------------------
 @media #{$media-m} {
   .#{$pre}-grid--gutter-adaptive {
     padding: rem(12px);
@@ -243,7 +245,6 @@
   }
 }
 
-// large // -------------------------------------------------------------------
 @media #{$media-l} {
   .#{$pre}-grid--gutter-adaptive {
     padding: $space-m;

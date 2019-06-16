@@ -43,13 +43,6 @@
   white-space: nowrap;
 }
 
-.#{$pre}-date--error > .#{$pre}-date__input {
-  border-bottom: rem(1px) solid $state-error;
-}
-.#{$pre}-date--success > .#{$pre}-date__input {
-  border-bottom: rem(1px) solid $state-success;
-}
-
 .#{$pre}-date__input:disabled ~ .#{$pre}-date__input {
   border-color: $state-disabled;
   color: $fossil;
@@ -59,6 +52,13 @@
   padding: 0;
   border: none;
   color: $charcoal;
+}
+
+.#{$pre}-date--error > .#{$pre}-date__input {
+  border-bottom: rem(1px) solid $state-error;
+}
+.#{$pre}-date--success > .#{$pre}-date__input {
+  border-bottom: rem(1px) solid $state-success;
 }
 
 .#{$pre}-date__input--hidden {
@@ -81,7 +81,6 @@
 .#{$pre}-date__input[readonly] ~ .#{$pre}-date__label {
   color: $christi-shade;
 }
-
 .#{$pre}-date__input[required] ~ .#{$pre}-date__label::after {
   content: ' *';
   position: relative;
@@ -98,21 +97,6 @@
   color: rgba($state-error-focus, 0);
 }
 
-.#{$pre}-date > .#{$pre}-icon {
-  position: absolute;
-
-  // * Visual hack.
-  top: rem(26px);
-
-  right: rem(8px);
-  stroke: $gunmetal;
-  pointer-events: none;
-}
-
-.#{$pre}-date__input:disabled ~ .#{$pre}-icon {
-  stroke: $fossil;
-}
-
 .#{$pre}-date__border {
   display: none;
 }
@@ -123,7 +107,7 @@
   position: absolute;
   top: rem(64px);
   left: 0;
-  transform: rem(translateY(24px));
+  transform: translateY(#{rem(24px)});
   box-sizing: border-box;
   width: rem(296px);
   padding: $space-inset-s;
@@ -172,6 +156,7 @@
   color: $gunmetal;
   font-weight: 700;
 }
+
 .#{$pre}-date__item--selectable {
   color: $charcoal;
 }
@@ -183,14 +168,6 @@
 
 .#{$pre}-date__item--current {
   font-weight: 700;
-}
-
-.#{$pre}-date__item > .#{$pre}-icon {
-  position: absolute;
-  top: rem(8px);
-  left: rem(8px);
-  stroke: $gunmetal;
-  pointer-events: none;
 }
 
 .#{$pre}-date__message {
@@ -207,12 +184,10 @@
 .#{$pre}-date--error .#{$pre}-date__message {
   color: $state-error;
 }
-
 .#{$pre}-date--success .#{$pre}-date__message {
   color: $state-success;
 }
 
-// no-touchevents // ----------------------------------------------------------
 .#{$pre}-no-touchevents {
   .#{$pre}-date__input {
     border-bottom: $input-border;
@@ -220,20 +195,20 @@
     cursor: pointer;
   }
 
-  .#{$pre}-date__input:focus {
-    color: inherit;
-  }
-  // * Firefox support
+  // * Support for Firefox.
   .#{$pre}-date__input:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 $charcoal;
   }
-  // * IE support
+  // * Support for IE11.
   .#{$pre}-date__input::-ms-expand {
     display: none;
   }
 
-  // ? What do these two selectors do? No such siblings.
+  .#{$pre}-date__input:focus {
+    color: inherit;
+  }
+
   .#{$pre}-date__input:disabled ~ .#{$pre}-date__input {
     cursor: not-allowed;
   }
@@ -250,26 +225,16 @@
     user-select: none;
   }
 
-  .#{$pre}-date__input:focus + .#{$pre}-date__label {
-    color: $gunmetal;
-  }
   .#{$pre}-date__input[readonly] ~ .#{$pre}-date__label {
     color: $christi-shade;
   }
-  .#{$pre}-date.#{$pre}-active > .#{$pre}-date__label {
+
+  .#{$pre}-date__input:focus + .#{$pre}-date__label {
     color: $gunmetal;
   }
 
-  .#{$pre}-date__input:focus ~ .#{$pre}-icon {
-    stroke: $charcoal;
-  }
-
-  .#{$pre}-date > .#{$pre}-icon {
-    transition: stroke $transition-duration-x1 $transition-timing-default;
-  }
-
-  .#{$pre}-date.#{$pre}-active > .#{$pre}-icon {
-    stroke: $charcoal;
+  .#{$pre}-date.#{$pre}-active > .#{$pre}-date__label {
+    color: $gunmetal;
   }
 
   .#{$pre}-date__border {
@@ -322,6 +287,7 @@
     width: 100%;
     background-color: $state-default;
   }
+
   .#{$pre}-selected > .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
     background-color: $state-default-hover;
   }
@@ -339,6 +305,7 @@
   .#{$pre}-date__item--next {
     cursor: pointer;
   }
+
   .#{$pre}-date__item--selectable {
     cursor: pointer;
   }
@@ -347,38 +314,14 @@
     border-radius: $border-radius-round;
     background-color: $selection-background;
   }
-
-  .#{$pre}-date__item--previous > .#{$pre}-icon {
-    transition: stroke $transition-duration-x1 $transition-timing-default;
-  }
-
-  .#{$pre}-date__item--previous:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
-  }
-  .#{$pre}-date__item--previous:active > .#{$pre}-icon {
-    stroke: $state-default-active;
-  }
-
-  .#{$pre}-date__item--next > .#{$pre}-icon {
-    transition: stroke $transition-duration-x1 $transition-timing-default;
-  }
-
-  .#{$pre}-date__item--next:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
-  }
-  .#{$pre}-date__item--next:active > .#{$pre}-icon {
-    stroke: $state-default-active;
-  }
 }
 
-// medium // ------------------------------------------------------------------
 @media #{$media-m} {
   .#{$pre}-date__input {
     font-size: rem(15px);
   }
 }
 
-// large // -------------------------------------------------------------------
 @media #{$media-l} {
   .#{$pre}-date__input {
     font-size: rem(16px);

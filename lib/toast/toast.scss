@@ -13,8 +13,8 @@
 .#{$pre}-toast {
   position: fixed;
 
-  // * IE doesn't support calc in transformations.
-  // * Safari mobile ignores transition-timing-functions if different units
+  // * IE11 doesn't support calc() in transformations.
+  // * Mobbile Safari ignores transition-timing-functions if different units
   // * are used to declare states; i.e. right: -100%; doesn't play nicely
   // * with right: 16px;. Both must be declared using the same unit.
   right: rem(-352px);
@@ -40,6 +40,10 @@
   outline: $focus-outline;
 }
 
+.#{$pre}-toast.#{$pre}-mounted {
+  right: $space-m;
+}
+
 .#{$pre}-toast::before {
   content: '';
   position: absolute;
@@ -50,10 +54,6 @@
   border-top-left-radius: $border-radius-m;
   border-bottom-left-radius: $border-radius-m;
   background-color: $state-default;
-}
-
-.#{$pre}-toast--mounted {
-  right: $space-m;
 }
 
 .#{$pre}-toast--error::before {

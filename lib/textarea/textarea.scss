@@ -26,11 +26,17 @@
   box-sizing: border-box;
   width: 100%;
   height: rem(40px);
-  padding: rem(8px 0 7px); // * hack to remove scrollbar
+
+  // * Support for scrollbars in WebKit.
+  padding: rem(8px 0 7px);
+
   outline: none;
   border: none;
   border-bottom: rem(1px) solid $viking-shade;
-  border-radius: 0; // * iOS support
+
+  // * Support for Mobile Safari.
+  border-radius: 0;
+
   background: none;
   color: $gunmetal;
   font-family: $font-family-sans-serif;
@@ -39,18 +45,15 @@
   resize: none;
 }
 
-.#{$pre}-textarea--error > .#{$pre}-textarea__input {
-  border-bottom: rem(1px) solid $state-error;
-}
-.#{$pre}-textarea--success > .#{$pre}-textarea__input {
-  border-bottom: rem(1px) solid $state-success;
-}
-
 .#{$pre}-textarea__input:disabled {
-  opacity: 1; // * iOS support
+  // * Support for Mobile Safari.
+  opacity: 1;
+
   border-color: $state-disabled;
   color: $fossil;
-  -webkit-text-fill-color: $fossil; // * iOS support
+
+  // * Support for Mobile Safari.
+  -webkit-text-fill-color: $fossil;
 }
 .#{$pre}-textarea__input[readonly] {
   border: none;
@@ -60,13 +63,20 @@
   box-shadow: none;
 }
 
-// * IE10+ support.
+// * Support for IE11.
 .#{$pre}-textarea__input::-ms-clear {
   display: none;
 }
-// * IE10+ support.
+// * Support for IE11.
 .#{$pre}-textarea__input::-ms-reveal {
   display: none;
+}
+
+.#{$pre}-textarea--error > .#{$pre}-textarea__input {
+  border-bottom: rem(1px) solid $state-error;
+}
+.#{$pre}-textarea--success > .#{$pre}-textarea__input {
+  border-bottom: rem(1px) solid $state-success;
 }
 
 .#{$pre}-textarea__input.#{$pre}-active:disabled {
@@ -88,8 +98,16 @@
   user-select: none;
 }
 
-// * Using ~ instead of + means Grammarly can inject its markup and play
-// * nicely with the textarea component.
+.#{$pre}-textarea__input:disabled ~ .#{$pre}-textarea__label {
+  color: $fossil;
+}
+.#{$pre}-textarea__input[readonly] ~ .#{$pre}-textarea__label {
+  color: $christi-shade;
+}
+
+// * Using the general selector instead of the adjacent selector means
+// * Grammarly can inject its markup and play nicely with the textarea
+//*  component.
 .#{$pre}-textarea__input:focus ~ .#{$pre}-textarea__label {
   top: 0;
   color: $hurricane;
@@ -104,25 +122,15 @@
   line-height: rem(16px);
 }
 
-.#{$pre}-textarea__input:disabled ~ .#{$pre}-textarea__label {
-  color: $fossil;
-}
-
-.#{$pre}-textarea__input[readonly] ~ .#{$pre}-textarea__label {
-  color: $christi-shade;
-}
-
 .#{$pre}-textarea__input.#{$pre}-active:disabled ~ .#{$pre}-textarea__label {
   color: $state-disabled;
 }
-
 .#{$pre}-textarea__input.#{$pre}-active[readonly] ~ .#{$pre}-textarea__label {
   color: $christi-shade;
 }
 
 // * This pseudo-selector exists to handle the asterisk transition when a
 // * required textarea input is toggled to a disabled text-input.
-
 .#{$pre}-textarea__input ~ .#{$pre}-text__label::after {
   content: ' *';
   position: relative;
@@ -169,7 +177,6 @@
 .#{$pre}-textarea--error > .#{$pre}-textarea__message {
   color: $state-error;
 }
-
 .#{$pre}-textarea--success > .#{$pre}-textarea__message {
   color: $state-success;
 }
@@ -199,7 +206,6 @@
   .#{$pre}-textarea__input:disabled ~ .#{$pre}-textarea__label {
     color: $fossil;
   }
-
   .#{$pre}-textarea__input[readonly] ~ .#{$pre}-textarea__label {
     color: $christi-shade;
   }
@@ -219,7 +225,6 @@
   .#{$pre}-textarea__input.#{$pre}-active:disabled ~ .#{$pre}-textarea__label {
     color: $state-disabled;
   }
-
   .#{$pre}-textarea__input.#{$pre}-active[readonly] ~ .#{$pre}-textarea__label {
     color: $christi-shade;
   }
@@ -294,7 +299,6 @@
     ~ .#{$pre}-textarea__border {
     background-color: $state-success-hover;
   }
-
   .#{$pre}-textarea--success
     > .#{$pre}-textarea__input:focus
     ~ .#{$pre}-textarea__border {
@@ -317,15 +321,16 @@
   }
 }
 
-// vendor // ------------------------------------------------------------------
+// Vendors.
 .afterthedeadline-button + .#{$pre}-textarea__input {
   padding: $space-s $space-xxl rem(7px) 0;
 }
 
-// medium // ------------------------------------------------------------------
 @media #{$media-m} {
   .#{$pre}-textarea__input {
-    padding: $space-xs 0 rem(3px); // * hack to remove scrollbar
+    // * Support for scrollbars in WebKit.
+    padding: $space-xs 0 rem(3px);
+
     font-size: rem(15px);
     line-height: rem(32px);
   }
@@ -334,13 +339,12 @@
     font-size: rem(15px);
   }
 
-  // vendor // ------------------------------------------------------------------
+  // Vendors.
   .afterthedeadline-button + .#{$pre}-textarea__input {
     padding: $space-xs $space-xxl rem(3px) 0;
   }
 }
 
-// large // -------------------------------------------------------------------
 @media #{$media-l} {
   .#{$pre}-textarea__input {
     font-size: rem(16px);

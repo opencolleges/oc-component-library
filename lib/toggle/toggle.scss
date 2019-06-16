@@ -84,27 +84,32 @@
   left: auto;
   transform: translateY(-50%);
 }
-.#{$pre}-toggle--error > .#{$pre}-toggle__label::before {
-  border-color: $cinnabar-shade;
-}
-.#{$pre}-toggle--success > .#{$pre}-toggle__label::before {
-  border-color: $christi-shade;
-}
+
 .#{$pre}-toggle__input:disabled + .#{$pre}-toggle__label::before {
   border-color: $state-disabled;
 }
 .#{$pre}-toggle__input[readonly] + .#{$pre}-toggle__label::before {
   border-color: $charcoal;
 }
+
 .#{$pre}-toggle__input:checked + .#{$pre}-toggle__label::before {
   background-color: $viking-shade;
 }
+
 .#{$pre}-toggle__input:checked:disabled + .#{$pre}-toggle__label::before {
   background-color: $state-disabled;
 }
 .#{$pre}-toggle__input:checked[readonly] + .#{$pre}-toggle__label::before {
   background-color: $charcoal;
 }
+
+.#{$pre}-toggle--error > .#{$pre}-toggle__label::before {
+  border-color: $cinnabar-shade;
+}
+.#{$pre}-toggle--success > .#{$pre}-toggle__label::before {
+  border-color: $christi-shade;
+}
+
 .#{$pre}-toggle--error
   > .#{$pre}-toggle__input:checked
   + .#{$pre}-toggle__label::before {
@@ -118,7 +123,11 @@
 
 .#{$pre}-toggle__label::after {
   content: '';
-  z-index: 1; // * ensures toggle is in the foreground for full bounce effect
+
+  // * Ensures pseudo-element is in the foreground so its
+  // * transition-timing-function is visible.
+  z-index: 1;
+
   position: absolute;
   top: rem(1px);
   left: rem(9px);
@@ -168,9 +177,11 @@
     transition: border-color $transition-duration-x1 $transition-timing-default,
       background-color $transition-duration-x1 $transition-timing-default;
   }
+
   .#{$pre}-toggle__input:checked + .#{$pre}-toggle__label::before {
     border-color: $viking-shade;
   }
+
   .#{$pre}-toggle__input:checked:hover + .#{$pre}-toggle__label::before {
     border-color: $viking;
     background-color: $viking;
@@ -183,22 +194,26 @@
     border-color: $viking-shade;
     background-color: $viking-shade;
   }
+
   .#{$pre}-toggle__input:checked:disabled + .#{$pre}-toggle__label::before {
     border-color: $state-disabled;
   }
   .#{$pre}-toggle__input:checked[readonly] + .#{$pre}-toggle__label::before {
     border-color: $charcoal;
   }
+
   .#{$pre}-toggle__input:checked:hover:disabled
     + .#{$pre}-toggle__label::before {
     border-color: $state-disabled;
     background-color: $state-disabled;
   }
+
   .#{$pre}-toggle--error
     > .#{$pre}-toggle__input:checked
     + .#{$pre}-toggle__label::before {
     border-color: $cinnabar-shade;
   }
+
   .#{$pre}-toggle--error
     > .#{$pre}-toggle__input:checked:hover
     + .#{$pre}-toggle__label::before {
@@ -217,11 +232,13 @@
     border-color: $cinnabar-shade;
     background-color: $cinnabar-shade;
   }
+
   .#{$pre}-toggle--success
     > .#{$pre}-toggle__input:checked
     + .#{$pre}-toggle__label::before {
     border-color: $christi-shade;
   }
+
   .#{$pre}-toggle--success
     > .#{$pre}-toggle__input:checked:hover
     + .#{$pre}-toggle__label::before {
@@ -274,6 +291,7 @@
   .#{$pre}-toggle--success .#{$pre}-toggle__border {
     stroke: $christi;
   }
+
   .#{$pre}-toggle__input:hover
     ~ .#{$pre}-toggle__border-outer
     > .#{$pre}-toggle__border {
@@ -289,6 +307,7 @@
     > .#{$pre}-toggle__border {
     stroke: $viking-shade;
   }
+
   .#{$pre}-toggle--error
     > .#{$pre}-toggle__input:active
     ~ .#{$pre}-toggle__border-outer
@@ -301,18 +320,21 @@
     > .#{$pre}-toggle__border {
     stroke: $christi-shade;
   }
+
   .#{$pre}-toggle--reversed
     > .#{$pre}-toggle__input:active
     ~ .#{$pre}-toggle__border-outer
     > .#{$pre}-toggle__border {
     stroke: $blizzard;
   }
+
   .#{$pre}-toggle__input:checked
     ~ .#{$pre}-toggle__border-outer
     > .#{$pre}-toggle__border {
     stroke: $viking-shade;
     stroke-dasharray: ((get-circumference(23) + 40)) 0;
   }
+
   .#{$pre}-toggle__input:checked:hover
     ~ .#{$pre}-toggle__border-outer
     > .#{$pre}-toggle__border {
@@ -328,12 +350,14 @@
     > .#{$pre}-toggle__border {
     stroke: $viking-shade;
   }
+
   .#{$pre}-toggle--error
     > .#{$pre}-toggle__input:checked
     ~ .#{$pre}-toggle__border-outer
     > .#{$pre}-toggle__border {
     stroke: $cinnabar-shade;
   }
+
   .#{$pre}-toggle--error
     > .#{$pre}-toggle__input:checked:hover
     ~ .#{$pre}-toggle__border-outer
@@ -352,12 +376,14 @@
     > .#{$pre}-toggle__border {
     stroke: $cinnabar-shade;
   }
+
   .#{$pre}-toggle--success
     > .#{$pre}-toggle__input:checked
     ~ .#{$pre}-toggle__border-outer
     > .#{$pre}-toggle__border {
     stroke: $christi-shade;
   }
+
   .#{$pre}-toggle--success
     > .#{$pre}-toggle__input:checked:hover
     ~ .#{$pre}-toggle__border-outer
@@ -396,13 +422,14 @@
     top: rem(4px);
   }
 
+  .#{$pre}-toggle--right > .#{$pre}-toggle__label::before {
+    top: 50%;
+  }
+
   .#{$pre}-toggle__label::after {
     top: rem(5px);
   }
 
-  .#{$pre}-toggle--right > .#{$pre}-toggle__label::before {
-    top: 50%;
-  }
   .#{$pre}-toggle--right > .#{$pre}-toggle__label::after {
     top: 50%;
   }

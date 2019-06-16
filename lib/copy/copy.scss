@@ -186,12 +186,6 @@
   margin: 0 0 $space-m $space-xl;
 }
 
-@for $index from 1 through 6 {
-  .#{$pre}-h#{$index} + .#{$pre}-ol {
-    margin-top: rem(-16px);
-  }
-}
-
 .#{$pre}-ol .#{$pre}-ol {
   margin: $space-s 0 0 $space-xl;
 }
@@ -199,14 +193,14 @@
   margin: $space-s 0 0 $space-xl;
 }
 
-.#{$pre}-ul {
-  margin: 0 0 $space-m $space-xl;
-}
-
 @for $index from 1 through 6 {
-  .#{$pre}-h#{$index} + .#{$pre}-ul {
+  .#{$pre}-h#{$index} + .#{$pre}-ol {
     margin-top: rem(-16px);
   }
+}
+
+.#{$pre}-ul {
+  margin: 0 0 $space-m $space-xl;
 }
 
 .#{$pre}-ol .#{$pre}-ul {
@@ -216,41 +210,17 @@
   margin: $space-s 0 0 $space-xl;
 }
 
+@for $index from 1 through 6 {
+  .#{$pre}-h#{$index} + .#{$pre}-ul {
+    margin-top: rem(-16px);
+  }
+}
+
 .#{$pre}-li {
   position: relative;
   margin: $space-stack-s;
   font-size: rem(14px);
   line-height: rem(24px);
-}
-
-.#{$pre}-ol > .#{$pre}-li::before {
-  counter-increment: item;
-  content: counter(item);
-  position: absolute;
-
-  // * Visual hack to align with typography baseline.
-  top: rem(1px);
-
-  right: calc(100% + #{$space-m});
-  color: $christi-shade;
-  font-size: rem(12px);
-  font-weight: 700;
-  text-align: right;
-}
-.#{$pre}-ul > .#{$pre}-li::before {
-  content: '';
-  position: absolute;
-
-  // * Visual hack to align with typography baseline.
-  top: rem(9px);
-
-  right: calc(100% + #{$space-m});
-  box-sizing: border-box;
-  width: rem(8px);
-  height: rem(8px);
-  border: rem(1px) solid $christi-shade;
-  border-radius: $border-radius-round;
-  background-color: $christi-shade;
 }
 
 .#{$pre}-ol .#{$pre}-ol > .#{$pre}-li::before {
@@ -264,6 +234,36 @@
 }
 .#{$pre}-ul .#{$pre}-ul > .#{$pre}-li::before {
   background-color: transparent;
+}
+
+.#{$pre}-ol > .#{$pre}-li::before {
+  counter-increment: item;
+  content: counter(item);
+  position: absolute;
+
+  // * A visual adjustment to align with the 8px grid.
+  top: rem(1px);
+
+  right: calc(100% + #{$space-m});
+  color: $christi-shade;
+  font-size: rem(12px);
+  font-weight: 700;
+  text-align: right;
+}
+.#{$pre}-ul > .#{$pre}-li::before {
+  content: '';
+  position: absolute;
+
+  // * A visual adjustment to align with the 8px grid.
+  top: rem(9px);
+
+  right: calc(100% + #{$space-m});
+  box-sizing: border-box;
+  width: rem(8px);
+  height: rem(8px);
+  border: rem(1px) solid $christi-shade;
+  border-radius: $border-radius-round;
+  background-color: $christi-shade;
 }
 
 .#{$pre}-pre {
@@ -337,8 +337,8 @@
   .#{$pre}-ol > .#{$pre}-li::before {
     font-size: rem(13px);
   }
+  // * A visual adjustment to align with the 8px grid.
   .#{$pre}-ul > .#{$pre}-li::before {
-    // * Visual hack to align with typography baseline.
     top: rem(14px);
   }
 

@@ -2,16 +2,16 @@
 @import './utilities/scss/variables/tokens';
 @import './utilities/scss/functions/rem';
 
-// Vendor imports
+// Vendors
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:700|Open+Sans+Condensed:300,700|Open+Sans:300,400,400i,700');
 
 // Rules
+// * Declare selection highlight color.
 ::-moz-selection {
-  // * Declare selection highlight color.
   background: $selection-background;
 }
+// * Declare selection highlight color.
 ::selection {
-  // * Declare selection highlight color.
   background: $selection-background;
 }
 
@@ -30,7 +30,7 @@ body {
   // * Text rendering.
   text-rendering: optimizeLegibility;
 
-  // * Remove overlay when element is tapped in iOS.
+  // * Remove overlay when element is tapped in Mobile Safari.
   -webkit-tap-highlight-color: $blizzard-transparent;
 
   // * Progressivlely enhance the caret for browsers that support caret-color.
@@ -43,7 +43,7 @@ img {
   height: auto;
 }
 
+// * Autofill highlight color.
 input:-webkit-autofill {
-  // * Autofill highlight color.
   box-shadow: rgba($viking, 0.13) 0, 0, 0, rem(24px) inset !important;
 }

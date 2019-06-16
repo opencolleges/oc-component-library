@@ -1,15 +1,3 @@
-// * utility imports
-@import '../functions/str-replace';
-
-@mixin pre($value) {
-  $result: '';
-
-  $result: str-replace($value, '.', '.#{$prefix}-');
-
-  #{$result} {
-    @content;
-  }
-}
-
+// Global namespace
 $prefix: 'oc' !global;
 $pre: 'oc' !global;

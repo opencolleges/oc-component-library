@@ -12,7 +12,7 @@
 // Rules
 .#{$pre}-preloader {
   z-index: $z-index-overlay;
-  position: fixed; // ? absolute
+  position: fixed;
   top: 0;
   left: 0;
   display: none;
@@ -20,7 +20,7 @@
   height: 100%;
 }
 
-.#{$pre}-preloader--active {
+.#{$pre}-preloader.#{$pre}-active {
   display: block;
 }
 

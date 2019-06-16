@@ -14,7 +14,7 @@
   background-color: $blizzard;
 }
 
-.#{$pre}-card :last-child {
+.#{$pre}-card > :last-child {
   margin-bottom: 0;
 }
 
@@ -71,13 +71,6 @@
   user-select: none;
 }
 
-.#{$pre}-mouse-move {
-  transition: none !important;
-}
-.#{$pre}-foo {
-  transition: $transition-duration-x1 $transition-timing-default;
-}
-
 .#{$pre}-no-touchevents {
   .#{$pre}-card--clickable {
     cursor: pointer;
@@ -110,4 +103,11 @@
   .#{$pre}-card--draggable {
     padding-left: $space-xxl;
   }
+}
+
+.#{$pre}-mouse-move {
+  transition: none !important;
+}
+.#{$pre}-foo {
+  transition: $transition-duration-x1 $transition-timing-default;
 }

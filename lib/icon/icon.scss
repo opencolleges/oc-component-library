@@ -1,41 +1,42 @@
 // Pattern outline
 // * .icon
+// *   .icon__stroke
 
 // Imports
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/get-circumference';
-@import '../utilities/scss/mixins/bem';
+@import '../utilities/scss/functions/rem';
 
 // Rules
-@include pre('.icon') {
+.#{$pre}-icon {
   stroke: currentColor;
   fill: none;
 }
 
-// @include pre('.icon--arrow-up .stroke--1') {
-//   opacity: 0; // * Safari hack
+// .#{$pre}-icon--arrow-up .#{$pre}-stroke--1 {
+//   opacity: 0; // * Support for Safari and Mobile Safari.
 //   stroke-dasharray: 0 15.29;
 //   transition: opacity 0 $transition-duration-x2,
 //     stroke-dasharray $transition-duration-x2 $transition-timing-default;
 // }
 
-// @include pre('.icon--arrow-up.active .stroke--1') {
-//   opacity: 1; // * Safari hack
+// .#{$pre}-icon--arrow-up.#{$pre}-active .#{$pre}-stroke--1 {
+//   opacity: 1; // * Support for Safari and Mobile Safari.
 //   stroke-dasharray: 15.29 0;
 //   transition: opacity 0 0,
 //     stroke-dasharray $transition-duration-x2 $transition-timing-default;
 // }
 
-// @include pre('.icon--arrow-up .stroke--2') {
-//   opacity: 0; // * Safari hack
+// .#{$pre}-icon--arrow-up .#{$pre}-stroke--2 {
+//   opacity: 0; // * Support for Safari and Mobile Safari.
 //   stroke-dasharray: 0 6.5 0 6.5;
 //   transition: opacity 0 $transition-duration-x4,
 //     stroke-dasharray $transition-duration-x2 $transition-timing-default
 //       $transition-duration-x2;
 // }
 
-// @include pre('.icon--arrow-up.active .stroke--2') {
+// .#{$pre}-icon--arrow-up.#{$pre}-active .#{$pre}-stroke--2 {
 //   opacity: 1;
 //   stroke-dasharray: 0 0 13 0;
 //   transition: opacity 0 $transition-duration-x2,
@@ -43,450 +44,450 @@
 //       $transition-duration-x2;
 // }
 
-@include pre('.icon--arrow-up .stroke--1') {
+.#{$pre}-icon--arrow-up .#{$pre}-stroke--1 {
   stroke-dasharray: 0 15.29;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--arrow-up.active .stroke--1') {
+.#{$pre}-icon--arrow-up.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 15.29 0;
 }
 
-@include pre('.icon--arrow-up .stroke--2') {
+.#{$pre}-icon--arrow-up .#{$pre}-stroke--2 {
   stroke-dasharray: 0 6.5 0 6.5;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--arrow-up.active .stroke--2') {
+.#{$pre}-icon--arrow-up.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 0 0 13 0;
 }
 
-@include pre('.icon--arrow-right .stroke--1') {
+.#{$pre}-icon--arrow-right .#{$pre}-stroke--1 {
   stroke-dasharray: 0 15.29;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--arrow-right.active .stroke--1') {
+.#{$pre}-icon--arrow-right.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 15.29 0;
 }
 
-@include pre('.icon--arrow-right .stroke--2') {
+.#{$pre}-icon--arrow-right .#{$pre}-stroke--2 {
   stroke-dasharray: 0 6.5 0 6.5;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--arrow-right.active .stroke--2') {
+.#{$pre}-icon--arrow-right.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 0 0 13 0;
 }
 
-@include pre('.icon--arrow-down .stroke--1') {
+.#{$pre}-icon--arrow-down .#{$pre}-stroke--1 {
   stroke-dasharray: 0 15.29;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--arrow-down.active .stroke--1') {
+.#{$pre}-icon--arrow-down.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 15.29 0;
 }
 
-@include pre('.icon--arrow-down .stroke--2') {
+.#{$pre}-icon--arrow-down .#{$pre}-stroke--2 {
   stroke-dasharray: 0 6.5 0 6.5;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--arrow-down.active .stroke--2') {
+.#{$pre}-icon--arrow-down.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 0 0 13 0;
 }
 
-@include pre('.icon--arrow-left .stroke--1') {
+.#{$pre}-icon--arrow-left .#{$pre}-stroke--1 {
   stroke-dasharray: 0 15.29;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--arrow-left.active .stroke--1') {
+.#{$pre}-icon--arrow-left.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 15.29 0;
 }
 
-@include pre('.icon--arrow-left .stroke--2') {
+.#{$pre}-icon--arrow-left .#{$pre}-stroke--2 {
   stroke-dasharray: 0 6.5 0 6.5;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--arrow-left.active .stroke--2') {
+.#{$pre}-icon--arrow-left.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 0 0 13 0;
 }
 
-@include pre('.icon--calendar .stroke--1') {
+.#{$pre}-icon--calendar .#{$pre}-stroke--1 {
   stroke-dasharray: 0 60;
   stroke-dashoffset: -8;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--calendar.active .stroke--1') {
+.#{$pre}-icon--calendar.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 60 0;
   transition: stroke-dasharray $transition-duration-x3
     $transition-timing-default;
 }
 
-@include pre('.icon--calendar .stroke--2') {
+.#{$pre}-icon--calendar .#{$pre}-stroke--2 {
   stroke-dasharray: 0 15;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x3;
 }
 
-@include pre('.icon--calendar.active .stroke--2') {
+.#{$pre}-icon--calendar.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 15 0;
 }
 
-@include pre('.icon--calendar .stroke--3') {
+.#{$pre}-icon--calendar .#{$pre}-stroke--3 {
   stroke-dasharray: 0 2.5;
   transition: stroke-dasharray $transition-duration-x1
     $transition-timing-default $transition-duration-x1;
 }
 
-@include pre('.icon--calendar.active .stroke--3') {
+.#{$pre}-icon--calendar.#{$pre}-active .#{$pre}-stroke--3 {
   stroke-dasharray: 2.5 0;
 }
 
-@include pre('.icon--calendar .stroke--4') {
+.#{$pre}-icon--calendar .#{$pre}-stroke--4 {
   stroke-dasharray: 0 2.5;
   transition: stroke-dasharray $transition-duration-x1
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--calendar.active .stroke--4') {
+.#{$pre}-icon--calendar.#{$pre}-active .#{$pre}-stroke--4 {
   stroke-dasharray: 2.5 0;
 }
 
-@include pre('.icon--chevron-up .stroke--1') {
+.#{$pre}-icon--chevron-up .#{$pre}-stroke--1 {
   stroke-dasharray: 0 21;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--chevron-up.active .stroke--1') {
+.#{$pre}-icon--chevron-up.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 21 0;
 }
 
-@include pre('.icon--chevron-right .stroke--1') {
+.#{$pre}-icon--chevron-right .#{$pre}-stroke--1 {
   stroke-dasharray: 0 21;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--chevron-right.active .stroke--1') {
+.#{$pre}-icon--chevron-right.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 21 0;
 }
 
-@include pre('.icon--chevron-down .stroke--1') {
+.#{$pre}-icon--chevron-down .#{$pre}-stroke--1 {
   stroke-dasharray: 0 21;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--chevron-down.active .stroke--1') {
+.#{$pre}-icon--chevron-down.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 21 0;
 }
 
-@include pre('.icon--chevron-left .stroke--1') {
+.#{$pre}-icon--chevron-left .#{$pre}-stroke--1 {
   stroke-dasharray: 0 21;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--chevron-left.active .stroke--1') {
+.#{$pre}-icon--chevron-left.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 21 0;
 }
 
-@include pre('.icon--close .stroke--1') {
+.#{$pre}-icon--close .#{$pre}-stroke--1 {
   stroke-dasharray: 0 16;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--close.active .stroke--1') {
+.#{$pre}-icon--close.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 16 0;
 }
 
-@include pre('.icon--close .stroke--2') {
+.#{$pre}-icon--close .#{$pre}-stroke--2 {
   stroke-dasharray: 0 16;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x1;
 }
 
-@include pre('.icon--close.active .stroke--2') {
+.#{$pre}-icon--close.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 16 0;
 }
 
-@include pre('.icon--close-ring .stroke--1') {
+.#{$pre}-icon--close-ring .#{$pre}-stroke--1 {
   stroke-dasharray: 0 get-circumference(15.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--close-ring.active .stroke--1') {
+.#{$pre}-icon--close-ring.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(15.5) 0;
 }
 
-@include pre('.icon--close-ring .stroke--2') {
+.#{$pre}-icon--close-ring .#{$pre}-stroke--2 {
   stroke-dasharray: 0 10;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--close-ring.active .stroke--2') {
+.#{$pre}-icon--close-ring.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 10 0;
 }
 
-@include pre('.icon--close-ring .stroke--3') {
+.#{$pre}-icon--close-ring .#{$pre}-stroke--3 {
   stroke-dasharray: 0 10;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x3;
 }
 
-@include pre('.icon--close-ring.active .stroke--3') {
+.#{$pre}-icon--close-ring.#{$pre}-active .#{$pre}-stroke--3 {
   stroke-dasharray: 10 0;
 }
 
-@include pre('.icon--cloud .stroke--1') {
+.#{$pre}-icon--cloud .#{$pre}-stroke--1 {
   stroke-dasharray: 0 52;
   transition: stroke-dasharray $transition-duration-x4
     $transition-timing-default;
 }
 
-@include pre('.icon--cloud.active .stroke--1') {
+.#{$pre}-icon--cloud.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 52 0;
 }
 
-@include pre('.icon--cloud-download .stroke--1') {
+.#{$pre}-icon--cloud-download .#{$pre}-stroke--1 {
   stroke-dasharray: 0 48;
   transition: stroke-dasharray $transition-duration-x4
     $transition-timing-default;
 }
 
-@include pre('.icon--cloud-download.active .stroke--1') {
+.#{$pre}-icon--cloud-download.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 48 0;
 }
 
-@include pre('.icon--cloud-download .stroke--2') {
+.#{$pre}-icon--cloud-download .#{$pre}-stroke--2 {
   stroke-dasharray: 0 10.3;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--cloud-download.active .stroke--2') {
+.#{$pre}-icon--cloud-download.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 10.3 0;
 }
 
-@include pre('.icon--cloud-download .stroke--3') {
+.#{$pre}-icon--cloud-download .#{$pre}-stroke--3 {
   stroke-dasharray: 0 6.5 0 6.5;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x4;
 }
 
-@include pre('.icon--cloud-download.active .stroke--3') {
+.#{$pre}-icon--cloud-download.#{$pre}-active .#{$pre}-stroke--3 {
   stroke-dasharray: 0 0 13 0;
 }
 
-@include pre('.icon--cloud-upload .stroke--1') {
+.#{$pre}-icon--cloud-upload .#{$pre}-stroke--1 {
   stroke-dasharray: 0 48;
   transition: stroke-dasharray $transition-duration-x4
     $transition-timing-default;
 }
 
-@include pre('.icon--cloud-upload.active .stroke--1') {
+.#{$pre}-icon--cloud-upload.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 48 0;
 }
 
-@include pre('.icon--cloud-upload .stroke--2') {
+.#{$pre}-icon--cloud-upload .#{$pre}-stroke--2 {
   stroke-dasharray: 0 10.3;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--cloud-upload.active .stroke--2') {
+.#{$pre}-icon--cloud-upload.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 10.3 0;
 }
 
-@include pre('.icon--cloud-upload .stroke--3') {
+.#{$pre}-icon--cloud-upload .#{$pre}-stroke--3 {
   stroke-dasharray: 0 6.5 0 6.5;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x4;
 }
 
-@include pre('.icon--cloud-upload.active .stroke--3') {
+.#{$pre}-icon--cloud-upload.#{$pre}-active .#{$pre}-stroke--3 {
   stroke-dasharray: 0 0 13 0;
 }
 
-@include pre('.icon--hamburger .stroke--1') {
+.#{$pre}-icon--hamburger .#{$pre}-stroke--1 {
   stroke-dasharray: 0 24;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--hamburger.active .stroke--1') {
+.#{$pre}-icon--hamburger.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 24 0;
 }
 
-@include pre('.icon--hamburger .stroke--2') {
+.#{$pre}-icon--hamburger .#{$pre}-stroke--2 {
   stroke-dasharray: 0 24;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x1;
 }
 
-@include pre('.icon--hamburger.active .stroke--2') {
+.#{$pre}-icon--hamburger.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 24 0;
 }
 
-@include pre('.icon--hamburger .stroke--3') {
+.#{$pre}-icon--hamburger .#{$pre}-stroke--3 {
   stroke-dasharray: 0 24;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--hamburger.active .stroke--3') {
+.#{$pre}-icon--hamburger.#{$pre}-active .#{$pre}-stroke--3 {
   stroke-dasharray: 24 0;
 }
 
-@include pre('.icon--minus .stroke--1') {
+.#{$pre}-icon--minus .#{$pre}-stroke--1 {
   stroke-dasharray: 0 16;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--minus.active .stroke--1') {
+.#{$pre}-icon--minus.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 16 0;
 }
 
-@include pre('.icon--minus-ring .stroke--1') {
+.#{$pre}-icon--minus-ring .#{$pre}-stroke--1 {
   stroke-dasharray: 0 get-circumference(15.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--minus-ring.active .stroke--1') {
+.#{$pre}-icon--minus-ring.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(15.5) 0;
 }
 
-@include pre('.icon--minus-ring .stroke--2') {
+.#{$pre}-icon--minus-ring .#{$pre}-stroke--2 {
   stroke-dasharray: 0 10;
   transition: stroke-dasharray $transition-duration-x1
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--minus-ring.active .stroke--2') {
+.#{$pre}-icon--minus-ring.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 10 0;
 }
 
-@include pre('.icon--plus .stroke--1') {
+.#{$pre}-icon--plus .#{$pre}-stroke--1 {
   stroke-dasharray: 0 16;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--plus.active .stroke--1') {
+.#{$pre}-icon--plus.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 16 0;
 }
 
-@include pre('.icon--plus .stroke--2') {
+.#{$pre}-icon--plus .#{$pre}-stroke--2 {
   stroke-dasharray: 0 16;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--plus.active .stroke--2') {
+.#{$pre}-icon--plus.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 16 0;
 }
 
-@include pre('.icon--plus-ring .stroke--1') {
+.#{$pre}-icon--plus-ring .#{$pre}-stroke--1 {
   stroke-dasharray: 0 get-circumference(15.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--plus-ring.active .stroke--1') {
+.#{$pre}-icon--plus-ring.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(15.5) 0;
 }
 
-@include pre('.icon--plus-ring .stroke--2') {
+.#{$pre}-icon--plus-ring .#{$pre}-stroke--2 {
   stroke-dasharray: 0 10;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--plus-ring.active .stroke--2') {
+.#{$pre}-icon--plus-ring.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 10 0;
 }
 
-@include pre('.icon--plus-ring .stroke--3') {
+.#{$pre}-icon--plus-ring .#{$pre}-stroke--3 {
   stroke-dasharray: 0 10;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x3;
 }
 
-@include pre('.icon--plus-ring.active .stroke--3') {
+.#{$pre}-icon--plus-ring.#{$pre}-active .#{$pre}-stroke--3 {
   stroke-dasharray: 10 0;
 }
 
-@include pre('.icon--search .stroke--1') {
+.#{$pre}-icon--search .#{$pre}-stroke--1 {
   stroke-dasharray: 0 get-circumference(9.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--search.active .stroke--1') {
+.#{$pre}-icon--search.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(9.5) 0;
 }
 
-@include pre('.icon--search .stroke--2') {
+.#{$pre}-icon--search .#{$pre}-stroke--2 {
   stroke-dasharray: 0 6;
   transition: stroke-dasharray $transition-duration-x1
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--search.active .stroke--2') {
+.#{$pre}-icon--search.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 6 0;
 }
 
-@include pre('.icon--tick .stroke--1') {
+.#{$pre}-icon--tick .#{$pre}-stroke--1 {
   stroke-dasharray: 0 20;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--tick.active .stroke--1') {
+.#{$pre}-icon--tick.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: 20 0;
 }
 
-@include pre('.icon--tick-ring .stroke--1') {
+.#{$pre}-icon--tick-ring .#{$pre}-stroke--1 {
   stroke-dasharray: 0 get-circumference(15.5);
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
 }
 
-@include pre('.icon--tick-ring.active .stroke--1') {
+.#{$pre}-icon--tick-ring.#{$pre}-active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(15.5) 0;
 }
 
-@include pre('.icon--tick-ring .stroke--2') {
+.#{$pre}-icon--tick-ring .#{$pre}-stroke--2 {
   stroke-dasharray: 0 14;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
 }
 
-@include pre('.icon--tick-ring.active .stroke--2') {
+.#{$pre}-icon--tick-ring.#{$pre}-active .#{$pre}-stroke--2 {
   stroke-dasharray: 14 0;
 }
 
-@include pre('.card--draggable > .icon--draggable') {
+.#{$pre}-card--draggable > .#{$pre}-icon--draggable {
   position: absolute;
   top: 50%;
   left: rem(8px);
@@ -496,36 +497,36 @@
   transition: $transition-duration-x1 $transition-timing-default;
 }
 
-@include pre('.no-touchevents') {
-  @include pre('.card--draggable:hover > .icon--draggable') {
+.#{$pre}-no-touchevents {
+  .#{$pre}-card--draggable:hover > .#{$pre}-icon--draggable {
     fill: $hurricane;
   }
-  @include pre('.card--draggable:focus > .icon--draggable') {
+  .#{$pre}-card--draggable:focus > .#{$pre}-icon--draggable {
     fill: $hurricane;
   }
-  @include pre('.foo > .card--draggable > .icon--draggable') {
+  .#{$pre}-foo > .#{$pre}-card--draggable > .#{$pre}-icon--draggable {
     fill: $gunmetal;
   }
 }
 
-@include pre('.progress > .icon') {
+.#{$pre}-progress > .#{$pre}-icon {
   position: absolute;
   top: 0;
   right: rem(8px);
 }
 
-@include pre('.progress--success > .icon') {
+.#{$pre}-progress--success > .#{$pre}-icon {
   stroke: $christi-shade;
 }
-@include pre('.progress--error > .icon') {
+.#{$pre}-progress--error > .#{$pre}-icon {
   stroke: $cinnabar-shade;
 }
 
-@include pre('.toast__button > .icon') {
+.#{$pre}-toast__button > .#{$pre}-icon {
   stroke: $gunmetal;
 }
 
-@include pre('.toast > .icon') {
+.#{$pre}-toast > .#{$pre}-icon {
   position: absolute;
   top: 50%;
   left: rem(16px);
@@ -535,45 +536,57 @@
   stroke: $state-default;
 }
 
-@include pre('.toast > .icon--close-ring') {
+.#{$pre}-toast > .#{$pre}-icon--close-ring {
   stroke: $state-error;
 }
-@include pre('.toast > .icon--tick-ring') {
+.#{$pre}-toast > .#{$pre}-icon--tick-ring {
   stroke: $state-success;
 }
 
-@include pre('.no-touchevents') {
-  @include pre('.toast__button:hover > .icon') {
+.#{$pre}-no-touchevents {
+  .#{$pre}-toast__button:hover > .#{$pre}-icon {
     stroke: $state-default-hover;
   }
-  @include pre('.toast__button:focus > .icon') {
+  .#{$pre}-toast__button:focus > .#{$pre}-icon {
     stroke: $state-default-focus;
   }
-  @include pre('.toast__button:active > .icon') {
+  .#{$pre}-toast__button:active > .#{$pre}-icon {
     stroke: $state-default-active;
   }
 }
 
-@include pre('.pagination__item > .icon') {
+.#{$pre}-pagination__item > .#{$pre}-icon {
   position: absolute;
   top: rem(12px);
 }
 
-@include pre('.pagination__item > .icon--arrow-left') {
+.#{$pre}-pagination__item > .#{$pre}-icon--arrow-left {
   left: rem(12px);
 }
-@include pre('.pagination__item > .icon--arrow-right') {
+.#{$pre}-pagination__item > .#{$pre}-icon--arrow-right {
   right: rem(12px);
 }
 
-@include pre('.pagination__item--selectable > .icon') {
+.#{$pre}-pagination__item--selectable > .#{$pre}-icon {
   stroke: $viking-shade;
 }
 
-@include pre('.select > .icon') {
+.#{$pre}-no-touchevents {
+  .#{$pre}-#{$pre}-pagination__item--selectable > .#{$pre}-#{$pre}-icon {
+    stroke: currentColor;
+  }
+  .#{$pre}-#{$pre}-pagination__item--selectable:hover > .#{$pre}-#{$pre}-icon {
+    stroke: $state-default-hover;
+  }
+  .#{$pre}-#{$pre}-pagination__item--selectable:active > .#{$pre}-#{$pre}-icon {
+    stroke: $state-default-active;
+  }
+}
+
+.#{$pre}-select > .#{$pre}-icon {
   position: absolute;
 
-  // * Visual hack.
+  // * A visual adjustment.
   top: rem(26px);
 
   right: rem(8px);
@@ -581,6 +594,245 @@
   pointer-events: none;
 }
 
-@include pre('.select__input:disabled ~ .icon') {
+.#{$pre}-select__input:disabled ~ .#{$pre}-icon {
   stroke: $fossil;
+}
+
+.#{$pre}-file__image > .#{$pre}-icon {
+  width: 100%;
+  height: 100%;
+  stroke: $fossil;
+}
+
+.#{$pre}-text > .#{$pre}-icon {
+  position: absolute;
+  top: rem(24px);
+  right: rem(8px);
+  stroke-width: 1;
+  fill: none;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+  pointer-events: none;
+}
+
+.#{$pre}-text > .#{$pre}-icon--close {
+  stroke: $state-error;
+}
+.#{$pre}-text > .#{$pre}-icon--tick {
+  stroke: $state-success;
+}
+
+.#{$pre}-radio > .#{$pre}-icon {
+  position: absolute;
+  top: 50%;
+  right: rem(8px);
+  transform: translateY(-50%);
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-icon {
+  right: rem(16px);
+}
+
+.#{$pre}-radio > .#{$pre}-icon--close {
+  stroke: $state-error;
+}
+.#{$pre}-radio > .#{$pre}-icon--tick {
+  stroke: $state-success;
+}
+
+.#{$pre}-no-touchevents {
+  .#{$pre}-radio > .#{$pre}-icon {
+    pointer-events: none;
+  }
+
+  .#{$pre}-radio__input:hover ~ .#{$pre}-icon--close {
+    stroke: $state-error-hover;
+  }
+  .#{$pre}-radio__input:focus ~ .#{$pre}-icon--close {
+    stroke: $state-error-focus;
+  }
+  .#{$pre}-radio__input:active ~ .#{$pre}-icon--close {
+    stroke: $state-error-active;
+  }
+
+  .#{$pre}-radio__input:hover ~ .#{$pre}-icon--tick {
+    stroke: $state-success-hover;
+  }
+  .#{$pre}-radio__input:focus ~ .#{$pre}-icon--tick {
+    stroke: $state-success-focus;
+  }
+  .#{$pre}-radio__input:active ~ .#{$pre}-icon--tick {
+    stroke: $state-success-active;
+  }
+}
+
+.#{$pre}-checkbox > .#{$pre}-icon {
+  position: absolute;
+  top: 50%;
+  right: rem(8px);
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon {
+  right: rem(16px);
+}
+
+.#{$pre}-checkbox > .#{$pre}-icon--close {
+  stroke: $state-error;
+}
+.#{$pre}-checkbox > .#{$pre}-icon--tick {
+  stroke: $state-success;
+}
+
+.#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
+  top: rem(-2px);
+  right: auto;
+  left: rem(8px);
+  transform: none;
+  stroke: $charcoal;
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
+  top: rem(14px);
+  left: rem(24px);
+}
+
+.#{$pre}-checkbox--right > .#{$pre}-icon--tick:last-child {
+  // * A visual adjustment to support IE11.
+  top: calc(50% - #{rem(2px)});
+
+  right: 0;
+  left: auto;
+  transform: translateY(-50%);
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
+  // * A visual adjustment to support IE11.
+  top: calc(50% - #{rem(2px)});
+
+  left: auto;
+}
+
+.#{$pre}-checkbox--reversed > .#{$pre}-icon--tick:last-child {
+  color: $blizzard;
+}
+
+.#{$pre}-checkbox__input:checked:disabled ~ .#{$pre}-icon--tick:last-child {
+  stroke: $fossil;
+}
+.#{$pre}-checkbox__input:checked[readonly] ~ .#{$pre}-icon--tick:last-child {
+  stroke: $charcoal;
+}
+
+@media #{$media-m} {
+  .#{$pre}-checkbox > .#{$pre}-icon {
+    pointer-events: none;
+  }
+
+  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--close {
+    stroke: $state-error-hover;
+  }
+  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--close {
+    stroke: $state-error-focus;
+  }
+  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--close {
+    stroke: $state-error-active;
+  }
+
+  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--tick {
+    stroke: $state-success-hover;
+  }
+  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--tick {
+    stroke: $state-success-focus;
+  }
+  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--tick {
+    stroke: $state-success-active;
+  }
+
+  .#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
+    stroke: $charcoal;
+  }
+
+  .#{$pre}-no-touchevents {
+    .#{$pre}-checkbox > .#{$pre}-icon:last-child {
+      top: rem(2px);
+    }
+
+    .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
+      top: rem(18px);
+    }
+
+    // * A visual adjustment to support IE11.
+    .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
+      top: calc(50% - #{rem(2px)});
+    }
+
+    // * A visual adjustment to support IE11.
+    .#{$pre}-card--clickable
+      > .#{$pre}-checkbox--right
+      > .#{$pre}-icon:last-child {
+      top: calc(50% - #{rem(2px)});
+    }
+  }
+}
+
+.#{$pre}-date > .#{$pre}-icon {
+  position: absolute;
+
+  // * A visual adjustment.
+  top: rem(26px);
+
+  right: rem(8px);
+  stroke: $gunmetal;
+  pointer-events: none;
+}
+
+.#{$pre}-date__input:disabled ~ .#{$pre}-icon {
+  stroke: $fossil;
+}
+
+.#{$pre}-date__item > .#{$pre}-icon {
+  position: absolute;
+  top: rem(8px);
+  left: rem(8px);
+  stroke: $gunmetal;
+  pointer-events: none;
+}
+
+.#{$pre}-no-touchevents {
+  .#{$pre}-date__input:focus ~ .#{$pre}-icon {
+    stroke: $charcoal;
+  }
+
+  .#{$pre}-date > .#{$pre}-icon {
+    transition: stroke $transition-duration-x1 $transition-timing-default;
+  }
+
+  .#{$pre}-date.#{$pre}-active > .#{$pre}-icon {
+    stroke: $charcoal;
+  }
+
+  .#{$pre}-date__item--previous > .#{$pre}-icon {
+    transition: stroke $transition-duration-x1 $transition-timing-default;
+  }
+
+  .#{$pre}-date__item--previous:hover > .#{$pre}-icon {
+    stroke: $state-default-hover;
+  }
+  .#{$pre}-date__item--previous:active > .#{$pre}-icon {
+    stroke: $state-default-active;
+  }
+
+  .#{$pre}-date__item--next > .#{$pre}-icon {
+    transition: stroke $transition-duration-x1 $transition-timing-default;
+  }
+
+  .#{$pre}-date__item--next:hover > .#{$pre}-icon {
+    stroke: $state-default-hover;
+  }
+  .#{$pre}-date__item--next:active > .#{$pre}-icon {
+    stroke: $state-default-active;
+  }
 }

@@ -3,10 +3,9 @@
 // * .td
 
 // Imports
+@import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
-@import '../utilities/scss/mixins/pseudo';
 
 // Rules
 .#{$pre}-th {
@@ -17,12 +16,12 @@
   vertical-align: bottom;
 }
 
-.#{$pre}-table--alt .#{$pre}-th {
-  color: $hurricane;
-}
-
 .#{$pre}-table--alt > .#{$pre}-tbody .#{$pre}-th:first-of-type {
   border-left: rem(1px) solid $gallery;
+}
+
+.#{$pre}-table--alt .#{$pre}-th {
+  color: $hurricane;
 }
 
 .#{$pre}-th--top {

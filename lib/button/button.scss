@@ -96,8 +96,8 @@
     user-select: none;
   }
 
+  // * Support for Firefox.
   .#{$pre}-button::-moz-focus-inner {
-    // * Support for Firefox browsers.
     border: none;
   }
 

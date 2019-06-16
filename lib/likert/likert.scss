@@ -22,12 +22,6 @@
   margin: $space-stack-s;
 }
 
-@for $index from 6 through 11 {
-  .#{$pre}-likert__list--#{$index} {
-    margin: rem(48px) 0;
-  }
-}
-
 .#{$pre}-likert__list::before {
   content: '';
   display: table;
@@ -38,6 +32,12 @@
   content: '';
   display: table;
   clear: both;
+}
+
+@for $index from 6 through 11 {
+  .#{$pre}-likert__list--#{$index} {
+    margin: rem(48px) 0;
+  }
 }
 
 .#{$pre}-likert__item {
@@ -90,13 +90,6 @@
 }
 
 @for $index from 3 through 5 {
-  .#{$pre}-likert__list--#{$index} .#{$pre}-likert__button {
-    border-top: rem(1px) solid $state-default;
-    border-bottom: rem(1px) solid $state-default;
-    border-left: rem(1px) solid $state-default;
-    margin: $space-stack-s;
-  }
-
   .#{$pre}-likert__list--#{$index}
     > .#{$pre}-likert__item:first-of-type
     .#{$pre}-likert__button {
@@ -108,20 +101,27 @@
     border-radius: 0 $button-border-radius $button-border-radius 0;
     border-right: rem(1px) solid $state-default;
   }
+
+  .#{$pre}-likert__list--#{$index} .#{$pre}-likert__button {
+    border-top: rem(1px) solid $state-default;
+    border-bottom: rem(1px) solid $state-default;
+    border-left: rem(1px) solid $state-default;
+    margin: $space-stack-s;
+  }
 }
 
 @for $index from 6 through 11 {
-  .#{$pre}-likert__list--#{$index} .#{$pre}-likert__button {
-    border: rem(1px) solid $state-default;
-    border-radius: $button-border-radius;
-    margin: $space-stack-m;
-  }
-
   .#{$pre}-likert--compact
     > .#{$pre}-likert__list--#{$index}
     > .#{$pre}-likert__item
     .#{$pre}-likert__button {
     margin: $space-stack-s;
+  }
+
+  .#{$pre}-likert__list--#{$index} .#{$pre}-likert__button {
+    border: rem(1px) solid $state-default;
+    border-radius: $button-border-radius;
+    margin: $space-stack-m;
   }
 
   .#{$pre}-likert__list--#{$index}
@@ -147,14 +147,6 @@
 
 @for $index from 3 through 5 {
   .#{$pre}-likert__list--#{$index}
-    .#{$pre}-likert__input:focus
-    + .#{$pre}-likert__label-outer
-    > .#{$pre}-likert__button {
-    border-top-color: $state-default-focus;
-    border-bottom-color: $state-default-focus;
-  }
-
-  .#{$pre}-likert__list--#{$index}
     > .#{$pre}-likert__item:first-of-type
     > .#{$pre}-likert__input:focus
     + .#{$pre}-likert__label-outer
@@ -167,6 +159,14 @@
     + .#{$pre}-likert__label-outer
     > .#{$pre}-likert__button {
     border-right-color: $state-default-focus;
+  }
+
+  .#{$pre}-likert__list--#{$index}
+    .#{$pre}-likert__input:focus
+    + .#{$pre}-likert__label-outer
+    > .#{$pre}-likert__button {
+    border-top-color: $state-default-focus;
+    border-bottom-color: $state-default-focus;
   }
 }
 
@@ -235,7 +235,6 @@ $parent-index: 1;
   }
 }
 
-// flexbox // -----------------------------------------------------------------
 @supports (display: flex) {
   .#{$pre}-likert__list {
     display: flex;
@@ -260,7 +259,6 @@ $parent-index: 1;
   }
 }
 
-// no-touchevents // ----------------------------------------------------------
 .#{$pre}-no-touchevents {
   .#{$pre}-likert__button {
     cursor: pointer;
@@ -280,6 +278,7 @@ $parent-index: 1;
       .#{$pre}-likert__button:hover {
       border-left-color: $state-default-hover;
     }
+
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:last-of-type
       .#{$pre}-likert__button:hover {
@@ -300,6 +299,7 @@ $parent-index: 1;
       .#{$pre}-likert__button {
       border-left-color: $state-default-hover;
     }
+
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item.#{$pre}-active
       + .#{$pre}-likert__item:hover
@@ -313,6 +313,7 @@ $parent-index: 1;
       .#{$pre}-likert__button {
       border-left-color: $state-default-active;
     }
+
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item.#{$pre}-active
       + .#{$pre}-likert__item:active
@@ -343,6 +344,7 @@ $parent-index: 1;
       .#{$pre}-likert__button {
       border-left-color: $state-default-hover;
     }
+
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item.#{$pre}-active
       + .#{$pre}-likert__item:hover
@@ -356,6 +358,7 @@ $parent-index: 1;
       .#{$pre}-likert__button {
       border-left-color: $state-default-active;
     }
+
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item.#{$pre}-active
       + .#{$pre}-likert__item:active
@@ -370,7 +373,6 @@ $parent-index: 1;
   }
 }
 
-// medium // ------------------------------------------------------------------
 @media #{$media-m} {
   @for $index from 6 through 11 {
     $result: 100% / $index;
@@ -394,6 +396,7 @@ $parent-index: 1;
       .#{$pre}-likert__button {
       border-radius: $button-border-radius 0 0 $button-border-radius;
     }
+
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:last-of-type
       .#{$pre}-likert__button {
@@ -416,6 +419,7 @@ $parent-index: 1;
       > .#{$pre}-likert__button {
       border-color: $state-default-focus;
     }
+
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:last-of-type
       > .#{$pre}-likert__input:focus
@@ -442,6 +446,7 @@ $parent-index: 1;
       width: 100%;
       text-align: center;
     }
+
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:last-of-type
       .#{$pre}-likert__label {
@@ -479,6 +484,7 @@ $parent-index: 1;
       padding: 0 rem(8px) 0 0;
       text-align: left;
     }
+
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:last-of-type
       .#{$pre}-likert__label {
@@ -493,7 +499,6 @@ $parent-index: 1;
     }
   }
 
-  // flexbox // ---------------------------------------------------------------
   @supports (display: flex) {
     @for $index from 6 through 11 {
       $result: 100% / $index;
@@ -504,7 +509,6 @@ $parent-index: 1;
     }
   }
 
-  // no-touchevents // --------------------------------------------------------
   .#{$pre}-no-touchevents {
     @for $index from 6 through 11 {
       .#{$pre}-likert__list--#{$index}
@@ -529,7 +533,6 @@ $parent-index: 1;
   }
 }
 
-// large // ------------------------------------------------------------------
 @media #{$media-l} {
   .#{$pre}-likert__label {
     font-size: rem(16px);

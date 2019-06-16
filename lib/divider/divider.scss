@@ -15,33 +15,33 @@
 .#{$pre}-divider--s {
   height: rem(1px);
 
-  // * Negative margin ensures divider adheres to 8px grid.
+  // * A visual adjustment to align with the 8px grid.
   margin: rem(-1px) 0 $space-m;
 }
 .#{$pre}-divider--m {
   height: rem(2px);
 
-  // * Negative margin ensures divider adheres to 8px grid.
+  // * A visual adjustment to align with the 8px grid.
   margin: rem(-2px) 0 $space-m;
 }
 .#{$pre}-divider--l {
   height: rem(3px);
 
-  // * Negative margin ensures divider adheres to 8px grid.
+  // * A visual adjustment to align with the 8px grid.
   margin: rem(-3px) 0 $space-m;
 }
 
 @for $index from 1 through 6 {
+  // * A visual adjustment to align with the 8px grid.
   .#{$pre}-h#{$index} + .#{$pre}-divider--s {
-    // * Negative margin ensures divider adheres to 8px grid.
     margin: rem(-17px) 0 $space-m;
   }
+  // * A visual adjustment to align with the 8px grid.
   .#{$pre}-h#{$index} + .#{$pre}-divider--m {
-    // * Negative margin ensures divider adheres to 8px grid.
     margin: rem(-18px) 0 $space-m;
   }
+  // * A visual adjustment to align with the 8px grid.
   .#{$pre}-h#{$index} + .#{$pre}-divider--l {
-    // * Negative margin ensures divider adheres to 8px grid.
     margin: rem(-19px) 0 $space-m;
   }
 }

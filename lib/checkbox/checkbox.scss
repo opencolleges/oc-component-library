@@ -10,7 +10,6 @@
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/get-circumference';
 @import '../utilities/scss/functions/rem';
-@import '../utilities/scss/mixins/bem';
 
 // Rules
 .#{$pre}-checkbox {
@@ -37,22 +36,21 @@
   pointer-events: none;
 }
 
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__input {
+  top: rem(20px);
+  left: rem(24px);
+}
+.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
+  top: 50%;
+  right: rem(24px);
+  left: auto;
+}
+
 .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
   top: 50%;
   right: rem(8px);
   left: auto;
   transform: translateY(-50%);
-}
-
-.card--clickable > .checkbox > .checkbox__input {
-  top: rem(20px);
-  left: rem(24px);
-}
-
-.card--clickable > .checkbox--right > .checkbox__input {
-  top: 50%;
-  right: rem(24px);
-  left: auto;
 }
 
 .#{$pre}-checkbox__label {
@@ -64,27 +62,6 @@
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
-.#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
-  display: block;
-  padding: 0 $space-xxl 0 0;
-}
-
-.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__label {
-  display: block;
-  height: calc(100% - #{rem(32px)});
-  padding: rem(16px 56px);
-}
-
-.#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
-}
-
-.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
-  padding: rem(16px 56px 16px 16px);
-}
-
-.#{$pre}-checkbox--reversed > .#{$pre}-checkbox__label {
-  color: rgba($blizzard, 0.89);
-}
 .#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label {
   color: $fossil;
 }
@@ -92,12 +69,32 @@
   color: $charcoal;
   pointer-events: none;
 }
+
 .#{$pre}-checkbox__input:focus + .#{$pre}-checkbox__label {
   color: $charcoal;
 }
-@include pre(
-  '.#{$pre}-checkbox--reversed > .#{$pre}-checkbox__input:focus + .#{$pre}-checkbox__label'
-) {
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__label {
+  display: block;
+  height: calc(100% - #{rem(32px)});
+  padding: rem(16px 56px);
+}
+.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
+  padding: rem(16px 56px 16px 16px);
+}
+
+.#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
+  display: block;
+  padding: 0 $space-xxl 0 0;
+}
+
+.#{$pre}-checkbox--reversed > .#{$pre}-checkbox__label {
+  color: rgba($blizzard, 0.89);
+}
+
+.#{$pre}-checkbox--reversed
+  > .#{$pre}-checkbox__input:focus
+  + .#{$pre}-checkbox__label {
   color: $blizzard;
 }
 
@@ -113,11 +110,25 @@
   border-radius: $border-radius-s;
 }
 
+.#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label::before {
+  border-color: $state-disabled;
+}
+.#{$pre}-checkbox__input[readonly] + .#{$pre}-checkbox__label::before {
+  border-color: $charcoal;
+}
+
 .#{$pre}-card--clickable
   > .#{$pre}-checkbox
   > .#{$pre}-checkbox__label::before {
   top: rem(20px);
   left: rem(24px);
+}
+.#{$pre}-card--clickable
+  > .#{$pre}-checkbox--right
+  > .#{$pre}-checkbox__label::before {
+  top: 50%;
+  right: rem(24px);
+  left: auto;
 }
 
 .#{$pre}-checkbox--right > .#{$pre}-checkbox__label::before {
@@ -127,90 +138,21 @@
   transform: translateY(-50%);
 }
 
-.#{$pre}-card--clickable
-  > .#{$pre}-checkbox--right
-  > .#{$pre}-checkbox__label::before {
-  top: 50%;
-  right: rem(24px);
-  left: auto;
-}
-
 .#{$pre}-checkbox--error > .#{$pre}-checkbox__label::before {
   border-color: $cinnabar-shade;
 }
 .#{$pre}-checkbox--success > .#{$pre}-checkbox__label::before {
   border-color: $christi-shade;
 }
+
 .#{$pre}-checkbox--reversed > .#{$pre}-checkbox__label::before {
   border-color: $blizzard;
-}
-.#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label::before {
-  border-color: $state-disabled;
-}
-.#{$pre}-checkbox__input[readonly] + .#{$pre}-checkbox__label::before {
-  border-color: $charcoal;
 }
 
 .#{$pre}-checkbox__border-outer {
   display: none;
 }
 
-.#{$pre}-checkbox > .#{$pre}-icon {
-  position: absolute;
-  top: 50%;
-  right: rem(8px);
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: stroke $transition-duration-x1 $transition-timing-default;
-}
-
-.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon {
-  right: rem(16px);
-}
-
-.#{$pre}-checkbox > .#{$pre}-icon--close {
-  stroke: $state-error;
-}
-.#{$pre}-checkbox > .#{$pre}-icon--tick {
-  stroke: $state-success;
-}
-
-.#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
-  top: rem(-2px);
-  right: auto;
-  left: rem(8px);
-  transform: none;
-  stroke: $charcoal;
-}
-
-.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
-  top: rem(14px);
-  left: rem(24px);
-}
-
-.#{$pre}-checkbox--right > .#{$pre}-icon--tick:last-child {
-  top: calc(50% - #{rem(2px)}); // * IE11 visual hack
-  right: 0;
-  left: auto;
-  transform: translateY(-50%);
-}
-
-.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
-  top: calc(50% - #{rem(2px)}); // * IE11 visual hack
-  left: auto;
-}
-
-.#{$pre}-checkbox--reversed > .#{$pre}-icon--tick:last-child {
-  color: $blizzard;
-}
-.#{$pre}-checkbox__input:checked:disabled ~ .#{$pre}-icon--tick:last-child {
-  stroke: $fossil;
-}
-.#{$pre}-checkbox__input:checked[readonly] ~ .#{$pre}-icon--tick:last-child {
-  stroke: $charcoal;
-}
-
-// no-touchevents // ----------------------------------------------------------
 .#{$pre}-no-touchevents {
   .#{$pre}-checkbox__label {
     cursor: pointer;
@@ -225,6 +167,7 @@
     border: $input-border;
     transition: border-color $transition-duration-x1 $transition-timing-default;
   }
+
   .#{$pre}-checkbox--reversed > .#{$pre}-checkbox__label::before {
     border-color: rgba($blizzard, 0.55);
   }
@@ -246,19 +189,19 @@
     left: rem(24px);
   }
 
-  .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
-    top: 50%;
-    right: rem(8px);
-    left: auto;
-    transform: translateY(-50%);
-  }
-
   .#{$pre}-card--clickable
     > .#{$pre}-checkbox--right
     > .#{$pre}-checkbox__border-outer {
     top: 50%;
     right: rem(24px);
     left: auto;
+  }
+
+  .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
+    top: 50%;
+    right: rem(8px);
+    left: auto;
+    transform: translateY(-50%);
   }
 
   .#{$pre}-checkbox__border {
@@ -277,9 +220,11 @@
   .#{$pre}-checkbox--success .#{$pre}-checkbox__border {
     stroke: $christi;
   }
+
   .#{$pre}-checkbox--reversed .#{$pre}-checkbox__border {
     stroke: $blizzard;
   }
+
   .#{$pre}-checkbox__input:hover
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
@@ -295,30 +240,35 @@
     > .#{$pre}-checkbox__border {
     stroke: $viking-shade;
   }
+
   .#{$pre}-checkbox--error
     > .#{$pre}-checkbox__input:active
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: $cinnabar-shade;
   }
+
   .#{$pre}-checkbox--success
     > .#{$pre}-checkbox__input:active
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: $christi-shade;
   }
+
   .#{$pre}-checkbox--reversed
     > .#{$pre}-checkbox__input:active
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: $blizzard;
   }
+
   .#{$pre}-checkbox__input:checked
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: $viking-shade;
     stroke-dasharray: ((get-circumference(1.5) + 52)) 0;
   }
+
   .#{$pre}-checkbox__input:checked:hover
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
@@ -334,12 +284,14 @@
     > .#{$pre}-checkbox__border {
     stroke: $viking-shade;
   }
+
   .#{$pre}-checkbox--error
     > .#{$pre}-checkbox__input:checked
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: $cinnabar-shade;
   }
+
   .#{$pre}-checkbox--error
     > .#{$pre}-checkbox__input:checked:hover
     ~ .#{$pre}-checkbox__border-outer
@@ -358,12 +310,14 @@
     > .#{$pre}-checkbox__border {
     stroke: $cinnabar-shade;
   }
+
   .#{$pre}-checkbox--success
     > .#{$pre}-checkbox__input:checked
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: $christi-shade;
   }
+
   .#{$pre}-checkbox--success
     > .#{$pre}-checkbox__input:checked:hover
     ~ .#{$pre}-checkbox__border-outer
@@ -382,12 +336,14 @@
     > .#{$pre}-checkbox__border {
     stroke: $christi-shade;
   }
+
   .#{$pre}-checkbox--reversed
     > .#{$pre}-checkbox__input:checked
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: rgba($blizzard, 0);
   }
+
   .#{$pre}-checkbox--reversed
     > .#{$pre}-checkbox__input:checked:hover
     ~ .#{$pre}-checkbox__border-outer
@@ -401,42 +357,13 @@
     stroke: $blizzard;
   }
   .#{$pre}-checkbox--reversed
-    > .#{$pre}-checkbox__input:checked:focus
+    > .#{$pre}-checkbox__input:checked:active
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: rgba($blizzard, 0);
-  }
-
-  .#{$pre}-checkbox > .#{$pre}-icon {
-    pointer-events: none;
-  }
-
-  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--close {
-    stroke: $state-error-hover;
-  }
-  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--close {
-    stroke: $state-error-focus;
-  }
-  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--close {
-    stroke: $state-error-active;
-  }
-
-  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--tick {
-    stroke: $state-success-hover;
-  }
-  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--tick {
-    stroke: $state-success-focus;
-  }
-  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--tick {
-    stroke: $state-success-active;
-  }
-
-  .#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
-    stroke: $charcoal;
   }
 }
 
-// medium // ------------------------------------------------------------------
 @media #{$media-m} {
   .#{$pre}-checkbox__input {
     top: rem(8px);
@@ -446,13 +373,13 @@
     top: rem(24px);
   }
 
-  .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
-    top: 50%;
-  }
-
   .#{$pre}-card--clickable
     > .#{$pre}-checkbox--right
     > .#{$pre}-checkbox__input {
+    top: 50%;
+  }
+
+  .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
     top: 50%;
   }
 
@@ -471,35 +398,16 @@
     top: rem(24px);
   }
 
-  .#{$pre}-checkbox--right > .#{$pre}-checkbox__label::before {
-    top: 50%;
-  }
-
   .#{$pre}-card--clickable
     > .#{$pre}-checkbox--right
     > .#{$pre}-checkbox__label::before {
     top: 50%;
   }
 
-  .#{$pre}-checkbox > .#{$pre}-icon:last-child {
-    top: rem(2px);
+  .#{$pre}-checkbox--right > .#{$pre}-checkbox__label::before {
+    top: 50%;
   }
 
-  .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
-    top: rem(18px);
-  }
-
-  .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
-    top: calc(50% - #{rem(2px)}); // * IE11 visual hack
-  }
-
-  .#{$pre}-card--clickable
-    > .#{$pre}-checkbox--right
-    > .#{$pre}-icon:last-child {
-    top: calc(50% - #{rem(2px)}); // * IE11 visual hack
-  }
-
-  // no-touchevents // --------------------------------------------------------
   .#{$pre}-no-touchevents {
     .#{$pre}-checkbox__border-outer {
       top: rem(8px);
@@ -511,19 +419,18 @@
       top: rem(24px);
     }
 
-    .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
-      top: 50%;
-    }
-
     .#{$pre}-card--clickable
       > .#{$pre}-checkbox--right
       > .#{$pre}-checkbox__border-outer {
       top: 50%;
     }
+
+    .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
+      top: 50%;
+    }
   }
 }
 
-// large // ------------------------------------------------------------------
 @media #{$media-l} {
   .#{$pre}-card--clickable > .#{$pre}-checkbox {
     margin: rem(-16px);

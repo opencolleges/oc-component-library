@@ -12,37 +12,6 @@
 @import '../utilities/scss/functions/rem';
 
 // Rules
-@for $index from 1 through 6 {
-  .#{$pre}-h#{$index} {
-    display: block;
-    margin: $space-l 0;
-    font-style: normal;
-    word-wrap: break-word;
-  }
-
-  .#{$pre}-h#{$index}--compact {
-    margin: $space-m 0;
-  }
-
-  .#{$pre}-h#{$index}--reversed {
-    color: $blizzard;
-  }
-
-  .#{$pre}-h#{$index}--left {
-    text-align: left;
-  }
-  .#{$pre}-h#{$index}--center {
-    text-align: center;
-  }
-  .#{$pre}-h#{$index}--right {
-    text-align: right;
-  }
-  .#{$pre}-h#{$index}--justify {
-    text-align: justify;
-    text-justify: inter-word;
-  }
-}
-
 .#{$pre}-h1 {
   font-size: rem(30px);
   font-weight: 300;
@@ -77,6 +46,37 @@
   font-size: rem(14px);
   font-weight: 700;
   line-height: rem(24px);
+}
+
+@for $index from 1 through 6 {
+  .#{$pre}-h#{$index} {
+    display: block;
+    margin: $space-l 0;
+    font-style: normal;
+    word-wrap: break-word;
+  }
+
+  .#{$pre}-h#{$index}--compact {
+    margin: $space-m 0;
+  }
+
+  .#{$pre}-h#{$index}--reversed {
+    color: $blizzard;
+  }
+
+  .#{$pre}-h#{$index}--left {
+    text-align: left;
+  }
+  .#{$pre}-h#{$index}--center {
+    text-align: center;
+  }
+  .#{$pre}-h#{$index}--right {
+    text-align: right;
+  }
+  .#{$pre}-h#{$index}--justify {
+    text-align: justify;
+    text-justify: inter-word;
+  }
 }
 
 @media #{$media-m} {

@@ -13,16 +13,6 @@
   min-height: rem(1px);
 }
 
-.#{$pre}-grid--gutter-fixed > .#{$pre}-grid__item {
-  padding: $space-s;
-}
-.#{$pre}-grid--gutter-x-fixed > .#{$pre}-grid__item {
-  padding: 0 $space-s;
-}
-.#{$pre}-grid--gutter-y-fixed > .#{$pre}-grid__item {
-  padding: $space-s 0;
-}
-
 .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
   padding: $space-s;
 }
@@ -30,6 +20,16 @@
   padding: 0 $space-s;
 }
 .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
+  padding: $space-s 0;
+}
+
+.#{$pre}-grid--gutter-fixed > .#{$pre}-grid__item {
+  padding: $space-s;
+}
+.#{$pre}-grid--gutter-x-fixed > .#{$pre}-grid__item {
+  padding: 0 $space-s;
+}
+.#{$pre}-grid--gutter-y-fixed > .#{$pre}-grid__item {
   padding: $space-s 0;
 }
 
@@ -52,16 +52,6 @@
     min-height: initial;
   }
 
-  .#{$pre}-grid--gutter-fixed > .#{$pre}-grid__item {
-    padding: 0;
-  }
-  .#{$pre}-grid--gutter-x-fixed > .#{$pre}-grid__item {
-    padding: 0;
-  }
-  .#{$pre}-grid--gutter-y-fixed > .#{$pre}-grid__item {
-    padding: 0;
-  }
-
   .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
     padding: 0;
   }
@@ -69,6 +59,16 @@
     padding: 0;
   }
   .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
+    padding: 0;
+  }
+
+  .#{$pre}-grid--gutter-fixed > .#{$pre}-grid__item {
+    padding: 0;
+  }
+  .#{$pre}-grid--gutter-x-fixed > .#{$pre}-grid__item {
+    padding: 0;
+  }
+  .#{$pre}-grid--gutter-y-fixed > .#{$pre}-grid__item {
     padding: 0;
   }
 
@@ -110,7 +110,6 @@
   }
 }
 
-// medium // ------------------------------------------------------------------
 @media #{$media-m} {
   .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
     padding: rem(12px);
@@ -122,7 +121,27 @@
     padding: rem(12px) 0;
   }
 
+  @for $index from 0 through $grid-columns {
+    $result: (100% / $grid-columns) * $index;
+
+    @if $index != 0 {
+      .#{$pre}-grid__item--m-#{$index} {
+        width: $result;
+      }
+    }
+  }
+
   @supports (display: grid) {
+    .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
+      padding: 0;
+    }
+    .#{$pre}-grid--gutter-x-adaptive > .#{$pre}-grid__item {
+      padding: 0;
+    }
+    .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
+      padding: 0;
+    }
+
     @for $index from 0 through $grid-columns {
       @if $index != 0 {
         .#{$pre}-grid__item--m-#{$index} {
@@ -135,31 +154,10 @@
         grid-column-start: $index + 1;
       }
     }
-
-    .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
-      padding: 0;
-    }
-    .#{$pre}-grid--gutter-x-adaptive > .#{$pre}-grid__item {
-      padding: 0;
-    }
-    .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
-      padding: 0;
-    }
   }
 }
 
-// large // -------------------------------------------------------------------
 @media #{$media-l} {
-  @for $index from 0 through $grid-columns {
-    $result: (100% / $grid-columns) * $index;
-
-    @if $index != 0 {
-      .#{$pre}-grid__item--l-#{$index} {
-        width: $result;
-      }
-    }
-  }
-
   .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
     padding: $space-m;
   }
@@ -170,7 +168,27 @@
     padding: $space-m 0;
   }
 
+  @for $index from 0 through $grid-columns {
+    $result: (100% / $grid-columns) * $index;
+
+    @if $index != 0 {
+      .#{$pre}-grid__item--l-#{$index} {
+        width: $result;
+      }
+    }
+  }
+
   @supports (display: grid) {
+    .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
+      padding: 0;
+    }
+    .#{$pre}-grid--gutter-x-adaptive > .#{$pre}-grid__item {
+      padding: 0;
+    }
+    .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
+      padding: 0;
+    }
+
     @for $index from 0 through $grid-columns {
       @if $index != 0 {
         .#{$pre}-grid__item--l-#{$index} {
@@ -182,16 +200,6 @@
       .#{$pre}-grid__item--nudge-l-#{$index} {
         grid-column-start: $index + 1;
       }
-    }
-
-    .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
-      padding: 0;
-    }
-    .#{$pre}-grid--gutter-x-adaptive > .#{$pre}-grid__item {
-      padding: 0;
-    }
-    .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
-      padding: 0;
     }
   }
 }

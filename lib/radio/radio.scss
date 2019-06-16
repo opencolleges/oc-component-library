@@ -37,17 +37,17 @@
   left: rem(24px);
 }
 
+.#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__input {
+  top: 50%;
+  right: rem(24px);
+  left: auto;
+}
+
 .#{$pre}-radio--right > .#{$pre}-radio__input {
   top: 50%;
   right: rem(8px);
   left: auto;
   transform: translateY(-50%);
-}
-
-.#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__input {
-  top: 50%;
-  right: rem(24px);
-  left: auto;
 }
 
 .#{$pre}-radio__input[readonly] {
@@ -69,18 +69,15 @@
   padding: rem(16px 56px);
 }
 
+.#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__label {
+  padding: rem(16px 56px 16px 16px);
+}
+
 .#{$pre}-radio--right > .#{$pre}-radio__label {
   display: block;
   padding: 0 $space-xxl 0 0;
 }
 
-.#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__label {
-  padding: rem(16px 56px 16px 16px);
-}
-
-.#{$pre}-radio--reversed > .#{$pre}-radio__label {
-  color: rgba($blizzard, 0.89);
-}
 .#{$pre}-radio__input:disabled + .#{$pre}-radio__label {
   color: $fossil;
 }
@@ -88,9 +85,15 @@
   color: $charcoal;
   pointer-events: none;
 }
+
 .#{$pre}-radio__input:focus + .#{$pre}-radio__label {
   color: $charcoal;
 }
+
+.#{$pre}-radio--reversed > .#{$pre}-radio__label {
+  color: rgba($blizzard, 0.89);
+}
+
 .#{$pre}-radio--reversed > .#{$pre}-radio__input:focus + .#{$pre}-radio__label {
   color: $blizzard;
 }
@@ -107,16 +110,16 @@
   border-radius: $border-radius-round;
 }
 
+.#{$pre}-radio__input:disabled + .#{$pre}-radio__label::before {
+  border-color: $state-disabled;
+}
+.#{$pre}-radio__input[readonly] + .#{$pre}-radio__label::before {
+  border-color: $charcoal;
+}
+
 .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::before {
   top: rem(20px);
   left: rem(24px);
-}
-
-.#{$pre}-radio--right > .#{$pre}-radio__label::before {
-  top: 50%;
-  right: rem(8px);
-  left: auto;
-  transform: translateY(-50%);
 }
 
 .#{$pre}-card--clickable
@@ -127,20 +130,22 @@
   left: auto;
 }
 
+.#{$pre}-radio--right > .#{$pre}-radio__label::before {
+  top: 50%;
+  right: rem(8px);
+  left: auto;
+  transform: translateY(-50%);
+}
+
 .#{$pre}-radio--error > .#{$pre}-radio__label::before {
   border-color: $cinnabar-shade;
 }
 .#{$pre}-radio--success > .#{$pre}-radio__label::before {
   border-color: $christi-shade;
 }
+
 .#{$pre}-radio--reversed > .#{$pre}-radio__label::before {
   border-color: $blizzard;
-}
-.#{$pre}-radio__input:disabled + .#{$pre}-radio__label::before {
-  border-color: $state-disabled;
-}
-.#{$pre}-radio__input[readonly] + .#{$pre}-radio__label::before {
-  border-color: $charcoal;
 }
 
 .#{$pre}-radio__label::after {
@@ -156,16 +161,27 @@
   transition: opacity $transition-duration-x1 $transition-timing-default;
 }
 
+.#{$pre}-radio__input:disabled + .#{$pre}-radio__label::after {
+  background-color: $fossil;
+}
+.#{$pre}-radio__input[readonly] + .#{$pre}-radio__label::after {
+  background-color: $charcoal;
+}
+
+.#{$pre}-radio__input:checked + .#{$pre}-radio__label::after {
+  opacity: 1;
+}
+
+.#{$pre}-radio__input:checked:disabled + .#{$pre}-radio__label::after {
+  background-color: $fossil;
+}
+.#{$pre}-radio__input:checked[readonly] + .#{$pre}-radio__label::after {
+  background-color: $charcoal;
+}
+
 .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::after {
   top: rem(24px);
   left: rem(28px);
-}
-
-.#{$pre}-radio--right > .#{$pre}-radio__label::after {
-  top: 50%;
-  right: rem(12px);
-  left: auto;
-  transform: translateY(-50%);
 }
 
 .#{$pre}-card--clickable
@@ -176,49 +192,21 @@
   left: auto;
 }
 
+.#{$pre}-radio--right > .#{$pre}-radio__label::after {
+  top: 50%;
+  right: rem(12px);
+  left: auto;
+  transform: translateY(-50%);
+}
+
 .#{$pre}-radio--reversed > .#{$pre}-radio__label::after {
   background-color: $blizzard;
-}
-.#{$pre}-radio__input:checked + .#{$pre}-radio__label::after {
-  opacity: 1;
-}
-.#{$pre}-radio__input:disabled + .#{$pre}-radio__label::after {
-  background-color: $fossil;
-}
-.#{$pre}-radio__input[readonly] + .#{$pre}-radio__label::after {
-  background-color: $charcoal;
-}
-.#{$pre}-radio__input:checked:disabled + .#{$pre}-radio__label::after {
-  background-color: $fossil;
-}
-.#{$pre}-radio__input:checked[readonly] + .#{$pre}-radio__label::after {
-  background-color: $charcoal;
 }
 
 .#{$pre}-radio__border-outer {
   display: none;
 }
 
-.#{$pre}-radio > .#{$pre}-icon {
-  position: absolute;
-  top: 50%;
-  right: rem(8px);
-  transform: translateY(-50%);
-  transition: stroke $transition-duration-x1 $transition-timing-default;
-}
-
-.#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-icon {
-  right: rem(16px);
-}
-
-.#{$pre}-radio > .#{$pre}-icon--close {
-  stroke: $state-error;
-}
-.#{$pre}-radio > .#{$pre}-icon--tick {
-  stroke: $state-success;
-}
-
-// no-touchevents // ----------------------------------------------------------
 .#{$pre}-no-touchevents {
   .#{$pre}-radio__label {
     cursor: pointer;
@@ -233,6 +221,7 @@
     border: $input-border;
     transition: border-color $transition-duration-x1 $transition-timing-default;
   }
+
   .#{$pre}-radio--reversed > .#{$pre}-radio__label::before {
     border-color: rgba($blizzard, 0.55);
   }
@@ -252,19 +241,19 @@
     left: rem(24px);
   }
 
-  .#{$pre}-radio--right > .#{$pre}-radio__border-outer {
-    top: 50%;
-    right: rem(8px);
-    left: auto;
-    transform: translateY(-50%);
-  }
-
   .#{$pre}-card--clickable
     > .#{$pre}-radio--right
     > .#{$pre}-radio__border-outer {
     top: 50%;
     right: rem(24px);
     left: auto;
+  }
+
+  .#{$pre}-radio--right > .#{$pre}-radio__border-outer {
+    top: 50%;
+    right: rem(8px);
+    left: auto;
+    transform: translateY(-50%);
   }
 
   .#{$pre}-radio__border {
@@ -283,9 +272,11 @@
   .#{$pre}-radio--success .#{$pre}-radio__border {
     stroke: $christi;
   }
+
   .#{$pre}-radio--reversed .#{$pre}-radio__border {
     stroke: $blizzard;
   }
+
   .#{$pre}-radio__input:hover
     ~ .#{$pre}-radio__border-outer
     > .#{$pre}-radio__border {
@@ -301,6 +292,7 @@
     > .#{$pre}-radio__border {
     stroke: $viking-shade;
   }
+
   .#{$pre}-radio--error
     > .#{$pre}-radio__input:active
     ~ .#{$pre}-radio__border-outer
@@ -313,18 +305,21 @@
     > .#{$pre}-radio__border {
     stroke: $christi-shade;
   }
+
   .#{$pre}-radio--reversed
     > .#{$pre}-radio__input:active
     ~ .#{$pre}-radio__border-outer
     > .#{$pre}-radio__border {
     stroke: $blizzard;
   }
+
   .#{$pre}-radio__input:checked
     ~ .#{$pre}-radio__border-outer
     > .#{$pre}-radio__border {
     stroke: $viking-shade;
     stroke-dasharray: get-circumference(15.5) 0;
   }
+
   .#{$pre}-radio__input:checked:hover
     ~ .#{$pre}-radio__border-outer
     > .#{$pre}-radio__border {
@@ -340,12 +335,14 @@
     > .#{$pre}-radio__border {
     stroke: $viking-shade;
   }
+
   .#{$pre}-radio--error
     > .#{$pre}-radio__input:checked
     ~ .#{$pre}-radio__border-outer
     > .#{$pre}-radio__border {
     stroke: $cinnabar-shade;
   }
+
   .#{$pre}-radio--error
     > .#{$pre}-radio__input:checked:hover
     ~ .#{$pre}-radio__border-outer
@@ -364,12 +361,14 @@
     > .#{$pre}-radio__border {
     stroke: $cinnabar-shade;
   }
+
   .#{$pre}-radio--success
     > .#{$pre}-radio__input:checked
     ~ .#{$pre}-radio__border-outer
     > .#{$pre}-radio__border {
     stroke: $christi-shade;
   }
+
   .#{$pre}-radio--success
     > .#{$pre}-radio__input:checked:hover
     ~ .#{$pre}-radio__border-outer
@@ -395,6 +394,7 @@
     > .#{$pre}-radio__border {
     stroke: rgba($blizzard, 0);
   }
+
   .#{$pre}-radio--reversed
     > .#{$pre}-radio__input:checked:hover
     ~ .#{$pre}-radio__border-outer
@@ -412,34 +412,9 @@
     ~ .#{$pre}-radio__border-outer
     > .#{$pre}-radio__border {
     stroke: rgba($blizzard, 0);
-  }
-
-  .#{$pre}-radio > .#{$pre}-icon {
-    pointer-events: none;
-  }
-
-  .#{$pre}-radio__input:hover ~ .#{$pre}-icon--close {
-    stroke: $state-error-hover;
-  }
-  .#{$pre}-radio__input:focus ~ .#{$pre}-icon--close {
-    stroke: $state-error-focus;
-  }
-  .#{$pre}-radio__input:active ~ .#{$pre}-icon--close {
-    stroke: $state-error-active;
-  }
-
-  .#{$pre}-radio__input:hover ~ .#{$pre}-icon--tick {
-    stroke: $state-success-hover;
-  }
-  .#{$pre}-radio__input:focus ~ .#{$pre}-icon--tick {
-    stroke: $state-success-focus;
-  }
-  .#{$pre}-radio__input:active ~ .#{$pre}-icon--tick {
-    stroke: $state-success-active;
   }
 }
 
-// medium // ------------------------------------------------------------------
 @media #{$media-m} {
   .#{$pre}-radio__input {
     top: rem(8px);
@@ -449,11 +424,11 @@
     top: rem(24px);
   }
 
-  .#{$pre}-radio--right > .#{$pre}-radio__input {
+  .#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__input {
     top: 50%;
   }
 
-  .#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__input {
+  .#{$pre}-radio--right > .#{$pre}-radio__input {
     top: 50%;
   }
 
@@ -470,13 +445,13 @@
     top: rem(24px);
   }
 
-  .#{$pre}-radio--right > .#{$pre}-radio__label::before {
-    top: 50%;
-  }
-
   .#{$pre}-card--clickable
     > .#{$pre}-radio--right
     > .#{$pre}-radio__label::before {
+    top: 50%;
+  }
+
+  .#{$pre}-radio--right > .#{$pre}-radio__label::before {
     top: 50%;
   }
 
@@ -488,17 +463,16 @@
     top: rem(28px);
   }
 
-  .#{$pre}-radio--right > .#{$pre}-radio__label::after {
-    top: 50%;
-  }
-
   .#{$pre}-card--clickable
     > .#{$pre}-radio--right
     > .#{$pre}-radio__label::after {
     top: 50%;
   }
 
-  // no-touchevents // --------------------------------------------------------
+  .#{$pre}-radio--right > .#{$pre}-radio__label::after {
+    top: 50%;
+  }
+
   .#{$pre}-no-touchevents {
     .#{$pre}-radio__border-outer {
       top: rem(8px);
@@ -508,19 +482,18 @@
       top: rem(24px);
     }
 
-    .#{$pre}-radio--right > .#{$pre}-radio__border-outer {
-      top: 50%;
-    }
-
     .#{$pre}-card--clickable
       > .#{$pre}-radio--right
       > .#{$pre}-radio__border-outer {
       top: 50%;
     }
+
+    .#{$pre}-radio--right > .#{$pre}-radio__border-outer {
+      top: 50%;
+    }
   }
 }
 
-// large // ------------------------------------------------------------------
 @media #{$media-l} {
   .#{$pre}-card--clickable > .#{$pre}-radio {
     margin: rem(-16px);
