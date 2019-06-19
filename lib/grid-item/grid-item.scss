@@ -33,10 +33,6 @@
   padding: $space-s 0;
 }
 
-.#{$pre}-grid--button > .#{$pre}-grid__item {
-  padding: 0 $space-s;
-}
-
 @for $index from 0 through $grid-columns {
   $result: (100% / $grid-columns) * $index;
 
@@ -69,10 +65,6 @@
     padding: 0;
   }
   .#{$pre}-grid--gutter-y-fixed > .#{$pre}-grid__item {
-    padding: 0;
-  }
-
-  .#{$pre}-grid--button > .#{$pre}-grid__item {
     padding: 0;
   }
 

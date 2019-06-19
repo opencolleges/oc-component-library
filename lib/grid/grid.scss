@@ -14,8 +14,7 @@
 }
 
 .#{$pre}-modal__actions > .#{$pre}-grid {
-  padding-right: 0;
-  padding-left: 0;
+  padding: 0;
 }
 
 .#{$pre}-grid--gutter-adaptive {
@@ -54,14 +53,6 @@
   margin: 0 auto;
 }
 
-.#{$pre}-grid--button {
-  // * 960px + gutters.
-  max-width: rem(992px);
-
-  padding: 0 $space-s;
-  margin: 0 auto;
-}
-
 .#{$pre}-grid .#{$pre}-grid--gutter-adaptive {
   margin: rem(-16px) rem(-16px) 0;
 }
@@ -80,10 +71,6 @@
 }
 .#{$pre}-grid .#{$pre}-grid--gutter-y-fixed {
   margin: rem(-16px) 0 0;
-}
-
-.#{$pre}-grid .#{$pre}-grid--button {
-  margin: 0 rem(-16px);
 }
 
 .#{$pre}-grid::before {
@@ -131,11 +118,6 @@
   .#{$pre}-grid--gutter-y-fixed {
     grid-gap: $space-m 0;
     padding: $space-m 0;
-  }
-
-  .#{$pre}-grid--button {
-    grid-gap: 0 $space-m;
-    padding: 0 $space-m 0;
   }
 
   .#{$pre}-grid .#{$pre}-grid--gutter-adaptive {
