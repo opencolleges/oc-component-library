@@ -159,12 +159,6 @@
   background-color: $selection-background;
 }
 
-.#{$pre}-select__item > .#{$pre}-icon {
-  position: absolute;
-  top: rem(8px);
-  right: rem(8px);
-}
-
 .#{$pre}-no-touchevents {
   .#{$pre}-select__input {
     border-bottom: $input-border;
@@ -211,18 +205,6 @@
 
   .#{$pre}-select.#{$pre}-active > .#{$pre}-select__label {
     color: $gunmetal;
-  }
-
-  .#{$pre}-select__input:focus ~ .#{$pre}-icon {
-    stroke: $charcoal;
-  }
-
-  .#{$pre}-select > .#{$pre}-icon {
-    transition: stroke $transition-duration-x1 $transition-timing-default;
-  }
-
-  .#{$pre}-select.#{$pre}-active > .#{$pre}-icon {
-    stroke: $charcoal;
   }
 
   .#{$pre}-select__border {

@@ -156,10 +156,6 @@
   background-color: transparent;
 }
 
-.#{$pre}-file__button > .#{$pre}-icon {
-  stroke: $gunmetal;
-}
-
 .#{$pre}-no-touchevents {
   .#{$pre}-file__input:focus {
     outline: none;
@@ -220,16 +216,6 @@
 
   .#{$pre}-file__button {
     cursor: pointer;
-  }
-
-  .#{$pre}-file__button:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
-  }
-  .#{$pre}-file__button:focus > .#{$pre}-icon {
-    stroke: $state-default-focus;
-  }
-  .#{$pre}-file__button:active > .#{$pre}-icon {
-    stroke: $state-default-active;
   }
 }
 
