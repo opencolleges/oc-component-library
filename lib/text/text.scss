@@ -56,7 +56,6 @@
   box-shadow: none;
 }
 .#{$pre}-text__input[readonly] {
-  width: auto;
   padding: 0;
   border: none;
   color: inherit;
@@ -83,6 +82,19 @@
 
 .#{$pre}-text__input.#{$pre}-active:disabled {
   color: $fossil;
+}
+
+.#{$pre}-text__input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.#{$pre}-text__input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 .#{$pre}-text__label {
@@ -229,19 +241,6 @@
 
   .#{$pre}-text__input.#{$pre}-active[readonly]:focus + .#{$pre}-text__label {
     color: $christi-shade;
-  }
-
-  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
-    stroke: $state-error-hover;
-  }
-  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
-    stroke: $state-error-focus;
-  }
-  .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
-    stroke: $state-success-hover;
-  }
-  .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
-    stroke: $state-success-focus;
   }
 
   .#{$pre}-text__border {
