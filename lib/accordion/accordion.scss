@@ -1,0 +1,153 @@
+// Pattern outline
+// * .accordion
+
+// Imports
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+
+.#{$pre}-accordion {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: rem(1px) solid $viking-shade;
+  margin-bottom: $space-m;
+}
+
+.#{$pre}-accordion + .#{$pre}-accordion {
+  margin-top: rem(-16px);
+}
+
+.#{$pre}-accordion:focus-within {
+  // outline: $focus-outline;
+}
+
+.#{$pre}-accordion__button {
+  width: 100%;
+  padding: rem(12px) $space-xxl rem(12px) 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: $gunmetal;
+  font-family: $font-family-sans-serif;
+  font-weight: 700;
+  font-size: rem(14px);
+  text-align: left;
+  line-height: rem(24px);
+  word-wrap: break-word;
+  transition: color $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-accordion__button:focus {
+  color: inherit;
+}
+
+.#{$pre}-accordion.#{$pre}-active > .#{$pre}-accordion__button {
+  color: inherit;
+}
+
+.#{$pre}-accordion > .#{$pre}-icon {
+  position: absolute;
+  top: rem(12px);
+  right: $space-s;
+  stroke: $gunmetal;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+  pointer-events: none;
+}
+
+.#{$pre}-accordion__button:hover ~ .#{$pre}-icon {
+  stroke: $charcoal;
+}
+.#{$pre}-accordion__button:focus ~ .#{$pre}-icon {
+  stroke: $charcoal;
+}
+
+.#{$pre}-accordion.#{$pre}-active > .#{$pre}-icon {
+  stroke: $charcoal;
+}
+
+.#{$pre}-accordion__outer {
+  overflow: hidden;
+  transition: height $transition-duration-x4 $transition-timing-default;
+}
+
+.#{$pre}-accordion__border {
+  display: none;
+}
+
+.#{$pre}-no-touchevents {
+  .#{$pre}-accordion {
+    border-bottom: rem(1px) solid $fossil;
+  }
+
+  .#{$pre}-accordion__button {
+    cursor: pointer;
+  }
+
+  .#{$pre}-accordion__button:hover {
+    color: inherit;
+  }
+  .#{$pre}-accordion__button:focus {
+    color: inherit;
+  }
+
+  .#{$pre}-accordion__border {
+    position: absolute;
+
+    // * A visual adjustment.
+    bottom: rem(-1px);
+
+    left: 0;
+    display: block;
+    width: 0;
+    height: rem(1px);
+    background-color: $viking;
+    transition: width $transition-duration-x4 $transition-timing-default,
+      background-color $transition-duration-x1 $transition-timing-default;
+    pointer-events: none;
+  }
+
+  .#{$pre}-accordion.#{$pre}-active > .#{$pre}-accordion__border {
+    width: 100%;
+    background-color: $viking-shade;
+  }
+
+  .#{$pre}-accordion.#{$pre}-active
+    > .#{$pre}-accordion__button:hover
+    ~ .#{$pre}-accordion__border {
+    background-color: $viking;
+  }
+  .#{$pre}-accordion.#{$pre}-active
+    > .#{$pre}-accordion__button:focus
+    ~ .#{$pre}-accordion__border {
+    background-color: $viking;
+  }
+
+  .#{$pre}-accordion__button:hover ~ .#{$pre}-accordion__border {
+    width: 100%;
+  }
+  .#{$pre}-accordion__button:focus ~ .#{$pre}-accordion__border {
+    width: 100%;
+  }
+}
+
+@media #{$media-m} {
+  .#{$pre}-accordion + .#{$pre}-accordion {
+    margin-top: rem(-8px);
+  }
+
+  .#{$pre}-accordion__button {
+    padding: $space-s $space-xxl $space-s 0;
+    font-size: rem(16px);
+    line-height: rem(32px);
+  }
+}
+
+@media #{$media-l} {
+  .#{$pre}-accordion + .#{$pre}-accordion {
+    margin-top: 0;
+  }
+
+  .#{$pre}-accordion__button {
+    font-size: rem(20px);
+  }
+}

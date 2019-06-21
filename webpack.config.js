@@ -116,6 +116,7 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
   module.exports.entry = {
     all: path.join(__dirname, './lib/all.scss'),
+    accordion: path.join(__dirname, './lib/accordion/accordion.scss'),
     avatar: path.join(__dirname, './lib/avatar/avatar.scss'),
     badge: path.join(__dirname, './lib/badge/badge.scss'),
     base: path.join(__dirname, './lib/base.scss'),
