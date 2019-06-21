@@ -59,6 +59,13 @@
   padding: 0;
   border: none;
   color: inherit;
+
+  // * Removes pointer events for empty readonly inputs.
+  pointer-events: none;
+}
+// * Adds pointer events back for populated readonly inputs.
+.#{$pre}-text__input[readonly].#{$pre}-active {
+  pointer-events: auto;
 }
 .#{$pre}-text__input:required {
   box-shadow: none;
@@ -160,6 +167,11 @@
   color: $state-error-focus;
 }
 
+.#{$pre}-text__input[readonly]:required + .#{$pre}-text__label::after {
+  top: rem(-16px);
+  color: rgba($state-error-focus, 0);
+}
+
 .#{$pre}-text__input.#{$pre}-active:required + .#{$pre}-text__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
@@ -249,7 +261,7 @@
     display: block;
     width: 0;
     height: rem(1px);
-    background: $viking;
+    background-color: $viking;
     transition: width $transition-duration-x4 $transition-timing-default,
       background $transition-duration-x1 $transition-timing-default;
     pointer-events: none;
