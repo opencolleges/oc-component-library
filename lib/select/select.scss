@@ -120,7 +120,7 @@
 .#{$pre}-select.#{$pre}-active > .#{$pre}-select__list-outer {
   opacity: 1;
   transform: translateY(0);
-  pointer-events: initial;
+  pointer-events: auto;
 }
 
 .#{$pre}-select__list {

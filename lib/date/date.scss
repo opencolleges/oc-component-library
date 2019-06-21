@@ -127,7 +127,7 @@
 .#{$pre}-date.#{$pre}-active > .#{$pre}-date__list-outer {
   opacity: 1;
   transform: translateY(0);
-  pointer-events: initial;
+  pointer-events: auto;
 }
 
 .#{$pre}-date__item {

@@ -163,7 +163,7 @@
 
   .#{$pre}-file__input.#{$pre}-active {
     z-index: 1;
-    pointer-events: initial;
+    pointer-events: auto;
   }
 
   .#{$pre}-file__description {
