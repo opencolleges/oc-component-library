@@ -153,6 +153,20 @@
     stroke: $state-default-active;
   }
 
+  .#{$pre}-avatar--reversed .#{$pre}-avatar__border {
+    stroke: $state-reversed-hover;
+  }
+
+  .#{$pre}-avatar--reversed:hover .#{$pre}-avatar__border {
+    stroke: $state-reversed-hover;
+  }
+  .#{$pre}-avatar--reversed:focus .#{$pre}-avatar__border {
+    stroke: $state-reversed-focus;
+  }
+  .#{$pre}-avatar--reversed:active .#{$pre}-avatar__border {
+    stroke: $state-reversed-active;
+  }
+
   .#{$pre}-avatar--s .#{$pre}-avatar__border {
     stroke-dasharray: 0 get-circumference(31);
     stroke-dashoffset: ((get-circumference(-31) / 4) * 3);
@@ -187,9 +201,5 @@
   }
   .#{$pre}-avatar--l:focus .#{$pre}-avatar__border {
     stroke-dasharray: get-circumference(47) 0;
-  }
-
-  .#{$pre}-avatar--reversed .#{$pre}-avatar__border {
-    stroke: $state-reversed-hover;
   }
 }
