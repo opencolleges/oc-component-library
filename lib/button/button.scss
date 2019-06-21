@@ -42,6 +42,28 @@
   line-height: $space-m;
 }
 
+.#{$pre}-button--icon {
+  position: relative;
+  padding-left: $space-xxxl;
+}
+
+.#{$pre}-button--compact.#{$pre}-button--icon {
+  padding-left: $space-xxl;
+}
+
+.#{$pre}-button--icon > .#{$pre}-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: $space-m;
+  stroke: currentColor;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-button--compact.#{$pre}-button--icon > .#{$pre}-icon {
+  left: $space-s;
+}
+
 .#{$pre}-button--primary {
   border: rem(1px) solid $state-default;
   background-color: $state-default;
