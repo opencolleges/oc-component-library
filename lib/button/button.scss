@@ -70,11 +70,6 @@
   color: $blizzard;
 }
 
-.#{$pre}-button--primary:disabled {
-  border: rem(1px) solid $state-disabled;
-  background-color: $state-disabled;
-}
-
 .#{$pre}-button--primary.#{$pre}-button--error {
   border: rem(1px) solid $state-error;
   background-color: $state-error;
@@ -89,14 +84,14 @@
   color: $state-default;
 }
 
+.#{$pre}-button--primary:disabled {
+  border: rem(1px) solid $state-disabled;
+  background-color: $state-disabled;
+}
+
 .#{$pre}-button--secondary {
   border: rem(1px) solid $state-default;
   color: $state-default;
-}
-
-.#{$pre}-button--secondary:disabled {
-  border: rem(1px) solid $state-disabled;
-  color: $state-disabled;
 }
 
 .#{$pre}-button--secondary.#{$pre}-button--error {
@@ -110,6 +105,11 @@
 .#{$pre}-button--secondary.#{$pre}-button--reversed {
   border: rem(1px) solid $blizzard;
   color: $blizzard;
+}
+
+.#{$pre}-button--secondary:disabled {
+  border: rem(1px) solid $state-disabled;
+  color: $state-disabled;
 }
 
 .#{$pre}-no-touchevents {
@@ -135,18 +135,6 @@
     border-color: $state-default-active;
     background-color: $state-default-active;
     color: $fossil-transparent;
-  }
-
-  .#{$pre}-button--primary:disabled {
-    cursor: not-allowed;
-  }
-
-  .#{$pre}-button--primary:disabled:hover {
-    border-color: $state-disabled;
-    background-color: $state-disabled;
-  }
-  .#{$pre}-button--primary:disabled:active {
-    color: $blizzard;
   }
 
   .#{$pre}-button--primary.#{$pre}-button--error:hover {
@@ -195,6 +183,18 @@
     color: rgba($state-default-active, 0.21);
   }
 
+  .#{$pre}-button--primary:disabled {
+    cursor: not-allowed;
+  }
+
+  .#{$pre}-button--primary:disabled:hover {
+    border-color: $state-disabled;
+    background-color: $state-disabled;
+  }
+  .#{$pre}-button--primary:disabled:active {
+    color: $blizzard;
+  }
+
   .#{$pre}-button--secondary:hover {
     border-color: $state-default-hover;
     background-color: $state-default-hover;
@@ -209,19 +209,6 @@
     border-color: $state-default-active;
     background-color: $state-default-active;
     color: $fossil-transparent;
-  }
-
-  .#{$pre}-button--secondary:disabled {
-    cursor: not-allowed;
-  }
-
-  .#{$pre}-button--secondary:disabled:hover {
-    border-color: $state-disabled;
-    background-color: transparent;
-    color: $state-disabled;
-  }
-  .#{$pre}-button--secondary:disabled:active {
-    color: $state-disabled;
   }
 
   .#{$pre}-button--secondary.#{$pre}-button--error:hover {
@@ -271,5 +258,18 @@
   .#{$pre}-button--secondary.#{$pre}-button--reversed:active {
     box-shadow: none;
     color: rgba($state-default-active, 0.21);
+  }
+
+  .#{$pre}-button--secondary:disabled {
+    cursor: not-allowed;
+  }
+
+  .#{$pre}-button--secondary:disabled:hover {
+    border-color: $state-disabled;
+    background-color: transparent;
+    color: $state-disabled;
+  }
+  .#{$pre}-button--secondary:disabled:active {
+    color: $state-disabled;
   }
 }
