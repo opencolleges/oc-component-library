@@ -104,6 +104,17 @@
   margin: 0;
 }
 
+.#{$pre}-text__input::placeholder {
+  color: $blizzard-transparent;
+  transition: color $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-text__input:focus::placeholder {
+  color: $fossil;
+  transition: color $transition-duration-x1 $transition-timing-default
+    $transition-duration-x1;
+}
+
 .#{$pre}-text__label {
   position: absolute;
   top: rem(24px);
@@ -111,10 +122,14 @@
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
-  transition: top $transition-duration-x2 $transition-timing-default,
-    color $transition-duration-x1 $transition-timing-default,
-    font-size $transition-duration-x2 $transition-timing-default,
-    line-height $transition-duration-x2 $transition-timing-default;
+  transition: top $transition-duration-x2 $transition-timing-default
+      $transition-duration-x1,
+    color $transition-duration-x1 $transition-timing-default
+      $transition-duration-x1,
+    font-size $transition-duration-x2 $transition-timing-default
+      $transition-duration-x1,
+    line-height $transition-duration-x2 $transition-timing-default
+      $transition-duration-x1;
   pointer-events: none;
   user-select: none;
 }
@@ -131,6 +146,10 @@
   color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default,
+    font-size $transition-duration-x2 $transition-timing-default,
+    line-height $transition-duration-x2 $transition-timing-default;
 }
 
 .#{$pre}-text__input.#{$pre}-active + .#{$pre}-text__label {
