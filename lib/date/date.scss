@@ -302,8 +302,15 @@
   .#{$pre}-date__item--previous {
     cursor: pointer;
   }
+  .#{$pre}-date__item--previous.#{$pre}-date__item--disabled {
+    cursor: default;
+  }
+
   .#{$pre}-date__item--next {
     cursor: pointer;
+  }
+  .#{$pre}-date__item--next.#{$pre}-date__item--disabled {
+    cursor: default;
   }
 
   .#{$pre}-date__item--selectable {
