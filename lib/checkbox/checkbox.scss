@@ -207,7 +207,10 @@
   .#{$pre}-checkbox__border {
     stroke: $viking;
     stroke-width: 1;
-    stroke-dasharray: 0 ((get-circumference(1.5) + 52));
+
+    // * A visual adjustment.
+    stroke-dasharray: 0.001 ((get-circumference(1.5) + 52));
+
     stroke-dashoffset: ((get-circumference(-1.5) + -58));
     transition: stroke $transition-duration-x1 $transition-timing-default,
       stroke-dasharray $transition-duration-x4 $transition-timing-default;

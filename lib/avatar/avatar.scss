@@ -168,7 +168,9 @@
   }
 
   .#{$pre}-avatar--s .#{$pre}-avatar__border {
-    stroke-dasharray: 0 get-circumference(31);
+    // * A visual adjustment.
+    stroke-dasharray: 0.001 get-circumference(31);
+
     stroke-dashoffset: ((get-circumference(-31) / 4) * 3);
   }
 
@@ -180,7 +182,9 @@
   }
 
   .#{$pre}-avatar--m .#{$pre}-avatar__border {
-    stroke-dasharray: 0 get-circumference(39);
+    // * A visual adjustment.
+    stroke-dasharray: 0.001 get-circumference(39);
+
     stroke-dashoffset: ((get-circumference(-39) / 4) * 3);
   }
 
@@ -192,7 +196,9 @@
   }
 
   .#{$pre}-avatar--l .#{$pre}-avatar__border {
-    stroke-dasharray: 0 get-circumference(47);
+    // * A visual adjustment.
+    stroke-dasharray: 0.001 get-circumference(47);
+
     stroke-dashoffset: ((get-circumference(-47) / 4) * 3);
   }
 

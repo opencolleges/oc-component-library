@@ -259,7 +259,10 @@
   .#{$pre}-radio__border {
     stroke: $viking;
     stroke-width: 1;
-    stroke-dasharray: 0 get-circumference(15.5);
+
+    // * A visual adjustment.
+    stroke-dasharray: 0.001 get-circumference(15.5);
+
     stroke-dashoffset: ((get-circumference(-15) / 4) * 3);
     transition: stroke $transition-duration-x1 $transition-timing-default,
       stroke-dasharray $transition-duration-x4 $transition-timing-default;

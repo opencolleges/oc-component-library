@@ -278,7 +278,10 @@
   .#{$pre}-toggle__border {
     fill: none;
     stroke: $viking;
-    stroke-dasharray: 0 ((get-circumference(23) + 40));
+
+    // * A visual adjustment.
+    stroke-dasharray: 0.001 ((get-circumference(23) + 40));
+
     stroke-dashoffset: ((get-circumference(-23) + -48));
     stroke-width: 1;
     transition: stroke $transition-duration-x1 $transition-timing-default,
