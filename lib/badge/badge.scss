@@ -26,6 +26,7 @@
 .#{$pre}-avatar > .#{$pre}-badge {
   position: absolute;
   top: rem(-8px);
+  white-space: nowrap;
 }
 .#{$pre}-avatar--m > .#{$pre}-badge {
   left: $space-l;
