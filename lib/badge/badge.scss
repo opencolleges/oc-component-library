@@ -1,12 +1,24 @@
-// Pattern outline
-// * .badge
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .badge
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-badge {
   display: inline-block;
   min-width: $space-s;
@@ -26,6 +38,10 @@
 .#{$pre}-avatar > .#{$pre}-badge {
   position: absolute;
   top: rem(-8px);
+
+  // The white-space property set to nowrap ensures that the badge component's
+  // value doesn't break line and reflow when the position property is set to
+  // absolute.
   white-space: nowrap;
 }
 .#{$pre}-avatar--m > .#{$pre}-badge {

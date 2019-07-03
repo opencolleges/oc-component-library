@@ -1,19 +1,35 @@
-// Pattern outline
-// * .select
-// *   .select__input
-// *   .select__input
-// *   .select__label
-// *   .select__border
-// *   .select__list-outer
-// *     .select__list
-// *       .select__item
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .select
+// | .select__input
+// | .select__input
+// | .select__label
+// | .select__border
+// | .select__list-outer
+// | | .select__list
+// | | | .select__item
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-select {
   position: relative;
   height: rem(80px);
@@ -159,7 +175,36 @@
   background-color: $selection-background;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-select__input {
+    font-size: rem(15px);
+  }
+
+  .#{$pre}-select__item {
+    font-size: rem(15px);
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-select__input {
+    font-size: rem(16px);
+  }
+
+  .#{$pre}-select__item {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-select__input {
     border-bottom: $input-border;
     transition: color $transition-duration-x1 $transition-timing-default;
@@ -258,25 +303,5 @@
 
   .#{$pre}-select__item:hover {
     background-color: $selection-background;
-  }
-}
-
-@media #{$media-m} {
-  .#{$pre}-select__input {
-    font-size: rem(15px);
-  }
-
-  .#{$pre}-select__item {
-    font-size: rem(15px);
-  }
-}
-
-@media #{$media-l} {
-  .#{$pre}-select__input {
-    font-size: rem(16px);
-  }
-
-  .#{$pre}-select__item {
-    font-size: rem(16px);
   }
 }

@@ -1,7 +1,11 @@
-// palette // -----------------------------------------------------------------
+// Imports
+// ============================================================================
+
 @import '../functions/rem';
 
-// * base
+// Palette
+// ============================================================================
+
 $cinnabar-shade: rgb(218, 32, 32);
 $cinnabar: rgb(237, 74, 74);
 $cinnabar-tint: rgb(248, 124, 124);
@@ -24,7 +28,6 @@ $saddle: rgb(83, 38, 38);
 
 $alabaster: rgb(249, 248, 248);
 
-// * neutral
 $charcoal: rgb(28, 28, 28);
 $charcoal-transparent: rgba(0, 0, 0, 0.89);
 
@@ -58,7 +61,8 @@ $daisy-transparent: rgba(0, 0, 0, 0.01);
 $blizzard: rgb(255, 255, 255);
 $blizzard-transparent: rgba(0, 0, 0, 0);
 
-// state // -------------------------------------------------------------------
+// State
+// ============================================================================
 
 $state-default: $viking-shade;
 $state-default-hover: $viking;
@@ -86,7 +90,8 @@ $state-reversed-active: rgba($blizzard, 0.55);
 
 $state-warning: $crusta;
 
-// space // -------------------------------------------------------------------
+// Space
+// ============================================================================
 
 $space-inset-xxs: rem(2px 2px 2px 2px);
 $space-inset-xs: rem(4px 4px 4px 4px);
@@ -113,7 +118,8 @@ $space-xl: rem(32px);
 $space-xxl: rem(40px);
 $space-xxxl: rem(48px);
 
-// scaffolding // -------------------------------------------------------------
+// Scaffolding
+// ============================================================================
 
 $focus-outline: rem(1px) dashed $charcoal;
 
@@ -122,40 +128,30 @@ $selection-background: rgba($viking, 0.13);
 $body-background: $alabaster;
 $body-color: $charcoal;
 
-// media queries // -----------------------------------------------------------
+// Media queries
+// ============================================================================
 
-$media-queries: (
-  s: (
-    only: 'only screen and (min-width: 0em) and (max-width: 30em)',
-    upwards: 'only screen and (min-width: 0em)'
+$devices: (
+  small: (
+    upwards: 'only screen and (min-width: 0em)',
+    only: 'only screen and (min-width: 0em) and (max-width: 30em)'
   ),
-  m: (
-    only: 'only screen and (min-width: 30.0625em) and (max-width: 48em)',
-    upwards: 'only screen and (min-width: 30.0625em)'
+  medium: (
+    upwards: 'only screen and (min-width: 30.0625em)',
+    only: 'only screen and (min-width: 30.0625em) and (max-width: 48em)'
   ),
-  l: (
-    only: 'only screen and (min-width: 48.0625em) and (max-width: 80em)',
-    upwards: 'only screen and (min-width: 48.0625em)'
+  large: (
+    upwards: 'only screen and (min-width: 48.0625em)',
+    only: 'only screen and (min-width: 48.0625em) and (max-width: 80em)'
   ),
-  xl: (
-    only: 'only screen and (min-width: 80.0625em) and (max-width: 624.9375em)',
-    upwards: 'only screen and (min-width: 80.0625em)'
+  extra-large: (
+    upwards: 'only screen and (min-width: 80.0625em)',
+    only: 'only screen and (min-width: 80.0625em) and (max-width: 624.9375em)'
   )
 );
 
-$media-s: 'only screen and (min-width: 0em)';
-$media-s-only: 'only screen and (min-width: 0em) and (max-width: 30em)';
-
-$media-m: 'only screen and (min-width: 30.0625em)';
-$media-m-only: 'only screen and (min-width: 30.0625em) and (max-width: 48em)';
-
-$media-l: 'only screen and (min-width: 48.0625em)';
-$media-l-only: 'only screen and (min-width: 48.0625em) and (max-width: 80em)';
-
-$media-xl: 'only screen and (min-width: 80.0625em)';
-$media-xl-only: 'only screen and (min-width: 80.0625em) and (max-width: 624.9375em)';
-
-// z-index // -----------------------------------------------------------------
+// Z-index
+// ============================================================================
 
 $z-index-pagination: 10;
 $z-index-nav: 10;
@@ -164,17 +160,20 @@ $z-index-overlay: 50;
 $z-index-modal: 100;
 $z-index-notification: 9999;
 
-// grid system // -------------------------------------------------------------
+// Grid
+// ============================================================================
 
 $grid-columns: 12;
 
-// typography // --------------------------------------------------------------
+// Typography
+// ============================================================================
 
 $font-family-sans-serif: 'Open Sans', Helvetica, Arial, sans-serif;
 $font-family-condensed: 'Open Sans Condensed', Helvetica, Arial, sans-serif;
 $font-family-monospace: 'Inconsolata', Menlo, Consolas, monospace;
 
-// border // ------------------------------------------------------------------
+// Border
+// ============================================================================
 
 $border-light: rem(1px) solid $gallery;
 $border-medium: rem(1px) solid $alto;
@@ -185,7 +184,8 @@ $border-radius-m: rem(4px);
 $border-radius-l: rem(8px);
 $border-radius-round: 50%;
 
-// box-shadow // --------------------------------------------------------------
+// Box shadow
+// ============================================================================
 
 $top-shadow: rem(2px -2px 2px -2px) rgba($cinnabar-shade, 0.05);
 
@@ -194,7 +194,8 @@ $box-shadow-layer-2: $top-shadow, 0 rem(8px 8px -4px) rgba($saddle, 0.21);
 $box-shadow-layer-3: $top-shadow, 0 rem(16px 16px -4px) rgba($saddle, 0.13);
 $box-shadow-layer-4: $top-shadow, 0 rem(24px 24px -4px) rgba($saddle, 0.08);
 
-// transition // --------------------------------------------------------------
+// Transition
+// ============================================================================
 
 $transition-duration-x0: 0ms;
 $transition-duration-x1: 125ms;
@@ -213,11 +214,13 @@ $transition-duration-x12: 1500ms;
 $transition-timing-default: ease-in-out;
 $transition-timing-bounce-out: cubic-bezier(0.6, 0, 0.5, 1.4);
 
-// input // -------------------------------------------------------------------
+// Input
+// ============================================================================
 
 $input-border: $border-dark;
 
-// button // ------------------------------------------------------------------
+// Button
+// ============================================================================
 
 $button-border-radius: $border-radius-s;
 $button-font-weight: 700;

@@ -1,12 +1,28 @@
-// Pattern outline
-// * .card
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Large devices
+// 4 Mouse-driven devices
+// 5 Misc
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .card
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-card {
   box-sizing: border-box;
   display: block;
@@ -73,7 +89,23 @@
   user-select: none;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-card {
+    padding: $space-m;
+  }
+
+  .#{$pre}-card--draggable {
+    padding-left: $space-xxl;
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-card--clickable {
     cursor: pointer;
   }
@@ -97,15 +129,8 @@
   }
 }
 
-@media #{$media-l} {
-  .#{$pre}-card {
-    padding: $space-m;
-  }
-
-  .#{$pre}-card--draggable {
-    padding-left: $space-xxl;
-  }
-}
+// 5 Misc
+// =============================================================================
 
 .#{$pre}-mouse-move {
   transition: none !important;

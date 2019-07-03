@@ -1,13 +1,25 @@
-// Pattern outline
-// * .th
-// * .td
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .th
+// .td
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-th {
   box-sizing: border-box;
   padding: rem(8px);

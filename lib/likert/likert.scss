@@ -1,18 +1,35 @@
-// Pattern outline
-// * .likert
-// *   .likert__list
-// *   .likert__item
-// *     .likert__input
-// *     .likert__label-outer
-// *       .likert__button
-// *       .likert__label
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
+//   4.1 Medium devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .likert
+// | .likert__list
+// | .likert__item
+// | | .likert__input
+// | | .likert__label-outer
+// | | | .likert__button
+// | | | .likert__label
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-likert {
   position: relative;
   margin: $space-stack-m;
@@ -259,121 +276,10 @@ $parent-index: 1;
   }
 }
 
-.#{$pre}-no-touchevents {
-  .#{$pre}-likert__button {
-    cursor: pointer;
-    user-select: none;
-  }
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
 
-  @for $index from 3 through 5 {
-    .#{$pre}-likert__list--#{$index} .#{$pre}-likert__button:hover {
-      border-top-color: $state-default-hover;
-      border-bottom-color: $state-default-hover;
-      background-color: $state-default-hover;
-      color: $blizzard;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item:first-of-type
-      .#{$pre}-likert__button:hover {
-      border-left-color: $state-default-hover;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item:last-of-type
-      .#{$pre}-likert__button:hover {
-      border-right-color: $state-default-hover;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item
-      .#{$pre}-likert__button:active {
-      border-top-color: $state-default-active;
-      border-bottom-color: $state-default-active;
-      background-color: $state-default-active;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item:hover
-      + .#{$pre}-likert__item.#{$pre}-active
-      .#{$pre}-likert__button {
-      border-left-color: $state-default-hover;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item.#{$pre}-active
-      + .#{$pre}-likert__item:hover
-      .#{$pre}-likert__button {
-      border-left-color: $state-default-hover;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item:active
-      + .#{$pre}-likert__item.#{$pre}-active
-      .#{$pre}-likert__button {
-      border-left-color: $state-default-active;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item.#{$pre}-active
-      + .#{$pre}-likert__item:active
-      .#{$pre}-likert__button {
-      border-left-color: $state-default-active;
-    }
-  }
-
-  @for $index from 6 through 11 {
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item
-      .#{$pre}-likert__button:hover {
-      border-color: $state-default-hover;
-      background-color: $state-default-hover;
-      color: $blizzard;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item
-      .#{$pre}-likert__button:active {
-      border-color: $state-default-active;
-      background-color: $state-default-active;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item:hover
-      + .#{$pre}-likert__item.#{$pre}-active
-      .#{$pre}-likert__button {
-      border-left-color: $state-default-hover;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item.#{$pre}-active
-      + .#{$pre}-likert__item:hover
-      .#{$pre}-likert__button {
-      border-left-color: $state-default-hover;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item:active
-      + .#{$pre}-likert__item.#{$pre}-active
-      .#{$pre}-likert__button {
-      border-left-color: $state-default-active;
-    }
-
-    .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item.#{$pre}-active
-      + .#{$pre}-likert__item:active
-      .#{$pre}-likert__button {
-      border-left-color: $state-default-active;
-    }
-  }
-
-  .#{$pre}-likert__label {
-    pointer-events: none;
-    user-select: none;
-  }
-}
-
-@media #{$media-m} {
+@include device(medium) {
   @for $index from 6 through 11 {
     $result: 100% / $index;
 
@@ -508,8 +414,137 @@ $parent-index: 1;
       }
     }
   }
+}
 
-  .#{$pre}-no-touchevents {
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-likert__label {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
+  .#{$pre}-likert__button {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  @for $index from 3 through 5 {
+    .#{$pre}-likert__list--#{$index} .#{$pre}-likert__button:hover {
+      border-top-color: $state-default-hover;
+      border-bottom-color: $state-default-hover;
+      background-color: $state-default-hover;
+      color: $blizzard;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item:first-of-type
+      .#{$pre}-likert__button:hover {
+      border-left-color: $state-default-hover;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item:last-of-type
+      .#{$pre}-likert__button:hover {
+      border-right-color: $state-default-hover;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item
+      .#{$pre}-likert__button:active {
+      border-top-color: $state-default-active;
+      border-bottom-color: $state-default-active;
+      background-color: $state-default-active;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item:hover
+      + .#{$pre}-likert__item.#{$pre}-active
+      .#{$pre}-likert__button {
+      border-left-color: $state-default-hover;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item.#{$pre}-active
+      + .#{$pre}-likert__item:hover
+      .#{$pre}-likert__button {
+      border-left-color: $state-default-hover;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item:active
+      + .#{$pre}-likert__item.#{$pre}-active
+      .#{$pre}-likert__button {
+      border-left-color: $state-default-active;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item.#{$pre}-active
+      + .#{$pre}-likert__item:active
+      .#{$pre}-likert__button {
+      border-left-color: $state-default-active;
+    }
+  }
+
+  @for $index from 6 through 11 {
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item
+      .#{$pre}-likert__button:hover {
+      border-color: $state-default-hover;
+      background-color: $state-default-hover;
+      color: $blizzard;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item
+      .#{$pre}-likert__button:active {
+      border-color: $state-default-active;
+      background-color: $state-default-active;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item:hover
+      + .#{$pre}-likert__item.#{$pre}-active
+      .#{$pre}-likert__button {
+      border-left-color: $state-default-hover;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item.#{$pre}-active
+      + .#{$pre}-likert__item:hover
+      .#{$pre}-likert__button {
+      border-left-color: $state-default-hover;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item:active
+      + .#{$pre}-likert__item.#{$pre}-active
+      .#{$pre}-likert__button {
+      border-left-color: $state-default-active;
+    }
+
+    .#{$pre}-likert__list--#{$index}
+      > .#{$pre}-likert__item.#{$pre}-active
+      + .#{$pre}-likert__item:active
+      .#{$pre}-likert__button {
+      border-left-color: $state-default-active;
+    }
+  }
+
+  .#{$pre}-likert__label {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // 4.1 Medium devices
+  // ---------------------------------------------------------------------------
+
+  @include device(medium) {
     @for $index from 6 through 11 {
       .#{$pre}-likert__list--#{$index}
         > .#{$pre}-likert__item
@@ -530,11 +565,5 @@ $parent-index: 1;
         background-color: $state-default-active;
       }
     }
-  }
-}
-
-@media #{$media-l} {
-  .#{$pre}-likert__label {
-    font-size: rem(16px);
   }
 }

@@ -1,12 +1,26 @@
-// Pattern outline
-// * .button
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .button
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-button {
   overflow: hidden;
   display: block;
@@ -112,7 +126,10 @@
   color: $state-disabled;
 }
 
-.#{$pre}-no-touchevents {
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-button {
     cursor: pointer;
     user-select: none;

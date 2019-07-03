@@ -1,28 +1,43 @@
-// Pattern outline
-// * .p
-// * .a
-// * .abbr
-// * .code
-// * .em
-// * .kbd
-// * .mark
-// * .small
-// * .strong
-// * .sub
-// * .sup
-// * .label
-// * .blockquote
-// * .ol
-// * .ul
-// * .li
-// * .pre
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .p
+// .a
+// .abbr
+// .code
+// .em
+// .kbd
+// .mark
+// .small
+// .strong
+// .sub
+// .sup
+// .label
+// .blockquote
+// .ol
+// .ul
+// .li
+// .pre
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-p {
   display: block;
   margin: $space-stack-m;
@@ -281,7 +296,10 @@
   word-wrap: break-word;
 }
 
-@media #{$media-m} {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
   .#{$pre}-p {
     font-size: rem(15px);
     line-height: rem(32px);
@@ -348,7 +366,10 @@
   }
 }
 
-@media #{$media-l} {
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
   .#{$pre}-p {
     font-size: rem(16px);
   }

@@ -1,15 +1,27 @@
-// Pattern outline
-// * .preloader
-// *   .preloader__stroke
-// *   .preloader__stroke-outer
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .preloader
+// | .preloader__stroke
+// | .preloader__stroke-outer
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/get-circumference';
 @import '../utilities/scss/functions/rem';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-preloader {
   z-index: $z-index-overlay;
   position: fixed;

@@ -1,16 +1,34 @@
-// Pattern outline
-// * .textarea
-// *   .textarea__input
-// *   .textarea__label
-// *   .textarea__border
-// *   .textarea__message
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
+// 5 Vendors
+//   5.1 Medium devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .textarea
+// | .textarea__input
+// | .textarea__label
+// | .textarea__border
+// | .textarea__message
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-textarea {
   position: relative;
   height: rem(80px);
@@ -216,7 +234,40 @@
   color: $state-success;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-textarea__input {
+    // * Support for scrollbars in WebKit.
+    padding: $space-xs 0 rem(3px);
+
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  .#{$pre}-textarea__label {
+    font-size: rem(15px);
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-textarea__input {
+    font-size: rem(16px);
+  }
+
+  .#{$pre}-textarea__label {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-textarea__input {
     border-bottom: $input-border;
     transition: color $transition-duration-x1 $transition-timing-default;
@@ -356,36 +407,18 @@
   }
 }
 
-// Vendors.
+// 5 Vendors
+// =============================================================================
+
 .afterthedeadline-button + .#{$pre}-textarea__input {
   padding: $space-s $space-xxl rem(7px) 0;
 }
 
-@media #{$media-m} {
-  .#{$pre}-textarea__input {
-    // * Support for scrollbars in WebKit.
-    padding: $space-xs 0 rem(3px);
+// 5.1 Medium devices
+// -----------------------------------------------------------------------------
 
-    font-size: rem(15px);
-    line-height: rem(32px);
-  }
-
-  .#{$pre}-textarea__label {
-    font-size: rem(15px);
-  }
-
-  // Vendors.
+@include device(medium) {
   .afterthedeadline-button + .#{$pre}-textarea__input {
     padding: $space-xs $space-xxl rem(3px) 0;
-  }
-}
-
-@media #{$media-l} {
-  .#{$pre}-textarea__input {
-    font-size: rem(16px);
-  }
-
-  .#{$pre}-textarea__label {
-    font-size: rem(16px);
   }
 }

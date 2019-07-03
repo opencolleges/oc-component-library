@@ -1,22 +1,40 @@
-// Pattern outline
-// * .file
-// *   .file__outer
-// *     .file__input
-// *     .file__inner
-// *       .file__image
-// *       .file__description
-// *       .file__label
-// *       .file__types
-// *     .file__message
-// *     .file__list
-// *       .file__item
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
+//   4.1 Medium devices
+//   4.2 Large devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .file
+// | .file__outer
+// | | .file__input
+// | | .file__inner
+// | | | .file__image
+// | | | .file__description
+// | | | .file__label
+// | | | .file__types
+// | | .file__message
+// | | .file__list
+// | | | .file__item
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-file {
   position: relative;
   padding: $space-stack-l;
@@ -156,7 +174,70 @@
   background-color: transparent;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-file--s > .#{$pre}-file__outer {
+    height: rem(400px);
+  }
+  .#{$pre}-file--m > .#{$pre}-file__outer {
+    height: rem(440px);
+  }
+  .#{$pre}-file--l > .#{$pre}-file__outer {
+    height: rem(480px);
+  }
+
+  .#{$pre}-file--s .#{$pre}-file__image {
+    width: rem(120px);
+    height: rem(120px);
+  }
+  .#{$pre}-file--m .#{$pre}-file__image {
+    width: rem(144px);
+    height: rem(144px);
+  }
+  .#{$pre}-file--l .#{$pre}-file__image {
+    width: rem(168px);
+    height: rem(168px);
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-file--s > .#{$pre}-file__outer {
+    height: rem(440px);
+  }
+  .#{$pre}-file--m > .#{$pre}-file__outer {
+    height: rem(480px);
+  }
+  .#{$pre}-file--l > .#{$pre}-file__outer {
+    height: rem(520px);
+  }
+
+  .#{$pre}-file__image {
+    margin-bottom: rem(32px);
+  }
+
+  .#{$pre}-file--s .#{$pre}-file__image {
+    width: rem(144px);
+    height: rem(144px);
+  }
+  .#{$pre}-file--m .#{$pre}-file__image {
+    width: rem(168px);
+    height: rem(168px);
+  }
+  .#{$pre}-file--l .#{$pre}-file__image {
+    width: rem(192px);
+    height: rem(192px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-file__input:focus {
     outline: none;
   }
@@ -217,69 +298,20 @@
   .#{$pre}-file__button {
     cursor: pointer;
   }
-}
 
-@media #{$media-m} {
-  .#{$pre}-file--s > .#{$pre}-file__outer {
-    height: rem(400px);
-  }
-  .#{$pre}-file--m > .#{$pre}-file__outer {
-    height: rem(440px);
-  }
-  .#{$pre}-file--l > .#{$pre}-file__outer {
-    height: rem(480px);
-  }
+  // 4.1 Medium devices
+  // ---------------------------------------------------------------------------
 
-  .#{$pre}-file--s .#{$pre}-file__image {
-    width: rem(120px);
-    height: rem(120px);
-  }
-  .#{$pre}-file--m .#{$pre}-file__image {
-    width: rem(144px);
-    height: rem(144px);
-  }
-  .#{$pre}-file--l .#{$pre}-file__image {
-    width: rem(168px);
-    height: rem(168px);
-  }
-
-  .#{$pre}-no-touchevents {
+  @include device(medium) {
     .#{$pre}-file__description {
       font-size: rem(15px);
       line-height: rem(32px);
     }
   }
-}
 
-@media #{$media-l} {
-  .#{$pre}-file--s > .#{$pre}-file__outer {
-    height: rem(440px);
-  }
-  .#{$pre}-file--m > .#{$pre}-file__outer {
-    height: rem(480px);
-  }
-  .#{$pre}-file--l > .#{$pre}-file__outer {
-    height: rem(520px);
-  }
-
-  .#{$pre}-file__image {
-    margin-bottom: rem(32px);
-  }
-
-  .#{$pre}-file--s .#{$pre}-file__image {
-    width: rem(144px);
-    height: rem(144px);
-  }
-  .#{$pre}-file--m .#{$pre}-file__image {
-    width: rem(168px);
-    height: rem(168px);
-  }
-  .#{$pre}-file--l .#{$pre}-file__image {
-    width: rem(192px);
-    height: rem(192px);
-  }
-
-  .#{$pre}-no-touchevents {
+  // 4.2 Large devices
+  // ---------------------------------------------------------------------------
+  @include device(large) {
     .#{$pre}-file__description {
       font-size: rem(16px);
     }

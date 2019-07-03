@@ -1,16 +1,32 @@
-// Pattern outline
-// * .modal
-// *   .modal__outer
-// *     .modal__image
-// *     .modal__inner
-// *     .modal__actions
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Misc
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .modal
+// | .modal__outer
+// | | .modal__image
+// | | .modal__inner
+// | | .modal__actions
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-modal {
   z-index: $z-index-modal;
   opacity: 0;
@@ -84,7 +100,10 @@
   margin-bottom: 0;
 }
 
-@media #{$media-m} {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
   .#{$pre}-modal__inner {
     max-height: rem(168px);
     margin: rem(-16px -8px 32px) 0;
@@ -96,14 +115,21 @@
   }
 }
 
-@media #{$media-l} {
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
   .#{$pre}-modal__image {
     height: rem(192px);
     margin: rem(16px) auto 0;
   }
 }
 
+// 4 Misc
+// =============================================================================
+
 // ! Inital animation prototype CSS. WIP.
+
 .#{$pre}-humanoid {
   transform-origin: 149.28px 187.755px;
   animation: humanoid 375ms ease-in-out 2125ms 1 normal forwards;

@@ -1,17 +1,32 @@
-// Pattern outline
-// * .h1
-// * .h2
-// * .h3
-// * .h4
-// * .h5
-// * .h6
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .h1
+// .h2
+// .h3
+// .h4
+// .h5
+// .h6
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-h1 {
   font-size: rem(30px);
   font-weight: 300;
@@ -78,7 +93,10 @@
   }
 }
 
-@media #{$media-m} {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
   .#{$pre}-h1 {
     font-size: rem(34px);
     line-height: rem(48px);
@@ -110,7 +128,10 @@
   }
 }
 
-@media #{$media-l} {
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
   .#{$pre}-h1 {
     font-size: rem(38px);
   }

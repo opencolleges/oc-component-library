@@ -1,15 +1,29 @@
-// Pattern outline
-// * .progress
-// *   .progress__bar-outer
-// *     .progress__bar
-// *   .progress__label
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .progress
+// | .progress__bar-outer
+// | | .progress__bar
+// | .progress__label
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-progress {
   position: relative;
   box-sizing: border-box;
@@ -69,7 +83,10 @@
   font-weight: 400;
 }
 
-.#{$pre}-no-touchevents {
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-progress__label {
     user-select: none;
   }

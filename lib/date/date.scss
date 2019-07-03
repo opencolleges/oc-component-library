@@ -1,21 +1,37 @@
-// Pattern outline
-// * .date
-// *   .date__input
-// *   .date__input
-// *   .date__label
-// *   .date__border
-// *   .date__list-outer
-// *     .date__list
-// *       .date__item
-// *     .date__list
-// *       .date__item
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .date
+// | .date__input
+// | .date__input
+// | .date__label
+// | .date__border
+// | .date__list-outer
+// | | .date__list
+// | | | .date__item
+// | | .date__list
+// | | | .date__item
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Small devices
+// =============================================================================
+
 .#{$pre}-date {
   position: relative;
   height: rem(80px);
@@ -188,7 +204,28 @@
   color: $state-success;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-date__input {
+    font-size: rem(15px);
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-date__input {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-date__input {
     border-bottom: $input-border;
     transition: color $transition-duration-x1 $transition-timing-default;
@@ -320,17 +357,5 @@
   .#{$pre}-date__item--selectable:hover {
     border-radius: $border-radius-round;
     background-color: $selection-background;
-  }
-}
-
-@media #{$media-m} {
-  .#{$pre}-date__input {
-    font-size: rem(15px);
-  }
-}
-
-@media #{$media-l} {
-  .#{$pre}-date__input {
-    font-size: rem(16px);
   }
 }

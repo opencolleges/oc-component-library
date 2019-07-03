@@ -1,12 +1,24 @@
-// Pattern outline
-// * .divider
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .divider
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-divider {
   border-radius: $border-radius-s;
   background-color: $gallery;

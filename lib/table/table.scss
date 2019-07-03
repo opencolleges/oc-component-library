@@ -1,12 +1,27 @@
-// Pattern outline
-// * .table
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .table
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-table {
   table-layout: fixed;
   margin: 0 auto $space-m;
@@ -30,13 +45,19 @@
   text-align: right;
 }
 
-@media #{$media-m} {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
   .#{$pre}-table {
     font-size: rem(15px);
   }
 }
 
-@media #{$media-l} {
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
   .#{$pre}-table {
     font-size: rem(16px);
   }

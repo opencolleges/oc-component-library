@@ -1,14 +1,26 @@
-// Pattern outline
-// * .radio-set
-// *   .radio-set__border
-// *   .radio-set__message
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .radio-set
+// | .radio-set__border
+// | .radio-set__message
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-radio-set {
   position: relative;
   padding: $space-stack-l;

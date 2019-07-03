@@ -1,16 +1,32 @@
-// Pattern outline
-// * .text
-// *   .text__input
-// *   .text__label
-// *   .text__border
-// *   .text__message
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .text
+// | .text__input
+// | .text__label
+// | .text__border
+// | .text__message
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-text {
   position: relative;
   height: rem(80px);
@@ -89,6 +105,11 @@
 
 .#{$pre}-text__input.#{$pre}-active:disabled {
   color: $fossil;
+}
+
+// * Support for Firefox.
+.#{$pre}-text__input[type='number'] {
+  -moz-appearance: textfield;
 }
 
 .#{$pre}-text__input[type='number']::-webkit-inner-spin-button {
@@ -218,7 +239,38 @@
   color: $state-success;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-text__input {
+    padding: $space-xs $space-xxl $space-xs 0;
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  .#{$pre}-text__label {
+    font-size: rem(15px);
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-text__input {
+    font-size: rem(16px);
+  }
+
+  .#{$pre}-text__label {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-text__input {
     border-bottom: $input-border;
     transition: color $transition-duration-x1 $transition-timing-default;
@@ -327,27 +379,5 @@
   }
   .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
     background-color: $state-success-focus;
-  }
-}
-
-@media #{$media-m} {
-  .#{$pre}-text__input {
-    padding: $space-xs $space-xxl $space-xs 0;
-    font-size: rem(15px);
-    line-height: rem(32px);
-  }
-
-  .#{$pre}-text__label {
-    font-size: rem(15px);
-  }
-}
-
-@media #{$media-l} {
-  .#{$pre}-text__input {
-    font-size: rem(16px);
-  }
-
-  .#{$pre}-text__label {
-    font-size: rem(16px);
   }
 }

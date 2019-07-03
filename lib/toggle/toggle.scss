@@ -1,17 +1,34 @@
-// Pattern outline
-// * .toggle
-// *   .toggle__input
-// *   .toggle__label
-// *   .toggle__border-outer
-// *     .toggle__border
+// Table of Contents
 
-// Imports
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
+//  4.1 Medium devices
+
+// 1 Pattern outline
+// =============================================================================
+
+// .toggle
+// | .toggle__input
+// | .toggle__label
+// | .toggle__border-outer
+// | | .toggle__border
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/get-circumference';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-toggle {
   position: relative;
   margin: $space-stack-m;
@@ -162,7 +179,53 @@
   display: none;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-toggle__input {
+    top: rem(4px);
+  }
+
+  .#{$pre}-toggle--right > .#{$pre}-toggle__input {
+    top: 50%;
+  }
+
+  .#{$pre}-toggle__label {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  .#{$pre}-toggle__label::before {
+    top: rem(4px);
+  }
+
+  .#{$pre}-toggle--right > .#{$pre}-toggle__label::before {
+    top: 50%;
+  }
+
+  .#{$pre}-toggle__label::after {
+    top: rem(5px);
+  }
+
+  .#{$pre}-toggle--right > .#{$pre}-toggle__label::after {
+    top: 50%;
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-toggle__label {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-toggle__label {
     cursor: pointer;
     user-select: none;
@@ -405,39 +468,11 @@
     > .#{$pre}-toggle__border {
     stroke: $christi-shade;
   }
-}
 
-@media #{$media-m} {
-  .#{$pre}-toggle__input {
-    top: rem(4px);
-  }
+  // 4.1 Medium devices
+  // ---------------------------------------------------------------------------
 
-  .#{$pre}-toggle--right > .#{$pre}-toggle__input {
-    top: 50%;
-  }
-
-  .#{$pre}-toggle__label {
-    font-size: rem(15px);
-    line-height: rem(32px);
-  }
-
-  .#{$pre}-toggle__label::before {
-    top: rem(4px);
-  }
-
-  .#{$pre}-toggle--right > .#{$pre}-toggle__label::before {
-    top: 50%;
-  }
-
-  .#{$pre}-toggle__label::after {
-    top: rem(5px);
-  }
-
-  .#{$pre}-toggle--right > .#{$pre}-toggle__label::after {
-    top: 50%;
-  }
-
-  .#{$pre}-no-touchevents {
+  @include device(medium) {
     .#{$pre}-toggle__border-outer {
       top: rem(4px);
     }
@@ -445,11 +480,5 @@
     .#{$pre}-toggle--right > .#{$pre}-toggle__border-outer {
       top: 50%;
     }
-  }
-}
-
-@media #{$media-l} {
-  .#{$pre}-toggle__label {
-    font-size: rem(16px);
   }
 }

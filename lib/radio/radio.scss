@@ -1,17 +1,34 @@
-// Pattern outline
-// * .radio
-// *   .radio__input
-// *   .radio__label
-// *   .radio__border-outer
-// *     .radio__border
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
+//   4.1 Medium devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .radio
+// | .radio__input
+// | .radio__label
+// | .radio__border-outer
+// | | .radio__border
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/get-circumference';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-radio {
   position: relative;
   margin: $space-stack-m;
@@ -207,7 +224,85 @@
   display: none;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-radio__input {
+    top: rem(8px);
+  }
+
+  .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__input {
+    top: rem(24px);
+  }
+
+  .#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__input {
+    top: 50%;
+  }
+
+  .#{$pre}-radio--right > .#{$pre}-radio__input {
+    top: 50%;
+  }
+
+  .#{$pre}-radio__label {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  .#{$pre}-radio__label::before {
+    top: rem(8px);
+  }
+
+  .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::before {
+    top: rem(24px);
+  }
+
+  .#{$pre}-card--clickable
+    > .#{$pre}-radio--right
+    > .#{$pre}-radio__label::before {
+    top: 50%;
+  }
+
+  .#{$pre}-radio--right > .#{$pre}-radio__label::before {
+    top: 50%;
+  }
+
+  .#{$pre}-radio__label::after {
+    top: rem(12px);
+  }
+
+  .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::after {
+    top: rem(28px);
+  }
+
+  .#{$pre}-card--clickable
+    > .#{$pre}-radio--right
+    > .#{$pre}-radio__label::after {
+    top: 50%;
+  }
+
+  .#{$pre}-radio--right > .#{$pre}-radio__label::after {
+    top: 50%;
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-card--clickable > .#{$pre}-radio {
+    margin: rem(-16px);
+  }
+
+  .#{$pre}-radio__label {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-radio__label {
     cursor: pointer;
     user-select: none;
@@ -416,67 +511,11 @@
     > .#{$pre}-radio__border {
     stroke: rgba($blizzard, 0);
   }
-}
 
-@media #{$media-m} {
-  .#{$pre}-radio__input {
-    top: rem(8px);
-  }
+  // 4.1 Medium devices
+  // -----------------------------------------------------------------------------
 
-  .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__input {
-    top: rem(24px);
-  }
-
-  .#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__input {
-    top: 50%;
-  }
-
-  .#{$pre}-radio--right > .#{$pre}-radio__input {
-    top: 50%;
-  }
-
-  .#{$pre}-radio__label {
-    font-size: rem(15px);
-    line-height: rem(32px);
-  }
-
-  .#{$pre}-radio__label::before {
-    top: rem(8px);
-  }
-
-  .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::before {
-    top: rem(24px);
-  }
-
-  .#{$pre}-card--clickable
-    > .#{$pre}-radio--right
-    > .#{$pre}-radio__label::before {
-    top: 50%;
-  }
-
-  .#{$pre}-radio--right > .#{$pre}-radio__label::before {
-    top: 50%;
-  }
-
-  .#{$pre}-radio__label::after {
-    top: rem(12px);
-  }
-
-  .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::after {
-    top: rem(28px);
-  }
-
-  .#{$pre}-card--clickable
-    > .#{$pre}-radio--right
-    > .#{$pre}-radio__label::after {
-    top: 50%;
-  }
-
-  .#{$pre}-radio--right > .#{$pre}-radio__label::after {
-    top: 50%;
-  }
-
-  .#{$pre}-no-touchevents {
+  @include device(medium) {
     .#{$pre}-radio__border-outer {
       top: rem(8px);
     }
@@ -494,15 +533,5 @@
     .#{$pre}-radio--right > .#{$pre}-radio__border-outer {
       top: 50%;
     }
-  }
-}
-
-@media #{$media-l} {
-  .#{$pre}-card--clickable > .#{$pre}-radio {
-    margin: rem(-16px);
-  }
-
-  .#{$pre}-radio__label {
-    font-size: rem(16px);
   }
 }
