@@ -31,10 +31,6 @@
   line-height: rem(24px);
 }
 
-.#{$pre}-table:not([width]) {
-  min-width: 100%;
-}
-
 .#{$pre}-table--left {
   text-align: left;
 }
@@ -43,6 +39,13 @@
 }
 .#{$pre}-table--right {
   text-align: right;
+}
+
+// This rule excludes table elements that are passed a width attribute.
+.#{$pre}-table:not([width]) {
+  // The min-width property is set to 100% instead of the width property, so
+  // that it doesn't overwrite the width attribute that is passed.
+  min-width: 100%;
 }
 
 // 3.1 Medium devices

@@ -27,24 +27,28 @@
 .#{$pre}-divider--s {
   height: rem(1px);
 
-  // * A visual adjustment to align with the 8px grid.
+  // The margin property's y-axis is set to -1px so that a small divider is
+  // absorbed by the preceding element's box model and adhering to the 8px grid.
   margin: rem(-1px) 0 $space-m;
 }
 .#{$pre}-divider--m {
   height: rem(2px);
 
-  // * A visual adjustment to align with the 8px grid.
+  // The margin property's y-axis is set to -2px so that a medium divider is
+  // absorbed by the preceding element's box model and adhering to the 8px grid.
   margin: rem(-2px) 0 $space-m;
 }
 .#{$pre}-divider--l {
   height: rem(3px);
 
-  // * A visual adjustment to align with the 8px grid.
+  // The margin property's y-axis is set to -3px so that a large divider is
+  // absorbed by the preceding element's box model and adhering to the 8px grid.
   margin: rem(-3px) 0 $space-m;
 }
 
 @for $index from 1 through 6 {
-  // * A visual adjustment to align with the 8px grid.
+  // The margin property's y-axis is set to -1px so that a small divider is
+  // absorbed by the preceding element's box model and adhering to the 8px grid.
   .#{$pre}-h#{$index} + .#{$pre}-divider--s {
     margin: rem(-17px) 0 $space-m;
   }

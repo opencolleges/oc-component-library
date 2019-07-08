@@ -157,6 +157,22 @@
   background-size: auto 85%, cover;
 }
 
+.#{$pre}-avatar > .#{$pre}-badge {
+  position: absolute;
+  top: rem(-8px);
+
+  // The white-space property set to nowrap ensures that the badge component's
+  // value doesn't break line and reflow when the position property is set to
+  // absolute.
+  white-space: nowrap;
+}
+.#{$pre}-avatar--m > .#{$pre}-badge {
+  left: $space-l;
+}
+.#{$pre}-avatar--l > .#{$pre}-badge {
+  left: $space-xl;
+}
+
 // 4 Mouse-driven devices
 // =============================================================================
 

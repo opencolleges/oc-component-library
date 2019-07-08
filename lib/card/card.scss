@@ -31,10 +31,6 @@
   background-color: $blizzard;
 }
 
-.#{$pre}-card > :last-child {
-  margin-bottom: 0;
-}
-
 .#{$pre}-card--s {
   border-radius: $border-radius-s;
 }
@@ -131,6 +127,10 @@
 
 // 5 Misc
 // =============================================================================
+
+.#{$pre}-card > :last-child {
+  margin-bottom: 0;
+}
 
 .#{$pre}-mouse-move {
   transition: none !important;

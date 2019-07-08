@@ -44,7 +44,7 @@
   transition-property: box-shadow, border, background-color, color;
 }
 
-.#{$pre}-modal__actions .#{$pre}-button {
+.#{$pre}-modal .#{$pre}-button {
   margin-bottom: 0;
 }
 
@@ -63,19 +63,6 @@
 
 .#{$pre}-button--compact.#{$pre}-button--icon {
   padding-left: $space-xxl;
-}
-
-.#{$pre}-button--icon > .#{$pre}-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: $space-m;
-  stroke: currentColor;
-  transition: stroke $transition-duration-x1 $transition-timing-default;
-}
-
-.#{$pre}-button--compact.#{$pre}-button--icon > .#{$pre}-icon {
-  left: $space-s;
 }
 
 .#{$pre}-button--primary {
@@ -126,6 +113,19 @@
   color: $state-disabled;
 }
 
+.#{$pre}-button--icon > .#{$pre}-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: $space-m;
+  stroke: currentColor;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-button--compact.#{$pre}-button--icon > .#{$pre}-icon {
+  left: $space-s;
+}
+
 // 4 Mouse-driven devices
 // =============================================================================
 
@@ -135,7 +135,10 @@
     user-select: none;
   }
 
-  // * Support for Firefox.
+  // The ::-moz-focus-inner pseudo-selector having a border property set to none
+  // removes the default border Firefox applies inside the focused button.
+  //
+  // This is only an issue if Firefox and not Mobile Firefox.
   .#{$pre}-button::-moz-focus-inner {
     border: none;
   }

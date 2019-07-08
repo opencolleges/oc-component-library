@@ -67,6 +67,9 @@
   .#{$pre}-h#{$index} {
     margin: $space-l 0;
     font-style: normal;
+
+    // The word-wrap property set to break-word enables long URLs to reflow
+    // over multiple lines, rather than text flowing outside its container.
     word-wrap: break-word;
   }
 

@@ -28,12 +28,12 @@
   vertical-align: bottom;
 }
 
-.#{$pre}-table--alt > .#{$pre}-tbody .#{$pre}-th:first-of-type {
-  border-left: rem(1px) solid $gallery;
-}
-
 .#{$pre}-table--alt .#{$pre}-th {
   color: $hurricane;
+}
+
+.#{$pre}-table--alt > .#{$pre}-tbody .#{$pre}-th:first-of-type {
+  border-left: rem(1px) solid $gallery;
 }
 
 .#{$pre}-th--top {

@@ -36,7 +36,11 @@
 
 .#{$pre}-accordion__button {
   width: 100%;
-  padding: rem(12px) $space-xxl rem(12px) 0;
+
+  // The padding-bottom is set to 11px to factor in the 1px border-bottom and
+  // ensure the accordion adheres to the 8px grid system.
+  padding: rem(12px) $space-xxl rem(11px) 0;
+
   border: none;
   outline: none;
   background-color: transparent;
@@ -96,7 +100,10 @@
   }
 
   .#{$pre}-accordion__button {
-    padding: $space-s $space-xxl $space-s 0;
+    // The padding-bottom is set to 7px to factor in the 1px border-bottom and
+    // ensure the accordion adheres to the 8px grid system.
+    padding: $space-s $space-xxl rem(7px) 0;
+
     font-size: rem(16px);
     line-height: rem(32px);
   }
@@ -134,12 +141,16 @@
     color: inherit;
   }
 
+  // The ::-moz-focus-inner pseudo-selector having a border property set to none
+  // removes the default border Firefox applies inside the focused accordion.
+  //
+  // This is only an issue if Firefox and not Mobile Firefox.
+  .#{$pre}-accordion__button::-moz-focus-inner {
+    border: none;
+  }
+
   .#{$pre}-accordion__border {
     position: absolute;
-
-    // * A visual adjustment.
-    bottom: rem(-1px);
-
     left: 0;
     display: block;
     width: 0;

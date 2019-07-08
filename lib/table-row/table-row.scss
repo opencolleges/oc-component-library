@@ -23,6 +23,8 @@
 
 .#{$pre}-tbody > .#{$pre}-tr {
   border-bottom: rem(1px) solid $gallery;
+  transition: background-color $transition-duration-x1
+    $transition-timing-default;
 }
 
 .#{$pre}-tbody > .#{$pre}-tr:first-of-type {
@@ -46,11 +48,6 @@
 // =============================================================================
 
 @include device(mouse-driven) {
-  .#{$pre}-tbody > .#{$pre}-tr {
-    transition: background-color $transition-duration-x1
-      $transition-timing-default;
-  }
-
   .#{$pre}-tbody > .#{$pre}-tr:hover {
     background-color: $selection-background;
   }

@@ -156,10 +156,10 @@
   right: rem(8px);
 }
 
-.#{$pre}-progress--success > .#{$pre}-icon {
+.#{$pre}-progress > .#{$pre}-icon--tick-ring {
   stroke: $christi-shade;
 }
-.#{$pre}-progress--error > .#{$pre}-icon {
+.#{$pre}-progress > .#{$pre}-icon--close-ring {
   stroke: $cinnabar-shade;
 }
 
