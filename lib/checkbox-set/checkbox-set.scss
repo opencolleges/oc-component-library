@@ -3,6 +3,7 @@
 // 1 Pattern outline
 // 2 Imports
 // 3 Touch devices
+// 4 Mouse-driven
 
 // 1 Pattern outline
 // =============================================================================
@@ -68,4 +69,37 @@
 }
 .#{$pre}-checkbox-set--success > .#{$pre}-checkbox-set__message {
   color: $state-success;
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
+  .#{$pre}-checkbox-set--error:hover > .#{$pre}-checkbox-set__border {
+    background-color: $state-error-hover;
+  }
+  .#{$pre}-checkbox-set--error:focus-within > .#{$pre}-checkbox-set__border {
+    background-color: $state-error-focus;
+  }
+
+  .#{$pre}-checkbox-set--success:hover > .#{$pre}-checkbox-set__border {
+    background-color: $state-success-hover;
+  }
+  .#{$pre}-checkbox-set--success:focus-within > .#{$pre}-checkbox-set__border {
+    background-color: $state-success-focus;
+  }
+
+  .#{$pre}-checkbox-set--error:hover > .#{$pre}-checkbox-set__message {
+    color: $state-error-hover;
+  }
+  .#{$pre}-checkbox-set--error:focus-within > .#{$pre}-checkbox-set__message {
+    color: $state-error-focus;
+  }
+
+  .#{$pre}-checkbox-set--success:hover > .#{$pre}-checkbox-set__message {
+    color: $state-success-hover;
+  }
+  .#{$pre}-checkbox-set--success:focus-within > .#{$pre}-checkbox-set__message {
+    color: $state-success-focus;
+  }
 }

@@ -217,6 +217,23 @@
   color: rgba($state-error-focus, 0);
 }
 
+.#{$pre}-text > .#{$pre}-icon {
+  position: absolute;
+  top: rem(24px);
+  right: rem(8px);
+  stroke-width: 1;
+  fill: none;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+  pointer-events: none;
+}
+
+.#{$pre}-text > .#{$pre}-icon--close {
+  stroke: $state-error;
+}
+.#{$pre}-text > .#{$pre}-icon--tick {
+  stroke: $state-success;
+}
+
 .#{$pre}-text__border {
   display: none;
 }
@@ -326,6 +343,19 @@
     color: $christi-shade;
   }
 
+  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
+    stroke: $state-error-hover;
+  }
+  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
+    stroke: $state-error-focus;
+  }
+  .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
+    stroke: $state-success-hover;
+  }
+  .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
+    stroke: $state-success-focus;
+  }
+
   .#{$pre}-text__border {
     position: absolute;
     top: rem(55px);
@@ -379,5 +409,19 @@
   }
   .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
     background-color: $state-success-focus;
+  }
+
+  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-text__message {
+    color: $state-error-hover;
+  }
+  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-text__message {
+    color: $state-error-focus;
+  }
+
+  .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-text__message {
+    color: $state-success-hover;
+  }
+  .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-text__message {
+    color: $state-success-focus;
   }
 }

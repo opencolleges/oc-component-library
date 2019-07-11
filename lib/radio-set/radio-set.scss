@@ -3,6 +3,7 @@
 // 1 Pattern outline
 // 2 Imports
 // 3 Touch devices
+// 4 Mouse-driven devices
 
 // 1 Pattern outline
 // =============================================================================
@@ -17,6 +18,7 @@
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
 // 3 Touch devices
 // =============================================================================
@@ -68,4 +70,37 @@
 }
 .#{$pre}-radio-set--success > .#{$pre}-radio-set__message {
   color: $state-success;
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
+  .#{$pre}-radio-set--error:hover > .#{$pre}-radio-set__border {
+    background-color: $state-error-hover;
+  }
+  .#{$pre}-radio-set--error:focus-within > .#{$pre}-radio-set__border {
+    background-color: $state-error-focus;
+  }
+
+  .#{$pre}-radio-set--success:hover > .#{$pre}-radio-set__border {
+    background-color: $state-success-hover;
+  }
+  .#{$pre}-radio-set--success:focus-within > .#{$pre}-radio-set__border {
+    background-color: $state-success-focus;
+  }
+
+  .#{$pre}-radio-set--error:hover > .#{$pre}-radio-set__message {
+    color: $state-error-hover;
+  }
+  .#{$pre}-radio-set--error:focus-within > .#{$pre}-radio-set__message {
+    color: $state-error-focus;
+  }
+
+  .#{$pre}-radio-set--success:hover > .#{$pre}-radio-set__message {
+    color: $state-success-hover;
+  }
+  .#{$pre}-radio-set--success:focus-within > .#{$pre}-radio-set__message {
+    color: $state-success-focus;
+  }
 }

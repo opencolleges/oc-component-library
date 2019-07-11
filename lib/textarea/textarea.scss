@@ -119,6 +119,18 @@
     $transition-duration-x1;
 }
 
+// This selector styles the scroll-bar in WebKit browsers.
+.#{$pre}-textarea__input::-webkit-scrollbar {
+  width: rem(4px);
+  height: rem(4px);
+}
+
+// This selector styles the scroll-bar-thumb in WebKit browsers.
+.#{$pre}-textarea__input::-webkit-scrollbar-thumb {
+  border-radius: $border-radius-s;
+  background: $fossil-transparent;
+}
+
 .#{$pre}-textarea__label {
   position: absolute;
   top: rem(24px);
@@ -227,10 +239,14 @@
   color: $state-default;
 }
 
-.#{$pre}-textarea--error > .#{$pre}-textarea__message {
+.#{$pre}-textarea--error
+  > .#{$pre}-textarea__input
+  ~ .#{$pre}-textarea__message {
   color: $state-error;
 }
-.#{$pre}-textarea--success > .#{$pre}-textarea__message {
+.#{$pre}-textarea--success
+  > .#{$pre}-textarea__input
+  ~ .#{$pre}-textarea__message {
   color: $state-success;
 }
 
@@ -404,6 +420,40 @@
   }
   .#{$pre}-textarea__input.#{$pre}-active:focus ~ .#{$pre}-textarea__message {
     color: $state-default-focus;
+  }
+
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input
+    ~ .#{$pre}-textarea__message {
+    color: $state-error;
+  }
+
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input:hover
+    ~ .#{$pre}-textarea__message {
+    color: $state-error-hover;
+  }
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input:focus
+    ~ .#{$pre}-textarea__message {
+    color: $state-error-focus;
+  }
+
+  .#{$pre}-textarea--success
+    > .#{$pre}-textarea__input
+    ~ .#{$pre}-textarea__message {
+    color: $state-success;
+  }
+
+  .#{$pre}-textarea--success
+    > .#{$pre}-textarea__input:hover
+    ~ .#{$pre}-textarea__message {
+    color: $state-success-hover;
+  }
+  .#{$pre}-textarea--success
+    > .#{$pre}-textarea__input:focus
+    ~ .#{$pre}-textarea__message {
+    color: $state-success-focus;
   }
 }
 
