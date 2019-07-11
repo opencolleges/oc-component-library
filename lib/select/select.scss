@@ -47,7 +47,8 @@
   padding: 0 rem(40px) 0 0;
   border-bottom: rem(1px) solid $viking-shade;
 
-  // * Support for Mobile Safari.
+  // The border-radius property being set to 0 removes the default border-radius
+  // on select inputs in Mobile Safari.
   border-radius: 0;
 
   outline: none;
@@ -60,6 +61,18 @@
   white-space: nowrap;
 }
 
+.#{$pre}-select__input--hidden {
+  visibility: hidden;
+  display: none;
+}
+
+.#{$pre}-select--error > .#{$pre}-select__input {
+  border-bottom: rem(1px) solid $state-error;
+}
+.#{$pre}-select--success > .#{$pre}-select__input {
+  border-bottom: rem(1px) solid $state-success;
+}
+
 .#{$pre}-select__input:disabled ~ .#{$pre}-select__input {
   border-color: $state-disabled;
   color: $fossil;
@@ -69,11 +82,6 @@
   padding: 0;
   border: none;
   color: $charcoal;
-}
-
-.#{$pre}-select__input--hidden {
-  visibility: hidden;
-  display: none;
 }
 
 .#{$pre}-select__label {
@@ -101,11 +109,27 @@
     color $transition-duration-x1 $transition-timing-default;
 }
 
-.#{$pre}-selected
+.#{$pre}-select.#{$pre}-selected
   > .#{$pre}-select__input[required]
   ~ .#{$pre}-select__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
+}
+
+.#{$pre}-select > .#{$pre}-icon {
+  position: absolute;
+
+  // The top property is set to 26px as a visual adjustment to ensure the icon
+  // adheres to the 8px grid.
+  top: rem(26px);
+
+  right: rem(8px);
+  stroke: $gunmetal;
+  pointer-events: none;
+}
+
+.#{$pre}-select__input:disabled ~ .#{$pre}-icon {
+  stroke: $fossil;
 }
 
 .#{$pre}-select__border {
@@ -149,12 +173,13 @@
   padding-right: rem(8px);
 }
 
-// * Support for WebKit.
+// This selector styles the scroll-bar in WebKit browsers.
 .#{$pre}-select__list::-webkit-scrollbar {
   width: rem(4px);
   height: rem(4px);
 }
-// * Support for WebKit.
+
+// This selector styles the scroll-bar-thumb in WebKit browsers.
 .#{$pre}-select__list::-webkit-scrollbar-thumb {
   border-radius: $border-radius-s;
   background: $fossil-transparent;
@@ -175,15 +200,35 @@
   background-color: $selection-background;
 }
 
+.#{$pre}-select__item > .#{$pre}-icon {
+  position: absolute;
+  top: rem(8px);
+  right: rem(8px);
+}
+
+.#{$pre}-select__message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: rgba($state-default, 0);
+  font-size: rem(12px);
+  line-height: rem(16px);
+  transition: color $transition-duration-x1 $transition-timing-default;
+  user-select: none;
+}
+
+.#{$pre}-select--error .#{$pre}-select__message {
+  color: $state-error;
+}
+.#{$pre}-select--success .#{$pre}-select__message {
+  color: $state-success;
+}
+
 // 3.1 Medium devices
 // -----------------------------------------------------------------------------
 
 @include device(medium) {
   .#{$pre}-select__input {
-    font-size: rem(15px);
-  }
-
-  .#{$pre}-select__item {
     font-size: rem(15px);
   }
 }
@@ -193,10 +238,6 @@
 
 @include device(large) {
   .#{$pre}-select__input {
-    font-size: rem(16px);
-  }
-
-  .#{$pre}-select__item {
     font-size: rem(16px);
   }
 }
@@ -211,17 +252,23 @@
     cursor: pointer;
   }
 
-  .#{$pre}-select__input:focus {
+  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__input {
     color: inherit;
   }
-  // * Support for Firefox.
+
+  // This selector styles the focus-ring in Firefox browsers.
   .#{$pre}-select__input:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 $charcoal;
   }
-  // * Support for IE11.
+
+  // This selector styles the drop-down chevron in IE11.
   .#{$pre}-select__input:-ms-expand {
     display: none;
+  }
+
+  .#{$pre}-select__input:focus {
+    color: inherit;
   }
 
   .#{$pre}-select__input:disabled ~ .#{$pre}-select__input {
@@ -231,16 +278,12 @@
     cursor: text;
   }
 
-  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__input {
-    color: inherit;
-  }
-
   .#{$pre}-select__label {
     transition: color $transition-duration-x1 $transition-timing-default;
     user-select: none;
   }
 
-  .#{$pre}-select__input:focus + .#{$pre}-select__label {
+  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__label {
     color: $gunmetal;
   }
 
@@ -248,8 +291,20 @@
     color: $christi-shade;
   }
 
-  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__label {
+  .#{$pre}-select__input:focus + .#{$pre}-select__label {
     color: $gunmetal;
+  }
+
+  .#{$pre}-select > .#{$pre}-icon {
+    transition: stroke $transition-duration-x1 $transition-timing-default;
+  }
+
+  .#{$pre}-select.#{$pre}-active > .#{$pre}-icon {
+    stroke: $charcoal;
+  }
+
+  .#{$pre}-select__input:focus ~ .#{$pre}-icon {
+    stroke: $charcoal;
   }
 
   .#{$pre}-select__border {
@@ -264,6 +319,15 @@
     pointer-events: none;
   }
 
+  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__border {
+    width: 100%;
+  }
+
+  .#{$pre}-select.#{$pre}-selected > .#{$pre}-select__border {
+    width: 100%;
+    background-color: $state-default;
+  }
+
   .#{$pre}-select__input:hover ~ .#{$pre}-select__border {
     width: 100%;
   }
@@ -271,20 +335,69 @@
     width: 100%;
   }
 
-  .#{$pre}-select.#{$pre}-active > .#{$pre}-select__border {
-    width: 100%;
-  }
-
-  .#{$pre}-selected > .#{$pre}-select__border {
-    width: 100%;
-    background-color: $state-default;
-  }
-
-  .#{$pre}-selected > .#{$pre}-select__input:hover ~ .#{$pre}-select__border {
+  .#{$pre}-select.#{$pre}-selected
+    > .#{$pre}-select__input:hover
+    ~ .#{$pre}-select__border {
     background-color: $state-default-hover;
   }
-  .#{$pre}-selected > .#{$pre}-select__input:focus ~ .#{$pre}-select__border {
+  .#{$pre}-select.#{$pre}-selected
+    > .#{$pre}-select__input:focus
+    ~ .#{$pre}-select__border {
     background-color: $state-default-focus;
+  }
+
+  .#{$pre}-select--error > .#{$pre}-select__input ~ .#{$pre}-select__border {
+    width: 100%;
+    background-color: $state-error;
+  }
+
+  .#{$pre}-select--error
+    > .#{$pre}-select__input:hover
+    ~ .#{$pre}-select__border {
+    background-color: $state-error-hover;
+  }
+  .#{$pre}-select--error
+    > .#{$pre}-select__input:focus
+    ~ .#{$pre}-select__border {
+    background-color: $state-error-focus;
+  }
+
+  .#{$pre}-select--success > .#{$pre}-select__input ~ .#{$pre}-select__border {
+    width: 100%;
+    background-color: $state-success;
+  }
+
+  .#{$pre}-select--success
+    > .#{$pre}-select__input:hover
+    ~ .#{$pre}-select__border {
+    background-color: $state-success-hover;
+  }
+  .#{$pre}-select--success
+    > .#{$pre}-select__input:focus
+    ~ .#{$pre}-select__border {
+    background-color: $state-success-focus;
+  }
+
+  .#{$pre}-select--error
+    > .#{$pre}-select__input:hover
+    ~ .#{$pre}-select__message {
+    color: $state-error-hover;
+  }
+  .#{$pre}-select--error
+    > .#{$pre}-select__input:focus
+    ~ .#{$pre}-select__message {
+    color: $state-error-focus;
+  }
+
+  .#{$pre}-select--success
+    > .#{$pre}-select__input:hover
+    ~ .#{$pre}-select__message {
+    color: $state-success-hover;
+  }
+  .#{$pre}-select--success
+    > .#{$pre}-select__input:focus
+    ~ .#{$pre}-select__message {
+    color: $state-success-focus;
   }
 
   .#{$pre}-select__list-outer {
