@@ -72,10 +72,6 @@
     box-shadow $transition-duration-x1 $transition-timing-default;
 }
 
-.#{$pre}-card--draggable:focus {
-  outline: $focus-outline;
-}
-
 .#{$pre}-mouse-down > .#{$pre}-card--draggable {
   box-shadow: $box-shadow-layer-4;
   user-select: none;
@@ -83,6 +79,20 @@
 .#{$pre}-mouse-move > .#{$pre}-card--draggable {
   box-shadow: $box-shadow-layer-4;
   user-select: none;
+}
+
+.#{$pre}-card--draggable:focus {
+  outline: $focus-outline;
+}
+
+.#{$pre}-card--draggable > .#{$pre}-icon--draggable {
+  position: absolute;
+  top: 50%;
+  left: rem(8px);
+  transform: translateY(-50%);
+  stroke: none;
+  fill: $fossil;
+  transition: $transition-duration-x1 $transition-timing-default;
 }
 
 // 3.1 Large devices
@@ -122,6 +132,17 @@
   }
   .#{$pre}-mouse-move > .#{$pre}-card--draggable {
     cursor: grabbing !important;
+  }
+
+  .#{$pre}-card--draggable:hover > .#{$pre}-icon--draggable {
+    fill: $hurricane;
+  }
+  .#{$pre}-card--draggable:focus > .#{$pre}-icon--draggable {
+    fill: $hurricane;
+  }
+
+  .#{$pre}-foo > .#{$pre}-card--draggable > .#{$pre}-icon--draggable {
+    fill: $gunmetal;
   }
 }
 

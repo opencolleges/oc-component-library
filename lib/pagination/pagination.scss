@@ -46,12 +46,12 @@
   transition: bottom $transition-duration-x4 $transition-timing-bounce-out;
 }
 
-.#{$pre}-pagination:focus-within {
-  outline: $focus-outline;
-}
-
 .#{$pre}-pagination.#{$pre}-mounted {
   bottom: rem(16px);
+}
+
+.#{$pre}-pagination:focus-within {
+  outline: $focus-outline;
 }
 
 .#{$pre}-pagination__list {
@@ -86,20 +86,20 @@
   user-select: none;
 }
 
-.#{$pre}-pagination__item:nth-last-child(2) {
-  width: rem(16px);
-}
-
-.#{$pre}-pagination__item:focus {
-  outline: none;
-}
-
 .#{$pre}-pagination__item--selectable {
   color: $gunmetal;
 }
 
 .#{$pre}-pagination__item--selectable.#{$pre}-active {
   color: $charcoal;
+}
+
+.#{$pre}-pagination__item:nth-last-child(2) {
+  width: rem(16px);
+}
+
+.#{$pre}-pagination__item:focus {
+  outline: none;
 }
 
 .#{$pre}-pagination__item--selectable::before {
@@ -132,7 +132,8 @@
   opacity: 0;
   position: absolute;
 
-  // * A visual adjustment.
+  // The top property is set to 53px as a visual adjustment to ensure the
+  // pseudo-element adheres to the 8px grid.
   top: rem(53px);
 
   left: 50%;
@@ -150,12 +151,37 @@
 .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required::after {
   opacity: 1;
 
-  // * A visual adjustment.
+  // The top property is set to 37px as a visual adjustment to ensure the
+  // pseudo-element adheres to the 8px grid.
   top: rem(37px);
 }
 
 .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required.#{$pre}-active::after {
   color: $cinnabar;
+}
+
+.#{$pre}-pagination__item > .#{$pre}-icon {
+  position: absolute;
+  top: rem(12px);
+
+  // Applying a transition to the stroke property as usual seems to be ignored
+  // by the browser. I suspect this has something to do with leveraging the
+  // currentColor value when setting the stroke property in a mouse-driven
+  // context.
+  //
+  // Investigate further.
+  transition: color $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-pagination__item > .#{$pre}-icon--arrow-left {
+  left: rem(12px);
+}
+.#{$pre}-pagination__item > .#{$pre}-icon--arrow-right {
+  right: rem(12px);
+}
+
+.#{$pre}-pagination__item--selectable > .#{$pre}-icon {
+  stroke: $state-default;
 }
 
 .#{$pre}-pagination__label {
@@ -241,6 +267,7 @@
     position: absolute;
     top: 0;
     display: block;
+    transition: color $transition-duration-x1 $transition-timing-default;
   }
 
   .#{$pre}-pagination__item--previous > .#{$pre}-pagination__label {
@@ -255,17 +282,6 @@
 // =============================================================================
 
 @include device(mouse-driven) {
-  .#{$pre}-pagination__item--selectable {
-    cursor: pointer;
-  }
-
-  .#{$pre}-pagination__item--selectable:hover {
-    color: $state-default-hover;
-  }
-  .#{$pre}-pagination__item--selectable:active {
-    color: $state-default-active;
-  }
-
   .#{$pre}-pagination__item.#{$pre}-active {
     cursor: default;
   }
@@ -275,6 +291,17 @@
   }
   .#{$pre}-pagination__item.#{$pre}-active:active {
     color: $charcoal;
+  }
+
+  .#{$pre}-pagination__item--selectable {
+    cursor: pointer;
+  }
+
+  .#{$pre}-pagination__item--selectable:hover {
+    color: $state-default-hover;
+  }
+  .#{$pre}-pagination__item--selectable:active {
+    color: $state-default-active;
   }
 
   .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--populated:hover::before {
@@ -291,7 +318,14 @@
     color: $cinnabar-shade;
   }
 
-  .#{$pre}-pagination__label {
-    cursor: default;
+  .#{$pre}-pagination__item--selectable > .#{$pre}-icon {
+    stroke: currentColor;
+  }
+
+  .#{$pre}-pagination__item--selectable:hover > .#{$pre}-icon {
+    stroke: $state-default-hover;
+  }
+  .#{$pre}-pagination__item--selectable:active > .#{$pre}-icon {
+    stroke: $state-default-active;
   }
 }

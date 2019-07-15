@@ -7,6 +7,8 @@
 //   3.2 Large devices
 // 4 Mouse-driven devices
 //   4.1 Medium devices
+// 5 Devices w/ flex support
+//   5.1 Medium devices
 
 // 1 Pattern outline
 // =============================================================================
@@ -39,6 +41,12 @@
   margin: $space-stack-s;
 }
 
+@for $index from 6 through 11 {
+  .#{$pre}-likert__list--#{$index} {
+    margin: rem(48px) 0;
+  }
+}
+
 .#{$pre}-likert__list::before {
   content: '';
   display: table;
@@ -49,12 +57,6 @@
   content: '';
   display: table;
   clear: both;
-}
-
-@for $index from 6 through 11 {
-  .#{$pre}-likert__list--#{$index} {
-    margin: rem(48px) 0;
-  }
 }
 
 .#{$pre}-likert__item {
@@ -252,30 +254,6 @@ $parent-index: 1;
   }
 }
 
-@supports (display: flex) {
-  .#{$pre}-likert__list {
-    display: flex;
-  }
-
-  .#{$pre}-likert__list::before {
-    display: none;
-  }
-
-  .#{$pre}-likert__list::after {
-    display: none;
-  }
-
-  .#{$pre}-likert__item {
-    float: none;
-  }
-
-  @for $index from 6 through 11 {
-    .#{$pre}-likert__list--#{$index} {
-      flex-wrap: wrap;
-    }
-  }
-}
-
 // 3.1 Medium devices
 // -----------------------------------------------------------------------------
 
@@ -402,16 +380,6 @@ $parent-index: 1;
       width: $result;
       padding: 0 0 0 rem(8px);
       text-align: right;
-    }
-  }
-
-  @supports (display: flex) {
-    @for $index from 6 through 11 {
-      $result: 100% / $index;
-
-      .#{$pre}-likert__list--#{$index} {
-        flex-wrap: nowrap;
-      }
     }
   }
 }
@@ -563,6 +531,48 @@ $parent-index: 1;
         .#{$pre}-likert__button:active {
         border-color: $state-default-active;
         background-color: $state-default-active;
+      }
+    }
+  }
+}
+
+// 5 Devices w/ flex support
+// =============================================================================
+
+@supports (display: flex) {
+  .#{$pre}-likert__list {
+    display: flex;
+  }
+
+  @for $index from 6 through 11 {
+    .#{$pre}-likert__list--#{$index} {
+      flex-wrap: wrap;
+    }
+  }
+
+  .#{$pre}-likert__list::before {
+    display: none;
+  }
+
+  .#{$pre}-likert__list::after {
+    display: none;
+  }
+
+  .#{$pre}-likert__item {
+    float: none;
+  }
+
+  // 5.1 Medium devices
+  // ---------------------------------------------------------------------------
+
+  @include device(medium) {
+    @supports (display: flex) {
+      @for $index from 6 through 11 {
+        $result: 100% / $index;
+
+        .#{$pre}-likert__list--#{$index} {
+          flex-wrap: nowrap;
+        }
       }
     }
   }

@@ -36,6 +36,8 @@
   margin: 0;
 }
 
+// The padding-right porperty is set to 0 because the .progress--alt modifier
+// doesn't need to provide space for an icon.
 .#{$pre}-progress--alt {
   padding-right: 0;
 }
@@ -81,6 +83,19 @@
 .#{$pre}-progress--error > .#{$pre}-progress__label {
   color: $cinnabar-shade;
   font-weight: 400;
+}
+
+.#{$pre}-progress > .#{$pre}-icon {
+  position: absolute;
+  top: 0;
+  right: rem(8px);
+}
+
+.#{$pre}-progress > .#{$pre}-icon--tick-ring {
+  stroke: $christi-shade;
+}
+.#{$pre}-progress > .#{$pre}-icon--close-ring {
+  stroke: $cinnabar-shade;
 }
 
 // 4 Mouse-driven devices

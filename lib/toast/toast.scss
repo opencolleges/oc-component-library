@@ -27,17 +27,21 @@
 .#{$pre}-toast {
   position: fixed;
 
-  // * IE11 doesn't support calc() in transformations.
-  // * Mobbile Safari ignores transition-timing-functions if different units
-  // * are used to declare states; i.e. right: -100%; doesn't play nicely
-  // * with right: 16px;. Both must be declared using the same unit.
+  // The right property is set to -352px because IE11 doesn't support calc()
+  // in transformations. Additionally, Mobile Safari ignores a
+  // transition-timing-function property if different units have been declared
+  // in the transition; i.e. right: -100%; and right: 16px; don't work in
+  // conjunction with one another. Both units would need to be declared in '%'
+  // or 'px'.
   right: rem(-352px);
 
   transform: translateY(-50%);
   box-sizing: border-box;
   width: calc(100% - #{rem(32px)});
 
-  // * iPhone 8 dimensions - 32px.
+  // The max-width property is set to 343px to align with the dimension of an
+  // iPhone 8, subtracting 32px to support 16px gutters either side of
+  // the content area.
   max-width: rem(343px);
 
   padding: $space-m rem(40px) $space-m rem(52px);
@@ -50,12 +54,12 @@
   pointer-events: auto;
 }
 
-.#{$pre}-toast:focus-within {
-  outline: $focus-outline;
-}
-
 .#{$pre}-toast.#{$pre}-mounted {
   right: $space-m;
+}
+
+.#{$pre}-toast:focus-within {
+  outline: $focus-outline;
 }
 
 .#{$pre}-toast::before {
@@ -102,6 +106,27 @@
   background-color: transparent;
 }
 
+.#{$pre}-toast__button > .#{$pre}-icon {
+  stroke: $gunmetal;
+}
+
+.#{$pre}-toast > .#{$pre}-icon {
+  position: absolute;
+  top: 50%;
+  left: rem(16px);
+  transform: translateY(-50%);
+  width: rem(24px);
+  height: rem(24px);
+  stroke: $state-default;
+}
+
+.#{$pre}-toast > .#{$pre}-icon--close-ring {
+  stroke: $state-error;
+}
+.#{$pre}-toast > .#{$pre}-icon--tick-ring {
+  stroke: $state-success;
+}
+
 // 4 Mouse-driven devices
 // =============================================================================
 
@@ -112,5 +137,15 @@
 
   .#{$pre}-toast__button {
     cursor: pointer;
+  }
+
+  .#{$pre}-toast__button:hover > .#{$pre}-icon {
+    stroke: $state-default-hover;
+  }
+  .#{$pre}-toast__button:focus > .#{$pre}-icon {
+    stroke: $state-default-focus;
+  }
+  .#{$pre}-toast__button:active > .#{$pre}-icon {
+    stroke: $state-default-active;
   }
 }

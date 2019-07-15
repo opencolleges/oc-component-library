@@ -3,9 +3,6 @@
 // 1 Pattern outline
 // 2 Imports
 // 3 Touch devices
-//   3.1 Medium devices
-// 4 Mouse-driven devices
-//   4.1 Medium devices
 
 // 1 Pattern outline
 // =============================================================================
@@ -29,216 +26,6 @@
   shape-rendering: geometricPrecision;
   stroke: currentColor;
   fill: none;
-}
-
-.#{$pre}-card--draggable > .#{$pre}-icon--draggable {
-  position: absolute;
-  top: 50%;
-  left: rem(8px);
-  transform: translateY(-50%);
-  stroke: none;
-  fill: $fossil;
-  transition: $transition-duration-x1 $transition-timing-default;
-}
-
-.#{$pre}-checkbox > .#{$pre}-icon {
-  position: absolute;
-  top: 50%;
-  right: rem(8px);
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: stroke $transition-duration-x1 $transition-timing-default;
-}
-
-.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon {
-  right: rem(16px);
-}
-
-.#{$pre}-checkbox > .#{$pre}-icon--close {
-  stroke: $state-error;
-}
-.#{$pre}-checkbox > .#{$pre}-icon--tick {
-  stroke: $state-success;
-}
-
-.#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
-  top: rem(-2px);
-  right: auto;
-  left: rem(8px);
-  transform: none;
-  stroke: $charcoal;
-}
-
-.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
-  top: rem(14px);
-  left: rem(24px);
-}
-
-.#{$pre}-checkbox--right > .#{$pre}-icon--tick:last-child {
-  // * A visual adjustment to support IE11.
-  top: calc(50% - #{rem(2px)});
-
-  right: 0;
-  left: auto;
-  transform: translateY(-50%);
-}
-
-.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
-  // * A visual adjustment to support IE11.
-  top: calc(50% - #{rem(2px)});
-
-  left: auto;
-}
-
-.#{$pre}-checkbox--reversed > .#{$pre}-icon--tick:last-child {
-  color: $blizzard;
-}
-
-.#{$pre}-checkbox__input:checked:disabled ~ .#{$pre}-icon--tick:last-child {
-  stroke: $fossil;
-}
-.#{$pre}-checkbox__input:checked[readonly] ~ .#{$pre}-icon--tick:last-child {
-  stroke: $charcoal;
-}
-
-.#{$pre}-date > .#{$pre}-icon {
-  position: absolute;
-
-  // * A visual adjustment.
-  top: rem(26px);
-
-  right: rem(8px);
-  stroke: $gunmetal;
-  pointer-events: none;
-}
-
-.#{$pre}-date__input:disabled ~ .#{$pre}-icon {
-  stroke: $fossil;
-}
-
-.#{$pre}-date__item > .#{$pre}-icon {
-  position: absolute;
-  top: rem(8px);
-  left: rem(8px);
-  stroke: $gunmetal;
-  pointer-events: none;
-}
-
-.#{$pre}-file__image > .#{$pre}-icon {
-  width: 100%;
-  height: 100%;
-  stroke: $fossil;
-}
-
-.#{$pre}-file__button > .#{$pre}-icon {
-  stroke: $gunmetal;
-}
-
-.#{$pre}-pagination__item > .#{$pre}-icon {
-  position: absolute;
-  top: rem(12px);
-}
-
-.#{$pre}-pagination__item > .#{$pre}-icon--arrow-left {
-  left: rem(12px);
-}
-.#{$pre}-pagination__item > .#{$pre}-icon--arrow-right {
-  right: rem(12px);
-}
-
-.#{$pre}-pagination__item--selectable > .#{$pre}-icon {
-  stroke: $viking-shade;
-}
-
-.#{$pre}-progress > .#{$pre}-icon {
-  position: absolute;
-  top: 0;
-  right: rem(8px);
-}
-
-.#{$pre}-progress > .#{$pre}-icon--tick-ring {
-  stroke: $christi-shade;
-}
-.#{$pre}-progress > .#{$pre}-icon--close-ring {
-  stroke: $cinnabar-shade;
-}
-
-.#{$pre}-radio > .#{$pre}-icon {
-  position: absolute;
-  top: 50%;
-  right: rem(8px);
-  transform: translateY(-50%);
-  transition: stroke $transition-duration-x1 $transition-timing-default;
-}
-
-.#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-icon {
-  right: rem(16px);
-}
-
-.#{$pre}-radio > .#{$pre}-icon--close {
-  stroke: $state-error;
-}
-.#{$pre}-radio > .#{$pre}-icon--tick {
-  stroke: $state-success;
-}
-
-.#{$pre}-select__item > .#{$pre}-icon {
-  position: absolute;
-  top: rem(8px);
-  right: rem(8px);
-}
-
-.#{$pre}-text > .#{$pre}-icon {
-  position: absolute;
-  top: rem(24px);
-  right: rem(8px);
-  stroke-width: 1;
-  fill: none;
-  transition: stroke $transition-duration-x1 $transition-timing-default;
-  pointer-events: none;
-}
-
-.#{$pre}-text > .#{$pre}-icon--close {
-  stroke: $state-error;
-}
-.#{$pre}-text > .#{$pre}-icon--tick {
-  stroke: $state-success;
-}
-
-.#{$pre}-toast__button > .#{$pre}-icon {
-  stroke: $gunmetal;
-}
-
-.#{$pre}-toast > .#{$pre}-icon {
-  position: absolute;
-  top: 50%;
-  left: rem(16px);
-  transform: translateY(-50%);
-  width: rem(24px);
-  height: rem(24px);
-  stroke: $state-default;
-}
-
-.#{$pre}-toast > .#{$pre}-icon--close-ring {
-  stroke: $state-error;
-}
-.#{$pre}-toast > .#{$pre}-icon--tick-ring {
-  stroke: $state-success;
-}
-
-.#{$pre}-select > .#{$pre}-icon {
-  position: absolute;
-
-  // * A visual adjustment.
-  top: rem(26px);
-
-  right: rem(8px);
-  stroke: $gunmetal;
-  pointer-events: none;
-}
-
-.#{$pre}-select__input:disabled ~ .#{$pre}-icon {
-  stroke: $fossil;
 }
 
 .#{$pre}-icon--arrow-up .#{$pre}-stroke--1 {
@@ -772,190 +559,62 @@
     $transition-timing-default $transition-duration-x4;
 }
 
-// 3.1 Medium devices
-// -----------------------------------------------------------------------------
-
-@include device(medium) {
-  .#{$pre}-checkbox > .#{$pre}-icon {
-    pointer-events: none;
-  }
-
-  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--close {
-    stroke: $state-error-hover;
-  }
-  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--close {
-    stroke: $state-error-focus;
-  }
-  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--close {
-    stroke: $state-error-active;
-  }
-
-  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--tick {
-    stroke: $state-success-hover;
-  }
-  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--tick {
-    stroke: $state-success-focus;
-  }
-  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--tick {
-    stroke: $state-success-active;
-  }
-
-  .#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
-    stroke: $charcoal;
-  }
+.#{$pre}-icon--print .#{$pre}-stroke--1 {
+  stroke-dasharray: 0.001 64;
+  transition: stroke-dasharray $transition-duration-x6
+    $transition-timing-default $transition-duration-x6;
 }
 
-// 4 Mouse-driven devices
-// =============================================================================
+.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--1 {
+  stroke-dasharray: 64 0.001;
+  transition: stroke-dasharray $transition-duration-x6
+    $transition-timing-default;
+}
 
-@include device(mouse-driven) {
-  .#{$pre}-card--draggable:hover > .#{$pre}-icon--draggable {
-    fill: $hurricane;
-  }
-  .#{$pre}-card--draggable:focus > .#{$pre}-icon--draggable {
-    fill: $hurricane;
-  }
+.#{$pre}-icon--print .#{$pre}-stroke--2 {
+  stroke-dasharray: 0.001 22;
+  transition: stroke-dasharray $transition-duration-x4
+    $transition-timing-default $transition-duration-x3;
+}
 
-  .#{$pre}-foo > .#{$pre}-card--draggable > .#{$pre}-icon--draggable {
-    fill: $gunmetal;
-  }
+.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--2 {
+  stroke-dasharray: 22 0.001;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default $transition-duration-x4;
+}
 
-  .#{$pre}-date__input:focus ~ .#{$pre}-icon {
-    stroke: $charcoal;
-  }
+.#{$pre}-icon--print .#{$pre}-stroke--3 {
+  stroke-dasharray: 0.001 19;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default $transition-duration-x1;
+}
 
-  .#{$pre}-date > .#{$pre}-icon {
-    transition: stroke $transition-duration-x1 $transition-timing-default;
-  }
+.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--3 {
+  stroke-dasharray: 19 0.001;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default $transition-duration-x6;
+}
 
-  .#{$pre}-date.#{$pre}-active > .#{$pre}-icon {
-    stroke: $charcoal;
-  }
+.#{$pre}-icon--print .#{$pre}-stroke--4 {
+  stroke-dasharray: 0.001 8;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default $transition-duration-x2;
+}
 
-  .#{$pre}-date__item--previous > .#{$pre}-icon {
-    transition: stroke $transition-duration-x1 $transition-timing-default;
-  }
+.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--4 {
+  stroke-dasharray: 8 0.001;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default $transition-duration-x5;
+}
 
-  .#{$pre}-date__item--previous:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
-  }
-  .#{$pre}-date__item--previous:active > .#{$pre}-icon {
-    stroke: $state-default-active;
-  }
+.#{$pre}-icon--print .#{$pre}-stroke--5 {
+  stroke-dasharray: 0.001 8;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default;
+}
 
-  .#{$pre}-date__item--next > .#{$pre}-icon {
-    transition: stroke $transition-duration-x1 $transition-timing-default;
-  }
-
-  .#{$pre}-date__item--next:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
-  }
-  .#{$pre}-date__item--next:active > .#{$pre}-icon {
-    stroke: $state-default-active;
-  }
-
-  .#{$pre}-file__button:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
-  }
-  .#{$pre}-file__button:focus > .#{$pre}-icon {
-    stroke: $state-default-focus;
-  }
-  .#{$pre}-file__button:active > .#{$pre}-icon {
-    stroke: $state-default-active;
-  }
-
-  .#{$pre}-#{$pre}-pagination__item--selectable > .#{$pre}-#{$pre}-icon {
-    stroke: currentColor;
-  }
-
-  .#{$pre}-#{$pre}-pagination__item--selectable:hover > .#{$pre}-#{$pre}-icon {
-    stroke: $state-default-hover;
-  }
-  .#{$pre}-#{$pre}-pagination__item--selectable:active > .#{$pre}-#{$pre}-icon {
-    stroke: $state-default-active;
-  }
-
-  .#{$pre}-radio > .#{$pre}-icon {
-    pointer-events: none;
-  }
-
-  .#{$pre}-radio__input:hover ~ .#{$pre}-icon--close {
-    stroke: $state-error-hover;
-  }
-  .#{$pre}-radio__input:focus ~ .#{$pre}-icon--close {
-    stroke: $state-error-focus;
-  }
-  .#{$pre}-radio__input:active ~ .#{$pre}-icon--close {
-    stroke: $state-error-active;
-  }
-
-  .#{$pre}-radio__input:hover ~ .#{$pre}-icon--tick {
-    stroke: $state-success-hover;
-  }
-  .#{$pre}-radio__input:focus ~ .#{$pre}-icon--tick {
-    stroke: $state-success-focus;
-  }
-  .#{$pre}-radio__input:active ~ .#{$pre}-icon--tick {
-    stroke: $state-success-active;
-  }
-
-  .#{$pre}-select__input:focus ~ .#{$pre}-icon {
-    stroke: $charcoal;
-  }
-
-  .#{$pre}-select > .#{$pre}-icon {
-    transition: stroke $transition-duration-x1 $transition-timing-default;
-  }
-
-  .#{$pre}-select.#{$pre}-active > .#{$pre}-icon {
-    stroke: $charcoal;
-  }
-
-  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
-    stroke: $state-error-hover;
-  }
-  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
-    stroke: $state-error-focus;
-  }
-  .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
-    stroke: $state-success-hover;
-  }
-  .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
-    stroke: $state-success-focus;
-  }
-
-  .#{$pre}-toast__button:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
-  }
-  .#{$pre}-toast__button:focus > .#{$pre}-icon {
-    stroke: $state-default-focus;
-  }
-  .#{$pre}-toast__button:active > .#{$pre}-icon {
-    stroke: $state-default-active;
-  }
-
-  // 4.1 Medium devices
-  // ---------------------------------------------------------------------------
-
-  @include device(medium) {
-    .#{$pre}-checkbox > .#{$pre}-icon:last-child {
-      top: rem(2px);
-    }
-
-    .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
-      top: rem(18px);
-    }
-
-    // * A visual adjustment to support IE11.
-    .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
-      top: calc(50% - #{rem(2px)});
-    }
-
-    // * A visual adjustment to support IE11.
-    .#{$pre}-card--clickable
-      > .#{$pre}-checkbox--right
-      > .#{$pre}-icon:last-child {
-      top: calc(50% - #{rem(2px)});
-    }
-  }
+.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--5 {
+  stroke-dasharray: 8 0.001;
+  transition: stroke-dasharray $transition-duration-x2
+    $transition-timing-default $transition-duration-x7;
 }

@@ -27,7 +27,8 @@
   box-sizing: border-box;
   width: 100%;
 
-  // * iPhone 8 dimensions.
+  // The max-width property is set to 375px to align with the dimension of an
+  // iPhone 8.
   max-width: rem(375px);
 
   height: 100%;

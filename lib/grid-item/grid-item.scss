@@ -5,6 +5,9 @@
 // 3 Touch devices
 //   3.1 Medium devices
 //   3.2 Large devices
+// 4 Devices w/ grid support
+//   4.1 Medium devices
+//   4.2 Large devices
 
 // 1 Pattern outline
 // =============================================================================
@@ -57,6 +60,59 @@
     }
   }
 }
+
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
+    padding: rem(12px);
+  }
+  .#{$pre}-grid--gutter-x-adaptive > .#{$pre}-grid__item {
+    padding: 0 rem(12px);
+  }
+  .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
+    padding: rem(12px) 0;
+  }
+
+  @for $index from 0 through $grid-columns {
+    $result: (100% / $grid-columns) * $index;
+
+    @if $index != 0 {
+      .#{$pre}-grid__item--m-#{$index} {
+        width: $result;
+      }
+    }
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
+    padding: $space-m;
+  }
+  .#{$pre}-grid--gutter-x-adaptive > .#{$pre}-grid__item {
+    padding: 0 $space-m;
+  }
+  .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
+    padding: $space-m 0;
+  }
+
+  @for $index from 0 through $grid-columns {
+    $result: (100% / $grid-columns) * $index;
+
+    @if $index != 0 {
+      .#{$pre}-grid__item--l-#{$index} {
+        width: $result;
+      }
+    }
+  }
+}
+
+// 4 Devices w/ grid support
+// =============================================================================
 
 @supports (display: grid) {
   .#{$pre}-grid__item {
@@ -115,33 +171,11 @@
   .#{$pre}-grid__item--right {
     justify-self: end;
   }
-}
 
-// 3.1 Medium devices
-// -----------------------------------------------------------------------------
+  // 4.1 Medium devices
+  // ---------------------------------------------------------------------------
 
-@include device(medium) {
-  .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
-    padding: rem(12px);
-  }
-  .#{$pre}-grid--gutter-x-adaptive > .#{$pre}-grid__item {
-    padding: 0 rem(12px);
-  }
-  .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
-    padding: rem(12px) 0;
-  }
-
-  @for $index from 0 through $grid-columns {
-    $result: (100% / $grid-columns) * $index;
-
-    @if $index != 0 {
-      .#{$pre}-grid__item--m-#{$index} {
-        width: $result;
-      }
-    }
-  }
-
-  @supports (display: grid) {
+  @include device(medium) {
     .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
       padding: 0;
     }
@@ -165,33 +199,11 @@
       }
     }
   }
-}
 
-// 3.2 Large devices
-// -----------------------------------------------------------------------------
+  // 4.2 Large devices
+  // ---------------------------------------------------------------------------
 
-@include device(large) {
-  .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
-    padding: $space-m;
-  }
-  .#{$pre}-grid--gutter-x-adaptive > .#{$pre}-grid__item {
-    padding: 0 $space-m;
-  }
-  .#{$pre}-grid--gutter-y-adaptive > .#{$pre}-grid__item {
-    padding: $space-m 0;
-  }
-
-  @for $index from 0 through $grid-columns {
-    $result: (100% / $grid-columns) * $index;
-
-    @if $index != 0 {
-      .#{$pre}-grid__item--l-#{$index} {
-        width: $result;
-      }
-    }
-  }
-
-  @supports (display: grid) {
+  @include device(large) {
     .#{$pre}-grid--gutter-adaptive > .#{$pre}-grid__item {
       padding: 0;
     }

@@ -85,12 +85,13 @@
   margin: rem(-16px -8px 24px) 0;
 }
 
-// * Support for WebKit.
+// This selector styles the scroll-bar in WebKit browsers.
 .#{$pre}-modal__inner::-webkit-scrollbar {
   width: rem(4px);
   height: rem(4px);
 }
-// * Support for WebKit.
+
+// This selector styles the scroll-bar-thumb in WebKit browsers.
 .#{$pre}-modal__inner::-webkit-scrollbar-thumb {
   border-radius: $border-radius-s;
   background: $fossil-transparent;
@@ -128,7 +129,7 @@
 // 4 Misc
 // =============================================================================
 
-// ! Inital animation prototype CSS. WIP.
+// ! Amend
 
 .#{$pre}-humanoid {
   transform-origin: 149.28px 187.755px;
