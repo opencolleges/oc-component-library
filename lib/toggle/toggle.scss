@@ -64,21 +64,22 @@
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
-.#{$pre}-toggle__input:disabled + .#{$pre}-toggle__label {
-  color: $fossil;
-}
-.#{$pre}-toggle__input[readonly] + .#{$pre}-toggle__label {
-  color: $charcoal;
-  pointer-events: none;
+.#{$pre}-toggle--right > .#{$pre}-toggle__label {
+  display: block;
+  padding: 0 rem(64px) 0 0;
 }
 
 .#{$pre}-toggle__input:focus + .#{$pre}-toggle__label {
   color: $charcoal;
 }
 
-.#{$pre}-toggle--right > .#{$pre}-toggle__label {
-  display: block;
-  padding: 0 rem(64px) 0 0;
+.#{$pre}-toggle__input:disabled + .#{$pre}-toggle__label {
+  color: $fossil;
+}
+
+.#{$pre}-toggle__input[readonly] + .#{$pre}-toggle__label {
+  color: $charcoal;
+  pointer-events: none;
 }
 
 .#{$pre}-toggle__label::before {
@@ -102,9 +103,30 @@
   transform: translateY(-50%);
 }
 
+.#{$pre}-toggle--error > .#{$pre}-toggle__label::before {
+  border-color: $cinnabar-shade;
+}
+
+.#{$pre}-toggle--success > .#{$pre}-toggle__label::before {
+  border-color: $christi-shade;
+}
+
+.#{$pre}-toggle--error
+  > .#{$pre}-toggle__input:checked
+  + .#{$pre}-toggle__label::before {
+  background-color: $cinnabar-shade;
+}
+
+.#{$pre}-toggle--success
+  > .#{$pre}-toggle__input:checked
+  + .#{$pre}-toggle__label::before {
+  background-color: $christi-shade;
+}
+
 .#{$pre}-toggle__input:disabled + .#{$pre}-toggle__label::before {
   border-color: $state-disabled;
 }
+
 .#{$pre}-toggle__input[readonly] + .#{$pre}-toggle__label::before {
   border-color: $charcoal;
 }
@@ -116,33 +138,16 @@
 .#{$pre}-toggle__input:checked:disabled + .#{$pre}-toggle__label::before {
   background-color: $state-disabled;
 }
+
 .#{$pre}-toggle__input:checked[readonly] + .#{$pre}-toggle__label::before {
   background-color: $charcoal;
-}
-
-.#{$pre}-toggle--error > .#{$pre}-toggle__label::before {
-  border-color: $cinnabar-shade;
-}
-.#{$pre}-toggle--success > .#{$pre}-toggle__label::before {
-  border-color: $christi-shade;
-}
-
-.#{$pre}-toggle--error
-  > .#{$pre}-toggle__input:checked
-  + .#{$pre}-toggle__label::before {
-  background-color: $cinnabar-shade;
-}
-.#{$pre}-toggle--success
-  > .#{$pre}-toggle__input:checked
-  + .#{$pre}-toggle__label::before {
-  background-color: $christi-shade;
 }
 
 .#{$pre}-toggle__label::after {
   content: '';
 
-  // * Ensures pseudo-element is in the foreground so its
-  // * transition-timing-function is visible.
+  // The z-index property is set to 1 so that the pseudo-element is visible
+  // during its transitons.
   z-index: 1;
 
   position: absolute;
@@ -157,22 +162,21 @@
     left $transition-duration-x2 $transition-timing-bounce-out;
 }
 
-.#{$pre}-toggle__input:checked + .#{$pre}-toggle__label::after {
-  left: rem(25px);
-}
-
 .#{$pre}-toggle--right > .#{$pre}-toggle__label::after {
   top: 50%;
   right: rem(25px);
   left: auto;
   transform: translateY(-50%);
 }
-
 .#{$pre}-toggle--right
   > .#{$pre}-toggle__input:checked
   + .#{$pre}-toggle__label::after {
   right: rem(9px);
   left: auto;
+}
+
+.#{$pre}-toggle__input:checked + .#{$pre}-toggle__label::after {
+  left: rem(25px);
 }
 
 .#{$pre}-toggle__border-outer {
@@ -261,6 +265,7 @@
   .#{$pre}-toggle__input:checked:disabled + .#{$pre}-toggle__label::before {
     border-color: $state-disabled;
   }
+
   .#{$pre}-toggle__input:checked[readonly] + .#{$pre}-toggle__label::before {
     border-color: $charcoal;
   }
@@ -342,20 +347,19 @@
     fill: none;
     stroke: $viking;
 
-    // * A visual adjustment.
+    // The stroke-dasharray prpoperty's dash value is set to 0.001 so that
+    // Mobile Safari and Safari don't render tiny stroke flecks that are
+    // otherwise visible at the element's starting point.
     stroke-dasharray: 0.001 ((get-circumference(23) + 40));
 
     stroke-dashoffset: ((get-circumference(-23) + -48));
     stroke-width: 1;
+
+    // The stroke-dasharray property is used instead of the stroke-dashoffset
+    // property because a wider range of browsers support transitions on the
+    // stroke-dasharray property.
     transition: stroke $transition-duration-x1 $transition-timing-default,
       stroke-dasharray $transition-duration-x4 $transition-timing-default;
-  }
-
-  .#{$pre}-toggle--error .#{$pre}-toggle__border {
-    stroke: $cinnabar;
-  }
-  .#{$pre}-toggle--success .#{$pre}-toggle__border {
-    stroke: $christi;
   }
 
   .#{$pre}-toggle__input:hover
@@ -372,6 +376,14 @@
     ~ .#{$pre}-toggle__border-outer
     > .#{$pre}-toggle__border {
     stroke: $viking-shade;
+  }
+
+  .#{$pre}-toggle--error .#{$pre}-toggle__border {
+    stroke: $cinnabar;
+  }
+
+  .#{$pre}-toggle--success .#{$pre}-toggle__border {
+    stroke: $christi;
   }
 
   .#{$pre}-toggle--error

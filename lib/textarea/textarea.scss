@@ -45,14 +45,16 @@
   width: 100%;
   height: rem(40px);
 
-  // * Support for scrollbars in WebKit.
+  // The padding property is set to 8px 0 7px to support scrollbars in WebKit
+  // browsers.
   padding: rem(8px 0 7px);
 
   outline: none;
   border: none;
   border-bottom: rem(1px) solid $viking-shade;
 
-  // * Support for Mobile Safari.
+  // The border-radius property is set to 0 to remove the round corners Mobile
+  // Safari adds to textareas by default.
   border-radius: 0;
 
   background: none;
@@ -64,59 +66,54 @@
 }
 
 .#{$pre}-textarea__input:disabled {
-  // * Support for Mobile Safari.
+  // The opacity property is set to 1 to remove the transparency Mobile Safari
+  // adds to a :disabled textareas by default.
   opacity: 1;
 
   border-color: $state-disabled;
   color: $fossil;
-
-  // * Support for Mobile Safari.
   -webkit-text-fill-color: $fossil;
 }
+
 .#{$pre}-textarea__input[readonly] {
   border: none;
   color: inherit;
 
-  // * Removes pointer events for empty readonly inputs.
+  // The pointer-events property set to none removes interactivity from
+  // [readonly] text inputs.
   pointer-events: none;
 }
-// * Adds pointer events back for populated readonly inputs.
-.#{$pre}-textarea__input[readonly].#{$pre}-active {
-  pointer-events: auto;
-}
+
 .#{$pre}-textarea__input:required {
   box-shadow: none;
-}
-
-// * Support for IE11.
-.#{$pre}-textarea__input::-ms-clear {
-  display: none;
-}
-// * Support for IE11.
-.#{$pre}-textarea__input::-ms-reveal {
-  display: none;
-}
-
-.#{$pre}-textarea--error > .#{$pre}-textarea__input {
-  border-bottom: rem(1px) solid $state-error;
-}
-.#{$pre}-textarea--success > .#{$pre}-textarea__input {
-  border-bottom: rem(1px) solid $state-success;
 }
 
 .#{$pre}-textarea__input.#{$pre}-active:disabled {
   color: $fossil;
 }
 
-.#{$pre}-textarea__input::placeholder {
-  color: $blizzard-transparent;
-  transition: color $transition-duration-x1 $transition-timing-default;
+// The pointer-events property set to auto adds interactivity to [readonly]
+// textareas that are populated.
+.#{$pre}-textarea__input.#{$pre}-active[readonly] {
+  pointer-events: auto;
 }
 
-.#{$pre}-textarea__input:focus::placeholder {
-  color: $fossil;
-  transition: color $transition-duration-x1 $transition-timing-default
-    $transition-duration-x1;
+.#{$pre}-textarea--error > .#{$pre}-textarea__input {
+  border-bottom: rem(1px) solid $state-error;
+}
+
+.#{$pre}-textarea--success > .#{$pre}-textarea__input {
+  border-bottom: rem(1px) solid $state-success;
+}
+
+// Removes the clear button that IE11 adds to text inputs by default.
+.#{$pre}-textarea__input::-ms-clear {
+  display: none;
+}
+
+// Removes the password reveal button that IE11 adds to text inputs by default.
+.#{$pre}-textarea__input::-ms-reveal {
+  display: none;
 }
 
 // This selector styles the scroll-bar in WebKit browsers.
@@ -129,6 +126,17 @@
 .#{$pre}-textarea__input::-webkit-scrollbar-thumb {
   border-radius: $border-radius-s;
   background: $fossil-transparent;
+}
+
+.#{$pre}-textarea__input::placeholder {
+  color: $blizzard-transparent;
+  transition: color $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-textarea__input:focus::placeholder {
+  color: $fossil;
+  transition: color $transition-duration-x1 $transition-timing-default
+    $transition-duration-x1;
 }
 
 .#{$pre}-textarea__label {
@@ -153,13 +161,13 @@
 .#{$pre}-textarea__input:disabled ~ .#{$pre}-textarea__label {
   color: $fossil;
 }
+
 .#{$pre}-textarea__input[readonly] ~ .#{$pre}-textarea__label {
   color: $christi-shade;
 }
 
-// * Using the general selector instead of the adjacent selector means
-// * Grammarly can inject its markup and play nicely with the textarea
-//*  component.
+// Using the general selector instead of the adjacent selector means Grammarly
+// can dynamically create elements around the textarea element.
 .#{$pre}-textarea__input:focus ~ .#{$pre}-textarea__label {
   top: 0;
   color: $hurricane;
@@ -181,6 +189,7 @@
 .#{$pre}-textarea__input.#{$pre}-active:disabled ~ .#{$pre}-textarea__label {
   color: $state-disabled;
 }
+
 .#{$pre}-textarea__input.#{$pre}-active[readonly] ~ .#{$pre}-textarea__label {
   color: $christi-shade;
 }
@@ -194,12 +203,13 @@
     color $transition-duration-x1 $transition-timing-default;
 }
 
-// * This pseudo-selector exists to handle the asterisk transition when a
-// * required text input is toggled to a disabled textarea-input.
+// This pseudo-selector exists to handle the asterisk transition when a
+// :required textarea is dynamically changed to a :disabled textarea.
 .#{$pre}-textarea__input:disabled + .#{$pre}-textarea__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
 }
+
 .#{$pre}-textarea__input:required ~ .#{$pre}-textarea__label::after {
   top: 0;
   color: $state-error-focus;
@@ -255,7 +265,8 @@
 
 @include device(medium) {
   .#{$pre}-textarea__input {
-    // * Support for scrollbars in WebKit.
+    // The padding property is set to $space-xs 0 3px to support scrollbars in
+    // WebKit browsers.
     padding: $space-xs 0 rem(3px);
 
     font-size: rem(15px);
@@ -292,6 +303,7 @@
   .#{$pre}-textarea__input:disabled {
     border-bottom-color: $state-disabled;
   }
+
   .#{$pre}-textarea__input[readonly] {
     border-bottom: none;
   }
@@ -308,6 +320,7 @@
   .#{$pre}-textarea__input:disabled ~ .#{$pre}-textarea__label {
     color: $fossil;
   }
+
   .#{$pre}-textarea__input[readonly] ~ .#{$pre}-textarea__label {
     color: $christi-shade;
   }
@@ -327,6 +340,7 @@
   .#{$pre}-textarea__input.#{$pre}-active:disabled ~ .#{$pre}-textarea__label {
     color: $state-disabled;
   }
+
   .#{$pre}-textarea__input.#{$pre}-active[readonly] ~ .#{$pre}-textarea__label {
     color: $christi-shade;
   }

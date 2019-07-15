@@ -49,6 +49,17 @@
   margin: 0;
 }
 
+.#{$pre}-radio__input[readonly] {
+  pointer-events: none;
+}
+
+.#{$pre}-radio--right > .#{$pre}-radio__input {
+  top: 50%;
+  right: rem(8px);
+  left: auto;
+  transform: translateY(-50%);
+}
+
 .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__input {
   top: rem(20px);
   left: rem(24px);
@@ -60,17 +71,6 @@
   left: auto;
 }
 
-.#{$pre}-radio--right > .#{$pre}-radio__input {
-  top: 50%;
-  right: rem(8px);
-  left: auto;
-  transform: translateY(-50%);
-}
-
-.#{$pre}-radio__input[readonly] {
-  pointer-events: none;
-}
-
 .#{$pre}-radio__label {
   display: inline-block;
   padding: 0 $space-xxl;
@@ -78,6 +78,32 @@
   font-size: rem(14px);
   line-height: rem(24px);
   transition: color $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-radio__input:disabled + .#{$pre}-radio__label {
+  color: $fossil;
+}
+
+.#{$pre}-radio__input[readonly] + .#{$pre}-radio__label {
+  color: $charcoal;
+  pointer-events: none;
+}
+
+.#{$pre}-radio__input:focus + .#{$pre}-radio__label {
+  color: $charcoal;
+}
+
+.#{$pre}-radio--right > .#{$pre}-radio__label {
+  display: block;
+  padding: 0 $space-xxl 0 0;
+}
+
+.#{$pre}-radio--reversed > .#{$pre}-radio__label {
+  color: rgba($blizzard, 0.89);
+}
+
+.#{$pre}-radio--reversed > .#{$pre}-radio__input:focus + .#{$pre}-radio__label {
+  color: $blizzard;
 }
 
 .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label {
@@ -88,31 +114,6 @@
 
 .#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__label {
   padding: rem(16px 56px 16px 16px);
-}
-
-.#{$pre}-radio--right > .#{$pre}-radio__label {
-  display: block;
-  padding: 0 $space-xxl 0 0;
-}
-
-.#{$pre}-radio__input:disabled + .#{$pre}-radio__label {
-  color: $fossil;
-}
-.#{$pre}-radio__input[readonly] + .#{$pre}-radio__label {
-  color: $charcoal;
-  pointer-events: none;
-}
-
-.#{$pre}-radio__input:focus + .#{$pre}-radio__label {
-  color: $charcoal;
-}
-
-.#{$pre}-radio--reversed > .#{$pre}-radio__label {
-  color: rgba($blizzard, 0.89);
-}
-
-.#{$pre}-radio--reversed > .#{$pre}-radio__input:focus + .#{$pre}-radio__label {
-  color: $blizzard;
 }
 
 .#{$pre}-radio__label::before {
@@ -130,8 +131,28 @@
 .#{$pre}-radio__input:disabled + .#{$pre}-radio__label::before {
   border-color: $state-disabled;
 }
+
 .#{$pre}-radio__input[readonly] + .#{$pre}-radio__label::before {
   border-color: $charcoal;
+}
+
+.#{$pre}-radio--right > .#{$pre}-radio__label::before {
+  top: 50%;
+  right: rem(8px);
+  left: auto;
+  transform: translateY(-50%);
+}
+
+.#{$pre}-radio--error > .#{$pre}-radio__label::before {
+  border-color: $cinnabar-shade;
+}
+
+.#{$pre}-radio--success > .#{$pre}-radio__label::before {
+  border-color: $christi-shade;
+}
+
+.#{$pre}-radio--reversed > .#{$pre}-radio__label::before {
+  border-color: $blizzard;
 }
 
 .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::before {
@@ -145,24 +166,6 @@
   top: 50%;
   right: rem(24px);
   left: auto;
-}
-
-.#{$pre}-radio--right > .#{$pre}-radio__label::before {
-  top: 50%;
-  right: rem(8px);
-  left: auto;
-  transform: translateY(-50%);
-}
-
-.#{$pre}-radio--error > .#{$pre}-radio__label::before {
-  border-color: $cinnabar-shade;
-}
-.#{$pre}-radio--success > .#{$pre}-radio__label::before {
-  border-color: $christi-shade;
-}
-
-.#{$pre}-radio--reversed > .#{$pre}-radio__label::before {
-  border-color: $blizzard;
 }
 
 .#{$pre}-radio__label::after {
@@ -181,6 +184,7 @@
 .#{$pre}-radio__input:disabled + .#{$pre}-radio__label::after {
   background-color: $fossil;
 }
+
 .#{$pre}-radio__input[readonly] + .#{$pre}-radio__label::after {
   background-color: $charcoal;
 }
@@ -192,8 +196,20 @@
 .#{$pre}-radio__input:checked:disabled + .#{$pre}-radio__label::after {
   background-color: $fossil;
 }
+
 .#{$pre}-radio__input:checked[readonly] + .#{$pre}-radio__label::after {
   background-color: $charcoal;
+}
+
+.#{$pre}-radio--right > .#{$pre}-radio__label::after {
+  top: 50%;
+  right: rem(12px);
+  left: auto;
+  transform: translateY(-50%);
+}
+
+.#{$pre}-radio--reversed > .#{$pre}-radio__label::after {
+  background-color: $blizzard;
 }
 
 .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::after {
@@ -209,19 +225,27 @@
   left: auto;
 }
 
-.#{$pre}-radio--right > .#{$pre}-radio__label::after {
-  top: 50%;
-  right: rem(12px);
-  left: auto;
-  transform: translateY(-50%);
-}
-
-.#{$pre}-radio--reversed > .#{$pre}-radio__label::after {
-  background-color: $blizzard;
-}
-
 .#{$pre}-radio__border-outer {
   display: none;
+}
+
+.#{$pre}-radio > .#{$pre}-icon {
+  position: absolute;
+  top: 50%;
+  right: rem(8px);
+  transform: translateY(-50%);
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-icon {
+  right: rem(16px);
+}
+
+.#{$pre}-radio > .#{$pre}-icon--close {
+  stroke: $state-error;
+}
+.#{$pre}-radio > .#{$pre}-icon--tick {
+  stroke: $state-success;
 }
 
 // 3.1 Medium devices
@@ -232,15 +256,15 @@
     top: rem(8px);
   }
 
+  .#{$pre}-radio--right > .#{$pre}-radio__input {
+    top: 50%;
+  }
+
   .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__input {
     top: rem(24px);
   }
 
   .#{$pre}-card--clickable > .#{$pre}-radio--right > .#{$pre}-radio__input {
-    top: 50%;
-  }
-
-  .#{$pre}-radio--right > .#{$pre}-radio__input {
     top: 50%;
   }
 
@@ -253,6 +277,10 @@
     top: rem(8px);
   }
 
+  .#{$pre}-radio--right > .#{$pre}-radio__label::before {
+    top: 50%;
+  }
+
   .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::before {
     top: rem(24px);
   }
@@ -263,12 +291,12 @@
     top: 50%;
   }
 
-  .#{$pre}-radio--right > .#{$pre}-radio__label::before {
-    top: 50%;
-  }
-
   .#{$pre}-radio__label::after {
     top: rem(12px);
+  }
+
+  .#{$pre}-radio--right > .#{$pre}-radio__label::after {
+    top: 50%;
   }
 
   .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__label::after {
@@ -280,22 +308,18 @@
     > .#{$pre}-radio__label::after {
     top: 50%;
   }
-
-  .#{$pre}-radio--right > .#{$pre}-radio__label::after {
-    top: 50%;
-  }
 }
 
 // 3.2 Large devices
 // -----------------------------------------------------------------------------
 
 @include device(large) {
-  .#{$pre}-card--clickable > .#{$pre}-radio {
-    margin: rem(-16px);
-  }
-
   .#{$pre}-radio__label {
     font-size: rem(16px);
+  }
+
+  .#{$pre}-card--clickable > .#{$pre}-radio {
+    margin: rem(-16px);
   }
 }
 
@@ -331,6 +355,13 @@
     pointer-events: none;
   }
 
+  .#{$pre}-radio--right > .#{$pre}-radio__border-outer {
+    top: 50%;
+    right: rem(8px);
+    left: auto;
+    transform: translateY(-50%);
+  }
+
   .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-radio__border-outer {
     top: rem(20px);
     left: rem(24px);
@@ -344,21 +375,20 @@
     left: auto;
   }
 
-  .#{$pre}-radio--right > .#{$pre}-radio__border-outer {
-    top: 50%;
-    right: rem(8px);
-    left: auto;
-    transform: translateY(-50%);
-  }
-
   .#{$pre}-radio__border {
     stroke: $viking;
     stroke-width: 1;
 
-    // * A visual adjustment.
+    // The stroke-dasharray prpoperty's dash value is set to 0.001 so that
+    // Mobile Safari and Safari don't render tiny stroke flecks that are
+    // otherwise visible at the element's starting point.
     stroke-dasharray: 0.001 get-circumference(15.5);
 
     stroke-dashoffset: ((get-circumference(-15) / 4) * 3);
+
+    // The stroke-dasharray property is used instead of the stroke-dashoffset
+    // property because a wider range of browsers support transitions on the
+    // stroke-dasharray property.
     transition: stroke $transition-duration-x1 $transition-timing-default,
       stroke-dasharray $transition-duration-x4 $transition-timing-default;
     fill: none;
@@ -367,6 +397,7 @@
   .#{$pre}-radio--error .#{$pre}-radio__border {
     stroke: $cinnabar;
   }
+
   .#{$pre}-radio--success .#{$pre}-radio__border {
     stroke: $christi;
   }
@@ -397,6 +428,7 @@
     > .#{$pre}-radio__border {
     stroke: $cinnabar-shade;
   }
+
   .#{$pre}-radio--success
     > .#{$pre}-radio__input:active
     ~ .#{$pre}-radio__border-outer
@@ -512,6 +544,30 @@
     stroke: rgba($blizzard, 0);
   }
 
+  .#{$pre}-radio > .#{$pre}-icon {
+    pointer-events: none;
+  }
+
+  .#{$pre}-radio__input:hover ~ .#{$pre}-icon--close {
+    stroke: $state-error-hover;
+  }
+  .#{$pre}-radio__input:focus ~ .#{$pre}-icon--close {
+    stroke: $state-error-focus;
+  }
+  .#{$pre}-radio__input:active ~ .#{$pre}-icon--close {
+    stroke: $state-error-active;
+  }
+
+  .#{$pre}-radio__input:hover ~ .#{$pre}-icon--tick {
+    stroke: $state-success-hover;
+  }
+  .#{$pre}-radio__input:focus ~ .#{$pre}-icon--tick {
+    stroke: $state-success-focus;
+  }
+  .#{$pre}-radio__input:active ~ .#{$pre}-icon--tick {
+    stroke: $state-success-active;
+  }
+
   // 4.1 Medium devices
   // -----------------------------------------------------------------------------
 
@@ -524,13 +580,13 @@
       top: rem(24px);
     }
 
-    .#{$pre}-card--clickable
-      > .#{$pre}-radio--right
-      > .#{$pre}-radio__border-outer {
+    .#{$pre}-radio--right > .#{$pre}-radio__border-outer {
       top: 50%;
     }
 
-    .#{$pre}-radio--right > .#{$pre}-radio__border-outer {
+    .#{$pre}-card--clickable
+      > .#{$pre}-radio--right
+      > .#{$pre}-radio__border-outer {
       top: 50%;
     }
   }
