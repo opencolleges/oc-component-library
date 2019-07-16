@@ -2,17 +2,18 @@
 @import './utilities/scss/variables/tokens';
 @import './utilities/scss/functions/rem';
 
-// Vendors
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:700|Open+Sans+Condensed:300,700|Open+Sans:300,400,400i,700');
 
-// Rules
-// * Declare selection highlight color.
+// The background-color property of the ::-moz-selection rule gives control of the
+// browser window's selection color in Firefox.
 ::-moz-selection {
-  background: $selection-background;
+  background-color: $selection-background;
 }
-// * Declare selection highlight color.
+
+// The background-color property of the ::selection rule gives control of the
+// browser window's selection color.
 ::selection {
-  background: $selection-background;
+  background-color: $selection-background;
 }
 
 html,
@@ -23,17 +24,20 @@ body {
   font-size: rem(16px);
   font-weight: 400;
 
-  // * Font antialiasing on Mac OS.
+  // -webkit-font-smoothing and -moz-osx-font-smoothing properties improve font
+  // antialiasing on Mac OS.
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  // * Text rendering.
+  // Improve default text rendering.
   text-rendering: optimizeLegibility;
 
-  // * Remove overlay when element is tapped in Mobile Safari.
+  // The -webkit-tap-highlight-color property set to transparent removes the
+  // tinted overlay that appears on elements when tapped in Mobile Safari.
   -webkit-tap-highlight-color: $blizzard-transparent;
 
-  // * Progressivlely enhance the caret for browsers that support caret-color.
+  // The caret-color property gives control over that caret color in browsers
+  // that support it.
   caret-color: $charcoal;
 }
 
@@ -43,7 +47,7 @@ img {
   height: auto;
 }
 
-// * Autofill highlight color.
+// Autofill highlight color.
 input:-webkit-autofill {
   box-shadow: rgba($viking, 0.13) 0, 0, 0, rem(24px) inset !important;
 }
