@@ -144,6 +144,7 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
     preloader: path.join(__dirname, './lib/preloader/preloader.scss'),
     progress: path.join(__dirname, './lib/progress/progress.scss'),
     radio: path.join(__dirname, './lib/radio/radio.scss'),
+    range: path.join(__dirname, './lib/range/range.scss'),
     'radio-set': [
       path.join(__dirname, './lib/radio-set/radio-set.scss'),
       path.join(__dirname, './lib/radio/radio.scss')

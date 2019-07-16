@@ -1,21 +1,34 @@
-// Pattern outline
-// * .card
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Large devices
+// 4 Mouse-driven devices
+// 5 Misc
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .card
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-card {
   box-sizing: border-box;
   display: block;
   padding: $space-s;
+  outline: none;
   background-color: $blizzard;
-}
-
-.#{$pre}-card > :last-child {
-  margin-bottom: 0;
 }
 
 .#{$pre}-card--s {
@@ -59,10 +72,6 @@
     box-shadow $transition-duration-x1 $transition-timing-default;
 }
 
-.#{$pre}-card--draggable:focus {
-  outline: $focus-outline;
-}
-
 .#{$pre}-mouse-down > .#{$pre}-card--draggable {
   box-shadow: $box-shadow-layer-4;
   user-select: none;
@@ -72,7 +81,37 @@
   user-select: none;
 }
 
-.#{$pre}-no-touchevents {
+.#{$pre}-card--draggable:focus {
+  outline: $focus-outline;
+}
+
+.#{$pre}-card--draggable > .#{$pre}-icon--draggable {
+  position: absolute;
+  top: 50%;
+  left: rem(8px);
+  transform: translateY(-50%);
+  stroke: none;
+  fill: $fossil;
+  transition: $transition-duration-x1 $transition-timing-default;
+}
+
+// 3.1 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-card {
+    padding: $space-m;
+  }
+
+  .#{$pre}-card--draggable {
+    padding-left: $space-xxl;
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-card--clickable {
     cursor: pointer;
   }
@@ -94,16 +133,24 @@
   .#{$pre}-mouse-move > .#{$pre}-card--draggable {
     cursor: grabbing !important;
   }
+
+  .#{$pre}-card--draggable:hover > .#{$pre}-icon--draggable {
+    fill: $hurricane;
+  }
+  .#{$pre}-card--draggable:focus > .#{$pre}-icon--draggable {
+    fill: $hurricane;
+  }
+
+  .#{$pre}-foo > .#{$pre}-card--draggable > .#{$pre}-icon--draggable {
+    fill: $gunmetal;
+  }
 }
 
-@media #{$media-l} {
-  .#{$pre}-card {
-    padding: $space-m;
-  }
+// 5 Misc
+// =============================================================================
 
-  .#{$pre}-card--draggable {
-    padding-left: $space-xxl;
-  }
+.#{$pre}-card > :last-child {
+  margin-bottom: 0;
 }
 
 .#{$pre}-mouse-move {

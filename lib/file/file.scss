@@ -1,22 +1,41 @@
-// Pattern outline
-// * .file
-// *   .file__outer
-// *     .file__input
-// *     .file__inner
-// *       .file__image
-// *       .file__description
-// *       .file__label
-// *       .file__types
-// *     .file__message
-// *     .file__list
-// *       .file__item
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
+//   4.1 Medium devices
+//   4.2 Large devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .file
+// | .file__outer
+// | | .file__input
+// | | .file__inner
+// | | | .file__image
+// | | | .file__description
+// | | | .file__label
+// | | | .file__types
+// | | .file__message
+// | | .file__list
+// | | | .file__item
+// | | | | .file__button
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-file {
   position: relative;
   padding: $space-stack-l;
@@ -85,6 +104,12 @@
 .#{$pre}-file--l .#{$pre}-file__image {
   width: rem(144px);
   height: rem(144px);
+}
+
+.#{$pre}-file__image > .#{$pre}-icon {
+  width: 100%;
+  height: 100%;
+  stroke: $fossil;
 }
 
 .#{$pre}-file__description {
@@ -156,70 +181,14 @@
   background-color: transparent;
 }
 
-.#{$pre}-no-touchevents {
-  .#{$pre}-file__input:focus {
-    outline: none;
-  }
-
-  .#{$pre}-file__input.#{$pre}-active {
-    z-index: 1;
-    pointer-events: auto;
-  }
-
-  .#{$pre}-file__description {
-    display: block;
-    margin-bottom: rem(8px);
-    font-size: rem(14px);
-    text-align: center;
-    line-height: rem(24px);
-  }
-
-  .#{$pre}-file__label:hover {
-    border: rem(1px) solid $viking;
-    background-color: $viking;
-    color: $blizzard;
-  }
-  .#{$pre}-file__label:active {
-    border: rem(1px) solid $viking-shade;
-    background-color: $viking-shade;
-    color: $fossil;
-  }
-
-  .#{$pre}-file__input:focus ~ .#{$pre}-file__inner > .#{$pre}-file__label {
-    border: rem(1px) solid $viking;
-    background-color: $viking;
-    color: $blizzard;
-  }
-
-  .#{$pre}-file__input.#{$pre}-active
-    ~ .#{$pre}-file__inner
-    > .#{$pre}-file__label {
-    border: rem(1px) solid $viking;
-    background-color: $viking;
-    color: $blizzard;
-  }
-
-  .#{$pre}-file__item {
-    font-family: $font-family-sans-serif;
-  }
-
-  .#{$pre}-file__name {
-    display: block;
-  }
-
-  .#{$pre}-file__size {
-    display: block;
-    color: $fossil;
-    font-size: rem(12px);
-    font-weight: 700;
-  }
-
-  .#{$pre}-file__button {
-    cursor: pointer;
-  }
+.#{$pre}-file__button > .#{$pre}-icon {
+  stroke: $gunmetal;
 }
 
-@media #{$media-m} {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
   .#{$pre}-file--s > .#{$pre}-file__outer {
     height: rem(400px);
   }
@@ -242,16 +211,12 @@
     width: rem(168px);
     height: rem(168px);
   }
-
-  .#{$pre}-no-touchevents {
-    .#{$pre}-file__description {
-      font-size: rem(15px);
-      line-height: rem(32px);
-    }
-  }
 }
 
-@media #{$media-l} {
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
   .#{$pre}-file--s > .#{$pre}-file__outer {
     height: rem(440px);
   }
@@ -278,8 +243,96 @@
     width: rem(192px);
     height: rem(192px);
   }
+}
 
-  .#{$pre}-no-touchevents {
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
+  .#{$pre}-file__input.#{$pre}-active {
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .#{$pre}-file__input:focus {
+    outline: none;
+  }
+
+  .#{$pre}-file__description {
+    display: block;
+    margin-bottom: rem(8px);
+    font-size: rem(14px);
+    text-align: center;
+    line-height: rem(24px);
+  }
+
+  .#{$pre}-file__label:hover {
+    border: rem(1px) solid $viking;
+    background-color: $viking;
+    color: $blizzard;
+  }
+  .#{$pre}-file__label:active {
+    border: rem(1px) solid $viking-shade;
+    background-color: $viking-shade;
+    color: $fossil;
+  }
+
+  .#{$pre}-file__input.#{$pre}-active
+    ~ .#{$pre}-file__inner
+    > .#{$pre}-file__label {
+    border: rem(1px) solid $viking;
+    background-color: $viking;
+    color: $blizzard;
+  }
+
+  .#{$pre}-file__input:focus ~ .#{$pre}-file__inner > .#{$pre}-file__label {
+    border: rem(1px) solid $viking;
+    background-color: $viking;
+    color: $blizzard;
+  }
+
+  .#{$pre}-file__item {
+    font-family: $font-family-sans-serif;
+  }
+
+  .#{$pre}-file__name {
+    display: block;
+  }
+
+  .#{$pre}-file__size {
+    display: block;
+    color: $fossil;
+    font-size: rem(12px);
+    font-weight: 700;
+  }
+
+  .#{$pre}-file__button {
+    cursor: pointer;
+  }
+
+  .#{$pre}-file__button:hover > .#{$pre}-icon {
+    stroke: $state-default-hover;
+  }
+  .#{$pre}-file__button:focus > .#{$pre}-icon {
+    stroke: $state-default-focus;
+  }
+  .#{$pre}-file__button:active > .#{$pre}-icon {
+    stroke: $state-default-active;
+  }
+
+  // 4.1 Medium devices
+  // ---------------------------------------------------------------------------
+
+  @include device(medium) {
+    .#{$pre}-file__description {
+      font-size: rem(15px);
+      line-height: rem(32px);
+    }
+  }
+
+  // 4.2 Large devices
+  // ---------------------------------------------------------------------------
+  @include device(large) {
     .#{$pre}-file__description {
       font-size: rem(16px);
     }

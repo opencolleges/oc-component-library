@@ -1,12 +1,27 @@
-// Pattern outline
-// * .table
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .table
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-table {
   table-layout: fixed;
   margin: 0 auto $space-m;
@@ -14,10 +29,6 @@
   font-size: rem(14px);
   text-align: left;
   line-height: rem(24px);
-}
-
-.#{$pre}-table:not([width]) {
-  min-width: 100%;
 }
 
 .#{$pre}-table--left {
@@ -30,13 +41,26 @@
   text-align: right;
 }
 
-@media #{$media-m} {
+// This rule excludes table elements that are passed a width attribute.
+.#{$pre}-table:not([width]) {
+  // The min-width property is set to 100% instead of the width property, so
+  // that it doesn't overwrite the width attribute that is passed.
+  min-width: 100%;
+}
+
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
   .#{$pre}-table {
     font-size: rem(15px);
   }
 }
 
-@media #{$media-l} {
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
   .#{$pre}-table {
     font-size: rem(16px);
   }

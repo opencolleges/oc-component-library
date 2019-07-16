@@ -1,10 +1,27 @@
-// Pattern outline
-// * .accordion
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .accordion
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
+
+// 3 Touch devices
+// =============================================================================
 
 .#{$pre}-accordion {
   position: relative;
@@ -17,13 +34,13 @@
   margin-top: rem(-16px);
 }
 
-.#{$pre}-accordion:focus-within {
-  // outline: $focus-outline;
-}
-
 .#{$pre}-accordion__button {
   width: 100%;
-  padding: rem(12px) $space-xxl rem(12px) 0;
+
+  // The padding-bottom is set to 11px to factor in the 1px border-bottom and
+  // ensure the accordion adheres to the 8px grid system.
+  padding: rem(12px) $space-xxl rem(11px) 0;
+
   border: none;
   outline: none;
   background-color: transparent;
@@ -37,11 +54,11 @@
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
-.#{$pre}-accordion__button:focus {
+.#{$pre}-accordion.#{$pre}-active > .#{$pre}-accordion__button {
   color: inherit;
 }
 
-.#{$pre}-accordion.#{$pre}-active > .#{$pre}-accordion__button {
+.#{$pre}-accordion__button:focus {
   color: inherit;
 }
 
@@ -74,7 +91,41 @@
   display: none;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-accordion + .#{$pre}-accordion {
+    margin-top: rem(-8px);
+  }
+
+  .#{$pre}-accordion__button {
+    // The padding-bottom is set to 7px to factor in the 1px border-bottom and
+    // ensure the accordion adheres to the 8px grid system.
+    padding: $space-s $space-xxl rem(7px) 0;
+
+    font-size: rem(16px);
+    line-height: rem(32px);
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-accordion + .#{$pre}-accordion {
+    margin-top: 0;
+  }
+
+  .#{$pre}-accordion__button {
+    font-size: rem(20px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-accordion {
     border-bottom: rem(1px) solid $fossil;
   }
@@ -90,12 +141,16 @@
     color: inherit;
   }
 
+  // The ::-moz-focus-inner pseudo-selector having a border property set to none
+  // removes the default border Firefox applies inside the focused accordion.
+  //
+  // This is only an issue if Firefox and not Mobile Firefox.
+  .#{$pre}-accordion__button::-moz-focus-inner {
+    border: none;
+  }
+
   .#{$pre}-accordion__border {
     position: absolute;
-
-    // * A visual adjustment.
-    bottom: rem(-1px);
-
     left: 0;
     display: block;
     width: 0;
@@ -127,27 +182,5 @@
   }
   .#{$pre}-accordion__button:focus ~ .#{$pre}-accordion__border {
     width: 100%;
-  }
-}
-
-@media #{$media-m} {
-  .#{$pre}-accordion + .#{$pre}-accordion {
-    margin-top: rem(-8px);
-  }
-
-  .#{$pre}-accordion__button {
-    padding: $space-s $space-xxl $space-s 0;
-    font-size: rem(16px);
-    line-height: rem(32px);
-  }
-}
-
-@media #{$media-l} {
-  .#{$pre}-accordion + .#{$pre}-accordion {
-    margin-top: 0;
-  }
-
-  .#{$pre}-accordion__button {
-    font-size: rem(20px);
   }
 }

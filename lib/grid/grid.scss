@@ -1,31 +1,51 @@
-// Pattern outline
-// * .grid
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Devices w/ grid support
+//   4.1 Medium devices
+//   4.2 Large devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .grid
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-grid {
   box-sizing: border-box;
   max-width: rem(960px);
   margin: 0 auto $space-m;
 }
 
-.#{$pre}-modal__actions > .#{$pre}-grid {
+.#{$pre}-modal .#{$pre}-grid {
   padding: 0;
 }
 
 .#{$pre}-grid--gutter-adaptive {
-  // * 960px + gutters.
+  // The max-width property is set to 1024px to support the 32px outside gutters
+  // of the .grid--gutter-adaptive modifier, with a content area spanning 960px.
   max-width: rem(1024px);
 
   padding: $space-s;
   margin: 0 auto;
 }
 .#{$pre}-grid--gutter-x-adaptive {
-  // * 960px + gutters.
+  // The max-width property is set to 1024px to support the 32px outside gutters
+  // of the .grid--gutter-x-adaptive modifier, with a content area spanning 960px.
   max-width: rem(1024px);
 
   padding: 0 $space-s;
@@ -36,14 +56,16 @@
 }
 
 .#{$pre}-grid--gutter-fixed {
-  // * 960px + gutters.
+  // The max-width property is set to 992px to support the 16px outside gutters
+  // of the .grid--gutter-fixed modifier, with a content area spanning 960px.
   max-width: rem(992px);
 
   padding: $space-s;
   margin: 0 auto;
 }
 .#{$pre}-grid--gutter-x-fixed {
-  // * 960px + gutters.
+  // The max-width property is set to 992px to support the 16px outside gutters
+  // of the .grid--gutter-x-fixed modifier, with a content area spanning 960px.
   max-width: rem(992px);
 
   padding: 0 $space-s;
@@ -84,6 +106,61 @@
   display: table;
   clear: both;
 }
+
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-grid--gutter-adaptive {
+    padding: rem(12px);
+  }
+  .#{$pre}-grid--gutter-x-adaptive {
+    padding: 0 rem(12px);
+    margin: 0 auto $space-l;
+  }
+  .#{$pre}-grid--gutter-y-adaptive {
+    padding: rem(12px) 0;
+  }
+
+  .#{$pre}-grid .#{$pre}-grid--gutter-adaptive {
+    margin: rem(-24px) rem(-24px) 0;
+  }
+  .#{$pre}-grid .#{$pre}-grid--gutter-x-adaptive {
+    margin: 0 rem(-24px) $space-l;
+  }
+  .#{$pre}-grid .#{$pre}-grid--gutter-y-adaptive {
+    margin: rem(-24px) 0 0;
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-grid--gutter-adaptive {
+    padding: $space-m;
+  }
+  .#{$pre}-grid--gutter-x-adaptive {
+    padding: 0 $space-m;
+    margin: 0 auto $space-xl;
+  }
+  .#{$pre}-grid--gutter-y-adaptive {
+    padding: $space-m 0;
+  }
+
+  .#{$pre}-grid .#{$pre}-grid--gutter-adaptive {
+    margin: rem(-32px) rem(-32px) 0;
+  }
+  .#{$pre}-grid .#{$pre}-grid--gutter-x-adaptive {
+    margin: 0 rem(-32px) $space-xl;
+  }
+  .#{$pre}-grid .#{$pre}-grid--gutter-y-adaptive {
+    margin: rem(-32px) 0 0;
+  }
+}
+
+// 4 Devices w/ grid support
+// =============================================================================
 
 @supports (display: grid) {
   .#{$pre}-grid {
@@ -173,31 +250,11 @@
   .#{$pre}-grid::after {
     display: none;
   }
-}
 
-@media #{$media-m} {
-  .#{$pre}-grid--gutter-adaptive {
-    padding: rem(12px);
-  }
-  .#{$pre}-grid--gutter-x-adaptive {
-    padding: 0 rem(12px);
-    margin: 0 auto $space-l;
-  }
-  .#{$pre}-grid--gutter-y-adaptive {
-    padding: rem(12px) 0;
-  }
+  // 4.1 Medium devices
+  // ---------------------------------------------------------------------------
 
-  .#{$pre}-grid .#{$pre}-grid--gutter-adaptive {
-    margin: rem(-24px) rem(-24px) 0;
-  }
-  .#{$pre}-grid .#{$pre}-grid--gutter-x-adaptive {
-    margin: 0 rem(-24px) $space-l;
-  }
-  .#{$pre}-grid .#{$pre}-grid--gutter-y-adaptive {
-    margin: rem(-24px) 0 0;
-  }
-
-  @supports (display: grid) {
+  @include device(medium) {
     .#{$pre}-grid--gutter-adaptive {
       grid-gap: $space-l;
       padding: $space-l;
@@ -225,31 +282,11 @@
       margin: 0;
     }
   }
-}
 
-@media #{$media-l} {
-  .#{$pre}-grid--gutter-adaptive {
-    padding: $space-m;
-  }
-  .#{$pre}-grid--gutter-x-adaptive {
-    padding: 0 $space-m;
-    margin: 0 auto $space-xl;
-  }
-  .#{$pre}-grid--gutter-y-adaptive {
-    padding: $space-m 0;
-  }
+  // 4.2 Large devices
+  // ---------------------------------------------------------------------------
 
-  .#{$pre}-grid .#{$pre}-grid--gutter-adaptive {
-    margin: rem(-32px) rem(-32px) 0;
-  }
-  .#{$pre}-grid .#{$pre}-grid--gutter-x-adaptive {
-    margin: 0 rem(-32px) $space-xl;
-  }
-  .#{$pre}-grid .#{$pre}-grid--gutter-y-adaptive {
-    margin: rem(-32px) 0 0;
-  }
-
-  @supports (display: grid) {
+  @include device(large) {
     .#{$pre}-grid--gutter-adaptive {
       grid-gap: $space-xl;
       padding: $space-xl;

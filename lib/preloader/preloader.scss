@@ -1,15 +1,28 @@
-// Pattern outline
-// * .preloader
-// *   .preloader__stroke
-// *   .preloader__stroke-outer
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+// 4 Misc
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .preloader
+// | .preloader__stroke
+// | .preloader__stroke-outer
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/get-circumference';
 @import '../utilities/scss/functions/rem';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-preloader {
   z-index: $z-index-overlay;
   position: fixed;
@@ -37,7 +50,7 @@
   transform: rotate(-90deg);
   transform-origin: rem(48px 48px);
   stroke-dasharray: get-circumference(88);
-  stroke-dashoffset: (get-circumference(88) - 0.01);
+  stroke-dashoffset: (get-circumference(88) - 0.001);
   stroke-linecap: round;
   stroke-width: 8;
   fill: none;
@@ -57,17 +70,20 @@
   animation: stroke--3 1.25s infinite;
 }
 
+// 4 Misc
+// =============================================================================
+
 @keyframes stroke--1 {
   0% {
     transform: rotate(-90deg);
-    stroke-dashoffset: (get-circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.001);
   }
   13% {
     stroke-dashoffset: get-circumference(64);
   }
   89% {
     transform: rotate(270deg);
-    stroke-dashoffset: (get-circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.001);
   }
   100% {
     transform: rotate(270deg);
@@ -80,14 +96,14 @@
   }
   2% {
     transform: rotate(-90deg);
-    stroke-dashoffset: (get-circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.001);
   }
   21% {
     stroke-dashoffset: get-circumference(72);
   }
   89% {
     transform: rotate(270deg);
-    stroke-dashoffset: (get-circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.001);
   }
   100% {
     transform: rotate(270deg);
@@ -100,14 +116,14 @@
   }
   3% {
     transform: rotate(-90deg);
-    stroke-dashoffset: (get-circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.001);
   }
   34% {
     stroke-dashoffset: get-circumference(80);
   }
   89% {
     transform: rotate(270deg);
-    stroke-dashoffset: (get-circumference(88) - 0.01);
+    stroke-dashoffset: (get-circumference(88) - 0.001);
   }
   100% {
     transform: rotate(270deg);

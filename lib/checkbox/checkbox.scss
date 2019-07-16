@@ -1,17 +1,34 @@
-// Pattern outline
-// * .checkbox
-// *   .checkbox__input
-// *   .checkbox__label
-// *   .checkbox__border-outer
-// *     .checkbox__border
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
+//   4.1 Medium devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .checkbox
+// | .checkbox__input
+// | .checkbox__label
+// | .checkbox__border-outer
+// | | .checkbox__border
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/get-circumference';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-checkbox {
   position: relative;
   margin: $space-stack-m;
@@ -36,21 +53,22 @@
   pointer-events: none;
 }
 
-.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__input {
-  top: rem(20px);
-  left: rem(24px);
-}
-.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
-  top: 50%;
-  right: rem(24px);
-  left: auto;
-}
-
 .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
   top: 50%;
   right: rem(8px);
   left: auto;
   transform: translateY(-50%);
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__input {
+  top: rem(20px);
+  left: rem(24px);
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
+  top: 50%;
+  right: rem(24px);
+  left: auto;
 }
 
 .#{$pre}-checkbox__label {
@@ -65,6 +83,7 @@
 .#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label {
   color: $fossil;
 }
+
 .#{$pre}-checkbox__input[readonly] + .#{$pre}-checkbox__label {
   color: $charcoal;
   pointer-events: none;
@@ -72,15 +91,6 @@
 
 .#{$pre}-checkbox__input:focus + .#{$pre}-checkbox__label {
   color: $charcoal;
-}
-
-.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__label {
-  display: block;
-  height: calc(100% - #{rem(32px)});
-  padding: rem(16px 56px);
-}
-.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
-  padding: rem(16px 56px 16px 16px);
 }
 
 .#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
@@ -98,6 +108,16 @@
   color: $blizzard;
 }
 
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__label {
+  display: block;
+  height: calc(100% - #{rem(32px)});
+  padding: $space-m rem(56px);
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
+  padding: $space-m rem(56px) $space-m $space-m;
+}
+
 .#{$pre}-checkbox__label::before {
   content: '';
   position: absolute;
@@ -113,22 +133,9 @@
 .#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label::before {
   border-color: $state-disabled;
 }
+
 .#{$pre}-checkbox__input[readonly] + .#{$pre}-checkbox__label::before {
   border-color: $charcoal;
-}
-
-.#{$pre}-card--clickable
-  > .#{$pre}-checkbox
-  > .#{$pre}-checkbox__label::before {
-  top: rem(20px);
-  left: rem(24px);
-}
-.#{$pre}-card--clickable
-  > .#{$pre}-checkbox--right
-  > .#{$pre}-checkbox__label::before {
-  top: 50%;
-  right: rem(24px);
-  left: auto;
 }
 
 .#{$pre}-checkbox--right > .#{$pre}-checkbox__label::before {
@@ -141,6 +148,7 @@
 .#{$pre}-checkbox--error > .#{$pre}-checkbox__label::before {
   border-color: $cinnabar-shade;
 }
+
 .#{$pre}-checkbox--success > .#{$pre}-checkbox__label::before {
   border-color: $christi-shade;
 }
@@ -149,11 +157,182 @@
   border-color: $blizzard;
 }
 
+.#{$pre}-card--clickable
+  > .#{$pre}-checkbox
+  > .#{$pre}-checkbox__label::before {
+  top: rem(20px);
+  left: rem(24px);
+}
+
+.#{$pre}-card--clickable
+  > .#{$pre}-checkbox--right
+  > .#{$pre}-checkbox__label::before {
+  top: 50%;
+  right: rem(24px);
+  left: auto;
+}
+
 .#{$pre}-checkbox__border-outer {
   display: none;
 }
 
-.#{$pre}-no-touchevents {
+.#{$pre}-checkbox > .#{$pre}-icon {
+  position: absolute;
+  top: 50%;
+  right: rem(8px);
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon {
+  right: rem(16px);
+}
+
+.#{$pre}-checkbox > .#{$pre}-icon--close {
+  stroke: $state-error;
+}
+
+.#{$pre}-checkbox > .#{$pre}-icon--tick {
+  stroke: $state-success;
+}
+
+.#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
+  top: rem(-2px);
+  right: auto;
+  left: rem(8px);
+  transform: none;
+  stroke: $charcoal;
+}
+
+.#{$pre}-checkbox--right > .#{$pre}-icon--tick:last-child {
+  // The top property is set to 50% - 2px as a visual adjustment to ensure the
+  // icon adheres to the 8px grid.
+  top: calc(50% - #{rem(2px)});
+
+  right: 0;
+  left: auto;
+  transform: translateY(-50%);
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
+  top: rem(14px);
+  left: rem(24px);
+}
+
+.#{$pre}-card--clickable > .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
+  // The top property is set to 50% - 2px as a visual adjustment to ensure the
+  // icon adheres to the 8px grid.
+  top: calc(50% - #{rem(2px)});
+
+  left: auto;
+}
+
+.#{$pre}-checkbox--reversed > .#{$pre}-icon--tick:last-child {
+  color: $blizzard;
+}
+
+.#{$pre}-checkbox__input:checked:disabled ~ .#{$pre}-icon--tick:last-child {
+  stroke: $fossil;
+}
+
+.#{$pre}-checkbox__input:checked[readonly] ~ .#{$pre}-icon--tick:last-child {
+  stroke: $charcoal;
+}
+
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-checkbox__input {
+    top: rem(8px);
+  }
+
+  .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
+    top: 50%;
+  }
+
+  .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__input {
+    top: rem(24px);
+  }
+
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox--right
+    > .#{$pre}-checkbox__input {
+    top: 50%;
+  }
+
+  .#{$pre}-checkbox__label {
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  .#{$pre}-checkbox__label::before {
+    top: rem(8px);
+  }
+
+  .#{$pre}-checkbox--right > .#{$pre}-checkbox__label::before {
+    top: 50%;
+  }
+
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox
+    > .#{$pre}-checkbox__label::before {
+    top: rem(24px);
+  }
+
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox--right
+    > .#{$pre}-checkbox__label::before {
+    top: 50%;
+  }
+
+  .#{$pre}-checkbox > .#{$pre}-icon {
+    pointer-events: none;
+  }
+
+  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--close {
+    stroke: $state-error-hover;
+  }
+  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--close {
+    stroke: $state-error-focus;
+  }
+  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--close {
+    stroke: $state-error-active;
+  }
+
+  .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--tick {
+    stroke: $state-success-hover;
+  }
+  .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--tick {
+    stroke: $state-success-focus;
+  }
+  .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--tick {
+    stroke: $state-success-active;
+  }
+
+  .#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
+    stroke: $charcoal;
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-card--clickable > .#{$pre}-checkbox {
+    margin: rem(-16px);
+  }
+
+  .#{$pre}-checkbox__label {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-checkbox__label {
     cursor: pointer;
     user-select: none;
@@ -182,6 +361,13 @@
     pointer-events: none;
   }
 
+  .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
+    top: 50%;
+    right: rem(8px);
+    left: auto;
+    transform: translateY(-50%);
+  }
+
   .#{$pre}-card--clickable
     > .#{$pre}-checkbox
     > .#{$pre}-checkbox__border-outer {
@@ -197,18 +383,20 @@
     left: auto;
   }
 
-  .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
-    top: 50%;
-    right: rem(8px);
-    left: auto;
-    transform: translateY(-50%);
-  }
-
   .#{$pre}-checkbox__border {
     stroke: $viking;
     stroke-width: 1;
-    stroke-dasharray: 0 ((get-circumference(1.5) + 52));
+
+    // The stroke-dasharray prpoperty's dash value is set to 0.001 so that
+    // Mobile Safari and Safari don't render tiny stroke flecks that are
+    // otherwise visible at the element's starting point.
+    stroke-dasharray: 0.001 ((get-circumference(1.5) + 52));
+
     stroke-dashoffset: ((get-circumference(-1.5) + -58));
+
+    // The stroke-dasharray property is used instead of the stroke-dashoffset
+    // property because a wider range of browsers support transitions on the
+    // stroke-dasharray property.
     transition: stroke $transition-duration-x1 $transition-timing-default,
       stroke-dasharray $transition-duration-x4 $transition-timing-default;
     fill: none;
@@ -217,6 +405,7 @@
   .#{$pre}-checkbox--error .#{$pre}-checkbox__border {
     stroke: $cinnabar;
   }
+
   .#{$pre}-checkbox--success .#{$pre}-checkbox__border {
     stroke: $christi;
   }
@@ -362,55 +551,17 @@
     > .#{$pre}-checkbox__border {
     stroke: rgba($blizzard, 0);
   }
-}
 
-@media #{$media-m} {
-  .#{$pre}-checkbox__input {
-    top: rem(8px);
-  }
+  // 4.1 Medium devices
+  // ---------------------------------------------------------------------------
 
-  .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-checkbox__input {
-    top: rem(24px);
-  }
-
-  .#{$pre}-card--clickable
-    > .#{$pre}-checkbox--right
-    > .#{$pre}-checkbox__input {
-    top: 50%;
-  }
-
-  .#{$pre}-checkbox--right > .#{$pre}-checkbox__input {
-    top: 50%;
-  }
-
-  .#{$pre}-checkbox__label {
-    font-size: rem(15px);
-    line-height: rem(32px);
-  }
-
-  .#{$pre}-checkbox__label::before {
-    top: rem(8px);
-  }
-
-  .#{$pre}-card--clickable
-    > .#{$pre}-checkbox
-    > .#{$pre}-checkbox__label::before {
-    top: rem(24px);
-  }
-
-  .#{$pre}-card--clickable
-    > .#{$pre}-checkbox--right
-    > .#{$pre}-checkbox__label::before {
-    top: 50%;
-  }
-
-  .#{$pre}-checkbox--right > .#{$pre}-checkbox__label::before {
-    top: 50%;
-  }
-
-  .#{$pre}-no-touchevents {
+  @include device(medium) {
     .#{$pre}-checkbox__border-outer {
       top: rem(8px);
+    }
+
+    .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
+      top: 50%;
     }
 
     .#{$pre}-card--clickable
@@ -425,18 +576,26 @@
       top: 50%;
     }
 
-    .#{$pre}-checkbox--right > .#{$pre}-checkbox__border-outer {
-      top: 50%;
+    .#{$pre}-checkbox > .#{$pre}-icon:last-child {
+      top: rem(2px);
     }
-  }
-}
 
-@media #{$media-l} {
-  .#{$pre}-card--clickable > .#{$pre}-checkbox {
-    margin: rem(-16px);
-  }
+    // The top property is set to 50% - 2px as a visual adjustment to ensure the
+    // icon adheres to the 8px grid.
+    .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
+      top: calc(50% - #{rem(2px)});
+    }
 
-  .#{$pre}-checkbox__label {
-    font-size: rem(16px);
+    .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
+      top: rem(18px);
+    }
+
+    // The top property is set to 50% - 2px as a visual adjustment to ensure the
+    // icon adheres to the 8px grid.
+    .#{$pre}-card--clickable
+      > .#{$pre}-checkbox--right
+      > .#{$pre}-icon:last-child {
+      top: calc(50% - #{rem(2px)});
+    }
   }
 }

@@ -1,19 +1,35 @@
-// Pattern outline
-// * .pagination
-// *   .pagination__list
-// *     .pagination__item
-// *   .pagination__list
-// *     .pagination__highlight
-// *     .pagination__item
-// *   .pagination__list
-// *     .pagination__item
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .pagination
+// | .pagination__list
+// | | .pagination__item
+// | .pagination__list
+// | | .pagination__highlight
+// | | .pagination__item
+// | .pagination__list
+// | | .pagination__item
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-pagination {
   z-index: $z-index-pagination;
   position: fixed;
@@ -30,12 +46,12 @@
   transition: bottom $transition-duration-x4 $transition-timing-bounce-out;
 }
 
-.#{$pre}-pagination:focus-within {
-  outline: $focus-outline;
-}
-
 .#{$pre}-pagination.#{$pre}-mounted {
   bottom: rem(16px);
+}
+
+.#{$pre}-pagination:focus-within {
+  outline: $focus-outline;
 }
 
 .#{$pre}-pagination__list {
@@ -70,20 +86,20 @@
   user-select: none;
 }
 
-.#{$pre}-pagination__item:nth-last-child(2) {
-  width: rem(16px);
-}
-
-.#{$pre}-pagination__item:focus {
-  outline: none;
-}
-
 .#{$pre}-pagination__item--selectable {
   color: $gunmetal;
 }
 
 .#{$pre}-pagination__item--selectable.#{$pre}-active {
   color: $charcoal;
+}
+
+.#{$pre}-pagination__item:nth-last-child(2) {
+  width: rem(16px);
+}
+
+.#{$pre}-pagination__item:focus {
+  outline: none;
 }
 
 .#{$pre}-pagination__item--selectable::before {
@@ -116,7 +132,8 @@
   opacity: 0;
   position: absolute;
 
-  // * A visual adjustment.
+  // The top property is set to 53px as a visual adjustment to ensure the
+  // pseudo-element adheres to the 8px grid.
   top: rem(53px);
 
   left: 50%;
@@ -134,12 +151,37 @@
 .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required::after {
   opacity: 1;
 
-  // * A visual adjustment.
+  // The top property is set to 37px as a visual adjustment to ensure the
+  // pseudo-element adheres to the 8px grid.
   top: rem(37px);
 }
 
 .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required.#{$pre}-active::after {
   color: $cinnabar;
+}
+
+.#{$pre}-pagination__item > .#{$pre}-icon {
+  position: absolute;
+  top: rem(12px);
+
+  // Applying a transition to the stroke property as usual seems to be ignored
+  // by the browser. I suspect this has something to do with leveraging the
+  // currentColor value when setting the stroke property in a mouse-driven
+  // context.
+  //
+  // Investigate further.
+  transition: color $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-pagination__item > .#{$pre}-icon--arrow-left {
+  left: rem(12px);
+}
+.#{$pre}-pagination__item > .#{$pre}-icon--arrow-right {
+  right: rem(12px);
+}
+
+.#{$pre}-pagination__item--selectable > .#{$pre}-icon {
+  stroke: $state-default;
 }
 
 .#{$pre}-pagination__label {
@@ -157,49 +199,10 @@
   transition: transform $transition-duration-x3 $transition-timing-bounce-out;
 }
 
-.#{$pre}-no-touchevents {
-  .#{$pre}-pagination__item--selectable {
-    cursor: pointer;
-  }
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
 
-  .#{$pre}-pagination__item--selectable:hover {
-    color: $state-default-hover;
-  }
-  .#{$pre}-pagination__item--selectable:active {
-    color: $state-default-active;
-  }
-
-  .#{$pre}-pagination__item.#{$pre}-active {
-    cursor: default;
-  }
-
-  .#{$pre}-pagination__item.#{$pre}-active:hover {
-    color: $charcoal;
-  }
-  .#{$pre}-pagination__item.#{$pre}-active:active {
-    color: $charcoal;
-  }
-
-  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--populated:hover::before {
-    background-color: $christi;
-  }
-  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--populated:active::before {
-    background-color: $christi-shade;
-  }
-
-  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required:hover::after {
-    color: $cinnabar;
-  }
-  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required:active::after {
-    color: $cinnabar-shade;
-  }
-
-  .#{$pre}-pagination__label {
-    cursor: default;
-  }
-}
-
-@media #{$media-m} {
+@include device(medium) {
   .#{$pre}-pagination {
     bottom: rem(-88px);
     width: rem(464px);
@@ -235,7 +238,10 @@
   }
 }
 
-@media #{$media-l} {
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
   .#{$pre}-pagination {
     width: rem(656px);
     bottom: rem(-88px);
@@ -261,6 +267,7 @@
     position: absolute;
     top: 0;
     display: block;
+    transition: color $transition-duration-x1 $transition-timing-default;
   }
 
   .#{$pre}-pagination__item--previous > .#{$pre}-pagination__label {
@@ -268,5 +275,57 @@
   }
   .#{$pre}-pagination__item--next > .#{$pre}-pagination__label {
     right: rem(48px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
+  .#{$pre}-pagination__item.#{$pre}-active {
+    cursor: default;
+  }
+
+  .#{$pre}-pagination__item.#{$pre}-active:hover {
+    color: $charcoal;
+  }
+  .#{$pre}-pagination__item.#{$pre}-active:active {
+    color: $charcoal;
+  }
+
+  .#{$pre}-pagination__item--selectable {
+    cursor: pointer;
+  }
+
+  .#{$pre}-pagination__item--selectable:hover {
+    color: $state-default-hover;
+  }
+  .#{$pre}-pagination__item--selectable:active {
+    color: $state-default-active;
+  }
+
+  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--populated:hover::before {
+    background-color: $christi;
+  }
+  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--populated:active::before {
+    background-color: $christi-shade;
+  }
+
+  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required:hover::after {
+    color: $cinnabar;
+  }
+  .#{$pre}-pagination__item--selectable.#{$pre}-pagination__item--required:active::after {
+    color: $cinnabar-shade;
+  }
+
+  .#{$pre}-pagination__item--selectable > .#{$pre}-icon {
+    stroke: currentColor;
+  }
+
+  .#{$pre}-pagination__item--selectable:hover > .#{$pre}-icon {
+    stroke: $state-default-hover;
+  }
+  .#{$pre}-pagination__item--selectable:active > .#{$pre}-icon {
+    stroke: $state-default-active;
   }
 }

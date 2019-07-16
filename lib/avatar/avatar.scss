@@ -1,16 +1,30 @@
-// Pattern outline
-// * .avatar
-// *   .avatar__border-outer
-// *     .avatar__border
-// *   .avatar__image
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .avatar
+// | .avatar__border-outer
+// | | .avatar__border
+// | .avatar__image
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/get-circumference';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-avatar {
   position: relative;
   display: inline-block;
@@ -21,8 +35,8 @@
   border-radius: $border-radius-round;
   margin-bottom: rem(16px);
 
-  // * Fixes an issue with intermittent margin-bottom applied to image
-  // * elements.
+  // The vertical-align property set to bottom removes the default margin-bottom
+  // that some browsers apply to the img element.
   vertical-align: bottom;
 }
 
@@ -49,8 +63,15 @@
   border-color: $state-reversed;
 }
 
+.#{$pre}-avatar:focus {
+  outline: $focus-outline;
+}
+
 .#{$pre}-avatar__border-outer {
   position: absolute;
+
+  // The top and left properties are set to -1px to ignore the parent avatar
+  // element's border property.
   top: rem(-1px);
   left: rem(-1px);
 }
@@ -92,8 +113,9 @@
     linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
     $blizzard;
 
-  // * A visual adjustment to position images correctly.
-  background-position: center bottom rem(-1px), 0;
+  // The second background-position property's y-axis value is set to -1px to
+  // position the empty-state avatar correctly.
+  background-position: center bottom, rem(-1px) 0;
 
   background-repeat: no-repeat, repeat;
   background-size: auto 85%, cover;
@@ -103,8 +125,9 @@
     linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
     $blizzard;
 
-  // * A visual adjustment to position images correctly.
-  background-position: center bottom rem(-1px), 0;
+  // The second background-position property's y-axis value is set to -1px to
+  // position the empty-state avatar correctly.
+  background-position: center bottom, rem(-1px) 0;
 
   background-repeat: no-repeat, repeat;
   background-size: auto 85%, cover;
@@ -114,8 +137,9 @@
     linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
     $blizzard;
 
-  // * A visual adjustment to position images correctly.
-  background-position: center bottom rem(-1px), 0;
+  // The second background-position property's y-axis value is set to -1px to
+  // position the empty-state avatar correctly.
+  background-position: center bottom, rem(-1px) 0;
 
   background-repeat: no-repeat, repeat;
   background-size: auto 85%, cover;
@@ -125,22 +149,90 @@
     linear-gradient(45deg, rgba($viking, 0.13), rgba($viking-tint, 0.13)),
     $blizzard;
 
-  // * A visual adjustment to position images correctly.
-  background-position: center bottom rem(-1px), 0;
+  // The second background-position property's y-axis value is set to -1px to
+  // position the empty-state avatar correctly.
+  background-position: center bottom, rem(-1px) 0;
 
   background-repeat: no-repeat, repeat;
   background-size: auto 85%, cover;
 }
 
-.#{$pre}-no-touchevents {
-  .#{$pre}-avatar:focus {
-    outline: $focus-outline;
-  }
+.#{$pre}-avatar > .#{$pre}-badge {
+  position: absolute;
+  top: rem(-8px);
 
+  // The white-space property set to nowrap ensures that the badge component's
+  // value doesn't break line and reflow when the position property is set to
+  // absolute.
+  white-space: nowrap;
+}
+.#{$pre}-avatar--m > .#{$pre}-badge {
+  left: $space-l;
+}
+.#{$pre}-avatar--l > .#{$pre}-badge {
+  left: $space-xl;
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-avatar__border {
     stroke: $state-default-hover;
+
+    // The stroke-dasharray property is used instead of the stroke-dashoffset
+    // property because a wider range of browsers support transitions on the
+    // stroke-dasharray property.
     transition: stroke $transition-duration-x1 $transition-timing-default,
       stroke-dasharray $transition-duration-x4 $transition-timing-default;
+  }
+
+  .#{$pre}-avatar--s .#{$pre}-avatar__border {
+    // The stroke-dasharray prpoperty's dash value is set to 0.001 so that
+    // Mobile Safari and Safari don't render tiny stroke flecks that are
+    // otherwise visible at the element's starting point.
+    stroke-dasharray: 0.001 get-circumference(31);
+
+    stroke-dashoffset: ((get-circumference(-31) / 4) * 3);
+  }
+
+  .#{$pre}-avatar--s:hover .#{$pre}-avatar__border {
+    stroke-dasharray: get-circumference(31) 0;
+  }
+  .#{$pre}-avatar--s:focus .#{$pre}-avatar__border {
+    stroke-dasharray: get-circumference(31) 0;
+  }
+
+  .#{$pre}-avatar--m .#{$pre}-avatar__border {
+    // The stroke-dasharray prpoperty's dash value is set to 0.001 so that
+    // Mobile Safari and Safari don't render tiny stroke flecks that are
+    // otherwise visible at the element's starting point.
+    stroke-dasharray: 0.001 get-circumference(39);
+
+    stroke-dashoffset: ((get-circumference(-39) / 4) * 3);
+  }
+
+  .#{$pre}-avatar--m:hover .#{$pre}-avatar__border {
+    stroke-dasharray: get-circumference(39) 0;
+  }
+  .#{$pre}-avatar--m:focus .#{$pre}-avatar__border {
+    stroke-dasharray: get-circumference(39) 0;
+  }
+
+  .#{$pre}-avatar--l .#{$pre}-avatar__border {
+    // The stroke-dasharray prpoperty's dash value is set to 0.001 so that
+    // Mobile Safari and Safari don't render tiny stroke flecks that are
+    // otherwise visible at the element's starting point.
+    stroke-dasharray: 0.001 get-circumference(47);
+
+    stroke-dashoffset: ((get-circumference(-47) / 4) * 3);
+  }
+
+  .#{$pre}-avatar--l:hover .#{$pre}-avatar__border {
+    stroke-dasharray: get-circumference(47) 0;
+  }
+  .#{$pre}-avatar--l:focus .#{$pre}-avatar__border {
+    stroke-dasharray: get-circumference(47) 0;
   }
 
   .#{$pre}-avatar:hover .#{$pre}-avatar__border {
@@ -165,41 +257,5 @@
   }
   .#{$pre}-avatar--reversed:active .#{$pre}-avatar__border {
     stroke: $state-reversed-active;
-  }
-
-  .#{$pre}-avatar--s .#{$pre}-avatar__border {
-    stroke-dasharray: 0 get-circumference(31);
-    stroke-dashoffset: ((get-circumference(-31) / 4) * 3);
-  }
-
-  .#{$pre}-avatar--s:hover .#{$pre}-avatar__border {
-    stroke-dasharray: get-circumference(31) 0;
-  }
-  .#{$pre}-avatar--s:focus .#{$pre}-avatar__border {
-    stroke-dasharray: get-circumference(31) 0;
-  }
-
-  .#{$pre}-avatar--m .#{$pre}-avatar__border {
-    stroke-dasharray: 0 get-circumference(39);
-    stroke-dashoffset: ((get-circumference(-39) / 4) * 3);
-  }
-
-  .#{$pre}-avatar--m:hover .#{$pre}-avatar__border {
-    stroke-dasharray: get-circumference(39) 0;
-  }
-  .#{$pre}-avatar--m:focus .#{$pre}-avatar__border {
-    stroke-dasharray: get-circumference(39) 0;
-  }
-
-  .#{$pre}-avatar--l .#{$pre}-avatar__border {
-    stroke-dasharray: 0 get-circumference(47);
-    stroke-dashoffset: ((get-circumference(-47) / 4) * 3);
-  }
-
-  .#{$pre}-avatar--l:hover .#{$pre}-avatar__border {
-    stroke-dasharray: get-circumference(47) 0;
-  }
-  .#{$pre}-avatar--l:focus .#{$pre}-avatar__border {
-    stroke-dasharray: get-circumference(47) 0;
   }
 }

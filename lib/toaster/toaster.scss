@@ -1,12 +1,24 @@
-// Pattern outline
-// * .toaster
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .toaster
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-toaster {
   z-index: $z-index-notification;
   position: fixed;
@@ -15,7 +27,8 @@
   box-sizing: border-box;
   width: 100%;
 
-  // * iPhone 8 dimensions.
+  // The max-width property is set to 375px to align with the dimension of an
+  // iPhone 8.
   max-width: rem(375px);
 
   height: 100%;

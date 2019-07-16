@@ -1,0 +1,27 @@
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+// 4 Mouse-driven devices
+
+// 1 Pattern outline
+// =============================================================================
+
+// .range
+// | .range__input
+// | .range__label
+
+// 2 Imports
+// =============================================================================
+
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+@import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
+
+// 3 Touch devices
+// =============================================================================
+
+// 4 Mouse-driven devices
+// =============================================================================

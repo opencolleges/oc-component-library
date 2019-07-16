@@ -1,14 +1,30 @@
-// Pattern outline
-// * .tr
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .tr
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-tbody > .#{$pre}-tr {
   border-bottom: rem(1px) solid $gallery;
+  transition: background-color $transition-duration-x1
+    $transition-timing-default;
 }
 
 .#{$pre}-tbody > .#{$pre}-tr:first-of-type {
@@ -28,12 +44,10 @@
   text-align: right;
 }
 
-.#{$pre}-no-touchevents {
-  .#{$pre}-tbody > .#{$pre}-tr {
-    transition: background-color $transition-duration-x1
-      $transition-timing-default;
-  }
+// 4 Mouse-driven devices
+// =============================================================================
 
+@include device(mouse-driven) {
   .#{$pre}-tbody > .#{$pre}-tr:hover {
     background-color: $selection-background;
   }

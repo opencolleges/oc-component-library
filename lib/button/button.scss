@@ -1,12 +1,26 @@
-// Pattern outline
-// * .button
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .button
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-button {
   overflow: hidden;
   display: block;
@@ -30,7 +44,7 @@
   transition-property: box-shadow, border, background-color, color;
 }
 
-.#{$pre}-modal__actions .#{$pre}-button {
+.#{$pre}-modal .#{$pre}-button {
   margin-bottom: 0;
 }
 
@@ -49,19 +63,6 @@
 
 .#{$pre}-button--compact.#{$pre}-button--icon {
   padding-left: $space-xxl;
-}
-
-.#{$pre}-button--icon > .#{$pre}-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: $space-m;
-  stroke: currentColor;
-  transition: stroke $transition-duration-x1 $transition-timing-default;
-}
-
-.#{$pre}-button--compact.#{$pre}-button--icon > .#{$pre}-icon {
-  left: $space-s;
 }
 
 .#{$pre}-button--primary {
@@ -112,13 +113,32 @@
   color: $state-disabled;
 }
 
-.#{$pre}-no-touchevents {
+.#{$pre}-button--icon > .#{$pre}-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: $space-m;
+  stroke: currentColor;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-button--compact.#{$pre}-button--icon > .#{$pre}-icon {
+  left: $space-s;
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-button {
     cursor: pointer;
     user-select: none;
   }
 
-  // * Support for Firefox.
+  // The ::-moz-focus-inner pseudo-selector having a border property set to none
+  // removes the default border Firefox applies inside the focused button.
+  //
+  // This is only an issue if Firefox and not Mobile Firefox.
   .#{$pre}-button::-moz-focus-inner {
     border: none;
   }

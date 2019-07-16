@@ -1,16 +1,34 @@
-// Pattern outline
-// * .textarea
-// *   .textarea__input
-// *   .textarea__label
-// *   .textarea__border
-// *   .textarea__message
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
+// 5 Vendors
+//   5.1 Medium devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .textarea
+// | .textarea__input
+// | .textarea__label
+// | .textarea__border
+// | .textarea__message
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-textarea {
   position: relative;
   height: rem(80px);
@@ -27,14 +45,16 @@
   width: 100%;
   height: rem(40px);
 
-  // * Support for scrollbars in WebKit.
+  // The padding property is set to 8px 0 7px to support scrollbars in WebKit
+  // browsers.
   padding: rem(8px 0 7px);
 
   outline: none;
   border: none;
   border-bottom: rem(1px) solid $viking-shade;
 
-  // * Support for Mobile Safari.
+  // The border-radius property is set to 0 to remove the round corners Mobile
+  // Safari adds to textareas by default.
   border-radius: 0;
 
   background: none;
@@ -46,48 +66,77 @@
 }
 
 .#{$pre}-textarea__input:disabled {
-  // * Support for Mobile Safari.
+  // The opacity property is set to 1 to remove the transparency Mobile Safari
+  // adds to a :disabled textareas by default.
   opacity: 1;
 
   border-color: $state-disabled;
   color: $fossil;
-
-  // * Support for Mobile Safari.
   -webkit-text-fill-color: $fossil;
 }
+
 .#{$pre}-textarea__input[readonly] {
   border: none;
   color: inherit;
 
-  // * Removes pointer events for empty readonly inputs.
+  // The pointer-events property set to none removes interactivity from
+  // [readonly] text inputs.
   pointer-events: none;
 }
-// * Adds pointer events back for populated readonly inputs.
-.#{$pre}-textarea__input[readonly].#{$pre}-active {
-  pointer-events: auto;
-}
+
 .#{$pre}-textarea__input:required {
   box-shadow: none;
 }
 
-// * Support for IE11.
-.#{$pre}-textarea__input::-ms-clear {
-  display: none;
+.#{$pre}-textarea__input.#{$pre}-active:disabled {
+  color: $fossil;
 }
-// * Support for IE11.
-.#{$pre}-textarea__input::-ms-reveal {
-  display: none;
+
+// The pointer-events property set to auto adds interactivity to [readonly]
+// textareas that are populated.
+.#{$pre}-textarea__input.#{$pre}-active[readonly] {
+  pointer-events: auto;
 }
 
 .#{$pre}-textarea--error > .#{$pre}-textarea__input {
   border-bottom: rem(1px) solid $state-error;
 }
+
 .#{$pre}-textarea--success > .#{$pre}-textarea__input {
   border-bottom: rem(1px) solid $state-success;
 }
 
-.#{$pre}-textarea__input.#{$pre}-active:disabled {
+// Removes the clear button that IE11 adds to text inputs by default.
+.#{$pre}-textarea__input::-ms-clear {
+  display: none;
+}
+
+// Removes the password reveal button that IE11 adds to text inputs by default.
+.#{$pre}-textarea__input::-ms-reveal {
+  display: none;
+}
+
+// This selector styles the scroll-bar in WebKit browsers.
+.#{$pre}-textarea__input::-webkit-scrollbar {
+  width: rem(4px);
+  height: rem(4px);
+}
+
+// This selector styles the scroll-bar-thumb in WebKit browsers.
+.#{$pre}-textarea__input::-webkit-scrollbar-thumb {
+  border-radius: $border-radius-s;
+  background: $fossil-transparent;
+}
+
+.#{$pre}-textarea__input::placeholder {
+  color: $blizzard-transparent;
+  transition: color $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-textarea__input:focus::placeholder {
   color: $fossil;
+  transition: color $transition-duration-x1 $transition-timing-default
+    $transition-duration-x1;
 }
 
 .#{$pre}-textarea__label {
@@ -97,10 +146,14 @@
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
-  transition: top $transition-duration-x2 $transition-timing-default,
-    color $transition-duration-x1 $transition-timing-default,
-    font-size $transition-duration-x2 $transition-timing-default,
-    line-height $transition-duration-x2 $transition-timing-default;
+  transition: top $transition-duration-x2 $transition-timing-default
+      $transition-duration-x1,
+    color $transition-duration-x1 $transition-timing-default
+      $transition-duration-x1,
+    font-size $transition-duration-x2 $transition-timing-default
+      $transition-duration-x1,
+    line-height $transition-duration-x2 $transition-timing-default
+      $transition-duration-x1;
   pointer-events: none;
   user-select: none;
 }
@@ -108,18 +161,22 @@
 .#{$pre}-textarea__input:disabled ~ .#{$pre}-textarea__label {
   color: $fossil;
 }
+
 .#{$pre}-textarea__input[readonly] ~ .#{$pre}-textarea__label {
   color: $christi-shade;
 }
 
-// * Using the general selector instead of the adjacent selector means
-// * Grammarly can inject its markup and play nicely with the textarea
-//*  component.
+// Using the general selector instead of the adjacent selector means Grammarly
+// can dynamically create elements around the textarea element.
 .#{$pre}-textarea__input:focus ~ .#{$pre}-textarea__label {
   top: 0;
   color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default,
+    font-size $transition-duration-x2 $transition-timing-default,
+    line-height $transition-duration-x2 $transition-timing-default;
 }
 
 .#{$pre}-textarea__input.#{$pre}-active ~ .#{$pre}-textarea__label {
@@ -132,6 +189,7 @@
 .#{$pre}-textarea__input.#{$pre}-active:disabled ~ .#{$pre}-textarea__label {
   color: $state-disabled;
 }
+
 .#{$pre}-textarea__input.#{$pre}-active[readonly] ~ .#{$pre}-textarea__label {
   color: $christi-shade;
 }
@@ -145,12 +203,13 @@
     color $transition-duration-x1 $transition-timing-default;
 }
 
-// * This pseudo-selector exists to handle the asterisk transition when a
-// * required text input is toggled to a disabled textarea-input.
+// This pseudo-selector exists to handle the asterisk transition when a
+// :required textarea is dynamically changed to a :disabled textarea.
 .#{$pre}-textarea__input:disabled + .#{$pre}-textarea__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
 }
+
 .#{$pre}-textarea__input:required ~ .#{$pre}-textarea__label::after {
   top: 0;
   color: $state-error-focus;
@@ -190,14 +249,52 @@
   color: $state-default;
 }
 
-.#{$pre}-textarea--error > .#{$pre}-textarea__message {
+.#{$pre}-textarea--error
+  > .#{$pre}-textarea__input
+  ~ .#{$pre}-textarea__message {
   color: $state-error;
 }
-.#{$pre}-textarea--success > .#{$pre}-textarea__message {
+.#{$pre}-textarea--success
+  > .#{$pre}-textarea__input
+  ~ .#{$pre}-textarea__message {
   color: $state-success;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-textarea__input {
+    // The padding property is set to $space-xs 0 3px to support scrollbars in
+    // WebKit browsers.
+    padding: $space-xs 0 rem(3px);
+
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  .#{$pre}-textarea__label {
+    font-size: rem(15px);
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-textarea__input {
+    font-size: rem(16px);
+  }
+
+  .#{$pre}-textarea__label {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-textarea__input {
     border-bottom: $input-border;
     transition: color $transition-duration-x1 $transition-timing-default;
@@ -206,6 +303,7 @@
   .#{$pre}-textarea__input:disabled {
     border-bottom-color: $state-disabled;
   }
+
   .#{$pre}-textarea__input[readonly] {
     border-bottom: none;
   }
@@ -222,6 +320,7 @@
   .#{$pre}-textarea__input:disabled ~ .#{$pre}-textarea__label {
     color: $fossil;
   }
+
   .#{$pre}-textarea__input[readonly] ~ .#{$pre}-textarea__label {
     color: $christi-shade;
   }
@@ -241,6 +340,7 @@
   .#{$pre}-textarea__input.#{$pre}-active:disabled ~ .#{$pre}-textarea__label {
     color: $state-disabled;
   }
+
   .#{$pre}-textarea__input.#{$pre}-active[readonly] ~ .#{$pre}-textarea__label {
     color: $christi-shade;
   }
@@ -335,38 +435,54 @@
   .#{$pre}-textarea__input.#{$pre}-active:focus ~ .#{$pre}-textarea__message {
     color: $state-default-focus;
   }
+
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input
+    ~ .#{$pre}-textarea__message {
+    color: $state-error;
+  }
+
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input:hover
+    ~ .#{$pre}-textarea__message {
+    color: $state-error-hover;
+  }
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input:focus
+    ~ .#{$pre}-textarea__message {
+    color: $state-error-focus;
+  }
+
+  .#{$pre}-textarea--success
+    > .#{$pre}-textarea__input
+    ~ .#{$pre}-textarea__message {
+    color: $state-success;
+  }
+
+  .#{$pre}-textarea--success
+    > .#{$pre}-textarea__input:hover
+    ~ .#{$pre}-textarea__message {
+    color: $state-success-hover;
+  }
+  .#{$pre}-textarea--success
+    > .#{$pre}-textarea__input:focus
+    ~ .#{$pre}-textarea__message {
+    color: $state-success-focus;
+  }
 }
 
-// Vendors.
+// 5 Vendors
+// =============================================================================
+
 .afterthedeadline-button + .#{$pre}-textarea__input {
   padding: $space-s $space-xxl rem(7px) 0;
 }
 
-@media #{$media-m} {
-  .#{$pre}-textarea__input {
-    // * Support for scrollbars in WebKit.
-    padding: $space-xs 0 rem(3px);
+// 5.1 Medium devices
+// -----------------------------------------------------------------------------
 
-    font-size: rem(15px);
-    line-height: rem(32px);
-  }
-
-  .#{$pre}-textarea__label {
-    font-size: rem(15px);
-  }
-
-  // Vendors.
+@include device(medium) {
   .afterthedeadline-button + .#{$pre}-textarea__input {
     padding: $space-xs $space-xxl rem(3px) 0;
-  }
-}
-
-@media #{$media-l} {
-  .#{$pre}-textarea__input {
-    font-size: rem(16px);
-  }
-
-  .#{$pre}-textarea__label {
-    font-size: rem(16px);
   }
 }

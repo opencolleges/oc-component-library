@@ -1,16 +1,32 @@
-// Pattern outline
-// * .text
-// *   .text__input
-// *   .text__label
-// *   .text__border
-// *   .text__message
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .text
+// | .text__input
+// | .text__label
+// | .text__border
+// | .text__message
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-text {
   position: relative;
   height: rem(80px);
@@ -30,7 +46,8 @@
   border: none;
   border-bottom: rem(1px) solid $viking-shade;
 
-  // * Support for Mobile Safari.
+  // The border-radius property is set to 0 to remove the round corners Mobile
+  // Safari adds to text inputs by default.
   border-radius: 0;
 
   outline: none;
@@ -42,53 +59,67 @@
 }
 
 .#{$pre}-text__input:disabled {
-  // * Support for Mobile Safari.
+  // The opacity property is set to 1 to remove the transparency Mobile Safari
+  // adds to a :disabled text inputs by default.
   opacity: 1;
 
   border-color: $state-disabled;
   color: $fossil;
-
-  // * Support for Mobile Safari.
   -webkit-text-fill-color: $fossil;
 }
-// * Support for Firefox.
+
+// The box-shadow property is set to none, to remove the shadow that Firefox
+// adds to text inputs by default.
 .#{$pre}-text__input:invalid {
   box-shadow: none;
 }
+
 .#{$pre}-text__input[readonly] {
   padding: 0;
   border: none;
   color: inherit;
 
-  // * Removes pointer events for empty readonly inputs.
+  // The pointer-events property set to none removes interactivity from
+  // [readonly] text inputs.
   pointer-events: none;
 }
-// * Adds pointer events back for populated readonly inputs.
-.#{$pre}-text__input[readonly].#{$pre}-active {
-  pointer-events: auto;
-}
+
 .#{$pre}-text__input:required {
   box-shadow: none;
 }
 
-// * Support for IE11.
-.#{$pre}-text__input::-ms-clear {
-  display: none;
+// The -moz-appearance property set to textfield removes the spin buttons that
+// Firefox adds to number inputs by default.
+.#{$pre}-text__input[type='number'] {
+  -moz-appearance: textfield;
 }
-// * Support for IE11.
-.#{$pre}-text__input::-ms-reveal {
-  display: none;
+
+.#{$pre}-text__input.#{$pre}-active:disabled {
+  color: $fossil;
+}
+
+// The pointer-events property set to auto adds interactivity to [readonly] text
+// inputs that are populated.
+.#{$pre}-text__input.#{$pre}-active[readonly] {
+  pointer-events: auto;
 }
 
 .#{$pre}-text--error > .#{$pre}-text__input {
   border-bottom: rem(1px) solid $state-error;
 }
+
 .#{$pre}-text--success > .#{$pre}-text__input {
   border-bottom: rem(1px) solid $state-success;
 }
 
-.#{$pre}-text__input.#{$pre}-active:disabled {
-  color: $fossil;
+// Removes the clear button that IE11 adds to text inputs by default.
+.#{$pre}-text__input::-ms-clear {
+  display: none;
+}
+
+// Removes the password reveal button that IE11 adds to text inputs by default.
+.#{$pre}-text__input::-ms-reveal {
+  display: none;
 }
 
 .#{$pre}-text__input[type='number']::-webkit-inner-spin-button {
@@ -104,6 +135,17 @@
   margin: 0;
 }
 
+.#{$pre}-text__input::placeholder {
+  color: $blizzard-transparent;
+  transition: color $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-text__input:focus::placeholder {
+  color: $fossil;
+  transition: color $transition-duration-x1 $transition-timing-default
+    $transition-duration-x1;
+}
+
 .#{$pre}-text__label {
   position: absolute;
   top: rem(24px);
@@ -111,10 +153,14 @@
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
-  transition: top $transition-duration-x2 $transition-timing-default,
-    color $transition-duration-x1 $transition-timing-default,
-    font-size $transition-duration-x2 $transition-timing-default,
-    line-height $transition-duration-x2 $transition-timing-default;
+  transition: top $transition-duration-x2 $transition-timing-default
+      $transition-duration-x1,
+    color $transition-duration-x1 $transition-timing-default
+      $transition-duration-x1,
+    font-size $transition-duration-x2 $transition-timing-default
+      $transition-duration-x1,
+    line-height $transition-duration-x2 $transition-timing-default
+      $transition-duration-x1;
   pointer-events: none;
   user-select: none;
 }
@@ -122,6 +168,7 @@
 .#{$pre}-text__input:disabled + .#{$pre}-text__label {
   color: $fossil;
 }
+
 .#{$pre}-text__input[readonly] + .#{$pre}-text__label {
   color: $christi-shade;
 }
@@ -131,6 +178,10 @@
   color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
+  transition: top $transition-duration-x2 $transition-timing-default,
+    color $transition-duration-x1 $transition-timing-default,
+    font-size $transition-duration-x2 $transition-timing-default,
+    line-height $transition-duration-x2 $transition-timing-default;
 }
 
 .#{$pre}-text__input.#{$pre}-active + .#{$pre}-text__label {
@@ -156,18 +207,19 @@
     color $transition-duration-x1 $transition-timing-default;
 }
 
-// * This pseudo-selector exists to handle the asterisk transition when a
-// * required text input is toggled to a disabled text-input.
+// This pseudo-selector exists to handle the asterisk transition when a
+// :required text input is dynamically changed to a :disabled text input.
 .#{$pre}-text__input:disabled + .#{$pre}-text__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
 }
+
 .#{$pre}-text__input:required + .#{$pre}-text__label::after {
   top: 0;
   color: $state-error-focus;
 }
 
-.#{$pre}-text__input[readonly]:required + .#{$pre}-text__label::after {
+.#{$pre}-text__input:required[readonly] + .#{$pre}-text__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
 }
@@ -175,6 +227,23 @@
 .#{$pre}-text__input.#{$pre}-active:required + .#{$pre}-text__label::after {
   top: rem(-16px);
   color: rgba($state-error-focus, 0);
+}
+
+.#{$pre}-text > .#{$pre}-icon {
+  position: absolute;
+  top: rem(24px);
+  right: rem(8px);
+  stroke-width: 1;
+  fill: none;
+  transition: stroke $transition-duration-x1 $transition-timing-default;
+  pointer-events: none;
+}
+
+.#{$pre}-text > .#{$pre}-icon--close {
+  stroke: $state-error;
+}
+.#{$pre}-text > .#{$pre}-icon--tick {
+  stroke: $state-success;
 }
 
 .#{$pre}-text__border {
@@ -195,11 +264,43 @@
 .#{$pre}-text--error > .#{$pre}-text__message {
   color: $state-error;
 }
+
 .#{$pre}-text--success > .#{$pre}-text__message {
   color: $state-success;
 }
 
-.#{$pre}-no-touchevents {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-text__input {
+    padding: $space-xs $space-xxl $space-xs 0;
+    font-size: rem(15px);
+    line-height: rem(32px);
+  }
+
+  .#{$pre}-text__label {
+    font-size: rem(15px);
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-text__input {
+    font-size: rem(16px);
+  }
+
+  .#{$pre}-text__label {
+    font-size: rem(16px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
   .#{$pre}-text__input {
     border-bottom: $input-border;
     transition: color $transition-duration-x1 $transition-timing-default;
@@ -208,6 +309,7 @@
   .#{$pre}-text__input:disabled {
     border-bottom-color: $state-disabled;
   }
+
   .#{$pre}-text__input[readonly] {
     border-bottom: none;
   }
@@ -224,6 +326,7 @@
   .#{$pre}-text__input:disabled + .#{$pre}-text__label {
     color: $fossil;
   }
+
   .#{$pre}-text__input[readonly] + .#{$pre}-text__label {
     color: $christi-shade;
   }
@@ -243,6 +346,7 @@
   .#{$pre}-text__input.#{$pre}-active:disabled + .#{$pre}-text__label {
     color: $state-disabled;
   }
+
   .#{$pre}-text__input.#{$pre}-active[readonly] + .#{$pre}-text__label {
     color: $christi-shade;
   }
@@ -253,6 +357,20 @@
 
   .#{$pre}-text__input.#{$pre}-active[readonly]:focus + .#{$pre}-text__label {
     color: $christi-shade;
+  }
+
+  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
+    stroke: $state-error-hover;
+  }
+  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
+    stroke: $state-error-focus;
+  }
+
+  .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
+    stroke: $state-success-hover;
+  }
+  .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
+    stroke: $state-success-focus;
   }
 
   .#{$pre}-text__border {
@@ -309,26 +427,18 @@
   .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
     background-color: $state-success-focus;
   }
-}
 
-@media #{$media-m} {
-  .#{$pre}-text__input {
-    padding: $space-xs $space-xxl $space-xs 0;
-    font-size: rem(15px);
-    line-height: rem(32px);
+  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-text__message {
+    color: $state-error-hover;
+  }
+  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-text__message {
+    color: $state-error-focus;
   }
 
-  .#{$pre}-text__label {
-    font-size: rem(15px);
+  .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-text__message {
+    color: $state-success-hover;
   }
-}
-
-@media #{$media-l} {
-  .#{$pre}-text__input {
-    font-size: rem(16px);
-  }
-
-  .#{$pre}-text__label {
-    font-size: rem(16px);
+  .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-text__message {
+    color: $state-success-focus;
   }
 }

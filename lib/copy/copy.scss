@@ -1,28 +1,44 @@
-// Pattern outline
-// * .p
-// * .a
-// * .abbr
-// * .code
-// * .em
-// * .kbd
-// * .mark
-// * .small
-// * .strong
-// * .sub
-// * .sup
-// * .label
-// * .blockquote
-// * .ol
-// * .ul
-// * .li
-// * .pre
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
+// 4 Mouse-driven devices
 
-// Imports
+// 1 Pattern outline
+// =============================================================================
+
+// .p
+// .a
+// .abbr
+// .code
+// .em
+// .kbd
+// .mark
+// .small
+// .strong
+// .sub
+// .sup
+// .label
+// .blockquote
+// .ol
+// .ul
+// .li
+// .pre
+
+// 2 Imports
+// =============================================================================
+
 @import '../utilities/scss/variables/namespace';
 @import '../utilities/scss/variables/tokens';
 @import '../utilities/scss/functions/rem';
+@import '../utilities/scss/mixins/device';
 
-// Rules
+// 3 Touch devices
+// =============================================================================
+
 .#{$pre}-p {
   display: block;
   margin: $space-stack-m;
@@ -66,27 +82,15 @@
 .#{$pre}-a:visited {
   color: $amethyst;
 }
-.#{$pre}-a:hover {
-  color: $viking;
-  text-decoration: none;
-}
 .#{$pre}-a:focus {
   outline: $focus-outline;
   color: $viking;
   text-decoration: none;
 }
-.#{$pre}-a:active {
-  color: $viking;
-  text-decoration: underline;
-}
 
 .#{$pre}-abbr {
   text-decoration: underline;
   text-transform: uppercase;
-}
-
-.#{$pre}-abbr:hover {
-  text-decoration: none;
 }
 
 .#{$pre}-code {
@@ -186,6 +190,12 @@
   margin: 0 0 $space-m $space-xl;
 }
 
+@for $index from 1 through 6 {
+  .#{$pre}-h#{$index} + .#{$pre}-ol {
+    margin-top: rem(-16px);
+  }
+}
+
 .#{$pre}-ol .#{$pre}-ol {
   margin: $space-s 0 0 $space-xl;
 }
@@ -193,14 +203,14 @@
   margin: $space-s 0 0 $space-xl;
 }
 
-@for $index from 1 through 6 {
-  .#{$pre}-h#{$index} + .#{$pre}-ol {
-    margin-top: rem(-16px);
-  }
-}
-
 .#{$pre}-ul {
   margin: 0 0 $space-m $space-xl;
+}
+
+@for $index from 1 through 6 {
+  .#{$pre}-h#{$index} + .#{$pre}-ul {
+    margin-top: rem(-16px);
+  }
 }
 
 .#{$pre}-ol .#{$pre}-ul {
@@ -208,12 +218,6 @@
 }
 .#{$pre}-ul .#{$pre}-ul {
   margin: $space-s 0 0 $space-xl;
-}
-
-@for $index from 1 through 6 {
-  .#{$pre}-h#{$index} + .#{$pre}-ul {
-    margin-top: rem(-16px);
-  }
 }
 
 .#{$pre}-li {
@@ -241,7 +245,8 @@
   content: counter(item);
   position: absolute;
 
-  // * A visual adjustment to align with the 8px grid.
+  // The top property is set to 1px so that the pseudo-element of the li element
+  // better aligns to the 8px grid.
   top: rem(1px);
 
   right: calc(100% + #{$space-m});
@@ -254,7 +259,8 @@
   content: '';
   position: absolute;
 
-  // * A visual adjustment to align with the 8px grid.
+  // The top property is set to 9px so that the pseudo-element of the li element
+  // better aligns to the 8px grid.
   top: rem(9px);
 
   right: calc(100% + #{$space-m});
@@ -281,7 +287,10 @@
   word-wrap: break-word;
 }
 
-@media #{$media-m} {
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
   .#{$pre}-p {
     font-size: rem(15px);
     line-height: rem(32px);
@@ -337,7 +346,9 @@
   .#{$pre}-ol > .#{$pre}-li::before {
     font-size: rem(13px);
   }
-  // * A visual adjustment to align with the 8px grid.
+
+  // The top property is set to 14px so that the pseudo-element of the li
+  // element better aligns to the 8px grid.
   .#{$pre}-ul > .#{$pre}-li::before {
     top: rem(14px);
   }
@@ -348,7 +359,10 @@
   }
 }
 
-@media #{$media-l} {
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
   .#{$pre}-p {
     font-size: rem(16px);
   }
@@ -404,5 +418,23 @@
 
   .#{$pre}-pre {
     font-size: rem(15px);
+  }
+}
+
+// 4 Mouse-driven devices
+// =============================================================================
+
+@include device(mouse-driven) {
+  .#{$pre}-a:hover {
+    color: $viking;
+    text-decoration: none;
+  }
+  .#{$pre}-a:active {
+    color: $viking;
+    text-decoration: underline;
+  }
+
+  .#{$pre}-abbr:hover {
+    text-decoration: none;
   }
 }

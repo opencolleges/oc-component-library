@@ -6,7 +6,7 @@
 /// @return {Number} - circumference of diameter
 
 @function get-circumference($diameter) {
-  $circumference: $diameter * 3.14159;
+  $circumference: $diameter * 3.141592;
 
   @return $circumference;
 }
