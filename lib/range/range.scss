@@ -23,5 +23,157 @@
 // 3 Touch devices
 // =============================================================================
 
+.#{$pre}-range {
+  position: relative;
+  margin-bottom: $space-m;
+}
+
+.#{$pre}-range__input {
+  appearance: none;
+  box-sizing: border-box;
+  height: rem(56px);
+  width: 100%;
+  padding: rem(40px) 0 $space-s;
+  margin: 0;
+  background-color: transparent;
+}
+
+.#{$pre}-range__input:focus {
+  outline: none;
+}
+
+.#{$pre}-range__input::-moz-focus-outer {
+  border: 0;
+}
+
+.#{$pre}-range__input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: rem(8px);
+  border-radius: rem(4px);
+  background-color: $alto;
+}
+
+.#{$pre}-range__input::-moz-range-track {
+  width: 100%;
+  height: rem(8px);
+  border-radius: rem(4px);
+  background-color: $alto;
+}
+
+.#{$pre}-range__input::-ms-track {
+  width: 100%;
+  height: rem(8px);
+  border-radius: rem(4px);
+  background-color: $alto;
+}
+
+.#{$pre}-range__input::-webkit-slider-thumb {
+  appearance: none;
+  height: rem(24px);
+  width: rem(24px);
+  border: none;
+  margin-top: rem(-8px);
+  background-color: transparent;
+}
+
+.#{$pre}-range__input::-moz-range-thumb {
+  appearance: none;
+  height: rem(24px);
+  width: rem(24px);
+  border: none;
+  margin-top: rem(-8px);
+  background-color: transparent;
+}
+
+.#{$pre}-range__input::-ms-thumb {
+  appearance: none;
+  height: rem(24px);
+  width: rem(24px);
+  border: none;
+  margin-top: rem(-8px);
+  background-color: transparent;
+}
+
+.#{$pre}-range__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: rem(24px);
+  user-select: none;
+}
+
+.#{$pre}-range__track {
+  position: absolute;
+  top: rem(40px);
+
+  // ! fix
+  min-width: rem(24px);
+
+  height: rem(8px);
+  border-radius: rem(4px);
+  background-color: $viking-shade;
+  transition: width $transition-duration-x2 $transition-timing-default,
+    background-color $transition-duration-x1 $transition-timing-default;
+  pointer-events: none;
+}
+
+.#{$pre}-range__input:focus ~ .#{$pre}-range__track {
+  background-color: $viking;
+}
+
+.#{$pre}-range__thumb {
+  position: absolute;
+  top: rem(32px);
+  width: rem(24px);
+  height: rem(24px);
+  border-radius: rem(12px);
+  background-color: $blizzard;
+  box-shadow: $box-shadow-layer-1;
+  transition: left $transition-duration-x2 $transition-timing-default,
+    transform $transition-duration-x2 $transition-timing-default;
+  pointer-events: none;
+}
+
+.#{$pre}-range__value {
+  color: $gunmetal;
+  font-family: $font-family-sans-serif;
+  font-size: rem(12px);
+  font-weight: 700;
+  user-select: none;
+}
+
 // 4 Mouse-driven devices
 // =============================================================================
+
+@include device(mouse-driven) {
+  .#{$pre}-range__input::-webkit-slider-runnable-track {
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-moz-range-track {
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-ms-track {
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-webkit-slider-thumb {
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-moz-range-thumb {
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-ms-thumb {
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input:hover ~ .#{$pre}-range__track {
+    background-color: $viking;
+  }
+  // .#{$pre}-range__input:active ~ .#{$pre}-range__track {
+  //   background-color: $viking-shade;
+  // }
+}
