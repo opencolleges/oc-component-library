@@ -66,42 +66,42 @@
 }
 
 .#{$pre}-button--primary {
-  border: rem(1px) solid $state-default;
-  background-color: $state-default;
+  border: rem(1px) solid $viking-shade;
+  background-color: $viking-shade;
   color: $blizzard;
 }
 
 .#{$pre}-button--primary.#{$pre}-button--error {
-  border: rem(1px) solid $state-error;
-  background-color: $state-error;
+  border: rem(1px) solid $cinnabar-shade;
+  background-color: $cinnabar-shade;
 }
 .#{$pre}-button--primary.#{$pre}-button--success {
-  border: rem(1px) solid $state-success;
-  background-color: $state-success;
+  border: rem(1px) solid $christi-shade;
+  background-color: $christi-shade;
 }
 .#{$pre}-button--primary.#{$pre}-button--reversed {
   border: rem(1px) solid $blizzard;
   background-color: $blizzard;
-  color: $state-default;
+  color: $viking-shade;
 }
 
 .#{$pre}-button--primary:disabled {
-  border: rem(1px) solid $state-disabled;
-  background-color: $state-disabled;
+  border: rem(1px) solid $alto;
+  background-color: $alto;
 }
 
 .#{$pre}-button--secondary {
-  border: rem(1px) solid $state-default;
-  color: $state-default;
+  border: rem(1px) solid $viking-shade;
+  color: $viking-shade;
 }
 
 .#{$pre}-button--secondary.#{$pre}-button--error {
-  border: rem(1px) solid $state-error;
-  color: $state-error;
+  border: rem(1px) solid $cinnabar-shade;
+  color: $cinnabar-shade;
 }
 .#{$pre}-button--secondary.#{$pre}-button--success {
-  border: rem(1px) solid $state-success;
-  color: $state-success;
+  border: rem(1px) solid $christi-shade;
+  color: $christi-shade;
 }
 .#{$pre}-button--secondary.#{$pre}-button--reversed {
   border: rem(1px) solid $blizzard;
@@ -109,8 +109,8 @@
 }
 
 .#{$pre}-button--secondary:disabled {
-  border: rem(1px) solid $state-disabled;
-  color: $state-disabled;
+  border: rem(1px) solid $alto;
+  color: $alto;
 }
 
 .#{$pre}-button--icon > .#{$pre}-icon {
@@ -144,44 +144,44 @@
   }
 
   .#{$pre}-button--primary:hover {
-    border-color: $state-default-hover;
-    background-color: $state-default-hover;
+    border-color: $viking;
+    background-color: $viking;
   }
   .#{$pre}-button--primary:focus {
-    border-color: $state-default-focus;
-    background-color: $state-default-focus;
+    border-color: $viking;
+    background-color: $viking;
   }
   .#{$pre}-button--primary:active {
-    border-color: $state-default-active;
-    background-color: $state-default-active;
+    border-color: $viking-shade;
+    background-color: $viking-shade;
     color: $fossil-transparent;
   }
 
   .#{$pre}-button--primary.#{$pre}-button--error:hover {
-    border-color: $state-error-hover;
-    background-color: $state-error-hover;
+    border-color: $cinnabar;
+    background-color: $cinnabar;
   }
   .#{$pre}-button--primary.#{$pre}-button--error:focus {
-    border-color: $state-error-focus;
-    background-color: $state-error-focus;
+    border-color: $cinnabar;
+    background-color: $cinnabar;
   }
   .#{$pre}-button--primary.#{$pre}-button--error:active {
-    border-color: $state-error-active;
-    background-color: $state-error-active;
+    border-color: $cinnabar-shade;
+    background-color: $cinnabar-shade;
     color: $fossil-transparent;
   }
 
   .#{$pre}-button--primary.#{$pre}-button--success:hover {
-    border-color: $state-success-hover;
-    background-color: $state-success-hover;
+    border-color: $christi;
+    background-color: $christi;
   }
   .#{$pre}-button--primary.#{$pre}-button--success:focus {
-    border-color: $state-success-focus;
-    background-color: $state-success-focus;
+    border-color: $christi;
+    background-color: $christi;
   }
   .#{$pre}-button--primary.#{$pre}-button--success:active {
-    border-color: $state-success-active;
-    background-color: $state-success-active;
+    border-color: $christi-shade;
+    background-color: $christi-shade;
     color: $fossil-transparent;
   }
 
@@ -189,18 +189,18 @@
     border-color: $blizzard;
     box-shadow: $box-shadow-layer-1;
     background-color: $blizzard;
-    color: $state-default-hover;
+    color: $viking;
   }
   .#{$pre}-button--primary.#{$pre}-button--reversed:focus {
     border-color: $blizzard;
     box-shadow: $box-shadow-layer-1;
     background-color: $blizzard;
-    color: $state-default-focus;
+    color: $viking;
   }
   .#{$pre}-button--primary.#{$pre}-button--reversed:active {
     border-color: $blizzard;
     box-shadow: none;
-    color: rgba($state-default-active, 0.21);
+    color: rgba($viking-shade, 0.21);
   }
 
   .#{$pre}-button--primary:disabled {
@@ -208,58 +208,58 @@
   }
 
   .#{$pre}-button--primary:disabled:hover {
-    border-color: $state-disabled;
-    background-color: $state-disabled;
+    border-color: $alto;
+    background-color: $alto;
   }
   .#{$pre}-button--primary:disabled:active {
     color: $blizzard;
   }
 
   .#{$pre}-button--secondary:hover {
-    border-color: $state-default-hover;
-    background-color: $state-default-hover;
+    border-color: $viking;
+    background-color: $viking;
     color: $blizzard;
   }
   .#{$pre}-button--secondary:focus {
-    border-color: $state-default-focus;
-    background-color: $state-default-focus;
+    border-color: $viking;
+    background-color: $viking;
     color: $blizzard;
   }
   .#{$pre}-button--secondary:active {
-    border-color: $state-default-active;
-    background-color: $state-default-active;
+    border-color: $viking-shade;
+    background-color: $viking-shade;
     color: $fossil-transparent;
   }
 
   .#{$pre}-button--secondary.#{$pre}-button--error:hover {
-    border-color: $state-error-hover;
-    background-color: $state-error-hover;
+    border-color: $cinnabar;
+    background-color: $cinnabar;
     color: $blizzard;
   }
   .#{$pre}-button--secondary.#{$pre}-button--error:focus {
-    border-color: $state-error-focus;
-    background-color: $state-error-focus;
+    border-color: $cinnabar;
+    background-color: $cinnabar;
     color: $blizzard;
   }
   .#{$pre}-button--secondary.#{$pre}-button--error:active {
-    border-color: $state-error-active;
-    background-color: $state-error-active;
+    border-color: $cinnabar-shade;
+    background-color: $cinnabar-shade;
     color: $fossil-transparent;
   }
 
   .#{$pre}-button--secondary.#{$pre}-button--success:hover {
-    border-color: $state-success-hover;
-    background-color: $state-success-hover;
+    border-color: $christi;
+    background-color: $christi;
     color: $blizzard;
   }
   .#{$pre}-button--secondary.#{$pre}-button--success:focus {
-    border-color: $state-success-focus;
-    background-color: $state-success-focus;
+    border-color: $christi;
+    background-color: $christi;
     color: $blizzard;
   }
   .#{$pre}-button--secondary.#{$pre}-button--success:active {
-    border-color: $state-success-active;
-    background-color: $state-success-active;
+    border-color: $christi-shade;
+    background-color: $christi-shade;
     color: $fossil-transparent;
   }
 
@@ -267,17 +267,17 @@
     border-color: $blizzard;
     box-shadow: $box-shadow-layer-1;
     background-color: $blizzard;
-    color: $state-default-hover;
+    color: $viking;
   }
   .#{$pre}-button--secondary.#{$pre}-button--reversed:focus {
     border-color: $blizzard;
     box-shadow: $box-shadow-layer-1;
     background-color: $blizzard;
-    color: $state-default-focus;
+    color: $viking;
   }
   .#{$pre}-button--secondary.#{$pre}-button--reversed:active {
     box-shadow: none;
-    color: rgba($state-default-active, 0.21);
+    color: rgba($viking-shade, 0.21);
   }
 
   .#{$pre}-button--secondary:disabled {
@@ -285,11 +285,11 @@
   }
 
   .#{$pre}-button--secondary:disabled:hover {
-    border-color: $state-disabled;
+    border-color: $alto;
     background-color: transparent;
-    color: $state-disabled;
+    color: $alto;
   }
   .#{$pre}-button--secondary:disabled:active {
-    color: $state-disabled;
+    color: $alto;
   }
 }

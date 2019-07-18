@@ -63,10 +63,10 @@
 }
 
 .#{$pre}-file--error > .#{$pre}-file__outer {
-  border-color: $state-error;
+  border-color: $cinnabar-shade;
 }
 .#{$pre}-file--success > .#{$pre}-file__outer {
-  border-color: $state-success;
+  border-color: $christi-shade;
 }
 
 .#{$pre}-file__input {
@@ -154,7 +154,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  color: rgba($state-default, 0);
+  color: rgba($viking-shade, 0);
   font-size: rem(12px);
   line-height: rem(16px);
   transition: color $transition-duration-x1 $transition-timing-default;
@@ -162,10 +162,10 @@
 }
 
 .#{$pre}-file--error .#{$pre}-file__message {
-  color: $state-error;
+  color: $cinnabar-shade;
 }
 .#{$pre}-file--success .#{$pre}-file__message {
-  color: $state-success;
+  color: $christi-shade;
 }
 
 .#{$pre}-file__list {
@@ -311,13 +311,13 @@
   }
 
   .#{$pre}-file__button:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
+    stroke: $viking;
   }
   .#{$pre}-file__button:focus > .#{$pre}-icon {
-    stroke: $state-default-focus;
+    stroke: $viking;
   }
   .#{$pre}-file__button:active > .#{$pre}-icon {
-    stroke: $state-default-active;
+    stroke: $viking-shade;
   }
 
   // 4.1 Medium devices

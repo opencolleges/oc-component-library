@@ -63,7 +63,7 @@
   // adds to a :disabled text inputs by default.
   opacity: 1;
 
-  border-color: $state-disabled;
+  border-color: $alto;
   color: $fossil;
   -webkit-text-fill-color: $fossil;
 }
@@ -105,11 +105,11 @@
 }
 
 .#{$pre}-text--error > .#{$pre}-text__input {
-  border-bottom: rem(1px) solid $state-error;
+  border-bottom: rem(1px) solid $cinnabar-shade;
 }
 
 .#{$pre}-text--success > .#{$pre}-text__input {
-  border-bottom: rem(1px) solid $state-success;
+  border-bottom: rem(1px) solid $christi-shade;
 }
 
 // Removes the clear button that IE11 adds to text inputs by default.
@@ -192,7 +192,7 @@
 }
 
 .#{$pre}-text__input.#{$pre}-active:disabled + .#{$pre}-text__label {
-  color: $state-disabled;
+  color: $alto;
 }
 .#{$pre}-text__input.#{$pre}-active[readonly] + .#{$pre}-text__label {
   color: $christi-shade;
@@ -202,7 +202,7 @@
   content: ' *';
   position: relative;
   top: rem(-16px);
-  color: rgba($state-error-focus, 0);
+  color: rgba($cinnabar, 0);
   transition: top $transition-duration-x2 $transition-timing-default,
     color $transition-duration-x1 $transition-timing-default;
 }
@@ -211,22 +211,22 @@
 // :required text input is dynamically changed to a :disabled text input.
 .#{$pre}-text__input:disabled + .#{$pre}-text__label::after {
   top: rem(-16px);
-  color: rgba($state-error-focus, 0);
+  color: rgba($cinnabar, 0);
 }
 
 .#{$pre}-text__input:required + .#{$pre}-text__label::after {
   top: 0;
-  color: $state-error-focus;
+  color: $cinnabar;
 }
 
 .#{$pre}-text__input:required[readonly] + .#{$pre}-text__label::after {
   top: rem(-16px);
-  color: rgba($state-error-focus, 0);
+  color: rgba($cinnabar, 0);
 }
 
 .#{$pre}-text__input.#{$pre}-active:required + .#{$pre}-text__label::after {
   top: rem(-16px);
-  color: rgba($state-error-focus, 0);
+  color: rgba($cinnabar, 0);
 }
 
 .#{$pre}-text > .#{$pre}-icon {
@@ -240,10 +240,10 @@
 }
 
 .#{$pre}-text > .#{$pre}-icon--close {
-  stroke: $state-error;
+  stroke: $cinnabar-shade;
 }
 .#{$pre}-text > .#{$pre}-icon--tick {
-  stroke: $state-success;
+  stroke: $christi-shade;
 }
 
 .#{$pre}-text__border {
@@ -254,7 +254,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  color: rgba($state-default, 0);
+  color: rgba($viking-shade, 0);
   font-size: rem(12px);
   line-height: rem(16px);
   transition: color $transition-duration-x1 $transition-timing-default;
@@ -262,11 +262,11 @@
 }
 
 .#{$pre}-text--error > .#{$pre}-text__message {
-  color: $state-error;
+  color: $cinnabar-shade;
 }
 
 .#{$pre}-text--success > .#{$pre}-text__message {
-  color: $state-success;
+  color: $christi-shade;
 }
 
 // 3.1 Medium devices
@@ -307,7 +307,7 @@
   }
 
   .#{$pre}-text__input:disabled {
-    border-bottom-color: $state-disabled;
+    border-bottom-color: $alto;
   }
 
   .#{$pre}-text__input[readonly] {
@@ -344,7 +344,7 @@
   }
 
   .#{$pre}-text__input.#{$pre}-active:disabled + .#{$pre}-text__label {
-    color: $state-disabled;
+    color: $alto;
   }
 
   .#{$pre}-text__input.#{$pre}-active[readonly] + .#{$pre}-text__label {
@@ -360,17 +360,17 @@
   }
 
   .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
-    stroke: $state-error-hover;
+    stroke: $cinnabar;
   }
   .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
-    stroke: $state-error-focus;
+    stroke: $cinnabar;
   }
 
   .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
-    stroke: $state-success-hover;
+    stroke: $christi;
   }
   .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
-    stroke: $state-success-focus;
+    stroke: $christi;
   }
 
   .#{$pre}-text__border {
@@ -394,51 +394,51 @@
 
   .#{$pre}-text__input.#{$pre}-active ~ .#{$pre}-text__border {
     width: 100%;
-    background-color: $state-default;
+    background-color: $viking-shade;
   }
 
   .#{$pre}-text__input.#{$pre}-active:hover ~ .#{$pre}-text__border {
-    background-color: $state-default-hover;
+    background-color: $viking;
   }
   .#{$pre}-text__input.#{$pre}-active:focus ~ .#{$pre}-text__border {
-    background-color: $state-default-focus;
+    background-color: $viking;
   }
 
   .#{$pre}-text--error > .#{$pre}-text__input ~ .#{$pre}-text__border {
     width: 100%;
-    background-color: $state-error;
+    background-color: $cinnabar-shade;
   }
 
   .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-text__border {
-    background-color: $state-error-hover;
+    background-color: $cinnabar;
   }
   .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
-    background-color: $state-error-focus;
+    background-color: $cinnabar;
   }
 
   .#{$pre}-text--success > .#{$pre}-text__input ~ .#{$pre}-text__border {
     width: 100%;
-    background-color: $state-success;
+    background-color: $christi-shade;
   }
 
   .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-text__border {
-    background-color: $state-success-hover;
+    background-color: $christi;
   }
   .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
-    background-color: $state-success-focus;
+    background-color: $christi;
   }
 
   .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-text__message {
-    color: $state-error-hover;
+    color: $cinnabar;
   }
   .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-text__message {
-    color: $state-error-focus;
+    color: $cinnabar;
   }
 
   .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-text__message {
-    color: $state-success-hover;
+    color: $christi;
   }
   .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-text__message {
-    color: $state-success-focus;
+    color: $christi;
   }
 }

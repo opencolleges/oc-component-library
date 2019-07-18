@@ -71,14 +71,14 @@
   height: 100%;
   border-top-left-radius: $border-radius-m;
   border-bottom-left-radius: $border-radius-m;
-  background-color: $state-default;
+  background-color: $viking-shade;
 }
 
 .#{$pre}-toast--error::before {
-  background-color: $state-error;
+  background-color: $cinnabar-shade;
 }
 .#{$pre}-toast--success::before {
-  background-color: $state-success;
+  background-color: $christi-shade;
 }
 
 .#{$pre}-toast__heading {
@@ -117,14 +117,14 @@
   transform: translateY(-50%);
   width: rem(24px);
   height: rem(24px);
-  stroke: $state-default;
+  stroke: $viking-shade;
 }
 
 .#{$pre}-toast > .#{$pre}-icon--close-ring {
-  stroke: $state-error;
+  stroke: $cinnabar-shade;
 }
 .#{$pre}-toast > .#{$pre}-icon--tick-ring {
-  stroke: $state-success;
+  stroke: $christi-shade;
 }
 
 // 4 Mouse-driven devices
@@ -140,12 +140,12 @@
   }
 
   .#{$pre}-toast__button:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
+    stroke: $viking;
   }
   .#{$pre}-toast__button:focus > .#{$pre}-icon {
-    stroke: $state-default-focus;
+    stroke: $viking;
   }
   .#{$pre}-toast__button:active > .#{$pre}-icon {
-    stroke: $state-default-active;
+    stroke: $viking-shade;
   }
 }

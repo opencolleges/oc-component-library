@@ -131,7 +131,7 @@
 }
 
 .#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label::before {
-  border-color: $state-disabled;
+  border-color: $alto;
 }
 
 .#{$pre}-checkbox__input[readonly] + .#{$pre}-checkbox__label::before {
@@ -190,11 +190,11 @@
 }
 
 .#{$pre}-checkbox > .#{$pre}-icon--close {
-  stroke: $state-error;
+  stroke: $cinnabar-shade;
 }
 
 .#{$pre}-checkbox > .#{$pre}-icon--tick {
-  stroke: $state-success;
+  stroke: $christi-shade;
 }
 
 .#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
@@ -292,23 +292,23 @@
   }
 
   .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--close {
-    stroke: $state-error-hover;
+    stroke: $cinnabar;
   }
   .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--close {
-    stroke: $state-error-focus;
+    stroke: $cinnabar;
   }
   .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--close {
-    stroke: $state-error-active;
+    stroke: $cinnabar-shade;
   }
 
   .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--tick {
-    stroke: $state-success-hover;
+    stroke: $christi;
   }
   .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--tick {
-    stroke: $state-success-focus;
+    stroke: $christi;
   }
   .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--tick {
-    stroke: $state-success-active;
+    stroke: $christi-shade;
   }
 
   .#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
