@@ -73,7 +73,7 @@
 
 .#{$pre}-radio__label {
   display: inline-block;
-  padding: 0 $space-xxl;
+  padding: 0 0 0 $space-xxl;
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
@@ -91,6 +91,10 @@
 
 .#{$pre}-radio__input:focus + .#{$pre}-radio__label {
   color: $charcoal;
+}
+
+.#{$pre}-radio-set .#{$pre}-radio__label {
+  padding: 0 $space-xxl;
 }
 
 .#{$pre}-radio--right > .#{$pre}-radio__label {
@@ -234,7 +238,12 @@
   top: 50%;
   right: rem(8px);
   transform: translateY(-50%);
+  display: none;
   transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-radio-set .#{$pre}-radio > .#{$pre}-icon {
+  display: block;
 }
 
 .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-icon {
@@ -244,6 +253,7 @@
 .#{$pre}-radio > .#{$pre}-icon--close {
   stroke: $cinnabar-shade;
 }
+
 .#{$pre}-radio > .#{$pre}-icon--tick {
   stroke: $christi-shade;
 }
