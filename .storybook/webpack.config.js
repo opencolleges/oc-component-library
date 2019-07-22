@@ -13,7 +13,19 @@ module.exports = async ({ config, mode }) => {
     test: /\.*css$/,
     use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
-      use: ['css-loader', 'sass-loader']
+      use: [
+        'css-loader',
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+            config: {
+              path: 'postcss.config.js'
+            }
+          }
+        },
+        'sass-loader'
+      ]
     })
   });
 
