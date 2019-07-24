@@ -28,7 +28,7 @@ npm install oc-uniform --save
 
 ```jsx
 // UDS components
-import { OCHeading, OCCopy } from 'oc-uniform';
+import { Heading, Copy } from 'oc-uniform';
 
 // UDS styles
 import 'oc-uniform/dist/heading.css';
@@ -38,8 +38,8 @@ import 'oc-uniform/dist/copy.css';
 const Header = () => {
   return (
     <header role="banner">
-      <OCHeading>Hello world!</OCHeading>
-      <OCCopy>I'm an Open Colleges product...</OCCopy>
+      <Heading>Hello world!</Heading>
+      <Copy>I'm an Open Colleges product...</Copy>
     </header>
   );
 };
