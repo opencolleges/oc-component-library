@@ -31,6 +31,13 @@
   margin: 0 auto $space-m;
 }
 
+.#{$pre}-checkbox-set > .#{$pre}-grid {
+  padding: 0;
+}
+.#{$pre}-radio-set > .#{$pre}-grid {
+  padding: 0;
+}
+
 .#{$pre}-modal .#{$pre}-grid {
   padding: 0;
 }

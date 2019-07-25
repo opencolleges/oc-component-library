@@ -73,7 +73,7 @@
 
 .#{$pre}-checkbox__label {
   display: inline-block;
-  padding: 0 $space-xxl;
+  padding: 0 0 0 $space-xxl;
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
@@ -91,6 +91,10 @@
 
 .#{$pre}-checkbox__input:focus + .#{$pre}-checkbox__label {
   color: $charcoal;
+}
+
+.#{$pre}-checkbox-set .#{$pre}-checkbox__label {
+  padding: 0 $space-xxl;
 }
 
 .#{$pre}-checkbox--right > .#{$pre}-checkbox__label {
@@ -131,7 +135,7 @@
 }
 
 .#{$pre}-checkbox__input:disabled + .#{$pre}-checkbox__label::before {
-  border-color: $state-disabled;
+  border-color: $alto;
 }
 
 .#{$pre}-checkbox__input[readonly] + .#{$pre}-checkbox__label::before {
@@ -181,8 +185,13 @@
   top: 50%;
   right: rem(8px);
   transform: translateY(-50%);
-  pointer-events: none;
+  display: none;
   transition: stroke $transition-duration-x1 $transition-timing-default;
+  pointer-events: none;
+}
+
+.#{$pre}-checkbox-set .#{$pre}-checkbox > .#{$pre}-icon {
+  display: block;
 }
 
 .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon {
@@ -190,22 +199,23 @@
 }
 
 .#{$pre}-checkbox > .#{$pre}-icon--close {
-  stroke: $state-error;
+  stroke: $cinnabar-shade;
 }
 
 .#{$pre}-checkbox > .#{$pre}-icon--tick {
-  stroke: $state-success;
+  stroke: $christi-shade;
 }
 
-.#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
+.#{$pre}-checkbox > .#{$pre}-icon:last-child {
   top: rem(-2px);
   right: auto;
   left: rem(8px);
   transform: none;
+  display: block;
   stroke: $charcoal;
 }
 
-.#{$pre}-checkbox--right > .#{$pre}-icon--tick:last-child {
+.#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
   // The top property is set to 50% - 2px as a visual adjustment to ensure the
   // icon adheres to the 8px grid.
   top: calc(50% - #{rem(2px)});
@@ -228,15 +238,15 @@
   left: auto;
 }
 
-.#{$pre}-checkbox--reversed > .#{$pre}-icon--tick:last-child {
+.#{$pre}-checkbox--reversed > .#{$pre}-icon:last-child {
   color: $blizzard;
 }
 
-.#{$pre}-checkbox__input:checked:disabled ~ .#{$pre}-icon--tick:last-child {
+.#{$pre}-checkbox__input:checked:disabled ~ .#{$pre}-icon:last-child {
   stroke: $fossil;
 }
 
-.#{$pre}-checkbox__input:checked[readonly] ~ .#{$pre}-icon--tick:last-child {
+.#{$pre}-checkbox__input:checked[readonly] ~ .#{$pre}-icon:last-child {
   stroke: $charcoal;
 }
 
@@ -291,27 +301,49 @@
     pointer-events: none;
   }
 
+  .#{$pre}-checkbox > .#{$pre}-icon:last-child {
+    top: rem(2px);
+  }
+
+  // The top property is set to 50% - 2px as a visual adjustment to ensure the
+  // icon adheres to the 8px grid.
+  .#{$pre}-checkbox--right > .#{$pre}-icon:last-child {
+    top: calc(50% - #{rem(2px)});
+  }
+
+  .#{$pre}-card--clickable > .#{$pre}-checkbox > .#{$pre}-icon:last-child {
+    top: rem(18px);
+  }
+
+  // The top property is set to 50% - 2px as a visual adjustment to ensure the
+  // icon adheres to the 8px grid.
+  .#{$pre}-card--clickable
+    > .#{$pre}-checkbox--right
+    > .#{$pre}-icon:last-child {
+    top: calc(50% - #{rem(2px)});
+  }
+
   .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--close {
-    stroke: $state-error-hover;
+    stroke: $cinnabar;
   }
   .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--close {
-    stroke: $state-error-focus;
+    stroke: $cinnabar;
   }
   .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--close {
-    stroke: $state-error-active;
+    stroke: $cinnabar-shade;
   }
 
   .#{$pre}-checkbox__input:hover ~ .#{$pre}-icon--tick {
-    stroke: $state-success-hover;
+    stroke: $christi;
   }
   .#{$pre}-checkbox__input:focus ~ .#{$pre}-icon--tick {
-    stroke: $state-success-focus;
+    stroke: $christi;
   }
   .#{$pre}-checkbox__input:active ~ .#{$pre}-icon--tick {
-    stroke: $state-success-active;
+    stroke: $christi-shade;
   }
 
-  .#{$pre}-checkbox > .#{$pre}-icon--tick:last-child {
+  .#{$pre}-checkbox > .#{$pre}-icon:last-child {
     stroke: $charcoal;
   }
 }

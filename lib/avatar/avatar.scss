@@ -60,7 +60,7 @@
 }
 
 .#{$pre}-avatar--reversed {
-  border-color: $state-reversed;
+  border-color: rgba($blizzard, 0.55);
 }
 
 .#{$pre}-avatar:focus {
@@ -90,13 +90,13 @@
 }
 
 .#{$pre}-avatar__border {
-  stroke: $state-default;
+  stroke: $viking-shade;
   stroke-width: 1;
   fill: none;
 }
 
 .#{$pre}-avatar--reversed .#{$pre}-avatar__border {
-  stroke: $state-reversed-hover;
+  stroke: $blizzard;
 }
 
 .#{$pre}-avatar__image {
@@ -178,7 +178,7 @@
 
 @include device(mouse-driven) {
   .#{$pre}-avatar__border {
-    stroke: $state-default-hover;
+    stroke: $viking;
 
     // The stroke-dasharray property is used instead of the stroke-dashoffset
     // property because a wider range of browsers support transitions on the
@@ -236,26 +236,26 @@
   }
 
   .#{$pre}-avatar:hover .#{$pre}-avatar__border {
-    stroke: $state-default-hover;
+    stroke: $viking;
   }
   .#{$pre}-avatar:focus .#{$pre}-avatar__border {
-    stroke: $state-default-focus;
+    stroke: $viking;
   }
   .#{$pre}-avatar:active .#{$pre}-avatar__border {
-    stroke: $state-default-active;
+    stroke: $viking-shade;
   }
 
   .#{$pre}-avatar--reversed .#{$pre}-avatar__border {
-    stroke: $state-reversed-hover;
+    stroke: $blizzard;
   }
 
   .#{$pre}-avatar--reversed:hover .#{$pre}-avatar__border {
-    stroke: $state-reversed-hover;
+    stroke: $blizzard;
   }
   .#{$pre}-avatar--reversed:focus .#{$pre}-avatar__border {
-    stroke: $state-reversed-focus;
+    stroke: $blizzard;
   }
   .#{$pre}-avatar--reversed:active .#{$pre}-avatar__border {
-    stroke: $state-reversed-active;
+    stroke: rgba($blizzard, 0.55);
   }
 }

@@ -3,6 +3,8 @@
 // 1 Pattern outline
 // 2 Imports
 // 3 Touch devices
+//   3.1 Medium devices
+//   3.2 Large devices
 // 4 Mouse-driven devices
 
 // 1 Pattern outline
@@ -11,6 +13,8 @@
 // .range
 // | .range__input
 // | .range__label
+// | .range__track
+// | .range__thumb
 
 // 2 Imports
 // =============================================================================
@@ -23,5 +27,231 @@
 // 3 Touch devices
 // =============================================================================
 
+.#{$pre}-range {
+  position: relative;
+  margin-bottom: $space-m;
+}
+
+.#{$pre}-range__input {
+  appearance: none;
+  box-sizing: border-box;
+  height: rem(48px);
+  width: 100%;
+  padding: $space-xl 0 $space-s;
+  margin: 0;
+  background-color: transparent;
+}
+
+.#{$pre}-range__input:focus {
+  outline: none;
+}
+
+// This selector removes the secondary outline that appears bby default in
+// Firefox.
+.#{$pre}-range__input::-moz-focus-outer {
+  border: 0;
+}
+
+.#{$pre}-range__input::-moz-range-track {
+  width: 100%;
+  height: rem(8px);
+  border-radius: rem(4px);
+  background-color: $alto;
+}
+
+.#{$pre}-range__input::-moz-range-thumb {
+  height: rem(48px);
+  width: rem(48px);
+
+  // The border property set to none removes the default border applied to the
+  // range thumbb in Firefox.
+  border: none;
+
+  margin-top: rem(-20px);
+  background-color: transparent;
+}
+
+.#{$pre}-range__input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: rem(8px);
+  border-radius: rem(4px);
+  background-color: $alto;
+}
+
+.#{$pre}-range__input::-webkit-slider-thumb {
+  // The appearance property set to none hides the range thumb that appears by
+  // default in Chrome.
+  appearance: none;
+
+  height: rem(48px);
+  width: rem(48px);
+
+  // The border property set to none removes the default border applied to the
+  // range thumb in Mobile Safari.
+  border: none;
+
+  margin-top: rem(-20px);
+  background-color: transparent;
+}
+
+.#{$pre}-range__input::-ms-track {
+  width: 100%;
+  height: rem(8px);
+  border: none;
+  border-radius: rem(4px);
+  background-color: $alto;
+
+  // The color property set to transparent removes the default ticks that are
+  // rendered in IE11.
+  color: transparent;
+}
+
+.#{$pre}-range__input::-ms-thumb {
+  appearance: none;
+  height: rem(48px);
+  width: rem(48px);
+  border: none;
+  margin-top: rem(-20px);
+  background-color: transparent;
+}
+
+.#{$pre}-range__input::-ms-fill-lower {
+  background-color: transparent;
+}
+
+.#{$pre}-range__input::-ms-fill-upper {
+  background-color: transparent;
+}
+
+.#{$pre}-range__input::-ms-ticks-before {
+  color: transparent;
+}
+.#{$pre}-range__input::-ms-ticks-after {
+  color: transparent;
+}
+
+.#{$pre}-range__input::-ms-tooltip {
+  display: none;
+}
+
+.#{$pre}-range__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $gunmetal;
+  font-size: rem(14px);
+  line-height: rem(24px);
+  user-select: none;
+}
+
+.#{$pre}-range__track {
+  position: absolute;
+  top: rem(32px);
+
+  // ! Improve in the future. Small issue with the range track RHS border-radius
+  // ! when the range input possesses a small percentage the border-radius is
+  // ! visible, creeping out from underneath the range thumb.
+  min-width: rem(24px);
+
+  height: rem(8px);
+  border-radius: rem(4px);
+  background-color: $viking-shade;
+  pointer-events: none;
+}
+
+.#{$pre}-range__input:focus ~ .#{$pre}-range__track {
+  background-color: $viking;
+}
+
+.#{$pre}-range__thumb {
+  position: absolute;
+  top: rem(24px);
+  width: rem(24px);
+  height: rem(24px);
+  border-radius: rem(12px);
+  background-color: $blizzard;
+  box-shadow: $box-shadow-layer-1;
+  pointer-events: none;
+}
+
+.#{$pre}-range__value {
+  color: $gunmetal;
+  font-family: $font-family-sans-serif;
+  font-size: rem(12px);
+  font-weight: 700;
+  line-height: rem(16px);
+  user-select: none;
+}
+
+// 3.1 Medium devices
+// -----------------------------------------------------------------------------
+
+@include device(medium) {
+  .#{$pre}-range__label {
+    font-size: rem(15px);
+  }
+}
+
+// 3.2 Large devices
+// -----------------------------------------------------------------------------
+
+@include device(large) {
+  .#{$pre}-range__label {
+    font-size: rem(16px);
+  }
+}
+
 // 4 Mouse-driven devices
 // =============================================================================
+
+@include device(mouse-driven) {
+  .#{$pre}-range__input::-moz-range-track {
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-moz-range-thumb {
+    height: rem(24px);
+    width: rem(24px);
+    border-radius: rem(12px);
+    margin-top: rem(-8px);
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-ms-track {
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-ms-thumb {
+    height: rem(24px);
+    width: rem(24px);
+    border-radius: rem(12px);
+    margin-top: rem(-8px);
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-webkit-slider-runnable-track {
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__input::-webkit-slider-thumb {
+    height: rem(24px);
+    width: rem(24px);
+    border-radius: rem(12px);
+    margin-top: rem(-8px);
+    cursor: pointer;
+  }
+
+  .#{$pre}-range__track {
+    transition: width $transition-duration-x2 $transition-timing-default,
+      background-color $transition-duration-x1 $transition-timing-default;
+  }
+
+  .#{$pre}-range__input:hover ~ .#{$pre}-range__track {
+    background-color: $viking;
+  }
+
+  .#{$pre}-range__thumb {
+    transition: left $transition-duration-x2 $transition-timing-default,
+      transform $transition-duration-x2 $transition-timing-default;
+  }
+}

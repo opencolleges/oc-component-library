@@ -65,14 +65,14 @@
 }
 
 .#{$pre}-date--error > .#{$pre}-date__input {
-  border-bottom: rem(1px) solid $state-error;
+  border-bottom: rem(1px) solid $cinnabar-shade;
 }
 .#{$pre}-date--success > .#{$pre}-date__input {
-  border-bottom: rem(1px) solid $state-success;
+  border-bottom: rem(1px) solid $christi-shade;
 }
 
 .#{$pre}-date__input:disabled ~ .#{$pre}-date__input {
-  border-color: $state-disabled;
+  border-color: $alto;
   color: $fossil;
 }
 .#{$pre}-date__input[readonly] ~ .#{$pre}-date__input {
@@ -92,7 +92,7 @@
 }
 
 .#{$pre}-date__input:disabled ~ .#{$pre}-date__label {
-  color: $state-disabled;
+  color: $alto;
 }
 .#{$pre}-date__input[readonly] ~ .#{$pre}-date__label {
   color: $christi-shade;
@@ -102,7 +102,7 @@
   content: ' *';
   position: relative;
   top: 0;
-  color: $state-error-focus;
+  color: $cinnabar;
   transition: top $transition-duration-x2 $transition-timing-default,
     color $transition-duration-x1 $transition-timing-default;
 }
@@ -111,7 +111,7 @@
   > .#{$pre}-date__input[required]
   ~ .#{$pre}-date__label::after {
   top: rem(-16px);
-  color: rgba($state-error-focus, 0);
+  color: rgba($cinnabar, 0);
 }
 
 .#{$pre}-date > .#{$pre}-icon {
@@ -217,7 +217,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  color: rgba($state-default, 0);
+  color: rgba($viking-shade, 0);
   font-size: rem(12px);
   line-height: rem(16px);
   transition: color $transition-duration-x1 $transition-timing-default;
@@ -225,10 +225,10 @@
 }
 
 .#{$pre}-date--error .#{$pre}-date__message {
-  color: $state-error;
+  color: $cinnabar-shade;
 }
 .#{$pre}-date--success .#{$pre}-date__message {
-  color: $state-success;
+  color: $christi-shade;
 }
 
 // 3.1 Medium devices
@@ -332,7 +332,7 @@
 
   .#{$pre}-date.#{$pre}-selected > .#{$pre}-date__border {
     width: 100%;
-    background-color: $state-default;
+    background-color: $viking-shade;
   }
 
   .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
@@ -345,50 +345,50 @@
   .#{$pre}-date.#{$pre}-selected
     > .#{$pre}-date__input:hover
     ~ .#{$pre}-date__border {
-    background-color: $state-default-hover;
+    background-color: $viking;
   }
   .#{$pre}-date.#{$pre}-selected
     > .#{$pre}-date__input:focus
     ~ .#{$pre}-date__border {
-    background-color: $state-default-focus;
+    background-color: $viking;
   }
 
   .#{$pre}-date--error > .#{$pre}-date__input ~ .#{$pre}-date__border {
     width: 100%;
-    background-color: $state-error;
+    background-color: $cinnabar-shade;
   }
 
   .#{$pre}-date--error > .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
-    background-color: $state-error-hover;
+    background-color: $cinnabar;
   }
   .#{$pre}-date--error > .#{$pre}-date__input:focus ~ .#{$pre}-date__border {
-    background-color: $state-error-focus;
+    background-color: $cinnabar;
   }
 
   .#{$pre}-date--success > .#{$pre}-date__input ~ .#{$pre}-date__border {
     width: 100%;
-    background-color: $state-success;
+    background-color: $christi-shade;
   }
 
   .#{$pre}-date--success > .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
-    background-color: $state-success-hover;
+    background-color: $christi;
   }
   .#{$pre}-date--success > .#{$pre}-date__input:focus ~ .#{$pre}-date__border {
-    background-color: $state-success-focus;
+    background-color: $christi;
   }
 
   .#{$pre}-date--error > .#{$pre}-date__input:hover ~ .#{$pre}-date__message {
-    color: $state-error-hover;
+    color: $cinnabar;
   }
   .#{$pre}-date--error > .#{$pre}-date__input:focus ~ .#{$pre}-date__message {
-    color: $state-error-focus;
+    color: $cinnabar;
   }
 
   .#{$pre}-date--success > .#{$pre}-date__input:hover ~ .#{$pre}-date__message {
-    color: $state-success-hover;
+    color: $christi;
   }
   .#{$pre}-date--success > .#{$pre}-date__input:focus ~ .#{$pre}-date__message {
-    color: $state-success-focus;
+    color: $christi;
   }
 
   .#{$pre}-date__list-outer {
@@ -423,10 +423,10 @@
   }
 
   .#{$pre}-date__item--previous:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
+    stroke: $viking;
   }
   .#{$pre}-date__item--previous:active > .#{$pre}-icon {
-    stroke: $state-default-active;
+    stroke: $viking-shade;
   }
 
   .#{$pre}-date__item--next > .#{$pre}-icon {
@@ -434,9 +434,9 @@
   }
 
   .#{$pre}-date__item--next:hover > .#{$pre}-icon {
-    stroke: $state-default-hover;
+    stroke: $viking;
   }
   .#{$pre}-date__item--next:active > .#{$pre}-icon {
-    stroke: $state-default-active;
+    stroke: $viking-shade;
   }
 }

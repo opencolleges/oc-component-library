@@ -35,7 +35,7 @@
   display: block;
   width: 0;
   height: rem(1px);
-  background-color: $state-default;
+  background-color: $viking-shade;
   transition: width $transition-duration-x4 $transition-timing-default
       $transition-duration-x0,
     background-color $transition-duration-x1 $transition-timing-default
@@ -45,13 +45,13 @@
 
 .#{$pre}-checkbox-set--error > .#{$pre}-checkbox-set__border {
   width: 100%;
-  background-color: $state-error;
+  background-color: $cinnabar-shade;
   transition: width $transition-duration-x4 $transition-timing-default
     $transition-duration-x0;
 }
 .#{$pre}-checkbox-set--success > .#{$pre}-checkbox-set__border {
   width: 100%;
-  background-color: $state-success;
+  background-color: $christi-shade;
   transition: width $transition-duration-x4 $transition-timing-default
     $transition-duration-x0;
 }
@@ -66,10 +66,10 @@
 }
 
 .#{$pre}-checkbox-set--error > .#{$pre}-checkbox-set__message {
-  color: $state-error;
+  color: $cinnabar-shade;
 }
 .#{$pre}-checkbox-set--success > .#{$pre}-checkbox-set__message {
-  color: $state-success;
+  color: $christi-shade;
 }
 
 // 4 Mouse-driven devices
@@ -77,30 +77,30 @@
 
 @include device(mouse-driven) {
   .#{$pre}-checkbox-set--error:hover > .#{$pre}-checkbox-set__border {
-    background-color: $state-error-hover;
+    background-color: $cinnabar;
   }
   .#{$pre}-checkbox-set--error:focus-within > .#{$pre}-checkbox-set__border {
-    background-color: $state-error-focus;
+    background-color: $cinnabar;
   }
 
   .#{$pre}-checkbox-set--success:hover > .#{$pre}-checkbox-set__border {
-    background-color: $state-success-hover;
+    background-color: $christi;
   }
   .#{$pre}-checkbox-set--success:focus-within > .#{$pre}-checkbox-set__border {
-    background-color: $state-success-focus;
+    background-color: $christi;
   }
 
   .#{$pre}-checkbox-set--error:hover > .#{$pre}-checkbox-set__message {
-    color: $state-error-hover;
+    color: $cinnabar;
   }
   .#{$pre}-checkbox-set--error:focus-within > .#{$pre}-checkbox-set__message {
-    color: $state-error-focus;
+    color: $cinnabar;
   }
 
   .#{$pre}-checkbox-set--success:hover > .#{$pre}-checkbox-set__message {
-    color: $state-success-hover;
+    color: $christi;
   }
   .#{$pre}-checkbox-set--success:focus-within > .#{$pre}-checkbox-set__message {
-    color: $state-success-focus;
+    color: $christi;
   }
 }

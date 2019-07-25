@@ -61,53 +61,8 @@ $daisy-transparent: rgba(0, 0, 0, 0.01);
 $blizzard: rgb(255, 255, 255);
 $blizzard-transparent: rgba(0, 0, 0, 0);
 
-// State
-// ============================================================================
-
-$state-default: $viking-shade;
-$state-default-hover: $viking;
-$state-default-focus: $viking;
-$state-default-active: $viking-shade;
-
-$state-disabled: $alto;
-
-$state-error: $cinnabar-shade;
-$state-error-hover: $cinnabar;
-$state-error-focus: $cinnabar;
-$state-error-active: $cinnabar-shade;
-
-$state-info: $amethyst;
-
-$state-success: $christi-shade;
-$state-success-hover: $christi;
-$state-success-focus: $christi;
-$state-success-active: $christi-shade;
-
-$state-reversed: rgba($blizzard, 0.55);
-$state-reversed-hover: $blizzard;
-$state-reversed-focus: $blizzard;
-$state-reversed-active: rgba($blizzard, 0.55);
-
-$state-warning: $crusta;
-
 // Space
 // ============================================================================
-
-$space-inset-xxs: rem(2px 2px 2px 2px);
-$space-inset-xs: rem(4px 4px 4px 4px);
-$space-inset-s: rem(8px 8px 8px 8px);
-$space-inset-m: rem(16px 16px 16px 16px);
-$space-inset-l: rem(24px 24px 24px 24px);
-$space-inset-xl: rem(32px 32px 32px 32px);
-$space-inset-xxl: rem(40px 40px 40px 40px);
-
-$space-stack-xxs: 0 0 rem(2px) 0;
-$space-stack-xs: 0 0 rem(4px) 0;
-$space-stack-s: 0 0 rem(8px) 0;
-$space-stack-m: 0 0 rem(16px) 0;
-$space-stack-l: 0 0 rem(24px) 0;
-$space-stack-xl: 0 0 rem(32px) 0;
-$space-stack-xxl: 0 0 rem(40px) 0;
 
 $space-xxs: rem(2px);
 $space-xs: rem(4px);
@@ -117,6 +72,24 @@ $space-l: rem(24px);
 $space-xl: rem(32px);
 $space-xxl: rem(40px);
 $space-xxxl: rem(48px);
+
+$space-stack-xxs: 0 0 $space-xxs 0;
+$space-stack-xs: 0 0 $space-xs 0;
+$space-stack-s: 0 0 $space-s 0;
+$space-stack-m: 0 0 $space-m 0;
+$space-stack-l: 0 0 $space-l 0;
+$space-stack-xl: 0 0 $space-xl 0;
+$space-stack-xxl: 0 0 $space-xxl 0;
+$space-stack-xxxl: 0 0 $space-xxxl 0;
+
+$space-inset-xxs: $space-xxs $space-xxs $space-xxs $space-xxs;
+$space-inset-xs: $space-xs $space-xs $space-xs $space-xs;
+$space-inset-s: $space-s $space-s $space-s $space-s;
+$space-inset-m: $space-m $space-m $space-m $space-m;
+$space-inset-l: $space-l $space-l $space-l $space-l;
+$space-inset-xl: $space-xl $space-xl $space-xl $space-xl;
+$space-inset-xxl: $space-xxl $space-xxl $space-xxl $space-xxl;
+$space-inset-xxxl: $space-xxxl $space-xxxl $space-xxxl $space-xxxl;
 
 // Scaffolding
 // ============================================================================

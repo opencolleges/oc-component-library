@@ -63,10 +63,10 @@
 }
 
 .#{$pre}-progress--error .#{$pre}-progress__bar {
-  background-color: $state-error;
+  background-color: $cinnabar-shade;
 }
 .#{$pre}-progress--success .#{$pre}-progress__bar {
-  background-color: $state-success;
+  background-color: $christi-shade;
 }
 
 .#{$pre}-progress__label {

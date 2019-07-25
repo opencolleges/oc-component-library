@@ -31,6 +31,13 @@
   background-color: $blizzard;
 }
 
+.#{$pre}-checkbox-set .#{$pre}-card {
+  margin-bottom: $space-m;
+}
+.#{$pre}-radio-set .#{$pre}-card {
+  margin-bottom: $space-m;
+}
+
 .#{$pre}-card--s {
   border-radius: $border-radius-s;
 }

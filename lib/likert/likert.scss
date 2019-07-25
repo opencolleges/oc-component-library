@@ -93,7 +93,7 @@
   height: rem(48px);
   padding: $space-s 0;
   background-color: transparent;
-  color: $state-default;
+  color: $viking-shade;
   font-size: rem(14px);
   font-weight: 700;
   text-align: center;
@@ -118,13 +118,13 @@
     > .#{$pre}-likert__item:last-of-type
     .#{$pre}-likert__button {
     border-radius: 0 $button-border-radius $button-border-radius 0;
-    border-right: rem(1px) solid $state-default;
+    border-right: rem(1px) solid $viking-shade;
   }
 
   .#{$pre}-likert__list--#{$index} .#{$pre}-likert__button {
-    border-top: rem(1px) solid $state-default;
-    border-bottom: rem(1px) solid $state-default;
-    border-left: rem(1px) solid $state-default;
+    border-top: rem(1px) solid $viking-shade;
+    border-bottom: rem(1px) solid $viking-shade;
+    border-left: rem(1px) solid $viking-shade;
     margin: $space-stack-s;
   }
 }
@@ -138,7 +138,7 @@
   }
 
   .#{$pre}-likert__list--#{$index} .#{$pre}-likert__button {
-    border: rem(1px) solid $state-default;
+    border: rem(1px) solid $viking-shade;
     border-radius: $button-border-radius;
     margin: $space-stack-m;
   }
@@ -153,14 +153,14 @@
 .#{$pre}-likert__input:checked
   + .#{$pre}-likert__label-outer
   > .#{$pre}-likert__button {
-  background-color: $state-default;
+  background-color: $viking-shade;
   color: $blizzard;
 }
 
 .#{$pre}-likert__input:focus
   + .#{$pre}-likert__label-outer
   > .#{$pre}-likert__button {
-  background-color: $state-default-focus;
+  background-color: $viking;
   color: $blizzard;
 }
 
@@ -170,22 +170,22 @@
     > .#{$pre}-likert__input:focus
     + .#{$pre}-likert__label-outer
     > .#{$pre}-likert__button {
-    border-left-color: $state-default-focus;
+    border-left-color: $viking;
   }
   .#{$pre}-likert__list--#{$index}
     > .#{$pre}-likert__item:last-of-type
     > .#{$pre}-likert__input:focus
     + .#{$pre}-likert__label-outer
     > .#{$pre}-likert__button {
-    border-right-color: $state-default-focus;
+    border-right-color: $viking;
   }
 
   .#{$pre}-likert__list--#{$index}
     .#{$pre}-likert__input:focus
     + .#{$pre}-likert__label-outer
     > .#{$pre}-likert__button {
-    border-top-color: $state-default-focus;
-    border-bottom-color: $state-default-focus;
+    border-top-color: $viking;
+    border-bottom-color: $viking;
   }
 }
 
@@ -194,7 +194,7 @@
     .#{$pre}-likert__input:focus
     + .#{$pre}-likert__label-outer
     > .#{$pre}-likert__button {
-    border-color: $state-default-focus;
+    border-color: $viking;
   }
 }
 
@@ -285,7 +285,7 @@ $parent-index: 1;
       > .#{$pre}-likert__item:last-of-type
       .#{$pre}-likert__button {
       border-radius: 0 $button-border-radius $button-border-radius 0;
-      border-right: rem(1px) solid $state-default;
+      border-right: rem(1px) solid $viking-shade;
       margin: $space-stack-s;
     }
 
@@ -293,7 +293,7 @@ $parent-index: 1;
       .#{$pre}-likert__input:focus
       + .#{$pre}-likert__label-outer
       > .#{$pre}-likert__button {
-      border-left-color: $state-default;
+      border-left-color: $viking-shade;
     }
 
     .#{$pre}-likert__list--#{$index}
@@ -301,7 +301,7 @@ $parent-index: 1;
       > .#{$pre}-likert__input:focus
       + .#{$pre}-likert__label-outer
       > .#{$pre}-likert__button {
-      border-color: $state-default-focus;
+      border-color: $viking;
     }
 
     .#{$pre}-likert__list--#{$index}
@@ -309,7 +309,7 @@ $parent-index: 1;
       > .#{$pre}-likert__input:focus
       + .#{$pre}-likert__label-outer
       > .#{$pre}-likert__button {
-      border-color: $state-default-focus;
+      border-color: $viking;
     }
   }
 
@@ -404,58 +404,58 @@ $parent-index: 1;
 
   @for $index from 3 through 5 {
     .#{$pre}-likert__list--#{$index} .#{$pre}-likert__button:hover {
-      border-top-color: $state-default-hover;
-      border-bottom-color: $state-default-hover;
-      background-color: $state-default-hover;
+      border-top-color: $viking;
+      border-bottom-color: $viking;
+      background-color: $viking;
       color: $blizzard;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:first-of-type
       .#{$pre}-likert__button:hover {
-      border-left-color: $state-default-hover;
+      border-left-color: $viking;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:last-of-type
       .#{$pre}-likert__button:hover {
-      border-right-color: $state-default-hover;
+      border-right-color: $viking;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item
       .#{$pre}-likert__button:active {
-      border-top-color: $state-default-active;
-      border-bottom-color: $state-default-active;
-      background-color: $state-default-active;
+      border-top-color: $viking-shade;
+      border-bottom-color: $viking-shade;
+      background-color: $viking-shade;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:hover
       + .#{$pre}-likert__item.#{$pre}-active
       .#{$pre}-likert__button {
-      border-left-color: $state-default-hover;
+      border-left-color: $viking;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item.#{$pre}-active
       + .#{$pre}-likert__item:hover
       .#{$pre}-likert__button {
-      border-left-color: $state-default-hover;
+      border-left-color: $viking;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:active
       + .#{$pre}-likert__item.#{$pre}-active
       .#{$pre}-likert__button {
-      border-left-color: $state-default-active;
+      border-left-color: $viking-shade;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item.#{$pre}-active
       + .#{$pre}-likert__item:active
       .#{$pre}-likert__button {
-      border-left-color: $state-default-active;
+      border-left-color: $viking-shade;
     }
   }
 
@@ -463,44 +463,44 @@ $parent-index: 1;
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item
       .#{$pre}-likert__button:hover {
-      border-color: $state-default-hover;
-      background-color: $state-default-hover;
+      border-color: $viking;
+      background-color: $viking;
       color: $blizzard;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item
       .#{$pre}-likert__button:active {
-      border-color: $state-default-active;
-      background-color: $state-default-active;
+      border-color: $viking-shade;
+      background-color: $viking-shade;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:hover
       + .#{$pre}-likert__item.#{$pre}-active
       .#{$pre}-likert__button {
-      border-left-color: $state-default-hover;
+      border-left-color: $viking;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item.#{$pre}-active
       + .#{$pre}-likert__item:hover
       .#{$pre}-likert__button {
-      border-left-color: $state-default-hover;
+      border-left-color: $viking;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:active
       + .#{$pre}-likert__item.#{$pre}-active
       .#{$pre}-likert__button {
-      border-left-color: $state-default-active;
+      border-left-color: $viking-shade;
     }
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item.#{$pre}-active
       + .#{$pre}-likert__item:active
       .#{$pre}-likert__button {
-      border-left-color: $state-default-active;
+      border-left-color: $viking-shade;
     }
   }
 
@@ -517,20 +517,20 @@ $parent-index: 1;
       .#{$pre}-likert__list--#{$index}
         > .#{$pre}-likert__item
         .#{$pre}-likert__button:hover {
-        border-left-color: $state-default;
+        border-left-color: $viking-shade;
       }
 
       .#{$pre}-likert__list--#{$index}
         > .#{$pre}-likert__item:first-of-type
         .#{$pre}-likert__button:hover {
-        border-left-color: $state-default-hover;
+        border-left-color: $viking;
       }
 
       .#{$pre}-likert__list--#{$index}
         > .#{$pre}-likert__item
         .#{$pre}-likert__button:active {
-        border-color: $state-default-active;
-        background-color: $state-default-active;
+        border-color: $viking-shade;
+        background-color: $viking-shade;
       }
     }
   }

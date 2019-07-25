@@ -73,7 +73,7 @@
 
 .#{$pre}-radio__label {
   display: inline-block;
-  padding: 0 $space-xxl;
+  padding: 0 0 0 $space-xxl;
   color: $gunmetal;
   font-size: rem(14px);
   line-height: rem(24px);
@@ -91,6 +91,10 @@
 
 .#{$pre}-radio__input:focus + .#{$pre}-radio__label {
   color: $charcoal;
+}
+
+.#{$pre}-radio-set .#{$pre}-radio__label {
+  padding: 0 $space-xxl;
 }
 
 .#{$pre}-radio--right > .#{$pre}-radio__label {
@@ -129,7 +133,7 @@
 }
 
 .#{$pre}-radio__input:disabled + .#{$pre}-radio__label::before {
-  border-color: $state-disabled;
+  border-color: $alto;
 }
 
 .#{$pre}-radio__input[readonly] + .#{$pre}-radio__label::before {
@@ -234,7 +238,12 @@
   top: 50%;
   right: rem(8px);
   transform: translateY(-50%);
+  display: none;
   transition: stroke $transition-duration-x1 $transition-timing-default;
+}
+
+.#{$pre}-radio-set .#{$pre}-radio > .#{$pre}-icon {
+  display: block;
 }
 
 .#{$pre}-card--clickable > .#{$pre}-radio > .#{$pre}-icon {
@@ -242,10 +251,11 @@
 }
 
 .#{$pre}-radio > .#{$pre}-icon--close {
-  stroke: $state-error;
+  stroke: $cinnabar-shade;
 }
+
 .#{$pre}-radio > .#{$pre}-icon--tick {
-  stroke: $state-success;
+  stroke: $christi-shade;
 }
 
 // 3.1 Medium devices
@@ -549,23 +559,23 @@
   }
 
   .#{$pre}-radio__input:hover ~ .#{$pre}-icon--close {
-    stroke: $state-error-hover;
+    stroke: $cinnabar;
   }
   .#{$pre}-radio__input:focus ~ .#{$pre}-icon--close {
-    stroke: $state-error-focus;
+    stroke: $cinnabar;
   }
   .#{$pre}-radio__input:active ~ .#{$pre}-icon--close {
-    stroke: $state-error-active;
+    stroke: $cinnabar-shade;
   }
 
   .#{$pre}-radio__input:hover ~ .#{$pre}-icon--tick {
-    stroke: $state-success-hover;
+    stroke: $christi;
   }
   .#{$pre}-radio__input:focus ~ .#{$pre}-icon--tick {
-    stroke: $state-success-focus;
+    stroke: $christi;
   }
   .#{$pre}-radio__input:active ~ .#{$pre}-icon--tick {
-    stroke: $state-success-active;
+    stroke: $christi-shade;
   }
 
   // 4.1 Medium devices
