@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "allowJs": true,
-    "target": "es5"
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react"
   },
+  "plugins": [{ "name": "typescript-tslint-plugin" }],
   "include": ["./lib/**/*"]
 }

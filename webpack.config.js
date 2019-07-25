@@ -25,6 +25,7 @@ module.exports = {
   },
   module: {
     rules: [
+      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
@@ -59,7 +60,8 @@ module.exports = {
       react: path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
       assets: path.resolve(__dirname, './lib/images')
-    }
+    },
+    extensions: ['.js', '.jsx', '.react.js', '.ts', '.tsx']
   },
   externals: {
     // Don't bundle react or react-dom
@@ -81,7 +83,7 @@ module.exports = {
 // If environment is development
 if (process.env.NODE_ENV !== 'production') {
   module.exports.entry = {
-    index: path.join(__dirname, './lib/index.js'),
+    index: path.join(__dirname, './lib/index.ts'),
     all: path.join(__dirname, './lib/all.scss')
   };
   module.exports.module.rules.push({
@@ -103,7 +105,7 @@ if (process.env.NODE_ENV !== 'production') {
 // If environment is production (NOT CSS)
 if (process.env.NODE_ENV === 'production') {
   module.exports.entry = {
-    index: path.join(__dirname, './lib/index.js')
+    index: path.join(__dirname, './lib/index.ts')
   };
   module.exports.plugins = [new CleanWebpackPlugin()];
   module.exports.module.rules.push({
