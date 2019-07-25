@@ -1,3 +1,14 @@
 .babelrc
-lib
+.eslintrc.json
 .gitignore
+.prettierrc
+.storybook
+.stylelintrc
+jest.config.js
+lib
+postcss.config.js
+storybook
+tsconfig.json
+tslint.json
+webpack.config.js
+
