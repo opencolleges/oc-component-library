@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
@@ -11,10 +11,10 @@ import {
 import Uniform from '../uniform';
 import Badge from './badge';
 
-import uniformStyles from '../../.storybook/storybook';
+import UNIFORM_STYLES from '../../.storybook/storybook';
 
-const badgeValue = ['Label', 1000];
-const badgeState = [
+const BADGE_VALUE = ['Label', 1000];
+const BADGE_STATE = [
   'State',
   { Default: '', Error: 'error', Success: 'success' },
   '',
@@ -26,11 +26,11 @@ const stories = storiesOf('Badge', module);
 stories.addDecorator(withA11y).addDecorator(withKnobs);
 
 stories.add('Default', () => {
-  const value = text(...badgeValue);
-  const state = options(...badgeState);
+  const value = text(...BADGE_VALUE);
+  const state = options(...BADGE_STATE);
 
   return (
-    <Uniform tag="div" style={uniformStyles}>
+    <Uniform tag="div" style={UNIFORM_STYLES}>
       <Badge
         value={value ? value : 'Add label'}
         modifiers={state ? `badge--${state}` : null}
