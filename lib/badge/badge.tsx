@@ -1,9 +1,9 @@
 import * as React from 'react';
 
+import namespace from '../utilities/js/namespace';
+
 import { IBadgeProps } from './badge.types';
 import getBadgeLabel from './utilities/getBadgeLabel';
-
-import namespace from '../utilities/js/namespace';
 
 const Badge: React.FC<IBadgeProps> = props => {
   const class_names: string = `${namespace(
@@ -19,8 +19,8 @@ const Badge: React.FC<IBadgeProps> = props => {
 };
 
 Badge.defaultProps = {
-  modifiers: '',
   className: '',
+  modifiers: '',
   style: {},
   value: 0
 };
