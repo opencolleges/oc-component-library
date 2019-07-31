@@ -11,7 +11,7 @@ module.exports = {
   entry: {},
   output: {
     path: path.join(__dirname, './dist'),
-    filename: '[name].[hash:8].js',
+    filename: '[name].js',
     library: libraryName,
     libraryTarget: 'umd',
     publicPath: '/dist/',
@@ -170,7 +170,7 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
   module.exports.plugins = [
     new FixStyleOnlyEntriesPlugin(),
     new ExtractTextPlugin({
-      filename: '[name].[hash:8].css',
+      filename: '[name].css',
       allChunks: true
     })
   ];
