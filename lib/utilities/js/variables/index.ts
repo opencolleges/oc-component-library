@@ -1,5 +1,5 @@
 // * dependancy imports
-import moment from 'moment';
+import * as moment from 'moment';
 
 // * Uniform's namespace declaration. Altering this will alter the namespace
 // * throughout Uniform's markup.

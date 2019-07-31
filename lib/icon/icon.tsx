@@ -1,62 +1,111 @@
 // * React imports
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
 // * utilty imports
 import find from '../utilities/js/find';
 import namespace from '../utilities/js/namespace';
 
-// * React component
-const Icon = ({ modifiers, className, style, size }) => {
-  let classNames = namespace(`icon ${modifiers}`);
+// import types
+// * Utility className
+import classNames from '../utilities/js/namespace';
+import { IProps } from './icon.types';
 
-  className && (classNames += ` ${className}`);
+// * React component
+const Icon: React.FC<IProps> = props => {
+  const class_names: string = `${classNames('icon', props.modifiers)} ${
+    props.className
+  }`;
 
   return (
     <svg
-      className={classNames}
-      style={style}
-      width={size}
-      height={size}
+      className={class_names}
+      style={props.style}
+      width={props.size}
+      height={props.size}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       aria-hidden="true">
-      {find('icon--arrow-up', modifiers) && <ArrowUp />}
-      {find('icon--arrow-right', modifiers) && <ArrowRight />}
-      {find('icon--arrow-down', modifiers) && <ArrowDown />}
-      {find('icon--arrow-left', modifiers) && <ArrowLeft />}
-      {find('icon--calendar', modifiers) && <Calendar />}
-      {find('icon--chevron-up', modifiers) && <ChevronUp />}
-      {find('icon--chevron-right', modifiers) && <ChevronRight />}
-      {find('icon--chevron-down', modifiers) && <ChevronDown />}
-      {find('icon--chevron-left', modifiers) && <ChevronLeft />}
-      {find('icon--clock', modifiers) && <Clock />}
-      {find('icon--close', modifiers) && <Close />}
-      {find('icon--close-ring', modifiers) && <CloseRing />}
-      {find('icon--cloud', modifiers) && <Cloud />}
-      {find('icon--cloud-download', modifiers) && <CloudDownload />}
-      {find('icon--cloud-upload', modifiers) && <CloudUpload />}
-      {find('icon--draggable', modifiers) && <Draggable />}
-      {find('icon--hamburger', modifiers) && <Hamburger />}
-      {find('icon--minus', modifiers) && <Minus />}
-      {find('icon--minus-ring', modifiers) && <MinusRing />}
-      {find('icon--plus', modifiers) && <Plus />}
-      {find('icon--plus-ring', modifiers) && <PlusRing />}
-      {find('icon--search', modifiers) && <Search />}
-      {find('icon--tick', modifiers) && <Tick />}
-      {find('icon--tick-ring', modifiers) && <TickRing />}
-      {find('icon--print', modifiers) && <Print />}
+      {find('icon--arrow-up', props.modifiers) && <ArrowUp />}
+      {find('icon--arrow-right', props.modifiers) && <ArrowRight />}
+      {find('icon--arrow-down', props.modifiers) && <ArrowDown />}
+      {find('icon--arrow-left', props.modifiers) && <ArrowLeft />}
+      {find('icon--calendar', props.modifiers) && <Calendar />}
+      {find('icon--chevron-up', props.modifiers) && <ChevronUp />}
+      {find('icon--chevron-right', props.modifiers) && <ChevronRight />}
+      {find('icon--chevron-down', props.modifiers) && <ChevronDown />}
+      {find('icon--chevron-left', props.modifiers) && <ChevronLeft />}
+      {find('icon--clock', props.modifiers) && <Clock />}
+      {find('icon--close', props.modifiers) && <Close />}
+      {find('icon--close-ring', props.modifiers) && <CloseRing />}
+      {find('icon--cloud', props.modifiers) && <Cloud />}
+      {find('icon--cloud-download', props.modifiers) && <CloudDownload />}
+      {find('icon--cloud-upload', props.modifiers) && <CloudUpload />}
+      {find('icon--draggable', props.modifiers) && <Draggable />}
+      {find('icon--hamburger', props.modifiers) && <Hamburger />}
+      {find('icon--minus', props.modifiers) && <Minus />}
+      {find('icon--minus-ring', props.modifiers) && <MinusRing />}
+      {find('icon--plus', props.modifiers) && <Plus />}
+      {find('icon--plus-ring', props.modifiers) && <PlusRing />}
+      {find('icon--search', props.modifiers) && <Search />}
+      {find('icon--tick', props.modifiers) && <Tick />}
+      {find('icon--tick-ring', props.modifiers) && <TickRing />}
+      {find('icon--print', props.modifiers) && <Print />}
     </svg>
   );
 };
 
-Icon.propTypes = {
-  modifiers: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  style: PropTypes.object,
-  size: PropTypes.string
-};
+// const Icon = ({ modifiers, className, style, size }) => {
+//   let classNames = prefix(`icon ${modifiers}`);
+
+//   className && (classNames += ` ${className}`);
+
+//   return (
+//     <svg
+//       className={classNames}
+//       style={style}
+//       width={size}
+//       height={size}
+//       viewBox="0 0 24 24"
+//       xmlns="http://www.w3.org/2000/svg"
+//       xmlnsXlink="http://www.w3.org/1999/xlink"
+//       aria-hidden="true">
+//       {find('icon--arrow-up', modifiers) && <ArrowUp />}
+//       {find('icon--arrow-right', modifiers) && <ArrowRight />}
+//       {find('icon--arrow-down', modifiers) && <ArrowDown />}
+//       {find('icon--arrow-left', modifiers) && <ArrowLeft />}
+//       {find('icon--calendar', modifiers) && <Calendar />}
+//       {find('icon--chevron-up', modifiers) && <ChevronUp />}
+//       {find('icon--chevron-right', modifiers) && <ChevronRight />}
+//       {find('icon--chevron-down', modifiers) && <ChevronDown />}
+//       {find('icon--chevron-left', modifiers) && <ChevronLeft />}
+//       {find('icon--clock', modifiers) && <Clock />}
+//       {find('icon--close', modifiers) && <Close />}
+//       {find('icon--close-ring', modifiers) && <CloseRing />}
+//       {find('icon--cloud', modifiers) && <Cloud />}
+//       {find('icon--cloud-download', modifiers) && <CloudDownload />}
+//       {find('icon--cloud-upload', modifiers) && <CloudUpload />}
+//       {find('icon--draggable', modifiers) && <Draggable />}
+//       {find('icon--hamburger', modifiers) && <Hamburger />}
+//       {find('icon--minus', modifiers) && <Minus />}
+//       {find('icon--minus-ring', modifiers) && <MinusRing />}
+//       {find('icon--plus', modifiers) && <Plus />}
+//       {find('icon--plus-ring', modifiers) && <PlusRing />}
+//       {find('icon--search', modifiers) && <Search />}
+//       {find('icon--tick', modifiers) && <Tick />}
+//       {find('icon--tick-ring', modifiers) && <TickRing />}
+//       {find('icon--print', modifiers) && <Print />}
+//     </svg>
+//   );
+// };
+
+// Icon.propTypes = {
+//   modifiers: PropTypes.string.isRequired,
+//   className: PropTypes.string,
+//   style: PropTypes.object,
+//   size: PropTypes.string
+// };
 
 Icon.defaultProps = {
   size: '24px'
