@@ -10,11 +10,11 @@ const Uniform: React.FC<IUniformProps> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
   const theme: string = getUniformTheme();
   const device: string = detectIt.hasMouse ? 'no-touchevents' : '';
-  const classNames: string = `${namespace(theme, device)}${props.className &&
+  const class_names: string = `${namespace(theme, device)}${props.className &&
     ` ${props.className}`}`;
 
   return (
-    <Tag className={classNames} style={props.style}>
+    <Tag className={class_names} style={props.style}>
       {props.children}
     </Tag>
   );
