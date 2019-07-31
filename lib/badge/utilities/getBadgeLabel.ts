@@ -1,6 +1,10 @@
 import * as _ from 'lodash';
 
-const getBadgeCount = (value: number | string): string => {
+const getBadgeLabel = (value: number | string): string => {
+  if (_.isNumber(value)) {
+    value = _.toInteger(value);
+  }
+
   if (value > 99) {
     return '99+';
   } else if (value > 9) {
@@ -10,4 +14,4 @@ const getBadgeCount = (value: number | string): string => {
   return _.toString(value);
 };
 
-export default getBadgeCount;
+export default getBadgeLabel;

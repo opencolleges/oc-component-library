@@ -10,7 +10,7 @@
     "storybook": "start-storybook",
     "build-storybook": "build-storybook -o storybook",
     "test": "jest --coverage --verbose",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch-all"
   },
   "repository": {
     "type": "git",
@@ -105,7 +105,12 @@
   },
   "lint-staged": {
     "linters": {
-      "*.js": [
+      "*.{ts,tsx}": [
+        "tslint --fix",
+        "prettier --write",
+        "git add"
+      ],
+      "*.{js,jsx}": [
         "eslint --fix",
         "prettier --write",
         "git add"
