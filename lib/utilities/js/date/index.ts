@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 const date = {
   now: new Date(),
 
@@ -39,46 +41,46 @@ const date = {
     '9': 'th'
   },
 
-  getLastIndex(string) {
-    return string.slice(-1);
+  getLastIndex(str: string) {
+    return str.slice(-1);
   },
 
-  getLeadingZero(number) {
-    return number < 10 ? `0${number}` : `${number}`;
+  getLeadingZero(num: number) {
+    return num < 10 ? `0${num}` : `${num}`;
   },
 
-  getOrdinal(number) {
-    let ordinal = number.toString();
+  getOrdinal(num: number) {
+    let ordinal: string = _.toString(num);
     ordinal = this.getLastIndex(ordinal);
 
     return `${ordinal}${this.ordinals[ordinal]}`;
   },
 
-  getYear(date = this.now) {
-    return date.getFullYear();
+  getYear(dateObj: Date = this.now) {
+    return dateObj.getFullYear();
   },
 
-  getSeason(date = this.now) {
-    return this.months[this.getMonthIndex(date)].season.name;
+  getSeason(dateObj: Date = this.now) {
+    return this.months[this.getMonthIndex(dateObj)].season.name;
   },
 
-  getSeasonIndex(date = this.now) {
-    return this.months[this.getMonthIndex(date)].season.index;
+  getSeasonIndex(dateObj: Date = this.now) {
+    return this.months[this.getMonthIndex(dateObj)].season.index;
   },
 
-  getMonth(date = this.now) {
-    return this.months[this.getMonthIndex(date)].name;
+  getMonth(dateObj: Date = this.now) {
+    return this.months[this.getMonthIndex(dateObj)].name;
   },
 
-  getMonthCalendar(date = this.now) {
-    const calendar = {};
+  getMonthCalendar(dateObj: Date = this.now) {
+    const calendar = {
+      dates: []
+    };
 
-    const year = this.getYear(date);
-    const monthIndex = this.getMonthIndex(date);
+    const year = this.getYear(dateObj);
+    const monthIndex = this.getMonthIndex(dateObj);
 
-    calendar.dates = [];
-
-    const monthLength = this.getMonthLength(date);
+    const monthLength = this.getMonthLength(dateObj);
 
     for (let index = 0; index < monthLength; index++) {
       calendar.dates.push({
@@ -94,69 +96,69 @@ const date = {
     return calendar;
   },
 
-  getMonthIndex(date = this.now) {
-    return date.getMonth();
+  getMonthIndex(dateObj: Date = this.now) {
+    return dateObj.getMonth();
   },
 
-  getMonthLength(date = this.now) {
+  getMonthLength(dateObj: Date = this.now) {
     return new Date(
-      this.getYear(date),
-      this.getMonthIndex(date) + 1,
+      this.getYear(dateObj),
+      this.getMonthIndex(dateObj) + 1,
       0
     ).getDate();
   },
 
-  getDate(date = this.now) {
-    return date.getDate();
+  getDate(dateObj: Date = this.now) {
+    return dateObj.getDate();
   },
 
-  getISODate(date = this.now) {
-    const year = this.getYear(date);
+  getISODate(dateObj: Date = this.now) {
+    const year = this.getYear(dateObj);
 
-    let month = this.getMonthIndex(date) + 1;
+    let month = this.getMonthIndex(dateObj) + 1;
     month = this.getLeadingZero(month);
 
-    let day = this.getDate(date);
+    let day = this.getDate(dateObj);
     day = this.getLeadingZero(day);
 
     return `${year}-${month}-${day}`;
   },
 
-  getShortDate(date = this.now) {
-    const year = this.getYear(date);
+  getShortDate(dateObj: Date = this.now) {
+    const year = this.getYear(dateObj);
 
-    let month = this.getMonthIndex(date) + 1;
+    let month = this.getMonthIndex(dateObj) + 1;
     month = this.getLeadingZero(month);
 
-    let day = this.getDate(date);
+    let day = this.getDate(dateObj);
     day = this.getLeadingZero(day);
 
     return `${day}/${month}/${year}`;
   },
 
-  getLongDate(date = this.now) {
-    const year = this.getYear(date);
-    const month = this.getMonth(date);
+  getLongDate(dateObj: Date = this.now) {
+    const year = this.getYear(dateObj);
+    const month = this.getMonth(dateObj);
 
-    let day = this.getDate(date);
+    let day = this.getDate(dateObj);
     day = this.getOrdinal(day);
 
     return `${day} ${month}, ${year}`;
   },
 
-  getDay(date = this.now) {
-    return this.days[date.getDay()];
+  getDay(dateObj: Date = this.now) {
+    return this.days[dateObj.getDay()];
   },
 
-  getDayIndex(date = this.now) {
-    return date.getDay();
+  getDayIndex(dateObj: Date = this.now) {
+    return dateObj.getDay();
   },
 
-  get12HourTime(date = this.now) {
-    let hour = this.getHour(date);
+  get12HourTime(dateObj: Date = this.now) {
+    let hour = this.getHour(dateObj);
     hour = hour % 12 !== 0 ? hour % 12 : hour;
 
-    let minute = this.getMinute(date);
+    let minute = this.getMinute(dateObj);
     minute = this.getLeadingZero(minute);
 
     const meridiem = hour > 0 && hour < 12 ? 'AM' : 'PM';
@@ -164,26 +166,26 @@ const date = {
     return `${hour}:${minute} ${meridiem}`;
   },
 
-  get24HourTime(date = this.now) {
-    let hour = this.getHour(date);
+  get24HourTime(dateObj: Date = this.now) {
+    let hour = this.getHour(dateObj);
     hour = this.getLeadingZero(hour);
 
-    let minute = this.getMinute(date);
+    let minute = this.getMinute(dateObj);
     minute = this.getLeadingZero(minute);
 
     return `${hour}:${minute}`;
   },
 
-  getHour(date = this.now) {
-    return date.getHours();
+  getHour(dateObj: Date = this.now) {
+    return dateObj.getHours();
   },
 
-  getMinute(date = this.now) {
-    return date.getMinutes();
+  getMinute(dateObj: Date = this.now) {
+    return dateObj.getMinutes();
   },
 
-  getSecond(date = this.now) {
-    return date.getSeconds();
+  getSecond(dateObj: Date = this.now) {
+    return dateObj.getSeconds();
   }
 };
 
