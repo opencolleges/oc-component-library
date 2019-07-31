@@ -1,30 +1,27 @@
+import * as detectIt from 'detect-it';
 import * as React from 'react';
 
-import { IUniformProps } from './uniform.types';
-import { getUniformTheme } from './uniform.utilities';
-
-import detectIt from 'detect-it';
-
 import namespace from '../utilities/js/namespace';
+
+import { IUniformProps } from './uniform.types';
+import getUniformTheme from './utilities/getUniformTheme';
 
 const Uniform: React.FC<IUniformProps> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
   const theme: string = getUniformTheme();
-  const context: string = detectIt.hasMouse ? 'no-touchevents' : '';
-  const class_names: string = `${namespace(theme, context)}${props.className &&
+  const device: string = detectIt.hasMouse ? 'no-touchevents' : '';
+  const classNames: string = `${namespace(theme, device)}${props.className &&
     ` ${props.className}`}`;
 
   return (
-    <Tag className={class_names} style={props.style}>
+    <Tag className={classNames} style={props.style}>
       {props.children}
     </Tag>
   );
 };
 
 Uniform.defaultProps = {
-  tag: 'main',
-  className: '',
-  style: {}
+  tag: 'main'
 };
 
 export default Uniform;
