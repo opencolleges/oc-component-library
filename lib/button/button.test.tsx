@@ -3,6 +3,7 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 
 import Button from './button';
+import Icon from '../icon';
 
 const Props = {
   id: 'btn-1',
@@ -38,7 +39,9 @@ describe('<Button />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(<Button type="submit" {...Props}></Button>);
+      wrapper = mount(
+        <Button icon="arrow-up" type="submit" {...Props}></Button>
+      );
     });
 
     afterEach(() => {
@@ -49,6 +52,10 @@ describe('<Button />', () => {
     it('should render button component ', () => {
       expect(wrapper.find('button').length).toBe(1);
       expect(wrapper.text()).toBe('test');
+    });
+
+    it('should render icon component', () => {
+      expect(wrapper.find(Icon).length).toBe(1);
     });
 
     it('should handle id, class name and modifiers props', () => {
