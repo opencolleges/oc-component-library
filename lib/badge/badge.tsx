@@ -6,13 +6,13 @@ import { IBadgeProps } from './badge.types';
 import getBadgeLabel from './utilities/getBadgeLabel';
 
 const Badge: React.FC<IBadgeProps> = props => {
-  const classNames: string = `${namespace(
+  const class_names: string = `${namespace(
     'badge',
     props.modifiers
   )}${props.className && ` ${props.className}`}`;
 
   return (
-    <span className={classNames} style={props.style} unselectable="on">
+    <span className={class_names} style={props.style} unselectable="on">
       {getBadgeLabel(props.value)}
     </span>
   );
