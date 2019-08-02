@@ -1,6 +1,6 @@
 type TUniformTag = 'div' | 'main' | 'section';
 
-export interface IUniformProps {
+export default interface IUniformProps {
   mode?: string;
   tag?: TUniformTag;
   className?: string;
