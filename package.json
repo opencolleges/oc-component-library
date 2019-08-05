@@ -9,7 +9,7 @@
     "build_css": "NODE_ENV=production entry=css webpack-cli --config='webpack.config.js' --mode='production'",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook -o storybook",
-    "test": "jest --coverage",
+    "test": "jest --coverage --verbose",
     "test:watch": "jest --watch-all"
   },
   "repository": {
