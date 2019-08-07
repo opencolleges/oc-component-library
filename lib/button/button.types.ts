@@ -1,12 +1,12 @@
 import { IIconType } from '../icon/icon.types';
 
-export type IButtonType = 'button' | 'submit' | 'reset';
+export type ButtonType = 'button' | 'submit' | 'reset';
 
 export default interface IButtonProps {
   id?: string;
   action: string;
   href?: string;
-  type?: IButtonType;
+  type?: ButtonType;
   name?: string;
   modifiers?: string;
   className?: string;
