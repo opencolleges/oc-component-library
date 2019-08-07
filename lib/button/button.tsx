@@ -1,22 +1,21 @@
-import * as React from 'react';
-// Constatant
-import { NAMESPACE } from '../utilities/js/constants';
-// * child imports
-import Icon from '../icon';
-// Types
-import { IProps } from './button.types';
-// Lodash
 import * as _ from 'lodash';
-// * Utility className
-import classNames from '../utilities/js/namespace';
+import * as React from 'react';
 
-const Button: React.FC<IProps> = props => {
+import { NAMESPACE } from '../utilities/js/constants';
+import namespace from '../utilities/js/namespace';
+
+import IButtonProps from './button.types';
+
+import Icon from '../icon';
+
+const Button: React.FC<IButtonProps> = props => {
   let Tag: keyof JSX.IntrinsicElements = 'button';
+
   if (!props.disabled && !_.isUndefined(props.href)) {
     Tag = 'a';
   }
 
-  const class_names: string = `${classNames(
+  const classNames: string = `${namespace(
     'button',
     props.modifiers,
     props.icon ? 'button--icon' : ''
@@ -25,7 +24,7 @@ const Button: React.FC<IProps> = props => {
   return (
     <Tag
       id={props.id ? props.id : _.uniqueId(`${NAMESPACE}-`)}
-      className={class_names}
+      className={classNames}
       style={props.style}
       type={Tag === 'button' ? props.type : null}
       name={props.name}
@@ -40,8 +39,10 @@ const Button: React.FC<IProps> = props => {
 };
 
 Button.defaultProps = {
-  type: 'button',
-  onClick: () => {}
+  onClick: () => {
+    return;
+  },
+  type: 'button'
 };
 
 export default Button;
