@@ -1,28 +1,26 @@
-// Lodash
 import * as _ from 'lodash';
 import * as React from 'react';
-// * child imports
-import Icon from '../icon';
-// Constatant
-import { NAMESPACE } from '../utilities/js/constants';
-// * Utility className
-import namespace from '../utilities/js/namespace';
-// Types
-import { IProps } from './button.types';
 
-const Button: React.FC<IProps> = props => {
+import { NAMESPACE } from '../utilities/js/constants';
+import namespace from '../utilities/js/namespace';
+
+import IButtonProps from './button.types';
+
+import Icon from '../icon';
+
+const Button: React.FC<IButtonProps> = props => {
   let Tag: keyof JSX.IntrinsicElements = 'button';
+
   if (!props.disabled && !_.isUndefined(props.href)) {
     Tag = 'a';
   }
+  
+    const classNames: string = _.trim(`${namespace(
+    'button',
+    props.modifiers,
+    props.icon ? 'button--icon' : ''
+  )} ${props.className}`);
 
-  const classNames: string = _.trim(
-    `${namespace(
-      'button',
-      props.modifiers,
-      props.icon ? 'button--icon' : ''
-    )} ${_.toString(props.className)}`
-  );
 
   return (
     <Tag
@@ -43,7 +41,7 @@ const Button: React.FC<IProps> = props => {
 
 Button.defaultProps = {
   onClick: () => {
-    return true;
+    return;
   },
   type: 'button'
 };
