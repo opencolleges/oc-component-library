@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
-import { NAMESPACE } from '../constants';
+
+import { NAMESPACE } from './constants';
 
 /**
  * Return a string of class names, derived from the class names passed.

@@ -1,21 +1,21 @@
-import detectIt from 'detect-it';
+import * as _ from 'lodash';
 import * as React from 'react';
 
 import namespace from '../utilities/js/namespace';
 
-import { IUniformProps } from './uniform.types';
-import getUniformTheme from './utilities/getUniformTheme';
+import IUniformProps from './uniform.types';
+import uniform from './utilities/uniform';
 
 const Uniform: React.FC<IUniformProps> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
-  const theme: string = getUniformTheme();
-  const device: string = detectIt.hasMouse ? 'no-touchevents' : '';
-  const class_names: string = `${namespace(theme, device)}${
-    props.className ? ` ${props.className}` : ''
-  }`;
+  const mode: string = props.mode ? props.mode : uniform.getMode();
+  const device: string = uniform.hasMouse() ? 'no-touchevents' : '';
+  const classNames: string = _.trim(
+    `${namespace(mode, device)} ${_.toString(props.className)}`
+  );
 
   return (
-    <Tag className={class_names} style={props.style}>
+    <Tag className={classNames} style={props.style}>
       {props.children}
     </Tag>
   );

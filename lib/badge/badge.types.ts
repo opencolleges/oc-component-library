@@ -1,4 +1,4 @@
-export interface IBadgeProps {
+export default interface IBadgeProps {
   modifiers?: string;
   className?: string;
   style?: React.CSSProperties;

@@ -4,28 +4,28 @@ const date = {
   now: new Date(),
 
   months: [
-    { name: 'January', season: { index: 0, name: 'Summer' } },
-    { name: 'February', season: { index: 0, name: 'Summer' } },
-    { name: 'March', season: { index: 1, name: 'Autumn' } },
-    { name: 'April', season: { index: 1, name: 'Autumn' } },
-    { name: 'May', season: { index: 1, name: 'Autumn' } },
-    { name: 'June', season: { index: 2, name: 'Winter' } },
-    { name: 'July', season: { index: 2, name: 'Winter' } },
-    { name: 'August', season: { index: 2, name: 'Winter' } },
-    { name: 'September', season: { index: 3, name: 'Spring' } },
-    { name: 'October', season: { index: 3, name: 'Spring' } },
-    { name: 'November', season: { index: 3, name: 'Spring' } },
-    { name: 'December', season: { index: 0, name: 'Summer' } }
+    { name: 'january', season: { index: 0, name: 'summer' } },
+    { name: 'february', season: { index: 0, name: 'summer' } },
+    { name: 'march', season: { index: 1, name: 'autumn' } },
+    { name: 'april', season: { index: 1, name: 'autumn' } },
+    { name: 'may', season: { index: 1, name: 'autumn' } },
+    { name: 'june', season: { index: 2, name: 'winter' } },
+    { name: 'july', season: { index: 2, name: 'winter' } },
+    { name: 'august', season: { index: 2, name: 'winter' } },
+    { name: 'september', season: { index: 3, name: 'spring' } },
+    { name: 'october', season: { index: 3, name: 'spring' } },
+    { name: 'november', season: { index: 3, name: 'spring' } },
+    { name: 'december', season: { index: 0, name: 'summer' } }
   ],
 
   days: [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday'
+    'sunday',
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday'
   ],
 
   ordinals: {
@@ -41,15 +41,15 @@ const date = {
     '9': 'th'
   },
 
-  getLastIndex(str: string) {
+  getLastIndex(str: string): string {
     return str.slice(-1);
   },
 
-  getLeadingZero(num: number) {
+  getLeadingZero(num: number): string {
     return num < 10 ? `0${num}` : `${num}`;
   },
 
-  getOrdinal(num: number) {
+  getOrdinal(num: number): string {
     let ordinal: string = _.toString(num);
     ordinal = this.getLastIndex(ordinal);
 
@@ -60,7 +60,7 @@ const date = {
     return dateObj.getFullYear();
   },
 
-  getSeason(dateObj: Date = this.now) {
+  getSeason(dateObj: Date = this.now): string {
     return this.months[this.getMonthIndex(dateObj)].season.name;
   },
 
@@ -70,6 +70,18 @@ const date = {
 
   getMonth(dateObj: Date = this.now) {
     return this.months[this.getMonthIndex(dateObj)].name;
+  },
+
+  getMonthIndex(dateObj: Date = this.now) {
+    return dateObj.getMonth();
+  },
+
+  getMonthLength(dateObj: Date = this.now) {
+    return new Date(
+      this.getYear(dateObj),
+      this.getMonthIndex(dateObj) + 1,
+      0
+    ).getDate();
   },
 
   getMonthCalendar(dateObj: Date = this.now) {
@@ -94,18 +106,6 @@ const date = {
     }
 
     return calendar;
-  },
-
-  getMonthIndex(dateObj: Date = this.now) {
-    return dateObj.getMonth();
-  },
-
-  getMonthLength(dateObj: Date = this.now) {
-    return new Date(
-      this.getYear(dateObj),
-      this.getMonthIndex(dateObj) + 1,
-      0
-    ).getDate();
   },
 
   getDate(dateObj: Date = this.now) {

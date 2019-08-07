@@ -1,28 +1,28 @@
 import * as React from 'react';
 
+import Icon from '../icon';
+import Button from './button';
+
 import { mount } from 'enzyme';
 
-import Button from './button';
-import Icon from '../icon';
-
 const Props = {
-  id: 'btn-1',
-  name: 'button-name',
-  className: 'testClass',
-  modifiers: 'button--success',
   action: 'test',
+  className: 'testClass',
+  disable: false,
+  id: 'btn-1',
+  modifiers: 'button--success',
+  name: 'button-name',
+  onClick: jest.fn(),
   style: {
     zIndex: 1
-  },
-  onClick: jest.fn(),
-  disable: false
+  }
 };
 
 describe('<Button />', () => {
   describe('default', () => {
     let wrapper;
     beforeEach(() => {
-      wrapper = mount(<Button action="submit"></Button>);
+      wrapper = mount(<Button action="submit" />);
     });
     afterEach(() => {
       wrapper.unmount();
@@ -31,7 +31,7 @@ describe('<Button />', () => {
       expect(wrapper.find('button').length).toBe(1);
       expect(wrapper.text()).toBe('submit');
       expect(wrapper.getDOMNode().getAttribute('id')).toMatch('oc-');
-      expect(wrapper.getDOMNode().getAttribute('disable')).toBe(null);
+      expect(wrapper.getDOMNode().getAttribute('disabled')).toBe(null);
     });
   });
 
@@ -39,9 +39,7 @@ describe('<Button />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(
-        <Button icon="arrow-up" type="submit" {...Props}></Button>
-      );
+      wrapper = mount(<Button icon="arrow-up" type="submit" {...Props} />);
     });
 
     afterEach(() => {
@@ -69,17 +67,17 @@ describe('<Button />', () => {
       expect(wrapper.find('[name="button-name"]').hostNodes().length).toBe(1);
     });
 
-    it('should handle style props ', () => {
+    it('Handles props.style', () => {
       expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
     });
 
-    it('should handle onclick  ', () => {
+    it('Handles props.onClick', () => {
       const button = wrapper.find('button');
       button.simulate('click');
       expect(Props.onClick).toHaveBeenCalledTimes(1);
     });
 
-    it('should handle disable props ', () => {
+    it('Handles props.disabled', () => {
       wrapper.setProps({ disabled: true });
       const button = wrapper.find('button');
       button.simulate('click');
@@ -93,6 +91,7 @@ describe('<Button />', () => {
       expect(wrapper.find('button').length).toBe(0);
       expect(wrapper.getDOMNode().getAttribute('href')).toBe('google.com');
     });
+
     it('should render button if disabled true and href passes ', () => {
       wrapper.setProps({ href: 'google.com' });
       wrapper.setProps({ disabled: true });
