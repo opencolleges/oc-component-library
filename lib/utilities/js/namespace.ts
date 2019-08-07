@@ -16,7 +16,7 @@ const namespace = (...classNames: string[]): string => {
   _.forEach(classNames, className => {
     if (!_.isUndefined(className)) {
       _.forEach(_.split(_.trim(className), / +/g), value => {
-        if (value !== '') {
+        if (!_.isEmpty(value)) {
           classArr.push(`${NAMESPACE}-${value}`);
         }
       });

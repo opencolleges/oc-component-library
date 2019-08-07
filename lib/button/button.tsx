@@ -14,12 +14,13 @@ const Button: React.FC<IButtonProps> = props => {
   if (!props.disabled && !_.isUndefined(props.href)) {
     Tag = 'a';
   }
-
-  const classNames: string = `${namespace(
+  
+    const classNames: string = _.trim(`${namespace(
     'button',
     props.modifiers,
     props.icon ? 'button--icon' : ''
-  )} ${props.className}`;
+  )} ${props.className}`);
+
 
   return (
     <Tag
