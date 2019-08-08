@@ -8,7 +8,7 @@ import ICardProps from './card.types';
 import Icon from '../icon';
 
 const Card: React.FC<ICardProps> = props => {
-  const Tag = typeof (props.href === 'undefined' ? 'div' : 'a') as 'div' | 'a';
+  const Tag = (typeof props.href === 'undefined' ? 'div' : 'a') as 'div' | 'a';
 
   const classNames: string = _.trim(
     `${namespace(
