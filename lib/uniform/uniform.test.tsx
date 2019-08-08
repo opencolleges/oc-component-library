@@ -9,8 +9,26 @@ import { mount } from 'enzyme';
 let wrapper;
 
 describe('<Uniform />', () => {
+  it('Handles no-touchevents', () => {
+    uniform.getMode = jest.fn().mockReturnValue('light');
+    uniform.hasMouse = jest.fn().mockReturnValue(false);
+
+    wrapper = mount(<Uniform>foo</Uniform>);
+
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light');
+
+    uniform.hasMouse = jest.fn().mockReturnValue(true);
+
+    wrapper.unmount();
+    wrapper = mount(<Uniform>foo</Uniform>);
+
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
+      'oc-light oc-no-touchevents'
+    );
+  });
+
   it('Handles props.tag', () => {
-    wrapper = mount(<Uniform>Foo</Uniform>);
+    wrapper = mount(<Uniform>foo</Uniform>);
 
     expect(wrapper.getDOMNode().nodeName).toBe('MAIN');
 
@@ -25,13 +43,13 @@ describe('<Uniform />', () => {
     uniform.hasMouse = jest.fn().mockReturnValue(false);
     uniform.getMode = jest.fn().mockReturnValue('light');
 
-    wrapper = mount(<Uniform>Foo</Uniform>);
+    wrapper = mount(<Uniform>foo</Uniform>);
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light');
 
     uniform.getMode = jest.fn().mockReturnValue('dark');
 
     wrapper.unmount();
-    wrapper = mount(<Uniform>Foo</Uniform>);
+    wrapper = mount(<Uniform>foo</Uniform>);
 
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-dark');
 
@@ -40,20 +58,32 @@ describe('<Uniform />', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-bar');
   });
 
-  it('Handles no-touchevents', () => {
+  it('Handles props.className', () => {
     uniform.hasMouse = jest.fn().mockReturnValue(false);
+    uniform.getMode = jest.fn().mockReturnValue('light');
 
-    wrapper = mount(<Uniform mode=" ">Foo</Uniform>);
+    wrapper = mount(<Uniform>foo</Uniform>);
 
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('');
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light');
 
-    uniform.hasMouse = jest.fn().mockReturnValue(true);
+    wrapper.setProps({ className: 'bar' });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light bar');
 
-    wrapper.unmount();
-    wrapper = mount(<Uniform mode=" ">Foo</Uniform>);
+    wrapper.setProps({ className: 'bar baz' });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light bar baz');
+  });
 
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-no-touchevents'
+  it('Handles props.style', () => {
+    wrapper = mount(<Uniform>foo</Uniform>);
+
+    expect(wrapper.getDOMNode().getAttribute('style')).toBe(null);
+
+    wrapper.setProps({ style: { zIndex: '1' } });
+    expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
+
+    wrapper.setProps({ style: { zIndex: '1', opacity: 0 } });
+    expect(wrapper.getDOMNode().getAttribute('style')).toBe(
+      'z-index: 1; opacity: 0;'
     );
   });
 
