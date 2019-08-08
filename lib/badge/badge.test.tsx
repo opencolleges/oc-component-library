@@ -40,6 +40,11 @@ describe('<Badge />', () => {
 
     wrapper.setProps({ style: { zIndex: '1' } });
     expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
+
+    wrapper.setProps({ style: { zIndex: '1', opacity: 0 } });
+    expect(wrapper.getDOMNode().getAttribute('style')).toBe(
+      'z-index: 1; opacity: 0;'
+    );
   });
 
   it('Handles props.value', () => {

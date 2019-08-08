@@ -10,7 +10,7 @@ const Divider: React.FC<IDividerProps> = props => {
     `${namespace('divider', props.modifiers)} ${_.toString(props.className)}`
   );
 
-  return <div className={classNames} style={props.style} />;
+  return <div className={classNames} style={props.style} aria-hidden="true" />;
 };
 
 Divider.defaultProps = {
