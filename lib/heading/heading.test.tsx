@@ -11,6 +11,26 @@ describe('<Heading />', () => {
     wrapper = mount(<Heading>foo</Heading>);
   });
 
+  it('Handles props.children', () => {
+    expect(wrapper.find('h1').text()).toBe('foo');
+
+    wrapper.setProps({ children: 'bar' });
+    expect(wrapper.find('h1').text()).toBe('bar');
+
+    wrapper.setProps({ children: 'baz' });
+    expect(wrapper.find('h1').text()).toBe('baz');
+  });
+
+  it('Handles props.className', () => {
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1');
+
+    wrapper.setProps({ className: 'bar' });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1 bar');
+
+    wrapper.setProps({ className: 'bar baz' });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1 bar baz');
+  });
+
   it('Handles props.level', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1');
 
@@ -52,16 +72,6 @@ describe('<Heading />', () => {
     );
   });
 
-  it('Handles props.className', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1');
-
-    wrapper.setProps({ className: 'bar' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1 bar');
-
-    wrapper.setProps({ className: 'bar baz' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1 bar baz');
-  });
-
   it('Handles props.style', () => {
     expect(wrapper.getDOMNode().getAttribute('style')).toBe(null);
 
@@ -72,16 +82,6 @@ describe('<Heading />', () => {
     expect(wrapper.getDOMNode().getAttribute('style')).toBe(
       'z-index: 1; opacity: 0;'
     );
-  });
-
-  it('Handles props.value', () => {
-    expect(wrapper.find('h1').text()).toBe('foo');
-
-    wrapper.setProps({ children: 'bar' });
-    expect(wrapper.find('h1').text()).toBe('bar');
-
-    wrapper.setProps({ children: 'baz' });
-    expect(wrapper.find('h1').text()).toBe('baz');
   });
 
   afterEach(() => {

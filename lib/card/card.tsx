@@ -15,7 +15,7 @@ const Card: React.FC<ICardProps> = props => {
       'card',
       props.modifiers,
       props.href ? 'card--clickable' : ''
-    )} ${props.className}`
+    )} ${_.toString(props.className)}`
   );
 
   return (
@@ -24,14 +24,14 @@ const Card: React.FC<ICardProps> = props => {
       style={props.style}
       href={props.href}
       tabIndex={
-        (_.includes('card--draggable', props.modifiers) ||
-          _.includes('card--clickable', props.modifiers)) &&
+        (_.includes(classNames, 'card--clickable') ||
+          _.includes(classNames, 'card--draggable')) &&
         props.tabIndex
           ? 0
           : null
       }>
-      {_.includes('card--draggable', props.modifiers) && (
-        <Icon modifiers={`icon--draggable active`} />
+      {_.includes(classNames, 'card--draggable') && (
+        <Icon modifiers="icon--draggable active" />
       )}
       {props.children}
     </Tag>
