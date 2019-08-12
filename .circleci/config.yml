@@ -36,9 +36,11 @@ jobs:
       - image: cibuilds/aws:1.16.185
     working_directory: ~/app
     steps:
+      - attach_workspace:
+          at: ~/app
       - run:
           name: Deploy to S3
-          command: aws s3 sync storybook/ s3://storybook-uds/
+          command: aws s3 sync storybook s3://storybook-uds/
 workflows:
   version: 2
   build-deploy-storybook:
