@@ -32,8 +32,8 @@ jobs:
       - image: cibuilds/aws:1.16.185
     steps:
       - run:
-          name: Deploy to S3 if tests pass and branch is Master
-          command: aws s3 sync storybook/* s3://storybook-uds/ --delete
+          name: Deploy to S3
+          command: aws s3 sync storybook/ s3://storybook-uds/
 workflows:
   version: 2
   build-deploy-storybook:
