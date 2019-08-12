@@ -27,8 +27,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: yarn test
   deploy-storybook:
     docker:
       - image: cibuilds/aws:1.16.185
