@@ -39,10 +39,9 @@ workflows:
   version: 2
   build-deploy-storybook:
     jobs:
-      - build-storybook
-      - deploy-storybook
+      - build-storybook:
+      - deploy-storybook:
           filters:
             branches:
-              only: 
-                 - /feature.*/
-          
+              only:
+                - /feature.*/
