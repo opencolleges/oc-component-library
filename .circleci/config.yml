@@ -7,8 +7,12 @@ jobs:
   build-storybook:
     docker:
       - image: circleci/node:8.9.4
+    working_directory: ~/app
     steps:
-      - checkout
+      - checkout:
+          path: ~/app/
+      - attach_workspace:
+          at: ~/app/
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -18,7 +22,7 @@ jobs:
       - run: npm install
       - run: npm run build-storybook
       - persist_to_workspace:
-          root: .
+          root: ~/app
           paths:
             - storybook
 
@@ -30,7 +34,7 @@ jobs:
   deploy-storybook:
     docker:
       - image: cibuilds/aws:1.16.185
-    working_directory: ~/
+    working_directory: ~/app
     steps:
       - run:
           name: Deploy to S3
