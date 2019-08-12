@@ -59,7 +59,7 @@ workflows:
       - build
       - publish:
           requires:
-                - build
+            - build
               filters:
                 branches:
                   only:
@@ -68,8 +68,8 @@ workflows:
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              only:
-                - /feature.*/
-                - master
+              filters:
+                branches:
+                  only:
+                    - /feature.*/
+                    - master
