@@ -30,6 +30,7 @@ jobs:
   deploy-storybook:
     docker:
       - image: cibuilds/aws:1.16.185
+    working_directory: ~/
     steps:
       - run:
           name: Deploy to S3
