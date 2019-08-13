@@ -57,9 +57,9 @@ describe('<Button />', () => {
     });
 
     it('should handle id, class name and modifiers props', () => {
+      expect(wrapper.find('#btn-1').hostNodes().length).toBe(1);
       expect(wrapper.find('.testClass').hostNodes().length).toBe(1);
       expect(wrapper.find('.oc-button--success').length).toBe(1);
-      expect(wrapper.find('#btn-1').hostNodes().length).toBe(1);
     });
 
     it('should handle type and name props ', () => {
