@@ -1,0 +1,51 @@
+// Table of Contents
+//
+// 1 Pattern outline
+// 2 Imports
+// 3 Touch devices
+
+// 1 Pattern outline
+// =============================================================================
+
+// .skeleton-loader
+
+// 2 Imports
+// =============================================================================
+
+@import '../utilities/scss/variables/namespace';
+@import '../utilities/scss/variables/tokens';
+
+// 3 Touch devices
+// =============================================================================
+
+.#{$pre}-skeleton-loader {
+  position: relative;
+  overflow: hidden;
+  height: rem(8px);
+  border-radius: rem(2px);
+  margin-bottom: rem(16px);
+}
+
+.#{$pre}-skeleton-loader::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 220vw;
+  height: 100%;
+  background-image: linear-gradient(
+    90deg,
+    $gallery-transparent 45.454545vw,
+    transparent 49.999999vw,
+    $gallery-transparent 54.545454vw
+  );
+  animation: loading 2000ms infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -120vw;
+  }
+  100% {
+    left: 0;
+  }
+}
