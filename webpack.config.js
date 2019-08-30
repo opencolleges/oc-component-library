@@ -153,6 +153,10 @@ if (process.env.NODE_ENV === 'production' && process.env.entry === 'css') {
     ],
     reset: path.join(__dirname, './lib/reset.scss'),
     select: path.join(__dirname, './lib/select/select.scss'),
+    'skeleton-loader': path.join(
+      __dirname,
+      './lib/skeleton-loader/skeleton-loader.scss'
+    ),
     table: path.join(__dirname, './lib/table/table.scss'),
     'table-cell': path.join(__dirname, './lib/table-cell/table-cell.scss'),
     'table-row': path.join(__dirname, './lib/table-row/table-row.scss'),

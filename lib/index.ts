@@ -23,6 +23,7 @@ import Radio from './radio';
 import RadioSet from './radio-set';
 import Range from './range';
 import Select from './select';
+import SkeletonLoader from './skeleton-loader';
 import Table from './table';
 import TableBody from './table-body';
 import TableCell from './table-cell';
@@ -74,6 +75,7 @@ export {
   Toaster,
   Toggle,
   Select,
+  SkeletonLoader,
   Uniform,
   DNDV,
   TestDND

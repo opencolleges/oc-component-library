@@ -46,12 +46,13 @@ const Icon: React.FC<IProps> = props => {
       {find('icon--hamburger', props.modifiers) && <Hamburger />}
       {find('icon--minus', props.modifiers) && <Minus />}
       {find('icon--minus-ring', props.modifiers) && <MinusRing />}
+      {find('icon--question-ring', props.modifiers) && <QuestionRing />}
       {find('icon--plus', props.modifiers) && <Plus />}
       {find('icon--plus-ring', props.modifiers) && <PlusRing />}
+      {find('icon--print', props.modifiers) && <Print />}
       {find('icon--search', props.modifiers) && <Search />}
       {find('icon--tick', props.modifiers) && <Tick />}
       {find('icon--tick-ring', props.modifiers) && <TickRing />}
-      {find('icon--print', props.modifiers) && <Print />}
     </svg>
   );
 };
@@ -410,23 +411,6 @@ const PlusRing = () => {
   );
 };
 
-const Search = () => {
-  return (
-    <g>
-      <circle
-        className={namespace('stroke stroke--1')}
-        cx="10.5"
-        cy="10.5"
-        r="5"
-      />
-      <path
-        className={namespace('stroke stroke--2')}
-        d="M13.88,13.88 L18.12,18.12"
-      />
-    </g>
-  );
-};
-
 const Print = () => {
   return (
     <g>
@@ -444,6 +428,41 @@ const Print = () => {
       />
       <path className={namespace('stroke stroke--4')} d="M9 16.5L15 16.5" />
       <path className={namespace('stroke stroke--5')} d="M9 18.5L15 18.5" />
+    </g>
+  );
+};
+
+const QuestionRing = () => {
+  return (
+    <g>
+      <circle
+        className={namespace('stroke stroke--1')}
+        cx="12"
+        cy="12"
+        r="9.5"
+      />
+      <path
+        className={namespace('stroke stroke--2')}
+        d="M12,16 L12,14 C13.9329966,14 15.5,12.4329966 15.5,10.5 C15.5,8.56700338 13.9329966,7 12,7 C11.0324538,7 10.1566044,7.3926008 9.52306695,8.02718729 C8.89090181,8.66039919 8.5,9.53454959 8.5,10.5"
+      />
+      <path className={namespace('stroke stroke--3')} d="M12,17 L12,18" />
+    </g>
+  );
+};
+
+const Search = () => {
+  return (
+    <g>
+      <circle
+        className={namespace('stroke stroke--1')}
+        cx="10.5"
+        cy="10.5"
+        r="5"
+      />
+      <path
+        className={namespace('stroke stroke--2')}
+        d="M13.88,13.88 L18.12,18.12"
+      />
     </g>
   );
 };

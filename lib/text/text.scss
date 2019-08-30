@@ -138,6 +138,7 @@
 .#{$pre}-text__input::placeholder {
   color: $blizzard-transparent;
   transition: color $transition-duration-x1 $transition-timing-default;
+  user-select: none;
 }
 
 .#{$pre}-text__input:focus::placeholder {
