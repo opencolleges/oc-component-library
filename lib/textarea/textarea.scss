@@ -131,6 +131,7 @@
 .#{$pre}-textarea__input::placeholder {
   color: $blizzard-transparent;
   transition: color $transition-duration-x1 $transition-timing-default;
+  user-select: none;
 }
 
 .#{$pre}-textarea__input:focus::placeholder {
