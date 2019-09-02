@@ -20,7 +20,7 @@ const Button: React.FC<IButtonProps> = props => {
       'button',
       props.modifiers,
       props.icon ? 'button--icon' : ''
-    )}  ${_.toString(props.className)}`
+    )} ${_.toString(props.className)}`
   );
 
   return (
@@ -41,6 +41,7 @@ const Button: React.FC<IButtonProps> = props => {
 };
 
 Button.defaultProps = {
+  modifiers: 'button--primary',
   onClick: () => {
     return;
   },
