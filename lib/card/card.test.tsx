@@ -8,17 +8,21 @@ let wrapper;
 
 describe('<Card />', () => {
   beforeEach(() => {
-    wrapper = mount(<Card>foo</Card>);
+    wrapper = mount(
+      <Card>
+        <h1 />
+      </Card>
+    );
   });
 
   it('Handles props.children', () => {
-    expect(wrapper.find('div').text()).toBe('foo');
+    expect(wrapper.html()).toBe('<div class="oc-card"><h1></h1></div>');
 
-    wrapper.setProps({ children: 'bar' });
-    expect(wrapper.find('div').text()).toBe('bar');
+    wrapper.setProps({ children: <h2 /> });
+    expect(wrapper.html()).toBe('<div class="oc-card"><h2></h2></div>');
 
-    wrapper.setProps({ children: 'baz' });
-    expect(wrapper.find('div').text()).toBe('baz');
+    wrapper.setProps({ children: <p /> });
+    expect(wrapper.html()).toBe('<div class="oc-card"><p></p></div>');
   });
 
   it('Handles props.className', () => {
