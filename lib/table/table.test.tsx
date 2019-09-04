@@ -62,19 +62,6 @@ describe('<Table />', () => {
     );
   });
 
-  // it('Handles props.value', () => {
-  //   expect(wrapper.find('span').text()).toBe('0');
-
-  //   wrapper.setProps({ value: '16 qux' });
-  //   expect(wrapper.find('span').text()).toBe('16 qux');
-
-  //   wrapper.setProps({ value: '10' });
-  //   expect(wrapper.find('span').text()).toBe('9+');
-
-  //   wrapper.setProps({ value: 160 });
-  //   expect(wrapper.find('span').text()).toBe('99+');
-  // });
-
   afterEach(() => {
     wrapper.unmount();
   });
