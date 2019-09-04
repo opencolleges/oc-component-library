@@ -1,6 +1,6 @@
 export default interface ITableProps {
   children: React.ReactNode;
-  modifiers?: string;
   className?: string;
+  modifiers?: string;
   style?: React.CSSProperties;
 }
