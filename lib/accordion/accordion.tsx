@@ -1,15 +1,13 @@
-// * React imports
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as _ from 'lodash';
+import * as React from 'react';
 
-// * utility imports
 import namespace from '../utilities/js/namespace';
 
-// * child imports
+import IAccordionProps from './accordion.types';
+
 import Icon from '../icon';
 
-// * React component
-export default class Accordion extends React.Component {
+export default class Accordion extends React.Component<IAccordionProps> {
   constructor(props) {
     super(props);
 
@@ -21,17 +19,17 @@ export default class Accordion extends React.Component {
     };
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.sniffHeight();
 
     window.addEventListener('resize', this.sniffHeight);
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     window.removeEventListener('resize', this.sniffHeight);
   }
 
-  sniffHeight = () => {
+  public sniffHeight = () => {
     this.setState(
       {
         height: null
@@ -44,11 +42,11 @@ export default class Accordion extends React.Component {
     );
   };
 
-  handleClick = () => {
+  public handleClick = () => {
     this.setState({ expanded: !this.state.expanded });
   };
 
-  render() {
+  public render() {
     const { contentRef, props, state, handleClick } = this;
 
     return (
@@ -74,11 +72,11 @@ export default class Accordion extends React.Component {
   }
 }
 
-Accordion.propTypes = {
-  expanded: PropTypes.bool,
-  label: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
-};
+// Accordion.propTypes = {
+//   expanded: PropTypes.bool,
+//   label: PropTypes.string.isRequired,
+//   children: PropTypes.node.isRequired
+// };
 
 Accordion.defaultProps = {
   expanded: false

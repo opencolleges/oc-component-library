@@ -1,16 +1,15 @@
 import * as _ from 'lodash';
 import * as React from 'react';
-// * child imports
-import Badge from '../badge';
-// * Constants
-import { AVATAR_COORDINATES } from '../utilities/js/constants';
-import find from '../utilities/js/find';
-// * Utility className
-import namespace from '../utilities/js/namespace';
-// * Types
-import { IProps } from './avatar.types';
 
-const Avatar: React.FC<IProps> = props => {
+import Badge from '../badge';
+
+import find from '../utilities/js/find';
+import namespace from '../utilities/js/namespace';
+
+import { AVATAR_COORDINATES } from '../utilities/js/constants';
+import { IAvatarProps } from './avatar.types';
+
+const Avatar: React.FC<IAvatarProps> = props => {
   const Tag: keyof JSX.IntrinsicElements = _.isUndefined(props.href)
     ? 'div'
     : 'a';
