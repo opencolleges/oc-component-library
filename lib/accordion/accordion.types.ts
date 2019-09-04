@@ -1,4 +1,4 @@
-export default interface IAccordionProps {
+export default interface IProps {
   children: React.ReactNode;
   className?: string;
   expanded?: boolean;

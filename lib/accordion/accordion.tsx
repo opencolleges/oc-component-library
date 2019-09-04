@@ -3,15 +3,15 @@ import * as React from 'react';
 
 import namespace from '../utilities/js/namespace';
 
-import IAccordionProps from './accordion.types';
+import IProps from './accordion.types';
 
 import Icon from '../icon';
 
-export default class Accordion extends React.Component<IAccordionProps> {
+export default class Accordion extends React.Component<IProps> {
+  public contentRef = React.createRef<HTMLDivElement>();
+
   constructor(props) {
     super(props);
-
-    this.contentRef = React.createRef();
 
     this.state = {
       expanded: this.props.expanded,
