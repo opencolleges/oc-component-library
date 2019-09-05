@@ -1,56 +1,57 @@
-import * as _ from 'lodash';
 import * as React from 'react';
 
-import namespace from '../utilities/js/namespace';
-
-import IProps from './accordion.types';
+import { IProps, IState } from './accordion.interface';
 
 import Icon from '../icon';
 
-export default class Accordion extends React.Component<IProps> {
+import namespace from '../utilities/js/namespace';
+
+import * as _ from 'lodash';
+
+export default class Accordion extends React.Component<IProps, IState> {
+  public static defaultProps: { expanded: boolean };
+
+  public readonly state: Readonly<IState> = {
+    expanded: this.props.expanded,
+    height: null
+  };
+
   public contentRef = React.createRef<HTMLDivElement>();
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      expanded: this.props.expanded,
-      height: null
-    };
+  public componentDidMount(): void {
+    this.getContentHeight();
+    window.addEventListener('resize', this.getContentHeight);
   }
 
-  public componentDidMount() {
-    this.sniffHeight();
-
-    window.addEventListener('resize', this.sniffHeight);
+  public componentWillUnmount(): void {
+    window.removeEventListener('resize', this.getContentHeight);
   }
-
-  public componentWillUnmount() {
-    window.removeEventListener('resize', this.sniffHeight);
-  }
-
-  public sniffHeight = () => {
-    this.setState(
-      {
-        height: null
-      },
-      function() {
-        this.setState({
-          height: this.contentRef.current.scrollHeight - 1
-        });
-      }
-    );
-  };
 
   public handleClick = () => {
     this.setState({ expanded: !this.state.expanded });
   };
 
+  public getContentHeight = () => {
+    this.setState({ height: null }, () => {
+      this.setState({
+        height: this.contentRef.current.scrollHeight - 1
+      });
+    });
+  };
+
   public render() {
     const { contentRef, props, state, handleClick } = this;
 
+    const classNames: string = _.trim(
+      `${namespace(
+        'accordion',
+        props.modifiers,
+        state.expanded ? 'active' : ''
+      )} ${_.toString(props.className)}`
+    );
+
     return (
-      <div className={namespace(`accordion ${state.expanded ? 'active' : ''}`)}>
+      <div className={classNames} style={props.style}>
         <button
           type={'button'}
           className={namespace('accordion__button')}
@@ -71,12 +72,6 @@ export default class Accordion extends React.Component<IProps> {
     );
   }
 }
-
-// Accordion.propTypes = {
-//   expanded: PropTypes.bool,
-//   label: PropTypes.string.isRequired,
-//   children: PropTypes.node.isRequired
-// };
 
 Accordion.defaultProps = {
   expanded: false

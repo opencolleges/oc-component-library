@@ -3,7 +3,7 @@ import * as React from 'react';
 import { IProps } from './badge.interface';
 
 import namespace from '../utilities/js/namespace';
-import getBadgeLabel from './utilities/getBadgeLabel';
+import getBadgeLabel from './utilities/get-badge-label';
 
 import * as _ from 'lodash';
 
