@@ -1,17 +1,11 @@
-// * React imports
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-// * utilty imports
 import find from '../utilities/js/find';
 import namespace from '../utilities/js/namespace';
 
-// import types
-// * Utility className
 import classNames from '../utilities/js/namespace';
-import { IProps } from './icon.types';
+import { IProps } from './icon.interface';
 
-// * React component
 const Icon: React.FC<IProps> = props => {
   const class_names: string = `${classNames('icon', props.modifiers)} ${
     props.className

@@ -1,4 +1,4 @@
-export default interface ITableHeadProps {
+export interface IProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;

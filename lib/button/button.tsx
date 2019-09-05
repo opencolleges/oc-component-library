@@ -1,14 +1,15 @@
-import * as _ from 'lodash';
 import * as React from 'react';
+
+import { IProps } from './button.interface';
+
+import Icon from '../icon';
 
 import { NAMESPACE } from '../utilities/js/constants';
 import namespace from '../utilities/js/namespace';
 
-import IButtonProps from './button.types';
+import * as _ from 'lodash';
 
-import Icon from '../icon';
-
-const Button: React.FC<IButtonProps> = props => {
+const Button: React.FC<IProps> = props => {
   let Tag: keyof JSX.IntrinsicElements = 'button';
 
   if (!props.disabled && !_.isUndefined(props.href)) {

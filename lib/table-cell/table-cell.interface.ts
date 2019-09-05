@@ -1,6 +1,6 @@
-export type TableCellTag = 'td' | 'th';
+type TableCellTag = 'td' | 'th';
 
-export default interface ITableCellProps {
+export interface IProps {
   children?: React.ReactNode;
   className?: string;
   colSpan?: number;

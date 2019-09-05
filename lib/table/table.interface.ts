@@ -1,4 +1,4 @@
-export default interface ITableProps {
+export interface IProps {
   children: React.ReactNode;
   className?: string;
   modifiers?: string;
