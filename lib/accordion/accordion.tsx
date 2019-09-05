@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IState, Props } from './accordion.interface';
+import { Props, State } from './accordion.interface';
 
 import Icon from '../icon';
 
@@ -8,10 +8,10 @@ import namespace from '../utilities/js/namespace';
 
 import * as _ from 'lodash';
 
-export default class Accordion extends React.Component<Props, IState> {
+export default class Accordion extends React.Component<Props, State> {
   public static defaultProps: { expanded: boolean };
 
-  public readonly state: Readonly<IState> = {
+  public readonly state: Readonly<State> = {
     expanded: this.props.expanded,
     height: null
   };

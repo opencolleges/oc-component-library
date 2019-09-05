@@ -7,7 +7,7 @@ export interface Props {
   style?: React.CSSProperties;
 }
 
-export interface IState {
+export interface State {
   expanded: boolean;
   height?: number;
 }
