@@ -1,6 +1,6 @@
 type TSex = 'female' | 'male' | 'undisclosed';
 
-export interface IAvatarProps {
+export interface IProps {
   modifiers?: string;
   className?: string;
   style?: React.CSSProperties;

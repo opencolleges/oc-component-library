@@ -1,17 +1,17 @@
-import { IIconType } from '../icon/icon.types';
+import { IIcon } from '../icon/icon.interface';
 
-export type ButtonType = 'button' | 'submit' | 'reset';
+type TType = 'button' | 'submit' | 'reset';
 
-export default interface IButtonProps {
+export interface IProps {
   id?: string;
   action: string;
   href?: string;
-  type?: ButtonType;
+  type?: TType;
   name?: string;
   modifiers?: string;
   className?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
-  icon?: IIconType;
+  icon?: IIcon;
   onClick?: () => void;
 }

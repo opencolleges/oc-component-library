@@ -1,15 +1,16 @@
-import * as _ from 'lodash';
 import * as React from 'react';
+
+import { AVATAR_COORDINATES } from '../utilities/js/constants';
+import { IProps } from './avatar.interface';
 
 import Badge from '../badge';
 
 import find from '../utilities/js/find';
 import namespace from '../utilities/js/namespace';
 
-import { AVATAR_COORDINATES } from '../utilities/js/constants';
-import { IAvatarProps } from './avatar.types';
+import * as _ from 'lodash';
 
-const Avatar: React.FC<IAvatarProps> = props => {
+const Avatar: React.FC<IProps> = props => {
   const Tag: keyof JSX.IntrinsicElements = _.isUndefined(props.href)
     ? 'div'
     : 'a';
@@ -79,6 +80,7 @@ Avatar.defaultProps = {
 };
 
 export default Avatar;
+
 // * React imports
 // import PropTypes from 'prop-types';
 // import React from 'react';
