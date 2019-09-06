@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { IProps } from './uniform.interface';
+import { Props } from './uniform.interface';
 
 import namespace from '../utilities/js/namespace';
 import uniform from './utilities/uniform';
 
 import * as _ from 'lodash';
 
-const Uniform: React.FC<IProps> = props => {
+const Uniform: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
   const device: string = uniform.hasMouse() ? 'no-touchevents' : '';
   const mode: string = props.mode ? props.mode : uniform.getMode();

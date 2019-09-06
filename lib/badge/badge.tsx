@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { IProps } from './badge.interface';
+import { Props } from './badge.interface';
 
 import namespace from '../utilities/js/namespace';
 import getBadgeLabel from './utilities/get-badge-label';
 
 import * as _ from 'lodash';
 
-const Badge: React.FC<IProps> = props => {
+const Badge: React.FC<Props> = props => {
   const classNames: string = _.trim(
     `${namespace('badge', props.modifiers)} ${_.toString(props.className)}`
   );

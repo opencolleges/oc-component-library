@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { IProps } from './table-row.interface';
+import { Props } from './table-row.interface';
 
 import namespace from '../utilities/js/namespace';
 
 import * as _ from 'lodash';
 
-const TableRow: React.FC<IProps> = props => {
+const TableRow: React.FC<Props> = props => {
   const classNames: string = _.trim(
     `${namespace('tr', props.modifiers)} ${_.toString(props.className)}`
   );

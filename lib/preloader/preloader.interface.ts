@@ -1,4 +1,4 @@
-export interface IProps {
+export interface Props {
   active?: boolean;
   className?: string;
   style?: React.CSSProperties;

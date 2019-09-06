@@ -2,7 +2,7 @@ import { IIcon } from '../icon/icon.interface';
 
 type TType = 'button' | 'submit' | 'reset';
 
-export interface IProps {
+export interface Props {
   id?: string;
   action: string;
   href?: string;

@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { IProps } from './heading.interface';
+import { Props } from './heading.interface';
 
 import namespace from '../utilities/js/namespace';
 
 import * as _ from 'lodash';
 
-const Heading: React.FC<IProps> = props => {
+const Heading: React.FC<Props> = props => {
   const Tag = `h${_.toString(props.level)}` as
     | 'h1'
     | 'h2'

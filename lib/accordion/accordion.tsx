@@ -9,29 +9,29 @@ import namespace from '../utilities/js/namespace';
 import * as _ from 'lodash';
 
 export default class Accordion extends React.Component<Props, State> {
-  public static defaultProps: { expanded: boolean };
+  static defaultProps: { expanded: boolean };
 
-  public readonly state: Readonly<State> = {
+  readonly state: Readonly<State> = {
     expanded: this.props.expanded,
     height: null
   };
 
-  public contentRef = React.createRef<HTMLDivElement>();
+  contentRef = React.createRef<HTMLDivElement>();
 
-  public componentDidMount(): void {
+  componentDidMount(): void {
     this.getContentHeight();
     window.addEventListener('resize', this.getContentHeight);
   }
 
-  public componentWillUnmount(): void {
+  componentWillUnmount(): void {
     window.removeEventListener('resize', this.getContentHeight);
   }
 
-  public handleClick = () => {
+  handleClick = () => {
     this.setState({ expanded: !this.state.expanded });
   };
 
-  public getContentHeight = () => {
+  getContentHeight = () => {
     this.setState({ height: null }, () => {
       this.setState({
         height: this.contentRef.current.scrollHeight - 1
@@ -39,7 +39,7 @@ export default class Accordion extends React.Component<Props, State> {
     });
   };
 
-  public render() {
+  render() {
     const { contentRef, props, state, handleClick } = this;
 
     const classNames: string = _.trim(

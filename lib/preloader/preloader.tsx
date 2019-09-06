@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { IProps } from './preloader.interface';
+import { Props } from './preloader.interface';
 
 import namespace from '../utilities/js/namespace';
 
 import * as _ from 'lodash';
 
-const Preloader: React.FC<IProps> = props => {
+const Preloader: React.FC<Props> = props => {
   const classNames: string = _.trim(
     `${namespace('preloader', props.active ? 'active' : '')} ${_.toString(
       props.className

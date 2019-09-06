@@ -1,4 +1,4 @@
-export interface IProps {
+export interface Props {
   children: React.ReactNode;
   className?: string;
   href?: string;

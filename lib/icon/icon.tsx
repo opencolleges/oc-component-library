@@ -4,9 +4,9 @@ import find from '../utilities/js/find';
 import namespace from '../utilities/js/namespace';
 
 import classNames from '../utilities/js/namespace';
-import { IProps } from './icon.interface';
+import { Props } from './icon.interface';
 
-const Icon: React.FC<IProps> = props => {
+const Icon: React.FC<Props> = props => {
   const class_names: string = `${classNames('icon', props.modifiers)} ${
     props.className
   }`;

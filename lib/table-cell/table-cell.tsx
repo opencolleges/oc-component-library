@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { IProps } from './table-cell.interface';
+import { Props } from './table-cell.interface';
 
 import namespace from '../utilities/js/namespace';
 
 import * as _ from 'lodash';
 
-const TableCell: React.FC<IProps> = props => {
+const TableCell: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
   const classNames: string = _.trim(
     `${namespace(Tag, props.modifiers)} ${_.toString(props.className)}`
