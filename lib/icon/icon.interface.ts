@@ -25,7 +25,7 @@ export type IIcon =
   | 'tick-ring';
 
 export interface IProps {
-  modifiers?: string;
+  modifiers: string;
   className?: string;
   style?: React.CSSProperties;
   size?: string;
