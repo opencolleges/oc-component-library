@@ -1,4 +1,4 @@
-import { IIcon } from '../icon/icon.interface';
+import { TIcon } from '../icon/icon.interface';
 
 type TType = 'button' | 'submit' | 'reset';
 
@@ -12,6 +12,6 @@ export interface Props {
   className?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
-  icon?: IIcon;
+  icon?: TIcon;
   onClick?: () => void;
 }
