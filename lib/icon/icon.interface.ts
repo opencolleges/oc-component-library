@@ -18,12 +18,13 @@ export type IIcon =
   | 'hamburger'
   | 'minus'
   | 'minus-ring'
+  | 'question-ring'
   | 'plus'
   | 'plus-ring'
+  | 'print'
   | 'search'
   | 'tick'
   | 'tick-ring';
-
 
 export interface Props {
   modifiers: string;
