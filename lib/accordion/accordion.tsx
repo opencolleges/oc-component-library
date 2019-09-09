@@ -9,7 +9,9 @@ import namespace from '../utilities/js/namespace';
 import * as _ from 'lodash';
 
 export default class Accordion extends React.Component<Props, State> {
-  static defaultProps: { expanded: boolean };
+  static defaultProps: Partial<Props> = {
+    expanded: false
+  };
 
   readonly state: Readonly<State> = {
     expanded: this.props.expanded,
@@ -19,28 +21,27 @@ export default class Accordion extends React.Component<Props, State> {
   contentRef = React.createRef<HTMLDivElement>();
 
   componentDidMount(): void {
-    this.getContentHeight();
-    window.addEventListener('resize', this.getContentHeight);
+    this.setContentHeight();
+
+    window.addEventListener('resize', this.setContentHeight);
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('resize', this.getContentHeight);
+    window.removeEventListener('resize', this.setContentHeight);
   }
 
-  handleClick = () => {
-    this.setState({ expanded: !this.state.expanded });
-  };
-
-  getContentHeight = () => {
+  setContentHeight = (): void => {
     this.setState({ height: null }, () => {
-      this.setState({
-        height: this.contentRef.current.scrollHeight - 1
-      });
+      this.setState({ height: this.contentRef.current.scrollHeight - 1 });
     });
   };
 
+  handleClick = (): void => {
+    this.setState({ expanded: !this.state.expanded });
+  };
+
   render() {
-    const { contentRef, props, state, handleClick } = this;
+    const { props, state, contentRef, handleClick } = this;
 
     const classNames: string = _.trim(
       `${namespace(
@@ -72,7 +73,3 @@ export default class Accordion extends React.Component<Props, State> {
     );
   }
 }
-
-Accordion.defaultProps = {
-  expanded: false
-};
