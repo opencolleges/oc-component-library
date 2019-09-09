@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IProps } from './card.interface';
+import { Props } from './card.interface';
 
 import Icon from '../icon';
 
@@ -8,7 +8,7 @@ import namespace from '../utilities/js/namespace';
 
 import * as _ from 'lodash';
 
-const Card: React.FC<IProps> = props => {
+const Card: React.FC<Props> = props => {
   const Tag = (typeof props.href === 'undefined' ? 'div' : 'a') as 'div' | 'a';
 
   const classNames: string = _.trim(

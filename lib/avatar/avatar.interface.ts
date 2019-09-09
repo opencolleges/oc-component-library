@@ -1,6 +1,6 @@
 type TSex = 'female' | 'male' | 'undisclosed';
 
-export interface IProps {
+export interface Props {
   modifiers?: string;
   className?: string;
   style?: React.CSSProperties;

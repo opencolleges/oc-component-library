@@ -1,4 +1,4 @@
-import getBadgeLabel from './getBadgeLabel';
+import getBadgeLabel from './get-badge-label';
 
 describe('getBadgeLabel()', () => {
   it('Handles a number argument', () => {

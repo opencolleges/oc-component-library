@@ -1,8 +1,13 @@
 export interface Props {
   children: React.ReactNode;
   className?: string;
-  href?: string;
+  expanded?: boolean;
+  label: string;
   modifiers?: string;
   style?: React.CSSProperties;
-  tabIndex?: boolean;
+}
+
+export interface State {
+  expanded: boolean;
+  height?: number;
 }

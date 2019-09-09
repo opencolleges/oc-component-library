@@ -23,7 +23,7 @@ describe('<Uniform />', () => {
     wrapper = mount(<Uniform>foo</Uniform>);
 
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-light oc-no-touchevents'
+      'oc-no-touchevents oc-light'
     );
   });
 

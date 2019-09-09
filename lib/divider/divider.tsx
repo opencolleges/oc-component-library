@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { IProps } from './divider.interface';
+import { Props } from './divider.interface';
 
 import namespace from '../utilities/js/namespace';
 
 import * as _ from 'lodash';
 
-const Divider: React.FC<IProps> = props => {
+const Divider: React.FC<Props> = props => {
   const classNames: string = _.trim(
     `${namespace('divider', props.modifiers)} ${_.toString(props.className)}`
   );

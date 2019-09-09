@@ -1,6 +1,6 @@
 type TTag = 'div' | 'main' | 'section';
 
-export interface IProps {
+export interface Props {
   children: React.ReactNode;
   className?: string;
   mode?: string;

@@ -12,13 +12,13 @@ describe('<Heading />', () => {
   });
 
   it('Handles props.children', () => {
-    expect(wrapper.find('h1').text()).toBe('foo');
+    expect(wrapper.text()).toBe('foo');
 
     wrapper.setProps({ children: 'bar' });
-    expect(wrapper.find('h1').text()).toBe('bar');
+    expect(wrapper.text()).toBe('bar');
 
     wrapper.setProps({ children: 'baz' });
-    expect(wrapper.find('h1').text()).toBe('baz');
+    expect(wrapper.text()).toBe('baz');
   });
 
   it('Handles props.className', () => {

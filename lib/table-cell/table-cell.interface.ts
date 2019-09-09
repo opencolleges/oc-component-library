@@ -1,12 +1,12 @@
-type TableCellTag = 'td' | 'th';
+type TTag = 'td' | 'th';
 
-export interface IProps {
+export interface Props {
   children?: React.ReactNode;
   className?: string;
   colSpan?: number;
   modifiers?: string;
   rowSpan?: number;
   style?: React.CSSProperties;
-  tag?: TableCellTag;
+  tag?: TTag;
   width?: string;
 }
