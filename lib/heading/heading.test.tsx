@@ -32,24 +32,31 @@ describe('<Heading />', () => {
   });
 
   it('Handles props.level', () => {
+    expect(wrapper.getDOMNode().nodeName).toBe('H1');
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1');
 
     wrapper.setProps({ level: 1 });
+    expect(wrapper.getDOMNode().nodeName).toBe('H1');
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1');
 
     wrapper.setProps({ level: 2 });
+    expect(wrapper.getDOMNode().nodeName).toBe('H2');
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h2');
 
     wrapper.setProps({ level: 3 });
+    expect(wrapper.getDOMNode().nodeName).toBe('H3');
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h3');
 
     wrapper.setProps({ level: 4 });
+    expect(wrapper.getDOMNode().nodeName).toBe('H4');
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h4');
 
     wrapper.setProps({ level: 5 });
+    expect(wrapper.getDOMNode().nodeName).toBe('H5');
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h5');
 
     wrapper.setProps({ level: 6 });
+    expect(wrapper.getDOMNode().nodeName).toBe('H6');
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h6');
   });
 

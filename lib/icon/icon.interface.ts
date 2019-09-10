@@ -1,4 +1,4 @@
-export type IIcon =
+export type TIcon =
   | 'arrow-up'
   | 'arrow-right'
   | 'arrow-down'
