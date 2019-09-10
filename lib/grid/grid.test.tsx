@@ -3,7 +3,6 @@ import * as React from 'react';
 import Grid from './grid';
 
 import { mount } from 'enzyme';
-import { getStackTraceLines } from 'jest-message-util';
 
 let wrapper;
 
