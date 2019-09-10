@@ -14,5 +14,4 @@ export interface Props {
 
 export interface State {
   checked?: boolean;
-  disabled?: boolean;
 }
