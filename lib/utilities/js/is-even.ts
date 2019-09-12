@@ -1,5 +1,7 @@
 function isEven(num: number): boolean {
-  return num % 2 === 0;
+  if (Number.isInteger(num)) {
+    return Math.abs(num) % 2 === 0;
+  }
 }
 
 export default isEven;
