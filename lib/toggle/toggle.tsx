@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { Props, State } from './toggle.interface';
 
-import { NAMESPACE } from '../utilities/js/constants';
-import namespace from '../utilities/js/namespace';
+import { NAMESPACE } from '../utilities/ts/constants';
+import namespace from '../utilities/ts/namespace';
 
 import * as _ from 'lodash';
 

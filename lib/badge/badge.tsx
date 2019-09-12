@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Props } from './badge.interface';
 
-import namespace from '../utilities/js/namespace';
+import namespace from '../utilities/ts/namespace';
 import getBadgeLabel from './utilities/get-badge-label';
 
 import * as _ from 'lodash';

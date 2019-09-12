@@ -1,4 +1,4 @@
-import date from '../../utilities/js/date';
+import date from '../../utilities/ts/date';
 
 import uniform from './uniform';
 

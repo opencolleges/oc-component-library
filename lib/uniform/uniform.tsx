@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Props } from './uniform.interface';
 
-import namespace from '../utilities/js/namespace';
+import namespace from '../utilities/ts/namespace';
 import uniform from './utilities/uniform';
 
 import * as _ from 'lodash';
