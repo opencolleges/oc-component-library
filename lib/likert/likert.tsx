@@ -64,7 +64,7 @@ export default class Likert extends React.Component<Props, State> {
                   className={namespace('likert__button')}>
                   {scale.length > 10 ? i : i + 1}
                 </label>
-                {hasLikertLabel(scale.length, i) && option.label && (
+                {hasLikertLabel(scale, i) && option.label && (
                   <span className={namespace('likert__label')}>
                     {option.label}
                   </span>
