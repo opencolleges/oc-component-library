@@ -4,7 +4,7 @@ import { Props, State } from './accordion.interface';
 
 import Icon from '../icon';
 
-import namespace from '../utilities/js/namespace';
+import namespace from '../utilities/ts/namespace';
 
 import * as _ from 'lodash';
 

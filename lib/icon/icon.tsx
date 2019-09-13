@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import find from '../utilities/js/find';
-import namespace from '../utilities/js/namespace';
+import find from '../utilities/ts/find';
+import namespace from '../utilities/ts/namespace';
 
-import classNames from '../utilities/js/namespace';
+import classNames from '../utilities/ts/namespace';
 import { Props } from './icon.interface';
 
 const Icon: React.FC<Props> = props => {

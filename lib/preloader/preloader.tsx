@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Props } from './preloader.interface';
 
-import namespace from '../utilities/js/namespace';
+import namespace from '../utilities/ts/namespace';
 
 import * as _ from 'lodash';
 

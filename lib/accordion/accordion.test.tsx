@@ -47,13 +47,24 @@ describe('<Acordion />', () => {
 
   it('Handles props.expanded', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-accordion');
+    wrapper.unmount();
 
-    wrapper.setState({ expanded: true });
+    wrapper = mount(
+      <Accordion label="foo" expanded={true}>
+        <p>Bar</p>
+      </Accordion>
+    );
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-accordion oc-active'
     );
 
-    wrapper.setState({ expanded: false });
+    wrapper.unmount();
+
+    wrapper = mount(
+      <Accordion label="foo" expanded={false}>
+        <p>Bar</p>
+      </Accordion>
+    );
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-accordion');
   });
 
@@ -86,6 +97,18 @@ describe('<Acordion />', () => {
     expect(wrapper.getDOMNode().getAttribute('style')).toBe(
       'z-index: 1; opacity: 0;'
     );
+  });
+
+  it('Handles state.expanded', () => {
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-accordion');
+
+    wrapper.setState({ expanded: true });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
+      'oc-accordion oc-active'
+    );
+
+    wrapper.setState({ expanded: false });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-accordion');
   });
 
   afterEach(() => {

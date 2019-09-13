@@ -1,6 +1,6 @@
 import detectIt from 'detect-it';
 
-import date from '../../utilities/js/date';
+import date from '../../utilities/ts/date';
 
 const uniform = {
   getMode(): string {

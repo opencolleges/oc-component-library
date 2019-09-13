@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-import { Props } from './table-cell.interface';
+import { Props } from './copy.interface';
 
 import namespace from '../utilities/ts/namespace';
 
 import * as _ from 'lodash';
 
-const TableCell: React.FC<Props> = props => {
+const Copy: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
+
   const classNames: string = _.trim(
     `${namespace(Tag, props.modifiers)} ${_.toString(props.className)}`
   );
@@ -16,15 +17,17 @@ const TableCell: React.FC<Props> = props => {
     <Tag
       className={classNames}
       style={props.style}
-      colSpan={props.colSpan}
-      rowSpan={props.rowSpan}>
+      href={Tag === 'a' ? props.href : null}
+      target={props.target}
+      rel={props.target === '_blank' ? 'noopener noreferrer' : null}
+      title={props.title}>
       {props.children}
     </Tag>
   );
 };
 
-TableCell.defaultProps = {
-  tag: 'td'
+Copy.defaultProps = {
+  tag: 'p'
 };
 
-export default TableCell;
+export default Copy;

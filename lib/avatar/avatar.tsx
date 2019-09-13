@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { AVATAR_COORDINATES } from '../utilities/js/constants';
+import { AVATAR_COORDINATES } from '../utilities/ts/constants';
 import { Props } from './avatar.interface';
 
 import Badge from '../badge';
 
-import find from '../utilities/js/find';
-import namespace from '../utilities/js/namespace';
+import find from '../utilities/ts/find';
+import namespace from '../utilities/ts/namespace';
 
 import * as _ from 'lodash';
 
@@ -86,9 +86,9 @@ export default Avatar;
 // import React from 'react';
 
 // * utility imports
-// import find from '../utilities/js/find';
-// import namespace from '../utilities/js/namespace';
-// import randomise from '../utilities/js/randomise';
+// import find from '../utilities/ts/find';
+// import namespace from '../utilities/ts/namespace';
+// import randomise from '../utilities/ts/randomise';
 
 // * child imports
 // import Badge from '../badge';

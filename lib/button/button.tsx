@@ -4,8 +4,8 @@ import { Props } from './button.interface';
 
 import Icon from '../icon';
 
-import { NAMESPACE } from '../utilities/js/constants';
-import namespace from '../utilities/js/namespace';
+import { NAMESPACE } from '../utilities/ts/constants';
+import namespace from '../utilities/ts/namespace';
 
 import * as _ from 'lodash';
 
