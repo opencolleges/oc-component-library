@@ -9,47 +9,116 @@ let wrapper;
 describe('<TableBody />', () => {
   beforeEach(() => {
     wrapper = mount(
-      <TableBody>
-        <tr />
-      </TableBody>
+      <table>
+        <TableBody>
+          <tr />
+        </TableBody>
+      </table>
     );
   });
 
   it('Handles props.children', () => {
-    expect(wrapper.html()).toBe('<tbody class="oc-tbody"><tr></tr></tbody>');
+    expect(wrapper.find('tbody').html()).toBe(
+      '<tbody class="oc-tbody"><tr></tr></tbody>'
+    );
 
-    wrapper.setProps({
-      children: (
-        <tr>
-          <td />
-        </tr>
-      )
-    });
-    expect(wrapper.html()).toBe(
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <TableBody>
+          <tr>
+            <td />
+          </tr>
+        </TableBody>
+      </table>
+    );
+    expect(wrapper.find('tbody').html()).toBe(
       '<tbody class="oc-tbody"><tr><td></td></tr></tbody>'
     );
   });
 
   it('Handles props.className', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-tbody');
+    expect(
+      wrapper
+        .find('tbody')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-tbody');
 
-    wrapper.setProps({ className: 'foo' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-tbody foo');
+    wrapper.unmount();
 
-    wrapper.setProps({ className: 'foo bar' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-tbody foo bar');
+    wrapper = mount(
+      <table>
+        <TableBody className="foo">
+          <tr />
+        </TableBody>
+      </table>
+    );
+    expect(
+      wrapper
+        .find('tbody')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-tbody foo');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <TableBody className="foo bar">
+          <tr />
+        </TableBody>
+      </table>
+    );
+    expect(
+      wrapper
+        .find('tbody')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-tbody foo bar');
   });
 
   it('Handles props.style', () => {
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(null);
+    expect(
+      wrapper
+        .find('tbody')
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe(null);
 
-    wrapper.setProps({ style: { zIndex: '1' } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
+    wrapper.unmount();
 
-    wrapper.setProps({ style: { zIndex: '1', opacity: 0 } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(
-      'z-index: 1; opacity: 0;'
+    wrapper = mount(
+      <table>
+        <TableBody style={{ zIndex: 1 }}>
+          <tr />
+        </TableBody>
+      </table>
     );
+    expect(
+      wrapper
+        .find('tbody')
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe('z-index: 1;');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <TableBody style={{ zIndex: 1, opacity: 0 }}>
+          <tr />
+        </TableBody>
+      </table>
+    );
+
+    expect(
+      wrapper
+        .find('tbody')
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe('z-index: 1; opacity: 0;');
   });
 
   afterEach(() => {

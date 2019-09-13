@@ -9,47 +9,125 @@ let wrapper;
 describe('<TableHead />', () => {
   beforeEach(() => {
     wrapper = mount(
-      <TableHead>
-        <tr />
-      </TableHead>
+      <table>
+        <TableHead>
+          <tr />
+        </TableHead>
+      </table>
     );
   });
 
   it('Handles props.children', () => {
-    expect(wrapper.html()).toBe('<thead class="oc-thead"><tr></tr></thead>');
+    expect(wrapper.find('thead').html()).toBe(
+      '<thead class="oc-thead"><tr></tr></thead>'
+    );
 
-    wrapper.setProps({
-      children: (
-        <tr>
-          <td />
-        </tr>
-      )
-    });
-    expect(wrapper.html()).toBe(
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <TableHead>
+          <tr>
+            <td />
+          </tr>
+        </TableHead>
+      </table>
+    );
+    expect(wrapper.find('thead').html()).toBe(
       '<thead class="oc-thead"><tr><td></td></tr></thead>'
     );
   });
 
   it('Handles props.className', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-thead');
+    expect(
+      wrapper
+        .find('thead')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-thead');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <TableHead className="foo">
+          <tr>
+            <td />
+          </tr>
+        </TableHead>
+      </table>
+    );
 
     wrapper.setProps({ className: 'foo' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-thead foo');
+    expect(
+      wrapper
+        .find('thead')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-thead foo');
 
-    wrapper.setProps({ className: 'foo bar' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-thead foo bar');
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <TableHead className="foo bar">
+          <tr>
+            <td />
+          </tr>
+        </TableHead>
+      </table>
+    );
+    expect(
+      wrapper
+        .find('thead')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-thead foo bar');
   });
 
   it('Handles props.style', () => {
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(null);
+    expect(
+      wrapper
+        .find('thead')
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe(null);
 
-    wrapper.setProps({ style: { zIndex: '1' } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
+    wrapper.unmount();
 
-    wrapper.setProps({ style: { zIndex: '1', opacity: 0 } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(
-      'z-index: 1; opacity: 0;'
+    wrapper = mount(
+      <table>
+        <TableHead style={{ zIndex: 1 }}>
+          <tr>
+            <td />
+          </tr>
+        </TableHead>
+      </table>
     );
+    expect(
+      wrapper
+        .find('thead')
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe('z-index: 1;');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <TableHead style={{ zIndex: 1, opacity: 0 }}>
+          <tr>
+            <td />
+          </tr>
+        </TableHead>
+      </table>
+    );
+    expect(
+      wrapper
+        .find('thead')
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe('z-index: 1; opacity: 0;');
   });
 
   afterEach(() => {
