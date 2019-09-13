@@ -5,7 +5,7 @@ import { Props, State } from './likert.interface';
 import getLikertScale from './utilities/get-likert-scale';
 import hasLikertLabel from './utilities/has-likert-label';
 
-import namespace from '../utilities/js/namespace';
+import namespace from '../utilities/ts/namespace';
 
 import * as _ from 'lodash';
 

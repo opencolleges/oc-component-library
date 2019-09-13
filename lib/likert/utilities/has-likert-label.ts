@@ -1,5 +1,5 @@
-import isFirstOrLastIndex from '../../utilities/js/is-first-or-last-index';
-import isOdd from '../../utilities/js/is-odd';
+import isFirstOrLastIndex from '../../utilities/ts/is-first-or-last-index';
+import isOdd from '../../utilities/ts/is-odd';
 
 const hasLikertLabel = (
   arr: Array<{ id: string; label?: string }>,

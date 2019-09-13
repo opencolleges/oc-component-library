@@ -1,4 +1,4 @@
-import { NAMESPACE } from '../../utilities/js/constants';
+import { NAMESPACE } from '../../utilities/ts/constants';
 
 import * as _ from 'lodash';
 
