@@ -11,6 +11,16 @@ describe('<Badge />', () => {
     wrapper = mount(<Badge />);
   });
 
+  it('Handles props.className', () => {
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-badge');
+
+    wrapper.setProps({ className: 'foo' });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-badge foo');
+
+    wrapper.setProps({ className: 'foo bar' });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-badge foo bar');
+  });
+
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-badge');
 
@@ -23,16 +33,6 @@ describe('<Badge />', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-badge oc-badge--success'
     );
-  });
-
-  it('Handles props.className', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-badge');
-
-    wrapper.setProps({ className: 'foo' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-badge foo');
-
-    wrapper.setProps({ className: 'foo bar' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-badge foo bar');
   });
 
   it('Handles props.style', () => {
