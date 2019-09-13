@@ -6,6 +6,8 @@ import namespace from '../utilities/ts/namespace';
 import classNames from '../utilities/ts/namespace';
 import { Props } from './icon.interface';
 
+import * as _ from 'lodash';
+
 const Icon: React.FC<Props> = props => {
   const class_names: string = `${classNames('icon', props.modifiers)} ${
     props.className
@@ -55,7 +57,9 @@ Icon.defaultProps = {
   size: '24px'
 };
 
-const ArrowUp = () => {
+export default Icon;
+
+const ArrowUp: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M12,20 L12,4.71" />
@@ -67,7 +71,7 @@ const ArrowUp = () => {
   );
 };
 
-const ArrowRight = () => {
+const ArrowRight: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M4,12 L19.3,12" />
@@ -79,7 +83,7 @@ const ArrowRight = () => {
   );
 };
 
-const ArrowDown = () => {
+const ArrowDown: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M12,4 L12,19.3" />
@@ -91,7 +95,7 @@ const ArrowDown = () => {
   );
 };
 
-const ArrowLeft = () => {
+const ArrowLeft: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M20,12 L4.71,12" />
@@ -103,7 +107,7 @@ const ArrowLeft = () => {
   );
 };
 
-const Calendar = () => {
+const Calendar: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -117,7 +121,7 @@ const Calendar = () => {
   );
 };
 
-const ChevronUp = () => {
+const ChevronUp: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -128,7 +132,7 @@ const ChevronUp = () => {
   );
 };
 
-const ChevronRight = () => {
+const ChevronRight: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -139,7 +143,7 @@ const ChevronRight = () => {
   );
 };
 
-const ChevronDown = () => {
+const ChevronDown: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -150,7 +154,7 @@ const ChevronDown = () => {
   );
 };
 
-const ChevronLeft = () => {
+const ChevronLeft: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -161,7 +165,7 @@ const ChevronLeft = () => {
   );
 };
 
-const Clock = () => {
+const Clock: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -178,7 +182,7 @@ const Clock = () => {
   );
 };
 
-const Close = () => {
+const Close: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -193,7 +197,7 @@ const Close = () => {
   );
 };
 
-const CloseRing = () => {
+const CloseRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -214,7 +218,7 @@ const CloseRing = () => {
   );
 };
 
-const Cloud = () => {
+const Cloud: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -225,7 +229,7 @@ const Cloud = () => {
   );
 };
 
-const CloudDownload = () => {
+const CloudDownload: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -241,7 +245,7 @@ const CloudDownload = () => {
   );
 };
 
-const CloudUpload = () => {
+const CloudUpload: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -257,7 +261,7 @@ const CloudUpload = () => {
   );
 };
 
-const Draggable = () => {
+const Draggable: React.FC = () => {
   return (
     <React.Fragment>
       <circle className={namespace('stroke stroke--1')} cx="8" cy="4" r="2" />
@@ -270,7 +274,7 @@ const Draggable = () => {
   );
 };
 
-const Hamburger = () => {
+const Hamburger: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M0,4.5 L24,4.5" />
@@ -280,7 +284,7 @@ const Hamburger = () => {
   );
 };
 
-const Tick = () => {
+const Tick: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -291,7 +295,7 @@ const Tick = () => {
   );
 };
 
-const TickRing = () => {
+const TickRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -308,7 +312,7 @@ const TickRing = () => {
   );
 };
 
-const Minus = () => {
+const Minus: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M4,12 L20,12" />
@@ -316,7 +320,7 @@ const Minus = () => {
   );
 };
 
-const MinusRing = () => {
+const MinusRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -330,7 +334,7 @@ const MinusRing = () => {
   );
 };
 
-const Plus = () => {
+const Plus: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M12,4 L12,20" />
@@ -339,7 +343,7 @@ const Plus = () => {
   );
 };
 
-const PlusRing = () => {
+const PlusRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -354,7 +358,7 @@ const PlusRing = () => {
   );
 };
 
-const Print = () => {
+const Print: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -375,7 +379,7 @@ const Print = () => {
   );
 };
 
-const QuestionRing = () => {
+const QuestionRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -393,7 +397,7 @@ const QuestionRing = () => {
   );
 };
 
-const Search = () => {
+const Search: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -409,5 +413,3 @@ const Search = () => {
     </React.Fragment>
   );
 };
-
-export default Icon;
