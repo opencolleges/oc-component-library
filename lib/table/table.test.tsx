@@ -29,12 +29,12 @@ describe('<Table />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-table');
 
-    wrapper.setProps({ modifiers: 'table--center' });
+    wrapper.setProps({ modifiers: 'center' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-table oc-table--center'
     );
 
-    wrapper.setProps({ modifiers: 'table--right' });
+    wrapper.setProps({ modifiers: 'right' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-table oc-table--right'
     );

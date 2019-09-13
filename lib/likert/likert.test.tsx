@@ -54,7 +54,7 @@ describe('<Likert />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-likert');
 
-    wrapper.setProps({ modifiers: 'likert--compact' });
+    wrapper.setProps({ modifiers: 'compact' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-likert oc-likert--compact'
     );

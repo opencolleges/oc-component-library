@@ -16,12 +16,12 @@ describe('<Divider />', () => {
       'oc-divider oc-divider--s'
     );
 
-    wrapper.setProps({ modifiers: 'divider--m' });
+    wrapper.setProps({ modifiers: 'm' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-divider oc-divider--m'
     );
 
-    wrapper.setProps({ modifiers: 'divider--l' });
+    wrapper.setProps({ modifiers: 'l' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-divider oc-divider--l'
     );

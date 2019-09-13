@@ -63,17 +63,17 @@ describe('<Heading />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-h1');
 
-    wrapper.setProps({ modifiers: 'h1--compact' });
+    wrapper.setProps({ modifiers: 'compact' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-h1 oc-h1--compact'
     );
 
-    wrapper.setProps({ modifiers: 'h1--center' });
+    wrapper.setProps({ modifiers: 'center' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-h1 oc-h1--center'
     );
 
-    wrapper.setProps({ modifiers: 'h1--right' });
+    wrapper.setProps({ modifiers: 'right' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-h1 oc-h1--right'
     );

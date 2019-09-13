@@ -38,17 +38,17 @@ describe('<GridItem />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-grid__item');
 
-    wrapper.setProps({ modifiers: 'grid__item--s-12' });
+    wrapper.setProps({ modifiers: 's-12' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-grid__item oc-grid__item--s-12'
     );
 
-    wrapper.setProps({ modifiers: 'grid__item--m-6' });
+    wrapper.setProps({ modifiers: 'm-6' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-grid__item oc-grid__item--m-6'
     );
 
-    wrapper.setProps({ modifiers: 'grid__item--l-4' });
+    wrapper.setProps({ modifiers: 'l-4' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-grid__item oc-grid__item--l-4'
     );

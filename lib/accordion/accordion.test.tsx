@@ -81,7 +81,7 @@ describe('<Acordion />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-accordion');
 
-    wrapper.setProps({ modifiers: 'accordion--compact' });
+    wrapper.setProps({ modifiers: 'compact' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-accordion oc-accordion--compact'
     );

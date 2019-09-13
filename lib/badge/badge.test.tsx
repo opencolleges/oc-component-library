@@ -24,12 +24,12 @@ describe('<Badge />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-badge');
 
-    wrapper.setProps({ modifiers: 'badge--error' });
+    wrapper.setProps({ modifiers: 'error' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-badge oc-badge--error'
     );
 
-    wrapper.setProps({ modifiers: 'badge--success' });
+    wrapper.setProps({ modifiers: 'success' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-badge oc-badge--success'
     );

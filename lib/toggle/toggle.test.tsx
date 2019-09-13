@@ -122,17 +122,17 @@ describe('<Toggle />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-toggle');
 
-    wrapper.setProps({ modifiers: 'toggle--right' });
+    wrapper.setProps({ modifiers: 'right' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-toggle oc-toggle--right'
     );
 
-    wrapper.setProps({ modifiers: 'toggle--error' });
+    wrapper.setProps({ modifiers: 'error' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-toggle oc-toggle--error'
     );
 
-    wrapper.setProps({ modifiers: 'toggle--right toggle--success' });
+    wrapper.setProps({ modifiers: 'right success' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-toggle oc-toggle--right oc-toggle--success'
     );

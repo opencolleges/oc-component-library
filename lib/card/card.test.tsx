@@ -58,17 +58,17 @@ describe('<Card />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-card');
 
-    wrapper.setProps({ modifiers: 'card--s' });
+    wrapper.setProps({ modifiers: 's' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-card oc-card--s'
     );
 
-    wrapper.setProps({ modifiers: 'card--m' });
+    wrapper.setProps({ modifiers: 'm' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-card oc-card--m'
     );
 
-    wrapper.setProps({ modifiers: 'card--l' });
+    wrapper.setProps({ modifiers: 'l' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-card oc-card--l'
     );

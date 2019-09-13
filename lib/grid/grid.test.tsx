@@ -44,17 +44,17 @@ describe('<Grid />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-grid');
 
-    wrapper.setProps({ modifiers: 'grid--gutter-fixed' });
+    wrapper.setProps({ modifiers: 'gutter-fixed' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-grid oc-grid--gutter-fixed'
     );
 
-    wrapper.setProps({ modifiers: 'grid--gutter-x-fixed' });
+    wrapper.setProps({ modifiers: 'gutter-x-fixed' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-grid oc-grid--gutter-x-fixed'
     );
 
-    wrapper.setProps({ modifiers: 'grid--gutter-y-fixed' });
+    wrapper.setProps({ modifiers: 'gutter-y-fixed' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-grid oc-grid--gutter-y-fixed'
     );
