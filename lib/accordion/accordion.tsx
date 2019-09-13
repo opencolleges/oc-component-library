@@ -5,6 +5,7 @@ import { Props, State } from './accordion.interface';
 import Icon from '../icon';
 
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
 
 import * as _ from 'lodash';
 
@@ -46,7 +47,7 @@ export default class Accordion extends React.Component<Props, State> {
     const classNames: string = _.trim(
       `${namespace(
         'accordion',
-        props.modifiers,
+        toModifier(props.modifiers, 'accordion'),
         state.expanded ? 'active' : ''
       )} ${_.toString(props.className)}`
     );

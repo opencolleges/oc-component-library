@@ -5,6 +5,7 @@ import { Props } from './card.interface';
 import Icon from '../icon';
 
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
 
 import * as _ from 'lodash';
 
@@ -14,7 +15,7 @@ const Card: React.FC<Props> = props => {
   const classNames: string = _.trim(
     `${namespace(
       'card',
-      props.modifiers,
+      toModifier(props.modifiers, 'card'),
       props.href ? 'card--clickable' : ''
     )} ${_.toString(props.className)}`
   );

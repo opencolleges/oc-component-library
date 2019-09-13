@@ -1,13 +1,12 @@
 import * as React from 'react';
 
+import { Props } from './icon.interface';
+
 import find from '../utilities/ts/find';
 import namespace from '../utilities/ts/namespace';
 
-import classNames from '../utilities/ts/namespace';
-import { Props } from './icon.interface';
-
 const Icon: React.FC<Props> = props => {
-  const class_names: string = `${classNames('icon', props.modifiers)} ${
+  const class_names: string = `${namespace('icon', props.modifiers)} ${
     props.className
   }`;
 

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Props } from './copy.interface';
 
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
 
 import * as _ from 'lodash';
 
@@ -10,7 +11,9 @@ const Copy: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
 
   const classNames: string = _.trim(
-    `${namespace(Tag, props.modifiers)} ${_.toString(props.className)}`
+    `${namespace(Tag, toModifier(props.modifiers, Tag))} ${_.toString(
+      props.className
+    )}`
   );
 
   return (
