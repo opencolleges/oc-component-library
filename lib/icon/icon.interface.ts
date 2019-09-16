@@ -1,13 +1,13 @@
 export type TIcon =
-  | 'arrow-up'
-  | 'arrow-right'
   | 'arrow-down'
   | 'arrow-left'
+  | 'arrow-right'
+  | 'arrow-up'
   | 'calendar'
-  | 'chevron-up'
-  | 'chevron-right'
   | 'chevron-down'
   | 'chevron-left'
+  | 'chevron-right'
+  | 'chevron-up'
   | 'clock'
   | 'close'
   | 'close-ring'
@@ -18,17 +18,18 @@ export type TIcon =
   | 'hamburger'
   | 'minus'
   | 'minus-ring'
-  | 'question-ring'
   | 'plus'
   | 'plus-ring'
   | 'print'
+  | 'question-ring'
   | 'search'
   | 'tick'
   | 'tick-ring';
 
 export interface Props {
-  modifiers: string;
   className?: string;
   style?: React.CSSProperties;
   size?: string;
+  type: TIcon;
+  visible?: boolean;
 }

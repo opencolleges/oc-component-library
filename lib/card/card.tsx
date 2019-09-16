@@ -31,9 +31,7 @@ const Card: React.FC<Props> = props => {
           ? 0
           : null
       }>
-      {_.includes(classNames, 'card--draggable') && (
-        <Icon modifiers="icon--draggable active" />
-      )}
+      {_.includes(classNames, 'card--draggable') && <Icon type="draggable" />}
       {props.children}
     </Tag>
   );

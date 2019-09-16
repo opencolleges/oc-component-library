@@ -1,21 +1,54 @@
 import * as React from 'react';
 
-import find from '../utilities/ts/find';
-import namespace from '../utilities/ts/namespace';
-
-import classNames from '../utilities/ts/namespace';
 import { Props } from './icon.interface';
+
+import namespace from '../utilities/ts/namespace';
 
 import * as _ from 'lodash';
 
 const Icon: React.FC<Props> = props => {
-  const class_names: string = `${classNames('icon', props.modifiers)} ${
-    props.className
-  }`;
+  const icons = {
+    'arrow-down': ArrowDown,
+    'arrow-left': ArrowLeft,
+    'arrow-right': ArrowRight,
+    'arrow-up': ArrowUp,
+    calendar: Calendar,
+    'chevron-down': ChevronDown,
+    'chevron-left': ChevronLeft,
+    'chevron-right': ChevronRight,
+    'chevron-up': ChevronUp,
+    clock: Clock,
+    close: Close,
+    'close-ring': CloseRing,
+    cloud: Cloud,
+    'cloud-download': CloudDownload,
+    'cloud-upload': CloudUpload,
+    draggable: Draggable,
+    hamburger: Hamburger,
+    minus: Minus,
+    'minus-ring': MinusRing,
+    plus: Plus,
+    'plus-ring': PlusRing,
+    print: Print,
+    'question-ring': QuestionRing,
+    search: Search,
+    tick: Tick,
+    'tick-ring': TickRing
+  };
+
+  const type: string = _.replace(props.type, 'icon--', '');
+
+  const classNames: string = _.trim(
+    `${namespace(
+      'icon',
+      props.type,
+      props.visible ? 'active' : ''
+    )} ${_.toString(props.className)}`
+  );
 
   return (
     <svg
-      className={class_names}
+      className={classNames}
       style={props.style}
       width={props.size}
       height={props.size}
@@ -23,38 +56,14 @@ const Icon: React.FC<Props> = props => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       aria-hidden="true">
-      {find('icon--arrow-up', props.modifiers) && <ArrowUp />}
-      {find('icon--arrow-right', props.modifiers) && <ArrowRight />}
-      {find('icon--arrow-down', props.modifiers) && <ArrowDown />}
-      {find('icon--arrow-left', props.modifiers) && <ArrowLeft />}
-      {find('icon--calendar', props.modifiers) && <Calendar />}
-      {find('icon--chevron-up', props.modifiers) && <ChevronUp />}
-      {find('icon--chevron-right', props.modifiers) && <ChevronRight />}
-      {find('icon--chevron-down', props.modifiers) && <ChevronDown />}
-      {find('icon--chevron-left', props.modifiers) && <ChevronLeft />}
-      {find('icon--clock', props.modifiers) && <Clock />}
-      {find('icon--close', props.modifiers) && <Close />}
-      {find('icon--close-ring', props.modifiers) && <CloseRing />}
-      {find('icon--cloud', props.modifiers) && <Cloud />}
-      {find('icon--cloud-download', props.modifiers) && <CloudDownload />}
-      {find('icon--cloud-upload', props.modifiers) && <CloudUpload />}
-      {find('icon--draggable', props.modifiers) && <Draggable />}
-      {find('icon--hamburger', props.modifiers) && <Hamburger />}
-      {find('icon--minus', props.modifiers) && <Minus />}
-      {find('icon--minus-ring', props.modifiers) && <MinusRing />}
-      {find('icon--question-ring', props.modifiers) && <QuestionRing />}
-      {find('icon--plus', props.modifiers) && <Plus />}
-      {find('icon--plus-ring', props.modifiers) && <PlusRing />}
-      {find('icon--print', props.modifiers) && <Print />}
-      {find('icon--search', props.modifiers) && <Search />}
-      {find('icon--tick', props.modifiers) && <Tick />}
-      {find('icon--tick-ring', props.modifiers) && <TickRing />}
+      {React.createElement(icons[type], {})}
     </svg>
   );
 };
 
 Icon.defaultProps = {
-  size: '24px'
+  size: '24px',
+  visible: true
 };
 
 export default Icon;
