@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Props } from './icon.interface';
 
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
 
 import * as _ from 'lodash';
 
@@ -36,12 +37,10 @@ const Icon: React.FC<Props> = props => {
     'tick-ring': TickRing
   };
 
-  const type: string = _.replace(props.type, 'icon--', '');
-
   const classNames: string = _.trim(
     `${namespace(
       'icon',
-      props.type,
+      toModifier(props.type, 'icon'),
       props.visible ? 'active' : ''
     )} ${_.toString(props.className)}`
   );
@@ -56,7 +55,7 @@ const Icon: React.FC<Props> = props => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       aria-hidden="true">
-      {React.createElement(icons[type], {})}
+      {React.createElement(icons[props.type], {})}
     </svg>
   );
 };

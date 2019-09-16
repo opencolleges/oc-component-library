@@ -8,6 +8,6 @@ export interface Props {
 }
 
 export interface State {
-  expanded: boolean;
+  expanded?: boolean;
   height?: number;
 }
