@@ -9,53 +9,166 @@ let wrapper;
 describe('<TableRow />', () => {
   beforeEach(() => {
     wrapper = mount(
-      <TableRow>
-        <th />
-      </TableRow>
+      <table>
+        <tbody>
+          <TableRow>
+            <th />
+          </TableRow>
+        </tbody>
+      </table>
     );
   });
 
   it('Handles props.children', () => {
-    expect(wrapper.html()).toBe('<tr class="oc-tr"><th></th></tr>');
+    expect(wrapper.find('tr').html()).toBe('<tr class="oc-tr"><th></th></tr>');
 
-    wrapper.setProps({ children: <td /> });
-    expect(wrapper.html()).toBe('<tr class="oc-tr"><td></td></tr>');
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <tbody>
+          <TableRow>
+            <td />
+          </TableRow>
+        </tbody>
+      </table>
+    );
+    expect(wrapper.find('tr').html()).toBe('<tr class="oc-tr"><td></td></tr>');
   });
 
   it('Handles props.modifiers', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-tr');
+    expect(
+      wrapper
+        .find('tr')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-tr');
 
-    wrapper.setProps({ modifiers: 'tr--center' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-tr oc-tr--center'
-    );
+    wrapper.unmount();
 
-    wrapper.setProps({ modifiers: 'tr--right' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-tr oc-tr--right'
+    wrapper = mount(
+      <table>
+        <tbody>
+          <TableRow modifiers="center">
+            <td />
+          </TableRow>
+        </tbody>
+      </table>
     );
+    expect(
+      wrapper
+        .find('tr')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-tr oc-tr--center');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <tbody>
+          <TableRow modifiers="right">
+            <td />
+          </TableRow>
+        </tbody>
+      </table>
+    );
+    expect(
+      wrapper
+        .find('tr')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-tr oc-tr--right');
   });
 
   it('Handles props.className', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-tr');
+    expect(
+      wrapper
+        .find('tr')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-tr');
 
-    wrapper.setProps({ className: 'foo' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-tr foo');
+    wrapper.unmount();
 
-    wrapper.setProps({ className: 'foo bar' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-tr foo bar');
+    wrapper = mount(
+      <table>
+        <tbody>
+          <TableRow className="foo">
+            <td />
+          </TableRow>
+        </tbody>
+      </table>
+    );
+    expect(
+      wrapper
+        .find('tr')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-tr foo');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <tbody>
+          <TableRow className="foo bar">
+            <td />
+          </TableRow>
+        </tbody>
+      </table>
+    );
+    expect(
+      wrapper
+        .find('tr')
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-tr foo bar');
   });
 
   it('Handles props.style', () => {
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(null);
+    expect(
+      wrapper
+        .find('tr')
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe(null);
 
-    wrapper.setProps({ style: { zIndex: '1' } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
+    wrapper.unmount();
 
-    wrapper.setProps({ style: { zIndex: '1', opacity: 0 } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(
-      'z-index: 1; opacity: 0;'
+    wrapper = mount(
+      <table>
+        <tbody>
+          <TableRow style={{ zIndex: 1 }}>
+            <td />
+          </TableRow>
+        </tbody>
+      </table>
     );
+    expect(
+      wrapper
+        .find('tr')
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe('z-index: 1;');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <table>
+        <tbody>
+          <TableRow style={{ zIndex: 1, opacity: 0 }}>
+            <td />
+          </TableRow>
+        </tbody>
+      </table>
+    );
+    expect(
+      wrapper
+        .find('tr')
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe('z-index: 1; opacity: 0;');
   });
 
   afterEach(() => {

@@ -4,6 +4,7 @@ import { Props, State } from './toggle.interface';
 
 import { NAMESPACE } from '../utilities/ts/constants';
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
 
 import * as _ from 'lodash';
 
@@ -31,7 +32,10 @@ export default class Toggle extends React.Component<Props, State> {
     const { props, state, id, handleChange } = this;
 
     const classNames: string = _.trim(
-      `${namespace('toggle', props.modifiers)} ${_.toString(props.className)}`
+      `${namespace(
+        'toggle',
+        toModifier(props.modifiers, 'toggle')
+      )} ${_.toString(props.className)}`
     );
 
     return (

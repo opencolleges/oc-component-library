@@ -6,6 +6,7 @@ import Icon from '../icon';
 
 import { NAMESPACE } from '../utilities/ts/constants';
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
 
 import * as _ from 'lodash';
 
@@ -19,7 +20,7 @@ const Button: React.FC<Props> = props => {
   const classNames: string = _.trim(
     `${namespace(
       'button',
-      props.modifiers,
+      toModifier(props.modifiers, 'button'),
       props.icon ? 'button--icon' : ''
     )} ${_.toString(props.className)}`
   );

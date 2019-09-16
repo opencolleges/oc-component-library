@@ -46,12 +46,12 @@ describe('<Copy />', () => {
   it('Handles props.modifiers', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-p');
 
-    wrapper.setProps({ modifiers: 'p--center' });
+    wrapper.setProps({ modifiers: 'center' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
       'oc-p oc-p--center'
     );
 
-    wrapper.setProps({ modifiers: 'p--right' });
+    wrapper.setProps({ modifiers: 'right' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-p oc-p--right');
   });
 

@@ -7,6 +7,7 @@ import Badge from '../badge';
 
 import find from '../utilities/ts/find';
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
 
 import * as _ from 'lodash';
 
@@ -16,7 +17,9 @@ const Avatar: React.FC<Props> = props => {
     : 'a';
 
   const class_names: string = _.trim(
-    `${namespace('avatar', props.modifiers)} ${_.toString(props.className)}`
+    `${namespace('avatar', toModifier(props.modifiers, 'avatar'))} ${_.toString(
+      props.className
+    )}`
   );
 
   return (

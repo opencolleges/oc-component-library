@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Props } from './grid.interface';
 
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
 
 import * as _ from 'lodash';
 
@@ -10,7 +11,9 @@ const Grid: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
 
   const classNames: string = _.trim(
-    `${namespace('grid', props.modifiers)} ${_.toString(props.className)}`
+    `${namespace('grid', toModifier(props.modifiers, 'grid'))} ${_.toString(
+      props.className
+    )}`
   );
 
   return (
