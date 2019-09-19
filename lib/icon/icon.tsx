@@ -2,17 +2,52 @@ import * as React from 'react';
 
 import { Props } from './icon.interface';
 
-import find from '../utilities/ts/find';
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
+
+import * as _ from 'lodash';
 
 const Icon: React.FC<Props> = props => {
-  const class_names: string = `${namespace('icon', props.modifiers)} ${
-    props.className
-  }`;
+  const icons = {
+    'arrow-down': ArrowDown,
+    'arrow-left': ArrowLeft,
+    'arrow-right': ArrowRight,
+    'arrow-up': ArrowUp,
+    calendar: Calendar,
+    'chevron-down': ChevronDown,
+    'chevron-left': ChevronLeft,
+    'chevron-right': ChevronRight,
+    'chevron-up': ChevronUp,
+    clock: Clock,
+    close: Close,
+    'close-ring': CloseRing,
+    cloud: Cloud,
+    'cloud-download': CloudDownload,
+    'cloud-upload': CloudUpload,
+    draggable: Draggable,
+    hamburger: Hamburger,
+    minus: Minus,
+    'minus-ring': MinusRing,
+    plus: Plus,
+    'plus-ring': PlusRing,
+    print: Print,
+    'question-ring': QuestionRing,
+    search: Search,
+    tick: Tick,
+    'tick-ring': TickRing
+  };
+
+  const classNames: string = _.trim(
+    `${namespace(
+      'icon',
+      toModifier(props.type, 'icon'),
+      props.visible ? 'active' : ''
+    )} ${_.toString(props.className)}`
+  );
 
   return (
     <svg
-      className={class_names}
+      className={classNames}
       style={props.style}
       width={props.size}
       height={props.size}
@@ -20,41 +55,19 @@ const Icon: React.FC<Props> = props => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       aria-hidden="true">
-      {find('icon--arrow-up', props.modifiers) && <ArrowUp />}
-      {find('icon--arrow-right', props.modifiers) && <ArrowRight />}
-      {find('icon--arrow-down', props.modifiers) && <ArrowDown />}
-      {find('icon--arrow-left', props.modifiers) && <ArrowLeft />}
-      {find('icon--calendar', props.modifiers) && <Calendar />}
-      {find('icon--chevron-up', props.modifiers) && <ChevronUp />}
-      {find('icon--chevron-right', props.modifiers) && <ChevronRight />}
-      {find('icon--chevron-down', props.modifiers) && <ChevronDown />}
-      {find('icon--chevron-left', props.modifiers) && <ChevronLeft />}
-      {find('icon--clock', props.modifiers) && <Clock />}
-      {find('icon--close', props.modifiers) && <Close />}
-      {find('icon--close-ring', props.modifiers) && <CloseRing />}
-      {find('icon--cloud', props.modifiers) && <Cloud />}
-      {find('icon--cloud-download', props.modifiers) && <CloudDownload />}
-      {find('icon--cloud-upload', props.modifiers) && <CloudUpload />}
-      {find('icon--draggable', props.modifiers) && <Draggable />}
-      {find('icon--hamburger', props.modifiers) && <Hamburger />}
-      {find('icon--minus', props.modifiers) && <Minus />}
-      {find('icon--minus-ring', props.modifiers) && <MinusRing />}
-      {find('icon--question-ring', props.modifiers) && <QuestionRing />}
-      {find('icon--plus', props.modifiers) && <Plus />}
-      {find('icon--plus-ring', props.modifiers) && <PlusRing />}
-      {find('icon--print', props.modifiers) && <Print />}
-      {find('icon--search', props.modifiers) && <Search />}
-      {find('icon--tick', props.modifiers) && <Tick />}
-      {find('icon--tick-ring', props.modifiers) && <TickRing />}
+      {React.createElement(icons[props.type], {})}
     </svg>
   );
 };
 
 Icon.defaultProps = {
-  size: '24px'
+  size: '24px',
+  visible: true
 };
 
-const ArrowUp = () => {
+export default Icon;
+
+const ArrowUp: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M12,20 L12,4.71" />
@@ -66,7 +79,7 @@ const ArrowUp = () => {
   );
 };
 
-const ArrowRight = () => {
+const ArrowRight: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M4,12 L19.3,12" />
@@ -78,7 +91,7 @@ const ArrowRight = () => {
   );
 };
 
-const ArrowDown = () => {
+const ArrowDown: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M12,4 L12,19.3" />
@@ -90,7 +103,7 @@ const ArrowDown = () => {
   );
 };
 
-const ArrowLeft = () => {
+const ArrowLeft: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M20,12 L4.71,12" />
@@ -102,7 +115,7 @@ const ArrowLeft = () => {
   );
 };
 
-const Calendar = () => {
+const Calendar: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -116,7 +129,7 @@ const Calendar = () => {
   );
 };
 
-const ChevronUp = () => {
+const ChevronUp: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -127,7 +140,7 @@ const ChevronUp = () => {
   );
 };
 
-const ChevronRight = () => {
+const ChevronRight: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -138,7 +151,7 @@ const ChevronRight = () => {
   );
 };
 
-const ChevronDown = () => {
+const ChevronDown: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -149,7 +162,7 @@ const ChevronDown = () => {
   );
 };
 
-const ChevronLeft = () => {
+const ChevronLeft: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -160,7 +173,7 @@ const ChevronLeft = () => {
   );
 };
 
-const Clock = () => {
+const Clock: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -177,7 +190,7 @@ const Clock = () => {
   );
 };
 
-const Close = () => {
+const Close: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -192,7 +205,7 @@ const Close = () => {
   );
 };
 
-const CloseRing = () => {
+const CloseRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -213,7 +226,7 @@ const CloseRing = () => {
   );
 };
 
-const Cloud = () => {
+const Cloud: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -224,7 +237,7 @@ const Cloud = () => {
   );
 };
 
-const CloudDownload = () => {
+const CloudDownload: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -240,7 +253,7 @@ const CloudDownload = () => {
   );
 };
 
-const CloudUpload = () => {
+const CloudUpload: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -256,7 +269,7 @@ const CloudUpload = () => {
   );
 };
 
-const Draggable = () => {
+const Draggable: React.FC = () => {
   return (
     <React.Fragment>
       <circle className={namespace('stroke stroke--1')} cx="8" cy="4" r="2" />
@@ -269,7 +282,7 @@ const Draggable = () => {
   );
 };
 
-const Hamburger = () => {
+const Hamburger: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M0,4.5 L24,4.5" />
@@ -279,7 +292,7 @@ const Hamburger = () => {
   );
 };
 
-const Tick = () => {
+const Tick: React.FC = () => {
   return (
     <React.Fragment>
       <polyline
@@ -290,7 +303,7 @@ const Tick = () => {
   );
 };
 
-const TickRing = () => {
+const TickRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -307,7 +320,7 @@ const TickRing = () => {
   );
 };
 
-const Minus = () => {
+const Minus: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M4,12 L20,12" />
@@ -315,7 +328,7 @@ const Minus = () => {
   );
 };
 
-const MinusRing = () => {
+const MinusRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -329,7 +342,7 @@ const MinusRing = () => {
   );
 };
 
-const Plus = () => {
+const Plus: React.FC = () => {
   return (
     <React.Fragment>
       <path className={namespace('stroke stroke--1')} d="M12,4 L12,20" />
@@ -338,7 +351,7 @@ const Plus = () => {
   );
 };
 
-const PlusRing = () => {
+const PlusRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -353,7 +366,7 @@ const PlusRing = () => {
   );
 };
 
-const Print = () => {
+const Print: React.FC = () => {
   return (
     <React.Fragment>
       <path
@@ -374,7 +387,7 @@ const Print = () => {
   );
 };
 
-const QuestionRing = () => {
+const QuestionRing: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -392,7 +405,7 @@ const QuestionRing = () => {
   );
 };
 
-const Search = () => {
+const Search: React.FC = () => {
   return (
     <React.Fragment>
       <circle
@@ -408,5 +421,3 @@ const Search = () => {
     </React.Fragment>
   );
 };
-
-export default Icon;
