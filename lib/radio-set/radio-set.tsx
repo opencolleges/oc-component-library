@@ -1,57 +1,62 @@
-// * React imports
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-// * utility imports
+import { Props, State } from './radio-set.interface';
+
 import find from '../utilities/ts/find';
 import namespace from '../utilities/ts/namespace';
+import toModifier from '../utilities/ts/to-modifier';
 
-// * child imports
+import Card from '../card';
 import Grid from '../grid';
 import GridItem from '../grid-item';
-import Card from '../card';
 import Radio from '../radio';
 
-// * React component
-export default class RadioSet extends React.Component {
-  constructor(props) {
-    super(props);
+import * as _ from 'lodash';
 
-    const radiosArray = [];
+export default class RadioSet extends React.Component<Props, State> {
+  static defaultProps: Partial<Props> = {
+    cards: false,
+    onChange: () => {
+      return;
+    },
+    readOnly: false,
+    required: false
+  };
 
-    props.radios.map(radio => {
-      radiosArray.push(radio.value);
-    });
+  // radiosArray: string[] = [
+  //   ...this.props.radios.value
+  // ];
 
-    this.state = {
-      value:
-        radiosArray.indexOf(this.props.value) !== -1 ? this.props.value : '',
-      error: find('radio-set--error', this.props.modifiers),
-      success: find('radio-set--success', this.props.modifiers),
-      disabled: this.props.disabled
-    };
-  }
+  radiosArray: string[] = [
+    this.props.radios.map(radio => {
+      return radio.value;
+    })
+  ];
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.disabled !== this.props.disabled) {
-      this.setState({
-        disabled: this.props.disabled
-      });
-    }
+  // this.props.radios.map(radio => {
+  //   radiosArray.push(radio.value);
+  // });
 
+  readonly state: Readonly<State> = {
+    error: find('error', this.props.modifiers),
+    success: find('success', this.props.modifiers),
+    value: radiosArray.indexOf(this.props.value) !== -1 ? this.props.value : ''
+  };
+
+  componentDidUpdate(prevProps): void {
     if (prevProps.modifiers !== this.props.modifiers) {
       this.setState({
-        error: find('radio-set--error', this.props.modifiers),
-        success: find('radio-set--success', this.props.modifiers)
+        error: find('error', this.props.modifiers),
+        success: find('success', this.props.modifiers)
       });
     }
   }
 
-  handleChange = value => {
+  handleChange = (value): void => {
     this.setState({
-      value: value,
       error: false,
-      success: false
+      success: false,
+      value
     });
     this.props.onChange(value, this.props.name);
   };
@@ -59,12 +64,13 @@ export default class RadioSet extends React.Component {
   render() {
     const { props, state, handleChange } = this;
 
-    let classNames = namespace('radio-set');
-
-    state.error && (classNames += ` ${namespace('radio-set--error')}`);
-    state.success && (classNames += ` ${namespace('radio-set--success')}`);
-
-    props.className && (classNames += ` ${props.className}`);
+    const classNames: string = _.trim(
+      `${namespace(
+        'radio-set',
+        state.error ? toModifier('error', 'radio-set') : '',
+        state.success ? toModifier('success', 'radio-set') : ''
+      )} ${_.toString(props.className)}`
+    );
 
     return (
       <fieldset className={classNames} style={props.style}>
@@ -82,9 +88,9 @@ export default class RadioSet extends React.Component {
                     modifiers={
                       state.value === radio.value
                         ? state.error
-                          ? 'radio--error'
+                          ? 'error'
                           : state.success
-                          ? 'radio--success'
+                          ? 'success'
                           : null
                         : null
                     }
@@ -92,7 +98,7 @@ export default class RadioSet extends React.Component {
                     style={radio.style}
                     name={props.name}
                     value={radio.value}
-                    disabled={state.disabled}
+                    disabled={props.disabled}
                     readOnly={props.readOnly}
                     required={props.required && index === 0}
                     checked={state.value === radio.value}
@@ -106,9 +112,9 @@ export default class RadioSet extends React.Component {
                   modifiers={
                     state.value === radio.value
                       ? state.error
-                        ? 'radio--error'
+                        ? 'error'
                         : state.success
-                        ? 'radio--success'
+                        ? 'success'
                         : null
                       : null
                   }
@@ -116,7 +122,7 @@ export default class RadioSet extends React.Component {
                   style={radio.style}
                   name={props.name}
                   value={radio.value}
-                  disabled={state.disabled}
+                  disabled={props.disabled}
                   readOnly={props.readOnly}
                   required={props.required && index === 0}
                   checked={state.value === radio.value}
@@ -137,29 +143,3 @@ export default class RadioSet extends React.Component {
     );
   }
 }
-
-RadioSet.propTypes = {
-  radios: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      className: PropTypes.string,
-      style: PropTypes.object,
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
-    })
-  ).isRequired,
-  name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  disabled: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  required: PropTypes.bool,
-  message: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  modifiers: PropTypes.string,
-  className: PropTypes.string,
-  style: PropTypes.object
-};
-
-RadioSet.defaultProps = {
-  onChange: () => {}
-};
