@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-import * as _ from 'lodash';
+import { Props } from './radio.interface';
 
 import { NAMESPACE } from '../utilities/ts/constants';
 
@@ -11,12 +10,20 @@ import toModifier from '../utilities/ts/to-modifier';
 
 import Icon from '../icon';
 
-export default class Radio extends React.Component {
-  constructor(props) {
-    super(props);
+import * as _ from 'lodash';
 
-    this.id = props.id ? props.id : _.uniqueId(`${NAMESPACE}-`);
-  }
+export default class Radio extends React.Component<Props> {
+  static defaultProps: Partial<Props> = {
+    checked: false,
+    disabled: false,
+    onChange: () => {
+      return;
+    },
+    readOnly: false,
+    required: false
+  };
+
+  id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
 
   handleChange = () => {
     this.props.onChange(this.props.value, this.props.name);
@@ -24,12 +31,11 @@ export default class Radio extends React.Component {
 
   render() {
     const { props, id, handleChange } = this;
-
-    let classNames = namespace('radio');
-
-    props.modifiers &&
-      (classNames += ` ${namespace(toModifier(props.modifiers, 'radio'))}`);
-    props.className && (classNames += ` ${props.className}`);
+    const classNames: string = _.trim(
+      `${namespace('radio', toModifier(props.modifiers, 'radio'))} ${_.toString(
+        props.className
+      )}`
+    );
 
     return (
       <div className={classNames} style={props.style}>
@@ -59,32 +65,13 @@ export default class Radio extends React.Component {
             />
           </svg>
         )}
-        {!find('radio--right', props.modifiers) && (
-          <Icon type="close" visible={find('radio--error', props.modifiers)} />
+        {!find('right', props.modifiers) && (
+          <Icon type="close" visible={find('error', props.modifiers)} />
         )}
-        {!find('radio--right', props.modifiers) && (
-          <Icon type="tick" visible={find('radio--success', props.modifiers)} />
+        {!find('right', props.modifiers) && (
+          <Icon type="tick" visible={find('success', props.modifiers)} />
         )}
       </div>
     );
   }
 }
-
-Radio.propTypes = {
-  children: PropTypes.node.isRequired,
-  modifiers: PropTypes.string,
-  className: PropTypes.string,
-  style: PropTypes.object,
-  id: PropTypes.string,
-  name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  value: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  required: PropTypes.bool,
-  checked: PropTypes.bool,
-  onChange: PropTypes.func
-};
-
-Radio.defaultProps = {
-  onChange: () => {}
-};

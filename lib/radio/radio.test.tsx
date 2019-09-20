@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import Toggle from './toggle';
+import Radio from './radio';
 
 import { mount } from 'enzyme';
 
 let wrapper;
 
-describe('<Toggle />', () => {
+describe('<Radio />', () => {
   beforeEach(() => {
-    wrapper = mount(<Toggle value="foo">Foo</Toggle>);
+    wrapper = mount(<Radio value="foo">Foo</Radio>);
   });
 
   it('Handles props.checked', () => {
@@ -19,13 +19,7 @@ describe('<Toggle />', () => {
         .getAttribute('checked')
     ).toBe(null);
 
-    wrapper.unmount();
-
-    wrapper = mount(
-      <Toggle checked={true} value="foo">
-        Foo
-      </Toggle>
-    );
+    wrapper.setProps({ checked: true });
     expect(
       wrapper
         .find('input')
@@ -33,13 +27,7 @@ describe('<Toggle />', () => {
         .getAttribute('checked')
     ).toBe('');
 
-    wrapper.unmount();
-
-    wrapper = mount(
-      <Toggle checked={false} value="foo">
-        Foo
-      </Toggle>
-    );
+    wrapper.setProps({ checked: false });
     expect(
       wrapper
         .find('input')
@@ -59,15 +47,13 @@ describe('<Toggle />', () => {
   });
 
   it('Handles props.className', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-toggle');
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-radio');
 
-    wrapper.setProps({ className: 'bar' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-toggle bar');
+    wrapper.setProps({ className: 'foo' });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-radio foo');
 
-    wrapper.setProps({ className: 'bar baz' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-toggle bar baz'
-    );
+    wrapper.setProps({ className: 'foo bar' });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-radio foo bar');
   });
 
   it('Handles props.disabled', () => {
@@ -101,14 +87,14 @@ describe('<Toggle />', () => {
         .find('input')
         .getDOMNode()
         .getAttribute('id')
-    ).toBe('oc-7');
+    ).toBe('oc-5');
 
     wrapper.unmount();
 
     wrapper = mount(
-      <Toggle id="bar" value="foo">
+      <Radio id="bar" value="foo">
         Foo
-      </Toggle>
+      </Radio>
     );
     expect(
       wrapper
@@ -119,21 +105,16 @@ describe('<Toggle />', () => {
   });
 
   it('Handles props.modifiers', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-toggle');
-
-    wrapper.setProps({ modifiers: 'right' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-toggle oc-toggle--right'
-    );
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-radio');
 
     wrapper.setProps({ modifiers: 'error' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-toggle oc-toggle--error'
+      'oc-radio oc-radio--error'
     );
 
-    wrapper.setProps({ modifiers: 'right success' });
+    wrapper.setProps({ modifiers: 'success' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-toggle oc-toggle--right oc-toggle--success'
+      'oc-radio oc-radio--success'
     );
   });
 
@@ -162,7 +143,7 @@ describe('<Toggle />', () => {
     ).toBe('baz');
   });
 
-  it('Handles props.readOnly', () => {
+  it('Handles props.readonly', () => {
     expect(
       wrapper
         .find('input')
@@ -184,6 +165,31 @@ describe('<Toggle />', () => {
         .find('input')
         .getDOMNode()
         .getAttribute('readonly')
+    ).toBe(null);
+  });
+
+  it('Handles props.required', () => {
+    expect(
+      wrapper
+        .find('input')
+        .getDOMNode()
+        .getAttribute('required')
+    ).toBe(null);
+
+    wrapper.setProps({ required: true });
+    expect(
+      wrapper
+        .find('input')
+        .getDOMNode()
+        .getAttribute('required')
+    ).toBe('');
+
+    wrapper.setProps({ required: false });
+    expect(
+      wrapper
+        .find('input')
+        .getDOMNode()
+        .getAttribute('required')
     ).toBe(null);
   });
 
@@ -222,31 +228,6 @@ describe('<Toggle />', () => {
         .getDOMNode()
         .getAttribute('value')
     ).toBe('baz');
-  });
-
-  it('Handles state.checked', () => {
-    expect(
-      wrapper
-        .find('input')
-        .getDOMNode()
-        .getAttribute('checked')
-    ).toBe(null);
-
-    wrapper.setState({ checked: true });
-    expect(
-      wrapper
-        .find('input')
-        .getDOMNode()
-        .getAttribute('checked')
-    ).toBe('');
-
-    wrapper.setState({ checked: false });
-    expect(
-      wrapper
-        .find('input')
-        .getDOMNode()
-        .getAttribute('checked')
-    ).toBe(null);
   });
 
   afterEach(() => {
