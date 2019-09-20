@@ -33,7 +33,6 @@ export default class Likert extends React.Component<Props, State> {
 
   render() {
     const { props, state, scale, handleChange } = this;
-
     const classNames: string = _.trim(
       `${namespace(
         'likert',
