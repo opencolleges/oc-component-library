@@ -22,26 +22,22 @@ export default class RadioSet extends React.Component<Props, State> {
     readOnly: false,
     required: false
   };
-
-  // radiosArray: string[] = [
-  //   ...this.props.radios.value
-  // ];
-
-  radiosArray: string[] = [
-    this.props.radios.map(radio => {
-      return radio.value;
-    })
-  ];
-
-  // this.props.radios.map(radio => {
-  //   radiosArray.push(radio.value);
-  // });
+  radiosArray: string[] = [];
 
   readonly state: Readonly<State> = {
     error: find('error', this.props.modifiers),
     success: find('success', this.props.modifiers),
-    value: radiosArray.indexOf(this.props.value) !== -1 ? this.props.value : ''
+    value:
+      this.radiosArray.indexOf(this.props.value) !== -1 ? this.props.value : ''
   };
+
+  constructor(props) {
+    super(props);
+
+    this.props.radios.map(radio => {
+      this.radiosArray.push(radio.value);
+    });
+  }
 
   componentDidUpdate(prevProps): void {
     if (prevProps.modifiers !== this.props.modifiers) {
