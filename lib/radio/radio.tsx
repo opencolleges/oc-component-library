@@ -25,7 +25,7 @@ export default class Radio extends React.Component<Props> {
 
   id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
 
-  handleChange = () => {
+  handleChange = (): void => {
     this.props.onChange(this.props.value, this.props.name);
   };
 
