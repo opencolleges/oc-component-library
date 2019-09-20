@@ -36,7 +36,7 @@ const Button: React.FC<Props> = props => {
       disabled={props.disabled}
       title={props.action}
       onClick={props.onClick}>
-      {props.icon && <Icon modifiers={`icon--${props.icon} active`} />}
+      {props.icon && <Icon type={props.icon} />}
       {props.action}
     </Tag>
   );

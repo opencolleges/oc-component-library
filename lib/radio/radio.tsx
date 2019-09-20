@@ -66,18 +66,10 @@ export default class Radio extends React.Component<Props> {
           </svg>
         )}
         {!find('right', props.modifiers) && (
-          <Icon
-            modifiers={`close ${
-              find('error', props.modifiers) ? 'active' : ''
-            }`}
-          />
+          <Icon type="close" visible={find('error', props.modifiers)} />
         )}
         {!find('right', props.modifiers) && (
-          <Icon
-            modifiers={`tick ${
-              find('success', props.modifiers) ? 'active' : ''
-            }`}
-          />
+          <Icon type="tick" visible={find('success', props.modifiers)} />
         )}
       </div>
     );

@@ -1,9 +1,11 @@
-// * imports
 import itemise from '../itemise';
 
-// * return true if modifier is found in modifiers
-const find = (modifier, modifiers) => {
-  return modifiers && itemise(modifiers).indexOf(modifier) > -1;
+const find = (
+  subStr: string,
+  str: string,
+  separator: RegExp | string = / +/g
+) => {
+  return str && itemise(str, separator).indexOf(subStr) > -1;
 };
 
 export default find;

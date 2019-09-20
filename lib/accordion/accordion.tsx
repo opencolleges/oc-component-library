@@ -61,8 +61,8 @@ export default class Accordion extends React.Component<Props, State> {
           onClick={handleClick}>
           {props.label}
         </button>
-        <Icon modifiers={'icon--minus active'} />
-        <Icon modifiers={`icon--plus ${state.expanded ? '' : 'active'}`} />
+        <Icon type="minus" />
+        <Icon type="plus" visible={!state.expanded} />
         <div
           ref={contentRef}
           className={namespace('accordion__outer')}
