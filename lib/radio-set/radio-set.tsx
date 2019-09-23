@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Props, State } from './radio-set.interface';
+import { ConditionalCardProps, Props, State } from './radio-set.interface';
 
 import namespace from '../utilities/ts/namespace';
 import toModifier from '../utilities/ts/to-modifier';
@@ -65,12 +65,13 @@ export default class RadioSet extends React.Component<Props, State> {
 
     return (
       <fieldset className={classNames} style={props.style}>
-        <Grid modifiers="grid--gutter-x-fixed">
+        <Grid modifiers="gutter-x-fixed">
           {props.radios.map((radio, index) => (
-            <GridItem
-              key={index}
-              modifiers="grid__item--s-12 grid__item--m-6 grid__item--align-end">
-              <ConditionalCard visible={props.cards}>
+            <GridItem key={index} modifiers="s-12 m-6 align-end">
+              <ConditionalCard
+                disabled={props.disabled}
+                readOnly={props.readOnly}
+                visible={props.cards}>
                 <Radio
                   id={radio.id}
                   modifiers={state.value === radio.value ? modifiers : null}
@@ -100,17 +101,14 @@ export default class RadioSet extends React.Component<Props, State> {
   }
 }
 
-interface ConditionalCardProps {
-  children: React.ReactNode;
-  visible?: boolean;
-}
-
 const ConditionalCard: React.FC<ConditionalCardProps> = props => {
   return (
     <React.Fragment>
       {props.visible ? (
         <Card
-          modifiers="card--s card--layer-1 card--clickable"
+          modifiers={`s ${
+            props.disabled || props.readOnly ? 'layer-1' : 'clickable'
+          }`}
           tabIndex={false}>
           {props.children}
         </Card>
@@ -122,5 +120,7 @@ const ConditionalCard: React.FC<ConditionalCardProps> = props => {
 };
 
 ConditionalCard.defaultProps = {
+  disabled: false,
+  readOnly: false,
   visible: true
 };

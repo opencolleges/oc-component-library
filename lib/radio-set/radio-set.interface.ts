@@ -26,3 +26,10 @@ export interface State {
   success: boolean;
   value: string;
 }
+
+export interface ConditionalCardProps {
+  children: React.ReactNode;
+  disabled?: boolean;
+  readOnly?: boolean;
+  visible?: boolean;
+}
