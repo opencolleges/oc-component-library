@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { Props, State } from './radio-set.interface';
 
-import find from '../utilities/ts/find';
 import namespace from '../utilities/ts/namespace';
 import toModifier from '../utilities/ts/to-modifier';
 
@@ -22,28 +21,20 @@ export default class RadioSet extends React.Component<Props, State> {
     readOnly: false,
     required: false
   };
-  radiosArray: string[] = [];
 
   readonly state: Readonly<State> = {
-    error: find('error', this.props.modifiers),
-    success: find('success', this.props.modifiers),
-    value:
-      this.radiosArray.indexOf(this.props.value) !== -1 ? this.props.value : ''
+    error: _.includes(this.props.modifiers, 'error'),
+    success: _.includes(this.props.modifiers, 'success'),
+    value: _.some(this.props.radios, ['value', this.props.value])
+      ? this.props.value
+      : ''
   };
-
-  constructor(props) {
-    super(props);
-
-    this.props.radios.map(radio => {
-      this.radiosArray.push(radio.value);
-    });
-  }
 
   componentDidUpdate(prevProps): void {
     if (prevProps.modifiers !== this.props.modifiers) {
       this.setState({
-        error: find('error', this.props.modifiers),
-        success: find('success', this.props.modifiers)
+        error: _.includes(this.props.modifiers, 'error'),
+        success: _.includes(this.props.modifiers, 'success')
       });
     }
   }
@@ -66,6 +57,11 @@ export default class RadioSet extends React.Component<Props, State> {
         state.success ? toModifier('success', 'radio-set') : ''
       )} ${_.toString(props.className)}`
     );
+    const modifiers: string = state.error
+      ? 'error'
+      : state.success
+      ? 'success'
+      : '';
 
     return (
       <fieldset className={classNames} style={props.style}>
@@ -77,15 +73,7 @@ export default class RadioSet extends React.Component<Props, State> {
               <ConditionalCard visible={props.cards}>
                 <Radio
                   id={radio.id}
-                  modifiers={
-                    state.value === radio.value
-                      ? state.error
-                        ? 'error'
-                        : state.success
-                        ? 'success'
-                        : null
-                      : null
-                  }
+                  modifiers={state.value === radio.value ? modifiers : null}
                   className={radio.className}
                   style={radio.style}
                   name={props.name}
