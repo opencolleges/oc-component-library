@@ -59,7 +59,6 @@ export default class RadioSet extends React.Component<Props, State> {
 
   render() {
     const { props, state, handleChange } = this;
-
     const classNames: string = _.trim(
       `${namespace(
         'radio-set',
@@ -75,34 +74,7 @@ export default class RadioSet extends React.Component<Props, State> {
             <GridItem
               key={index}
               modifiers="grid__item--s-12 grid__item--m-6 grid__item--align-end">
-              {props.cards ? (
-                <Card
-                  modifiers="card--s card--layer-1 card--clickable"
-                  tabIndex={false}>
-                  <Radio
-                    id={radio.id}
-                    modifiers={
-                      state.value === radio.value
-                        ? state.error
-                          ? 'error'
-                          : state.success
-                          ? 'success'
-                          : null
-                        : null
-                    }
-                    className={radio.className}
-                    style={radio.style}
-                    name={props.name}
-                    value={radio.value}
-                    disabled={props.disabled}
-                    readOnly={props.readOnly}
-                    required={props.required && index === 0}
-                    checked={state.value === radio.value}
-                    onChange={handleChange}>
-                    {radio.label}
-                  </Radio>
-                </Card>
-              ) : (
+              <ConditionalCard visible={props.cards}>
                 <Radio
                   id={radio.id}
                   modifiers={
@@ -125,7 +97,7 @@ export default class RadioSet extends React.Component<Props, State> {
                   onChange={handleChange}>
                   {radio.label}
                 </Radio>
-              )}
+              </ConditionalCard>
             </GridItem>
           ))}
         </Grid>
@@ -139,3 +111,28 @@ export default class RadioSet extends React.Component<Props, State> {
     );
   }
 }
+
+interface ConditionalCardProps {
+  children: React.ReactNode;
+  visible?: boolean;
+}
+
+const ConditionalCard: React.FC<ConditionalCardProps> = props => {
+  return (
+    <React.Fragment>
+      {props.visible ? (
+        <Card
+          modifiers="card--s card--layer-1 card--clickable"
+          tabIndex={false}>
+          {props.children}
+        </Card>
+      ) : (
+        props.children
+      )}
+    </React.Fragment>
+  );
+};
+
+ConditionalCard.defaultProps = {
+  visible: true
+};
