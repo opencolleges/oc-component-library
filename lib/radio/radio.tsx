@@ -4,7 +4,6 @@ import { Props } from './radio.interface';
 
 import { NAMESPACE } from '../utilities/ts/constants';
 
-import find from '../utilities/ts/find';
 import namespace from '../utilities/ts/namespace';
 import toModifier from '../utilities/ts/to-modifier';
 
@@ -65,11 +64,17 @@ export default class Radio extends React.Component<Props> {
             />
           </svg>
         )}
-        {!find('right', props.modifiers) && (
-          <Icon type="close" visible={find('error', props.modifiers)} />
+        {!_.includes(_.split(props.modifiers, ' '), 'right') && (
+          <Icon
+            type="close"
+            visible={_.includes(_.split(props.modifiers, ' '), 'error')}
+          />
         )}
-        {!find('right', props.modifiers) && (
-          <Icon type="tick" visible={find('success', props.modifiers)} />
+        {!_.includes(_.split(props.modifiers, ' '), 'right') && (
+          <Icon
+            type="tick"
+            visible={_.includes(_.split(props.modifiers, ' '), 'success')}
+          />
         )}
       </div>
     );
