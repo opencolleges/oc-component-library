@@ -149,12 +149,12 @@
   transform: translateY(-50%);
 }
 
-.#{$pre}-checkbox--error > .#{$pre}-checkbox__label::before {
-  border-color: $cinnabar-shade;
-}
-
 .#{$pre}-checkbox--success > .#{$pre}-checkbox__label::before {
   border-color: $christi-shade;
+}
+
+.#{$pre}-checkbox--error > .#{$pre}-checkbox__label::before {
+  border-color: $cinnabar-shade;
 }
 
 .#{$pre}-checkbox--reversed > .#{$pre}-checkbox__label::before {
@@ -434,12 +434,12 @@
     fill: none;
   }
 
-  .#{$pre}-checkbox--error .#{$pre}-checkbox__border {
-    stroke: $cinnabar;
-  }
-
   .#{$pre}-checkbox--success .#{$pre}-checkbox__border {
     stroke: $christi;
+  }
+
+  .#{$pre}-checkbox--error .#{$pre}-checkbox__border {
+    stroke: $cinnabar;
   }
 
   .#{$pre}-checkbox--reversed .#{$pre}-checkbox__border {
@@ -462,18 +462,18 @@
     stroke: $viking-shade;
   }
 
-  .#{$pre}-checkbox--error
-    > .#{$pre}-checkbox__input:active
-    ~ .#{$pre}-checkbox__border-outer
-    > .#{$pre}-checkbox__border {
-    stroke: $cinnabar-shade;
-  }
-
   .#{$pre}-checkbox--success
     > .#{$pre}-checkbox__input:active
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: $christi-shade;
+  }
+
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:active
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
+    stroke: $cinnabar-shade;
   }
 
   .#{$pre}-checkbox--reversed
@@ -506,32 +506,6 @@
     stroke: $viking-shade;
   }
 
-  .#{$pre}-checkbox--error
-    > .#{$pre}-checkbox__input:checked
-    ~ .#{$pre}-checkbox__border-outer
-    > .#{$pre}-checkbox__border {
-    stroke: $cinnabar-shade;
-  }
-
-  .#{$pre}-checkbox--error
-    > .#{$pre}-checkbox__input:checked:hover
-    ~ .#{$pre}-checkbox__border-outer
-    > .#{$pre}-checkbox__border {
-    stroke: $cinnabar;
-  }
-  .#{$pre}-checkbox--error
-    > .#{$pre}-checkbox__input:checked:focus
-    ~ .#{$pre}-checkbox__border-outer
-    > .#{$pre}-checkbox__border {
-    stroke: $cinnabar;
-  }
-  .#{$pre}-checkbox--error
-    > .#{$pre}-checkbox__input:checked:active
-    ~ .#{$pre}-checkbox__border-outer
-    > .#{$pre}-checkbox__border {
-    stroke: $cinnabar-shade;
-  }
-
   .#{$pre}-checkbox--success
     > .#{$pre}-checkbox__input:checked
     ~ .#{$pre}-checkbox__border-outer
@@ -556,6 +530,32 @@
     ~ .#{$pre}-checkbox__border-outer
     > .#{$pre}-checkbox__border {
     stroke: $christi-shade;
+  }
+
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:checked
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
+    stroke: $cinnabar-shade;
+  }
+
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:checked:hover
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
+    stroke: $cinnabar;
+  }
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:checked:focus
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
+    stroke: $cinnabar;
+  }
+  .#{$pre}-checkbox--error
+    > .#{$pre}-checkbox__input:checked:active
+    ~ .#{$pre}-checkbox__border-outer
+    > .#{$pre}-checkbox__border {
+    stroke: $cinnabar-shade;
   }
 
   .#{$pre}-checkbox--reversed

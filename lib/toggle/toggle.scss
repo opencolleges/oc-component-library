@@ -103,24 +103,24 @@
   transform: translateY(-50%);
 }
 
-.#{$pre}-toggle--error > .#{$pre}-toggle__label::before {
-  border-color: $cinnabar-shade;
-}
-
 .#{$pre}-toggle--success > .#{$pre}-toggle__label::before {
   border-color: $christi-shade;
 }
 
-.#{$pre}-toggle--error
-  > .#{$pre}-toggle__input:checked
-  + .#{$pre}-toggle__label::before {
-  background-color: $cinnabar-shade;
+.#{$pre}-toggle--error > .#{$pre}-toggle__label::before {
+  border-color: $cinnabar-shade;
 }
 
 .#{$pre}-toggle--success
   > .#{$pre}-toggle__input:checked
   + .#{$pre}-toggle__label::before {
   background-color: $christi-shade;
+}
+
+.#{$pre}-toggle--error
+  > .#{$pre}-toggle__input:checked
+  + .#{$pre}-toggle__label::before {
+  background-color: $cinnabar-shade;
 }
 
 .#{$pre}-toggle__input:disabled + .#{$pre}-toggle__label::before {
@@ -276,31 +276,6 @@
     background-color: $alto;
   }
 
-  .#{$pre}-toggle--error
-    > .#{$pre}-toggle__input:checked
-    + .#{$pre}-toggle__label::before {
-    border-color: $cinnabar-shade;
-  }
-
-  .#{$pre}-toggle--error
-    > .#{$pre}-toggle__input:checked:hover
-    + .#{$pre}-toggle__label::before {
-    border-color: $cinnabar;
-    background-color: $cinnabar;
-  }
-  .#{$pre}-toggle--error
-    > .#{$pre}-toggle__input:checked:focus
-    + .#{$pre}-toggle__label::before {
-    border-color: $cinnabar;
-    background-color: $cinnabar;
-  }
-  .#{$pre}-toggle--error
-    > .#{$pre}-toggle__input:checked:active
-    + .#{$pre}-toggle__label::before {
-    border-color: $cinnabar-shade;
-    background-color: $cinnabar-shade;
-  }
-
   .#{$pre}-toggle--success
     > .#{$pre}-toggle__input:checked
     + .#{$pre}-toggle__label::before {
@@ -324,6 +299,31 @@
     + .#{$pre}-toggle__label::before {
     border-color: $christi-shade;
     background-color: $christi-shade;
+  }
+
+  .#{$pre}-toggle--error
+    > .#{$pre}-toggle__input:checked
+    + .#{$pre}-toggle__label::before {
+    border-color: $cinnabar-shade;
+  }
+
+  .#{$pre}-toggle--error
+    > .#{$pre}-toggle__input:checked:hover
+    + .#{$pre}-toggle__label::before {
+    border-color: $cinnabar;
+    background-color: $cinnabar;
+  }
+  .#{$pre}-toggle--error
+    > .#{$pre}-toggle__input:checked:focus
+    + .#{$pre}-toggle__label::before {
+    border-color: $cinnabar;
+    background-color: $cinnabar;
+  }
+  .#{$pre}-toggle--error
+    > .#{$pre}-toggle__input:checked:active
+    + .#{$pre}-toggle__label::before {
+    border-color: $cinnabar-shade;
+    background-color: $cinnabar-shade;
   }
 
   .#{$pre}-toggle__border-outer {
@@ -378,12 +378,19 @@
     stroke: $viking-shade;
   }
 
+  .#{$pre}-toggle--success .#{$pre}-toggle__border {
+    stroke: $christi;
+  }
+
   .#{$pre}-toggle--error .#{$pre}-toggle__border {
     stroke: $cinnabar;
   }
 
-  .#{$pre}-toggle--success .#{$pre}-toggle__border {
-    stroke: $christi;
+  .#{$pre}-toggle--success
+    > .#{$pre}-toggle__input:active
+    ~ .#{$pre}-toggle__border-outer
+    > .#{$pre}-toggle__border {
+    stroke: $christi-shade;
   }
 
   .#{$pre}-toggle--error
@@ -391,12 +398,6 @@
     ~ .#{$pre}-toggle__border-outer
     > .#{$pre}-toggle__border {
     stroke: $cinnabar-shade;
-  }
-  .#{$pre}-toggle--success
-    > .#{$pre}-toggle__input:active
-    ~ .#{$pre}-toggle__border-outer
-    > .#{$pre}-toggle__border {
-    stroke: $christi-shade;
   }
 
   .#{$pre}-toggle--reversed
@@ -429,32 +430,6 @@
     stroke: $viking-shade;
   }
 
-  .#{$pre}-toggle--error
-    > .#{$pre}-toggle__input:checked
-    ~ .#{$pre}-toggle__border-outer
-    > .#{$pre}-toggle__border {
-    stroke: $cinnabar-shade;
-  }
-
-  .#{$pre}-toggle--error
-    > .#{$pre}-toggle__input:checked:hover
-    ~ .#{$pre}-toggle__border-outer
-    > .#{$pre}-toggle__border {
-    stroke: $cinnabar;
-  }
-  .#{$pre}-toggle--error
-    > .#{$pre}-toggle__input:checked:focus
-    ~ .#{$pre}-toggle__border-outer
-    > .#{$pre}-toggle__border {
-    stroke: $cinnabar;
-  }
-  .#{$pre}-toggle--error
-    > .#{$pre}-toggle__input:checked:active
-    ~ .#{$pre}-toggle__border-outer
-    > .#{$pre}-toggle__border {
-    stroke: $cinnabar-shade;
-  }
-
   .#{$pre}-toggle--success
     > .#{$pre}-toggle__input:checked
     ~ .#{$pre}-toggle__border-outer
@@ -479,6 +454,32 @@
     ~ .#{$pre}-toggle__border-outer
     > .#{$pre}-toggle__border {
     stroke: $christi-shade;
+  }
+
+  .#{$pre}-toggle--error
+    > .#{$pre}-toggle__input:checked
+    ~ .#{$pre}-toggle__border-outer
+    > .#{$pre}-toggle__border {
+    stroke: $cinnabar-shade;
+  }
+
+  .#{$pre}-toggle--error
+    > .#{$pre}-toggle__input:checked:hover
+    ~ .#{$pre}-toggle__border-outer
+    > .#{$pre}-toggle__border {
+    stroke: $cinnabar;
+  }
+  .#{$pre}-toggle--error
+    > .#{$pre}-toggle__input:checked:focus
+    ~ .#{$pre}-toggle__border-outer
+    > .#{$pre}-toggle__border {
+    stroke: $cinnabar;
+  }
+  .#{$pre}-toggle--error
+    > .#{$pre}-toggle__input:checked:active
+    ~ .#{$pre}-toggle__border-outer
+    > .#{$pre}-toggle__border {
+    stroke: $cinnabar-shade;
   }
 
   // 4.1 Medium devices

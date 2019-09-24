@@ -62,11 +62,11 @@
   height: rem(440px);
 }
 
-.#{$pre}-file--error > .#{$pre}-file__outer {
-  border-color: $cinnabar-shade;
-}
 .#{$pre}-file--success > .#{$pre}-file__outer {
   border-color: $christi-shade;
+}
+.#{$pre}-file--error > .#{$pre}-file__outer {
+  border-color: $cinnabar-shade;
 }
 
 .#{$pre}-file__input {
@@ -161,11 +161,11 @@
   user-select: none;
 }
 
-.#{$pre}-file--error .#{$pre}-file__message {
-  color: $cinnabar-shade;
-}
 .#{$pre}-file--success .#{$pre}-file__message {
   color: $christi-shade;
+}
+.#{$pre}-file--error .#{$pre}-file__message {
+  color: $cinnabar-shade;
 }
 
 .#{$pre}-file__list {

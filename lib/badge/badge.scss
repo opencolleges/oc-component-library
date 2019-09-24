@@ -35,9 +35,9 @@
   user-select: none;
 }
 
-.#{$pre}-badge--error {
-  background-color: $cinnabar;
-}
 .#{$pre}-badge--success {
   background-color: $christi;
+}
+.#{$pre}-badge--error {
+  background-color: $cinnabar;
 }

@@ -74,11 +74,11 @@
   background-color: $viking-shade;
 }
 
-.#{$pre}-toast--error::before {
-  background-color: $cinnabar-shade;
-}
 .#{$pre}-toast--success::before {
   background-color: $christi-shade;
+}
+.#{$pre}-toast--error::before {
+  background-color: $cinnabar-shade;
 }
 
 .#{$pre}-toast__heading {

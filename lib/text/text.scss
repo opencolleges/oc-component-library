@@ -104,12 +104,12 @@
   pointer-events: auto;
 }
 
-.#{$pre}-text--error > .#{$pre}-text__input {
-  border-bottom: rem(1px) solid $cinnabar-shade;
-}
-
 .#{$pre}-text--success > .#{$pre}-text__input {
   border-bottom: rem(1px) solid $christi-shade;
+}
+
+.#{$pre}-text--error > .#{$pre}-text__input {
+  border-bottom: rem(1px) solid $cinnabar-shade;
 }
 
 // Removes the clear button that IE11 adds to text inputs by default.
@@ -262,12 +262,12 @@
   user-select: none;
 }
 
-.#{$pre}-text--error > .#{$pre}-text__message {
-  color: $cinnabar-shade;
-}
-
 .#{$pre}-text--success > .#{$pre}-text__message {
   color: $christi-shade;
+}
+
+.#{$pre}-text--error > .#{$pre}-text__message {
+  color: $cinnabar-shade;
 }
 
 // 3.1 Medium devices
@@ -360,18 +360,18 @@
     color: $christi-shade;
   }
 
-  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
-    stroke: $cinnabar;
-  }
-  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
-    stroke: $cinnabar;
-  }
-
   .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
     stroke: $christi;
   }
   .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
     stroke: $christi;
+  }
+
+  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-icon {
+    stroke: $cinnabar;
+  }
+  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-icon {
+    stroke: $cinnabar;
   }
 
   .#{$pre}-text__border {
@@ -405,18 +405,6 @@
     background-color: $viking;
   }
 
-  .#{$pre}-text--error > .#{$pre}-text__input ~ .#{$pre}-text__border {
-    width: 100%;
-    background-color: $cinnabar-shade;
-  }
-
-  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-text__border {
-    background-color: $cinnabar;
-  }
-  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
-    background-color: $cinnabar;
-  }
-
   .#{$pre}-text--success > .#{$pre}-text__input ~ .#{$pre}-text__border {
     width: 100%;
     background-color: $christi-shade;
@@ -429,11 +417,16 @@
     background-color: $christi;
   }
 
-  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-text__message {
-    color: $cinnabar;
+  .#{$pre}-text--error > .#{$pre}-text__input ~ .#{$pre}-text__border {
+    width: 100%;
+    background-color: $cinnabar-shade;
   }
-  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-text__message {
-    color: $cinnabar;
+
+  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-text__border {
+    background-color: $cinnabar;
+  }
+  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-text__border {
+    background-color: $cinnabar;
   }
 
   .#{$pre}-text--success > .#{$pre}-text__input:hover ~ .#{$pre}-text__message {
@@ -441,5 +434,12 @@
   }
   .#{$pre}-text--success > .#{$pre}-text__input:focus ~ .#{$pre}-text__message {
     color: $christi;
+  }
+
+  .#{$pre}-text--error > .#{$pre}-text__input:hover ~ .#{$pre}-text__message {
+    color: $cinnabar;
+  }
+  .#{$pre}-text--error > .#{$pre}-text__input:focus ~ .#{$pre}-text__message {
+    color: $cinnabar;
   }
 }

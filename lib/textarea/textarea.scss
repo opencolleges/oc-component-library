@@ -98,12 +98,12 @@
   pointer-events: auto;
 }
 
-.#{$pre}-textarea--error > .#{$pre}-textarea__input {
-  border-bottom: rem(1px) solid $cinnabar-shade;
-}
-
 .#{$pre}-textarea--success > .#{$pre}-textarea__input {
   border-bottom: rem(1px) solid $christi-shade;
+}
+
+.#{$pre}-textarea--error > .#{$pre}-textarea__input {
+  border-bottom: rem(1px) solid $cinnabar-shade;
 }
 
 // Removes the clear button that IE11 adds to text inputs by default.
@@ -250,15 +250,15 @@
   color: $viking-shade;
 }
 
-.#{$pre}-textarea--error
-  > .#{$pre}-textarea__input
-  ~ .#{$pre}-textarea__message {
-  color: $cinnabar-shade;
-}
 .#{$pre}-textarea--success
   > .#{$pre}-textarea__input
   ~ .#{$pre}-textarea__message {
   color: $christi-shade;
+}
+.#{$pre}-textarea--error
+  > .#{$pre}-textarea__input
+  ~ .#{$pre}-textarea__message {
+  color: $cinnabar-shade;
 }
 
 // 3.1 Medium devices
@@ -386,24 +386,6 @@
     background-color: $viking;
   }
 
-  .#{$pre}-textarea--error
-    > .#{$pre}-textarea__input
-    ~ .#{$pre}-textarea__border {
-    width: 100%;
-    background-color: $cinnabar-shade;
-  }
-
-  .#{$pre}-textarea--error
-    > .#{$pre}-textarea__input:hover
-    ~ .#{$pre}-textarea__border {
-    background-color: $cinnabar;
-  }
-  .#{$pre}-textarea--error
-    > .#{$pre}-textarea__input:focus
-    ~ .#{$pre}-textarea__border {
-    background-color: $cinnabar;
-  }
-
   .#{$pre}-textarea--success
     > .#{$pre}-textarea__input
     ~ .#{$pre}-textarea__border {
@@ -422,6 +404,24 @@
     background-color: $christi;
   }
 
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input
+    ~ .#{$pre}-textarea__border {
+    width: 100%;
+    background-color: $cinnabar-shade;
+  }
+
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input:hover
+    ~ .#{$pre}-textarea__border {
+    background-color: $cinnabar;
+  }
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input:focus
+    ~ .#{$pre}-textarea__border {
+    background-color: $cinnabar;
+  }
+
   .#{$pre}-textarea__input:focus ~ .#{$pre}-textarea__message {
     color: $viking;
   }
@@ -435,23 +435,6 @@
   }
   .#{$pre}-textarea__input.#{$pre}-active:focus ~ .#{$pre}-textarea__message {
     color: $viking;
-  }
-
-  .#{$pre}-textarea--error
-    > .#{$pre}-textarea__input
-    ~ .#{$pre}-textarea__message {
-    color: $cinnabar-shade;
-  }
-
-  .#{$pre}-textarea--error
-    > .#{$pre}-textarea__input:hover
-    ~ .#{$pre}-textarea__message {
-    color: $cinnabar;
-  }
-  .#{$pre}-textarea--error
-    > .#{$pre}-textarea__input:focus
-    ~ .#{$pre}-textarea__message {
-    color: $cinnabar;
   }
 
   .#{$pre}-textarea--success
@@ -469,6 +452,23 @@
     > .#{$pre}-textarea__input:focus
     ~ .#{$pre}-textarea__message {
     color: $christi;
+  }
+
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input
+    ~ .#{$pre}-textarea__message {
+    color: $cinnabar-shade;
+  }
+
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input:hover
+    ~ .#{$pre}-textarea__message {
+    color: $cinnabar;
+  }
+  .#{$pre}-textarea--error
+    > .#{$pre}-textarea__input:focus
+    ~ .#{$pre}-textarea__message {
+    color: $cinnabar;
   }
 }
 
