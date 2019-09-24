@@ -19,7 +19,7 @@ const Divider: React.FC<Props> = props => {
 };
 
 Divider.defaultProps = {
-  modifiers: 'divider--s'
+  modifiers: 's'
 };
 
 export default Divider;
