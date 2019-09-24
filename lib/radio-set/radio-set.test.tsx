@@ -160,6 +160,121 @@ describe('<RadioSet />', () => {
     ).toBe('corge');
   });
 
+  it('Handles props.radios', () => {
+    expect(wrapper.find('input').length).toBe(4);
+
+    expect(
+      wrapper
+        .find('.oc-radio__input')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('id')
+    ).toBe('oc-37');
+    expect(
+      wrapper
+        .find('.oc-radio__input')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('foo');
+    expect(
+      wrapper
+        .find('.oc-radio__label')
+        .at(0)
+        .text()
+    ).toBe('Foo');
+
+    expect(
+      wrapper
+        .find('.oc-radio__input')
+        .at(2)
+        .getDOMNode()
+        .getAttribute('id')
+    ).toBe('oc-39');
+    expect(
+      wrapper
+        .find('.oc-radio__input')
+        .at(2)
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('baz');
+    expect(
+      wrapper
+        .find('.oc-radio__label')
+        .at(2)
+        .text()
+    ).toBe('Baz');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <RadioSet
+        radios={[
+          { id: 'qux', label: 'Qux', style: { zIndex: 1 }, value: 'qux' },
+          { className: 'thud', id: 'corge', label: 'Corge', value: 'corge' }
+        ]}
+      />
+    );
+
+    expect(wrapper.find('input').length).toBe(2);
+
+    expect(
+      wrapper
+        .find('.oc-radio')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe('z-index: 1;');
+    expect(
+      wrapper
+        .find('.oc-radio__input')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('id')
+    ).toBe('qux');
+    expect(
+      wrapper
+        .find('.oc-radio__input')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('qux');
+    expect(
+      wrapper
+        .find('.oc-radio__label')
+        .at(0)
+        .text()
+    ).toBe('Qux');
+
+    expect(
+      wrapper
+        .find('.oc-radio')
+        .at(1)
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-radio thud');
+    expect(
+      wrapper
+        .find('.oc-radio__input')
+        .at(1)
+        .getDOMNode()
+        .getAttribute('id')
+    ).toBe('corge');
+    expect(
+      wrapper
+        .find('.oc-radio__input')
+        .at(1)
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('corge');
+    expect(
+      wrapper
+        .find('.oc-radio__label')
+        .at(1)
+        .text()
+    ).toBe('Corge');
+  });
+
   it('Handles props.readOnly', () => {
     expect(
       wrapper
