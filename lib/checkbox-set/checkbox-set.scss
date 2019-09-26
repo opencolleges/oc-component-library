@@ -43,15 +43,15 @@
   pointer-events: none;
 }
 
-.#{$pre}-checkbox-set--error > .#{$pre}-checkbox-set__border {
-  width: 100%;
-  background-color: $cinnabar-shade;
-  transition: width $transition-duration-x4 $transition-timing-default
-    $transition-duration-x0;
-}
 .#{$pre}-checkbox-set--success > .#{$pre}-checkbox-set__border {
   width: 100%;
   background-color: $christi-shade;
+  transition: width $transition-duration-x4 $transition-timing-default
+    $transition-duration-x0;
+}
+.#{$pre}-checkbox-set--error > .#{$pre}-checkbox-set__border {
+  width: 100%;
+  background-color: $cinnabar-shade;
   transition: width $transition-duration-x4 $transition-timing-default
     $transition-duration-x0;
 }
@@ -65,24 +65,17 @@
   user-select: none;
 }
 
-.#{$pre}-checkbox-set--error > .#{$pre}-checkbox-set__message {
-  color: $cinnabar-shade;
-}
 .#{$pre}-checkbox-set--success > .#{$pre}-checkbox-set__message {
   color: $christi-shade;
+}
+.#{$pre}-checkbox-set--error > .#{$pre}-checkbox-set__message {
+  color: $cinnabar-shade;
 }
 
 // 4 Mouse-driven devices
 // =============================================================================
 
 @include device(mouse-driven) {
-  .#{$pre}-checkbox-set--error:hover > .#{$pre}-checkbox-set__border {
-    background-color: $cinnabar;
-  }
-  .#{$pre}-checkbox-set--error:focus-within > .#{$pre}-checkbox-set__border {
-    background-color: $cinnabar;
-  }
-
   .#{$pre}-checkbox-set--success:hover > .#{$pre}-checkbox-set__border {
     background-color: $christi;
   }
@@ -90,11 +83,11 @@
     background-color: $christi;
   }
 
-  .#{$pre}-checkbox-set--error:hover > .#{$pre}-checkbox-set__message {
-    color: $cinnabar;
+  .#{$pre}-checkbox-set--error:hover > .#{$pre}-checkbox-set__border {
+    background-color: $cinnabar;
   }
-  .#{$pre}-checkbox-set--error:focus-within > .#{$pre}-checkbox-set__message {
-    color: $cinnabar;
+  .#{$pre}-checkbox-set--error:focus-within > .#{$pre}-checkbox-set__border {
+    background-color: $cinnabar;
   }
 
   .#{$pre}-checkbox-set--success:hover > .#{$pre}-checkbox-set__message {
@@ -102,5 +95,12 @@
   }
   .#{$pre}-checkbox-set--success:focus-within > .#{$pre}-checkbox-set__message {
     color: $christi;
+  }
+
+  .#{$pre}-checkbox-set--error:hover > .#{$pre}-checkbox-set__message {
+    color: $cinnabar;
+  }
+  .#{$pre}-checkbox-set--error:focus-within > .#{$pre}-checkbox-set__message {
+    color: $cinnabar;
   }
 }

@@ -147,12 +147,12 @@
   transform: translateY(-50%);
 }
 
-.#{$pre}-radio--error > .#{$pre}-radio__label::before {
-  border-color: $cinnabar-shade;
-}
-
 .#{$pre}-radio--success > .#{$pre}-radio__label::before {
   border-color: $christi-shade;
+}
+
+.#{$pre}-radio--error > .#{$pre}-radio__label::before {
+  border-color: $cinnabar-shade;
 }
 
 .#{$pre}-radio--reversed > .#{$pre}-radio__label::before {
@@ -404,12 +404,12 @@
     fill: none;
   }
 
-  .#{$pre}-radio--error .#{$pre}-radio__border {
-    stroke: $cinnabar;
-  }
-
   .#{$pre}-radio--success .#{$pre}-radio__border {
     stroke: $christi;
+  }
+
+  .#{$pre}-radio--error .#{$pre}-radio__border {
+    stroke: $cinnabar;
   }
 
   .#{$pre}-radio--reversed .#{$pre}-radio__border {
@@ -432,18 +432,18 @@
     stroke: $viking-shade;
   }
 
-  .#{$pre}-radio--error
-    > .#{$pre}-radio__input:active
-    ~ .#{$pre}-radio__border-outer
-    > .#{$pre}-radio__border {
-    stroke: $cinnabar-shade;
-  }
-
   .#{$pre}-radio--success
     > .#{$pre}-radio__input:active
     ~ .#{$pre}-radio__border-outer
     > .#{$pre}-radio__border {
     stroke: $christi-shade;
+  }
+
+  .#{$pre}-radio--error
+    > .#{$pre}-radio__input:active
+    ~ .#{$pre}-radio__border-outer
+    > .#{$pre}-radio__border {
+    stroke: $cinnabar-shade;
   }
 
   .#{$pre}-radio--reversed
@@ -476,32 +476,6 @@
     stroke: $viking-shade;
   }
 
-  .#{$pre}-radio--error
-    > .#{$pre}-radio__input:checked
-    ~ .#{$pre}-radio__border-outer
-    > .#{$pre}-radio__border {
-    stroke: $cinnabar-shade;
-  }
-
-  .#{$pre}-radio--error
-    > .#{$pre}-radio__input:checked:hover
-    ~ .#{$pre}-radio__border-outer
-    > .#{$pre}-radio__border {
-    stroke: $cinnabar;
-  }
-  .#{$pre}-radio--error
-    > .#{$pre}-radio__input:checked:focus
-    ~ .#{$pre}-radio__border-outer
-    > .#{$pre}-radio__border {
-    stroke: $cinnabar;
-  }
-  .#{$pre}-radio--error
-    > .#{$pre}-radio__input:checked:active
-    ~ .#{$pre}-radio__border-outer
-    > .#{$pre}-radio__border {
-    stroke: $cinnabar-shade;
-  }
-
   .#{$pre}-radio--success
     > .#{$pre}-radio__input:checked
     ~ .#{$pre}-radio__border-outer
@@ -526,6 +500,32 @@
     ~ .#{$pre}-radio__border-outer
     > .#{$pre}-radio__border {
     stroke: $christi-shade;
+  }
+
+  .#{$pre}-radio--error
+    > .#{$pre}-radio__input:checked
+    ~ .#{$pre}-radio__border-outer
+    > .#{$pre}-radio__border {
+    stroke: $cinnabar-shade;
+  }
+
+  .#{$pre}-radio--error
+    > .#{$pre}-radio__input:checked:hover
+    ~ .#{$pre}-radio__border-outer
+    > .#{$pre}-radio__border {
+    stroke: $cinnabar;
+  }
+  .#{$pre}-radio--error
+    > .#{$pre}-radio__input:checked:focus
+    ~ .#{$pre}-radio__border-outer
+    > .#{$pre}-radio__border {
+    stroke: $cinnabar;
+  }
+  .#{$pre}-radio--error
+    > .#{$pre}-radio__input:checked:active
+    ~ .#{$pre}-radio__border-outer
+    > .#{$pre}-radio__border {
+    stroke: $cinnabar-shade;
   }
 
   .#{$pre}-radio--reversed

@@ -62,11 +62,11 @@
     background-color $transition-duration-x1 $transition-timing-default;
 }
 
-.#{$pre}-progress--error .#{$pre}-progress__bar {
-  background-color: $cinnabar-shade;
-}
 .#{$pre}-progress--success .#{$pre}-progress__bar {
   background-color: $christi-shade;
+}
+.#{$pre}-progress--error .#{$pre}-progress__bar {
+  background-color: $cinnabar-shade;
 }
 
 .#{$pre}-progress__label {
