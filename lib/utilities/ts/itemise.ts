@@ -1,5 +1,7 @@
-const itemise = (str: string, separator: RegExp | string = / +/g) => {
-  return str.trim().split(separator);
+import * as _ from 'lodash';
+
+const itemise = (str: string, separator: RegExp | string = /\s+/g) => {
+  return _.split(_.trim(str), separator);
 };
 
 export default itemise;

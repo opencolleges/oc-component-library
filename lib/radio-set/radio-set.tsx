@@ -50,18 +50,16 @@ export default class RadioSet extends React.Component<Props, State> {
 
   render() {
     const { props, state, handleChange } = this;
+    const error: string = state.error ? 'error' : '';
+    const success: string = state.success ? 'success' : '';
     const classNames: string = _.trim(
       `${namespace(
         'radio-set',
-        state.error ? toModifier('error', 'radio-set') : '',
-        state.success ? toModifier('success', 'radio-set') : ''
+        toModifier(error, 'radio-set'),
+        toModifier(success, 'radio-set')
       )} ${_.toString(props.className)}`
     );
-    const modifiers: string = state.error
-      ? 'error'
-      : state.success
-      ? 'success'
-      : '';
+    const modifiers: string = `${error}${success}`;
 
     return (
       <fieldset className={classNames} style={props.style}>
