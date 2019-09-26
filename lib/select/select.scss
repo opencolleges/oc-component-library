@@ -66,11 +66,11 @@
   display: none;
 }
 
-.#{$pre}-select--error > .#{$pre}-select__input {
-  border-bottom: rem(1px) solid $cinnabar-shade;
-}
 .#{$pre}-select--success > .#{$pre}-select__input {
   border-bottom: rem(1px) solid $christi-shade;
+}
+.#{$pre}-select--error > .#{$pre}-select__input {
+  border-bottom: rem(1px) solid $cinnabar-shade;
 }
 
 .#{$pre}-select__input:disabled ~ .#{$pre}-select__input {
@@ -217,11 +217,11 @@
   user-select: none;
 }
 
-.#{$pre}-select--error .#{$pre}-select__message {
-  color: $cinnabar-shade;
-}
 .#{$pre}-select--success .#{$pre}-select__message {
   color: $christi-shade;
+}
+.#{$pre}-select--error .#{$pre}-select__message {
+  color: $cinnabar-shade;
 }
 
 // 3.1 Medium devices
@@ -346,22 +346,6 @@
     background-color: $viking;
   }
 
-  .#{$pre}-select--error > .#{$pre}-select__input ~ .#{$pre}-select__border {
-    width: 100%;
-    background-color: $cinnabar-shade;
-  }
-
-  .#{$pre}-select--error
-    > .#{$pre}-select__input:hover
-    ~ .#{$pre}-select__border {
-    background-color: $cinnabar;
-  }
-  .#{$pre}-select--error
-    > .#{$pre}-select__input:focus
-    ~ .#{$pre}-select__border {
-    background-color: $cinnabar;
-  }
-
   .#{$pre}-select--success > .#{$pre}-select__input ~ .#{$pre}-select__border {
     width: 100%;
     background-color: $christi-shade;
@@ -378,15 +362,20 @@
     background-color: $christi;
   }
 
+  .#{$pre}-select--error > .#{$pre}-select__input ~ .#{$pre}-select__border {
+    width: 100%;
+    background-color: $cinnabar-shade;
+  }
+
   .#{$pre}-select--error
     > .#{$pre}-select__input:hover
-    ~ .#{$pre}-select__message {
-    color: $cinnabar;
+    ~ .#{$pre}-select__border {
+    background-color: $cinnabar;
   }
   .#{$pre}-select--error
     > .#{$pre}-select__input:focus
-    ~ .#{$pre}-select__message {
-    color: $cinnabar;
+    ~ .#{$pre}-select__border {
+    background-color: $cinnabar;
   }
 
   .#{$pre}-select--success
@@ -398,6 +387,17 @@
     > .#{$pre}-select__input:focus
     ~ .#{$pre}-select__message {
     color: $christi;
+  }
+
+  .#{$pre}-select--error
+    > .#{$pre}-select__input:hover
+    ~ .#{$pre}-select__message {
+    color: $cinnabar;
+  }
+  .#{$pre}-select--error
+    > .#{$pre}-select__input:focus
+    ~ .#{$pre}-select__message {
+    color: $cinnabar;
   }
 
   .#{$pre}-select__list-outer {

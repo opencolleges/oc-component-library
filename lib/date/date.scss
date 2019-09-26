@@ -64,11 +64,11 @@
   display: none;
 }
 
-.#{$pre}-date--error > .#{$pre}-date__input {
-  border-bottom: rem(1px) solid $cinnabar-shade;
-}
 .#{$pre}-date--success > .#{$pre}-date__input {
   border-bottom: rem(1px) solid $christi-shade;
+}
+.#{$pre}-date--error > .#{$pre}-date__input {
+  border-bottom: rem(1px) solid $cinnabar-shade;
 }
 
 .#{$pre}-date__input:disabled ~ .#{$pre}-date__input {
@@ -224,11 +224,11 @@
   user-select: none;
 }
 
-.#{$pre}-date--error .#{$pre}-date__message {
-  color: $cinnabar-shade;
-}
 .#{$pre}-date--success .#{$pre}-date__message {
   color: $christi-shade;
+}
+.#{$pre}-date--error .#{$pre}-date__message {
+  color: $cinnabar-shade;
 }
 
 // 3.1 Medium devices
@@ -353,18 +353,6 @@
     background-color: $viking;
   }
 
-  .#{$pre}-date--error > .#{$pre}-date__input ~ .#{$pre}-date__border {
-    width: 100%;
-    background-color: $cinnabar-shade;
-  }
-
-  .#{$pre}-date--error > .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
-    background-color: $cinnabar;
-  }
-  .#{$pre}-date--error > .#{$pre}-date__input:focus ~ .#{$pre}-date__border {
-    background-color: $cinnabar;
-  }
-
   .#{$pre}-date--success > .#{$pre}-date__input ~ .#{$pre}-date__border {
     width: 100%;
     background-color: $christi-shade;
@@ -377,11 +365,16 @@
     background-color: $christi;
   }
 
-  .#{$pre}-date--error > .#{$pre}-date__input:hover ~ .#{$pre}-date__message {
-    color: $cinnabar;
+  .#{$pre}-date--error > .#{$pre}-date__input ~ .#{$pre}-date__border {
+    width: 100%;
+    background-color: $cinnabar-shade;
   }
-  .#{$pre}-date--error > .#{$pre}-date__input:focus ~ .#{$pre}-date__message {
-    color: $cinnabar;
+
+  .#{$pre}-date--error > .#{$pre}-date__input:hover ~ .#{$pre}-date__border {
+    background-color: $cinnabar;
+  }
+  .#{$pre}-date--error > .#{$pre}-date__input:focus ~ .#{$pre}-date__border {
+    background-color: $cinnabar;
   }
 
   .#{$pre}-date--success > .#{$pre}-date__input:hover ~ .#{$pre}-date__message {
@@ -389,6 +382,13 @@
   }
   .#{$pre}-date--success > .#{$pre}-date__input:focus ~ .#{$pre}-date__message {
     color: $christi;
+  }
+
+  .#{$pre}-date--error > .#{$pre}-date__input:hover ~ .#{$pre}-date__message {
+    color: $cinnabar;
+  }
+  .#{$pre}-date--error > .#{$pre}-date__input:focus ~ .#{$pre}-date__message {
+    color: $cinnabar;
   }
 
   .#{$pre}-date__list-outer {

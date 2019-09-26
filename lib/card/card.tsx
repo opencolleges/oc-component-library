@@ -16,7 +16,7 @@ const Card: React.FC<Props> = props => {
     `${namespace(
       'card',
       toModifier(props.modifiers, 'card'),
-      props.href ? 'card--clickable' : ''
+      props.href ? toModifier('clickable', 'card') : ''
     )} ${_.toString(props.className)}`
   );
 
@@ -26,13 +26,13 @@ const Card: React.FC<Props> = props => {
       style={props.style}
       href={props.href}
       tabIndex={
-        (_.includes(classNames, 'card--clickable') ||
-          _.includes(classNames, 'card--draggable')) &&
+        (_.includes(classNames, 'clickable') ||
+          _.includes(classNames, 'draggable')) &&
         props.tabIndex
           ? 0
           : null
       }>
-      {_.includes(classNames, 'card--draggable') && <Icon type="draggable" />}
+      {_.includes(classNames, 'draggable') && <Icon type="draggable" />}
       {props.children}
     </Tag>
   );
