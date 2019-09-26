@@ -1,6 +1,6 @@
-import itemise from './itemise';
-
 import * as _ from 'lodash';
+
+import itemise from './itemise';
 
 const toModifier = (modifiers: string[] | string, block: string): string => {
   const arr: string[] = [];
@@ -10,10 +10,12 @@ const toModifier = (modifiers: string[] | string, block: string): string => {
   }
 
   _.forEach(modifiers, modifier => {
-    if (modifier.indexOf(`${block}--`) > -1) {
-      arr.push(modifier);
-    } else {
-      arr.push(`${block}--${modifier}`);
+    if (modifier) {
+      if (modifier.indexOf(`${block}--`) > -1) {
+        arr.push(modifier);
+      } else {
+        arr.push(`${block}--${modifier}`);
+      }
     }
   });
 

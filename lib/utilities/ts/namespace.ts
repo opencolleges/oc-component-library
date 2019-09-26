@@ -1,6 +1,6 @@
-import { NAMESPACE } from './constants';
-
 import * as _ from 'lodash';
+
+import { NAMESPACE } from './constants';
 
 /**
  * Return a string of class names, derived from the class names passed.
@@ -15,7 +15,7 @@ const namespace = (...classNames: string[]): string => {
 
   _.forEach(classNames, className => {
     if (!_.isUndefined(className)) {
-      _.forEach(_.split(_.trim(className), / +/g), value => {
+      _.forEach(_.split(_.trim(className), /\s+/g), value => {
         if (!_.isEmpty(value)) {
           classArr.push(`${NAMESPACE}-${value}`);
         }
