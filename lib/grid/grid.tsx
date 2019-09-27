@@ -2,23 +2,18 @@ import * as React from 'react';
 
 import { Props } from './grid.interface';
 
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
-
-import * as _ from 'lodash';
+import BEM from '../utilities/ts/bem';
 
 const Grid: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
 
-  const classNames: string = _.trim(
-    `${namespace('grid', toModifier(props.modifiers, 'grid'))} ${_.toString(
-      props.className
-    )}`
-  );
+  const bem = BEM('grid');
+  bem.addModifiers(props.modifiers);
+  bem.addClassNames(props.className);
 
   return (
     <Tag
-      className={classNames}
+      className={bem.getResult()}
       style={
         props.maxWidth ? props.style : { maxWidth: '100%', ...props.style }
       }>

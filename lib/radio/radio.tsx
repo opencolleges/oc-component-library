@@ -1,15 +1,13 @@
+import * as _ from 'lodash';
 import * as React from 'react';
+
+import Icon from '../icon';
 
 import { Props } from './radio.interface';
 
 import { NAMESPACE } from '../utilities/ts/constants';
 
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
-
-import Icon from '../icon';
-
-import * as _ from 'lodash';
+import BEM from '../utilities/ts/bem';
 
 export default class Radio extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
@@ -30,17 +28,16 @@ export default class Radio extends React.Component<Props> {
 
   render() {
     const { props, id, handleChange } = this;
-    const classNames: string = _.trim(
-      `${namespace('radio', toModifier(props.modifiers, 'radio'))} ${_.toString(
-        props.className
-      )}`
-    );
+
+    const bem = BEM('radio');
+    bem.addModifiers(props.modifiers);
+    bem.addClassNames(props.className);
 
     return (
-      <div className={classNames} style={props.style}>
+      <div className={bem.getResult()} style={props.style}>
         <input
           id={id}
-          className={namespace('radio__input')}
+          className={bem.getElement('input')}
           type="radio"
           name={props.name}
           value={props.value}
@@ -51,16 +48,16 @@ export default class Radio extends React.Component<Props> {
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           onChange={handleChange}
         />
-        <label htmlFor={id} className={namespace('radio__label')}>
+        <label htmlFor={id} className={bem.getElement('label')}>
           {props.children}
         </label>
         {!props.readOnly && !props.disabled && (
-          <svg className={namespace('radio__border-outer')} viewBox="0 0 16 16">
+          <svg className={bem.getElement('border-outer')} viewBox="0 0 16 16">
             <circle
-              className={namespace('radio__border')}
-              cx={8}
-              cy={8}
-              r={7.5}
+              className={bem.getElement('border')}
+              cx="8"
+              cy="8"
+              r="7.5"
             />
           </svg>
         )}

@@ -11,7 +11,7 @@ const toModifier = (modifiers: string[] | string, block: string): string => {
 
   _.forEach(modifiers, modifier => {
     if (modifier) {
-      if (modifier.indexOf(`${block}--`) > -1) {
+      if (modifier.indexOf(`${block}--`) !== -1) {
         arr.push(modifier);
       } else {
         arr.push(`${block}--${modifier}`);

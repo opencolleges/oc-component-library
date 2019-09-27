@@ -432,13 +432,13 @@ $parent-index: 1;
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:hover
-      + .#{$pre}-likert__item.#{$pre}-active
+      + .#{$pre}-likert__item.active
       .#{$pre}-likert__button {
       border-left-color: $viking;
     }
 
     .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item.#{$pre}-active
+      > .#{$pre}-likert__item.active
       + .#{$pre}-likert__item:hover
       .#{$pre}-likert__button {
       border-left-color: $viking;
@@ -446,13 +446,13 @@ $parent-index: 1;
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:active
-      + .#{$pre}-likert__item.#{$pre}-active
+      + .#{$pre}-likert__item.active
       .#{$pre}-likert__button {
       border-left-color: $viking-shade;
     }
 
     .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item.#{$pre}-active
+      > .#{$pre}-likert__item.active
       + .#{$pre}-likert__item:active
       .#{$pre}-likert__button {
       border-left-color: $viking-shade;
@@ -477,13 +477,13 @@ $parent-index: 1;
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:hover
-      + .#{$pre}-likert__item.#{$pre}-active
+      + .#{$pre}-likert__item.active
       .#{$pre}-likert__button {
       border-left-color: $viking;
     }
 
     .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item.#{$pre}-active
+      > .#{$pre}-likert__item.active
       + .#{$pre}-likert__item:hover
       .#{$pre}-likert__button {
       border-left-color: $viking;
@@ -491,13 +491,13 @@ $parent-index: 1;
 
     .#{$pre}-likert__list--#{$index}
       > .#{$pre}-likert__item:active
-      + .#{$pre}-likert__item.#{$pre}-active
+      + .#{$pre}-likert__item.active
       .#{$pre}-likert__button {
       border-left-color: $viking-shade;
     }
 
     .#{$pre}-likert__list--#{$index}
-      > .#{$pre}-likert__item.#{$pre}-active
+      > .#{$pre}-likert__item.active
       + .#{$pre}-likert__item:active
       .#{$pre}-likert__button {
       border-left-color: $viking-shade;

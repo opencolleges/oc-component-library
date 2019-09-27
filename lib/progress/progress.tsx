@@ -1,13 +1,13 @@
+import * as _ from 'lodash';
 import * as React from 'react';
-
-import { Props, State } from './progress.interface';
-
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
 
 import Icon from '../icon';
 
-import * as _ from 'lodash';
+import { Props, State } from './progress.interface';
+
+import BEM from '../utilities/ts/bem';
+
+import isNotAlt from './utilities/is-not-alt';
 
 export default class Progress extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
@@ -37,37 +37,38 @@ export default class Progress extends React.Component<Props> {
 
   render() {
     const { props, state } = this;
-    const classNames: string = _.trim(
-      `${namespace(
-        'progress',
-        toModifier(props.modifiers, 'progress'),
-        `${
-          state.success && !_.includes(_.split(props.modifiers, ' '), 'alt')
-            ? toModifier('success', 'progress')
-            : ''
-        }`
-      )} ${_.toString(props.className)}`
+
+    const bem = BEM('progress');
+    bem.addModifiers(props.modifiers);
+    bem.addModifiers(
+      state.success && isNotAlt(props.modifiers) ? 'success' : ''
     );
+    bem.addClassNames(props.className);
+
     const width: string = `${(props.progress / props.totalProgress) * 100}%`;
 
+    let label: string;
+
+    if (props.message) {
+      label = props.message;
+    } else if (isNotAlt(props.modifiers)) {
+      label = `${props.progress}%`;
+    } else {
+      label = `${props.progress} of ${props.totalProgress}`;
+    }
+
     return (
-      <div className={classNames} style={props.style}>
-        <div className={namespace('progress__bar-outer')}>
+      <div className={bem.getResult()} style={props.style}>
+        <div className={bem.getElement('bar-outer')}>
           <div
-            className={namespace('progress__bar')}
+            className={bem.getElement('bar')}
             style={{
               width
             }}
           />
         </div>
-        <div className={namespace('progress__label')}>
-          {props.message
-            ? props.message
-            : !_.includes(_.split(props.modifiers, ' '), 'alt')
-            ? `${props.progress}%`
-            : `${props.progress} of ${props.totalProgress}`}
-        </div>
-        {!_.includes(_.split(props.modifiers, ' '), 'alt') && (
+        <div className={bem.getElement('label')}>{label}</div>
+        {isNotAlt(props.modifiers) && (
           <React.Fragment>
             <Icon
               type="close-ring"

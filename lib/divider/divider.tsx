@@ -2,20 +2,16 @@ import * as React from 'react';
 
 import { Props } from './divider.interface';
 
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
-
-import * as _ from 'lodash';
+import BEM from '../utilities/ts/bem';
 
 const Divider: React.FC<Props> = props => {
-  const classNames: string = _.trim(
-    `${namespace(
-      'divider',
-      toModifier(props.modifiers, 'divider')
-    )} ${_.toString(props.className)}`
-  );
+  const bem = BEM('divider');
+  bem.addModifiers(props.modifiers);
+  bem.addClassNames(props.className);
 
-  return <div className={classNames} style={props.style} aria-hidden="true" />;
+  return (
+    <div className={bem.getResult()} style={props.style} aria-hidden="true" />
+  );
 };
 
 Divider.defaultProps = {

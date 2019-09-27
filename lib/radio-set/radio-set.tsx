@@ -1,16 +1,14 @@
+import * as _ from 'lodash';
 import * as React from 'react';
-
-import { ConditionalCardProps, Props, State } from './radio-set.interface';
-
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
 
 import Card from '../card';
 import Grid from '../grid';
 import GridItem from '../grid-item';
 import Radio from '../radio';
 
-import * as _ from 'lodash';
+import { ConditionalCardProps, Props, State } from './radio-set.interface';
+
+import BEM from '../utilities/ts/bem';
 
 export default class RadioSet extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
@@ -50,19 +48,19 @@ export default class RadioSet extends React.Component<Props, State> {
 
   render() {
     const { props, state, handleChange } = this;
+
     const error: string = state.error ? 'error' : '';
     const success: string = state.success ? 'success' : '';
-    const classNames: string = _.trim(
-      `${namespace(
-        'radio-set',
-        toModifier(error, 'radio-set'),
-        toModifier(success, 'radio-set')
-      )} ${_.toString(props.className)}`
-    );
+
+    const bem = BEM('radio-set');
+    bem.addModifiers(error);
+    bem.addModifiers(success);
+    bem.addClassNames(props.className);
+
     const modifiers: string = `${error}${success}`;
 
     return (
-      <fieldset className={classNames} style={props.style}>
+      <fieldset className={bem.getResult()} style={props.style}>
         <Grid modifiers="gutter-x-fixed">
           {props.radios.map((radio, index) => (
             <GridItem key={index} modifiers="s-12 m-6 align-end">
@@ -88,11 +86,9 @@ export default class RadioSet extends React.Component<Props, State> {
             </GridItem>
           ))}
         </Grid>
-        <div className={namespace('radio-set__border')} />
+        <div className={bem.getElement('border')} />
         {(state.error || state.success) && props.message && (
-          <span className={namespace('radio-set__message')}>
-            {props.message}
-          </span>
+          <span className={bem.getElement('message')}>{props.message}</span>
         )}
       </fieldset>
     );

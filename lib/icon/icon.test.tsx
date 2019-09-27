@@ -13,17 +13,17 @@ describe('<Icon />', () => {
 
   it('Handles props.className', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-icon oc-icon--arrow-down oc-active'
+      'oc-icon oc-icon--arrow-down active'
     );
 
     wrapper.setProps({ className: 'foo' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-icon oc-icon--arrow-down oc-active foo'
+      'oc-icon oc-icon--arrow-down active foo'
     );
 
     wrapper.setProps({ className: 'foo bar' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-icon oc-icon--arrow-down oc-active foo bar'
+      'oc-icon oc-icon--arrow-down active foo bar'
     );
   });
 
@@ -54,28 +54,28 @@ describe('<Icon />', () => {
 
   it('Handles props.type', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-icon oc-icon--arrow-down oc-active'
+      'oc-icon oc-icon--arrow-down active'
     );
 
     wrapper.setProps({ type: 'arrow-left' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-icon oc-icon--arrow-left oc-active'
+      'oc-icon oc-icon--arrow-left active'
     );
 
     wrapper.setProps({ type: 'arrow-right' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-icon oc-icon--arrow-right oc-active'
+      'oc-icon oc-icon--arrow-right active'
     );
 
     wrapper.setProps({ type: 'arrow-up' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-icon oc-icon--arrow-up oc-active'
+      'oc-icon oc-icon--arrow-up active'
     );
   });
 
   it('Handles props.visible', () => {
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-icon oc-icon--arrow-down oc-active'
+      'oc-icon oc-icon--arrow-down active'
     );
 
     wrapper.setProps({ visible: false });
@@ -85,7 +85,7 @@ describe('<Icon />', () => {
 
     wrapper.setProps({ visible: true });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-icon oc-icon--arrow-down oc-active'
+      'oc-icon oc-icon--arrow-down active'
     );
   });
 

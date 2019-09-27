@@ -2,11 +2,11 @@ import { NAMESPACE } from '../../utilities/ts/constants';
 
 import * as _ from 'lodash';
 
-const getLikertScale = (
+function getLikertScale(
   options: Array<{
     label?: string;
   }>
-): Array<{ id: string; label: string }> => {
+): Array<{ id: string; label: string }> {
   const SCALE: Array<{ id: string; label: string }> = [];
 
   let range: number = options.length;
@@ -28,6 +28,6 @@ const getLikertScale = (
   }
 
   return SCALE;
-};
+}
 
 export default getLikertScale;

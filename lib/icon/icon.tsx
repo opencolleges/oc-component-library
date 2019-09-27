@@ -2,10 +2,8 @@ import * as React from 'react';
 
 import { Props } from './icon.interface';
 
+import BEM from '../utilities/ts/bem';
 import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
-
-import * as _ from 'lodash';
 
 const Icon: React.FC<Props> = props => {
   const icons = {
@@ -37,17 +35,14 @@ const Icon: React.FC<Props> = props => {
     'tick-ring': TickRing
   };
 
-  const classNames: string = _.trim(
-    `${namespace(
-      'icon',
-      toModifier(props.type, 'icon'),
-      props.visible ? 'active' : ''
-    )} ${_.toString(props.className)}`
-  );
+  const bem = BEM('icon');
+  bem.addModifiers(props.type);
+  bem.addClassNames(props.visible ? 'active' : '');
+  bem.addClassNames(props.className);
 
   return (
     <svg
-      className={classNames}
+      className={bem.getResult()}
       style={props.style}
       width={props.size}
       height={props.size}

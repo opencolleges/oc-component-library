@@ -1,24 +1,22 @@
 import * as React from 'react';
 
-import { Props } from './card.interface';
-
 import Icon from '../icon';
 
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
+import { Props } from './card.interface';
+
+import BEM from '../utilities/ts/bem';
 
 import * as _ from 'lodash';
 
 const Card: React.FC<Props> = props => {
   const Tag = (typeof props.href === 'undefined' ? 'div' : 'a') as 'div' | 'a';
 
-  const classNames: string = _.trim(
-    `${namespace(
-      'card',
-      toModifier(props.modifiers, 'card'),
-      props.href ? toModifier('clickable', 'card') : ''
-    )} ${_.toString(props.className)}`
-  );
+  const bem = BEM('card');
+  bem.addModifiers(props.modifiers);
+  bem.addModifiers(props.href ? 'clickable' : '');
+  bem.addClassNames(props.className);
+
+  const classNames: string = bem.getResult();
 
   return (
     <Tag

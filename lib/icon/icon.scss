@@ -34,7 +34,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--arrow-up.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--arrow-up.active .#{$pre}-stroke--1 {
   stroke-dasharray: 15.3 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -47,7 +47,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--arrow-up.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--arrow-up.active .#{$pre}-stroke--2 {
   stroke-dasharray: 0 0 13 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
@@ -59,7 +59,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--arrow-right.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--arrow-right.active .#{$pre}-stroke--1 {
   stroke-dasharray: 15.3 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -71,7 +71,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--arrow-right.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--arrow-right.active .#{$pre}-stroke--2 {
   stroke-dasharray: 0 0 13 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
@@ -83,7 +83,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--arrow-down.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--arrow-down.active .#{$pre}-stroke--1 {
   stroke-dasharray: 15.3 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -95,7 +95,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--arrow-down.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--arrow-down.active .#{$pre}-stroke--2 {
   stroke-dasharray: 0 0 13 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
@@ -107,7 +107,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--arrow-left.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--arrow-left.active .#{$pre}-stroke--1 {
   stroke-dasharray: 15.3 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default 0;
@@ -119,7 +119,7 @@
     $transition-timing-default 0;
 }
 
-.#{$pre}-icon--arrow-left.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--arrow-left.active .#{$pre}-stroke--2 {
   stroke-dasharray: 0 0 13 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
@@ -131,7 +131,7 @@
     $transition-timing-default $transition-duration-x5;
 }
 
-.#{$pre}-icon--calendar.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--calendar.active .#{$pre}-stroke--1 {
   stroke-dasharray: 60 0;
   transition: stroke-dasharray $transition-duration-x4
     $transition-timing-default;
@@ -143,7 +143,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--calendar.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--calendar.active .#{$pre}-stroke--2 {
   stroke-dasharray: 15 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x6;
@@ -155,7 +155,7 @@
     $transition-timing-default $transition-duration-x3;
 }
 
-.#{$pre}-icon--calendar.#{$pre}-active .#{$pre}-stroke--3 {
+.#{$pre}-icon--calendar.active .#{$pre}-stroke--3 {
   stroke-dasharray: 2.5 0;
   transition: stroke-dasharray $transition-duration-x1
     $transition-timing-default $transition-duration-x4;
@@ -167,7 +167,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--calendar.#{$pre}-active .#{$pre}-stroke--4 {
+.#{$pre}-icon--calendar.active .#{$pre}-stroke--4 {
   stroke-dasharray: 2.5 0;
   transition: stroke-dasharray $transition-duration-x1
     $transition-timing-default $transition-duration-x5;
@@ -179,7 +179,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--chevron-up.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--chevron-up.active .#{$pre}-stroke--1 {
   stroke-dasharray: 0 0 19.99 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -191,7 +191,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--chevron-right.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--chevron-right.active .#{$pre}-stroke--1 {
   stroke-dasharray: 0 0 19.99 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -203,7 +203,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--chevron-down.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--chevron-down.active .#{$pre}-stroke--1 {
   stroke-dasharray: 0 0 19.99 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -215,7 +215,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--chevron-left.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--chevron-left.active .#{$pre}-stroke--1 {
   stroke-dasharray: 0 0 19.99 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -227,7 +227,7 @@
     $transition-timing-default $transition-duration-x1;
 }
 
-.#{$pre}-icon--close.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--close.active .#{$pre}-stroke--1 {
   stroke-dasharray: 16.009 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -239,7 +239,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--close.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--close.active .#{$pre}-stroke--2 {
   stroke-dasharray: 16.009 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x1;
@@ -252,7 +252,7 @@
     $transition-timing-default $transition-duration-x4;
 }
 
-.#{$pre}-icon--close-ring.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--close-ring.active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(19) 0.001;
   transition: stroke-dasharray $transition-duration-x4
     $transition-timing-default;
@@ -264,7 +264,7 @@
     $transition-timing-default $transition-duration-x1;
 }
 
-.#{$pre}-icon--close-ring.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--close-ring.active .#{$pre}-stroke--2 {
   stroke-dasharray: 10.1 0.001;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x4;
@@ -276,7 +276,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--close-ring.#{$pre}-active .#{$pre}-stroke--3 {
+.#{$pre}-icon--close-ring.active .#{$pre}-stroke--3 {
   stroke-dasharray: 10.1 0.001;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x5;
@@ -289,7 +289,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--cloud.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--cloud.active .#{$pre}-stroke--1 {
   stroke-dasharray: 52.228 0;
   transition: stroke-dasharray $transition-duration-x8
     $transition-timing-default;
@@ -301,7 +301,7 @@
     $transition-timing-default $transition-duration-x4;
 }
 
-.#{$pre}-icon--cloud-download.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--cloud-download.active .#{$pre}-stroke--1 {
   stroke-dasharray: 46.228 0;
   transition: stroke-dasharray $transition-duration-x8
     $transition-timing-default;
@@ -313,7 +313,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--cloud-download.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--cloud-download.active .#{$pre}-stroke--2 {
   stroke-dasharray: 10.31 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x8;
@@ -325,7 +325,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--cloud-download.#{$pre}-active .#{$pre}-stroke--3 {
+.#{$pre}-icon--cloud-download.active .#{$pre}-stroke--3 {
   stroke-dasharray: 0 0 8.1 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x10;
@@ -337,7 +337,7 @@
     $transition-timing-default $transition-duration-x4;
 }
 
-.#{$pre}-icon--cloud-upload.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--cloud-upload.active .#{$pre}-stroke--1 {
   stroke-dasharray: 46.228 0;
   transition: stroke-dasharray $transition-duration-x8
     $transition-timing-default;
@@ -349,7 +349,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--cloud-upload.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--cloud-upload.active .#{$pre}-stroke--2 {
   stroke-dasharray: 10.31 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x8;
@@ -361,7 +361,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--cloud-upload.#{$pre}-active .#{$pre}-stroke--3 {
+.#{$pre}-icon--cloud-upload.active .#{$pre}-stroke--3 {
   stroke-dasharray: 0 0 8.1 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x10;
@@ -373,7 +373,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--hamburger.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--hamburger.active .#{$pre}-stroke--1 {
   stroke-dasharray: 24 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -385,7 +385,7 @@
     $transition-timing-default $transition-duration-x1;
 }
 
-.#{$pre}-icon--hamburger.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--hamburger.active .#{$pre}-stroke--2 {
   stroke-dasharray: 24 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x1;
@@ -397,7 +397,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--hamburger.#{$pre}-active .#{$pre}-stroke--3 {
+.#{$pre}-icon--hamburger.active .#{$pre}-stroke--3 {
   stroke-dasharray: 24 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x2;
@@ -409,7 +409,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--minus.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--minus.active .#{$pre}-stroke--1 {
   stroke-dasharray: 16.1 0;
 }
 
@@ -420,7 +420,7 @@
     $transition-timing-default $transition-duration-x3;
 }
 
-.#{$pre}-icon--minus-ring.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--minus-ring.active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(19) 0.001;
   transition: stroke-dasharray $transition-duration-x4
     $transition-timing-default;
@@ -432,7 +432,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--minus-ring.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--minus-ring.active .#{$pre}-stroke--2 {
   stroke-dasharray: 10.1 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x4;
@@ -444,7 +444,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--plus.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--plus.active .#{$pre}-stroke--1 {
   stroke-dasharray: 16.1 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x1;
@@ -456,7 +456,7 @@
     $transition-timing-default $transition-duration-x1;
 }
 
-.#{$pre}-icon--plus.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--plus.active .#{$pre}-stroke--2 {
   stroke-dasharray: 16.1 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default;
@@ -469,7 +469,7 @@
     $transition-timing-default $transition-duration-x3;
 }
 
-.#{$pre}-icon--plus-ring.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--plus-ring.active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(19) 0.001;
   transition: stroke-dasharray $transition-duration-x4
     $transition-timing-default;
@@ -481,7 +481,7 @@
     $transition-timing-default $transition-duration-x1;
 }
 
-.#{$pre}-icon--plus-ring.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--plus-ring.active .#{$pre}-stroke--2 {
   stroke-dasharray: 10.1 0.001;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x4;
@@ -493,7 +493,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--plus-ring.#{$pre}-active .#{$pre}-stroke--3 {
+.#{$pre}-icon--plus-ring.active .#{$pre}-stroke--3 {
   stroke-dasharray: 10.1 0.001;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x5;
@@ -506,7 +506,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--search.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--search.active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(10) 0;
   transition: stroke-dasharray $transition-duration-x4
     $transition-timing-default;
@@ -518,7 +518,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--search.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--search.active .#{$pre}-stroke--2 {
   stroke-dasharray: 6 0;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x4;
@@ -530,7 +530,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--tick.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--tick.active .#{$pre}-stroke--1 {
   stroke-dasharray: 20 0;
 }
 
@@ -541,7 +541,7 @@
     $transition-timing-default $transition-duration-x3;
 }
 
-.#{$pre}-icon--tick-ring.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--tick-ring.active .#{$pre}-stroke--1 {
   stroke-dasharray: get-circumference(19) 0.001;
   transition: stroke-dasharray $transition-duration-x4
     $transition-timing-default;
@@ -553,7 +553,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--tick-ring.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--tick-ring.active .#{$pre}-stroke--2 {
   stroke-dasharray: 13.007 0;
   transition: stroke-dasharray $transition-duration-x3
     $transition-timing-default $transition-duration-x4;
@@ -565,7 +565,7 @@
     $transition-timing-default $transition-duration-x6;
 }
 
-.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--1 {
+.#{$pre}-icon--print.active .#{$pre}-stroke--1 {
   stroke-dasharray: 64 0.001;
   transition: stroke-dasharray $transition-duration-x6
     $transition-timing-default;
@@ -577,7 +577,7 @@
     $transition-timing-default $transition-duration-x3;
 }
 
-.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--2 {
+.#{$pre}-icon--print.active .#{$pre}-stroke--2 {
   stroke-dasharray: 22 0.001;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x4;
@@ -589,7 +589,7 @@
     $transition-timing-default $transition-duration-x1;
 }
 
-.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--3 {
+.#{$pre}-icon--print.active .#{$pre}-stroke--3 {
   stroke-dasharray: 19 0.001;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x6;
@@ -601,7 +601,7 @@
     $transition-timing-default $transition-duration-x2;
 }
 
-.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--4 {
+.#{$pre}-icon--print.active .#{$pre}-stroke--4 {
   stroke-dasharray: 8 0.001;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x5;
@@ -613,7 +613,7 @@
     $transition-timing-default;
 }
 
-.#{$pre}-icon--print.#{$pre}-active .#{$pre}-stroke--5 {
+.#{$pre}-icon--print.active .#{$pre}-stroke--5 {
   stroke-dasharray: 8 0.001;
   transition: stroke-dasharray $transition-duration-x2
     $transition-timing-default $transition-duration-x7;

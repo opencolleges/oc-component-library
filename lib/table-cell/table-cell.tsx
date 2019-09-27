@@ -2,22 +2,17 @@ import * as React from 'react';
 
 import { Props } from './table-cell.interface';
 
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
-
-import * as _ from 'lodash';
+import BEM from '../utilities/ts/bem';
 
 const TableCell: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
-  const classNames: string = _.trim(
-    `${namespace(Tag, toModifier(props.modifiers, Tag))} ${_.toString(
-      props.className
-    )}`
-  );
+  const bem = BEM(Tag);
+  bem.addModifiers(props.modifiers);
+  bem.addClassNames(props.className);
 
   return (
     <Tag
-      className={classNames}
+      className={bem.getResult()}
       style={props.style}
       colSpan={props.colSpan}
       rowSpan={props.rowSpan}>

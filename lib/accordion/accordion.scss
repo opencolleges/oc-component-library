@@ -54,7 +54,7 @@
   transition: color $transition-duration-x1 $transition-timing-default;
 }
 
-.#{$pre}-accordion.#{$pre}-active > .#{$pre}-accordion__button {
+.#{$pre}-accordion.active > .#{$pre}-accordion__button {
   color: inherit;
 }
 
@@ -78,7 +78,7 @@
   stroke: $charcoal;
 }
 
-.#{$pre}-accordion.#{$pre}-active > .#{$pre}-icon {
+.#{$pre}-accordion.active > .#{$pre}-icon {
   stroke: $charcoal;
 }
 
@@ -161,17 +161,17 @@
     pointer-events: none;
   }
 
-  .#{$pre}-accordion.#{$pre}-active > .#{$pre}-accordion__border {
+  .#{$pre}-accordion.active > .#{$pre}-accordion__border {
     width: 100%;
     background-color: $viking-shade;
   }
 
-  .#{$pre}-accordion.#{$pre}-active
+  .#{$pre}-accordion.active
     > .#{$pre}-accordion__button:hover
     ~ .#{$pre}-accordion__border {
     background-color: $viking;
   }
-  .#{$pre}-accordion.#{$pre}-active
+  .#{$pre}-accordion.active
     > .#{$pre}-accordion__button:focus
     ~ .#{$pre}-accordion__border {
     background-color: $viking;
