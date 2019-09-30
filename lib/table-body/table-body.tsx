@@ -2,17 +2,14 @@ import * as React from 'react';
 
 import { Props } from './table-body.interface';
 
-import namespace from '../utilities/ts/namespace';
-
-import * as _ from 'lodash';
+import BEM from '../utilities/ts/bem';
 
 const TableBody: React.FC<Props> = props => {
-  const classNames: string = _.trim(
-    `${namespace('tbody')} ${_.toString(props.className)}`
-  );
+  const bem = BEM('tbody');
+  bem.addClassNames(props.className);
 
   return (
-    <tbody className={classNames} style={props.style}>
+    <tbody className={bem.getResult()} style={props.style}>
       {props.children}
     </tbody>
   );

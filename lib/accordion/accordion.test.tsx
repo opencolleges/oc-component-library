@@ -55,7 +55,7 @@ describe('<Acordion />', () => {
       </Accordion>
     );
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-accordion oc-active'
+      'oc-accordion active'
     );
 
     wrapper.unmount();
@@ -104,7 +104,7 @@ describe('<Acordion />', () => {
 
     wrapper.setState({ expanded: true });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-accordion oc-active'
+      'oc-accordion active'
     );
 
     wrapper.setState({ expanded: false });

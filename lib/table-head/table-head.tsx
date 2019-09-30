@@ -2,17 +2,14 @@ import * as React from 'react';
 
 import { Props } from './table-head.interface';
 
-import namespace from '../utilities/ts/namespace';
-
-import * as _ from 'lodash';
+import BEM from '../utilities/ts/bem';
 
 const TableHead: React.FC<Props> = props => {
-  const classNames: string = _.trim(
-    `${namespace('thead')} ${_.toString(props.className)}`
-  );
+  const bem = BEM('thead');
+  bem.addClassNames(props.className);
 
   return (
-    <thead className={classNames} style={props.style}>
+    <thead className={bem.getResult()} style={props.style}>
       {props.children}
     </thead>
   );

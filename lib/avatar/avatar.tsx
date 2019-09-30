@@ -1,12 +1,13 @@
 import * as React from 'react';
 
+import Badge from '../badge';
+
 import { AVATAR_COORDINATES } from '../utilities/ts/constants';
 import { Props } from './avatar.interface';
 
-import Badge from '../badge';
-
 import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
+
+import BEM from '../utilities/ts/bem';
 
 import * as _ from 'lodash';
 
@@ -15,15 +16,13 @@ const Avatar: React.FC<Props> = props => {
     ? 'div'
     : 'a';
 
-  const class_names: string = _.trim(
-    `${namespace('avatar', toModifier(props.modifiers, 'avatar'))} ${_.toString(
-      props.className
-    )}`
-  );
+  const bem = BEM('avatar');
+  bem.addModifiers(props.modifiers);
+  bem.addClassNames(props.className);
 
   return (
     <Tag
-      className={class_names}
+      className={bem.getResult()}
       style={props.style}
       href={props.href}
       title={props.firstName}>
@@ -33,10 +32,10 @@ const Avatar: React.FC<Props> = props => {
           (!_.isUndefined(props.href) && (
             <svg
               key={index}
-              className={namespace('avatar__border-outer')}
+              className={bem.getElement('border-outer')}
               viewBox={AVATAR_COORDINATES[index].viewBox}>
               <circle
-                className={namespace('avatar__border')}
+                className={bem.getElement('border')}
                 cx={AVATAR_COORDINATES[index].cx}
                 cy={AVATAR_COORDINATES[index].cy}
                 r={AVATAR_COORDINATES[index].r}

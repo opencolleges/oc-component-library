@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { Props } from './button.interface';
-
 import Icon from '../icon';
 
+import { Props } from './button.interface';
+
 import { NAMESPACE } from '../utilities/ts/constants';
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
+
+import BEM from '../utilities/ts/bem';
 
 import * as _ from 'lodash';
 
@@ -17,18 +17,15 @@ const Button: React.FC<Props> = props => {
     Tag = 'a';
   }
 
-  const classNames: string = _.trim(
-    `${namespace(
-      'button',
-      toModifier(props.modifiers, 'button'),
-      props.icon ? 'button--icon' : ''
-    )} ${_.toString(props.className)}`
-  );
+  const bem = BEM('button');
+  bem.addModifiers(props.modifiers);
+  bem.addModifiers(props.icon ? 'icon' : '');
+  bem.addClassNames(props.className);
 
   return (
     <Tag
       id={props.id ? props.id : _.uniqueId(`${NAMESPACE}-`)}
-      className={classNames}
+      className={bem.getResult()}
       style={props.style}
       type={Tag === 'button' ? props.type : null}
       name={props.name}

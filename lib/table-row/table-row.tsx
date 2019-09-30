@@ -2,20 +2,15 @@ import * as React from 'react';
 
 import { Props } from './table-row.interface';
 
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
-
-import * as _ from 'lodash';
+import BEM from '../utilities/ts/bem';
 
 const TableRow: React.FC<Props> = props => {
-  const classNames: string = _.trim(
-    `${namespace('tr', toModifier(props.modifiers, 'tr'))} ${_.toString(
-      props.className
-    )}`
-  );
+  const bem = BEM('tr');
+  bem.addModifiers(props.modifiers);
+  bem.addClassNames(props.className);
 
   return (
-    <tr className={classNames} style={props.style}>
+    <tr className={bem.getResult()} style={props.style}>
       {props.children}
     </tr>
   );

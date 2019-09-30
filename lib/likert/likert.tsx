@@ -2,13 +2,9 @@ import * as React from 'react';
 
 import { Props, State } from './likert.interface';
 
+import BEM from '../utilities/ts/bem';
 import getLikertScale from './utilities/get-likert-scale';
 import hasLikertLabel from './utilities/has-likert-label';
-
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
-
-import * as _ from 'lodash';
 
 export default class Likert extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
@@ -33,42 +29,39 @@ export default class Likert extends React.Component<Props, State> {
 
   render() {
     const { props, state, scale, handleChange } = this;
-    const classNames: string = _.trim(
-      `${namespace(
-        'likert',
-        toModifier(props.modifiers, 'likert')
-      )} ${_.toString(props.className)}`
-    );
+
+    const bem = BEM('likert');
+    bem.addModifiers(props.modifiers);
+    bem.addClassNames(props.className);
 
     return (
-      <div className={classNames} style={props.style}>
+      <div className={bem.getResult()} style={props.style}>
         <div
-          className={namespace(`likert__list likert__list--${scale.length}`)}>
+          className={`${bem.getElement('list')} ${bem.getModifier(
+            `${scale.length}`,
+            'list'
+          )}`}>
           {scale.map((option, i) => (
             <div
               key={i}
-              className={
-                i + 1 !== Number(state.value)
-                  ? namespace('likert__item')
-                  : namespace('likert__item active')
-              }>
+              className={`${bem.getElement('item')}${
+                i + 1 !== Number(state.value) ? '' : ' active'
+              }`}>
               <input
                 id={option.id}
-                className={namespace('likert__input')}
+                className={bem.getElement('input')}
                 type="radio"
                 name={props.name}
                 value={i + 1}
                 tabIndex={0}
                 onChange={handleChange}
               />
-              <div className={namespace('likert__label-outer')}>
-                <label
-                  htmlFor={option.id}
-                  className={namespace('likert__button')}>
+              <div className={bem.getElement('label-outer')}>
+                <label htmlFor={option.id} className={bem.getElement('button')}>
                   {scale.length > 10 ? i : i + 1}
                 </label>
                 {hasLikertLabel(scale, i) && option.label && (
-                  <span className={namespace('likert__label')}>
+                  <span className={bem.getElement('label')}>
                     {option.label}
                   </span>
                 )}

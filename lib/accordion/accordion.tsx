@@ -1,13 +1,10 @@
 import * as React from 'react';
 
-import { Props, State } from './accordion.interface';
-
 import Icon from '../icon';
 
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
+import { Props, State } from './accordion.interface';
 
-import * as _ from 'lodash';
+import BEM from '../utilities/ts/bem';
 
 export default class Accordion extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
@@ -44,19 +41,16 @@ export default class Accordion extends React.Component<Props, State> {
   render() {
     const { props, state, contentRef, handleClick } = this;
 
-    const classNames: string = _.trim(
-      `${namespace(
-        'accordion',
-        toModifier(props.modifiers, 'accordion'),
-        state.expanded ? 'active' : ''
-      )} ${_.toString(props.className)}`
-    );
+    const bem = BEM('accordion');
+    bem.addModifiers(props.modifiers);
+    bem.addClassNames(state.expanded ? 'active' : '');
+    bem.addClassNames(props.className);
 
     return (
-      <div className={classNames} style={props.style}>
+      <div className={bem.getResult()} style={props.style}>
         <button
           type={'button'}
-          className={namespace('accordion__button')}
+          className={bem.getElement('button')}
           title={state.expanded ? 'Contract' : 'Expand'}
           onClick={handleClick}>
           {props.label}
@@ -65,11 +59,11 @@ export default class Accordion extends React.Component<Props, State> {
         <Icon type="plus" visible={!state.expanded} />
         <div
           ref={contentRef}
-          className={namespace('accordion__outer')}
+          className={bem.getElement('outer')}
           style={{ height: state.expanded ? state.height : 0 }}>
           {props.children}
         </div>
-        <div className={namespace('accordion__border')} />
+        <div className={bem.getElement('border')} />
       </div>
     );
   }

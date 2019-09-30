@@ -16,7 +16,7 @@ describe('<Preloader />', () => {
 
     wrapper.setProps({ active: true });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-preloader oc-active'
+      'oc-preloader active'
     );
 
     wrapper.setProps({ active: false });
