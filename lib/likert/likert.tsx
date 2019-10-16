@@ -1,10 +1,21 @@
 import React from 'react';
 
-import { Props, State } from './likert.interface';
-
 import BEM from '../utilities/ts/bem';
 import getLikertScale from './utilities/get-likert-scale';
 import hasLikertLabel from './utilities/has-likert-label';
+
+interface Props {
+  className?: string;
+  modifiers?: string;
+  name?: string;
+  onChange?: () => void;
+  options: Array<{ label?: string }>;
+  style?: React.CSSProperties;
+}
+
+interface State {
+  value?: string;
+}
 
 export default class Likert extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {

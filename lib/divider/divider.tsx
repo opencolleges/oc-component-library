@@ -1,8 +1,12 @@
 import React from 'react';
 
-import { Props } from './divider.interface';
-
 import BEM from '../utilities/ts/bem';
+
+interface Props {
+  className?: string;
+  modifiers?: string;
+  style?: React.CSSProperties;
+}
 
 const Divider: React.FC<Props> = props => {
   const bem = BEM('divider');

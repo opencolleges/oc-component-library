@@ -3,11 +3,22 @@ import React from 'react';
 
 import Icon from '../icon';
 
-import { Props, State } from './progress.interface';
-
 import BEM from '../utilities/ts/bem';
-
 import isNotAlt from './utilities/is-not-alt';
+
+interface Props {
+  className?: string;
+  message?: string;
+  modifiers?: string;
+  progress: number;
+  style?: React.CSSProperties;
+  totalProgress?: number;
+}
+
+interface State {
+  error: boolean;
+  success: boolean;
+}
 
 export default class Progress extends React.Component<Props> {
   static defaultProps: Partial<Props> = {

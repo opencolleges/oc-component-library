@@ -1,15 +1,25 @@
+import _ from 'lodash';
 import React from 'react';
 
 import Badge from '../badge';
 
 import { AVATAR_COORDINATES } from '../utilities/ts/constants';
-import { Props } from './avatar.interface';
-
-import namespace from '../utilities/ts/namespace';
 
 import BEM from '../utilities/ts/bem';
+import namespace from '../utilities/ts/namespace';
 
-import _ from 'lodash';
+type TSex = 'female' | 'male' | 'undisclosed';
+
+interface Props {
+  modifiers?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  href?: string;
+  firstName: string;
+  sex: TSex;
+  image?: string;
+  value?: number;
+}
 
 const Avatar: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = _.isUndefined(props.href)

@@ -1,9 +1,17 @@
 import _ from 'lodash';
 import React from 'react';
 
-import { Props } from './heading.interface';
-
 import BEM from '../utilities/ts/bem';
+
+type TLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
+interface Props {
+  level?: TLevel;
+  modifiers?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  children: string;
+}
 
 const Heading: React.FC<Props> = props => {
   const Tag = `h${_.toString(props.level)}` as

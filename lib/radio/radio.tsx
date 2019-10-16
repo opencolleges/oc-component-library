@@ -3,11 +3,24 @@ import React from 'react';
 
 import Icon from '../icon';
 
-import { Props } from './radio.interface';
-
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
+
+interface Props {
+  checked?: boolean;
+  children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  id?: string;
+  modifiers?: string;
+  name?: string;
+  onChange?: (value: string, name: string) => void;
+  readOnly?: boolean;
+  required?: boolean;
+  style?: React.CSSProperties;
+  value: string;
+}
 
 export default class Radio extends React.Component<Props> {
   static defaultProps: Partial<Props> = {

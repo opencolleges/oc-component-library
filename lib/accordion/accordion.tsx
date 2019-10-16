@@ -2,9 +2,21 @@ import React from 'react';
 
 import Icon from '../icon';
 
-import { Props, State } from './accordion.interface';
-
 import BEM from '../utilities/ts/bem';
+
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+  expanded?: boolean;
+  label: string;
+  modifiers?: string;
+  style?: React.CSSProperties;
+}
+
+interface State {
+  expanded?: boolean;
+  height?: number;
+}
 
 export default class Accordion extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {

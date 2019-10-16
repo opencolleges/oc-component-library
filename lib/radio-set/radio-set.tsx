@@ -6,9 +6,43 @@ import Grid from '../grid';
 import GridItem from '../grid-item';
 import Radio from '../radio';
 
-import { ConditionalCardProps, Props, State } from './radio-set.interface';
-
 import BEM from '../utilities/ts/bem';
+
+interface Radios {
+  className?: string;
+  id?: string;
+  label: string;
+  style?: React.CSSProperties;
+  value: string;
+}
+
+interface Props {
+  cards?: boolean;
+  className?: string;
+  disabled?: boolean;
+  message?: string;
+  modifiers?: string;
+  name?: string;
+  onChange?: (value: string, name: string) => void;
+  radios: Radios[];
+  readOnly?: boolean;
+  required?: boolean;
+  style?: React.CSSProperties;
+  value?: string;
+}
+
+interface State {
+  error: boolean;
+  success: boolean;
+  value: string;
+}
+
+interface ConditionalCardProps {
+  children: React.ReactNode;
+  disabled?: boolean;
+  readOnly?: boolean;
+  visible?: boolean;
+}
 
 export default class RadioSet extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {

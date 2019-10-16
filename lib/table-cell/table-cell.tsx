@@ -1,8 +1,19 @@
 import React from 'react';
 
-import { Props } from './table-cell.interface';
-
 import BEM from '../utilities/ts/bem';
+
+type TTag = 'td' | 'th';
+
+interface Props {
+  children?: React.ReactNode;
+  className?: string;
+  colSpan?: number;
+  modifiers?: string;
+  rowSpan?: number;
+  style?: React.CSSProperties;
+  tag?: TTag;
+  width?: string;
+}
 
 const TableCell: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;

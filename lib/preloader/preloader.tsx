@@ -1,8 +1,12 @@
 import React from 'react';
 
-import { Props } from './preloader.interface';
-
 import BEM from '../utilities/ts/bem';
+
+interface Props {
+  active?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
 
 const Preloader: React.FC<Props> = props => {
   const bem = BEM('preloader');

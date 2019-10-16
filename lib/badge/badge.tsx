@@ -1,9 +1,14 @@
 import React from 'react';
 
-import { Props } from './badge.interface';
-
 import BEM from '../utilities/ts/bem';
 import getBadgeLabel from './utilities/get-badge-label';
+
+interface Props {
+  modifiers?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  value?: string | number;
+}
 
 const Badge: React.FC<Props> = props => {
   const bem = BEM('badge');
