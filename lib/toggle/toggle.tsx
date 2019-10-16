@@ -1,12 +1,27 @@
+import * as _ from 'lodash';
 import * as React from 'react';
 
-import { Props, State } from './toggle.interface';
-
 import { NAMESPACE } from '../utilities/ts/constants';
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
 
-import * as _ from 'lodash';
+import BEM from '../utilities/ts/bem';
+
+interface Props {
+  checked?: boolean;
+  children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  id?: string;
+  modifiers?: string;
+  name?: string;
+  onChange?: () => void;
+  readOnly?: boolean;
+  style?: React.CSSProperties;
+  value: string;
+}
+
+interface State {
+  checked?: boolean;
+}
 
 export default class Toggle extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
@@ -31,18 +46,15 @@ export default class Toggle extends React.Component<Props, State> {
   render() {
     const { props, state, id, handleChange } = this;
 
-    const classNames: string = _.trim(
-      `${namespace(
-        'toggle',
-        toModifier(props.modifiers, 'toggle')
-      )} ${_.toString(props.className)}`
-    );
+    const bem = BEM('toggle');
+    bem.addModifiers(props.modifiers);
+    bem.addClassNames(props.className);
 
     return (
-      <div className={classNames} style={props.style}>
+      <div className={bem.getResult()} style={props.style}>
         <input
           id={id}
-          className={namespace('toggle__input')}
+          className={bem.getElement('input')}
           type="checkbox"
           name={props.name}
           value={props.value}
@@ -52,15 +64,13 @@ export default class Toggle extends React.Component<Props, State> {
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           onChange={handleChange}
         />
-        <label htmlFor={id} className={namespace('toggle__label')}>
+        <label htmlFor={id} className={bem.getElement('label')}>
           {props.children}
         </label>
         {!props.readOnly && !props.disabled && (
-          <svg
-            className={namespace('toggle__border-outer')}
-            viewBox="0 0 40 24">
+          <svg className={bem.getElement('border-outer')} viewBox="0 0 40 24">
             <rect
-              className={namespace('toggle__border')}
+              className={bem.getElement('border')}
               x="0.5"
               y="0.5"
               width="39"

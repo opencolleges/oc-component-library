@@ -1,12 +1,18 @@
+import * as _ from 'lodash';
 import * as React from 'react';
 
 import Icon from '../icon';
 
-import { Props } from './card.interface';
-
 import BEM from '../utilities/ts/bem';
 
-import * as _ from 'lodash';
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+  href?: string;
+  modifiers?: string;
+  style?: React.CSSProperties;
+  tabIndex?: boolean;
+}
 
 const Card: React.FC<Props> = props => {
   const Tag = (typeof props.href === 'undefined' ? 'div' : 'a') as 'div' | 'a';
