@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Badge from '../badge';
 
@@ -9,7 +9,7 @@ import namespace from '../utilities/ts/namespace';
 
 import BEM from '../utilities/ts/bem';
 
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 const Avatar: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = _.isUndefined(props.href)

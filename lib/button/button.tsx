@@ -1,4 +1,5 @@
-import * as React from 'react';
+import _ from 'lodash';
+import React from 'react';
 
 import Icon from '../icon';
 
@@ -7,8 +8,6 @@ import { Props } from './button.interface';
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
-
-import * as _ from 'lodash';
 
 const Button: React.FC<Props> = props => {
   let Tag: keyof JSX.IntrinsicElements = 'button';

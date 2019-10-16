@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 function isNotAlt(modifiers: string): boolean {
   modifiers = _.trim(modifiers);

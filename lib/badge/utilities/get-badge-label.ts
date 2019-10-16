@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 function getBadgeLabel(value: number | string): string {
   if (_.isNumber(value)) {

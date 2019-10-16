@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // ! This import will be redundant after addNamespace() is moved to it's own
 // ! file...

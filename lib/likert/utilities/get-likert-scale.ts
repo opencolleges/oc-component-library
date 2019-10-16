@@ -1,6 +1,6 @@
 import { NAMESPACE } from '../../utilities/ts/constants';
 
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 function getLikertScale(
   options: Array<{

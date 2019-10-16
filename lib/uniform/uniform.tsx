@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Props } from './uniform.interface';
 
 import namespace from '../utilities/ts/namespace';
 import uniform from './utilities/uniform';
 
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 const Uniform: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;

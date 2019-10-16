@@ -3,13 +3,30 @@ import React from 'react';
 
 import Icon from '../icon';
 
-import { Props } from './radio.interface';
-
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
 
-export default class Radio extends React.Component<Props> {
+interface Props {
+  checked?: boolean;
+  children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  id?: string;
+  modifiers?: string;
+  name?: string;
+  onChange?: (value: string, name: string, checked: boolean) => void;
+  readOnly?: boolean;
+  required?: boolean;
+  style?: React.CSSProperties;
+  value: string;
+}
+
+interface State {
+  checked: boolean;
+}
+
+export default class Checkbox extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     checked: false,
     disabled: false,
@@ -20,16 +37,32 @@ export default class Radio extends React.Component<Props> {
     required: false
   };
 
+  readonly state: Readonly<State> = {
+    checked: this.props.checked
+  };
+
   id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
 
+  componentDidUpdate(prevProps): void {
+    if (prevProps.checked !== this.props.checked) {
+      this.setState({ checked: this.props.checked });
+    }
+  }
+
   handleChange = (): void => {
-    this.props.onChange(this.props.value, this.props.name);
+    this.setState({ checked: !this.state.checked }, () => {
+      this.props.onChange(
+        this.props.value,
+        this.props.name,
+        this.state.checked
+      );
+    });
   };
 
   render() {
-    const { props, id, handleChange } = this;
+    const { props, state, id, handleChange } = this;
 
-    const bem = BEM('radio');
+    const bem = BEM('checkbox');
     bem.addModifiers(props.modifiers);
     bem.addClassNames(props.className);
 
@@ -38,13 +71,13 @@ export default class Radio extends React.Component<Props> {
         <input
           id={id}
           className={bem.getElement('input')}
-          type="radio"
+          type="checkbox"
           name={props.name}
           value={props.value}
           disabled={props.disabled}
           readOnly={props.readOnly}
           required={props.required}
-          defaultChecked={props.checked}
+          defaultChecked={state.checked}
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           onChange={handleChange}
         />
@@ -53,11 +86,13 @@ export default class Radio extends React.Component<Props> {
         </label>
         {!props.readOnly && !props.disabled && (
           <svg className={bem.getElement('border-outer')} viewBox="0 0 16 16">
-            <circle
+            <rect
               className={bem.getElement('border')}
-              cx="8"
-              cy="8"
-              r="7.5"
+              x="0.5"
+              y="0.5"
+              width="15"
+              height="15"
+              rx="1.5"
             />
           </svg>
         )}
@@ -73,6 +108,7 @@ export default class Radio extends React.Component<Props> {
             />
           </React.Fragment>
         )}
+        <Icon type="tick" visible={state.checked} />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Props, State } from './toggle.interface';
 
@@ -6,7 +6,7 @@ import { NAMESPACE } from '../utilities/ts/constants';
 import namespace from '../utilities/ts/namespace';
 import toModifier from '../utilities/ts/to-modifier';
 
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 export default class Toggle extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {

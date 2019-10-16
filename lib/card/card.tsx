@@ -1,12 +1,11 @@
-import * as React from 'react';
+import _ from 'lodash';
+import React from 'react';
 
 import Icon from '../icon';
 
 import { Props } from './card.interface';
 
 import BEM from '../utilities/ts/bem';
-
-import * as _ from 'lodash';
 
 const Card: React.FC<Props> = props => {
   const Tag = (typeof props.href === 'undefined' ? 'div' : 'a') as 'div' | 'a';

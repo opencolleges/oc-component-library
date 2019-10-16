@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 
 // ! Confirm this can be depracted, then remove.
 const namespace = 'oc';
