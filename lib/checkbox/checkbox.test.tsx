@@ -217,30 +217,30 @@ describe('<Checkbox />', () => {
     );
   });
 
-  // it('Handles props.value', () => {
-  //   expect(
-  //     wrapper
-  //       .find('input')
-  //       .getDOMNode()
-  //       .getAttribute('value')
-  //   ).toBe('foo');
+  it('Handles props.value', () => {
+    expect(
+      wrapper
+        .find('input')
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('foo');
 
-  //   wrapper.setProps({ value: 'bar' });
-  //   expect(
-  //     wrapper
-  //       .find('input')
-  //       .getDOMNode()
-  //       .getAttribute('value')
-  //   ).toBe('bar');
+    wrapper.setProps({ value: 'bar' });
+    expect(
+      wrapper
+        .find('input')
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('bar');
 
-  //   wrapper.setProps({ value: 'baz' });
-  //   expect(
-  //     wrapper
-  //       .find('input')
-  //       .getDOMNode()
-  //       .getAttribute('value')
-  //   ).toBe('baz');
-  // });
+    wrapper.setProps({ value: 'baz' });
+    expect(
+      wrapper
+        .find('input')
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('baz');
+  });
 
   afterEach(() => {
     wrapper.unmount();
