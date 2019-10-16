@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 const date = {
   now: new Date(),

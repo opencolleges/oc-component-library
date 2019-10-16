@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import BEM from '../utilities/ts/bem';
 import namespace from '../utilities/ts/namespace';

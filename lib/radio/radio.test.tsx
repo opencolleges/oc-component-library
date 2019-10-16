@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Radio from './radio';
 
@@ -88,6 +88,16 @@ describe('<Radio />', () => {
         .getDOMNode()
         .getAttribute('id')
     ).toBe('oc-5');
+
+    wrapper.unmount();
+
+    wrapper = mount(<Radio value="foo">Foo</Radio>);
+    expect(
+      wrapper
+        .find('input')
+        .getDOMNode()
+        .getAttribute('id')
+    ).toBe('oc-6');
 
     wrapper.unmount();
 

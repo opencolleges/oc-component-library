@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
+    "esModuleInterop": true,
+    "jsx": "react",
     "module": "commonjs",
-    "target": "es5",
-    "jsx": "react"
+    "sourceMap": true,
+    "target": "es5"
   },
-  "plugins": [{ "name": "typescript-tslint-plugin" }],
-  "include": ["./lib/**/*"]
+  "include": ["./lib/**/*"],
+  "plugins": [{ "name": "typescript-tslint-plugin" }]
 }

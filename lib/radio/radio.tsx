@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
-import * as React from 'react';
+import _ from 'lodash';
+import React from 'react';
 
 import Icon from '../icon';
 
@@ -75,16 +75,16 @@ export default class Radio extends React.Component<Props> {
           </svg>
         )}
         {!_.includes(_.split(props.modifiers, ' '), 'right') && (
-          <Icon
-            type="close"
-            visible={_.includes(_.split(props.modifiers, ' '), 'error')}
-          />
-        )}
-        {!_.includes(_.split(props.modifiers, ' '), 'right') && (
-          <Icon
-            type="tick"
-            visible={_.includes(_.split(props.modifiers, ' '), 'success')}
-          />
+          <React.Fragment>
+            <Icon
+              type="close"
+              visible={_.includes(_.split(props.modifiers, ' '), 'error')}
+            />
+            <Icon
+              type="tick"
+              visible={_.includes(_.split(props.modifiers, ' '), 'success')}
+            />
+          </React.Fragment>
         )}
       </div>
     );

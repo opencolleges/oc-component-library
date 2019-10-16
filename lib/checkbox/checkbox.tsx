@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 
+import Icon from '../icon';
+
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
@@ -13,24 +15,26 @@ interface Props {
   id?: string;
   modifiers?: string;
   name?: string;
-  onChange?: () => void;
+  onChange?: (value: string, name: string, checked: boolean) => void;
   readOnly?: boolean;
+  required?: boolean;
   style?: React.CSSProperties;
   value: string;
 }
 
 interface State {
-  checked?: boolean;
+  checked: boolean;
 }
 
-export default class Toggle extends React.Component<Props, State> {
+export default class Checkbox extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     checked: false,
     disabled: false,
     onChange: () => {
       return;
     },
-    readOnly: false
+    readOnly: false,
+    required: false
   };
 
   readonly state: Readonly<State> = {
@@ -39,14 +43,26 @@ export default class Toggle extends React.Component<Props, State> {
 
   id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
 
+  componentDidUpdate(prevProps): void {
+    if (prevProps.checked !== this.props.checked) {
+      this.setState({ checked: this.props.checked });
+    }
+  }
+
   handleChange = (): void => {
-    this.setState(prevState => ({ checked: !prevState.checked }));
+    this.setState({ checked: !this.state.checked }, () => {
+      this.props.onChange(
+        this.props.value,
+        this.props.name,
+        this.state.checked
+      );
+    });
   };
 
   render() {
     const { props, state, id, handleChange } = this;
 
-    const bem = BEM('toggle');
+    const bem = BEM('checkbox');
     bem.addModifiers(props.modifiers);
     bem.addClassNames(props.className);
 
@@ -60,6 +76,7 @@ export default class Toggle extends React.Component<Props, State> {
           value={props.value}
           disabled={props.disabled}
           readOnly={props.readOnly}
+          required={props.required}
           defaultChecked={state.checked}
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           onChange={handleChange}
@@ -68,17 +85,30 @@ export default class Toggle extends React.Component<Props, State> {
           {props.children}
         </label>
         {!props.readOnly && !props.disabled && (
-          <svg className={bem.getElement('border-outer')} viewBox="0 0 40 24">
+          <svg className={bem.getElement('border-outer')} viewBox="0 0 16 16">
             <rect
               className={bem.getElement('border')}
               x="0.5"
               y="0.5"
-              width="39"
-              height="23"
-              rx="11.5"
+              width="15"
+              height="15"
+              rx="1.5"
             />
           </svg>
         )}
+        {!_.includes(_.split(props.modifiers, ' '), 'right') && (
+          <React.Fragment>
+            <Icon
+              type="close"
+              visible={_.includes(_.split(props.modifiers, ' '), 'error')}
+            />
+            <Icon
+              type="tick"
+              visible={_.includes(_.split(props.modifiers, ' '), 'success')}
+            />
+          </React.Fragment>
+        )}
+        <Icon type="tick" visible={state.checked} />
       </div>
     );
   }

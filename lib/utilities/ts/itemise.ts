@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 function itemise(str: string, separator: RegExp | string = /\s+/g): string[] {
   return _.split(_.trim(str), separator);
