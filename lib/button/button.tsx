@@ -1,14 +1,28 @@
+import * as _ from 'lodash';
 import * as React from 'react';
 
 import Icon from '../icon';
-
-import { Props } from './button.interface';
 
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
 
-import * as _ from 'lodash';
+import { TIcon } from '../icon/icon';
+type TType = 'button' | 'submit' | 'reset';
+
+interface Props {
+  id?: string;
+  action: string;
+  href?: string;
+  type?: TType;
+  name?: string;
+  modifiers?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  disabled?: boolean;
+  icon?: TIcon;
+  onClick?: () => void;
+}
 
 const Button: React.FC<Props> = props => {
   let Tag: keyof JSX.IntrinsicElements = 'button';
@@ -40,7 +54,7 @@ const Button: React.FC<Props> = props => {
 };
 
 Button.defaultProps = {
-  modifiers: 'button--primary',
+  modifiers: 'primary',
   onClick: () => {
     return;
   },

@@ -1,8 +1,12 @@
 import * as React from 'react';
 
-import { Props } from './table-body.interface';
-
 import BEM from '../utilities/ts/bem';
+
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}
 
 const TableBody: React.FC<Props> = props => {
   const bem = BEM('tbody');

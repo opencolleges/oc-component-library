@@ -1,9 +1,43 @@
 import * as React from 'react';
 
-import { Props } from './icon.interface';
-
 import BEM from '../utilities/ts/bem';
 import namespace from '../utilities/ts/namespace';
+
+export type TIcon =
+  | 'arrow-down'
+  | 'arrow-left'
+  | 'arrow-right'
+  | 'arrow-up'
+  | 'calendar'
+  | 'chevron-down'
+  | 'chevron-left'
+  | 'chevron-right'
+  | 'chevron-up'
+  | 'clock'
+  | 'close'
+  | 'close-ring'
+  | 'cloud'
+  | 'cloud-download'
+  | 'cloud-upload'
+  | 'draggable'
+  | 'hamburger'
+  | 'minus'
+  | 'minus-ring'
+  | 'plus'
+  | 'plus-ring'
+  | 'print'
+  | 'question-ring'
+  | 'search'
+  | 'tick'
+  | 'tick-ring';
+
+interface Props {
+  className?: string;
+  style?: React.CSSProperties;
+  size?: string;
+  type: TIcon;
+  visible?: boolean;
+}
 
 const Icon: React.FC<Props> = props => {
   const icons = {

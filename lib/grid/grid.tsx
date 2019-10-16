@@ -1,8 +1,17 @@
 import * as React from 'react';
 
-import { Props } from './grid.interface';
-
 import BEM from '../utilities/ts/bem';
+
+type TTag = 'div' | 'section';
+
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+  maxWidth?: boolean;
+  modifiers?: string;
+  style?: React.CSSProperties;
+  tag?: TTag;
+}
 
 const Grid: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;

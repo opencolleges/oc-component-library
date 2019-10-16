@@ -1,8 +1,36 @@
 import * as React from 'react';
 
-import { Props } from './copy.interface';
-
 import BEM from '../utilities/ts/bem';
+
+type TTag =
+  | 'a'
+  | 'abbr'
+  | 'blockquote'
+  | 'code'
+  | 'em'
+  | 'kbd'
+  | 'li'
+  | 'mark'
+  | 'ol'
+  | 'p'
+  | 'pre'
+  | 'small'
+  | 'span'
+  | 'strong'
+  | 'sub'
+  | 'sup'
+  | 'ul';
+
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+  href?: string;
+  modifiers?: string;
+  style?: React.CSSProperties;
+  tag?: TTag;
+  target?: string;
+  title?: string;
+}
 
 const Copy: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;

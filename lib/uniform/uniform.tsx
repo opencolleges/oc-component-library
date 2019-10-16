@@ -1,11 +1,18 @@
+import * as _ from 'lodash';
 import * as React from 'react';
-
-import { Props } from './uniform.interface';
 
 import namespace from '../utilities/ts/namespace';
 import uniform from './utilities/uniform';
 
-import * as _ from 'lodash';
+type TTag = 'div' | 'main' | 'section';
+
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+  mode?: string;
+  style?: React.CSSProperties;
+  tag?: TTag;
+}
 
 const Uniform: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
