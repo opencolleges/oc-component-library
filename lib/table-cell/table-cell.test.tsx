@@ -2,11 +2,13 @@ import React from 'react';
 
 import TableCell from './table-cell';
 
+import { NAMESPACE } from '../utilities/ts/constants';
+
 import { mount } from 'enzyme';
 
 let wrapper;
 
-describe('<TableCell />', () => {
+describe(`<TableCell />`, () => {
   beforeEach(() => {
     wrapper = mount(
       <table>
@@ -21,8 +23,10 @@ describe('<TableCell />', () => {
     );
   });
 
-  it('Handles props.children', () => {
-    expect(wrapper.find('td').html()).toBe('<td class="oc-td"><p></p></td>');
+  it(`Handles props.children`, () => {
+    expect(wrapper.find(`td`).html()).toBe(
+      `<td class="${NAMESPACE}-td"><p></p></td>`
+    );
 
     wrapper.unmount();
 
@@ -37,18 +41,18 @@ describe('<TableCell />', () => {
         </tbody>
       </table>
     );
-    expect(wrapper.find('td').html()).toBe(
-      '<td class="oc-td"><strong></strong></td>'
+    expect(wrapper.find(`td`).html()).toBe(
+      `<td class="${NAMESPACE}-td"><strong></strong></td>`
     );
   });
 
-  it('Handles props.className', () => {
+  it(`Handles props.className`, () => {
     expect(
       wrapper
-        .find('td')
+        .find(`td`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-td');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-td`);
 
     wrapper.unmount();
 
@@ -65,10 +69,10 @@ describe('<TableCell />', () => {
     );
     expect(
       wrapper
-        .find('td')
+        .find(`td`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-td foo');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-td foo`);
 
     wrapper.unmount();
 
@@ -85,18 +89,18 @@ describe('<TableCell />', () => {
     );
     expect(
       wrapper
-        .find('td')
+        .find(`td`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-td foo bar');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-td foo bar`);
   });
 
-  it('Handles props.style', () => {
+  it(`Handles props.style`, () => {
     expect(
       wrapper
-        .find('td')
+        .find(`td`)
         .getDOMNode()
-        .getAttribute('style')
+        .getAttribute(`style`)
     ).toBe(null);
 
     wrapper.unmount();
@@ -114,10 +118,10 @@ describe('<TableCell />', () => {
     );
     expect(
       wrapper
-        .find('td')
+        .find(`td`)
         .getDOMNode()
-        .getAttribute('style')
-    ).toBe('z-index: 1;');
+        .getAttribute(`style`)
+    ).toBe(`z-index: 1;`);
 
     wrapper = mount(
       <table>
@@ -132,14 +136,16 @@ describe('<TableCell />', () => {
     );
     expect(
       wrapper
-        .find('td')
+        .find(`td`)
         .getDOMNode()
-        .getAttribute('style')
-    ).toBe('z-index: 1; opacity: 0;');
+        .getAttribute(`style`)
+    ).toBe(`z-index: 1; opacity: 0;`);
   });
 
-  it('Handles props.tag', () => {
-    expect(wrapper.find('td').html()).toBe('<td class="oc-td"><p></p></td>');
+  it(`Handles props.tag`, () => {
+    expect(wrapper.find(`td`).html()).toBe(
+      `<td class="${NAMESPACE}-td"><p></p></td>`
+    );
 
     wrapper.unmount();
 
@@ -154,7 +160,9 @@ describe('<TableCell />', () => {
         </tbody>
       </table>
     );
-    expect(wrapper.find('th').html()).toBe('<th class="oc-th"><p></p></th>');
+    expect(wrapper.find(`th`).html()).toBe(
+      `<th class="${NAMESPACE}-th"><p></p></th>`
+    );
 
     wrapper.unmount();
 
@@ -169,7 +177,9 @@ describe('<TableCell />', () => {
         </tbody>
       </table>
     );
-    expect(wrapper.find('td').html()).toBe('<td class="oc-td"><p></p></td>');
+    expect(wrapper.find(`td`).html()).toBe(
+      `<td class="${NAMESPACE}-td"><p></p></td>`
+    );
   });
 
   afterEach(() => {

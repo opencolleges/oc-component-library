@@ -2,104 +2,110 @@ import React from 'react';
 
 import Checkbox from './checkbox';
 
+import { NAMESPACE } from '../utilities/ts/constants';
+
 import { mount } from 'enzyme';
 
 let wrapper;
 
-describe('<Checkbox />', () => {
+describe(`<Checkbox />`, () => {
   beforeEach(() => {
     wrapper = mount(<Checkbox value="foo">Foo</Checkbox>);
   });
 
-  it('Handles props.checked', () => {
+  it(`Handles props.checked`, () => {
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('checked')
+        .getAttribute(`checked`)
     ).toBe(null);
 
     wrapper.setProps({ checked: true });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('checked')
-    ).toBe('');
+        .getAttribute(`checked`)
+    ).toBe(``);
 
     wrapper.setProps({ checked: false });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('checked')
+        .getAttribute(`checked`)
     ).toBe(null);
   });
 
-  it('Handles props.children', () => {
-    expect(wrapper.find('label').text()).toBe('Foo');
+  it(`Handles props.children`, () => {
+    expect(wrapper.find(`label`).text()).toBe(`Foo`);
 
-    wrapper.setProps({ children: 'Bar' });
-    expect(wrapper.find('label').text()).toBe('Bar');
+    wrapper.setProps({ children: `Bar` });
+    expect(wrapper.find(`label`).text()).toBe(`Bar`);
 
-    wrapper.setProps({ children: 'Bar baz' });
-    expect(wrapper.find('label').text()).toBe('Bar baz');
+    wrapper.setProps({ children: `Bar baz` });
+    expect(wrapper.find(`label`).text()).toBe(`Bar baz`);
   });
 
-  it('Handles props.className', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-checkbox');
+  it(`Handles props.className`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-checkbox`
+    );
 
-    wrapper.setProps({ className: 'foo' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-checkbox foo');
+    wrapper.setProps({ className: `foo` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-checkbox foo`
+    );
 
-    wrapper.setProps({ className: 'foo bar' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-checkbox foo bar'
+    wrapper.setProps({ className: `foo bar` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-checkbox foo bar`
     );
   });
 
-  it('Handles props.disabled', () => {
+  it(`Handles props.disabled`, () => {
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('disabled')
+        .getAttribute(`disabled`)
     ).toBe(null);
 
     wrapper.setProps({ disabled: true });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('disabled')
-    ).toBe('');
+        .getAttribute(`disabled`)
+    ).toBe(``);
 
     wrapper.setProps({ disabled: false });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('disabled')
+        .getAttribute(`disabled`)
     ).toBe(null);
   });
 
-  it('Handles props.id', () => {
+  it(`Handles props.id`, () => {
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('id')
-    ).toBe('oc-5');
+        .getAttribute(`id`)
+    ).toBe(`${NAMESPACE}-5`);
 
     wrapper.unmount();
 
     wrapper = mount(<Checkbox value="foo">Foo</Checkbox>);
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('id')
-    ).toBe('oc-6');
+        .getAttribute(`id`)
+    ).toBe(`${NAMESPACE}-6`);
 
     wrapper.unmount();
 
@@ -110,136 +116,138 @@ describe('<Checkbox />', () => {
     );
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('id')
-    ).toBe('bar');
+        .getAttribute(`id`)
+    ).toBe(`bar`);
   });
 
-  it('Handles props.modifiers', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-checkbox');
-
-    wrapper.setProps({ modifiers: 'error' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-checkbox oc-checkbox--error'
+  it(`Handles props.modifiers`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-checkbox`
     );
 
-    wrapper.setProps({ modifiers: 'success' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-checkbox oc-checkbox--success'
+    wrapper.setProps({ modifiers: `error` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-checkbox ${NAMESPACE}-checkbox--error`
+    );
+
+    wrapper.setProps({ modifiers: `success` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-checkbox ${NAMESPACE}-checkbox--success`
     );
   });
 
-  it('Handles props.name', () => {
+  it(`Handles props.name`, () => {
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('name')
+        .getAttribute(`name`)
     ).toBe(null);
 
-    wrapper.setProps({ name: 'bar' });
+    wrapper.setProps({ name: `bar` });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('name')
-    ).toBe('bar');
+        .getAttribute(`name`)
+    ).toBe(`bar`);
 
-    wrapper.setProps({ name: 'baz' });
+    wrapper.setProps({ name: `baz` });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('name')
-    ).toBe('baz');
+        .getAttribute(`name`)
+    ).toBe(`baz`);
   });
 
-  it('Handles props.readonly', () => {
+  it(`Handles props.readonly`, () => {
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('readonly')
+        .getAttribute(`readonly`)
     ).toBe(null);
 
     wrapper.setProps({ readOnly: true });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('readonly')
-    ).toBe('');
+        .getAttribute(`readonly`)
+    ).toBe(``);
 
     wrapper.setProps({ readOnly: false });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('readonly')
+        .getAttribute(`readonly`)
     ).toBe(null);
   });
 
-  it('Handles props.required', () => {
+  it(`Handles props.required`, () => {
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('required')
+        .getAttribute(`required`)
     ).toBe(null);
 
     wrapper.setProps({ required: true });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('required')
-    ).toBe('');
+        .getAttribute(`required`)
+    ).toBe(``);
 
     wrapper.setProps({ required: false });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('required')
+        .getAttribute(`required`)
     ).toBe(null);
   });
 
-  it('Handles props.style', () => {
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(null);
+  it(`Handles props.style`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(null);
 
-    wrapper.setProps({ style: { zIndex: '1' } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
+    wrapper.setProps({ style: { zIndex: `1` } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(`z-index: 1;`);
 
-    wrapper.setProps({ style: { zIndex: '1', opacity: 0 } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(
-      'z-index: 1; opacity: 0;'
+    wrapper.setProps({ style: { zIndex: `1`, opacity: 0 } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(
+      `z-index: 1; opacity: 0;`
     );
   });
 
-  it('Handles props.value', () => {
+  it(`Handles props.value`, () => {
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('value')
-    ).toBe('foo');
+        .getAttribute(`value`)
+    ).toBe(`foo`);
 
-    wrapper.setProps({ value: 'bar' });
+    wrapper.setProps({ value: `bar` });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('value')
-    ).toBe('bar');
+        .getAttribute(`value`)
+    ).toBe(`bar`);
 
-    wrapper.setProps({ value: 'baz' });
+    wrapper.setProps({ value: `baz` });
     expect(
       wrapper
-        .find('input')
+        .find(`input`)
         .getDOMNode()
-        .getAttribute('value')
-    ).toBe('baz');
+        .getAttribute(`value`)
+    ).toBe(`baz`);
   });
 
   afterEach(() => {

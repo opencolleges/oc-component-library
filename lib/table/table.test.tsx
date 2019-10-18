@@ -2,11 +2,13 @@ import React from 'react';
 
 import Table from './table';
 
+import { NAMESPACE } from '../utilities/ts/constants';
+
 import { mount } from 'enzyme';
 
 let wrapper;
 
-describe('<Table />', () => {
+describe(`<Table />`, () => {
   beforeEach(() => {
     wrapper = mount(
       <Table>
@@ -15,50 +17,58 @@ describe('<Table />', () => {
     );
   });
 
-  it('Handles props.children', () => {
+  it(`Handles props.children`, () => {
     expect(wrapper.html()).toBe(
-      '<table class="oc-table"><thead></thead></table>'
+      `<table class="${NAMESPACE}-table"><thead></thead></table>`
     );
 
     wrapper.setProps({ children: <tbody /> });
     expect(wrapper.html()).toBe(
-      '<table class="oc-table"><tbody></tbody></table>'
+      `<table class="${NAMESPACE}-table"><tbody></tbody></table>`
     );
   });
 
-  it('Handles props.modifiers', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-table');
-
-    wrapper.setProps({ modifiers: 'center' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-table oc-table--center'
+  it(`Handles props.modifiers`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-table`
     );
 
-    wrapper.setProps({ modifiers: 'right' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-table oc-table--right'
+    wrapper.setProps({ modifiers: `center` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-table ${NAMESPACE}-table--center`
+    );
+
+    wrapper.setProps({ modifiers: `right` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-table ${NAMESPACE}-table--right`
     );
   });
 
-  it('Handles props.className', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-table');
+  it(`Handles props.className`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-table`
+    );
 
-    wrapper.setProps({ className: 'foo' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-table foo');
+    wrapper.setProps({ className: `foo` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-table foo`
+    );
 
-    wrapper.setProps({ className: 'foo bar' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-table foo bar');
+    wrapper.setProps({ className: `foo bar` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-table foo bar`
+    );
   });
 
-  it('Handles props.style', () => {
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(null);
+  it(`Handles props.style`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(null);
 
-    wrapper.setProps({ style: { zIndex: '1' } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
+    wrapper.setProps({ style: { zIndex: `1` } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(`z-index: 1;`);
 
-    wrapper.setProps({ style: { zIndex: '1', opacity: 0 } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(
-      'z-index: 1; opacity: 0;'
+    wrapper.setProps({ style: { zIndex: `1`, opacity: 0 } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(
+      `z-index: 1; opacity: 0;`
     );
   });
 

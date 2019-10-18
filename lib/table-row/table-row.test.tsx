@@ -2,11 +2,13 @@ import React from 'react';
 
 import TableRow from './table-row';
 
+import { NAMESPACE } from '../utilities/ts/constants';
+
 import { mount } from 'enzyme';
 
 let wrapper;
 
-describe('<TableRow />', () => {
+describe(`<TableRow />`, () => {
   beforeEach(() => {
     wrapper = mount(
       <table>
@@ -19,8 +21,10 @@ describe('<TableRow />', () => {
     );
   });
 
-  it('Handles props.children', () => {
-    expect(wrapper.find('tr').html()).toBe('<tr class="oc-tr"><th></th></tr>');
+  it(`Handles props.children`, () => {
+    expect(wrapper.find(`tr`).html()).toBe(
+      `<tr class="${NAMESPACE}-tr"><th></th></tr>`
+    );
 
     wrapper.unmount();
 
@@ -33,16 +37,18 @@ describe('<TableRow />', () => {
         </tbody>
       </table>
     );
-    expect(wrapper.find('tr').html()).toBe('<tr class="oc-tr"><td></td></tr>');
+    expect(wrapper.find(`tr`).html()).toBe(
+      `<tr class="${NAMESPACE}-tr"><td></td></tr>`
+    );
   });
 
-  it('Handles props.modifiers', () => {
+  it(`Handles props.modifiers`, () => {
     expect(
       wrapper
-        .find('tr')
+        .find(`tr`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-tr');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-tr`);
 
     wrapper.unmount();
 
@@ -57,10 +63,10 @@ describe('<TableRow />', () => {
     );
     expect(
       wrapper
-        .find('tr')
+        .find(`tr`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-tr oc-tr--center');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-tr ${NAMESPACE}-tr--center`);
 
     wrapper.unmount();
 
@@ -75,19 +81,19 @@ describe('<TableRow />', () => {
     );
     expect(
       wrapper
-        .find('tr')
+        .find(`tr`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-tr oc-tr--right');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-tr ${NAMESPACE}-tr--right`);
   });
 
-  it('Handles props.className', () => {
+  it(`Handles props.className`, () => {
     expect(
       wrapper
-        .find('tr')
+        .find(`tr`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-tr');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-tr`);
 
     wrapper.unmount();
 
@@ -102,10 +108,10 @@ describe('<TableRow />', () => {
     );
     expect(
       wrapper
-        .find('tr')
+        .find(`tr`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-tr foo');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-tr foo`);
 
     wrapper.unmount();
 
@@ -120,18 +126,18 @@ describe('<TableRow />', () => {
     );
     expect(
       wrapper
-        .find('tr')
+        .find(`tr`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-tr foo bar');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-tr foo bar`);
   });
 
-  it('Handles props.style', () => {
+  it(`Handles props.style`, () => {
     expect(
       wrapper
-        .find('tr')
+        .find(`tr`)
         .getDOMNode()
-        .getAttribute('style')
+        .getAttribute(`style`)
     ).toBe(null);
 
     wrapper.unmount();
@@ -147,10 +153,10 @@ describe('<TableRow />', () => {
     );
     expect(
       wrapper
-        .find('tr')
+        .find(`tr`)
         .getDOMNode()
-        .getAttribute('style')
-    ).toBe('z-index: 1;');
+        .getAttribute(`style`)
+    ).toBe(`z-index: 1;`);
 
     wrapper.unmount();
 
@@ -165,10 +171,10 @@ describe('<TableRow />', () => {
     );
     expect(
       wrapper
-        .find('tr')
+        .find(`tr`)
         .getDOMNode()
-        .getAttribute('style')
-    ).toBe('z-index: 1; opacity: 0;');
+        .getAttribute(`style`)
+    ).toBe(`z-index: 1; opacity: 0;`);
   });
 
   afterEach(() => {

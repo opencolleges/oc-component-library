@@ -3,45 +3,44 @@ import React from 'react';
 
 import Icon from '../icon';
 
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import BEM from '../utilities/ts/bem';
 
 import { TIcon } from '../icon/icon';
-type TType = 'button' | 'submit' | 'reset';
+
+type TType = `button` | `submit` | `reset`;
 
 interface Props {
-  id?: string;
   action: string;
-  href?: string;
-  type?: TType;
-  name?: string;
-  modifiers?: string;
   className?: string;
-  style?: React.CSSProperties;
   disabled?: boolean;
+  href?: string;
   icon?: TIcon;
+  id?: string;
+  modifiers?: string;
+  name?: string;
   onClick?: () => void;
+  style?: React.CSSProperties;
+  type?: TType;
 }
 
 const Button: React.FC<Props> = props => {
-  let Tag: keyof JSX.IntrinsicElements = 'button';
+  let Tag: keyof JSX.IntrinsicElements = `button`;
 
   if (!props.disabled && !_.isUndefined(props.href)) {
-    Tag = 'a';
+    Tag = `a`;
   }
 
-  const bem = BEM('button');
+  const bem = BEM(`button`);
   bem.addModifiers(props.modifiers);
-  bem.addModifiers(props.icon ? 'icon' : '');
+  bem.addModifiers(props.icon ? `icon` : ``);
   bem.addClassNames(props.className);
 
   return (
     <Tag
-      id={props.id ? props.id : _.uniqueId(`${NAMESPACE}-`)}
+      id={props.id}
       className={bem.getResult()}
       style={props.style}
-      type={Tag === 'button' ? props.type : null}
+      type={Tag === `button` ? props.type : null}
       name={props.name}
       href={props.href}
       disabled={props.disabled}
@@ -54,11 +53,11 @@ const Button: React.FC<Props> = props => {
 };
 
 Button.defaultProps = {
-  modifiers: 'primary',
+  modifiers: `primary`,
   onClick: () => {
     return;
   },
-  type: 'button'
+  type: `button`
 };
 
 export default Button;

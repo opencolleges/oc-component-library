@@ -1,19 +1,9 @@
 import _ from 'lodash';
 
-// ! This import will be redundant after addNamespace() is moved to it's own
-// ! file...
-import { NAMESPACE } from './constants';
+import addNamespace from './add-namespace';
 
-// ! Need to move this function into it's own file after all refactoring, and
-// ! deprecate namespace()...
-const addNamespace = (className: string): string => {
-  className = _.trim(className);
-
-  return `${NAMESPACE}-${className}`;
-};
-
-const ELEMENT_SEPARATOR: string = '__';
-const MODIFIER_SEPARATOR: string = '--';
+const ELEMENT_SEPARATOR: string = `__`;
+const MODIFIER_SEPARATOR: string = `--`;
 
 const BEM = (block: string) => {
   const BLOCK: string = block;
@@ -57,8 +47,10 @@ const BEM = (block: string) => {
     const MODIFIERS: string[] = _.split(modifiers, /\s+/g);
 
     _.forEach(MODIFIERS, (modifier: string) => {
+      modifier = modifier && getModifier(modifier);
+
       if (modifier && result.indexOf(modifier) === -1) {
-        result += ` ${getModifier(modifier)}`;
+        result += ` ${modifier}`;
       }
     });
   };

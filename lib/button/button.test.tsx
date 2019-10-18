@@ -1,102 +1,152 @@
 import React from 'react';
 
-import Icon from '../icon';
 import Button from './button';
+
+import { NAMESPACE } from '../utilities/ts/constants';
 
 import { mount } from 'enzyme';
 
-const Props = {
-  action: 'test',
-  className: 'testClass',
-  disable: false,
-  id: 'btn-1',
-  modifiers: 'button--success',
-  name: 'button-name',
-  onClick: jest.fn(),
-  style: {
-    zIndex: 1
-  }
-};
+let wrapper;
 
-describe('<Button />', () => {
-  describe('default', () => {
-    let wrapper;
-    beforeEach(() => {
-      wrapper = mount(<Button action="submit" />);
-    });
-    afterEach(() => {
-      wrapper.unmount();
-    });
-    it('should render component with default props', () => {
-      expect(wrapper.find('button').length).toBe(1);
-      expect(wrapper.text()).toBe('submit');
-      expect(wrapper.getDOMNode().getAttribute('id')).toMatch('oc-');
-      expect(wrapper.getDOMNode().getAttribute('disabled')).toBe(null);
-    });
+describe(`<Button />`, () => {
+  beforeEach(() => {
+    wrapper = mount(<Button action="Foo" />);
   });
 
-  describe('with props', () => {
-    let wrapper;
+  it(`Handles props.action`, () => {
+    expect(wrapper.text()).toBe(`Foo`);
 
-    beforeEach(() => {
-      wrapper = mount(<Button icon="arrow-up" type="submit" {...Props} />);
-    });
+    wrapper.setProps({ action: `Bar` });
+    expect(wrapper.text()).toBe(`Bar`);
 
-    afterEach(() => {
-      Props.onClick.mockClear();
-      wrapper.unmount();
-    });
+    wrapper.setProps({ action: `Baz` });
+    expect(wrapper.text()).toBe(`Baz`);
+  });
 
-    it('should render button component ', () => {
-      expect(wrapper.find('button').length).toBe(1);
-      expect(wrapper.text()).toBe('test');
-    });
+  it(`Handles props.className`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-button ${NAMESPACE}-button--primary`
+    );
 
-    it('should render icon component', () => {
-      expect(wrapper.find(Icon).length).toBe(1);
-    });
+    wrapper.setProps({ className: `qux` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-button ${NAMESPACE}-button--primary qux`
+    );
 
-    it('should handle id, class name and modifiers props', () => {
-      expect(wrapper.find('#btn-1').hostNodes().length).toBe(1);
-      expect(wrapper.find('.testClass').hostNodes().length).toBe(1);
-      expect(wrapper.find('.oc-button--success').length).toBe(1);
-    });
+    wrapper.setProps({ className: `qux corge` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-button ${NAMESPACE}-button--primary qux corge`
+    );
+  });
 
-    it('should handle type and name props ', () => {
-      expect(wrapper.find('[type="submit"]').hostNodes().length).toBe(1);
-      expect(wrapper.find('[name="button-name"]').hostNodes().length).toBe(1);
-    });
+  it(`Handles props.disabled`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`disabled`)).toBe(null);
 
-    it('Handles props.style', () => {
-      expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
-    });
+    wrapper.setProps({ disabled: true });
+    expect(wrapper.getDOMNode().getAttribute(`disabled`)).toBe(``);
 
-    it('Handles props.onClick', () => {
-      const button = wrapper.find('button');
-      button.simulate('click');
-      expect(Props.onClick).toHaveBeenCalledTimes(1);
-    });
+    wrapper.setProps({ disabled: false });
+    expect(wrapper.getDOMNode().getAttribute(`disabled`)).toBe(null);
+  });
 
-    it('Handles props.disabled', () => {
-      wrapper.setProps({ disabled: true });
-      const button = wrapper.find('button');
-      button.simulate('click');
-      expect(Props.onClick).toHaveBeenCalledTimes(0);
-      expect(wrapper.getDOMNode().getAttribute('disabled')).toBe('');
-    });
+  it(`Handles props.href`, () => {
+    expect(wrapper.getDOMNode().nodeName).toBe(`BUTTON`);
+    expect(wrapper.getDOMNode().getAttribute(`href`)).toBe(null);
 
-    it('should render a tag ', () => {
-      wrapper.setProps({ href: 'google.com' });
-      expect(wrapper.find('a').length).toBe(1);
-      expect(wrapper.find('button').length).toBe(0);
-      expect(wrapper.getDOMNode().getAttribute('href')).toBe('google.com');
-    });
+    wrapper.setProps({ href: `https://www.example.com` });
+    expect(wrapper.getDOMNode().nodeName).toBe(`A`);
+    expect(wrapper.getDOMNode().getAttribute(`href`)).toBe(
+      `https://www.example.com`
+    );
 
-    it('should render button if disabled true and href passes ', () => {
-      wrapper.setProps({ href: 'google.com' });
-      wrapper.setProps({ disabled: true });
-      expect(wrapper.find('a').length).toBe(0);
-      expect(wrapper.find('button').length).toBe(1);
-    });
+    wrapper.setProps({ href: undefined });
+    expect(wrapper.getDOMNode().nodeName).toBe(`BUTTON`);
+    expect(wrapper.getDOMNode().getAttribute(`href`)).toBe(null);
+  });
+
+  it(`Handles props.icon`, () => {
+    expect(wrapper.find(`svg`).length).toBe(0);
+
+    wrapper.setProps({ icon: `tick` });
+    expect(wrapper.find(`svg`).length).toBe(1);
+    expect(
+      wrapper
+        .find(`svg`)
+        .getDOMNode()
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-icon ${NAMESPACE}-icon--tick active`);
+
+    wrapper.setProps({ icon: `arrow-down` });
+    expect(
+      wrapper
+        .find(`svg`)
+        .getDOMNode()
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-icon ${NAMESPACE}-icon--arrow-down active`);
+
+    wrapper.setProps({ icon: undefined });
+    expect(wrapper.find(`svg`).length).toBe(0);
+  });
+
+  it(`Handles props.id`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`id`)).toBe(null);
+
+    wrapper.setProps({ id: `bar` });
+    expect(wrapper.getDOMNode().getAttribute(`id`)).toBe(`bar`);
+
+    wrapper.setProps({ id: `baz` });
+    expect(wrapper.getDOMNode().getAttribute(`id`)).toBe(`baz`);
+  });
+
+  it(`Handles props.modifiers`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-button ${NAMESPACE}-button--primary`
+    );
+
+    wrapper.setProps({ modifiers: `compact secondary` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-button ${NAMESPACE}-button--compact ${NAMESPACE}-button--secondary`
+    );
+
+    wrapper.setProps({ modifiers: `primary reversed` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-button ${NAMESPACE}-button--primary ${NAMESPACE}-button--reversed`
+    );
+  });
+
+  it(`Handles props.name`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`name`)).toBe(null);
+
+    wrapper.setProps({ name: `bar` });
+    expect(wrapper.getDOMNode().getAttribute(`name`)).toBe(`bar`);
+
+    wrapper.setProps({ name: `baz` });
+    expect(wrapper.getDOMNode().getAttribute(`name`)).toBe(`baz`);
+  });
+
+  it(`Handles props.style`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(null);
+
+    wrapper.setProps({ style: { zIndex: `1` } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(`z-index: 1;`);
+
+    wrapper.setProps({ style: { zIndex: `1`, opacity: 0 } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(
+      `z-index: 1; opacity: 0;`
+    );
+  });
+
+  it(`Handles props.type`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`type`)).toBe(`button`);
+
+    wrapper.setProps({ type: `reset` });
+    expect(wrapper.getDOMNode().getAttribute(`type`)).toBe(`reset`);
+
+    wrapper.setProps({ href: `https://www.example.com` });
+    expect(wrapper.getDOMNode().getAttribute(`type`)).toBe(null);
+  });
+
+  afterEach(() => {
+    wrapper.unmount();
   });
 });
