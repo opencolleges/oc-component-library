@@ -1,16 +1,16 @@
 import React from 'react';
 
-import RadioSet from './radio-set';
+import CheckboxSet from './checkbox-set';
 
 import { mount } from 'enzyme';
 
 let wrapper;
 
-describe('<RadioSet />', () => {
+describe('<CheckboxSet />', () => {
   beforeEach(() => {
     wrapper = mount(
-      <RadioSet
-        radios={[
+      <CheckboxSet
+        checkboxes={[
           { label: 'Foo', value: 'foo' },
           { label: 'Bar', value: 'bar' },
           { label: 'Baz', value: 'baz' },
@@ -30,15 +30,128 @@ describe('<RadioSet />', () => {
     expect(wrapper.find('.oc-card').length).toBe(0);
   });
 
+  it('Handles props.checkboxes', () => {
+    expect(wrapper.find('input').length).toBe(4);
+
+    expect(
+      wrapper
+        .find('.oc-checkbox__input')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('id')
+    ).toBe('oc-13');
+    expect(
+      wrapper
+        .find('.oc-checkbox__input')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('foo');
+    expect(
+      wrapper
+        .find('.oc-checkbox__label')
+        .at(0)
+        .text()
+    ).toBe('Foo');
+    expect(
+      wrapper
+        .find('.oc-checkbox__input')
+        .at(2)
+        .getDOMNode()
+        .getAttribute('id')
+    ).toBe('oc-15');
+    expect(
+      wrapper
+        .find('.oc-checkbox__input')
+        .at(2)
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('baz');
+    expect(
+      wrapper
+        .find('.oc-checkbox__label')
+        .at(2)
+        .text()
+    ).toBe('Baz');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <CheckboxSet
+        checkboxes={[
+          { id: 'qux', label: 'Qux', style: { zIndex: 1 }, value: 'qux' },
+          { className: 'thud', id: 'corge', label: 'Corge', value: 'corge' }
+        ]}
+      />
+    );
+    expect(wrapper.find('input').length).toBe(2);
+    expect(
+      wrapper
+        .find('.oc-checkbox')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('style')
+    ).toBe('z-index: 1;');
+    expect(
+      wrapper
+        .find('.oc-checkbox__input')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('id')
+    ).toBe('qux');
+    expect(
+      wrapper
+        .find('.oc-checkbox__input')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('qux');
+    expect(
+      wrapper
+        .find('.oc-checkbox__label')
+        .at(0)
+        .text()
+    ).toBe('Qux');
+    expect(
+      wrapper
+        .find('.oc-checkbox')
+        .at(1)
+        .getDOMNode()
+        .getAttribute('class')
+    ).toBe('oc-checkbox thud');
+    expect(
+      wrapper
+        .find('.oc-checkbox__input')
+        .at(1)
+        .getDOMNode()
+        .getAttribute('id')
+    ).toBe('corge');
+    expect(
+      wrapper
+        .find('.oc-checkbox__input')
+        .at(1)
+        .getDOMNode()
+        .getAttribute('value')
+    ).toBe('corge');
+    expect(
+      wrapper
+        .find('.oc-checkbox__label')
+        .at(1)
+        .text()
+    ).toBe('Corge');
+  });
+
   it('Handles props.className', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-radio-set');
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-checkbox-set');
 
     wrapper.setProps({ className: 'qux' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-radio-set qux');
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
+      'oc-checkbox-set qux'
+    );
 
     wrapper.setProps({ className: 'qux corge' });
     expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-radio-set qux corge'
+      'oc-checkbox-set qux corge'
     );
   });
 
@@ -88,34 +201,36 @@ describe('<RadioSet />', () => {
     ).toBe('oc-card oc-card--s oc-card--clickable');
   });
 
+  it('Handles props.error', () => {
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-checkbox-set');
+
+    wrapper.setProps({ error: ['foo'] });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
+      'oc-checkbox-set oc-checkbox-set--error'
+    );
+
+    wrapper.setProps({ success: ['bar'] });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
+      'oc-checkbox-set oc-checkbox-set--error'
+    );
+  });
+
   it('Handles props.message', () => {
-    wrapper.setProps({ modifiers: 'error' });
+    wrapper.setProps({ error: ['foo'] });
     expect(wrapper.find('span').length).toBe(0);
 
     wrapper.setProps({ message: 'Qux' });
     expect(wrapper.find('span').length).toBe(1);
     expect(wrapper.find('span').text()).toBe('Qux');
 
-    wrapper.setProps({ modifiers: 'success', message: '' });
+    wrapper.setProps({ error: [] });
+    wrapper.setProps({ message: '' });
     expect(wrapper.find('span').length).toBe(0);
 
+    wrapper.setProps({ success: ['bar'] });
     wrapper.setProps({ message: 'Corge' });
     expect(wrapper.find('span').length).toBe(1);
     expect(wrapper.find('span').text()).toBe('Corge');
-  });
-
-  it('Handles props.modifiers', () => {
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-radio-set');
-
-    wrapper.setProps({ modifiers: 'error' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-radio-set oc-radio-set--error'
-    );
-
-    wrapper.setProps({ modifiers: 'success' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-radio-set oc-radio-set--success'
-    );
   });
 
   it('Handles props.name', () => {
@@ -158,121 +273,6 @@ describe('<RadioSet />', () => {
         .getDOMNode()
         .getAttribute('name')
     ).toBe('corge');
-  });
-
-  it('Handles props.radios', () => {
-    expect(wrapper.find('input').length).toBe(4);
-
-    expect(
-      wrapper
-        .find('.oc-radio__input')
-        .at(0)
-        .getDOMNode()
-        .getAttribute('id')
-    ).toBe('oc-37');
-    expect(
-      wrapper
-        .find('.oc-radio__input')
-        .at(0)
-        .getDOMNode()
-        .getAttribute('value')
-    ).toBe('foo');
-    expect(
-      wrapper
-        .find('.oc-radio__label')
-        .at(0)
-        .text()
-    ).toBe('Foo');
-
-    expect(
-      wrapper
-        .find('.oc-radio__input')
-        .at(2)
-        .getDOMNode()
-        .getAttribute('id')
-    ).toBe('oc-39');
-    expect(
-      wrapper
-        .find('.oc-radio__input')
-        .at(2)
-        .getDOMNode()
-        .getAttribute('value')
-    ).toBe('baz');
-    expect(
-      wrapper
-        .find('.oc-radio__label')
-        .at(2)
-        .text()
-    ).toBe('Baz');
-
-    wrapper.unmount();
-
-    wrapper = mount(
-      <RadioSet
-        radios={[
-          { id: 'qux', label: 'Qux', style: { zIndex: 1 }, value: 'qux' },
-          { className: 'thud', id: 'corge', label: 'Corge', value: 'corge' }
-        ]}
-      />
-    );
-
-    expect(wrapper.find('input').length).toBe(2);
-
-    expect(
-      wrapper
-        .find('.oc-radio')
-        .at(0)
-        .getDOMNode()
-        .getAttribute('style')
-    ).toBe('z-index: 1;');
-    expect(
-      wrapper
-        .find('.oc-radio__input')
-        .at(0)
-        .getDOMNode()
-        .getAttribute('id')
-    ).toBe('qux');
-    expect(
-      wrapper
-        .find('.oc-radio__input')
-        .at(0)
-        .getDOMNode()
-        .getAttribute('value')
-    ).toBe('qux');
-    expect(
-      wrapper
-        .find('.oc-radio__label')
-        .at(0)
-        .text()
-    ).toBe('Qux');
-
-    expect(
-      wrapper
-        .find('.oc-radio')
-        .at(1)
-        .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-radio thud');
-    expect(
-      wrapper
-        .find('.oc-radio__input')
-        .at(1)
-        .getDOMNode()
-        .getAttribute('id')
-    ).toBe('corge');
-    expect(
-      wrapper
-        .find('.oc-radio__input')
-        .at(1)
-        .getDOMNode()
-        .getAttribute('value')
-    ).toBe('corge');
-    expect(
-      wrapper
-        .find('.oc-radio__label')
-        .at(1)
-        .text()
-    ).toBe('Corge');
   });
 
   it('Handles props.readOnly', () => {
@@ -321,34 +321,6 @@ describe('<RadioSet />', () => {
     ).toBe('oc-card oc-card--s oc-card--clickable');
   });
 
-  it('Handles props.required', () => {
-    expect(
-      wrapper
-        .find('input')
-        .first()
-        .getDOMNode()
-        .getAttribute('required')
-    ).toBe(null);
-
-    wrapper.setProps({ required: true });
-    expect(
-      wrapper
-        .find('input')
-        .first()
-        .getDOMNode()
-        .getAttribute('required')
-    ).toBe('');
-
-    wrapper.setProps({ required: false });
-    expect(
-      wrapper
-        .find('input')
-        .first()
-        .getDOMNode()
-        .getAttribute('required')
-    ).toBe(null);
-  });
-
   it('Handles props.style', () => {
     expect(wrapper.getDOMNode().getAttribute('style')).toBe(null);
 
@@ -358,6 +330,20 @@ describe('<RadioSet />', () => {
     wrapper.setProps({ style: { zIndex: '1', opacity: 0 } });
     expect(wrapper.getDOMNode().getAttribute('style')).toBe(
       'z-index: 1; opacity: 0;'
+    );
+  });
+
+  it('Handles props.success', () => {
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-checkbox-set');
+
+    wrapper.setProps({ success: ['foo'] });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
+      'oc-checkbox-set oc-checkbox-set--success'
+    );
+
+    wrapper.setProps({ error: ['bar'] });
+    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
+      'oc-checkbox-set oc-checkbox-set--error'
     );
   });
 
@@ -380,14 +366,14 @@ describe('<RadioSet />', () => {
     wrapper.unmount();
 
     wrapper = mount(
-      <RadioSet
-        radios={[
+      <CheckboxSet
+        checkboxes={[
           { label: 'Foo', value: 'foo' },
           { label: 'Bar', value: 'bar' },
           { label: 'Baz', value: 'baz' },
           { label: 'Qui', value: 'qui' }
         ]}
-        value="foo"
+        value={['foo']}
       />
     );
     expect(
@@ -408,14 +394,14 @@ describe('<RadioSet />', () => {
     wrapper.unmount();
 
     wrapper = mount(
-      <RadioSet
-        radios={[
+      <CheckboxSet
+        checkboxes={[
           { label: 'Foo', value: 'foo' },
           { label: 'Bar', value: 'bar' },
           { label: 'Baz', value: 'baz' },
           { label: 'Qui', value: 'qui' }
         ]}
-        value="qui"
+        value={['qui']}
       />
     );
     expect(
@@ -432,6 +418,48 @@ describe('<RadioSet />', () => {
         .getDOMNode()
         .getAttribute('checked')
     ).toBe('');
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <CheckboxSet
+        checkboxes={[
+          { label: 'Foo', value: 'foo' },
+          { label: 'Bar', value: 'bar' },
+          { label: 'Baz', value: 'baz' },
+          { label: 'Qui', value: 'qui' }
+        ]}
+        value={['foo', 'baz']}
+      />
+    );
+    expect(
+      wrapper
+        .find('input')
+        .at(0)
+        .getDOMNode()
+        .getAttribute('checked')
+    ).toBe('');
+    expect(
+      wrapper
+        .find('input')
+        .at(1)
+        .getDOMNode()
+        .getAttribute('checked')
+    ).toBe(null);
+    expect(
+      wrapper
+        .find('input')
+        .at(2)
+        .getDOMNode()
+        .getAttribute('checked')
+    ).toBe('');
+    expect(
+      wrapper
+        .find('input')
+        .at(3)
+        .getDOMNode()
+        .getAttribute('checked')
+    ).toBe(null);
   });
 
   afterEach(() => {
