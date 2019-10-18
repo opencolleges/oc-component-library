@@ -2,7 +2,7 @@ import React from 'react';
 
 import BEM from '../utilities/ts/bem';
 
-type TTag = 'td' | 'th';
+type TTag = `td` | `th`;
 
 interface Props {
   children?: React.ReactNode;
@@ -33,7 +33,7 @@ const TableCell: React.FC<Props> = props => {
 };
 
 TableCell.defaultProps = {
-  tag: 'td'
+  tag: `td`
 };
 
 export default TableCell;

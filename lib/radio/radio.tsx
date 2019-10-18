@@ -42,7 +42,7 @@ export default class Radio extends React.Component<Props> {
   render() {
     const { props, id, handleChange } = this;
 
-    const bem = BEM('radio');
+    const bem = BEM(`radio`);
     bem.addModifiers(props.modifiers);
     bem.addClassNames(props.className);
 
@@ -50,7 +50,7 @@ export default class Radio extends React.Component<Props> {
       <div className={bem.getResult()} style={props.style}>
         <input
           id={id}
-          className={bem.getElement('input')}
+          className={bem.getElement(`input`)}
           type="radio"
           name={props.name}
           value={props.value}
@@ -61,28 +61,28 @@ export default class Radio extends React.Component<Props> {
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           onChange={handleChange}
         />
-        <label htmlFor={id} className={bem.getElement('label')}>
+        <label htmlFor={id} className={bem.getElement(`label`)}>
           {props.children}
         </label>
         {!props.readOnly && !props.disabled && (
-          <svg className={bem.getElement('border-outer')} viewBox="0 0 16 16">
+          <svg className={bem.getElement(`border-outer`)} viewBox="0 0 16 16">
             <circle
-              className={bem.getElement('border')}
+              className={bem.getElement(`border`)}
               cx="8"
               cy="8"
               r="7.5"
             />
           </svg>
         )}
-        {!_.includes(_.split(props.modifiers, ' '), 'right') && (
+        {!_.includes(_.split(props.modifiers, ` `), `right`) && (
           <React.Fragment>
             <Icon
               type="close"
-              visible={_.includes(_.split(props.modifiers, ' '), 'error')}
+              visible={_.includes(_.split(props.modifiers, ` `), `error`)}
             />
             <Icon
               type="tick"
-              visible={_.includes(_.split(props.modifiers, ' '), 'success')}
+              visible={_.includes(_.split(props.modifiers, ` `), `success`)}
             />
           </React.Fragment>
         )}

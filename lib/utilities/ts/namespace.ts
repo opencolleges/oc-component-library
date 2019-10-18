@@ -15,7 +15,7 @@ const namespace = (...classNames: string[]): string => {
     }
   });
 
-  return _.join(arr, ' ');
+  return _.join(arr, ` `);
 };
 
 export default namespace;

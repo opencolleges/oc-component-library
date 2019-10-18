@@ -15,12 +15,12 @@ interface Props {
 
 const Heading: React.FC<Props> = props => {
   const Tag = `h${_.toString(props.level)}` as
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5'
-    | 'h6';
+    | `h1`
+    | `h2`
+    | `h3`
+    | `h4`
+    | `h5`
+    | `h6`;
 
   const bem = BEM(Tag);
   bem.addModifiers(props.modifiers);

@@ -3,23 +3,23 @@ import React from 'react';
 import BEM from '../utilities/ts/bem';
 
 type TTag =
-  | 'a'
-  | 'abbr'
-  | 'blockquote'
-  | 'code'
-  | 'em'
-  | 'kbd'
-  | 'li'
-  | 'mark'
-  | 'ol'
-  | 'p'
-  | 'pre'
-  | 'small'
-  | 'span'
-  | 'strong'
-  | 'sub'
-  | 'sup'
-  | 'ul';
+  | `a`
+  | `abbr`
+  | `blockquote`
+  | `code`
+  | `em`
+  | `kbd`
+  | `li`
+  | `mark`
+  | `ol`
+  | `p`
+  | `pre`
+  | `small`
+  | `span`
+  | `strong`
+  | `sub`
+  | `sup`
+  | `ul`;
 
 interface Props {
   children: React.ReactNode;
@@ -43,9 +43,9 @@ const Copy: React.FC<Props> = props => {
     <Tag
       className={bem.getResult()}
       style={props.style}
-      href={Tag === 'a' ? props.href : null}
+      href={Tag === `a` ? props.href : null}
       target={props.target}
-      rel={props.target === '_blank' ? 'noopener noreferrer' : null}
+      rel={props.target === `_blank` ? `noopener noreferrer` : null}
       title={props.title}>
       {props.children}
     </Tag>
@@ -53,7 +53,7 @@ const Copy: React.FC<Props> = props => {
 };
 
 Copy.defaultProps = {
-  tag: 'p'
+  tag: `p`
 };
 
 export default Copy;

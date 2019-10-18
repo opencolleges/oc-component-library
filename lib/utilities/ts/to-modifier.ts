@@ -5,7 +5,7 @@ import itemise from './itemise';
 const toModifier = (modifiers: string[] | string, block: string): string => {
   const arr: string[] = [];
 
-  if (typeof modifiers === 'string') {
+  if (typeof modifiers === `string`) {
     modifiers = itemise(modifiers);
   }
 
@@ -19,7 +19,7 @@ const toModifier = (modifiers: string[] | string, block: string): string => {
     }
   });
 
-  return _.join(arr, ' ');
+  return _.join(arr, ` `);
 };
 
 export default toModifier;

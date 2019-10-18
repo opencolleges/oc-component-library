@@ -33,11 +33,11 @@ export default class Accordion extends React.Component<Props, State> {
   componentDidMount(): void {
     this.setContentHeight();
 
-    window.addEventListener('resize', this.setContentHeight);
+    window.addEventListener(`resize`, this.setContentHeight);
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('resize', this.setContentHeight);
+    window.removeEventListener(`resize`, this.setContentHeight);
   }
 
   setContentHeight = (): void => {
@@ -53,17 +53,17 @@ export default class Accordion extends React.Component<Props, State> {
   render() {
     const { props, state, contentRef, handleClick } = this;
 
-    const bem = BEM('accordion');
+    const bem = BEM(`accordion`);
     bem.addModifiers(props.modifiers);
-    bem.addClassNames(state.expanded ? 'active' : '');
+    bem.addClassNames(state.expanded ? `active` : ``);
     bem.addClassNames(props.className);
 
     return (
       <div className={bem.getResult()} style={props.style}>
         <button
-          type={'button'}
-          className={bem.getElement('button')}
-          title={state.expanded ? 'Contract' : 'Expand'}
+          type={`button`}
+          className={bem.getElement(`button`)}
+          title={state.expanded ? `Contract` : `Expand`}
           onClick={handleClick}>
           {props.label}
         </button>
@@ -71,11 +71,11 @@ export default class Accordion extends React.Component<Props, State> {
         <Icon type="plus" visible={!state.expanded} />
         <div
           ref={contentRef}
-          className={bem.getElement('outer')}
+          className={bem.getElement(`outer`)}
           style={{ height: state.expanded ? state.height : 0 }}>
           {props.children}
         </div>
-        <div className={bem.getElement('border')} />
+        <div className={bem.getElement(`border`)} />
       </div>
     );
   }

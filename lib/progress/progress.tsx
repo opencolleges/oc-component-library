@@ -26,7 +26,7 @@ export default class Progress extends React.Component<Props> {
   };
 
   readonly state: Readonly<State> = {
-    error: _.includes(_.split(this.props.modifiers, ' '), 'error'),
+    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
     success: false
   };
 
@@ -34,14 +34,14 @@ export default class Progress extends React.Component<Props> {
     if (
       this.props.progress !== prevProps.progress &&
       this.props.progress === this.props.totalProgress &&
-      !_.includes(_.split(this.props.modifiers, ' '), 'alt')
+      !_.includes(_.split(this.props.modifiers, ` `), `alt`)
     ) {
       this.setState({ success: true });
     }
 
     if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ' '), 'error')
+        error: _.includes(_.split(this.props.modifiers, ` `), `error`)
       });
     }
   }
@@ -49,10 +49,10 @@ export default class Progress extends React.Component<Props> {
   render() {
     const { props, state } = this;
 
-    const bem = BEM('progress');
+    const bem = BEM(`progress`);
     bem.addModifiers(props.modifiers);
     bem.addModifiers(
-      state.success && isNotAlt(props.modifiers) ? 'success' : ''
+      state.success && isNotAlt(props.modifiers) ? `success` : ``
     );
     bem.addClassNames(props.className);
 
@@ -70,15 +70,15 @@ export default class Progress extends React.Component<Props> {
 
     return (
       <div className={bem.getResult()} style={props.style}>
-        <div className={bem.getElement('bar-outer')}>
+        <div className={bem.getElement(`bar-outer`)}>
           <div
-            className={bem.getElement('bar')}
+            className={bem.getElement(`bar`)}
             style={{
               width
             }}
           />
         </div>
-        <div className={bem.getElement('label')}>{label}</div>
+        <div className={bem.getElement(`label`)}>{label}</div>
         {isNotAlt(props.modifiers) && (
           <React.Fragment>
             <Icon

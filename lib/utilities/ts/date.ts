@@ -4,41 +4,41 @@ const date = {
   now: new Date(),
 
   months: [
-    { name: 'january', season: { index: 0, name: 'summer' } },
-    { name: 'february', season: { index: 0, name: 'summer' } },
-    { name: 'march', season: { index: 1, name: 'autumn' } },
-    { name: 'april', season: { index: 1, name: 'autumn' } },
-    { name: 'may', season: { index: 1, name: 'autumn' } },
-    { name: 'june', season: { index: 2, name: 'winter' } },
-    { name: 'july', season: { index: 2, name: 'winter' } },
-    { name: 'august', season: { index: 2, name: 'winter' } },
-    { name: 'september', season: { index: 3, name: 'spring' } },
-    { name: 'october', season: { index: 3, name: 'spring' } },
-    { name: 'november', season: { index: 3, name: 'spring' } },
-    { name: 'december', season: { index: 0, name: 'summer' } }
+    { name: `january`, season: { index: 0, name: `summer` } },
+    { name: `february`, season: { index: 0, name: `summer` } },
+    { name: `march`, season: { index: 1, name: `autumn` } },
+    { name: `april`, season: { index: 1, name: `autumn` } },
+    { name: `may`, season: { index: 1, name: `autumn` } },
+    { name: `june`, season: { index: 2, name: `winter` } },
+    { name: `july`, season: { index: 2, name: `winter` } },
+    { name: `august`, season: { index: 2, name: `winter` } },
+    { name: `september`, season: { index: 3, name: `spring` } },
+    { name: `october`, season: { index: 3, name: `spring` } },
+    { name: `november`, season: { index: 3, name: `spring` } },
+    { name: `december`, season: { index: 0, name: `summer` } }
   ],
 
   days: [
-    'sunday',
-    'monday',
-    'tuesday',
-    'wednesday',
-    'thursday',
-    'friday',
-    'saturday'
+    `sunday`,
+    `monday`,
+    `tuesday`,
+    `wednesday`,
+    `thursday`,
+    `friday`,
+    `saturday`
   ],
 
   ordinals: {
-    '0': 'th',
-    '1': 'st',
-    '2': 'nd',
-    '3': 'rd',
-    '4': 'th',
-    '5': 'th',
-    '6': 'th',
-    '7': 'th',
-    '8': 'th',
-    '9': 'th'
+    '0': `th`,
+    '1': `st`,
+    '2': `nd`,
+    '3': `rd`,
+    '4': `th`,
+    '5': `th`,
+    '6': `th`,
+    '7': `th`,
+    '8': `th`,
+    '9': `th`
   },
 
   getLastIndex(str: string): string {
@@ -161,7 +161,7 @@ const date = {
     let minute = this.getMinute(dateObj);
     minute = this.getLeadingZero(minute);
 
-    const meridiem = hour > 0 && hour < 12 ? 'AM' : 'PM';
+    const meridiem = hour > 0 && hour < 12 ? `AM` : `PM`;
 
     return `${hour}:${minute} ${meridiem}`;
   },

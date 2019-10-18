@@ -10,7 +10,7 @@ interface Props {
 }
 
 const GridItem: React.FC<Props> = props => {
-  const bem = BEM('grid__item');
+  const bem = BEM(`grid__item`);
   bem.addModifiers(props.modifiers);
   bem.addClassNames(props.className);
 

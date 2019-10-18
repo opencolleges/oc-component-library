@@ -21,7 +21,7 @@ function getLikertScale(
   for (let i = 0; i < range; i++) {
     const OPTION: { id: string; label: string } = {
       id: _.uniqueId(`${NAMESPACE}-`),
-      label: options[i] && options[i].label ? options[i].label : ''
+      label: options[i] && options[i].label ? options[i].label : ``
     };
 
     SCALE.push(OPTION);

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const TableHead: React.FC<Props> = props => {
-  const bem = BEM('thead');
+  const bem = BEM(`thead`);
   bem.addClassNames(props.className);
 
   return (

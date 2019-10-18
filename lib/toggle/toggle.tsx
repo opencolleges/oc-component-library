@@ -46,7 +46,7 @@ export default class Toggle extends React.Component<Props, State> {
   render() {
     const { props, state, id, handleChange } = this;
 
-    const bem = BEM('toggle');
+    const bem = BEM(`toggle`);
     bem.addModifiers(props.modifiers);
     bem.addClassNames(props.className);
 
@@ -54,7 +54,7 @@ export default class Toggle extends React.Component<Props, State> {
       <div className={bem.getResult()} style={props.style}>
         <input
           id={id}
-          className={bem.getElement('input')}
+          className={bem.getElement(`input`)}
           type="checkbox"
           name={props.name}
           value={props.value}
@@ -64,13 +64,13 @@ export default class Toggle extends React.Component<Props, State> {
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           onChange={handleChange}
         />
-        <label htmlFor={id} className={bem.getElement('label')}>
+        <label htmlFor={id} className={bem.getElement(`label`)}>
           {props.children}
         </label>
         {!props.readOnly && !props.disabled && (
-          <svg className={bem.getElement('border-outer')} viewBox="0 0 40 24">
+          <svg className={bem.getElement(`border-outer`)} viewBox="0 0 40 24">
             <rect
-              className={bem.getElement('border')}
+              className={bem.getElement(`border`)}
               x="0.5"
               y="0.5"
               width="39"

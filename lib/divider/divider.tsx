@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Divider: React.FC<Props> = props => {
-  const bem = BEM('divider');
+  const bem = BEM(`divider`);
   bem.addModifiers(props.modifiers);
   bem.addClassNames(props.className);
 
@@ -19,7 +19,7 @@ const Divider: React.FC<Props> = props => {
 };
 
 Divider.defaultProps = {
-  modifiers: 's'
+  modifiers: `s`
 };
 
 export default Divider;

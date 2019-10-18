@@ -55,18 +55,18 @@ export default class RadioSet extends React.Component<Props, State> {
   };
 
   readonly state: Readonly<State> = {
-    error: _.includes(this.props.modifiers, 'error'),
-    success: _.includes(this.props.modifiers, 'success'),
-    value: _.some(this.props.radios, ['value', this.props.value])
+    error: _.includes(this.props.modifiers, `error`),
+    success: _.includes(this.props.modifiers, `success`),
+    value: _.some(this.props.radios, [`value`, this.props.value])
       ? this.props.value
-      : ''
+      : ``
   };
 
   componentDidUpdate(prevProps): void {
     if (prevProps.modifiers !== this.props.modifiers) {
       this.setState({
-        error: _.includes(this.props.modifiers, 'error'),
-        success: _.includes(this.props.modifiers, 'success')
+        error: _.includes(this.props.modifiers, `error`),
+        success: _.includes(this.props.modifiers, `success`)
       });
     }
   }
@@ -83,10 +83,10 @@ export default class RadioSet extends React.Component<Props, State> {
   render() {
     const { props, state, handleChange } = this;
 
-    const error: string = state.error ? 'error' : '';
-    const success: string = state.success ? 'success' : '';
+    const error: string = state.error ? `error` : ``;
+    const success: string = state.success ? `success` : ``;
 
-    const bem = BEM('radio-set');
+    const bem = BEM(`radio-set`);
     bem.addModifiers(error);
     bem.addModifiers(success);
     bem.addClassNames(props.className);
@@ -120,9 +120,9 @@ export default class RadioSet extends React.Component<Props, State> {
             </GridItem>
           ))}
         </Grid>
-        <div className={bem.getElement('border')} />
+        <div className={bem.getElement(`border`)} />
         {(state.error || state.success) && props.message && (
-          <span className={bem.getElement('message')}>{props.message}</span>
+          <span className={bem.getElement(`message`)}>{props.message}</span>
         )}
       </fieldset>
     );
@@ -135,7 +135,7 @@ const ConditionalCard: React.FC<ConditionalCardProps> = props => {
       {props.visible ? (
         <Card
           modifiers={`s ${
-            props.disabled || props.readOnly ? 'layer-1' : 'clickable'
+            props.disabled || props.readOnly ? `layer-1` : `clickable`
           }`}
           tabIndex={false}>
           {props.children}
