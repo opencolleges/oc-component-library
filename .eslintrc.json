@@ -8,7 +8,9 @@
   "parser": "babel-eslint",
   "parserOptions": {
     "allowImportExportEverywhere": true,
-    "quotes": ["error", "backtick"],
     "sourceType": "module"
+  },
+  "rules": {
+    "quotes": ["error", "backtick"]
   }
 }
