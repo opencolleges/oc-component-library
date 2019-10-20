@@ -10,17 +10,7 @@ let wrapper;
 
 describe(`<Button />`, () => {
   beforeEach(() => {
-    wrapper = mount(<Button action="Foo" />);
-  });
-
-  it(`Handles props.action`, () => {
-    expect(wrapper.text()).toBe(`Foo`);
-
-    wrapper.setProps({ action: `Bar` });
-    expect(wrapper.text()).toBe(`Bar`);
-
-    wrapper.setProps({ action: `Baz` });
-    expect(wrapper.text()).toBe(`Baz`);
+    wrapper = mount(<Button label="Foo" />);
   });
 
   it(`Handles props.className`, () => {
@@ -96,6 +86,16 @@ describe(`<Button />`, () => {
 
     wrapper.setProps({ id: `baz` });
     expect(wrapper.getDOMNode().getAttribute(`id`)).toBe(`baz`);
+  });
+
+  it(`Handles props.label`, () => {
+    expect(wrapper.text()).toBe(`Foo`);
+
+    wrapper.setProps({ label: `Bar` });
+    expect(wrapper.text()).toBe(`Bar`);
+
+    wrapper.setProps({ label: `Baz` });
+    expect(wrapper.text()).toBe(`Baz`);
   });
 
   it(`Handles props.modifiers`, () => {

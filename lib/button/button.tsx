@@ -10,12 +10,12 @@ import { TIcon } from '../icon/icon';
 type TType = `button` | `submit` | `reset`;
 
 interface Props {
-  action: string;
   className?: string;
   disabled?: boolean;
   href?: string;
   icon?: TIcon;
   id?: string;
+  label: string;
   modifiers?: string;
   name?: string;
   onClick?: () => void;
@@ -44,10 +44,10 @@ const Button: React.FC<Props> = props => {
       name={props.name}
       href={props.href}
       disabled={props.disabled}
-      title={props.action}
+      title={props.label}
       onClick={props.onClick}>
       {props.icon && <Icon type={props.icon} />}
-      {props.action}
+      {props.label}
     </Tag>
   );
 };

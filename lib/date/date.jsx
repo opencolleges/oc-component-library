@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import { NAMESPACE } from '../utilities/ts/constants';
 
+// import BEM from '../utilities/ts/bem';
 import namespace from '../utilities/ts/namespace';
 import remove from '../utilities/ts/remove';
 import toModifier from '../utilities/ts/to-modifier';

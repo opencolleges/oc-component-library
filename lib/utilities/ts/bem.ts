@@ -2,8 +2,7 @@ import _ from 'lodash';
 
 import addNamespace from './add-namespace';
 
-const ELEMENT_SEPARATOR: string = `__`;
-const MODIFIER_SEPARATOR: string = `--`;
+import { ELEMENT_SEPARATOR, MODIFIER_SEPARATOR } from './constants';
 
 const BEM = (block: string) => {
   const BLOCK: string = block;

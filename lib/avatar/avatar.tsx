@@ -11,13 +11,13 @@ import namespace from '../utilities/ts/namespace';
 type TSex = `female` | `male` | `undisclosed`;
 
 interface Props {
-  modifiers?: string;
   className?: string;
-  style?: React.CSSProperties;
-  href?: string;
   firstName: string;
-  sex: TSex;
+  href?: string;
   image?: string;
+  modifiers?: string;
+  sex: TSex;
+  style?: React.CSSProperties;
   value?: number;
 }
 
@@ -36,19 +36,19 @@ const Avatar: React.FC<Props> = props => {
       style={props.style}
       href={props.href}
       title={props.firstName}>
-      {Object.keys(AVATAR_COORDINATES).map(index => {
+      {Object.keys(AVATAR_COORDINATES).map((size, index) => {
         return (
-          _.includes(_.split(props.modifiers, ` `), `avatar--${index}`) &&
+          _.includes(_.split(props.modifiers, ` `), size) &&
           (!_.isUndefined(props.href) && (
             <svg
               key={index}
               className={bem.getElement(`border-outer`)}
-              viewBox={AVATAR_COORDINATES[index].viewBox}>
+              viewBox={AVATAR_COORDINATES[size].viewBox}>
               <circle
                 className={bem.getElement(`border`)}
-                cx={AVATAR_COORDINATES[index].cx}
-                cy={AVATAR_COORDINATES[index].cy}
-                r={AVATAR_COORDINATES[index].r}
+                cx={AVATAR_COORDINATES[size].cx}
+                cy={AVATAR_COORDINATES[size].cy}
+                r={AVATAR_COORDINATES[size].r}
               />
             </svg>
           ))
@@ -73,13 +73,13 @@ const Avatar: React.FC<Props> = props => {
           }
         }
       />
-      {!_.includes(_.split(props.modifiers, ` `), `avatar--s`) &&
-        _.includes(_.split(props.modifiers, ` `), `avatar--error`) && (
-          <Badge value={props.value} modifiers={`badge--error`} />
+      {!_.includes(_.split(props.modifiers, ` `), `s`) &&
+        _.includes(_.split(props.modifiers, ` `), `error`) && (
+          <Badge value={props.value} modifiers="error" />
         )}
-      {!_.includes(_.split(props.modifiers, ` `), `avatar--s`) &&
-        _.includes(_.split(props.modifiers, ` `), `avatar--success`) && (
-          <Badge value={props.value} modifiers={`badge--success`} />
+      {!_.includes(_.split(props.modifiers, ` `), `s`) &&
+        _.includes(_.split(props.modifiers, ` `), `success`) && (
+          <Badge value={props.value} modifiers="success" />
         )}
     </Tag>
   );
