@@ -3,10 +3,29 @@ import React from 'react';
 
 import Badge from '../badge';
 
-import { AVATAR_COORDINATES } from '../utilities/ts/constants';
-
 import BEM from '../utilities/ts/bem';
 import namespace from '../utilities/ts/namespace';
+
+const COORDS = {
+  l: {
+    cx: `24`,
+    cy: `24`,
+    r: `23.5`,
+    viewBox: `0 0 48 48`
+  },
+  m: {
+    cx: `20`,
+    cy: `20`,
+    r: `19.5`,
+    viewBox: `0 0 40 40`
+  },
+  s: {
+    cx: `16`,
+    cy: `16`,
+    r: `15.5`,
+    viewBox: `0 0 32 32`
+  }
+};
 
 type TSex = `female` | `male` | `undisclosed`;
 
@@ -36,24 +55,25 @@ const Avatar: React.FC<Props> = props => {
       style={props.style}
       href={props.href}
       title={props.firstName}>
-      {Object.keys(AVATAR_COORDINATES).map((size, index) => {
+      {Object.keys(COORDS).map((size, index) => {
         return (
           _.includes(_.split(props.modifiers, ` `), size) &&
           (!_.isUndefined(props.href) && (
             <svg
               key={index}
               className={bem.getElement(`border-outer`)}
-              viewBox={AVATAR_COORDINATES[size].viewBox}>
+              viewBox={COORDS[size].viewBox}>
               <circle
                 className={bem.getElement(`border`)}
-                cx={AVATAR_COORDINATES[size].cx}
-                cy={AVATAR_COORDINATES[size].cy}
-                r={AVATAR_COORDINATES[size].r}
+                cx={COORDS[size].cx}
+                cy={COORDS[size].cy}
+                r={COORDS[size].r}
               />
             </svg>
           ))
         );
       })}
+      {/* FIX THIS */}
       <div
         className={namespace(
           `avatar__image avatar__image--${
@@ -73,14 +93,16 @@ const Avatar: React.FC<Props> = props => {
           }
         }
       />
-      {!_.includes(_.split(props.modifiers, ` `), `s`) &&
-        _.includes(_.split(props.modifiers, ` `), `error`) && (
-          <Badge value={props.value} modifiers="error" />
-        )}
-      {!_.includes(_.split(props.modifiers, ` `), `s`) &&
-        _.includes(_.split(props.modifiers, ` `), `success`) && (
-          <Badge value={props.value} modifiers="success" />
-        )}
+      {!_.includes(_.split(props.modifiers, ` `), `s`) && (
+        <React.Fragment>
+          {_.includes(_.split(props.modifiers, ` `), `error`) && (
+            <Badge value={props.value} modifiers="error" />
+          )}
+          {_.includes(_.split(props.modifiers, ` `), `success`) && (
+            <Badge value={props.value} modifiers="success" />
+          )}
+        </React.Fragment>
+      )}
     </Tag>
   );
 };

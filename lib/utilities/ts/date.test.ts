@@ -1,21 +1,25 @@
 import date from './date';
 
 describe(`date`, () => {
-  it(`getSeason()`, () => {
+  // it(`handles date.now`, () => {
+  //   expect(date.now).toBe('test');
+  // });
+
+  it(`handles date.getSeason()`, () => {
     expect(date.getSeason(new Date(`2019-01-01`))).toBe(`summer`);
     expect(date.getSeason(new Date(`2019-04-11`))).toBe(`autumn`);
     expect(date.getSeason(new Date(`2019-07-21`))).toBe(`winter`);
     expect(date.getSeason(new Date(`2019-10-31`))).toBe(`spring`);
   });
 
-  it(`getSeasonIndex()`, () => {
+  it(`handles date.getSeasonIndex()`, () => {
     expect(date.getSeasonIndex(new Date(`2019-01-01`))).toBe(0);
     expect(date.getSeasonIndex(new Date(`2019-04-11`))).toBe(1);
     expect(date.getSeasonIndex(new Date(`2019-07-21`))).toBe(2);
     expect(date.getSeasonIndex(new Date(`2019-10-31`))).toBe(3);
   });
 
-  it(`getMonth()`, () => {
+  it(`handles date.getMonth()`, () => {
     expect(date.getMonth(new Date(`2019-01-01`))).toBe(`january`);
     expect(date.getMonth(new Date(`2019-02-01`))).toBe(`february`);
     expect(date.getMonth(new Date(`2019-03-01`))).toBe(`march`);
@@ -30,7 +34,7 @@ describe(`date`, () => {
     expect(date.getMonth(new Date(`2019-12-01`))).toBe(`december`);
   });
 
-  it(`getMonthIndex()`, () => {
+  it(`handles date.getMonthIndex()`, () => {
     expect(date.getMonthIndex(new Date(`2019-01-01`))).toBe(0);
     expect(date.getMonthIndex(new Date(`2019-02-01`))).toBe(1);
     expect(date.getMonthIndex(new Date(`2019-03-01`))).toBe(2);
@@ -45,7 +49,7 @@ describe(`date`, () => {
     expect(date.getMonthIndex(new Date(`2019-12-01`))).toBe(11);
   });
 
-  it(`getMonthLength()`, () => {
+  it(`handles date.getMonthLength()`, () => {
     expect(date.getMonthLength(new Date(`2019-01-01`))).toBe(31);
     expect(date.getMonthLength(new Date(`2019-02-01`))).toBe(28);
     expect(date.getMonthLength(new Date(`2019-03-01`))).toBe(31);
@@ -63,11 +67,11 @@ describe(`date`, () => {
     expect(date.getMonthLength(new Date(`2020-02-01`))).toBe(29);
   });
 
-  it(`getDate()`, () => {
+  it(`handles date.getDate()`, () => {
     expect(date.getDate(new Date(`2019-12-17`))).toBe(17);
   });
 
-  it(`getISODate()`, () => {
+  it(`handles date.getISODate()`, () => {
     expect(
       date.getISODate(
         new Date(
@@ -77,7 +81,7 @@ describe(`date`, () => {
     ).toBe(`1994-06-01`);
   });
 
-  it(`getYear()`, () => {
+  it(`handles date.getYear()`, () => {
     expect(date.getYear(new Date(`2000-01-01`))).toBe(2000);
     expect(
       date.getYear(
