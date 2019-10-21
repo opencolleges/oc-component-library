@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 
-import Card from '../card';
+import OptionalCard from '../_optional-card';
+
 import Grid from '../grid';
 import GridItem from '../grid-item';
 import Radio from '../radio';
@@ -37,16 +38,10 @@ interface State {
   value: string;
 }
 
-interface ConditionalCardProps {
-  children: React.ReactNode;
-  disabled?: boolean;
-  readOnly?: boolean;
-  visible?: boolean;
-}
-
 export default class RadioSet extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     cards: false,
+    disabled: false,
     onChange: () => {
       return;
     },
@@ -71,12 +66,13 @@ export default class RadioSet extends React.Component<Props, State> {
     }
   }
 
-  handleChange = (value): void => {
+  handleChange = (value: string): void => {
     this.setState({
       error: false,
       success: false,
       value
     });
+
     this.props.onChange(value, this.props.name);
   };
 
@@ -94,11 +90,11 @@ export default class RadioSet extends React.Component<Props, State> {
     const modifiers: string = `${error}${success}`;
 
     return (
-      <fieldset className={bem.getResult()} style={props.style}>
+      <div className={bem.getResult()} style={props.style}>
         <Grid modifiers="gutter-x-fixed">
           {props.radios.map((radio, index) => (
             <GridItem key={index} modifiers="s-12 m-6 align-end">
-              <ConditionalCard
+              <OptionalCard
                 disabled={props.disabled}
                 readOnly={props.readOnly}
                 visible={props.cards}>
@@ -116,7 +112,7 @@ export default class RadioSet extends React.Component<Props, State> {
                   onChange={handleChange}>
                   {radio.label}
                 </Radio>
-              </ConditionalCard>
+              </OptionalCard>
             </GridItem>
           ))}
         </Grid>
@@ -124,31 +120,7 @@ export default class RadioSet extends React.Component<Props, State> {
         {(state.error || state.success) && props.message && (
           <span className={bem.getElement('message')}>{props.message}</span>
         )}
-      </fieldset>
+      </div>
     );
   }
 }
-
-const ConditionalCard: React.FC<ConditionalCardProps> = props => {
-  return (
-    <React.Fragment>
-      {props.visible ? (
-        <Card
-          modifiers={`s ${
-            props.disabled || props.readOnly ? 'layer-1' : 'clickable'
-          }`}
-          tabIndex={false}>
-          {props.children}
-        </Card>
-      ) : (
-        props.children
-      )}
-    </React.Fragment>
-  );
-};
-
-ConditionalCard.defaultProps = {
-  disabled: false,
-  readOnly: false,
-  visible: true
-};
