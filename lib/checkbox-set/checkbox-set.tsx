@@ -8,6 +8,9 @@ import GridItem from '../grid-item';
 
 import BEM from '../utilities/ts/bem';
 
+import hasErrorOrSuccess from './utilities/has-error-or-success';
+import hasMessage from './utilities/has-message';
+
 interface Checkboxes {
   className?: string;
   id?: string;
@@ -122,15 +125,11 @@ export default class CheckboxSet extends React.Component<Props, State> {
                 visible={props.cards}>
                 <Checkbox
                   id={checkbox.id}
-                  modifiers={
-                    state.value.indexOf(checkbox.value) !== -1
-                      ? state.error.indexOf(checkbox.value) !== -1
-                        ? 'error'
-                        : state.success.indexOf(checkbox.value) !== -1
-                        ? 'success'
-                        : null
-                      : null
-                  }
+                  modifiers={hasErrorOrSuccess(
+                    state.error,
+                    state.success,
+                    checkbox.value
+                  )}
                   className={checkbox.className}
                   style={checkbox.style}
                   name={props.name}
@@ -146,10 +145,9 @@ export default class CheckboxSet extends React.Component<Props, State> {
           ))}
         </Grid>
         <div className={bem.getElement('border')} />
-        {(state.error.length !== 0 || state.success.length !== 0) &&
-          props.message && (
-            <span className={bem.getElement('message')}>{props.message}</span>
-          )}
+        {hasMessage(state.error, state.success, props.message) && (
+          <span className={bem.getElement('message')}>{props.message}</span>
+        )}
       </div>
     );
   }
