@@ -99,19 +99,7 @@ export default class Select extends React.Component<Props> {
         event.stopPropagation();
 
         this.setState({ active: true });
-
-        if (this.state.value) {
-          for (const child of Array.from(optionsRef.childNodes)) {
-            const element = child as HTMLElement;
-            if (element.getAttribute('data-item') === this.state.value) {
-              element.focus();
-              break;
-            }
-          }
-        } else {
-          const option = optionsRef.firstChild as HTMLElement;
-          option.focus();
-        }
+        this.focusOptionByValue(optionsRef, this.state.value);
       }
 
       // options
@@ -174,23 +162,10 @@ export default class Select extends React.Component<Props> {
     if (target.className === selectRef.className) {
       if (this.state.active) {
         this.setState({ active: false });
-
         target.focus();
       } else {
         this.setState({ active: true });
-
-        if (this.state.value) {
-          for (const child of Array.from(optionsRef.childNodes)) {
-            const element = child as HTMLElement;
-            if (element.getAttribute('data-item') === this.state.value) {
-              element.focus();
-              break;
-            }
-          }
-        } else {
-          const option = optionsRef.firstChild as HTMLElement;
-          option.focus();
-        }
+        this.focusOptionByValue(optionsRef, this.state.value);
       }
 
       // options
@@ -243,6 +218,21 @@ export default class Select extends React.Component<Props> {
     return label;
   };
 
+  focusOptionByValue = (options: HTMLUListElement, value: string): void => {
+    if (value) {
+      for (const child of Array.from(options.childNodes)) {
+        const element = child as HTMLElement;
+        if (element.getAttribute('data-item') === this.state.value) {
+          element.focus();
+          break;
+        }
+      }
+    } else {
+      const option = options.firstChild as HTMLElement;
+      option.focus();
+    }
+  };
+
   render() {
     const {
       props,
@@ -258,7 +248,6 @@ export default class Select extends React.Component<Props> {
     } = this;
 
     const bem = BEM('select');
-    // bem.addModifiers(props.modifiers);
     bem.addModifiers(state.error ? 'error' : '');
     bem.addModifiers(state.success ? 'success' : '');
     bem.addClassNames(state.value ? 'selected' : '');
@@ -284,7 +273,6 @@ export default class Select extends React.Component<Props> {
         <span
           ref={selectRef}
           className={bem.getElement('input')}
-          // name={`select-${props.name}`}
           tabIndex={!props.readOnly && !props.disabled ? 0 : null}
           onKeyDown={!props.readOnly && !props.disabled ? handleKeyDown : null}
           onMouseDown={
