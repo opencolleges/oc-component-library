@@ -1,47 +1,71 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 import _ from 'lodash';
+import React from 'react';
 
 import { NAMESPACE } from '../utilities/ts/constants';
 
+import BEM from '../utilities/ts/bem';
 import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
 
 import Icon from '../icon';
 
-export default class Select extends React.Component {
-  constructor(props) {
-    super(props);
+interface Options {
+  label: string;
+  value: any;
+}
 
-    this.state = {
-      active: false,
-      value: this.isValueExist(this.props.value) ? this.props.value : '',
-      error: _.includes(_.split(this.props.modifiers, ' '), 'select--error'),
-      success: _.includes(
-        _.split(this.props.modifiers, ' '),
-        'select--success'
-      ),
-      disabled: this.props.disabled
-    };
+interface Props {
+  className?: string;
+  disabled?: boolean;
+  id?: string;
+  label: string;
+  message?: string;
+  modifiers?: string;
+  name?: string;
+  onChange?: (value: string, name: string | number) => void;
+  options?: Options[];
+  readOnly?: boolean;
+  required?: boolean;
+  style?: React.CSSProperties;
+  value?: string;
+}
 
-    this.id = props.id ? props.id : _.uniqueId(`${NAMESPACE}-`);
+interface State {
+  active: boolean;
+  error: boolean;
+  success: boolean;
+  value: string;
+}
 
-    this.selectRef = React.createRef();
-    this.optionsRef = React.createRef();
-  }
+export default class Select extends React.Component<Props> {
+  static defaultProps: Partial<Props> = {
+    disabled: false,
+    onChange: () => {
+      return;
+    },
+    options: [],
+    readOnly: false,
+    required: false
+  };
 
-  componentDidUpdate(previousProps, previousState) {
+  id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
+
+  selectRef = React.createRef<HTMLElement>();
+  optionsRef = React.createRef<HTMLUListElement>();
+
+  readonly state: Readonly<State> = {
+    active: false,
+    error: _.includes(_.split(this.props.modifiers, ' '), 'error'),
+    success: _.includes(_.split(this.props.modifiers, ' '), 'success'),
+    value: _.find(this.props.options, { value: this.props.value })
+      ? this.props.value
+      : ''
+  };
+
+  componentDidUpdate(previousProps, previousState): void {
     if (this.props.modifiers !== previousProps.modifiers) {
       this.setState({
-        error: _.includes(this.props.modifiers, 'select--error'),
-        success: _.includes(this.props.modifiers, 'select--success')
-      });
-    }
-
-    if (this.props.disabled !== previousProps.disabled) {
-      this.setState({
-        disabled: this.props.disabled
+        error: _.includes(this.props.modifiers, 'error'),
+        success: _.includes(this.props.modifiers, 'success')
       });
     }
 
@@ -53,11 +77,11 @@ export default class Select extends React.Component {
     }
   }
 
-  handleChange = () => {
+  handleChange = (): void => {
     this.props.onChange(this.state.value, this.props.name);
   };
 
-  handleKeyDown = event => {
+  handleKeyDown = (event): void => {
     const selectRef = this.selectRef.current;
     const optionsRef = this.optionsRef.current;
 
@@ -77,17 +101,16 @@ export default class Select extends React.Component {
         this.setState({ active: true });
 
         if (this.state.value) {
-          for (let index = 0; index < optionsRef.childNodes.length; index++) {
-            if (
-              optionsRef.childNodes[index].getAttribute('data-item') ===
-              this.state.value
-            ) {
-              optionsRef.childNodes[index].focus();
+          for (const child of Array.from(optionsRef.childNodes)) {
+            const element = child as HTMLElement;
+            if (element.getAttribute('data-item') === this.state.value) {
+              element.focus();
               break;
             }
           }
         } else {
-          optionsRef.firstChild.focus();
+          const option = optionsRef.firstChild as HTMLElement;
+          option.focus();
         }
       }
 
@@ -112,7 +135,7 @@ export default class Select extends React.Component {
         selectRef.focus();
       }
 
-      //'Esc' key
+      // 'Esc' key
       if (event.keyCode === 27) {
         event.preventDefault();
         event.stopPropagation();
@@ -126,21 +149,19 @@ export default class Select extends React.Component {
       if (event.keyCode === 38) {
         event.preventDefault();
         event.stopPropagation();
-
-        target.previousSibling && target.previousSibling.focus();
+        target.previousSibling.focus();
       }
 
       // 'ArrowDown' key
       if (event.keyCode === 40) {
         event.preventDefault();
         event.stopPropagation();
-
-        target.nextSibling && target.nextSibling.focus();
+        target.nextSibling.focus();
       }
     }
   };
 
-  handleMouseDown = event => {
+  handleMouseDown = (event): void => {
     event.preventDefault();
     event.stopPropagation();
 
@@ -159,17 +180,16 @@ export default class Select extends React.Component {
         this.setState({ active: true });
 
         if (this.state.value) {
-          for (let index = 0; index < optionsRef.childNodes.length; index++) {
-            if (
-              optionsRef.childNodes[index].getAttribute('data-item') ===
-              this.state.value
-            ) {
-              optionsRef.childNodes[index].focus();
+          for (const child of Array.from(optionsRef.childNodes)) {
+            const element = child as HTMLElement;
+            if (element.getAttribute('data-item') === this.state.value) {
+              element.focus();
               break;
             }
           }
         } else {
-          optionsRef.firstChild.focus();
+          const option = optionsRef.firstChild as HTMLElement;
+          option.focus();
         }
       }
 
@@ -189,7 +209,7 @@ export default class Select extends React.Component {
     }
   };
 
-  handleBlur = event => {
+  handleBlur = (event): void => {
     event.preventDefault();
     event.stopPropagation();
 
@@ -208,32 +228,19 @@ export default class Select extends React.Component {
     }
   };
 
-  getLableFromValue = value => {
+  getLabelFromValue = (value: string): string => {
     const { options } = this.props;
 
     let label = '';
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].value === value) {
-        label = options[i].label;
+
+    for (const option of options) {
+      if (option.value === value) {
+        label = option.label;
         break;
       }
     }
 
     return label;
-  };
-
-  isValueExist = value => {
-    const { options } = this.props;
-    let isExist = false;
-
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].value === value) {
-        isExist = true;
-        break;
-      }
-    }
-
-    return isExist;
   };
 
   render() {
@@ -247,29 +254,28 @@ export default class Select extends React.Component {
       handleKeyDown,
       handleMouseDown,
       handleBlur,
-      getLableFromValue
+      getLabelFromValue
     } = this;
 
-    let classNames = namespace('select');
-
-    state.error &&
-      (classNames += ` ${namespace(toModifier('error', 'select'))}`);
-    state.success &&
-      (classNames += ` ${namespace(toModifier('success', 'select'))}`);
-
-    state.value && (classNames += ` ${namespace('selected')}`);
-    state.active && (classNames += ` ${namespace('active')}`);
-
-    props.className && (classNames += ` ${props.className}`);
+    const bem = BEM('select');
+    // bem.addModifiers(props.modifiers);
+    bem.addModifiers(state.error ? 'error' : '');
+    bem.addModifiers(state.success ? 'success' : '');
+    bem.addClassNames(state.value ? 'selected' : '');
+    bem.addClassNames(state.active ? 'active' : '');
+    bem.addClassNames(props.className);
 
     return (
-      <div className={classNames} style={props.style}>
+      <div className={bem.getResult()} style={props.style}>
         <input
           id={id}
-          className={namespace('select__input select__input--hidden')}
+          className={`${bem.getElement('input')} ${bem.getModifier(
+            'hidden',
+            'input'
+          )}`}
           type="hidden"
           name={props.name}
-          disabled={state.disabled}
+          disabled={props.disabled}
           readOnly={props.readOnly}
           required={props.required}
           value={state.value}
@@ -277,39 +283,39 @@ export default class Select extends React.Component {
         />
         <span
           ref={selectRef}
-          className={namespace('select__input')}
-          name={`select-${props.name}`}
-          tabIndex={!props.readOnly && !state.disabled ? 0 : null}
-          onKeyDown={!props.readOnly && !state.disabled ? handleKeyDown : null}
+          className={bem.getElement('input')}
+          // name={`select-${props.name}`}
+          tabIndex={!props.readOnly && !props.disabled ? 0 : null}
+          onKeyDown={!props.readOnly && !props.disabled ? handleKeyDown : null}
           onMouseDown={
-            !props.readOnly && !state.disabled ? handleMouseDown : null
+            !props.readOnly && !props.disabled ? handleMouseDown : null
           }
           onTouchEnd={
-            !props.readOnly && !state.disabled ? handleMouseDown : null
+            !props.readOnly && !props.disabled ? handleMouseDown : null
           }>
           {!state.value
             ? `Pick ${
                 _.startsWith('aeiou', props.label) ? 'an' : 'a'
               } ${props.label.toLowerCase()}`
-            : getLableFromValue(state.value)}
+            : getLabelFromValue(state.value)}
         </span>
-        <label className={namespace('select__label')}>{props.label}</label>
+        <label className={bem.getElement('label')}>{props.label}</label>
         {!props.readOnly && <Icon type="chevron-down" />}
-        {!props.readOnly && !state.disabled && (
-          <div className={namespace('select__border')} />
+        {!props.readOnly && !props.disabled && (
+          <div className={bem.getElement('border')} />
         )}
-        {!props.readOnly && !state.disabled && (
+        {!props.readOnly && !props.disabled && (
           <div
-            className={namespace('select__list-outer')}
+            className={bem.getElement('list-outer')}
             tabIndex={-1}
             data-id={id}
             onBlur={handleBlur}>
-            <ul className={namespace('select__list')} ref={optionsRef}>
+            <ul className={bem.getElement('list')} ref={optionsRef}>
               {props.options.map((option, index) => {
                 return (
                   <li
                     key={index}
-                    className={namespace('select__item')}
+                    className={bem.getElement('item')}
                     tabIndex={-1}
                     data-id={id}
                     data-item={option.value}
@@ -329,35 +335,10 @@ export default class Select extends React.Component {
             </ul>
           </div>
         )}
-        {!props.readOnly && !state.disabled && props.message && (
-          <span className={namespace('select__message')}>{props.message}</span>
+        {!props.readOnly && !props.disabled && props.message && (
+          <span className={bem.getElement('message')}>{props.message}</span>
         )}
       </div>
     );
   }
 }
-
-Select.propTypes = {
-  label: PropTypes.string.isRequired,
-  name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  id: PropTypes.string,
-  modifiers: PropTypes.string,
-  className: PropTypes.string,
-  style: PropTypes.object,
-  disabled: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  required: PropTypes.bool,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string,
-      value: PropTypes.any
-    })
-  ).isRequired,
-  value: PropTypes.string,
-  message: PropTypes.string,
-  onChange: PropTypes.func
-};
-
-Select.defaultProps = {
-  onChange: () => {}
-};
