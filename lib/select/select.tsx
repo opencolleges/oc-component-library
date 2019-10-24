@@ -21,7 +21,7 @@ interface Props {
   message?: string;
   modifiers?: string;
   name?: string;
-  onChange?: (value: string, name: string | number) => void;
+  onChange?: (value: string, name: string) => void;
   options?: Options[];
   readOnly?: boolean;
   required?: boolean;
@@ -210,7 +210,7 @@ export default class Select extends React.Component<Props> {
   getLabelFromValue = (value: string): string => {
     const { options } = this.props;
 
-    let label = '';
+    let label: string = '';
 
     for (const option of options) {
       if (option.value === value) {
@@ -225,14 +225,14 @@ export default class Select extends React.Component<Props> {
   focusOptionByValue = (options: HTMLUListElement, value: string): void => {
     if (value) {
       for (const child of Array.from(options.childNodes)) {
-        const element = child as HTMLElement;
+        const element: HTMLElement = child as HTMLElement;
         if (element.getAttribute('data-item') === this.state.value) {
           element.focus();
           break;
         }
       }
     } else {
-      const option = options.firstChild as HTMLElement;
+      const option: HTMLElement = options.firstChild as HTMLElement;
       option.focus();
     }
   };
