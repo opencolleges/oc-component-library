@@ -4,7 +4,8 @@ import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
-import getWindowWidth from '../utilities/ts/getWindowWidth';
+import getWindowWidth from '../utilities/ts/get-window-width';
+import remove from '../utilities/ts/remove';
 
 import BrowserDetect from 'browser-detect';
 
@@ -201,7 +202,10 @@ export default class Textarea extends React.Component<Props> {
   render() {
     const { props, state, id, textareaRef, handleChange } = this;
 
+    const modifiers = remove(['error', 'success'], props.modifiers);
+
     const bem = BEM('textarea');
+    bem.addModifiers(modifiers);
     bem.addModifiers(state.error ? 'error' : '');
     bem.addModifiers(state.success ? 'success' : '');
     bem.addClassNames(props.className);
