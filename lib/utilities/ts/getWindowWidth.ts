@@ -1,4 +1,4 @@
-const getWindowWidth = () => {
+const getWindowWidth = (): string => {
   const windowWidth = window.innerWidth;
 
   let context;
