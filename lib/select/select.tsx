@@ -61,7 +61,7 @@ export default class Select extends React.Component<Props> {
       : ''
   };
 
-  componentDidUpdate(previousProps, previousState): void {
+  componentDidUpdate(previousProps: Props, previousState: State): void {
     if (this.props.modifiers !== previousProps.modifiers) {
       this.setState({
         error: _.includes(this.props.modifiers, 'error'),
@@ -81,11 +81,11 @@ export default class Select extends React.Component<Props> {
     this.props.onChange(this.state.value, this.props.name);
   };
 
-  handleKeyDown = (event): void => {
-    const selectRef = this.selectRef.current;
-    const optionsRef = this.optionsRef.current;
+  handleKeyDown = (event: React.KeyboardEvent): void => {
+    const selectRef: HTMLElement = this.selectRef.current;
+    const optionsRef: HTMLUListElement = this.optionsRef.current;
 
-    const target = event.target || event.srcElement;
+    const target: HTMLElement = event.target as HTMLElement;
 
     // select
     if (target.className === selectRef.className) {
@@ -137,26 +137,28 @@ export default class Select extends React.Component<Props> {
       if (event.keyCode === 38) {
         event.preventDefault();
         event.stopPropagation();
-        target.previousSibling.focus();
+        const previousSibling = target.previousSibling as HTMLElement;
+        previousSibling.focus();
       }
 
       // 'ArrowDown' key
       if (event.keyCode === 40) {
         event.preventDefault();
         event.stopPropagation();
-        target.nextSibling.focus();
+        const nextSibling = target.nextSibling as HTMLElement;
+        nextSibling.focus();
       }
     }
   };
 
-  handleMouseDown = (event): void => {
+  handleMouseDown = (event: React.MouseEvent | React.TouchEvent): void => {
     event.preventDefault();
     event.stopPropagation();
 
-    const selectRef = this.selectRef.current;
-    const optionsRef = this.optionsRef.current;
+    const selectRef: HTMLElement = this.selectRef.current;
+    const optionsRef: HTMLUListElement = this.optionsRef.current;
 
-    const target = event.target || event.srcElement;
+    const target: HTMLElement = event.target as HTMLElement;
 
     // select
     if (target.className === selectRef.className) {
@@ -184,12 +186,14 @@ export default class Select extends React.Component<Props> {
     }
   };
 
-  handleBlur = (event): void => {
+  handleBlur = (event: React.FocusEvent): void => {
     event.preventDefault();
     event.stopPropagation();
 
-    const target = event.target || event.srcElement;
-    const relatedTarget = event.relatedTarget || document.activeElement;
+    const target: HTMLElement = event.target as HTMLElement;
+    const relatedTarget: HTMLElement =
+      (event.relatedTarget as HTMLElement) ||
+      (document.activeElement as HTMLElement);
 
     if (
       (relatedTarget !== null &&
