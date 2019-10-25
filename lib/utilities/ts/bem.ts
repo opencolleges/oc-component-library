@@ -4,7 +4,15 @@ import addNamespace from './add-namespace';
 
 import { ELEMENT_SEPARATOR, MODIFIER_SEPARATOR } from './constants';
 
-const BEM = (block: string) => {
+interface Bem {
+  addClassNames: (classNames: string) => void;
+  addModifiers: (modifiers: string, blockOrElement: string) => void;
+  getElement: (element: string) => string;
+  getModifier: (modifier: string, blockOrElement: string) => string;
+  getResult: () => string;
+}
+
+const BEM = (block: string): Bem => {
   const BLOCK: string = block;
   let result: string = addNamespace(BLOCK);
 
