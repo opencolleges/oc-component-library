@@ -8,7 +8,7 @@ import { mount } from 'enzyme';
 
 let wrapper;
 
-describe(`<Acordion />`, () => {
+describe(`<Accordion />`, () => {
   beforeEach(() => {
     wrapper = mount(
       <Accordion label="foo">
