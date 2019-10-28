@@ -6,9 +6,9 @@ import { ELEMENT_SEPARATOR, MODIFIER_SEPARATOR } from './constants';
 
 interface Bem {
   addClassNames: (classNames: string) => void;
-  addModifiers: (modifiers: string, blockOrElement: string) => void;
+  addModifiers: (modifiers: string, blockOrElement?: string) => void;
   getElement: (element: string) => string;
-  getModifier: (modifier: string, blockOrElement: string) => string;
+  getModifier: (modifier: string, blockOrElement?: string) => string;
   getResult: () => string;
 }
 
