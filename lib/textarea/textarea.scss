@@ -88,13 +88,13 @@
   box-shadow: none;
 }
 
-.#{$pre}-textarea__input.#{$pre}-active:disabled {
+.#{$pre}-textarea__input.active:disabled {
   color: $fossil;
 }
 
 // The pointer-events property set to auto adds interactivity to [readonly]
 // textareas that are populated.
-.#{$pre}-textarea__input.#{$pre}-active[readonly] {
+.#{$pre}-textarea__input.active[readonly] {
   pointer-events: auto;
 }
 
@@ -180,18 +180,18 @@
     line-height $transition-duration-x2 $transition-timing-default;
 }
 
-.#{$pre}-textarea__input.#{$pre}-active ~ .#{$pre}-textarea__label {
+.#{$pre}-textarea__input.active ~ .#{$pre}-textarea__label {
   top: 0;
   color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
 }
 
-.#{$pre}-textarea__input.#{$pre}-active:disabled ~ .#{$pre}-textarea__label {
+.#{$pre}-textarea__input.active:disabled ~ .#{$pre}-textarea__label {
   color: $alto;
 }
 
-.#{$pre}-textarea__input.#{$pre}-active[readonly] ~ .#{$pre}-textarea__label {
+.#{$pre}-textarea__input.active[readonly] ~ .#{$pre}-textarea__label {
   color: $christi-shade;
 }
 
@@ -221,8 +221,7 @@
   color: rgba($cinnabar, 0);
 }
 
-.#{$pre}-textarea__input.#{$pre}-active:required
-  ~ .#{$pre}-textarea__label::after {
+.#{$pre}-textarea__input.active:required ~ .#{$pre}-textarea__label::after {
   top: rem(-16px);
   color: rgba($cinnabar, 0);
 }
@@ -246,7 +245,7 @@
   color: $viking-shade;
 }
 
-.#{$pre}-textarea__input.#{$pre}-active ~ .#{$pre}-textarea__message {
+.#{$pre}-textarea__input.active ~ .#{$pre}-textarea__message {
   color: $viking-shade;
 }
 
@@ -309,11 +308,11 @@
     border-bottom: none;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active:focus {
+  .#{$pre}-textarea__input.active:focus {
     color: inherit;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active:disabled {
+  .#{$pre}-textarea__input.active:disabled {
     color: $fossil;
     cursor: not-allowed;
   }
@@ -334,24 +333,23 @@
     color: $christi-shade;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active ~ .#{$pre}-textarea__label {
+  .#{$pre}-textarea__input.active ~ .#{$pre}-textarea__label {
     color: $hurricane;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active:disabled ~ .#{$pre}-textarea__label {
+  .#{$pre}-textarea__input.active:disabled ~ .#{$pre}-textarea__label {
     color: $alto;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active[readonly] ~ .#{$pre}-textarea__label {
+  .#{$pre}-textarea__input.active[readonly] ~ .#{$pre}-textarea__label {
     color: $christi-shade;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active:focus ~ .#{$pre}-textarea__label {
+  .#{$pre}-textarea__input.active:focus ~ .#{$pre}-textarea__label {
     color: $gunmetal;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active[readonly]:focus
-    ~ .#{$pre}-textarea__label {
+  .#{$pre}-textarea__input.active[readonly]:focus ~ .#{$pre}-textarea__label {
     color: $christi-shade;
   }
 
@@ -374,15 +372,15 @@
     width: 100%;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active ~ .#{$pre}-textarea__border {
+  .#{$pre}-textarea__input.active ~ .#{$pre}-textarea__border {
     width: 100%;
     background-color: $viking-shade;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active:hover ~ .#{$pre}-textarea__border {
+  .#{$pre}-textarea__input.active:hover ~ .#{$pre}-textarea__border {
     background-color: $viking;
   }
-  .#{$pre}-textarea__input.#{$pre}-active:focus ~ .#{$pre}-textarea__border {
+  .#{$pre}-textarea__input.active:focus ~ .#{$pre}-textarea__border {
     background-color: $viking;
   }
 
@@ -426,14 +424,14 @@
     color: $viking;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active ~ .#{$pre}-textarea__message {
+  .#{$pre}-textarea__input.active ~ .#{$pre}-textarea__message {
     color: $viking-shade;
   }
 
-  .#{$pre}-textarea__input.#{$pre}-active:hover ~ .#{$pre}-textarea__message {
+  .#{$pre}-textarea__input.active:hover ~ .#{$pre}-textarea__message {
     color: $viking;
   }
-  .#{$pre}-textarea__input.#{$pre}-active:focus ~ .#{$pre}-textarea__message {
+  .#{$pre}-textarea__input.active:focus ~ .#{$pre}-textarea__message {
     color: $viking;
   }
 

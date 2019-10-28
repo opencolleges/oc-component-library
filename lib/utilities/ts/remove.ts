@@ -3,11 +3,13 @@ const remove = (modifier, modifiers) => {
   let classes = modifiers;
 
   // * if modifiers exist and modifier is a string, remove modifier from modifiers
+  // tslint:disable-next-line: no-unused-expression
   modifiers &&
     typeof modifier === 'string' &&
     (classes = classes.replace(modifier, ''));
 
   // * if modifiers exist and modifier is an array, remove each modifier from modifiers
+  // tslint:disable-next-line: no-unused-expression
   modifiers &&
     Array.isArray(modifier) &&
     modifier.forEach(value => {
