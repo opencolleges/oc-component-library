@@ -4,7 +4,7 @@ import React from 'react';
 
 // * utility imports
 import getRange from '../utilities/ts/getRange';
-import getWindowWidth from '../utilities/ts/getWindowWidth';
+import getWindowWidth from '../utilities/ts/get-window-width';
 import namespace from '../utilities/ts/namespace';
 
 // * child imports

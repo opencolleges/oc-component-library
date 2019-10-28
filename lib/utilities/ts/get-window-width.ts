@@ -1,7 +1,7 @@
-const getWindowWidth = () => {
-  const windowWidth = window.innerWidth;
+const getWindowWidth = (): string => {
+  const windowWidth: number = window.innerWidth;
 
-  let context;
+  let context: string;
 
   windowWidth <= 480
     ? (context = `small`)
