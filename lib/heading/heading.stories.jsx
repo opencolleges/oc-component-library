@@ -14,62 +14,62 @@ import Heading from './heading';
 
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
-const headingChildren = ['Heading', 'Certificate IV in Web Technologies'];
+const headingChildren = [`Heading`, `Certificate IV in Web Technologies`];
 const headingLevel = [
-  'Level',
-  { '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6' },
-  '1'
+  `Level`,
+  { '1': `1`, '2': `2`, '3': `3`, '4': `4`, '5': `5`, '6': `6` },
+  `1`
 ];
 const headingAlignment = [
-  'Alignment',
-  { Left: 'left', Center: 'center', Right: 'right', Justify: 'justify' },
-  'left',
-  { display: 'inline-radio' }
+  `Alignment`,
+  { Left: `left`, Center: `center`, Right: `right`, Justify: `justify` },
+  `left`,
+  { display: `inline-radio` }
 ];
 const headingState = [
-  'State',
-  { Default: '', Reversed: 'reversed' },
-  '',
-  { display: 'inline-radio' }
+  `State`,
+  { Default: ``, Reversed: `reversed` },
+  ``,
+  { display: `inline-radio` }
 ];
 
-const stories = storiesOf('Heading', module);
+const stories = storiesOf(`Heading`, module);
 
 stories.addDecorator(withA11y).addDecorator(withKnobs);
 
 stories
-  .add('Default', () => {
+  .add(`Default`, () => {
     const children = text(...headingChildren);
     const level = select(...headingLevel);
     const alignment = options(...headingAlignment);
     const state = options(...headingState);
 
     return (
-      <Uniform style={{ ...UNIFORM_STYLES, width: '50%' }}>
+      <Uniform style={{ ...UNIFORM_STYLES, width: `50%` }}>
         <Heading
           level={Number(level)}
           modifiers={`h${level}--${alignment}${
-            state ? ` h${level}--${state}` : ''
+            state ? ` h${level}--${state}` : ``
           }`}>
-          {children ? children : 'Add heading'}
+          {children ? children : `Add heading`}
         </Heading>
       </Uniform>
     );
   })
-  .add('Compact', () => {
+  .add(`Compact`, () => {
     const children = text(...headingChildren);
     const level = select(...headingLevel);
     const alignment = options(...headingAlignment);
     const state = options(...headingState);
 
     return (
-      <Uniform style={{ ...UNIFORM_STYLES, width: '50%' }}>
+      <Uniform style={{ ...UNIFORM_STYLES, width: `50%` }}>
         <Heading
           level={Number(level)}
           modifiers={`h${level}--compact h${level}--${alignment}${
-            state ? ` h${level}--${state}` : ''
+            state ? ` h${level}--${state}` : ``
           }`}>
-          {children ? children : 'Add heading'}
+          {children ? children : `Add heading`}
         </Heading>
       </Uniform>
     );

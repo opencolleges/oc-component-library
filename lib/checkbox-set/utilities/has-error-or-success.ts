@@ -6,10 +6,10 @@ function hasErrorOrSuccess(
   value: string
 ): string | null {
   if (_.includes(errorArr, value)) {
-    return 'error';
+    return `error`;
   }
   if (_.includes(successArr, value)) {
-    return 'success';
+    return `success`;
   }
   return null;
 }

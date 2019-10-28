@@ -14,32 +14,32 @@ import Checkbox from './checkbox';
 
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
-const checkboxChildren = ['Label', 'Yes, this assessment is my own work.'];
+const checkboxChildren = [`Label`, `Yes, this assessment is my own work.`];
 const checkboxAlignment = [
-  'Alignment',
-  { Default: '', Right: 'right' },
-  '',
-  { display: 'inline-radio' }
+  `Alignment`,
+  { Default: ``, Right: `right` },
+  ``,
+  { display: `inline-radio` }
 ];
 const checkboxState = [
-  'State',
+  `State`,
   {
-    Default: '',
-    Error: 'error',
-    Success: 'success',
-    Reversed: 'reversed'
+    Default: ``,
+    Error: `error`,
+    Success: `success`,
+    Reversed: `reversed`
   },
-  '',
-  { display: 'inline-radio' }
+  ``,
+  { display: `inline-radio` }
 ];
-const checkboxReadOnly = ['Read only', false];
-const checkboxDisabled = ['Disabled', false];
+const checkboxReadOnly = [`Read only`, false];
+const checkboxDisabled = [`Disabled`, false];
 
-const stories = storiesOf('Checkbox', module);
+const stories = storiesOf(`Checkbox`, module);
 
 stories.addDecorator(withA11y).addDecorator(withKnobs);
 
-stories.add('Default', () => {
+stories.add(`Default`, () => {
   const children = text(...checkboxChildren);
   const alignment = options(...checkboxAlignment);
   const state = options(...checkboxState);
@@ -51,12 +51,12 @@ stories.add('Default', () => {
       <Checkbox
         name="storybook-checkbox-component"
         value="storybook-checkbox-component"
-        modifiers={`${alignment ? `checkbox--${alignment}` : ''}${
-          state ? ` checkbox--${state}` : ''
+        modifiers={`${alignment ? `checkbox--${alignment}` : ``}${
+          state ? ` checkbox--${state}` : ``
         }`}
         disabled={disabled}
         readOnly={readOnly}>
-        {children ? children : 'Add label'}
+        {children ? children : `Add label`}
       </Checkbox>
     </Uniform>
   );

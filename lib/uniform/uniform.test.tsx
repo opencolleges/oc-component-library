@@ -2,88 +2,102 @@ import React from 'react';
 
 import Uniform from './uniform';
 
+import { NAMESPACE } from '../utilities/ts/constants';
+
 import uniform from './utilities/uniform';
 
 import { mount } from 'enzyme';
 
 let wrapper;
 
-describe('<Uniform />', () => {
-  it('Handles no-touchevents', () => {
-    uniform.getMode = jest.fn().mockReturnValue('light');
+describe(`<Uniform />`, () => {
+  it(`Handles no-touchevents`, () => {
+    uniform.getMode = jest.fn().mockReturnValue(`light`);
     uniform.hasMouse = jest.fn().mockReturnValue(false);
 
     wrapper = mount(<Uniform>foo</Uniform>);
 
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light');
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-light`
+    );
 
     uniform.hasMouse = jest.fn().mockReturnValue(true);
 
     wrapper.unmount();
     wrapper = mount(<Uniform>foo</Uniform>);
 
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe(
-      'oc-no-touchevents oc-light'
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-no-touchevents ${NAMESPACE}-light`
     );
   });
 
-  it('Handles props.tag', () => {
+  it(`Handles props.tag`, () => {
     wrapper = mount(<Uniform>foo</Uniform>);
 
-    expect(wrapper.getDOMNode().nodeName).toBe('MAIN');
+    expect(wrapper.getDOMNode().nodeName).toBe(`MAIN`);
 
-    wrapper.setProps({ tag: 'div' });
-    expect(wrapper.getDOMNode().nodeName).toBe('DIV');
+    wrapper.setProps({ tag: `div` });
+    expect(wrapper.getDOMNode().nodeName).toBe(`DIV`);
 
-    wrapper.setProps({ tag: 'section' });
-    expect(wrapper.getDOMNode().nodeName).toBe('SECTION');
+    wrapper.setProps({ tag: `section` });
+    expect(wrapper.getDOMNode().nodeName).toBe(`SECTION`);
   });
 
-  it('Handles props.mode', () => {
+  it(`Handles props.mode`, () => {
     uniform.hasMouse = jest.fn().mockReturnValue(false);
-    uniform.getMode = jest.fn().mockReturnValue('light');
+    uniform.getMode = jest.fn().mockReturnValue(`light`);
 
     wrapper = mount(<Uniform>foo</Uniform>);
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light');
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-light`
+    );
 
-    uniform.getMode = jest.fn().mockReturnValue('dark');
+    uniform.getMode = jest.fn().mockReturnValue(`dark`);
 
     wrapper.unmount();
     wrapper = mount(<Uniform>foo</Uniform>);
 
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-dark');
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-dark`
+    );
 
-    wrapper.setProps({ mode: 'bar' });
+    wrapper.setProps({ mode: `bar` });
 
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-bar');
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(`${NAMESPACE}-bar`);
   });
 
-  it('Handles props.className', () => {
+  it(`Handles props.className`, () => {
     uniform.hasMouse = jest.fn().mockReturnValue(false);
-    uniform.getMode = jest.fn().mockReturnValue('light');
+    uniform.getMode = jest.fn().mockReturnValue(`light`);
 
     wrapper = mount(<Uniform>foo</Uniform>);
 
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light');
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-light`
+    );
 
-    wrapper.setProps({ className: 'bar' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light bar');
+    wrapper.setProps({ className: `bar` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-light bar`
+    );
 
-    wrapper.setProps({ className: 'bar baz' });
-    expect(wrapper.getDOMNode().getAttribute('class')).toBe('oc-light bar baz');
+    wrapper.setProps({ className: `bar baz` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-light bar baz`
+    );
   });
 
-  it('Handles props.style', () => {
+  it(`Handles props.style`, () => {
     wrapper = mount(<Uniform>foo</Uniform>);
 
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(null);
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(null);
 
-    wrapper.setProps({ style: { zIndex: '1' } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
+    wrapper.setProps({ style: { zIndex: `1` } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(`z-index: 1;`);
 
-    wrapper.setProps({ style: { zIndex: '1', opacity: 0 } });
-    expect(wrapper.getDOMNode().getAttribute('style')).toBe(
-      'z-index: 1; opacity: 0;'
+    wrapper.setProps({ style: { zIndex: `1`, opacity: 0 } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(
+      `z-index: 1; opacity: 0;`
     );
   });
 

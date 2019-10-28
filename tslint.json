@@ -9,7 +9,8 @@
         "allow-pascal-case",
         "require-const-for-all-caps"
       ]
-    }
+    },
+    "quotemark": [true, "backtick"]
   },
   "linterOptions": {
     "exclude": [

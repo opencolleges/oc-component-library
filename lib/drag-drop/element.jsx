@@ -11,7 +11,7 @@ import { provideDisplayName, omit } from './utility';
 const SortableElement = (WrappedComponent, config = { withRef: false }) => {
   class drag extends Component {
     static displayName = provideDisplayName(
-      'sortableElement',
+      `sortableElement`,
       WrappedComponent
     );
 
@@ -64,12 +64,12 @@ const SortableElement = (WrappedComponent, config = { withRef: false }) => {
     }
 
     render() {
-      const ref = config.withRef ? 'wrappedInstance' : null;
+      const ref = config.withRef ? `wrappedInstance` : null;
 
       return (
         <WrappedComponent
           ref={ref}
-          {...omit(this.props, 'collection', 'disabled', 'index')}
+          {...omit(this.props, `collection`, `disabled`, `index`)}
         />
       );
     }

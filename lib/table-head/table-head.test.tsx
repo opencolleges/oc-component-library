@@ -2,11 +2,13 @@ import React from 'react';
 
 import TableHead from './table-head';
 
+import { NAMESPACE } from '../utilities/ts/constants';
+
 import { mount } from 'enzyme';
 
 let wrapper;
 
-describe('<TableHead />', () => {
+describe(`<TableHead />`, () => {
   beforeEach(() => {
     wrapper = mount(
       <table>
@@ -17,9 +19,9 @@ describe('<TableHead />', () => {
     );
   });
 
-  it('Handles props.children', () => {
-    expect(wrapper.find('thead').html()).toBe(
-      '<thead class="oc-thead"><tr></tr></thead>'
+  it(`Handles props.children`, () => {
+    expect(wrapper.find(`thead`).html()).toBe(
+      `<thead class="${NAMESPACE}-thead"><tr></tr></thead>`
     );
 
     wrapper.unmount();
@@ -33,18 +35,18 @@ describe('<TableHead />', () => {
         </TableHead>
       </table>
     );
-    expect(wrapper.find('thead').html()).toBe(
-      '<thead class="oc-thead"><tr><td></td></tr></thead>'
+    expect(wrapper.find(`thead`).html()).toBe(
+      `<thead class="${NAMESPACE}-thead"><tr><td></td></tr></thead>`
     );
   });
 
-  it('Handles props.className', () => {
+  it(`Handles props.className`, () => {
     expect(
       wrapper
-        .find('thead')
+        .find(`thead`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-thead');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-thead`);
 
     wrapper.unmount();
 
@@ -58,13 +60,13 @@ describe('<TableHead />', () => {
       </table>
     );
 
-    wrapper.setProps({ className: 'foo' });
+    wrapper.setProps({ className: `foo` });
     expect(
       wrapper
-        .find('thead')
+        .find(`thead`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-thead foo');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-thead foo`);
 
     wrapper.unmount();
 
@@ -79,18 +81,18 @@ describe('<TableHead />', () => {
     );
     expect(
       wrapper
-        .find('thead')
+        .find(`thead`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-thead foo bar');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-thead foo bar`);
   });
 
-  it('Handles props.style', () => {
+  it(`Handles props.style`, () => {
     expect(
       wrapper
-        .find('thead')
+        .find(`thead`)
         .getDOMNode()
-        .getAttribute('style')
+        .getAttribute(`style`)
     ).toBe(null);
 
     wrapper.unmount();
@@ -106,10 +108,10 @@ describe('<TableHead />', () => {
     );
     expect(
       wrapper
-        .find('thead')
+        .find(`thead`)
         .getDOMNode()
-        .getAttribute('style')
-    ).toBe('z-index: 1;');
+        .getAttribute(`style`)
+    ).toBe(`z-index: 1;`);
 
     wrapper.unmount();
 
@@ -124,10 +126,10 @@ describe('<TableHead />', () => {
     );
     expect(
       wrapper
-        .find('thead')
+        .find(`thead`)
         .getDOMNode()
-        .getAttribute('style')
-    ).toBe('z-index: 1; opacity: 0;');
+        .getAttribute(`style`)
+    ).toBe(`z-index: 1; opacity: 0;`);
   });
 
   afterEach(() => {

@@ -10,44 +10,44 @@ import Divider from './divider';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const dividerState = [
-  'State',
+  `State`,
   {
-    Default: '',
-    Alt: 'alt'
+    Default: ``,
+    Alt: `alt`
   },
-  '',
-  { display: 'inline-radio' }
+  ``,
+  { display: `inline-radio` }
 ];
 
-const stories = storiesOf('Divider', module);
+const stories = storiesOf(`Divider`, module);
 
 stories.addDecorator(withA11y).addDecorator(withKnobs);
 
 stories
-  .add('Small', () => {
+  .add(`Small`, () => {
     const state = options(...dividerState);
 
     return (
-      <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: '50%' }}>
-        <Divider modifiers={`divider--s${state ? ` divider--${state}` : ''}`} />
+      <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: `50%` }}>
+        <Divider modifiers={`divider--s${state ? ` divider--${state}` : ``}`} />
       </Uniform>
     );
   })
-  .add('Medium', () => {
+  .add(`Medium`, () => {
     const state = options(...dividerState);
 
     return (
-      <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: '50%' }}>
-        <Divider modifiers={`divider--m${state ? ` divider--${state}` : ''}`} />
+      <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: `50%` }}>
+        <Divider modifiers={`divider--m${state ? ` divider--${state}` : ``}`} />
       </Uniform>
     );
   })
-  .add('Large', () => {
+  .add(`Large`, () => {
     const state = options(...dividerState);
 
     return (
-      <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: '50%' }}>
-        <Divider modifiers={`divider--l${state ? ` divider--${state}` : ''}`} />
+      <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: `50%` }}>
+        <Divider modifiers={`divider--l${state ? ` divider--${state}` : ``}`} />
       </Uniform>
     );
   });

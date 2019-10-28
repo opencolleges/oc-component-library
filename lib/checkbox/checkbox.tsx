@@ -62,7 +62,7 @@ export default class Checkbox extends React.Component<Props, State> {
   render() {
     const { props, state, id, handleChange } = this;
 
-    const bem = BEM('checkbox');
+    const bem = BEM(`checkbox`);
     bem.addModifiers(props.modifiers);
     bem.addClassNames(props.className);
 
@@ -70,7 +70,7 @@ export default class Checkbox extends React.Component<Props, State> {
       <div className={bem.getResult()} style={props.style}>
         <input
           id={id}
-          className={bem.getElement('input')}
+          className={bem.getElement(`input`)}
           type="checkbox"
           name={props.name}
           value={props.value}
@@ -81,13 +81,13 @@ export default class Checkbox extends React.Component<Props, State> {
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           onChange={handleChange}
         />
-        <label htmlFor={id} className={bem.getElement('label')}>
+        <label htmlFor={id} className={bem.getElement(`label`)}>
           {props.children}
         </label>
         {!props.readOnly && !props.disabled && (
-          <svg className={bem.getElement('border-outer')} viewBox="0 0 16 16">
+          <svg className={bem.getElement(`border-outer`)} viewBox="0 0 16 16">
             <rect
-              className={bem.getElement('border')}
+              className={bem.getElement(`border`)}
               x="0.5"
               y="0.5"
               width="15"
@@ -96,15 +96,15 @@ export default class Checkbox extends React.Component<Props, State> {
             />
           </svg>
         )}
-        {!_.includes(_.split(props.modifiers, ' '), 'right') && (
+        {!_.includes(_.split(props.modifiers, ` `), `right`) && (
           <React.Fragment>
             <Icon
               type="close"
-              visible={_.includes(_.split(props.modifiers, ' '), 'error')}
+              visible={_.includes(_.split(props.modifiers, ` `), `error`)}
             />
             <Icon
               type="tick"
-              visible={_.includes(_.split(props.modifiers, ' '), 'success')}
+              visible={_.includes(_.split(props.modifiers, ` `), `success`)}
             />
           </React.Fragment>
         )}

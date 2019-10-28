@@ -56,14 +56,14 @@ export default class Range extends React.Component<Props> {
   render() {
     const { props, state, id, handleChange } = this;
 
-    const bem = BEM('range');
+    const bem = BEM(`range`);
     bem.addClassNames(props.className);
 
     return (
       <div className={bem.getResult()} style={props.style}>
         <input
           id={id}
-          className={bem.getElement('input')}
+          className={bem.getElement(`input`)}
           type="range"
           name={props.name}
           value={state.value}
@@ -71,11 +71,11 @@ export default class Range extends React.Component<Props> {
           max={props.max}
           onChange={handleChange}
         />
-        <label htmlFor={id} className={bem.getElement('label')}>
+        <label htmlFor={id} className={bem.getElement(`label`)}>
           {props.label}
         </label>
         <div
-          className={bem.getElement('track')}
+          className={bem.getElement(`track`)}
           style={{
             width: `${((state.value - props.min) /
               (Number(props.max) - Number(props.min))) *
@@ -84,7 +84,7 @@ export default class Range extends React.Component<Props> {
           aria-hidden="true"
         />
         <div
-          className={bem.getElement('thumb')}
+          className={bem.getElement(`thumb`)}
           style={{
             left: `${((state.value - props.min) /
               (Number(props.max) - Number(props.min))) *
@@ -95,7 +95,7 @@ export default class Range extends React.Component<Props> {
           }}
           aria-hidden="true"
         />
-        <span className={bem.getElement('value')}>{state.value}</span>
+        <span className={bem.getElement(`value`)}>{state.value}</span>
       </div>
     );
   }

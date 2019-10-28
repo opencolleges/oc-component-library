@@ -1,22 +1,19 @@
-// * remove specific modifier if it exists in modifiers
-const remove = (modifier, modifiers) => {
-  let classes = modifiers;
+import _ from 'lodash';
 
-  // * if modifiers exist and modifier is a string, remove modifier from modifiers
-  // tslint:disable-next-line: no-unused-expression
-  modifiers &&
-    typeof modifier === 'string' &&
-    (classes = classes.replace(modifier, ''));
+const remove = (modifier: string | string[], modifiers: string): string => {
+  if (modifiers) {
+    if (typeof modifier === `string`) {
+      modifier = _.trim(modifier).split(/\s+/);
+    }
 
-  // * if modifiers exist and modifier is an array, remove each modifier from modifiers
-  // tslint:disable-next-line: no-unused-expression
-  modifiers &&
-    Array.isArray(modifier) &&
-    modifier.forEach(value => {
-      classes = classes.replace(value, '');
+    modifier.forEach(index => {
+      modifiers = modifiers.replace(_.trim(index), ``);
     });
 
-  return classes;
+    modifiers = _.trim(modifiers.replace(/\s+/g, ` `));
+  }
+
+  return modifiers;
 };
 
 export default remove;

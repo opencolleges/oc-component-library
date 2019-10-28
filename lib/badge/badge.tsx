@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Badge: React.FC<Props> = props => {
-  const bem = BEM('badge');
+  const bem = BEM(`badge`);
   bem.addModifiers(props.modifiers);
   bem.addClassNames(props.className);
 

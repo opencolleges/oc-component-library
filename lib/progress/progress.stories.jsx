@@ -15,7 +15,7 @@ import Progress from './progress';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const progressProgress = [
-  'Progress',
+  `Progress`,
   21,
   {
     range: true,
@@ -25,7 +25,7 @@ const progressProgress = [
   }
 ];
 const progressSteps = [
-  'Steps',
+  `Steps`,
   3,
   {
     range: true,
@@ -35,47 +35,47 @@ const progressSteps = [
   }
 ];
 const progressType = [
-  'Type',
-  { Default: '', Alt: 'alt' },
-  '',
-  { display: 'inline-radio' }
+  `Type`,
+  { Default: ``, Alt: `alt` },
+  ``,
+  { display: `inline-radio` }
 ];
 const progressState = [
-  'State',
+  `State`,
   {
-    Default: '',
-    Error: 'error'
+    Default: ``,
+    Error: `error`
   },
-  '',
-  { display: 'inline-radio' }
+  ``,
+  { display: `inline-radio` }
 ];
-const progressMessage = ['Message', 'File type not supported'];
+const progressMessage = [`Message`, `File type not supported`];
 
-const stories = storiesOf('Progress', module);
+const stories = storiesOf(`Progress`, module);
 
 stories.addDecorator(withA11y).addDecorator(withKnobs);
 
-stories.add('Default', () => {
+stories.add(`Default`, () => {
   const type = options(...progressType);
   const progress =
-    type !== 'alt' ? number(...progressProgress) : number(...progressSteps);
-  const state = type !== 'alt' ? options(...progressState) : '';
+    type !== `alt` ? number(...progressProgress) : number(...progressSteps);
+  const state = type !== `alt` ? options(...progressState) : ``;
   const message =
-    progress !== 100 && state === 'error' ? text(...progressMessage) : '';
+    progress !== 100 && state === `error` ? text(...progressMessage) : ``;
 
   return (
-    <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: '50%' }}>
+    <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: `50%` }}>
       <Progress
-        modifiers={`${type ? `progress--${type}` : ''}${
-          progress !== 100 && state ? ` progress--${state}` : ''
+        modifiers={`${type ? `progress--${type}` : ``}${
+          progress !== 100 && state ? ` progress--${state}` : ``
         }`}
         progress={progress}
-        totalProgress={type !== 'alt' ? 100 : 8}
+        totalProgress={type !== `alt` ? 100 : 8}
         message={
-          progress !== 100 && state === 'error'
+          progress !== 100 && state === `error`
             ? message
               ? message
-              : 'Add label'
+              : `Add label`
             : null
         }
       />

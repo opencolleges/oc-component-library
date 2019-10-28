@@ -105,11 +105,11 @@ export default class CheckboxSet extends React.Component<Props, State> {
   render() {
     const { props, state, handleChange } = this;
 
-    const error: string = state.error.length ? 'error' : '';
+    const error: string = state.error.length ? `error` : ``;
     const success: string =
-      !state.error.length && state.success.length ? 'success' : '';
+      !state.error.length && state.success.length ? `success` : ``;
 
-    const bem = BEM('checkbox-set');
+    const bem = BEM(`checkbox-set`);
     bem.addModifiers(error);
     bem.addModifiers(success);
     bem.addClassNames(props.className);
@@ -144,9 +144,9 @@ export default class CheckboxSet extends React.Component<Props, State> {
             </GridItem>
           ))}
         </Grid>
-        <div className={bem.getElement('border')} />
+        <div className={bem.getElement(`border`)} />
         {hasMessage(state.error, state.success, props.message) && (
-          <span className={bem.getElement('message')}>{props.message}</span>
+          <span className={bem.getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );

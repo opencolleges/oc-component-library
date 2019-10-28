@@ -6,9 +6,9 @@ function getBadgeLabel(value: number | string): string {
   }
 
   if (value > 99) {
-    return '99+';
+    return `99+`;
   } else if (value > 9) {
-    return '9+';
+    return `9+`;
   }
 
   return _.toString(value);

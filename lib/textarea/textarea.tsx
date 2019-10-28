@@ -55,12 +55,12 @@ export default class Textarea extends React.Component<Props> {
   textareaRef = React.createRef<HTMLTextAreaElement>();
 
   readonly state: Readonly<State> = {
-    error: _.includes(_.split(this.props.modifiers, ' '), 'error'),
+    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
     height: null,
-    overflow: 'hidden',
+    overflow: `hidden`,
     remaining: 0,
-    success: _.includes(_.split(this.props.modifiers, ' '), 'success'),
-    value: ''
+    success: _.includes(_.split(this.props.modifiers, ` `), `success`),
+    value: ``
   };
 
   componentDidMount(): void {
@@ -68,36 +68,36 @@ export default class Textarea extends React.Component<Props> {
       remaining: this.calculateRemaining(),
       value: this.calculateValue()
     });
-    window.addEventListener('resize', this.resize);
+    window.addEventListener(`resize`, this.resize);
     this.resize();
   }
 
-  componentDidUpdate(previousProps: Props, previousState: State): void {
-    if (this.props.modifiers !== previousProps.modifiers) {
+  componentDidUpdate(prevProps: Props, prevState: State): void {
+    if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ' '), 'error'),
-        message: this.props.message ? this.props.message : '',
-        success: _.includes(_.split(this.props.modifiers, ' '), 'success')
+        error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+        message: this.props.message ? this.props.message : ``,
+        success: _.includes(_.split(this.props.modifiers, ` `), `success`)
       });
     }
 
-    if (this.props.disabled !== previousProps.disabled) {
+    if (this.props.disabled !== prevProps.disabled) {
       this.setState({
         disabled: this.props.disabled
       });
     }
 
-    if (this.state.value !== previousState.value) {
+    if (this.state.value !== prevState.value) {
       this.setState({
         error: false,
-        message: '',
+        message: ``,
         success: false
       });
     }
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('resize', this.resize);
+    window.removeEventListener(`resize`, this.resize);
   }
 
   calculateRemaining = (value: string = this.props.value): number => {
@@ -114,7 +114,7 @@ export default class Textarea extends React.Component<Props> {
 
   calculateValue = (): string => {
     if (!this.props.value) {
-      return '';
+      return ``;
     }
 
     if (
@@ -142,9 +142,9 @@ export default class Textarea extends React.Component<Props> {
         let height: number = null;
 
         if (!this.props.readOnly) {
-          if (windowWidth === 'small') {
+          if (windowWidth === `small`) {
             maxHeight = 200;
-          } else if (windowWidth === 'medium') {
+          } else if (windowWidth === `medium`) {
             maxHeight = 264;
           } else {
             maxHeight = 392;
@@ -161,8 +161,8 @@ export default class Textarea extends React.Component<Props> {
           height,
           overflow:
             maxHeight && textarea.scrollHeight + 1 < maxHeight
-              ? 'hidden'
-              : 'auto'
+              ? `hidden`
+              : `auto`
         });
       }
     );
@@ -184,7 +184,7 @@ export default class Textarea extends React.Component<Props> {
       return `${remaining} characters remaining`;
     }
 
-    return '';
+    return ``;
   };
 
   handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -202,17 +202,17 @@ export default class Textarea extends React.Component<Props> {
   render() {
     const { props, state, id, textareaRef, handleChange } = this;
 
-    const modifiers = remove(['error', 'success'], props.modifiers);
+    const modifiers = remove([`error`, `success`], props.modifiers);
 
-    const bem = BEM('textarea');
+    const bem = BEM(`textarea`);
     bem.addModifiers(modifiers);
-    bem.addModifiers(state.error ? 'error' : '');
-    bem.addModifiers(state.success ? 'success' : '');
+    bem.addModifiers(state.error ? `error` : ``);
+    bem.addModifiers(state.success ? `success` : ``);
     bem.addClassNames(props.className);
 
     const browser = BrowserDetect();
 
-    const borderHeight = browser.name === 'firefox' ? 0 : 1;
+    const borderHeight = browser.name === `firefox` ? 0 : 1;
 
     return (
       <div
@@ -227,8 +227,8 @@ export default class Textarea extends React.Component<Props> {
           id={id}
           className={
             !state.value
-              ? bem.getElement('input')
-              : `${bem.getElement('input')} active`
+              ? bem.getElement(`input`)
+              : `${bem.getElement(`input`)} active`
           }
           name={props.name}
           disabled={props.disabled}
@@ -246,16 +246,16 @@ export default class Textarea extends React.Component<Props> {
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           style={{
             height: state.height ? `${state.height}px` : null,
-            overflow: state.overflow === 'auto' ? 'auto' : null
+            overflow: state.overflow === `auto` ? `auto` : null
           }}
           // Grammarly control
           data-gramm={!props.grammarly ? false : null}
           onChange={handleChange}
         />
-        <label className={bem.getElement('label')}>{props.label}</label>
+        <label className={bem.getElement(`label`)}>{props.label}</label>
         {!props.readOnly && !props.disabled && (
           <div
-            className={bem.getElement('border')}
+            className={bem.getElement(`border`)}
             style={
               state.height
                 ? { top: `${state.height + (16 - borderHeight)}px` }
@@ -264,7 +264,7 @@ export default class Textarea extends React.Component<Props> {
           />
         )}
         {!props.readOnly && !props.disabled && (
-          <span className={bem.getElement('message')}>
+          <span className={bem.getElement(`message`)}>
             {this.showMessage(props.message, props.maxLength, state.remaining)}
           </span>
         )}

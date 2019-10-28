@@ -1,32 +1,37 @@
 import detectIt from 'detect-it';
 
-import date from '../../utilities/ts/date';
+import dateTime from '../../utilities/ts/date-time';
 
-const uniform = {
+interface Uniform {
+  getMode: () => string;
+  hasMouse: () => boolean;
+}
+
+const uniform: Uniform = {
   getMode(): string {
-    let theme: string = 'light';
+    const SEASON: string = dateTime.getSeasonName();
+    const HOUR: number = dateTime.getHour();
 
-    const SEASON: string = date.getSeason();
-    const HOUR: number = date.getHour();
+    let theme: string = `light`;
 
-    if (SEASON === 'summer') {
+    if (SEASON === `Summer`) {
       // Summer daylight hours: 0500-1900.
       if (HOUR < 4 || HOUR > 17) {
-        theme = 'dark';
+        theme = `dark`;
       }
     }
 
-    if (SEASON === 'winter') {
+    if (SEASON === `Winter`) {
       // Winter daylight hours: 0700-1700.
       if (HOUR < 6 || HOUR > 15) {
-        theme = 'dark';
+        theme = `dark`;
       }
     }
 
-    if (SEASON === 'autumn' || SEASON === 'spring') {
+    if (SEASON === `Autumn` || SEASON === `Spring`) {
       // Autumn and Spring daylight hours: 0600-1800.
       if (HOUR < 5 || HOUR > 16) {
-        theme = 'dark';
+        theme = `dark`;
       }
     }
 

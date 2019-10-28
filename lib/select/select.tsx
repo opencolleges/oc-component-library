@@ -54,22 +54,22 @@ export default class Select extends React.Component<Props> {
 
   readonly state: Readonly<State> = {
     active: false,
-    error: _.includes(_.split(this.props.modifiers, ' '), 'error'),
-    success: _.includes(_.split(this.props.modifiers, ' '), 'success'),
+    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+    success: _.includes(_.split(this.props.modifiers, ` `), `success`),
     value: _.find(this.props.options, { value: this.props.value })
       ? this.props.value
-      : ''
+      : ``
   };
 
-  componentDidUpdate(previousProps: Props, previousState: State): void {
-    if (this.props.modifiers !== previousProps.modifiers) {
+  componentDidUpdate(prevProps: Props, prevState: State): void {
+    if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(this.props.modifiers, 'error'),
-        success: _.includes(this.props.modifiers, 'success')
+        error: _.includes(this.props.modifiers, `error`),
+        success: _.includes(this.props.modifiers, `success`)
       });
     }
 
-    if (this.state.value !== previousState.value) {
+    if (this.state.value !== prevState.value) {
       this.setState({
         error: false,
         success: false
@@ -117,7 +117,7 @@ export default class Select extends React.Component<Props> {
 
         this.setState({
           active: false,
-          value: target.getAttribute('data-item')
+          value: target.getAttribute(`data-item`)
         });
 
         selectRef.focus();
@@ -171,11 +171,11 @@ export default class Select extends React.Component<Props> {
       }
 
       // options
-    } else if (target.className === namespace('select__item')) {
+    } else if (target.className === namespace(`select__item`)) {
       this.setState(
         {
           active: false,
-          value: target.getAttribute('data-item')
+          value: target.getAttribute(`data-item`)
         },
         () => {
           this.handleChange();
@@ -197,8 +197,8 @@ export default class Select extends React.Component<Props> {
 
     if (
       (relatedTarget !== null &&
-        target.getAttribute('data-id') !==
-          relatedTarget.getAttribute('data-id')) ||
+        target.getAttribute(`data-id`) !==
+          relatedTarget.getAttribute(`data-id`)) ||
       relatedTarget === null
     ) {
       this.setState({
@@ -210,7 +210,7 @@ export default class Select extends React.Component<Props> {
   getLabelFromValue = (value: string): string => {
     const { options } = this.props;
 
-    let label: string = '';
+    let label: string = ``;
 
     for (const option of options) {
       if (option.value === value) {
@@ -226,7 +226,7 @@ export default class Select extends React.Component<Props> {
     if (value) {
       for (const child of Array.from(options.childNodes)) {
         const element: HTMLElement = child as HTMLElement;
-        if (element.getAttribute('data-item') === this.state.value) {
+        if (element.getAttribute(`data-item`) === this.state.value) {
           element.focus();
           break;
         }
@@ -251,20 +251,20 @@ export default class Select extends React.Component<Props> {
       getLabelFromValue
     } = this;
 
-    const bem = BEM('select');
-    bem.addModifiers(state.error ? 'error' : '');
-    bem.addModifiers(state.success ? 'success' : '');
-    bem.addClassNames(state.value ? 'selected' : '');
-    bem.addClassNames(state.active ? 'active' : '');
+    const bem = BEM(`select`);
+    bem.addModifiers(state.error ? `error` : ``);
+    bem.addModifiers(state.success ? `success` : ``);
+    bem.addClassNames(state.value ? `selected` : ``);
+    bem.addClassNames(state.active ? `active` : ``);
     bem.addClassNames(props.className);
 
     return (
       <div className={bem.getResult()} style={props.style}>
         <input
           id={id}
-          className={`${bem.getElement('input')} ${bem.getModifier(
-            'hidden',
-            'input'
+          className={`${bem.getElement(`input`)} ${bem.getModifier(
+            `hidden`,
+            `input`
           )}`}
           type="hidden"
           name={props.name}
@@ -276,7 +276,7 @@ export default class Select extends React.Component<Props> {
         />
         <span
           ref={selectRef}
-          className={bem.getElement('input')}
+          className={bem.getElement(`input`)}
           tabIndex={!props.readOnly && !props.disabled ? 0 : null}
           onKeyDown={!props.readOnly && !props.disabled ? handleKeyDown : null}
           onMouseDown={
@@ -287,27 +287,27 @@ export default class Select extends React.Component<Props> {
           }>
           {!state.value
             ? `Pick ${
-                _.startsWith('aeiou', props.label) ? 'an' : 'a'
+                _.startsWith(`aeiou`, props.label) ? `an` : `a`
               } ${props.label.toLowerCase()}`
             : getLabelFromValue(state.value)}
         </span>
-        <label className={bem.getElement('label')}>{props.label}</label>
+        <label className={bem.getElement(`label`)}>{props.label}</label>
         {!props.readOnly && <Icon type="chevron-down" />}
         {!props.readOnly && !props.disabled && (
-          <div className={bem.getElement('border')} />
+          <div className={bem.getElement(`border`)} />
         )}
         {!props.readOnly && !props.disabled && (
           <div
-            className={bem.getElement('list-outer')}
+            className={bem.getElement(`list-outer`)}
             tabIndex={-1}
             data-id={id}
             onBlur={handleBlur}>
-            <ul className={bem.getElement('list')} ref={optionsRef}>
+            <ul className={bem.getElement(`list`)} ref={optionsRef}>
               {props.options.map((option, index) => {
                 return (
                   <li
                     key={index}
-                    className={bem.getElement('item')}
+                    className={bem.getElement(`item`)}
                     tabIndex={-1}
                     data-id={id}
                     data-item={option.value}
@@ -328,7 +328,7 @@ export default class Select extends React.Component<Props> {
           </div>
         )}
         {!props.readOnly && !props.disabled && props.message && (
-          <span className={bem.getElement('message')}>{props.message}</span>
+          <span className={bem.getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );

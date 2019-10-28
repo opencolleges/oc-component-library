@@ -1,13 +1,13 @@
 const getWindowWidth = (): string => {
-  const windowWidth = window.innerWidth;
+  const windowWidth: number = window.innerWidth;
 
-  let context;
+  let context: string;
 
   windowWidth <= 480
-    ? (context = 'small')
+    ? (context = `small`)
     : windowWidth <= 768
-    ? (context = 'medium')
-    : (context = 'large');
+    ? (context = `medium`)
+    : (context = `large`);
 
   return context;
 };

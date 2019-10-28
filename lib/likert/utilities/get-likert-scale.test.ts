@@ -1,80 +1,82 @@
 import getLikertScale from './get-likert-scale';
 
-describe('getLikertScale()', () => {
-  it('Handles an empty array argument', () => {
+import { NAMESPACE } from '../../utilities/ts/constants';
+
+describe(`getLikertScale()`, () => {
+  it(`Handles an empty array argument`, () => {
     expect(getLikertScale([])).toMatchObject([
-      { id: 'oc-1', label: '' },
-      { id: 'oc-2', label: '' },
-      { id: 'oc-3', label: '' }
+      { id: `${NAMESPACE}-1`, label: `` },
+      { id: `${NAMESPACE}-2`, label: `` },
+      { id: `${NAMESPACE}-3`, label: `` }
     ]);
   });
 
-  it('Handles an array argument w/ five indexes', () => {
+  it(`Handles an array argument w/ five indexes`, () => {
     expect(
       getLikertScale([
-        { label: 'Foo' },
+        { label: `Foo` },
         {},
-        { label: 'Bar' },
-        { label: 'Baz' },
+        { label: `Bar` },
+        { label: `Baz` },
         {}
       ])
     ).toMatchObject([
-      { id: 'oc-4', label: 'Foo' },
-      { id: 'oc-5', label: '' },
-      { id: 'oc-6', label: 'Bar' },
-      { id: 'oc-7', label: 'Baz' },
-      { id: 'oc-8', label: '' }
+      { id: `${NAMESPACE}-4`, label: `Foo` },
+      { id: `${NAMESPACE}-5`, label: `` },
+      { id: `${NAMESPACE}-6`, label: `Bar` },
+      { id: `${NAMESPACE}-7`, label: `Baz` },
+      { id: `${NAMESPACE}-8`, label: `` }
     ]);
   });
 
-  it('Handles an array argument w/ six indexes', () => {
+  it(`Handles an array argument w/ six indexes`, () => {
     expect(
       getLikertScale([
-        { label: 'Foo' },
-        { label: 'Bar' },
+        { label: `Foo` },
+        { label: `Bar` },
         {},
         {},
-        { label: 'Baz' },
-        { label: 'Qui' }
+        { label: `Baz` },
+        { label: `Qui` }
       ])
     ).toMatchObject([
-      { id: 'oc-9', label: 'Foo' },
-      { id: 'oc-10', label: 'Bar' },
-      { id: 'oc-11', label: '' },
-      { id: 'oc-12', label: '' },
-      { id: 'oc-13', label: 'Baz' },
-      { id: 'oc-14', label: 'Qui' }
+      { id: `${NAMESPACE}-9`, label: `Foo` },
+      { id: `${NAMESPACE}-10`, label: `Bar` },
+      { id: `${NAMESPACE}-11`, label: `` },
+      { id: `${NAMESPACE}-12`, label: `` },
+      { id: `${NAMESPACE}-13`, label: `Baz` },
+      { id: `${NAMESPACE}-14`, label: `Qui` }
     ]);
   });
 
-  it('Handles an array argument w/ 12 indexes', () => {
+  it(`Handles an array argument w/ 12 indexes`, () => {
     expect(
       getLikertScale([
-        { label: 'Foo' },
+        { label: `Foo` },
         {},
         {},
-        { label: 'Bar' },
-        { label: 'Baz' },
+        { label: `Bar` },
+        { label: `Baz` },
         {},
         {},
         {},
-        { label: 'Qui' },
+        { label: `Qui` },
         {},
-        { label: 'Qux' },
+        { label: `Qux` },
         {}
       ])
     ).toMatchObject([
-      { id: 'oc-15', label: 'Foo' },
-      { id: 'oc-16', label: '' },
-      { id: 'oc-17', label: '' },
-      { id: 'oc-18', label: 'Bar' },
-      { id: 'oc-19', label: 'Baz' },
-      { id: 'oc-20', label: '' },
-      { id: 'oc-21', label: '' },
-      { id: 'oc-22', label: '' },
-      { id: 'oc-23', label: 'Qui' },
-      { id: 'oc-24', label: '' },
-      { id: 'oc-25', label: 'Qux' }
+      { id: `${NAMESPACE}-15`, label: `Foo` },
+      { id: `${NAMESPACE}-16`, label: `` },
+      { id: `${NAMESPACE}-17`, label: `` },
+      { id: `${NAMESPACE}-18`, label: `Bar` },
+      { id: `${NAMESPACE}-19`, label: `Baz` },
+      { id: `${NAMESPACE}-20`, label: `` },
+      { id: `${NAMESPACE}-21`, label: `` },
+      { id: `${NAMESPACE}-22`, label: `` },
+      { id: `${NAMESPACE}-23`, label: `Qui` },
+      { id: `${NAMESPACE}-24`, label: `` },
+      { id: `${NAMESPACE}-25`, label: `Qux` }
     ]);
   });
 });

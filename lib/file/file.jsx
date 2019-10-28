@@ -29,16 +29,16 @@ export default class File extends React.Component {
     this.state = {
       active: false,
       files: props.files.length > 0 ? props.files : [],
-      error: _.includes(_.split(this.props.modifiers, ' '), 'file--error'),
-      success: _.includes(_.split(this.props.modifiers, ' '), 'file--success')
+      error: _.includes(_.split(this.props.modifiers, ` `), `file--error`),
+      success: _.includes(_.split(this.props.modifiers, ` `), `file--success`)
     };
   }
 
   componentDidUpdate(previousProps, previousState) {
     if (this.props.modifiers !== previousProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ' '), 'file--error'),
-        success: _.includes(_.split(this.props.modifiers, ' '), 'file--success')
+        error: _.includes(_.split(this.props.modifiers, ` `), `file--error`),
+        success: _.includes(_.split(this.props.modifiers, ` `), `file--success`)
       });
     }
 
@@ -106,7 +106,7 @@ export default class File extends React.Component {
     let newFiles;
     const fileRef = this.fileRef.current;
 
-    if (typeof e.dataTransfer !== 'undefined') {
+    if (typeof e.dataTransfer !== `undefined`) {
       newFiles = e.dataTransfer.files;
     } else {
       newFiles = fileRef.files;
@@ -137,8 +137,8 @@ export default class File extends React.Component {
               name: newFile.name,
               size: newFile.size,
               progress: 0,
-              message: 'Invalid file type',
-              modifiers: 'progress--error'
+              message: `Invalid file type`,
+              modifiers: `progress--error`
             });
           } else if (!this.isValidFileSize(newFile.size)) {
             files.push({
@@ -146,7 +146,7 @@ export default class File extends React.Component {
               size: newFile.size,
               progress: 0,
               message: `File exceeds ${getBytes(this.props.fileSize)}`,
-              modifiers: 'progress--error'
+              modifiers: `progress--error`
             });
           } else {
             files.push({
@@ -169,7 +169,7 @@ export default class File extends React.Component {
 
     // * Manually empty the FileList object to force the onChange() method to
     // *  fire if the same file has been uploaded a second time.
-    fileRef.value = '';
+    fileRef.value = ``;
   };
 
   handleClick = (e, fileName) => {
@@ -204,28 +204,28 @@ export default class File extends React.Component {
       handleClick
     } = this;
 
-    const modifiers = remove(['file--error', 'file--success'], props.modifiers);
+    const modifiers = remove([`file--error`, `file--success`], props.modifiers);
 
-    let classNames = namespace('file');
+    let classNames = namespace(`file`);
 
-    modifiers && (classNames += ` ${namespace(toModifier(modifiers, 'file'))}`);
+    modifiers && (classNames += ` ${namespace(toModifier(modifiers, `file`))}`);
 
-    state.error && (classNames += ` ${namespace(toModifier('error', 'file'))}`);
+    state.error && (classNames += ` ${namespace(toModifier(`error`, `file`))}`);
     state.success &&
-      (classNames += ` ${namespace(toModifier('success', 'file'))}`);
+      (classNames += ` ${namespace(toModifier(`success`, `file`))}`);
 
     props.className && (classNames += ` ${props.className}`);
 
     return (
       <div className={classNames} style={props.style}>
-        <div className={namespace('file__outer')} onDragEnter={handleDragEnter}>
+        <div className={namespace(`file__outer`)} onDragEnter={handleDragEnter}>
           <input
             ref={fileRef}
             id={id}
             className={
               !state.active
-                ? namespace('file__input')
-                : namespace('file__input active')
+                ? namespace(`file__input`)
+                : namespace(`file__input active`)
             }
             type="file"
             multiple={props.multiple}
@@ -236,43 +236,44 @@ export default class File extends React.Component {
             onDragEnter={event => event.preventDefault()}
             onDragOver={event => event.preventDefault()}
           />
-          <div className={namespace('file__inner')}>
-            <div className={namespace('file__image')}>
+          <div className={namespace(`file__inner`)}>
+            <div className={namespace(`file__image`)}>
               <Icon type="cloud-upload" />
             </div>
-            <span className={namespace('file__description')}>
-              <strong className={namespace('strong')}>
-                {`Drag and drop ${!props.multiple ? 'a file' : 'files'}`}
+            <span className={namespace(`file__description`)}>
+              <strong className={namespace(`strong`)}>
+                {`Drag and drop ${!props.multiple ? `a file` : `files`}`}
               </strong>
               <br />
               or
             </span>
-            <label htmlFor={id} className={namespace('file__label')}>
-              {`Select ${!props.multiple ? 'a file' : 'files'}`}
+            <label htmlFor={id} className={namespace(`file__label`)}>
+              {`Select ${!props.multiple ? `a file` : `files`}`}
             </label>
-            <span className={namespace('file__types')}>{`${
+            <span className={namespace(`file__types`)}>{`${
               !state.selected
-                ? props.fileTypes.join(', ')
+                ? props.fileTypes.join(`, `)
                 : `${state.files.length} ${
-                    state.files.length > 1 ? 'files' : 'file'
+                    state.files.length > 1 ? `files` : `file`
                   } added`
             }`}</span>
           </div>
         </div>
         {(state.error || state.success) && props.message && (
-          <span className={namespace('file__message')}>{props.message}</span>
+          <span className={namespace(`file__message`)}>{props.message}</span>
         )}
         {state.files.length !== 0 && (
-          <div className={namespace('file__list')}>
+          <div className={namespace(`file__list`)}>
             <Table>
               <TableBody>
                 {state.files.map(file => (
                   <TableRow key={file.name} modifiers="file__item">
                     <TableCell>
-                      <span className={namespace('file__name')}>
-                        {file.name}{' '}
+                      <span className={namespace(`file__name`)}>
+                        {file.name}
+                        {` `}
                       </span>
-                      <span className={namespace('file__size')}>
+                      <span className={namespace(`file__size`)}>
                         {getBytes(file.size)}
                       </span>
                     </TableCell>
@@ -282,14 +283,14 @@ export default class File extends React.Component {
                         message={file.message}
                         modifiers={
                           !file.modifiers
-                            ? 'progress--compact'
+                            ? `progress--compact`
                             : `progress--compact ${file.modifiers}`
                         }
                       />
                     </TableCell>
                     <TableCell modifiers="td--middle" width={40}>
                       <button
-                        className={namespace('file__button')}
+                        className={namespace(`file__button`)}
                         title="Remove"
                         onClick={e => handleClick(e, file.name)}>
                         <Icon type="close" />
@@ -330,7 +331,7 @@ File.propTypes = {
 File.defaultProps = {
   files: [],
   fileSize: 10485760,
-  fileTypes: ['jpg', 'jpeg', 'png', 'pdf'],
+  fileTypes: [`jpg`, `jpeg`, `png`, `pdf`],
   multiple: false,
   onChange: () => {},
   onRemove: () => {}

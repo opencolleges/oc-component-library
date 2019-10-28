@@ -4,7 +4,7 @@ import React from 'react';
 import namespace from '../utilities/ts/namespace';
 import uniform from './utilities/uniform';
 
-type TTag = 'div' | 'main' | 'section';
+type TTag = `div` | `main` | `section`;
 
 interface Props {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ interface Props {
 
 const Uniform: React.FC<Props> = props => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
-  const device: string = uniform.hasMouse() ? 'no-touchevents' : '';
+  const device: string = uniform.hasMouse() ? `no-touchevents` : ``;
   const mode: string = props.mode ? props.mode : uniform.getMode();
   const classNames: string = _.trim(
     `${namespace(device, mode)} ${_.toString(props.className)}`
@@ -30,7 +30,7 @@ const Uniform: React.FC<Props> = props => {
 };
 
 Uniform.defaultProps = {
-  tag: 'main'
+  tag: `main`
 };
 
 export default Uniform;

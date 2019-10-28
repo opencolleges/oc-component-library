@@ -14,64 +14,64 @@ import Avatar from './avatar';
 
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
-const avatarHref = ['Link', 'https://www.example.com'];
-const avatarImage = ['Image URL', ''];
-const avatarFirstName = ['First name', 'Angela'];
+const avatarHref = [`Link`, `https://www.example.com`];
+const avatarImage = [`Image URL`, ``];
+const avatarFirstName = [`First name`, `Angela`];
 const avatarSex = [
-  'Sex',
+  `Sex`,
   {
-    Female: 'female',
-    Male: 'male',
-    Undisclosed: 'undisclosed'
+    Female: `female`,
+    Male: `male`,
+    Undisclosed: `undisclosed`
   },
-  'female',
-  { display: 'inline-radio' }
+  `female`,
+  { display: `inline-radio` }
 ];
-const avatarValue = ['Number', 1];
+const avatarValue = [`Number`, 1];
 
-const stories = storiesOf('Avatar', module);
+const stories = storiesOf(`Avatar`, module);
 
 stories.addDecorator(withA11y).addDecorator(withKnobs);
 
 stories
-  .add('Default', () => {
+  .add(`Default`, () => {
     const image = text(...avatarImage);
     const firstName = text(...avatarFirstName);
     const sex = options(...avatarSex);
     const state = options(
-      'State',
+      `State`,
       {
-        Default: '',
-        Reversed: 'reversed'
+        Default: ``,
+        Reversed: `reversed`
       },
-      '',
-      { display: 'inline-radio' }
+      ``,
+      { display: `inline-radio` }
     );
 
     return (
-      <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: '8rem' }}>
+      <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: `8rem` }}>
         <Avatar
           image={image ? image : null}
-          firstName={firstName ? firstName : 'Add first name'}
+          firstName={firstName ? firstName : `Add first name`}
           sex={sex}
           modifiers={state ? `avatar--${state}` : null}
         />
       </Uniform>
     );
   })
-  .add('Small', () => {
+  .add(`Small`, () => {
     const href = text(...avatarHref);
     const image = text(...avatarImage);
     const firstName = text(...avatarFirstName);
     const sex = options(...avatarSex);
     const state = options(
-      'State',
+      `State`,
       {
-        Default: '',
-        Reversed: 'reversed'
+        Default: ``,
+        Reversed: `reversed`
       },
-      '',
-      { display: 'inline-radio' }
+      ``,
+      { display: `inline-radio` }
     );
 
     return (
@@ -80,38 +80,38 @@ stories
           <Avatar
             href={href ? href : null}
             image={image ? image : null}
-            firstName={firstName ? firstName : 'Add first name'}
+            firstName={firstName ? firstName : `Add first name`}
             sex={sex}
-            modifiers={`avatar--s${state ? ` avatar--${state}` : ''}`}
+            modifiers={`avatar--s${state ? ` avatar--${state}` : ``}`}
           />
         ) : (
           <Avatar
-            firstName={firstName ? firstName : 'Add first name'}
+            firstName={firstName ? firstName : `Add first name`}
             sex={sex}
-            modifiers={`avatar--s${state ? ` avatar--${state}` : ''}`}
+            modifiers={`avatar--s${state ? ` avatar--${state}` : ``}`}
           />
         )}
       </Uniform>
     );
   })
-  .add('Medium', () => {
+  .add(`Medium`, () => {
     const href = text(...avatarHref);
     const image = text(...avatarImage);
     const firstName = text(...avatarFirstName);
     const sex = options(...avatarSex);
     const state = options(
-      'State',
+      `State`,
       {
-        Default: '',
-        Error: 'error',
-        Success: 'success',
-        Reversed: 'reversed'
+        Default: ``,
+        Error: `error`,
+        Success: `success`,
+        Reversed: `reversed`
       },
-      '',
-      { display: 'inline-radio' }
+      ``,
+      { display: `inline-radio` }
     );
     const value =
-      state === 'error' || state === 'success' ? number(...avatarValue) : 0;
+      state === `error` || state === `success` ? number(...avatarValue) : 0;
 
     return (
       <Uniform tag="div" style={UNIFORM_STYLES}>
@@ -119,41 +119,41 @@ stories
           <Avatar
             href={href}
             image={image ? image : null}
-            firstName={firstName ? firstName : 'Add first name'}
+            firstName={firstName ? firstName : `Add first name`}
             sex={sex}
-            modifiers={`avatar--m${state ? ` avatar--${state}` : ''}`}
-            value={value ? value : 'Add label'}
+            modifiers={`avatar--m${state ? ` avatar--${state}` : ``}`}
+            value={value ? value : `Add label`}
           />
         ) : (
           <Avatar
             image={image ? image : null}
-            firstName={firstName ? firstName : 'Add first name'}
+            firstName={firstName ? firstName : `Add first name`}
             sex={sex}
-            modifiers={`avatar--m${state ? ` avatar--${state}` : ''}`}
-            value={value ? value : 'Add label'}
+            modifiers={`avatar--m${state ? ` avatar--${state}` : ``}`}
+            value={value ? value : `Add label`}
           />
         )}
       </Uniform>
     );
   })
-  .add('Large', () => {
+  .add(`Large`, () => {
     const href = text(...avatarHref);
     const image = text(...avatarImage);
     const firstName = text(...avatarFirstName);
     const sex = options(...avatarSex);
     const state = options(
-      'State',
+      `State`,
       {
-        Default: '',
-        Error: 'error',
-        Success: 'success',
-        Reversed: 'reversed'
+        Default: ``,
+        Error: `error`,
+        Success: `success`,
+        Reversed: `reversed`
       },
-      '',
-      { display: 'inline-radio' }
+      ``,
+      { display: `inline-radio` }
     );
     const value =
-      state === 'error' || state === 'success' ? number(...avatarValue) : 0;
+      state === `error` || state === `success` ? number(...avatarValue) : 0;
 
     return (
       <Uniform tag="div" style={UNIFORM_STYLES}>
@@ -161,18 +161,18 @@ stories
           <Avatar
             href={href}
             image={image ? image : null}
-            firstName={firstName ? firstName : 'Add first name'}
+            firstName={firstName ? firstName : `Add first name`}
             sex={sex}
-            modifiers={`avatar--l${state ? ` avatar--${state}` : ''}`}
-            value={value ? value : 'Add label'}
+            modifiers={`avatar--l${state ? ` avatar--${state}` : ``}`}
+            value={value ? value : `Add label`}
           />
         ) : (
           <Avatar
             image={image ? image : null}
-            firstName={firstName ? firstName : 'Add first name'}
+            firstName={firstName ? firstName : `Add first name`}
             sex={sex}
-            modifiers={`avatar--l${state ? ` avatar--${state}` : ''}`}
-            value={value ? value : 'Add label'}
+            modifiers={`avatar--l${state ? ` avatar--${state}` : ``}`}
+            value={value ? value : `Add label`}
           />
         )}
       </Uniform>

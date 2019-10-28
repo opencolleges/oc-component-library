@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Table: React.FC<Props> = props => {
-  const bem = BEM('table');
+  const bem = BEM(`table`);
   bem.addModifiers(props.modifiers);
   bem.addClassNames(props.className);
 

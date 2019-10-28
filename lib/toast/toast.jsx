@@ -43,7 +43,7 @@ export default class Toast extends React.Component {
   componentDidMount() {
     this.setState({ top: this.setTop(this.toastRef.current), mounted: true });
 
-    if (this.props.modifiers !== 'toast--error') {
+    if (this.props.modifiers !== `toast--error`) {
       this.timer = new getTimer(this.handleClick, this.props.duration);
     }
   }
@@ -77,13 +77,13 @@ export default class Toast extends React.Component {
 
     if (nextToastRef) {
       for (let index = 0; index < nextToastRef.childNodes.length; index++) {
-        if (nextToastRef.childNodes[index].hasAttribute('tabindex')) {
+        if (nextToastRef.childNodes[index].hasAttribute(`tabindex`)) {
           nextToastRef.childNodes[index].focus();
         }
       }
     } else if (previousToastRef) {
       for (let index = 0; index < previousToastRef.childNodes.length; index++) {
-        if (previousToastRef.childNodes[index].hasAttribute('tabindex')) {
+        if (previousToastRef.childNodes[index].hasAttribute(`tabindex`)) {
           previousToastRef.childNodes[index].focus();
         }
       }
@@ -93,7 +93,7 @@ export default class Toast extends React.Component {
   };
 
   handleMouseEnter = () => {
-    if (this.props.modifiers !== 'toast--error' && !this.state.focus) {
+    if (this.props.modifiers !== `toast--error` && !this.state.focus) {
       this.timer.pause();
     }
 
@@ -101,7 +101,7 @@ export default class Toast extends React.Component {
   };
 
   handleMouseLeave = () => {
-    if (this.props.modifiers !== 'toast--error' && !this.state.focus) {
+    if (this.props.modifiers !== `toast--error` && !this.state.focus) {
       this.timer.resume();
     }
 
@@ -109,7 +109,7 @@ export default class Toast extends React.Component {
   };
 
   handleFocus = () => {
-    if (this.props.modifiers !== 'toast--error' && !this.state.mouseOver) {
+    if (this.props.modifiers !== `toast--error` && !this.state.mouseOver) {
       this.timer.pause();
     }
 
@@ -117,7 +117,7 @@ export default class Toast extends React.Component {
   };
 
   handleBlur = () => {
-    if (this.props.modifiers !== 'toast--error' && !this.state.mouseOver) {
+    if (this.props.modifiers !== `toast--error` && !this.state.mouseOver) {
       this.timer.resume();
     }
 
@@ -142,7 +142,7 @@ export default class Toast extends React.Component {
           index++
         ) {
           if (
-            toastRef.previousSibling.childNodes[index].hasAttribute('tabindex')
+            toastRef.previousSibling.childNodes[index].hasAttribute(`tabindex`)
           ) {
             toastRef.previousSibling.childNodes[index].focus();
             break;
@@ -163,7 +163,7 @@ export default class Toast extends React.Component {
           index++
         ) {
           if (
-            toastRef.previousSibling.childNodes[index].hasAttribute('tabindex')
+            toastRef.previousSibling.childNodes[index].hasAttribute(`tabindex`)
           ) {
             toastRef.previousSibling.childNodes[index].focus();
             break;
@@ -183,7 +183,7 @@ export default class Toast extends React.Component {
           index < toastRef.nextSibling.childNodes.length;
           index++
         ) {
-          if (toastRef.nextSibling.childNodes[index].hasAttribute('tabindex')) {
+          if (toastRef.nextSibling.childNodes[index].hasAttribute(`tabindex`)) {
             toastRef.nextSibling.childNodes[index].focus();
             break;
           }
@@ -202,7 +202,7 @@ export default class Toast extends React.Component {
           index < toastRef.nextSibling.childNodes.length;
           index++
         ) {
-          if (toastRef.nextSibling.childNodes[index].hasAttribute('tabindex')) {
+          if (toastRef.nextSibling.childNodes[index].hasAttribute(`tabindex`)) {
             toastRef.nextSibling.childNodes[index].focus();
             break;
           }
@@ -224,12 +224,12 @@ export default class Toast extends React.Component {
       handleClick
     } = this;
 
-    let classNames = namespace('toast');
+    let classNames = namespace(`toast`);
 
     props.modifiers &&
-      (classNames += ` ${namespace(toModifier(props.modifiers, 'toast'))}`);
+      (classNames += ` ${namespace(toModifier(props.modifiers, `toast`))}`);
 
-    state.mounted && (classNames += ` ${namespace('mounted')}`);
+    state.mounted && (classNames += ` ${namespace(`mounted`)}`);
 
     props.className && (classNames += ` ${props.className}`);
 
@@ -243,33 +243,33 @@ export default class Toast extends React.Component {
         onBlur={handleBlur}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
-        <h6 className={namespace('toast__heading')}>{props.heading}</h6>
-        <p className={namespace('toast__message')}>{props.message}</p>
+        <h6 className={namespace(`toast__heading`)}>{props.heading}</h6>
+        <p className={namespace(`toast__message`)}>{props.message}</p>
         <button
           id={props.id}
-          className={namespace('toast__button')}
+          className={namespace(`toast__button`)}
           tabIndex={0}
           title="Close"
           onClick={handleClick}>
-          <Icon modifiers={'icon--close active'} />
+          <Icon modifiers={`icon--close active`} />
         </button>
         <Icon
           modifiers={`icon--close-ring ${
-            _.includes(_.split(props.modifiers, ' '), 'toast--error')
-              ? 'active'
-              : ''
+            _.includes(_.split(props.modifiers, ` `), `toast--error`)
+              ? `active`
+              : ``
           }`}
         />
         <Icon
           modifiers={`icon--tick-ring ${
-            _.includes(_.split(props.modifiers, ' '), 'toast--success')
-              ? 'active'
-              : ''
+            _.includes(_.split(props.modifiers, ` `), `toast--success`)
+              ? `active`
+              : ``
           }`}
         />
         {props.icon &&
-          (!_.includes(_.split(props.modifiers, ' '), 'toast--error') ||
-            !_.includes(_.split(props.modifiers, ' '), 'toast--success')) && (
+          (!_.includes(_.split(props.modifiers, ` `), `toast--error`) ||
+            !_.includes(_.split(props.modifiers, ` `), `toast--success`)) && (
             <Icon modifiers={`${props.icon} active`} />
           )}
       </div>
@@ -279,7 +279,7 @@ export default class Toast extends React.Component {
 
 Toast.propTypes = {
   id: PropTypes.string.isRequired,
-  modifiers: PropTypes.oneOf(['toast--error', 'toast--success']),
+  modifiers: PropTypes.oneOf([`toast--error`, `toast--success`]),
   className: PropTypes.string,
   style: PropTypes.object,
   icon: PropTypes.string,

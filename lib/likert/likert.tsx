@@ -25,7 +25,7 @@ export default class Likert extends React.Component<Props, State> {
   };
 
   readonly state: Readonly<State> = {
-    value: ''
+    value: ``
   };
 
   scale: Array<{ id: string; label: string }> = getLikertScale(
@@ -41,38 +41,38 @@ export default class Likert extends React.Component<Props, State> {
   render() {
     const { props, state, scale, handleChange } = this;
 
-    const bem = BEM('likert');
+    const bem = BEM(`likert`);
     bem.addModifiers(props.modifiers);
     bem.addClassNames(props.className);
 
     return (
       <div className={bem.getResult()} style={props.style}>
         <div
-          className={`${bem.getElement('list')} ${bem.getModifier(
+          className={`${bem.getElement(`list`)} ${bem.getModifier(
             `${scale.length}`,
-            'list'
+            `list`
           )}`}>
           {scale.map((option, i) => (
             <div
               key={i}
-              className={`${bem.getElement('item')}${
-                i + 1 !== Number(state.value) ? '' : ' active'
+              className={`${bem.getElement(`item`)}${
+                i + 1 !== Number(state.value) ? `` : ` active`
               }`}>
               <input
                 id={option.id}
-                className={bem.getElement('input')}
+                className={bem.getElement(`input`)}
                 type="radio"
                 name={props.name}
                 value={i + 1}
                 tabIndex={0}
                 onChange={handleChange}
               />
-              <div className={bem.getElement('label-outer')}>
-                <label htmlFor={option.id} className={bem.getElement('button')}>
+              <div className={bem.getElement(`label-outer`)}>
+                <label htmlFor={option.id} className={bem.getElement(`button`)}>
                   {scale.length > 10 ? i : i + 1}
                 </label>
                 {hasLikertLabel(scale, i) && option.label && (
-                  <span className={bem.getElement('label')}>
+                  <span className={bem.getElement(`label`)}>
                     {option.label}
                   </span>
                 )}

@@ -4,7 +4,7 @@ import React from 'react';
 
 // * utility imports
 import getRange from '../utilities/ts/getRange';
-import getWindowWidth from '../utilities/ts/getWindowWidth';
+import getWindowWidth from '../utilities/ts/get-window-width';
 import namespace from '../utilities/ts/namespace';
 
 // * child imports
@@ -37,11 +37,11 @@ export default class Pagination extends React.Component {
     this.showPagination();
     this.updateDimensions();
 
-    window.addEventListener('resize', this.updateDimensions);
+    window.addEventListener(`resize`, this.updateDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
+    window.removeEventListener(`resize`, this.updateDimensions);
   }
 
   componentDidUpdate(prevProps) {
@@ -66,9 +66,9 @@ export default class Pagination extends React.Component {
 
     let siblings;
 
-    if (windowWidth === 'small') {
+    if (windowWidth === `small`) {
       siblings = this.mobileSiblings;
-    } else if (windowWidth === 'medium') {
+    } else if (windowWidth === `medium`) {
       siblings = this.tabletSiblings;
     } else {
       siblings = this.desktopSiblings;
@@ -80,7 +80,7 @@ export default class Pagination extends React.Component {
 
       let paginationWidth = null;
 
-      if (windowWidth === 'small') {
+      if (windowWidth === `small`) {
         if (paginationChildren === 4) paginationWidth = 112;
         else if (paginationChildren === 5) paginationWidth = 160;
         else paginationWidth = 208;
@@ -191,7 +191,7 @@ export default class Pagination extends React.Component {
     const paginationRef = this.paginationRef.current;
 
     this.setState({ currentPage: pageNumber }, function() {
-      paginationRef.getElementsByClassName(namespace('active'))[0].focus();
+      paginationRef.getElementsByClassName(namespace(`active`))[0].focus();
       this.handleHighlight();
     });
 
@@ -255,7 +255,7 @@ export default class Pagination extends React.Component {
   };
 
   getPageStatus = pageNumber => {
-    let status = '';
+    let status = ``;
     const pages = this.state.pages;
     for (let index = 0; index < pages.length; index++) {
       if (pages[index].number === pageNumber) {
@@ -281,21 +281,21 @@ export default class Pagination extends React.Component {
 
     const pagination = this.fetchPagination();
 
-    let classNames = namespace('pagination');
+    let classNames = namespace(`pagination`);
 
-    state.mounted && (classNames += ` ${namespace('mounted')}`);
+    state.mounted && (classNames += ` ${namespace(`mounted`)}`);
 
     props.className && (classNames += ` ${props.className}`);
 
     return (
       <div className={classNames} style={props.style}>
-        <ul className={namespace('pagination__list')}>
+        <ul className={namespace(`pagination__list`)}>
           <li
             className={
               !pagination.previousPage
-                ? namespace('pagination__item pagination__item--previous')
+                ? namespace(`pagination__item pagination__item--previous`)
                 : namespace(
-                    'pagination__item pagination__item--previous pagination__item--selectable'
+                    `pagination__item pagination__item--previous pagination__item--selectable`
                   )
             }
             tabIndex={-1}
@@ -304,15 +304,15 @@ export default class Pagination extends React.Component {
             }
             onKeyDown={handleKeyDown}>
             <Icon type="arrow-left" />
-            <span className={namespace('pagination__label')}>Prev</span>
+            <span className={namespace(`pagination__label`)}>Prev</span>
           </li>
         </ul>
         <ul
           ref={paginationRef}
-          className={namespace('pagination__list')}
+          className={namespace(`pagination__list`)}
           style={{ width: `${state.width / 16}rem` }}>
           <div
-            className={namespace('pagination__highlight')}
+            className={namespace(`pagination__highlight`)}
             style={{
               transform: `translateX(${state.highlightCoords / 16}rem)`
             }}
@@ -330,7 +330,7 @@ export default class Pagination extends React.Component {
                         )} active`
                       )
                     : namespace(
-                        'pagination__item pagination__item--selectable active'
+                        `pagination__item pagination__item--selectable active`
                       )
                   : getPageStatus(page)
                   ? namespace(
@@ -338,7 +338,7 @@ export default class Pagination extends React.Component {
                         page
                       )}`
                     )
-                  : namespace('pagination__item pagination__item--selectable')
+                  : namespace(`pagination__item pagination__item--selectable`)
               }
               tabIndex={state.currentPage === page ? 0 : -1}
               onClick={event => handleClick(event, page)}
@@ -346,30 +346,30 @@ export default class Pagination extends React.Component {
               {page}
             </li>
           ))}
-          <li className={namespace('pagination__item')}>of</li>
+          <li className={namespace(`pagination__item`)}>of</li>
           <li
             className={namespace(
-              'pagination__item pagination__item--selectable'
+              `pagination__item pagination__item--selectable`
             )}
             onClick={event => handleClick(event, totalPages)}
             tabIndex={-1}>
             {totalPages}
           </li>
         </ul>
-        <ul className={namespace('pagination__list')}>
+        <ul className={namespace(`pagination__list`)}>
           <li
             className={
               !pagination.nextPage
-                ? namespace('pagination__item pagination__item--next')
+                ? namespace(`pagination__item pagination__item--next`)
                 : namespace(
-                    'pagination__item pagination__item--next pagination__item--selectable'
+                    `pagination__item pagination__item--next pagination__item--selectable`
                   )
             }
             tabIndex={-1}
             onClick={pagination.nextPage ? event => handleNext(event) : null}
             onKeyDown={handleKeyDown}>
             <Icon type="arrow-right" />
-            <span className={namespace('pagination__label')}>Next</span>
+            <span className={namespace(`pagination__label`)}>Next</span>
           </li>
         </ul>
       </div>

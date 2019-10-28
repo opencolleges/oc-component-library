@@ -1,78 +1,132 @@
 import React from 'react';
 
-import { mount } from 'enzyme';
-
 import Badge from '../badge';
 import Avatar from './avatar';
-const Props = {
-  className: 'testClass',
-  firstName: 'name',
-  image: 'imageURL',
-  modifiers: 'avatar--m avatar--success',
-  style: {
-    zIndex: 1
-  },
-  value: 6
-};
 
-describe('<Avatar />', () => {
-  describe('default', () => {
-    let wrapper;
-    beforeEach(() => {
-      wrapper = mount(<Avatar firstName="test" sex="male" />);
-    });
-    afterEach(() => {
-      wrapper.unmount();
-    });
-    it('should render component with default props', () => {
-      expect(wrapper.getDOMNode().nodeName).toBe('DIV');
-      expect(wrapper.getDOMNode().childNodes[0].className).toMatch(
-        'avatar__image--male-'
-      );
-      expect(wrapper.find('.oc-avatar__image').length).toBe(1);
-      expect(wrapper.find('svg').length).toBe(0);
-      expect(wrapper.find('[title="test"]').length).toBe(1);
-      expect(wrapper.find(Badge).length).toBe(0);
-      expect(wrapper.getDOMNode().nodeName).toBe('DIV');
-    });
+import { NAMESPACE } from '../utilities/ts/constants';
+
+import { mount } from 'enzyme';
+
+let wrapper;
+
+describe(`<Avatar />`, () => {
+  beforeEach(() => {
+    wrapper = mount(<Avatar firstName="Foo" sex="male" />);
   });
 
-  describe('with props', () => {
-    let wrapper;
+  it(`Handles props.className`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-avatar`
+    );
 
-    beforeEach(() => {
-      wrapper = mount(<Avatar {...Props} sex="female" />);
-    });
+    wrapper.setProps({ className: `qux` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-avatar qux`
+    );
 
-    afterEach(() => {
-      wrapper.unmount();
-    });
+    wrapper.setProps({ className: `qux corge` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-avatar qux corge`
+    );
+  });
 
-    it('should render avatar component ', () => {
-      expect(wrapper.find('svg').length).toBe(0);
-      expect(wrapper.find(Badge).length).toBe(1);
-      expect(wrapper.getDOMNode().nodeName).toBe('DIV');
-    });
+  it(`Handles props.firstName`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`title`)).toBe(`Foo`);
 
-    it('should render Badge component', () => {
-      expect(wrapper.find(Badge).length).toBe(1);
-      expect(wrapper.find(Badge).text()).toBe('6');
-    });
+    wrapper.setProps({ firstName: `Bar` });
+    expect(wrapper.getDOMNode().getAttribute(`title`)).toBe(`Bar`);
 
-    it('should handle class name and modifiers props', () => {
-      expect(wrapper.find('.testClass').hostNodes().length).toBe(1);
-      expect(wrapper.find('.oc-avatar--m').length).toBe(1);
-    });
+    wrapper.setProps({ firstName: `Baz` });
+    expect(wrapper.getDOMNode().getAttribute(`title`)).toBe(`Baz`);
+  });
 
-    it('should handle style props ', () => {
-      expect(wrapper.getDOMNode().getAttribute('style')).toBe('z-index: 1;');
-    });
+  it(`Handles props.href`, () => {
+    expect(wrapper.find(`a`).length).toBe(0);
 
-    it('should render a tag ', () => {
-      wrapper.setProps({ href: 'google.com' });
-      expect(wrapper.find('svg').length).toBe(1);
-      expect(wrapper.find('a').length).toBe(1);
-      expect(wrapper.getDOMNode().getAttribute('href')).toBe('google.com');
-    });
+    wrapper.setProps({ href: `https://www.example.com` });
+    expect(wrapper.find(`a`).length).toBe(1);
+    expect(
+      wrapper
+        .find(`a`)
+        .getDOMNode()
+        .getAttribute(`href`)
+    ).toBe(`https://www.example.com`);
+
+    wrapper.setProps({ href: undefined });
+    expect(wrapper.find(`a`).length).toBe(0);
+  });
+
+  it(`Handles props.image`, () => {
+    return;
+  });
+
+  it(`Handles props.modifiers`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-avatar`
+    );
+
+    wrapper.setProps({ modifiers: `reversed` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-avatar ${NAMESPACE}-avatar--reversed`
+    );
+
+    wrapper.setProps({ modifiers: `success` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-avatar ${NAMESPACE}-avatar--success`
+    );
+  });
+
+  it(`Handles props.sex`, () => {
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-avatar__image`)
+        .getDOMNode()
+        .getAttribute(`class`)
+    ).toContain(`male`);
+
+    wrapper.setProps({ sex: `female` });
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-avatar__image`)
+        .getDOMNode()
+        .getAttribute(`class`)
+    ).toContain(`female`);
+
+    // ! Add support:
+    // ! wrapper.setProps({ sex: 'undisclosed' });
+  });
+
+  it(`Handles props.style`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(null);
+
+    wrapper.setProps({ style: { zIndex: `1` } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(`z-index: 1;`);
+
+    wrapper.setProps({ style: { zIndex: `1`, opacity: 0 } });
+    expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(
+      `z-index: 1; opacity: 0;`
+    );
+  });
+
+  it(`Handles props.value`, () => {
+    expect(wrapper.find(`.${NAMESPACE}-badge`).length).toBe(0);
+
+    wrapper.setProps({ modifiers: `m success` });
+    expect(wrapper.find(`.${NAMESPACE}-badge`).length).toBe(1);
+
+    expect(wrapper.find(`.${NAMESPACE}-badge`).text()).toBe(`0`);
+
+    wrapper.setProps({ value: 18 });
+    expect(wrapper.find(`.${NAMESPACE}-badge`).text()).toBe(`9+`);
+
+    wrapper.setProps({ value: 100 });
+    expect(wrapper.find(`.${NAMESPACE}-badge`).text()).toBe(`99+`);
+
+    wrapper.setProps({ modifiers: `s` });
+    expect(wrapper.find(`.${NAMESPACE}-badge`).length).toBe(0);
+  });
+
+  afterEach(() => {
+    wrapper.unmount();
   });
 });

@@ -15,35 +15,35 @@ import CheckboxSet from './checkbox-set';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const checkboxSetNumOfOptions = [
-  'No of options',
+  `No of options`,
   {
-    '2': '2',
-    '4': '4'
+    '2': `2`,
+    '4': `4`
   },
-  '2',
-  { display: 'inline-radio' }
+  `2`,
+  { display: `inline-radio` }
 ];
-const checkboxSetTwoOptions = ['True', 'False'];
-const checkboxSetFourOptions = ['Red', 'Green', 'Blue', 'Yellow'];
+const checkboxSetTwoOptions = [`True`, `False`];
+const checkboxSetFourOptions = [`Red`, `Green`, `Blue`, `Yellow`];
 const checkboxSetState = [
-  'State',
+  `State`,
   {
-    Default: '',
-    Error: 'error',
-    Success: 'success'
+    Default: ``,
+    Error: `error`,
+    Success: `success`
   },
-  '',
-  { display: 'inline-radio' }
+  ``,
+  { display: `inline-radio` }
 ];
-const checkboxSetCards = ['Cards', true];
-const checkboxErrorMessage = ['Error Message', 'Something is wrong'];
-const checkboxSuccessMessage = ['Success Message', 'Something is right'];
+const checkboxSetCards = [`Cards`, true];
+const checkboxErrorMessage = [`Error Message`, `Something is wrong`];
+const checkboxSuccessMessage = [`Success Message`, `Something is right`];
 
-const stories = storiesOf('Checkbox Set', module);
+const stories = storiesOf(`Checkbox Set`, module);
 
 stories.addDecorator(withA11y).addDecorator(withKnobs);
 
-stories.add('Default', () => {
+stories.add(`Default`, () => {
   const numOfOptions = options(...checkboxSetNumOfOptions);
 
   const twoOptions = [];
@@ -56,7 +56,7 @@ stories.add('Default', () => {
         Number(numOfOptions) === 2 &&
         text(`Label ${i + 1} of ${numOfOptions}`, checkboxSetTwoOption)
           ? text(`Label ${i + 1} of ${numOfOptions}`, checkboxSetTwoOption)
-          : 'Add label',
+          : `Add label`,
       value: `${i + 1}`
     });
   }
@@ -71,35 +71,35 @@ stories.add('Default', () => {
         Number(numOfOptions) === 4 &&
         text(`Label ${i + 1} of ${numOfOptions}`, checkboxSetFourOption)
           ? text(`Label ${i + 1} of ${numOfOptions}`, checkboxSetFourOption)
-          : 'Add label',
+          : `Add label`,
       value: `${i + 1}`
     });
   }
 
   const state = options(...checkboxSetState);
   const cards = boolean(...checkboxSetCards);
-  const errorMessage = state === 'error' && text(...checkboxErrorMessage);
-  const successMessage = state === 'success' && text(...checkboxSuccessMessage);
+  const errorMessage = state === `error` && text(...checkboxErrorMessage);
+  const successMessage = state === `success` && text(...checkboxSuccessMessage);
 
   return (
-    <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: '50%' }}>
-      {Number(numOfOptions) === 2 && state === 'error' ? (
+    <Uniform tag="div" style={{ ...UNIFORM_STYLES, width: `50%` }}>
+      {Number(numOfOptions) === 2 && state === `error` ? (
         <CheckboxSet
           name="storybook-checkbox-set-component"
           checkboxes={twoOptions}
           error={[twoOptions[0].value, twoOptions[1].value]}
           modifiers="checkbox-set--error"
           cards={cards}
-          message={errorMessage ? errorMessage : 'Add message'}
+          message={errorMessage ? errorMessage : `Add message`}
         />
-      ) : Number(numOfOptions) === 2 && state === 'success' ? (
+      ) : Number(numOfOptions) === 2 && state === `success` ? (
         <CheckboxSet
           name="storybook-checkbox-set-component"
           checkboxes={twoOptions}
           success={[twoOptions[0].value, twoOptions[1].value]}
           modifiers="checkbox-set--success"
           cards={cards}
-          message={successMessage ? successMessage : 'Add message'}
+          message={successMessage ? successMessage : `Add message`}
         />
       ) : Number(numOfOptions) === 2 ? (
         <CheckboxSet
@@ -107,7 +107,7 @@ stories.add('Default', () => {
           checkboxes={twoOptions}
           cards={cards}
         />
-      ) : Number(numOfOptions) === 4 && state === 'error' ? (
+      ) : Number(numOfOptions) === 4 && state === `error` ? (
         <CheckboxSet
           name="storybook-checkbox-set-component"
           checkboxes={fourOptions}
@@ -119,9 +119,9 @@ stories.add('Default', () => {
           ]}
           modifiers="checkbox-set--error"
           cards={cards}
-          message={errorMessage ? errorMessage : 'Add message'}
+          message={errorMessage ? errorMessage : `Add message`}
         />
-      ) : Number(numOfOptions) === 4 && state === 'success' ? (
+      ) : Number(numOfOptions) === 4 && state === `success` ? (
         <CheckboxSet
           name="storybook-checkbox-set-component"
           checkboxes={fourOptions}
@@ -133,7 +133,7 @@ stories.add('Default', () => {
           ]}
           modifiers="checkbox-set--success"
           cards={cards}
-          message={successMessage ? successMessage : 'Add message'}
+          message={successMessage ? successMessage : `Add message`}
         />
       ) : (
         <CheckboxSet

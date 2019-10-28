@@ -2,11 +2,13 @@ import React from 'react';
 
 import TableBody from './table-body';
 
+import { NAMESPACE } from '../utilities/ts/constants';
+
 import { mount } from 'enzyme';
 
 let wrapper;
 
-describe('<TableBody />', () => {
+describe(`<TableBody />`, () => {
   beforeEach(() => {
     wrapper = mount(
       <table>
@@ -17,9 +19,9 @@ describe('<TableBody />', () => {
     );
   });
 
-  it('Handles props.children', () => {
-    expect(wrapper.find('tbody').html()).toBe(
-      '<tbody class="oc-tbody"><tr></tr></tbody>'
+  it(`Handles props.children`, () => {
+    expect(wrapper.find(`tbody`).html()).toBe(
+      `<tbody class="${NAMESPACE}-tbody"><tr></tr></tbody>`
     );
 
     wrapper.unmount();
@@ -33,18 +35,18 @@ describe('<TableBody />', () => {
         </TableBody>
       </table>
     );
-    expect(wrapper.find('tbody').html()).toBe(
-      '<tbody class="oc-tbody"><tr><td></td></tr></tbody>'
+    expect(wrapper.find(`tbody`).html()).toBe(
+      `<tbody class="${NAMESPACE}-tbody"><tr><td></td></tr></tbody>`
     );
   });
 
-  it('Handles props.className', () => {
+  it(`Handles props.className`, () => {
     expect(
       wrapper
-        .find('tbody')
+        .find(`tbody`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-tbody');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-tbody`);
 
     wrapper.unmount();
 
@@ -57,10 +59,10 @@ describe('<TableBody />', () => {
     );
     expect(
       wrapper
-        .find('tbody')
+        .find(`tbody`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-tbody foo');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-tbody foo`);
 
     wrapper.unmount();
 
@@ -73,18 +75,18 @@ describe('<TableBody />', () => {
     );
     expect(
       wrapper
-        .find('tbody')
+        .find(`tbody`)
         .getDOMNode()
-        .getAttribute('class')
-    ).toBe('oc-tbody foo bar');
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-tbody foo bar`);
   });
 
-  it('Handles props.style', () => {
+  it(`Handles props.style`, () => {
     expect(
       wrapper
-        .find('tbody')
+        .find(`tbody`)
         .getDOMNode()
-        .getAttribute('style')
+        .getAttribute(`style`)
     ).toBe(null);
 
     wrapper.unmount();
@@ -98,10 +100,10 @@ describe('<TableBody />', () => {
     );
     expect(
       wrapper
-        .find('tbody')
+        .find(`tbody`)
         .getDOMNode()
-        .getAttribute('style')
-    ).toBe('z-index: 1;');
+        .getAttribute(`style`)
+    ).toBe(`z-index: 1;`);
 
     wrapper.unmount();
 
@@ -115,10 +117,10 @@ describe('<TableBody />', () => {
 
     expect(
       wrapper
-        .find('tbody')
+        .find(`tbody`)
         .getDOMNode()
-        .getAttribute('style')
-    ).toBe('z-index: 1; opacity: 0;');
+        .getAttribute(`style`)
+    ).toBe(`z-index: 1; opacity: 0;`);
   });
 
   afterEach(() => {
