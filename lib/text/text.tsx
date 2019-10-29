@@ -4,6 +4,7 @@ import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
+import calculateValue from '../utilities/ts/calculate-value';
 import remove from '../utilities/ts/remove';
 
 // * child imports
@@ -122,7 +123,7 @@ export default class Text extends React.Component<Props> {
   static getDerivedStateFromProps(nextProps: Props, nextState: State): object {
     if (nextProps.value !== nextState.value) {
       return {
-        value: nextProps.value
+        value: calculateValue(nextProps.value, nextProps.maxLength)
       };
     }
     return null;
@@ -134,7 +135,7 @@ export default class Text extends React.Component<Props> {
     error: _.includes(_.split(this.props.modifiers, ` `), `error`),
     keyStrokes: this.props.type === `password` ? false : null,
     success: _.includes(_.split(this.props.modifiers, ` `), `success`),
-    value: ``
+    value: calculateValue(this.props.value, this.props.maxLength)
   };
 
   shouldComponentUpdate(nextProps: Props): boolean {
@@ -142,12 +143,6 @@ export default class Text extends React.Component<Props> {
       return false;
     }
     return true;
-  }
-
-  componentDidMount(): void {
-    this.setState({
-      value: this.calculateValue()
-    });
   }
 
   componentDidUpdate(previousProps: Props, previousState: State): void {
@@ -176,7 +171,7 @@ export default class Text extends React.Component<Props> {
 
     if (this.props.value !== previousProps.value) {
       this.setState({
-        value: this.props.value
+        value: calculateValue(this.props.value, this.props.maxLength)
       });
     }
   }
@@ -263,22 +258,6 @@ export default class Text extends React.Component<Props> {
     this.props.onChange(event, target.value, this.props.name);
   };
 
-  calculateValue = (): string => {
-    if (!this.props.value) {
-      return ``;
-    }
-
-    if (
-      this.props.maxLength &&
-      this.props.maxLength > 0 &&
-      this.props.value.length >= this.props.maxLength
-    ) {
-      return this.props.value.substring(0, this.props.maxLength);
-    }
-
-    return this.props.value;
-  };
-
   render() {
     const { props, state, id, handleFocus, handleKeyDown, handleChange } = this;
 
@@ -313,7 +292,6 @@ export default class Text extends React.Component<Props> {
           spellCheck={props.spellCheck}
           value={state.value}
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
-          {...props}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
           onChange={handleChange}
