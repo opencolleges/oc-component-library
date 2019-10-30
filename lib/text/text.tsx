@@ -4,8 +4,8 @@ import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
-import calculateValue from '../utilities/ts/calculate-value';
 import remove from '../utilities/ts/remove';
+import truncateString from '../utilities/ts/truncate-string';
 
 // * child imports
 import Icon from '../icon';
@@ -95,7 +95,6 @@ interface State {
   value: string;
 }
 
-// * React component
 export default class Text extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     disabled: false,
@@ -123,7 +122,7 @@ export default class Text extends React.Component<Props> {
   static getDerivedStateFromProps(nextProps: Props, nextState: State): object {
     if (nextProps.value !== nextState.value) {
       return {
-        value: calculateValue(nextProps.value, nextProps.maxLength)
+        value: truncateString(nextProps.value, nextProps.maxLength)
       };
     }
     return null;
@@ -135,7 +134,7 @@ export default class Text extends React.Component<Props> {
     error: _.includes(_.split(this.props.modifiers, ` `), `error`),
     keyStrokes: this.props.type === `password` ? false : null,
     success: _.includes(_.split(this.props.modifiers, ` `), `success`),
-    value: calculateValue(this.props.value, this.props.maxLength)
+    value: truncateString(this.props.value, this.props.maxLength)
   };
 
   shouldComponentUpdate(nextProps: Props): boolean {
@@ -171,7 +170,7 @@ export default class Text extends React.Component<Props> {
 
     if (this.props.value !== previousProps.value) {
       this.setState({
-        value: calculateValue(this.props.value, this.props.maxLength)
+        value: truncateString(this.props.value, this.props.maxLength)
       });
     }
   }
@@ -273,11 +272,9 @@ export default class Text extends React.Component<Props> {
       <div className={bem.getResult()} style={props.style}>
         <input
           id={id}
-          className={
-            !state.value
-              ? bem.getElement(`input`)
-              : `${bem.getElement(`input`)} active`
-          }
+          className={`${bem.getElement(`input`)}${
+            typeof state.value !== `undefined` ? ` active` : ``
+          }`}
           type={props.type}
           name={props.name}
           disabled={props.disabled}

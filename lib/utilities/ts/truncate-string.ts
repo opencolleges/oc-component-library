@@ -1,4 +1,4 @@
-const calculateValue = (value: string, maxLength: number): string => {
+const truncateString = (value: string, maxLength: number): string => {
   if (!value) {
     return ``;
   }
@@ -10,4 +10,4 @@ const calculateValue = (value: string, maxLength: number): string => {
   return value;
 };
 
-export default calculateValue;
+export default truncateString;

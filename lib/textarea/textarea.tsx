@@ -4,9 +4,9 @@ import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
-import calculateValue from '../utilities/ts/calculate-value';
 import getWindowWidth from '../utilities/ts/get-window-width';
 import remove from '../utilities/ts/remove';
+import truncateString from '../utilities/ts/truncate-string';
 
 import BrowserDetect from 'browser-detect';
 
@@ -61,7 +61,7 @@ export default class Textarea extends React.Component<Props> {
     overflow: `hidden`,
     remaining: 0,
     success: _.includes(_.split(this.props.modifiers, ` `), `success`),
-    value: calculateValue(this.props.value, this.props.maxLength)
+    value: truncateString(this.props.value, this.props.maxLength)
   };
 
   componentDidMount(): void {

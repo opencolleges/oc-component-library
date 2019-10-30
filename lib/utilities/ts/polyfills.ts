@@ -1,6 +1,6 @@
 // Number.isInteger polyfill for IE11
 if (typeof Number.isInteger === `undefined`) {
-  Number.isInteger = value => {
+  Number.isInteger = (value: number): boolean => {
     return (
       typeof value === `number` &&
       isFinite(value) &&
