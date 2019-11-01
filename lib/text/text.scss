@@ -94,13 +94,13 @@
   -moz-appearance: textfield;
 }
 
-.#{$pre}-text__input.#{$pre}-active:disabled {
+.#{$pre}-text__input.active:disabled {
   color: $fossil;
 }
 
 // The pointer-events property set to auto adds interactivity to [readonly] text
 // inputs that are populated.
-.#{$pre}-text__input.#{$pre}-active[readonly] {
+.#{$pre}-text__input.active[readonly] {
   pointer-events: auto;
 }
 
@@ -185,17 +185,17 @@
     line-height $transition-duration-x2 $transition-timing-default;
 }
 
-.#{$pre}-text__input.#{$pre}-active + .#{$pre}-text__label {
+.#{$pre}-text__input.active + .#{$pre}-text__label {
   top: 0;
   color: $hurricane;
   font-size: rem(12px);
   line-height: rem(16px);
 }
 
-.#{$pre}-text__input.#{$pre}-active:disabled + .#{$pre}-text__label {
+.#{$pre}-text__input.active:disabled + .#{$pre}-text__label {
   color: $alto;
 }
-.#{$pre}-text__input.#{$pre}-active[readonly] + .#{$pre}-text__label {
+.#{$pre}-text__input.active[readonly] + .#{$pre}-text__label {
   color: $christi-shade;
 }
 
@@ -225,7 +225,7 @@
   color: rgba($cinnabar, 0);
 }
 
-.#{$pre}-text__input.#{$pre}-active:required + .#{$pre}-text__label::after {
+.#{$pre}-text__input.active:required + .#{$pre}-text__label::after {
   top: rem(-16px);
   color: rgba($cinnabar, 0);
 }
@@ -315,12 +315,12 @@
     border-bottom: none;
   }
 
-  .#{$pre}-text__input.#{$pre}-active:disabled {
+  .#{$pre}-text__input.active:disabled {
     color: $fossil;
     cursor: not-allowed;
   }
 
-  .#{$pre}-text__input.#{$pre}-active:focus {
+  .#{$pre}-text__input.active:focus {
     color: inherit;
   }
 
@@ -340,23 +340,23 @@
     color: $christi-shade;
   }
 
-  .#{$pre}-text__input.#{$pre}-active + .#{$pre}-text__label {
+  .#{$pre}-text__input.active + .#{$pre}-text__label {
     color: $hurricane;
   }
 
-  .#{$pre}-text__input.#{$pre}-active:disabled + .#{$pre}-text__label {
+  .#{$pre}-text__input.active:disabled + .#{$pre}-text__label {
     color: $alto;
   }
 
-  .#{$pre}-text__input.#{$pre}-active[readonly] + .#{$pre}-text__label {
+  .#{$pre}-text__input.active[readonly] + .#{$pre}-text__label {
     color: $christi-shade;
   }
 
-  .#{$pre}-text__input.#{$pre}-active:focus + .#{$pre}-text__label {
+  .#{$pre}-text__input.active:focus + .#{$pre}-text__label {
     color: $gunmetal;
   }
 
-  .#{$pre}-text__input.#{$pre}-active[readonly]:focus + .#{$pre}-text__label {
+  .#{$pre}-text__input.active[readonly]:focus + .#{$pre}-text__label {
     color: $christi-shade;
   }
 
@@ -393,15 +393,15 @@
     width: 100%;
   }
 
-  .#{$pre}-text__input.#{$pre}-active ~ .#{$pre}-text__border {
+  .#{$pre}-text__input.active ~ .#{$pre}-text__border {
     width: 100%;
     background-color: $viking-shade;
   }
 
-  .#{$pre}-text__input.#{$pre}-active:hover ~ .#{$pre}-text__border {
+  .#{$pre}-text__input.active:hover ~ .#{$pre}-text__border {
     background-color: $viking;
   }
-  .#{$pre}-text__input.#{$pre}-active:focus ~ .#{$pre}-text__border {
+  .#{$pre}-text__input.active:focus ~ .#{$pre}-text__border {
     background-color: $viking;
   }
 
