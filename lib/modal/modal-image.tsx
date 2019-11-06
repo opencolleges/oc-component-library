@@ -1,58 +1,52 @@
-// * React imports
-import PropTypes from 'prop-types';
+import _ from 'lodash';
 import React from 'react';
 
-// * utility imports
-import namespace from '../utilities/ts/namespace';
+import BEM from '../utilities/ts/bem';
+import { NAMESPACE } from '../utilities/ts/constants';
 
-import _ from 'lodash';
+interface Props {
+  className?: string;
+}
 
-// * child imports
-import Heading from '../heading';
-import Grid from '../grid';
-import GridItem from '../grid-item';
-import Button from '../button';
+export default class ModalImage extends React.Component<Props> {
+  skinTones = [
+    {
+      base: `#fbd0ba`,
+      shade: `#f6a988`
+    },
+    {
+      base: `#f4b98c`,
+      shade: `#e88754`
+    },
+    {
+      base: `#e29f71`,
+      shade: `#c6673b`
+    },
+    {
+      base: `#d88657`,
+      shade: `#b64d28`
+    },
+    {
+      base: `#bc6648`,
+      shade: `#8c321f`
+    },
+    {
+      base: `#943`,
+      shade: `#601c13`
+    }
+  ];
 
-class ModalImage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.skinTones = [
-      {
-        base: `#fbd0ba`,
-        shade: `#f6a988`
-      },
-      {
-        base: `#f4b98c`,
-        shade: `#e88754`
-      },
-      {
-        base: `#e29f71`,
-        shade: `#c6673b`
-      },
-      {
-        base: `#d88657`,
-        shade: `#b64d28`
-      },
-      {
-        base: `#bc6648`,
-        shade: `#8c321f`
-      },
-      {
-        base: `#943`,
-        shade: `#601c13`
-      }
-    ];
-
-    this.skinTone = this.skinTones[_.random(0, this.skinTones.length - 1)];
-  }
+  skinTone = this.skinTones[_.random(0, this.skinTones.length - 1)];
 
   render() {
     const { props, skinTone } = this;
 
+    const bem = BEM(`humanoid`);
+    bem.addClassNames(props.className);
+
     return (
       <svg
-        className={props.className}
+        className={bem.getResult()}
         width="256"
         height="168"
         viewBox="0 0 256 168"
@@ -119,15 +113,17 @@ class ModalImage extends React.Component {
             </g>
           </g>
           <g mask="url(#prototype-b)">
-            <g className={namespace(`humanoid`)} transform="translate(-12, 1)">
+            <g
+              className={`${NAMESPACE}-humanoid`}
+              transform="translate(-12, 1)">
               <rect width="280" height="361.348" y=".652" />
               <g
-                className={namespace(`humanoid__head`)}
+                className={bem.getElement(`head`)}
                 transform="translate(104.533)">
                 <rect width="71" height="205" />
                 <rect width="71" height="205" />
                 <g
-                  className={namespace(`humanoid__bun`)}
+                  className={bem.getElement(`bun`)}
                   transform="translate(13.079)">
                   <rect width="44.842" height="67.1" />
                   <ellipse
@@ -178,7 +174,7 @@ class ModalImage extends React.Component {
                       d="M30,65.462963 L30,65.462963 C25.875,65.462963 22.5,62.0962963 22.5,57.9814815 C22.5,53.8666667 25.875,50.5 30,50.5 C34.125,50.5 37.5,53.8666667 37.5,57.9814815 C37.5,62.0962963 34.125,65.462963 30,65.462963"
                     />
                     <g
-                      className={namespace(`humanoid__right-ear`)}
+                      className={bem.getElement(`right-ear`)}
                       transform="translate(45 28.056)">
                       <rect width="15" height="7.481" />
                       <path
@@ -188,7 +184,7 @@ class ModalImage extends React.Component {
                       />
                     </g>
                     <g
-                      className={namespace(`humanoid__left-ear`)}
+                      className={bem.getElement(`left-ear`)}
                       transform="translate(0 28.056)">
                       <rect width="15" height="7.481" />
                       <path
@@ -215,7 +211,7 @@ class ModalImage extends React.Component {
                       data-fill="#532626"
                     />
                     <path
-                      className={namespace(`humanoid__right-eyebrow`)}
+                      className={bem.getElement(`right-eyebrow`)}
                       stroke="var(--saddle, #532626)"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -274,7 +270,7 @@ class ModalImage extends React.Component {
                 </g>
               </g>
               <g
-                className={namespace(`humanoid__left-arm`)}
+                className={bem.getElement(`left-arm`)}
                 transform="rotate(-64 195.804 48.642)">
                 <rect width="213" height="19" />
                 <rect width="123.316" height="19" />
@@ -323,7 +319,7 @@ class ModalImage extends React.Component {
                 />
               </g>
               <g
-                className={namespace(`humanoid__right-arm`)}
+                className={bem.getElement(`right-arm`)}
                 transform="scale(-1 1) rotate(-73 43.054 239.69)">
                 <rect width="213" height="19" />
                 <rect width="123.316" height="19" />
@@ -447,94 +443,3 @@ class ModalImage extends React.Component {
     );
   }
 }
-
-// * React component
-export default class Modal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mounted: false
-    };
-
-    this.gridItems =
-      this.props.buttons.length > 1
-        ? `grid__item--s-6`
-        : `grid__item--s-12 grid__item--m-6`;
-  }
-
-  componentDidMount() {
-    this.showModal();
-  }
-
-  componentWillUnmount() {
-    this.hideModal();
-  }
-
-  handleClick = () => {
-    this.setState({ mounted: false });
-  };
-
-  showModal = () => {
-    setTimeout(() => {
-      this.setState({ mounted: true });
-    }, 1500);
-  };
-
-  render() {
-    const { props, state, gridItems, handleClick } = this;
-
-    let classNames = namespace(`modal`);
-
-    state.mounted && (classNames += ` ${namespace(`mounted`)}`);
-
-    props.className && (classNames += ` ${props.className}`);
-
-    return (
-      <div className={classNames} style={props.style}>
-        <div className={namespace(`modal__outer`)}>
-          <ModalImage className={namespace(`modal__image`)} />
-          <Heading level={3} modifiers="h3--center">
-            {props.message}
-          </Heading>
-          <div className={namespace(`modal__inner`)}>{props.children}</div>
-
-          <div className={namespace(`modal__actions`)}>
-            <Grid modifiers="grid--gutter-x-fixed">
-              {props.buttons.length &&
-                props.buttons.map((button, index) => (
-                  <GridItem key={index} modifiers={gridItems}>
-                    <Button
-                      modifiers={button.modifiers}
-                      action={button.action}
-                      onClick={handleClick}
-                    />
-                  </GridItem>
-                ))}
-            </Grid>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-Modal.propTypes = {
-  className: PropTypes.string,
-  style: PropTypes.object,
-  message: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  buttons: PropTypes.arrayOf(
-    PropTypes.shape({
-      modifiers: PropTypes.string.isRequired,
-      action: PropTypes.string.isRequired,
-      onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-        .isRequired
-    })
-  ).isRequired
-};
-
-Modal.defaultProps = {
-  buttons: {
-    onClick: () => {}
-  }
-};
