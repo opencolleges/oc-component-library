@@ -195,7 +195,7 @@
   color: $christi-shade;
 }
 
-.#{$pre}-textarea__input ~ .#{$pre}-text__label::after {
+.#{$pre}-textarea__input ~ .#{$pre}-textarea__label::after {
   content: ' *';
   position: relative;
   top: rem(-16px);
@@ -216,7 +216,7 @@
   color: $cinnabar;
 }
 
-.#{$pre}-textarea__input[readonly]:required + .#{$pre}-textarea__label::after {
+.#{$pre}-textarea__input:required[readonly] + .#{$pre}-textarea__label::after {
   top: rem(-16px);
   color: rgba($cinnabar, 0);
 }
