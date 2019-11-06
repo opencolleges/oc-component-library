@@ -4,12 +4,17 @@ import React from 'react';
 import BEM from '../utilities/ts/bem';
 import { NAMESPACE } from '../utilities/ts/constants';
 
+interface Skintone {
+  base: string;
+  shade: string;
+}
+
 interface Props {
   className?: string;
 }
 
 export default class ModalImage extends React.Component<Props> {
-  skinTones = [
+  skinTones: Skintone[] = [
     {
       base: `#fbd0ba`,
       shade: `#f6a988`
@@ -36,7 +41,7 @@ export default class ModalImage extends React.Component<Props> {
     }
   ];
 
-  skinTone = this.skinTones[_.random(0, this.skinTones.length - 1)];
+  skinTone: Skintone = this.skinTones[_.random(0, this.skinTones.length - 1)];
 
   render() {
     const { props, skinTone } = this;

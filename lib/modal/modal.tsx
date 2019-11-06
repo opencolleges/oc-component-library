@@ -43,15 +43,15 @@ export default class Modal extends React.Component<Props> {
     mounted: false
   };
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.showModal();
   }
 
-  handleClick = () => {
+  handleClick = (): void => {
     this.setState({ mounted: false });
   };
 
-  showModal = () => {
+  showModal = (): void => {
     setTimeout(() => {
       this.setState({ mounted: true });
     }, 1500);
