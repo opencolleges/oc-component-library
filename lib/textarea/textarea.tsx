@@ -6,6 +6,7 @@ import { NAMESPACE } from '../utilities/ts/constants';
 import BEM from '../utilities/ts/bem';
 import getWindowWidth from '../utilities/ts/get-window-width';
 import remove from '../utilities/ts/remove';
+import truncateString from '../utilities/ts/truncate-string';
 
 import BrowserDetect from 'browser-detect';
 
@@ -60,13 +61,12 @@ export default class Textarea extends React.Component<Props> {
     overflow: `hidden`,
     remaining: 0,
     success: _.includes(_.split(this.props.modifiers, ` `), `success`),
-    value: ``
+    value: truncateString(this.props.value, this.props.maxLength)
   };
 
   componentDidMount(): void {
     this.setState({
-      remaining: this.calculateRemaining(),
-      value: this.calculateValue()
+      remaining: this.calculateRemaining()
     });
     window.addEventListener(`resize`, this.resize);
     this.resize();
@@ -110,22 +110,6 @@ export default class Textarea extends React.Component<Props> {
     }
 
     return 0;
-  };
-
-  calculateValue = (): string => {
-    if (!this.props.value) {
-      return ``;
-    }
-
-    if (
-      this.props.maxLength &&
-      this.props.maxLength > 0 &&
-      this.props.value.length >= this.props.maxLength
-    ) {
-      return this.props.value.substring(0, this.props.maxLength);
-    }
-
-    return this.props.value;
   };
 
   resize = (): void => {

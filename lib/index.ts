@@ -1,3 +1,5 @@
+import './utilities/ts/polyfills';
+
 import Accordion from './accordion';
 import Avatar from './avatar';
 import Badge from './badge';
