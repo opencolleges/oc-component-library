@@ -1,7 +1,6 @@
-import _ from 'lodash';
 import React from 'react';
 
-import { NAMESPACE } from '../utilities/ts/constants';
+import addId from './utilities/add-id';
 
 import BEM from '../utilities/ts/bem';
 
@@ -9,7 +8,7 @@ import Toast from '../toast';
 
 import { TIcon } from '../icon/icon';
 
-interface ToastProps {
+export interface ToastProps {
   className?: string;
   duration?: number;
   heading: string;
@@ -24,7 +23,7 @@ interface ToastProps {
 interface Props {
   className?: string;
   style?: React.CSSProperties;
-  toasts: ToastProps[];
+  toasts?: ToastProps[];
 }
 
 interface State {
@@ -32,28 +31,20 @@ interface State {
 }
 
 export default class Toaster extends React.Component<Props, State> {
+  static defaultProps: Partial<Props> = {
+    toasts: []
+  };
+
   readonly state: Readonly<State> = {
-    toasts: this.props.toasts ? this.addId(this.props.toasts) : []
-  };
-  addId = (initialToasts: ToastProps[]): ToastProps[] => {
-    const toasts: ToastProps[] = [...initialToasts];
-
-    for (const toast of toasts) {
-      if (!toast.id) {
-        toast.id = _.uniqueId(`${NAMESPACE}-`);
-      }
-    }
-
-    return toasts;
+    toasts: addId(this.props.toasts)
   };
 
-  // ! FIX
   componentDidUpdate(prevProps: Props): void {
-    // if (prevProps !== this.props) {
-    //   this.setState({
-    //     toasts: [...this.state.toasts, ...this.addId(this.props.toasts)]
-    //   });
-    // }
+    if (prevProps !== this.props) {
+      this.setState({
+        toasts: [...this.state.toasts, ...addId(this.props.toasts)]
+      });
+    }
   }
 
   handleClick = (id: string): void => {
@@ -79,18 +70,7 @@ export default class Toaster extends React.Component<Props, State> {
     return (
       <div className={bem.getResult()} style={props.style}>
         {state.toasts.map(toast => (
-          <Toast
-            key={toast.id}
-            id={toast.id}
-            modifiers={toast.modifiers}
-            className={toast.className}
-            style={toast.style}
-            icon={toast.icon}
-            heading={toast.heading}
-            message={toast.message}
-            duration={toast.duration}
-            onClick={handleClick}
-          />
+          <Toast key={toast.id} {...toast} onClick={handleClick} />
         ))}
       </div>
     );

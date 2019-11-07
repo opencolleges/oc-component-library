@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import BEM from '../utilities/ts/bem';
 import getTimer from './utilities/get-timer';
 import getTop from './utilities/get-top';
