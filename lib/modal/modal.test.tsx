@@ -14,46 +14,6 @@ describe(`<Modal />`, () => {
     wrapper = mount(<Modal message="Foo" />);
   });
 
-  it(`Handles props.backButton`, () => {
-    expect(
-      wrapper
-        .find(`.${NAMESPACE}-button`)
-        .at(0)
-        .text()
-    ).toBe(`Back`);
-
-    wrapper.setProps({
-      backButton: {
-        label: `Cancel`,
-        modifiers: `secondary`
-      }
-    });
-    expect(
-      wrapper
-        .find(`.${NAMESPACE}-button`)
-        .at(0)
-        .text()
-    ).toBe(`Cancel`);
-
-    wrapper.unmount();
-
-    wrapper = mount(
-      <Modal
-        message="Foo"
-        backButton={{
-          label: `Close`,
-          modifiers: `secondary`
-        }}
-      />
-    );
-    expect(
-      wrapper
-        .find(`.${NAMESPACE}-button`)
-        .at(0)
-        .text()
-    ).toBe(`Close`);
-  });
-
   it(`Handles props.buttons`, () => {
     expect(wrapper.find(`.${NAMESPACE}-button`).length).toBe(1);
     expect(
@@ -61,7 +21,7 @@ describe(`<Modal />`, () => {
         .find(`.${NAMESPACE}-button`)
         .at(0)
         .text()
-    ).toBe(`Back`);
+    ).toBe(`Close`);
 
     wrapper.unmount();
 
@@ -86,7 +46,7 @@ describe(`<Modal />`, () => {
         .find(`.${NAMESPACE}-button`)
         .at(0)
         .text()
-    ).toBe(`Back`);
+    ).toBe(`Close`);
 
     expect(
       wrapper
@@ -118,7 +78,7 @@ describe(`<Modal />`, () => {
         .find(`.${NAMESPACE}-button`)
         .at(0)
         .text()
-    ).toBe(`Back`);
+    ).toBe(`Close`);
 
     expect(
       wrapper
@@ -170,6 +130,46 @@ describe(`<Modal />`, () => {
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
       `${NAMESPACE}-modal foo bar`
     );
+  });
+
+  it(`Handles props.closeButton`, () => {
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-button`)
+        .at(0)
+        .text()
+    ).toBe(`Close`);
+
+    wrapper.setProps({
+      closeButton: {
+        label: `Cancel`,
+        modifiers: `secondary`
+      }
+    });
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-button`)
+        .at(0)
+        .text()
+    ).toBe(`Cancel`);
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <Modal
+        message="Foo"
+        closeButton={{
+          label: `Back`,
+          modifiers: `secondary`
+        }}
+      />
+    );
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-button`)
+        .at(0)
+        .text()
+    ).toBe(`Back`);
   });
 
   it(`Handles props.message`, () => {
