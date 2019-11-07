@@ -62,7 +62,6 @@
 }
 
 .#{$pre}-card--clickable {
-  height: 100%;
   box-shadow: $box-shadow-layer-1;
   transition: box-shadow $transition-duration-x1 $transition-timing-default;
 }

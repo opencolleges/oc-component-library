@@ -41,7 +41,7 @@
   pointer-events: none;
 }
 
-.#{$pre}-modal.#{$pre}-mounted {
+.#{$pre}-modal.mounted {
   opacity: 1;
   transition: opacity $transition-duration-x2 $transition-timing-default 0ms;
   pointer-events: auto;
@@ -62,7 +62,7 @@
   transition: top $transition-duration-x4 $transition-timing-bounce-out 0ms;
 }
 
-.#{$pre}-mounted > .#{$pre}-modal__outer {
+.mounted > .#{$pre}-modal__outer {
   top: rem(50%);
   transition: top $transition-duration-x4 $transition-timing-bounce-out
     $transition-duration-x2;
