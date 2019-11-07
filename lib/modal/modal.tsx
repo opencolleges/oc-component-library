@@ -16,13 +16,13 @@ interface TButton {
 
 interface Props {
   active?: boolean;
-  buttons?: TButton[];
-  children: React.ReactNode;
-  className?: string;
-  closeButton?: {
+  backButton?: {
     label: string;
     modifiers: string;
   };
+  buttons?: TButton[];
+  children: React.ReactNode;
+  className?: string;
   message: string;
   style?: React.CSSProperties;
 }
@@ -34,11 +34,11 @@ interface State {
 export default class Modal extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     active: false,
-    buttons: [],
-    closeButton: {
-      label: `Close`,
+    backButton: {
+      label: `Back`,
       modifiers: `secondary`
-    }
+    },
+    buttons: []
   };
 
   readonly state: Readonly<State> = {
@@ -80,10 +80,13 @@ export default class Modal extends React.Component<Props> {
 
           <div className={bem.getElement(`actions`)}>
             <Grid modifiers="gutter-x-fixed">
-              <GridItem modifiers={props.buttons.length > 0 ? `s-6` : `s-12`}>
+              <GridItem
+                modifiers={
+                  props.buttons.length > 0 ? `s-6` : `s-12 m-6 nudge-m-3`
+                }>
                 <Button
-                  label={props.closeButton.label}
-                  modifiers={props.closeButton.modifiers}
+                  label={props.backButton.label}
+                  modifiers={props.backButton.modifiers}
                   onClick={closeModal}
                 />
               </GridItem>
