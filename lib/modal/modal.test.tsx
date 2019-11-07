@@ -11,6 +11,20 @@ let wrapper;
 
 describe(`<Modal />`, () => {
   beforeEach(() => {
+    wrapper = mount(<Modal message="Foo" />);
+  });
+
+  it(`Handles props.buttons`, () => {
+    expect(wrapper.find(`.${NAMESPACE}-button`).length).toBe(1);
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-button`)
+        .at(0)
+        .text()
+    ).toBe(`Close`);
+
+    wrapper.unmount();
+
     wrapper = mount(
       <Modal
         message="Foo"
@@ -21,25 +35,23 @@ describe(`<Modal />`, () => {
             onClick: () => {
               return;
             }
-          },
-          {
-            label: `Baz`,
-            modifiers: `primary error`,
-            onClick: () => {
-              return;
-            }
           }
         ]}
       />
     );
-  });
 
-  it(`Handles props.buttons`, () => {
     expect(wrapper.find(`.${NAMESPACE}-button`).length).toBe(2);
     expect(
       wrapper
         .find(`.${NAMESPACE}-button`)
-        .first()
+        .at(0)
+        .text()
+    ).toBe(`Close`);
+
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-button`)
+        .at(1)
         .text()
     ).toBe(`Bar`);
 
@@ -60,28 +72,25 @@ describe(`<Modal />`, () => {
       />
     );
 
-    expect(wrapper.find(`.${NAMESPACE}-button`).length).toBe(1);
+    expect(wrapper.find(`.${NAMESPACE}-button`).length).toBe(2);
     expect(
       wrapper
         .find(`.${NAMESPACE}-button`)
-        .first()
+        .at(0)
+        .text()
+    ).toBe(`Close`);
+
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-button`)
+        .at(1)
         .text()
     ).toBe(`Foo`);
   });
 
   it(`Handles props.children`, () => {
     wrapper = mount(
-      <Modal
-        message="Foo"
-        buttons={[
-          {
-            label: `Foo`,
-            modifiers: `primary error`,
-            onClick: () => {
-              return;
-            }
-          }
-        ]}>
+      <Modal message="Foo">
         <Copy modifiers="center">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -95,17 +104,7 @@ describe(`<Modal />`, () => {
     wrapper.unmount();
 
     wrapper = mount(
-      <Modal
-        message="Foo"
-        buttons={[
-          {
-            label: `Foo`,
-            modifiers: `primary error`,
-            onClick: () => {
-              return;
-            }
-          }
-        ]}>
+      <Modal message="Foo">
         <Copy modifiers="center">
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
           nisi ut aliquip ex ea commodo consequat.
@@ -131,6 +130,46 @@ describe(`<Modal />`, () => {
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
       `${NAMESPACE}-modal foo bar`
     );
+  });
+
+  it(`Handles props.closeButton`, () => {
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-button`)
+        .at(0)
+        .text()
+    ).toBe(`Close`);
+
+    wrapper.setProps({
+      closeButton: {
+        label: `Cancel`,
+        modifiers: `secondary`
+      }
+    });
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-button`)
+        .at(0)
+        .text()
+    ).toBe(`Cancel`);
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <Modal
+        message="Foo"
+        closeButton={{
+          label: `Back`,
+          modifiers: `secondary`
+        }}
+      />
+    );
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-button`)
+        .at(0)
+        .text()
+    ).toBe(`Back`);
   });
 
   it(`Handles props.message`, () => {
@@ -178,7 +217,19 @@ describe(`<Modal />`, () => {
     );
   });
 
-  it(`Handles onClick`, () => {
+  it(`Handles showModal()`, () => {
+    wrapper.instance().showModal();
+    expect(wrapper.state(`mounted`)).toBe(true);
+
+    wrapper.unmount();
+
+    wrapper = mount(<Modal active={true} message="Foo" />);
+    wrapper.setState({ mounted: false });
+    wrapper.instance().showModal();
+    expect(wrapper.state(`mounted`)).toBe(true);
+  });
+
+  it(`Handles closeModal()`, () => {
     wrapper.setState({ mounted: true });
     expect(wrapper.state(`mounted`)).toBe(true);
     wrapper
@@ -189,20 +240,7 @@ describe(`<Modal />`, () => {
 
     wrapper.unmount();
 
-    wrapper = mount(
-      <Modal
-        message="Foo"
-        buttons={[
-          {
-            label: `Foo`,
-            modifiers: `primary error`,
-            onClick: () => {
-              return;
-            }
-          }
-        ]}
-      />
-    );
+    wrapper = mount(<Modal message="Foo" />);
     wrapper.setState({ mounted: true });
     expect(wrapper.state(`mounted`)).toBe(true);
     wrapper
