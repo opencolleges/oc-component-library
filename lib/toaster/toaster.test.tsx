@@ -41,7 +41,7 @@ describe(`<Toaster />`, () => {
     );
   });
 
-  it(`Handles props.toasts`, () => {
+  it(`Handles props.toasts`, done => {
     expect(wrapper.find(`.${NAMESPACE}-toast`).length).toBe(0);
 
     wrapper.setProps({
@@ -52,18 +52,31 @@ describe(`<Toaster />`, () => {
     expect(wrapper.find(`.${NAMESPACE}-toast`).length).toBe(1);
 
     wrapper.setProps({
-      toasts: [{ heading: `thud`, message: `corge`, modifiers: `error` }]
+      toasts: [
+        {
+          heading: `thud`,
+          message: `corge`,
+          modifiers: `error`
+        }
+      ]
     });
     wrapper.update();
 
     expect(wrapper.find(`.${NAMESPACE}-toast`).length).toBe(2);
 
     wrapper.setProps({
-      toasts: [{ duration: 2000, heading: `foo`, message: `bar` }]
+      toasts: [{ duration: 1000, heading: `foo`, message: `bar` }]
     });
     wrapper.update();
 
     expect(wrapper.find(`.${NAMESPACE}-toast`).length).toBe(3);
+
+    setTimeout(() => {
+      wrapper.update();
+
+      expect(wrapper.find(`.${NAMESPACE}-toast`).length).toBe(2);
+      done();
+    }, 2000);
   });
 
   afterEach(() => {

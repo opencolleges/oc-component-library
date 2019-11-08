@@ -1,24 +1,24 @@
 import { BASE_FONT_SIZE } from './constants';
 
-const pxToRem = (
-  pixels: number | string,
+const remToPx = (
+  rems: number | string,
   type: `number` | `string` = `number`,
   basePixels: number | string = BASE_FONT_SIZE
 ): number | string => {
-  if (typeof pixels === `string`) {
-    pixels = parseFloat(pixels);
+  if (typeof rems === `string`) {
+    rems = parseFloat(rems);
   }
   if (typeof basePixels === `string`) {
     basePixels = parseFloat(basePixels);
   }
 
-  const remUnits: number = pixels / basePixels;
+  const pixelUnits: number = rems * basePixels;
 
   if (type === `string`) {
-    return `${remUnits}rem`;
+    return `${pixelUnits}px`;
   }
 
-  return remUnits;
+  return pixelUnits;
 };
 
-export default pxToRem;
+export default remToPx;

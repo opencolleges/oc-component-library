@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 
 import BEM from '../utilities/ts/bem';
+import getElemMiddle from './utilities/get-elem-middle';
 import getTimer from './utilities/get-timer';
-import getTop from './utilities/get-top';
 
 import Icon from '../icon';
 
@@ -47,7 +47,7 @@ export default class Toast extends React.Component<Props, State> {
   };
 
   componentDidMount(): void {
-    this.setState({ mounted: true, top: getTop(this.toastRef.current) });
+    this.setState({ mounted: true, top: getElemMiddle(this.toastRef.current) });
 
     if (this.props.modifiers !== `error`) {
       this.timer = new getTimer(this.props.duration, this.handleClick);
@@ -57,9 +57,9 @@ export default class Toast extends React.Component<Props, State> {
   componentDidUpdate(): void {
     if (
       this.state.mounted &&
-      this.state.top !== getTop(this.toastRef.current)
+      this.state.top !== getElemMiddle(this.toastRef.current)
     ) {
-      this.setState({ top: getTop(this.toastRef.current) });
+      this.setState({ top: getElemMiddle(this.toastRef.current) });
     }
 
     if (this.state.mounted === false) {

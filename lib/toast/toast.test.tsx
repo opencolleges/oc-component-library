@@ -10,58 +10,10 @@ let wrapper;
 
 describe(`<Toast />`, () => {
   beforeEach(() => {
-    wrapper = mount(<Toast heading="Foo" message="Bar" />);
+    wrapper = mount(
+      <Toast id="foo" heading="Bar" message="Baz" duration={1000} />
+    );
   });
-
-  //   it(`Handles props.autoComplete`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`autocomplete`)
-  //     ).toBe(null);
-
-  //     wrapper.setProps({ autoComplete: `on` });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`autocomplete`)
-  //     ).toBe(`on`);
-
-  //     wrapper.setProps({ autoComplete: `off` });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`autocomplete`)
-  //     ).toBe(`off`);
-  //   });
-
-  //   it(`Handles props.autoFocus`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`autofocus`)
-  //     ).toBe(null);
-
-  //     wrapper.setProps({ autoFocus: true });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`autofocus`)
-  //     ).toBe(``);
-
-  //     wrapper.setProps({ autoFocus: false });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`autofocus`)
-  //     ).toBe(null);
-  //   });
 
   it(`Handles props.className`, () => {
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
@@ -79,285 +31,120 @@ describe(`<Toast />`, () => {
     );
   });
 
-  //   it(`Handles props.disabled`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`disabled`)
-  //     ).toBe(null);
+  it(`Handles props.duration`, done => {
+    setTimeout(() => {
+      expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+        `${NAMESPACE}-toast mounted`
+      );
+    }, 500);
 
-  //     wrapper.setProps({ disabled: true });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`disabled`)
-  //     ).toBe(``);
+    setTimeout(() => {
+      expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+        `${NAMESPACE}-toast`
+      );
+    }, 1000);
 
-  //     wrapper.setProps({ disabled: false });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`disabled`)
-  //     ).toBe(null);
-  //   });
+    setTimeout(() => {
+      wrapper.update();
 
-  //   it(`Handles props.grammarly`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`data-gramm`)
-  //     ).toBe(null);
+      expect(wrapper).toMatchObject({});
+      done();
+    }, 2000);
+  });
 
-  //     wrapper.setProps({ grammarly: true });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`data-gramm`)
-  //     ).toBe(null);
+  it(`Handles props.heading`, () => {
+    expect(wrapper.find(`.${NAMESPACE}-toast__heading`).text()).toBe(`Bar`);
 
-  //     wrapper.setProps({ grammarly: false });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`data-gramm`)
-  //     ).toBe(`false`);
-  //   });
+    wrapper.setProps({ heading: `Baz` });
+    expect(wrapper.find(`.${NAMESPACE}-toast__heading`).text()).toBe(`Baz`);
 
-  //   it(`Handles props.id`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`id`)
-  //     ).toBe(`${NAMESPACE}-6`);
+    wrapper.setProps({ heading: `` });
+    expect(wrapper.find(`.${NAMESPACE}-toast__heading`).text()).toBe(``);
 
-  //     wrapper.unmount();
+    wrapper.setProps({ heading: `Qui` });
+    expect(wrapper.find(`.${NAMESPACE}-toast__heading`).text()).toBe(`Qui`);
+  });
 
-  //     wrapper = mount(<Textarea label="foo" />);
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`id`)
-  //     ).toBe(`${NAMESPACE}-7`);
+  it(`Handles props.icon`, () => {
+    expect(wrapper.find(`.${NAMESPACE}-icon`).length).toBe(3);
 
-  //     wrapper.unmount();
+    wrapper.setProps({ icon: `calendar` });
+    expect(wrapper.find(`.${NAMESPACE}-icon`).length).toBe(4);
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-icon`)
+        .last()
+        .getDOMNode()
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-icon ${NAMESPACE}-icon--calendar active`);
 
-  //     wrapper = mount(<Textarea label="foo" id="bar" />);
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`id`)
-  //     ).toBe(`bar`);
-  //   });
+    wrapper.setProps({ icon: `print` });
+    expect(wrapper.find(`.${NAMESPACE}-icon`).length).toBe(4);
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-icon`)
+        .last()
+        .getDOMNode()
+        .getAttribute(`class`)
+    ).toBe(`${NAMESPACE}-icon ${NAMESPACE}-icon--print active`);
 
-  //   it(`Handles props.label`, () => {
-  //     expect(wrapper.find(`label`).text()).toBe(`foo`);
+    wrapper.setProps({ icon: null });
+    expect(wrapper.find(`.${NAMESPACE}-icon`).length).toBe(3);
+  });
 
-  //     wrapper.setProps({ label: `Bar` });
-  //     expect(wrapper.find(`label`).text()).toBe(`Bar`);
+  it(`Handles props.id`, () => {
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-toast__button`)
+        .getDOMNode()
+        .getAttribute(`id`)
+    ).toBe(`foo`);
 
-  //     wrapper.setProps({ label: `Bar baz` });
-  //     expect(wrapper.find(`label`).text()).toBe(`Bar baz`);
-  //   });
+    wrapper.setProps({ id: `bar` });
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-toast__button`)
+        .getDOMNode()
+        .getAttribute(`id`)
+    ).toBe(`bar`);
 
-  //   it(`Handles props.maxLength`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`maxlength`)
-  //     ).toBe(null);
+    wrapper.setProps({ id: `baz` });
+    expect(
+      wrapper
+        .find(`.${NAMESPACE}-toast__button`)
+        .getDOMNode()
+        .getAttribute(`id`)
+    ).toBe(`baz`);
+  });
 
-  //     wrapper.setProps({ maxLength: 100 });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`maxlength`)
-  //     ).toBe(`100`);
+  it(`Handles props.message`, () => {
+    expect(wrapper.find(`.${NAMESPACE}-toast__message`).text()).toBe(`Baz`);
 
-  //     wrapper.setProps({ maxLength: 200 });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`maxlength`)
-  //     ).toBe(`200`);
+    wrapper.setProps({ message: `Qui` });
+    expect(wrapper.find(`.${NAMESPACE}-toast__message`).text()).toBe(`Qui`);
 
-  //     wrapper.setProps({ maxLength: 300 });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`maxlength`)
-  //     ).toBe(`300`);
-  //   });
+    wrapper.setProps({ message: `` });
+    expect(wrapper.find(`.${NAMESPACE}-toast__message`).text()).toBe(``);
 
-  //   it(`Handles props.message`, () => {
-  //     expect(wrapper.find(`span.${NAMESPACE}-textarea__message`).text()).toBe(``);
+    wrapper.setProps({ message: `Qux` });
+    expect(wrapper.find(`.${NAMESPACE}-toast__message`).text()).toBe(`Qux`);
+  });
 
-  //     wrapper.setProps({ message: `Qux` });
-  //     expect(wrapper.find(`span.${NAMESPACE}-textarea__message`).text()).toBe(
-  //       `Qux`
-  //     );
+  it(`Handles props.modifiers`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-toast mounted`
+    );
 
-  //     wrapper.setProps({ message: `` });
-  //     expect(wrapper.find(`span.${NAMESPACE}-textarea__message`).text()).toBe(``);
+    wrapper.setProps({ modifiers: `error` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-toast ${NAMESPACE}-toast--error mounted`
+    );
 
-  //     wrapper.setProps({ message: `Corge` });
-  //     expect(wrapper.find(`span.${NAMESPACE}-textarea__message`).text()).toBe(
-  //       `Corge`
-  //     );
-  //   });
-
-  //   it(`Handles props.modifiers`, () => {
-  //     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
-  //       `${NAMESPACE}-textarea`
-  //     );
-
-  //     wrapper.setProps({ modifiers: `error` });
-  //     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
-  //       `${NAMESPACE}-textarea ${NAMESPACE}-textarea--error`
-  //     );
-
-  //     wrapper.setProps({ modifiers: `success` });
-  //     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
-  //       `${NAMESPACE}-textarea ${NAMESPACE}-textarea--success`
-  //     );
-  //   });
-
-  //   it(`Handles props.name`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`name`)
-  //     ).toBe(null);
-
-  //     wrapper.setProps({ name: `bar` });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`name`)
-  //     ).toBe(`bar`);
-
-  //     wrapper.setProps({ name: `baz` });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`name`)
-  //     ).toBe(`baz`);
-  //   });
-
-  //   it(`Handles props.placeholder`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`placeholder`)
-  //     ).toBe(null);
-
-  //     wrapper.setProps({ placeholder: `bar` });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`placeholder`)
-  //     ).toBe(`bar`);
-
-  //     wrapper.setProps({ placeholder: `baz` });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`placeholder`)
-  //     ).toBe(`baz`);
-  //   });
-
-  //   it(`Handles props.readonly`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`readonly`)
-  //     ).toBe(null);
-
-  //     wrapper.setProps({ readOnly: true });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`readonly`)
-  //     ).toBe(``);
-
-  //     wrapper.setProps({ readOnly: false });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`readonly`)
-  //     ).toBe(null);
-  //   });
-
-  //   it(`Handles props.required`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`required`)
-  //     ).toBe(null);
-
-  //     wrapper.setProps({ required: true });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`required`)
-  //     ).toBe(``);
-
-  //     wrapper.setProps({ required: false });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`required`)
-  //     ).toBe(null);
-  //   });
-
-  //   it(`Handles props.spellCheck`, () => {
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`spellcheck`)
-  //     ).toBe(`true`);
-
-  //     wrapper.setProps({ spellCheck: false });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`spellcheck`)
-  //     ).toBe(`false`);
-
-  //     wrapper.setProps({ spellCheck: true });
-  //     expect(
-  //       wrapper
-  //         .find(`textarea`)
-  //         .getDOMNode()
-  //         .getAttribute(`spellcheck`)
-  //     ).toBe(`true`);
-  //   });
+    wrapper.setProps({ modifiers: `success` });
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-toast ${NAMESPACE}-toast--success mounted`
+    );
+  });
 
   it(`Handles props.style`, () => {
     expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(`top: 1rem;`);
@@ -372,31 +159,6 @@ describe(`<Toast />`, () => {
       `top: 1rem; z-index: 1; opacity: 0;`
     );
   });
-
-  //   it(`Handles props.value`, () => {
-  //     wrapper = mount(<Textarea label="foo" />);
-  //     expect(wrapper.find(`textarea`).getDOMNode().value).toBe(``);
-
-  //     wrapper.unmount();
-
-  //     wrapper = mount(<Textarea label="foo" maxLength={0} value="bar" />);
-  //     expect(wrapper.find(`textarea`).getDOMNode().value).toBe(`bar`);
-
-  //     wrapper.unmount();
-
-  //     wrapper = mount(<Textarea label="foo" maxLength={1} value="bar" />);
-  //     expect(wrapper.find(`textarea`).getDOMNode().value).toBe(`b`);
-
-  //     wrapper.unmount();
-
-  //     wrapper = mount(<Textarea label="foo" maxLength={2} value="bar" />);
-  //     expect(wrapper.find(`textarea`).getDOMNode().value).toBe(`ba`);
-
-  //     wrapper.unmount();
-
-  //     wrapper = mount(<Textarea label="foo" value="bar" />);
-  //     expect(wrapper.find(`textarea`).getDOMNode().value).toBe(`bar`);
-  //   });
 
   afterEach(() => {
     wrapper.unmount();
