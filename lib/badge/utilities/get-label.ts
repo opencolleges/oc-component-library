@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-function getBadgeLabel(value: number | string): string {
+const getLabel = (value: number | string): string => {
   if (_.isNumber(value)) {
     value = _.toInteger(value);
   }
@@ -12,6 +12,6 @@ function getBadgeLabel(value: number | string): string {
   }
 
   return _.toString(value);
-}
+};
 
-export default getBadgeLabel;
+export { getLabel as default };

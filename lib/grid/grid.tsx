@@ -36,4 +36,4 @@ Grid.defaultProps = {
   tag: `div`
 };
 
-export default Grid;
+export { Grid as default };

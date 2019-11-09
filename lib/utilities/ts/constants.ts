@@ -1,4 +1,6 @@
-export const NAMESPACE: string = `uds`;
+const NAMESPACE: string = `uds`;
 
-export const ELEMENT_SEPARATOR: string = `__`;
-export const MODIFIER_SEPARATOR: string = `--`;
+const ELEMENT_SEPARATOR: string = `__`;
+const MODIFIER_SEPARATOR: string = `--`;
+
+export { ELEMENT_SEPARATOR, MODIFIER_SEPARATOR, NAMESPACE };

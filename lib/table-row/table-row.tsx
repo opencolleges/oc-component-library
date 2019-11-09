@@ -21,4 +21,4 @@ const TableRow: React.FC<Props> = props => {
   );
 };
 
-export default TableRow;
+export { TableRow as default };

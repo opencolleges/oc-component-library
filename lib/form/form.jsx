@@ -2,8 +2,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import isUndefined from '../utilities/ts/is-undefined';
+
 // * React component
-export default class Form extends React.Component {
+class Form extends React.Component {
   constructor(props) {
     super(props);
     this.formRef = React.createRef();
@@ -146,7 +148,7 @@ export default class Form extends React.Component {
         }
       }
 
-      if (typeof target !== `undefined`) {
+      if (isUndefined(target)) {
         if (target.nodeName === `BUTTON` && target.type === `submit`) {
           this.props.onSubmit();
         }
@@ -173,3 +175,5 @@ Form.propTypes = {
 Form.defaultProps = {
   onSubmit: () => {}
 };
+
+export { Form as default };

@@ -9,7 +9,7 @@ import namespace from '../utilities/ts/namespace';
 
 import Toast from '../toast';
 
-export default class Toaster extends React.Component {
+class Toaster extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,3 +89,5 @@ Toaster.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object
 };
+
+export { Toaster as default };

@@ -31,7 +31,7 @@ interface State {
   mounted: boolean;
 }
 
-export default class Modal extends React.Component<Props> {
+class Modal extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     active: false,
     buttons: [],
@@ -107,3 +107,5 @@ export default class Modal extends React.Component<Props> {
     );
   }
 }
+
+export { Modal as default };

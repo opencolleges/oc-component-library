@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Card from '../card';
 
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
   visible?: boolean;
 }
 
-const OptionalCard: React.FC<Props> = props => {
+const OptionalCard: React.FC<Props> = (props: Props) => {
   return (
     <React.Fragment>
       {props.visible ? (
@@ -33,4 +32,4 @@ OptionalCard.defaultProps = {
   visible: false
 };
 
-export default OptionalCard;
+export { OptionalCard as default };

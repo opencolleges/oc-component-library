@@ -6,11 +6,13 @@ import _ from 'lodash';
 
 import { NAMESPACE } from '../utilities/ts/constants';
 
+// import BEM from '../utilities/ts/bem';
 import getBytes from '../utilities/ts/getBytes';
 import getExtension from '../utilities/ts/getExtension';
 import namespace from '../utilities/ts/namespace';
 import toModifier from '../utilities/ts/to-modifier';
 import remove from '../utilities/ts/remove';
+import isUndefined from '../utilities/ts/is-undefined';
 
 import Icon from '../icon';
 import Table from '../table';
@@ -19,7 +21,7 @@ import TableRow from '../table-row';
 import TableCell from '../table-cell';
 import Progress from '../progress';
 
-export default class File extends React.Component {
+class File extends React.Component {
   constructor(props) {
     super(props);
 
@@ -106,7 +108,7 @@ export default class File extends React.Component {
     let newFiles;
     const fileRef = this.fileRef.current;
 
-    if (typeof e.dataTransfer !== `undefined`) {
+    if (isUndefined(e.dataTransfer)) {
       newFiles = e.dataTransfer.files;
     } else {
       newFiles = fileRef.files;
@@ -336,3 +338,5 @@ File.defaultProps = {
   onChange: () => {},
   onRemove: () => {}
 };
+
+export { File as default };

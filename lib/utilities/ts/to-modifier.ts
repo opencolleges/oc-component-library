@@ -22,4 +22,4 @@ const toModifier = (modifiers: string[] | string, block: string): string => {
   return _.join(arr, ` `);
 };
 
-export default toModifier;
+export { toModifier as default };

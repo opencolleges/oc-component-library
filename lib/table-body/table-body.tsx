@@ -19,4 +19,4 @@ const TableBody: React.FC<Props> = props => {
   );
 };
 
-export default TableBody;
+export { TableBody as default };

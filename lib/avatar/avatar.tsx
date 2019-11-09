@@ -1,10 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
-
 import Badge from '../badge';
-
-import BEM from '../utilities/ts/bem';
-import namespace from '../utilities/ts/namespace';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import isUndefined from '../utilities/ts/is-undefined';
+import randomise from '../utilities/ts/randomise';
 
 const COORDS = {
   l: {
@@ -27,7 +26,7 @@ const COORDS = {
   }
 };
 
-type TSex = `female` | `male` | `undisclosed`;
+type SexTypes = `female` | `male` | `undisclosed`;
 
 interface Props {
   className?: string;
@@ -35,36 +34,44 @@ interface Props {
   href?: string;
   image?: string;
   modifiers?: string;
-  sex: TSex;
+  sex: SexTypes;
   style?: React.CSSProperties;
   value?: number;
 }
 
-const Avatar: React.FC<Props> = props => {
-  const Tag: keyof JSX.IntrinsicElements = _.isUndefined(props.href)
+const Avatar: React.FC<Props> = (props: Props) => {
+  const Tag: keyof JSX.IntrinsicElements = isUndefined(props.href)
     ? `div`
     : `a`;
 
-  const bem = BEM(`avatar`);
-  bem.addModifiers(props.modifiers);
-  bem.addClassNames(props.className);
+  const BEM_MODULE: BEMInterface = BEM(`avatar`);
+  const {
+    addClassNames,
+    addModifiers,
+    getElement,
+    getModifier,
+    getResult
+  }: BEMInterface = BEM_MODULE; // ? Review type.
+
+  addModifiers(props.modifiers);
+  addClassNames(props.className);
 
   return (
     <Tag
-      className={bem.getResult()}
+      className={getResult()}
       style={props.style}
       href={props.href}
       title={props.firstName}>
       {Object.keys(COORDS).map((size, index) => {
         return (
           _.includes(_.split(props.modifiers, ` `), size) &&
-          (!_.isUndefined(props.href) && (
+          (!isUndefined(props.href) && (
             <svg
               key={index}
-              className={bem.getElement(`border-outer`)}
+              className={getElement(`border-outer`)}
               viewBox={COORDS[size].viewBox}>
               <circle
-                className={bem.getElement(`border`)}
+                className={getElement(`border`)}
                 cx={COORDS[size].cx}
                 cy={COORDS[size].cy}
                 r={COORDS[size].r}
@@ -73,17 +80,12 @@ const Avatar: React.FC<Props> = props => {
           ))
         );
       })}
-      {/* FIX THIS */}
       <div
-        className={namespace(
-          `avatar__image avatar__image--${
-            props.sex === `female`
-              ? `female-${_.random(1, 2)}`
-              : props.sex === `male`
-              ? `male-${_.random(1, 2)}`
-              : `undisclosed-${_.random(1, 2)}`
-          }`
-        )}
+        className={`${getElement(`image`)} ${
+          props.sex !== `undisclosed`
+            ? getModifier(`${props.sex}-${randomise(1, 2)}`, `image`)
+            : getModifier(props.sex, `image`)
+        }`}
         style={
           props.image && {
             background: `url('${props.image}'), rgb(255, 255, 255)`,
@@ -112,4 +114,4 @@ Avatar.defaultProps = {
   sex: `undisclosed`
 };
 
-export default Avatar;
+export { Avatar as default };

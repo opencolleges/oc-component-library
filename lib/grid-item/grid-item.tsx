@@ -21,4 +21,4 @@ const GridItem: React.FC<Props> = props => {
   );
 };
 
-export default GridItem;
+export { GridItem as default };

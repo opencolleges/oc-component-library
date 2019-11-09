@@ -26,7 +26,7 @@ interface State {
   checked: boolean;
 }
 
-export default class Checkbox extends React.Component<Props, State> {
+class Checkbox extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     checked: false,
     disabled: false,
@@ -113,3 +113,5 @@ export default class Checkbox extends React.Component<Props, State> {
     );
   }
 }
+
+export { Checkbox as default };

@@ -21,7 +21,7 @@ interface State {
   value: number;
 }
 
-export default class Range extends React.Component<Props> {
+class Range extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     max: 100,
     min: 0,
@@ -100,3 +100,5 @@ export default class Range extends React.Component<Props> {
     );
   }
 }
+
+export { Range as default };

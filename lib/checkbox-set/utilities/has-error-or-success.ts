@@ -1,17 +1,18 @@
 import _ from 'lodash';
 
-function hasErrorOrSuccess(
+const hasErrorOrSuccess = (
   errorArr: string[],
   successArr: string[],
   value: string
-): string | null {
+): string | null => {
   if (_.includes(errorArr, value)) {
     return `error`;
   }
   if (_.includes(successArr, value)) {
     return `success`;
   }
-  return null;
-}
 
-export default hasErrorOrSuccess;
+  return null;
+};
+
+export { hasErrorOrSuccess as default };

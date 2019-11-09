@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Icon from '../icon';
-
 import BEM from '../utilities/ts/bem';
+
+import Icon from '../icon';
 
 interface Props {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ interface State {
   height?: number;
 }
 
-export default class Accordion extends React.Component<Props, State> {
+class Accordion extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     expanded: false
   };
@@ -80,3 +80,5 @@ export default class Accordion extends React.Component<Props, State> {
     );
   }
 }
+
+export { Accordion as default };

@@ -22,7 +22,7 @@ interface Props {
   value: string;
 }
 
-export default class Radio extends React.Component<Props> {
+class Radio extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     checked: false,
     disabled: false,
@@ -90,3 +90,5 @@ export default class Radio extends React.Component<Props> {
     );
   }
 }
+
+export { Radio as default };

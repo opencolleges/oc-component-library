@@ -40,7 +40,7 @@ interface State {
   value: string[];
 }
 
-export default class CheckboxSet extends React.Component<Props, State> {
+class CheckboxSet extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     cards: false,
     disabled: false,
@@ -152,3 +152,5 @@ export default class CheckboxSet extends React.Component<Props, State> {
     );
   }
 }
+
+export { CheckboxSet as default };

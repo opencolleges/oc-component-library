@@ -33,4 +33,4 @@ Uniform.defaultProps = {
   tag: `main`
 };
 
-export default Uniform;
+export { Uniform as default };

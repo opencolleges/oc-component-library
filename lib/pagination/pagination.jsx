@@ -11,7 +11,7 @@ import namespace from '../utilities/ts/namespace';
 import Icon from '../icon';
 
 // * React component
-export default class Pagination extends React.Component {
+class Pagination extends React.Component {
   constructor(props) {
     super(props);
 
@@ -74,7 +74,7 @@ export default class Pagination extends React.Component {
       siblings = this.desktopSiblings;
     }
 
-    this.setState({ siblings: siblings }, function() {
+    this.setState({ siblings: siblings }, () => {
       const paginationRef = this.paginationRef.current;
       const paginationChildren = paginationRef.childNodes.length;
 
@@ -190,7 +190,7 @@ export default class Pagination extends React.Component {
   goToPage = pageNumber => {
     const paginationRef = this.paginationRef.current;
 
-    this.setState({ currentPage: pageNumber }, function() {
+    this.setState({ currentPage: pageNumber }, () => {
       paginationRef.getElementsByClassName(namespace(`active`))[0].focus();
       this.handleHighlight();
     });
@@ -389,3 +389,5 @@ Pagination.defaultProps = {
   currentPage: 0,
   onChange: () => {}
 };
+
+export { Pagination as default };

@@ -36,7 +36,7 @@ interface State {
   value: string;
 }
 
-export default class Date extends React.Component<Props, State> {
+class Date extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     onChange: () => {
@@ -737,3 +737,5 @@ export default class Date extends React.Component<Props, State> {
     );
   }
 }
+
+export { Date as default };

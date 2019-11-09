@@ -17,7 +17,7 @@ interface State {
   value?: string;
 }
 
-export default class Likert extends React.Component<Props, State> {
+class Likert extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     onChange: () => {
       return;
@@ -84,3 +84,5 @@ export default class Likert extends React.Component<Props, State> {
     );
   }
 }
+
+export { Likert as default };

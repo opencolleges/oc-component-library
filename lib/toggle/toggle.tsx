@@ -23,7 +23,7 @@ interface State {
   checked?: boolean;
 }
 
-export default class Toggle extends React.Component<Props, State> {
+class Toggle extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     checked: false,
     disabled: false,
@@ -83,3 +83,5 @@ export default class Toggle extends React.Component<Props, State> {
     );
   }
 }
+
+export { Toggle as default };

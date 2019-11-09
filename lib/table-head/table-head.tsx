@@ -19,4 +19,4 @@ const TableHead: React.FC<Props> = props => {
   );
 };
 
-export default TableHead;
+export { TableHead as default };

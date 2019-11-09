@@ -1,3 +1,3 @@
 import Likert from './likert';
 
-export default Likert;
+export { Likert as default };

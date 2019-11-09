@@ -1,3 +1,3 @@
 import Accordion from './accordion';
 
-export default Accordion;
+export { Accordion as default };

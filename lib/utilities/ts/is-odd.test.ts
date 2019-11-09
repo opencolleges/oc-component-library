@@ -6,6 +6,7 @@ describe(`isOdd()`, () => {
     expect(isOdd(456)).toBe(false);
     expect(isOdd(80000)).toBe(false);
   });
+
   it(`Handles an odd number`, () => {
     expect(isOdd(1)).toBe(true);
     expect(isOdd(457)).toBe(true);

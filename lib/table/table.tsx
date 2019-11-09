@@ -21,4 +21,4 @@ const Table: React.FC<Props> = props => {
   );
 };
 
-export default Table;
+export { Table as default };

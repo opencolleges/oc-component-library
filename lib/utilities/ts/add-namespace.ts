@@ -8,4 +8,4 @@ const addNamespace = (className: string): string => {
   return `${NAMESPACE}-${className}`;
 };
 
-export default addNamespace;
+export { addNamespace as default };

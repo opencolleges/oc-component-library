@@ -18,4 +18,4 @@ const namespace = (...classNames: string[]): string => {
   return _.join(arr, ` `);
 };
 
-export default namespace;
+export { namespace as default };

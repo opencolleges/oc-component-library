@@ -57,4 +57,4 @@ Preloader.defaultProps = {
   active: false
 };
 
-export default Preloader;
+export { Preloader as default };

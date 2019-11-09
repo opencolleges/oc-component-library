@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 
 // * utility imports
 import namespace from '../utilities/ts/namespace';
+import randomise from '../utilities/ts/randomise';
 
 import _ from 'lodash';
 
@@ -104,7 +105,7 @@ const SortableContainer = (WrappedComponent, config = { withRef: false }) => {
       ) {
         const { index, collection } = node.sortableInfo;
 
-        this.setState({ rotateDegree: _.random(-3, 3) });
+        this.setState({ rotateDegree: randomise(-3, 3) });
 
         if (!closest(target, el => el.sortableHandle != null))
           // return;
@@ -657,4 +658,4 @@ const SortableContainer = (WrappedComponent, config = { withRef: false }) => {
   return drop;
 };
 
-export default SortableContainer;
+export { SortableContainer as default };

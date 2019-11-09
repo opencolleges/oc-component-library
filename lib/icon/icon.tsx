@@ -3,7 +3,7 @@ import React from 'react';
 import BEM from '../utilities/ts/bem';
 import namespace from '../utilities/ts/namespace';
 
-export type TIcon =
+type IconTypes =
   | `arrow-down`
   | `arrow-left`
   | `arrow-right`
@@ -35,11 +35,11 @@ interface Props {
   className?: string;
   style?: React.CSSProperties;
   size?: string;
-  type: TIcon;
+  type: IconTypes;
   visible?: boolean;
 }
 
-const Icon: React.FC<Props> = props => {
+const Icon: React.FC<Props> = (props: Props) => {
   const icons = {
     'arrow-down': ArrowDown,
     'arrow-left': ArrowLeft,
@@ -93,8 +93,6 @@ Icon.defaultProps = {
   size: `24px`,
   visible: true
 };
-
-export default Icon;
 
 const ArrowUp: React.FC = () => {
   return (
@@ -450,3 +448,5 @@ const Search: React.FC = () => {
     </React.Fragment>
   );
 };
+
+export { Icon as default, IconTypes };

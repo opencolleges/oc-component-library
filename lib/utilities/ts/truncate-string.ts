@@ -10,4 +10,4 @@ const truncateString = (value: string, maxLength: number): string => {
   return value;
 };
 
-export default truncateString;
+export { truncateString as default };

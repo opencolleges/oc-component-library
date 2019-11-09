@@ -1,3 +1,3 @@
 import Divider from './divider';
 
-export default Divider;
+export { Divider as default };

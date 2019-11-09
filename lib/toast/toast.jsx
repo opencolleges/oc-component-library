@@ -13,7 +13,7 @@ import Icon from '../icon';
 import _ from 'lodash';
 
 // * React component
-export default class Toast extends React.Component {
+class Toast extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -293,3 +293,5 @@ Toast.defaultProps = {
   duration: 8000,
   onClick: () => {}
 };
+
+export { Toast as default };

@@ -40,7 +40,7 @@ interface State {
   value: string;
 }
 
-export default class Textarea extends React.Component<Props> {
+class Textarea extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     grammarly: true,
@@ -119,7 +119,7 @@ export default class Textarea extends React.Component<Props> {
       {
         height: null
       },
-      function() {
+      () => {
         const windowWidth: string = getWindowWidth();
 
         let maxHeight: number = null;
@@ -256,3 +256,5 @@ export default class Textarea extends React.Component<Props> {
     );
   }
 }
+
+export { Textarea as default };

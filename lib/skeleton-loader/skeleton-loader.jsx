@@ -18,4 +18,4 @@ SkeletonLoader.propTypes = {
   style: PropTypes.object
 };
 
-export default SkeletonLoader;
+export { SkeletonLoader as default };

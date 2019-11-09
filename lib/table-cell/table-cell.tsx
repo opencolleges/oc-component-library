@@ -36,4 +36,4 @@ TableCell.defaultProps = {
   tag: `td`
 };
 
-export default TableCell;
+export { TableCell as default };

@@ -4,6 +4,7 @@ import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
 
 import BEM from '../utilities/ts/bem';
+import isUndefined from '../utilities/ts/is-undefined';
 import remove from '../utilities/ts/remove';
 import truncateString from '../utilities/ts/truncate-string';
 
@@ -95,7 +96,7 @@ interface State {
   value: string;
 }
 
-export default class Text extends React.Component<Props> {
+class Text extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     onBlur: () => {
@@ -273,7 +274,7 @@ export default class Text extends React.Component<Props> {
         <input
           id={id}
           className={`${bem.getElement(`input`)}${
-            typeof state.value !== `undefined` ? ` active` : ``
+            !isUndefined(state.value) ? ` active` : ``
           }`}
           type={props.type}
           name={props.name}
@@ -312,3 +313,5 @@ export default class Text extends React.Component<Props> {
     );
   }
 }
+
+export { Text as default };

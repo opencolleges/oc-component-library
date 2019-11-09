@@ -36,7 +36,7 @@ interface State {
   value: string;
 }
 
-export default class Select extends React.Component<Props> {
+class Select extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     onChange: () => {
@@ -334,3 +334,5 @@ export default class Select extends React.Component<Props> {
     );
   }
 }
+
+export { Select as default };

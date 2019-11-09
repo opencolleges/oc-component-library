@@ -20,7 +20,7 @@ interface State {
   success: boolean;
 }
 
-export default class Progress extends React.Component<Props> {
+class Progress extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     totalProgress: 100
   };
@@ -95,3 +95,5 @@ export default class Progress extends React.Component<Props> {
     );
   }
 }
+
+export { Progress as default };

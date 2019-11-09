@@ -1,44 +1,42 @@
-import _ from 'lodash';
 import React from 'react';
+import Icon, { IconTypes } from '../icon';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import isUndefined from '../utilities/ts/is-undefined';
 
-import Icon from '../icon';
-
-import BEM from '../utilities/ts/bem';
-
-import { TIcon } from '../icon/icon';
-
-type TType = `button` | `submit` | `reset`;
+type ButtonTypes = `button` | `submit` | `reset`;
 
 interface Props {
   className?: string;
   disabled?: boolean;
   href?: string;
-  icon?: TIcon;
+  icon?: IconTypes;
   id?: string;
   label: string;
   modifiers?: string;
   name?: string;
   onClick?: () => void;
   style?: React.CSSProperties;
-  type?: TType;
+  type?: ButtonTypes;
 }
 
-const Button: React.FC<Props> = props => {
+const Button: React.FC<Props> = (props: Props) => {
   let Tag: keyof JSX.IntrinsicElements = `button`;
 
-  if (!props.disabled && !_.isUndefined(props.href)) {
+  if (!props.disabled && !isUndefined(props.href)) {
     Tag = `a`;
   }
 
-  const bem = BEM(`button`);
-  bem.addModifiers(props.modifiers);
-  bem.addModifiers(props.icon ? `icon` : ``);
-  bem.addClassNames(props.className);
+  const BEM_MODULE: BEMInterface = BEM(`button`);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE; // ? Review type.
+
+  addModifiers(props.modifiers);
+  addModifiers(props.icon ? `icon` : ``);
+  addClassNames(props.className);
 
   return (
     <Tag
       id={props.id}
-      className={bem.getResult()}
+      className={getResult()}
       style={props.style}
       type={Tag === `button` ? props.type : null}
       name={props.name}
@@ -60,4 +58,4 @@ Button.defaultProps = {
   type: `button`
 };
 
-export default Button;
+export { Button as default };

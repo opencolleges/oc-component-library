@@ -37,4 +37,4 @@ Heading.defaultProps = {
   level: 1
 };
 
-export default Heading;
+export { Heading as default };

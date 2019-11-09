@@ -38,7 +38,7 @@ interface State {
   value: string;
 }
 
-export default class RadioSet extends React.Component<Props, State> {
+class RadioSet extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     cards: false,
     disabled: false,
@@ -124,3 +124,5 @@ export default class RadioSet extends React.Component<Props, State> {
     );
   }
 }
+
+export { RadioSet as default };

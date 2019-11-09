@@ -56,4 +56,4 @@ Copy.defaultProps = {
   tag: `p`
 };
 
-export default Copy;
+export { Copy as default };

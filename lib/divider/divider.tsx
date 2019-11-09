@@ -22,4 +22,4 @@ Divider.defaultProps = {
   modifiers: `s`
 };
 
-export default Divider;
+export { Divider as default };

@@ -28,7 +28,7 @@ const SortableList = SortableContainer(({ items }) => {
   );
 });
 
-export default class SortableComponent extends React.Component {
+class SortableComponent extends React.Component {
   state = {
     items: list.items
   };
@@ -51,3 +51,5 @@ export default class SortableComponent extends React.Component {
     );
   }
 }
+
+export { SortableComponent as default };

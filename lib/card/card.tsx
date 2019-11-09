@@ -1,9 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
-
 import Icon from '../icon';
-
 import BEM from '../utilities/ts/bem';
+import isUndefined from '../utilities/ts/is-undefined';
 
 interface Props {
   children: React.ReactNode;
@@ -14,8 +13,8 @@ interface Props {
   tabIndex?: boolean;
 }
 
-const Card: React.FC<Props> = props => {
-  const Tag = (typeof props.href === `undefined` ? `div` : `a`) as `div` | `a`;
+const Card: React.FC<Props> = (props: Props) => {
+  const Tag = (isUndefined(props.href) ? `div` : `a`) as `div` | `a`;
 
   const bem = BEM(`card`);
   bem.addModifiers(props.modifiers);
@@ -46,4 +45,4 @@ Card.defaultProps = {
   tabIndex: true
 };
 
-export default Card;
+export { Card as default };

@@ -1,7 +1,7 @@
 import isEven from './is-even';
 
-function isOdd(num: number): boolean {
+const isOdd = (num: number): boolean => {
   return !isEven(num);
-}
+};
 
-export default isOdd;
+export { isOdd as default };
