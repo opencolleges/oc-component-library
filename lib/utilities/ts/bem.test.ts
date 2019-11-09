@@ -35,6 +35,18 @@ describe(`BEM`, () => {
     );
   });
 
+  it(`Handles bem.getBlock()`, () => {
+    const bem = BEM(`foo`);
+
+    bem.addModifiers(`bar`);
+    bem.addClassNames(`baz qui`);
+
+    expect(bem.getBlock()).toBe(`${NAMESPACE}-foo`);
+    expect(bem.getResult()).toBe(
+      `${NAMESPACE}-foo ${NAMESPACE}-foo--bar baz qui`
+    );
+  });
+
   it(`Handles bem.getElement()`, () => {
     const bem = BEM(`foo`);
 

@@ -7,25 +7,25 @@ import Icon from '../icon';
 interface Props {
   children: React.ReactNode;
   className?: string;
-  expanded?: boolean;
   label: string;
   modifiers?: string;
+  open?: boolean;
   style?: React.CSSProperties;
 }
 
 interface State {
-  expanded?: boolean;
   height?: number;
+  open?: boolean;
 }
 
 class Accordion extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
-    expanded: false
+    open: false
   };
 
   readonly state: Readonly<State> = {
-    expanded: this.props.expanded,
-    height: null
+    height: null,
+    open: this.props.open
   };
 
   contentRef = React.createRef<HTMLDivElement>();
@@ -47,7 +47,7 @@ class Accordion extends React.Component<Props, State> {
   };
 
   handleClick = (): void => {
-    this.setState({ expanded: !this.state.expanded });
+    this.setState({ open: !this.state.open });
   };
 
   render() {
@@ -55,7 +55,7 @@ class Accordion extends React.Component<Props, State> {
 
     const bem = BEM(`accordion`);
     bem.addModifiers(props.modifiers);
-    bem.addClassNames(state.expanded ? `active` : ``);
+    bem.addClassNames(state.open ? `active` : ``);
     bem.addClassNames(props.className);
 
     return (
@@ -63,16 +63,16 @@ class Accordion extends React.Component<Props, State> {
         <button
           type={`button`}
           className={bem.getElement(`button`)}
-          title={state.expanded ? `Contract` : `Expand`}
+          title={state.open ? `Close` : `Open`}
           onClick={handleClick}>
           {props.label}
         </button>
         <Icon type="minus" />
-        <Icon type="plus" visible={!state.expanded} />
+        <Icon type="plus" visible={!state.open} />
         <div
           ref={contentRef}
           className={bem.getElement(`outer`)}
-          style={{ height: state.expanded ? state.height : 0 }}>
+          style={{ height: state.open ? state.height : 0 }}>
           {props.children}
         </div>
         <div className={bem.getElement(`border`)} />
