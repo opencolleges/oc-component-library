@@ -65,7 +65,7 @@ class Accordion extends React.Component<Props, State> {
     }: BEMInterface = BEM_MODULE;
 
     addModifiers(props.modifiers);
-    addClassNames(state.open ? `active` : ``);
+    addClassNames(!!state.open ? `active` : ``);
     addClassNames(props.className);
 
     return (
@@ -73,7 +73,7 @@ class Accordion extends React.Component<Props, State> {
         <button
           type={`button`}
           className={getElement(`button`)}
-          title={state.open ? `Close` : `Open`}
+          title={!!state.open ? `Close` : `Open`}
           onClick={accordionToggle}>
           {props.label}
         </button>
@@ -82,7 +82,7 @@ class Accordion extends React.Component<Props, State> {
         <div
           ref={accordionOuterRef}
           className={getElement(`outer`)}
-          style={{ height: state.open ? state.height : 0 }}>
+          style={{ height: !!state.open ? state.height : 0 }}>
           {props.children}
         </div>
         <div className={getElement(`border`)} />

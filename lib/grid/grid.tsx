@@ -25,7 +25,7 @@ const Grid: React.FC<Props> = (props: Props) => {
     <Tag
       className={getResult()}
       style={
-        props.maxWidth ? props.style : { maxWidth: `100%`, ...props.style }
+        !!props.maxWidth ? props.style : { maxWidth: `100%`, ...props.style }
       }>
       {props.children}
     </Tag>

@@ -1,11 +1,13 @@
 import _ from 'lodash';
 import React from 'react';
 import Icon from '../icon';
+import addNamespace from '../utilities/ts/add-namespace';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
-import { CalendarMonth } from '../utilities/ts/date-time';
 import dateTime from '../utilities/ts/date-time';
+import { CalendarMonth } from '../utilities/ts/date-time';
 import getId from '../utilities/ts/get-id';
-import namespace from '../utilities/ts/namespace';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 import remove from '../utilities/ts/remove';
 
 interface Props {
@@ -58,16 +60,16 @@ class Date extends React.Component<Props, State> {
     calendar: dateTime.getCalendarMonth(
       this.props.value && this.inRange ? this.props.value : ``
     ),
-    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
-    success: _.includes(_.split(this.props.modifiers, ` `), `success`),
+    error: includes(itemise(this.props.modifiers), `error`),
+    success: includes(itemise(this.props.modifiers), `success`),
     value: this.props.value && this.inRange ? this.props.value : ``
   };
 
   componentDidUpdate(prevProps: Props, prevState: State): void {
     if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `error`),
-        success: _.includes(_.split(this.props.modifiers, ` `), `success`)
+        error: includes(itemise(this.props.modifiers), `error`),
+        success: includes(itemise(this.props.modifiers), `success`)
       });
     }
 
@@ -437,7 +439,7 @@ class Date extends React.Component<Props, State> {
 
       // previous
     } else if (
-      target.className === namespace(`date__item date__item--previous`)
+      target.className === addNamespace(`date__item date__item--previous`)
     ) {
       this.setState(
         {
@@ -454,7 +456,9 @@ class Date extends React.Component<Props, State> {
       );
 
       // next
-    } else if (target.className === namespace(`date__item date__item--next`)) {
+    } else if (
+      target.className === addNamespace(`date__item date__item--next`)
+    ) {
       this.setState(
         {
           calendar: dateTime.getCalendarMonth(
@@ -689,7 +693,7 @@ class Date extends React.Component<Props, State> {
                 Sa
               </li>
             </ul>
-            <ul className={namespace(`date__list`)} ref={optionsRef}>
+            <ul className={addNamespace(`date__list`)} ref={optionsRef}>
               {state.calendar.months.map((month, monthIndex) => {
                 return month.days.map((day, dayIndex) => {
                   if (

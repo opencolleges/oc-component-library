@@ -1,9 +1,10 @@
 import BrowserDetect from 'browser-detect';
-import _ from 'lodash';
 import React from 'react';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
 import getId from '../utilities/ts/get-id';
 import getWindowWidth from '../utilities/ts/get-window-width';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 import remove from '../utilities/ts/remove';
 import truncateString from '../utilities/ts/truncate-string';
 
@@ -53,11 +54,11 @@ class Textarea extends React.Component<Props> {
   textareaRef = React.createRef<HTMLTextAreaElement>();
 
   readonly state: Readonly<State> = {
-    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+    error: includes(itemise(this.props.modifiers), `error`),
     height: null,
     overflow: `hidden`,
     remaining: 0,
-    success: _.includes(_.split(this.props.modifiers, ` `), `success`),
+    success: includes(itemise(this.props.modifiers), `success`),
     value: truncateString(this.props.value, this.props.maxLength)
   };
 
@@ -72,9 +73,9 @@ class Textarea extends React.Component<Props> {
   componentDidUpdate(prevProps: Props, prevState: State): void {
     if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+        error: includes(itemise(this.props.modifiers), `error`),
         message: this.props.message ? this.props.message : ``,
-        success: _.includes(_.split(this.props.modifiers, ` `), `success`)
+        success: includes(itemise(this.props.modifiers), `success`)
       });
     }
 

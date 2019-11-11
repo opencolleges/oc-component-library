@@ -1,9 +1,11 @@
 import _ from 'lodash';
 import React from 'react';
 import Icon from '../icon';
+import addNamespace from '../utilities/ts/add-namespace';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
 import getId from '../utilities/ts/get-id';
-import namespace from '../utilities/ts/namespace';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 
 interface Options {
   label: string;
@@ -51,8 +53,8 @@ class Select extends React.Component<Props> {
 
   readonly state: Readonly<State> = {
     active: false,
-    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
-    success: _.includes(_.split(this.props.modifiers, ` `), `success`),
+    error: includes(itemise(this.props.modifiers), `error`),
+    success: includes(itemise(this.props.modifiers), `success`),
     value: _.find(this.props.options, { value: this.props.value })
       ? this.props.value
       : ``
@@ -61,8 +63,8 @@ class Select extends React.Component<Props> {
   componentDidUpdate(prevProps: Props, prevState: State): void {
     if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(this.props.modifiers, `error`),
-        success: _.includes(this.props.modifiers, `success`)
+        error: includes(this.props.modifiers, `error`),
+        success: includes(this.props.modifiers, `success`)
       });
     }
 
@@ -168,7 +170,7 @@ class Select extends React.Component<Props> {
       }
 
       // options
-    } else if (target.className === namespace(`select__item`)) {
+    } else if (target.className === addNamespace(`select__item`)) {
       this.setState(
         {
           active: false,

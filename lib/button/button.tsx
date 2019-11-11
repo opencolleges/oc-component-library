@@ -30,7 +30,7 @@ const Button: React.FC<Props> = (props: Props) => {
   const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
 
   addModifiers(props.modifiers);
-  addModifiers(props.icon ? `icon` : ``);
+  addModifiers(!!props.icon ? `icon` : ``);
   addClassNames(props.className);
 
   return (
@@ -44,7 +44,7 @@ const Button: React.FC<Props> = (props: Props) => {
       disabled={props.disabled}
       title={props.label}
       onClick={props.onClick}>
-      {props.icon && <Icon type={props.icon} />}
+      {!!props.icon && <Icon type={props.icon} />}
       {props.label}
     </Tag>
   );

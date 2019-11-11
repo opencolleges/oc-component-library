@@ -1,8 +1,9 @@
-import _ from 'lodash';
 import React from 'react';
 import Icon from '../icon';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
 import getId from '../utilities/ts/get-id';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 
 interface Props {
   checked?: boolean;
@@ -73,15 +74,15 @@ class Radio extends React.Component<Props> {
             <circle className={getElement(`border`)} cx="8" cy="8" r="7.5" />
           </svg>
         )}
-        {!_.includes(_.split(props.modifiers, ` `), `right`) && (
+        {!includes(itemise(props.modifiers), `right`) && (
           <React.Fragment>
             <Icon
               type="close"
-              visible={_.includes(_.split(props.modifiers, ` `), `error`)}
+              visible={includes(itemise(props.modifiers), `error`)}
             />
             <Icon
               type="tick"
-              visible={_.includes(_.split(props.modifiers, ` `), `success`)}
+              visible={includes(itemise(props.modifiers), `success`)}
             />
           </React.Fragment>
         )}

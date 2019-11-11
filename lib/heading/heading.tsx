@@ -1,19 +1,18 @@
-import _ from 'lodash';
 import React from 'react';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
 
 type LevelTypes = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface Props {
+  children: string;
+  className?: string;
   level?: LevelTypes;
   modifiers?: string;
-  className?: string;
   style?: React.CSSProperties;
-  children: string;
 }
 
 const Heading: React.FC<Props> = (props: Props) => {
-  const Tag = `h${_.toString(props.level)}` as
+  const Tag: keyof JSX.IntrinsicElements = `h${props.level}` as
     | `h1`
     | `h2`
     | `h3`

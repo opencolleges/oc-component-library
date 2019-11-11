@@ -4,7 +4,7 @@ import Icon from '../icon';
 import BEM from '../utilities/ts/bem';
 import getRange from '../utilities/ts/getRange';
 import getWindowWidth from '../utilities/ts/get-window-width';
-import namespace from '../utilities/ts/namespace';
+import addNamespace from '../utilities/ts/add-namespace';
 import pxToRem from '../utilities/ts/px-to-rem';
 
 class Pagination extends React.Component {
@@ -187,7 +187,7 @@ class Pagination extends React.Component {
     const paginationRef = this.paginationRef.current;
 
     this.setState({ currentPage: pageNumber }, () => {
-      paginationRef.getElementsByClassName(namespace(`active`))[0].focus();
+      paginationRef.getElementsByClassName(addNamespace(`active`))[0].focus();
       this.handleHighlight();
     });
 
@@ -320,16 +320,16 @@ class Pagination extends React.Component {
               className={
                 state.currentPage === page
                   ? getPageStatus(page)
-                    ? namespace(
+                    ? addNamespace(
                         `pagination__item pagination__item--selectable ${getPageStatus(
                           page
                         )} active`
                       )
-                    : namespace(
+                    : addNamespace(
                         `pagination__item pagination__item--selectable active`
                       )
                   : getPageStatus(page)
-                  ? namespace(
+                  ? addNamespace(
                       `pagination__item pagination__item--selectable ${getPageStatus(
                         page
                       )}`

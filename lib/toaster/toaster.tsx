@@ -4,6 +4,8 @@ import Toast from '../toast';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
 import addId from './utilities/add-id';
 
+type ModifiersTypes = `error` | `success`;
+
 export interface ToastProps {
   className?: string;
   duration?: number;
@@ -11,7 +13,7 @@ export interface ToastProps {
   icon?: IconTypes;
   id?: string;
   message: string;
-  modifiers?: `error` | `success`;
+  modifiers?: ModifiersTypes;
   onClick?: (id: string) => void;
   style?: React.CSSProperties;
 }

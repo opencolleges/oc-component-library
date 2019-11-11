@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../icon';
@@ -11,7 +10,9 @@ import BEM from '../utilities/ts/bem';
 import getBytes from '../utilities/ts/getBytes';
 import getExtension from '../utilities/ts/getExtension';
 import getId from '../utilities/ts/get-id';
-import namespace from '../utilities/ts/namespace';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
+import addNamespace from '../utilities/ts/add-namespace';
 import remove from '../utilities/ts/remove';
 import isUndefined from '../utilities/ts/is-undefined';
 
@@ -25,16 +26,16 @@ class File extends React.Component {
     this.state = {
       active: false,
       files: props.files.length > 0 ? props.files : [],
-      error: _.includes(_.split(this.props.modifiers, ` `), `file--error`),
-      success: _.includes(_.split(this.props.modifiers, ` `), `file--success`)
+      error: includes(itemise(this.props.modifiers), `file--error`),
+      success: includes(itemise(this.props.modifiers), `file--success`)
     };
   }
 
   componentDidUpdate(previousProps, previousState) {
     if (this.props.modifiers !== previousProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `file--error`),
-        success: _.includes(_.split(this.props.modifiers, ` `), `file--success`)
+        error: includes(itemise(this.props.modifiers), `file--error`),
+        success: includes(itemise(this.props.modifiers), `file--success`)
       });
     }
 
@@ -231,7 +232,7 @@ class File extends React.Component {
               <Icon type="cloud-upload" />
             </div>
             <span className={bem.getElement(`description`)}>
-              <strong className={namespace(`strong`)}>
+              <strong className={addNamespace(`strong`)}>
                 {`Drag and drop ${props.multiple ? `files` : `a file`}`}
               </strong>
               <br />

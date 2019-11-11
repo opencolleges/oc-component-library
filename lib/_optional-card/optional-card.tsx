@@ -14,7 +14,7 @@ const OptionalCard: React.FC<Props> = (props: Props) => {
       {props.visible ? (
         <Card
           modifiers={`s ${
-            props.disabled || props.readOnly ? `layer-1` : `clickable`
+            !!props.disabled || !!props.readOnly ? `layer-1` : `clickable`
           }`}
           tabIndex={false}>
           {props.children}

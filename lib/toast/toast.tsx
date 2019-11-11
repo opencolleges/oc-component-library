@@ -1,10 +1,13 @@
-import _ from 'lodash';
 import React from 'react';
 import Icon, { IconTypes } from '../icon';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
 import { TRANSITION_DURATION_x4 } from '../utilities/ts/constants';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 import getElemMiddle from './utilities/get-elem-middle';
 import getTimer from './utilities/get-timer';
+
+type ModifiersTypes = `error` | `success`;
 
 interface Props {
   className?: string;
@@ -13,7 +16,7 @@ interface Props {
   icon?: IconTypes;
   id: string;
   message: string;
-  modifiers?: `error` | `success`;
+  modifiers?: ModifiersTypes;
   onClick?: (id: string) => void;
   style?: React.CSSProperties;
 }
@@ -216,7 +219,7 @@ class Toast extends React.Component<Props, State> {
     }: BEMInterface = BEM_MODULE;
 
     addModifiers(props.modifiers);
-    addClassNames(state.mounted ? `mounted` : ``);
+    addClassNames(!!state.mounted ? `mounted` : ``);
     addClassNames(props.className);
 
     return (
@@ -241,15 +244,15 @@ class Toast extends React.Component<Props, State> {
         </button>
         <Icon
           type="close-ring"
-          visible={_.includes(_.split(props.modifiers, ` `), `error`)}
+          visible={includes(itemise(props.modifiers), `error`)}
         />
         <Icon
           type="tick-ring"
-          visible={_.includes(_.split(props.modifiers, ` `), `success`)}
+          visible={includes(itemise(props.modifiers), `success`)}
         />
-        {props.icon &&
-          (!_.includes(_.split(props.modifiers, ` `), `error`) &&
-            !_.includes(_.split(props.modifiers, ` `), `success`)) && (
+        {!!props.icon &&
+          (!includes(itemise(props.modifiers), `error`) &&
+            !includes(itemise(props.modifiers), `success`)) && (
             <Icon type={props.icon} visible={true} />
           )}
       </div>

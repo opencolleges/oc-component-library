@@ -1,6 +1,5 @@
-import _ from 'lodash';
 import React from 'react';
-import namespace from '../utilities/ts/namespace';
+import addNamespace from '../utilities/ts/add-namespace';
 import uniform from './utilities/uniform';
 
 type TagTypes = `div` | `main` | `section`;
@@ -16,10 +15,10 @@ interface Props {
 const Uniform: React.FC<Props> = (props: Props) => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
   const device: string = uniform.hasMouse() ? `no-touchevents` : ``;
-  const mode: string = props.mode ? props.mode : uniform.getMode();
-  const classNames: string = _.trim(
-    `${namespace(device, mode)} ${_.toString(props.className)}`
-  );
+  const mode: string = !!props.mode ? props.mode : uniform.getMode();
+  const classNames: string = `${
+    !!device ? `${addNamespace(device)} ` : ``
+  }${addNamespace(mode)}${!!props.className ? ` ${props.className}` : ``}`;
 
   return (
     <Tag className={classNames} style={props.style}>

@@ -6,25 +6,23 @@ import isUndefined from '../utilities/ts/is-undefined';
 import itemise from '../utilities/ts/itemise';
 import randomise from '../utilities/ts/randomise';
 
-const COORDS = {
-  l: {
-    cx: `24`,
-    cy: `24`,
-    r: `23.5`,
-    viewBox: `0 0 48 48`
-  },
-  m: {
-    cx: `20`,
-    cy: `20`,
-    r: `19.5`,
-    viewBox: `0 0 40 40`
-  },
-  s: {
-    cx: `16`,
-    cy: `16`,
-    r: `15.5`,
-    viewBox: `0 0 32 32`
-  }
+interface BorderSizeInterface {
+  cx: string;
+  cy: string;
+  r: string;
+  viewBox: string;
+}
+
+interface BorderSizesInterface {
+  l: BorderSizeInterface;
+  m: BorderSizeInterface;
+  s: BorderSizeInterface;
+}
+
+const BORDER_SIZES: BorderSizesInterface = {
+  l: { cx: `24`, cy: `24`, r: `23.5`, viewBox: `0 0 48 48` },
+  m: { cx: `20`, cy: `20`, r: `19.5`, viewBox: `0 0 40 40` },
+  s: { cx: `16`, cy: `16`, r: `15.5`, viewBox: `0 0 32 32` }
 };
 
 type SexTypes = `female` | `male` | `undisclosed`;
@@ -63,30 +61,28 @@ const Avatar: React.FC<Props> = (props: Props) => {
       style={props.style}
       href={props.href}
       title={props.firstName}>
-      {Object.keys(COORDS).map((size, index) => {
-        return (
+      {Object.keys(BORDER_SIZES).map(
+        (size, i) =>
           includes(itemise(props.modifiers), size) &&
           (!isUndefined(props.href) && (
             <svg
-              key={index}
+              key={i}
               className={getElement(`border-outer`)}
-              viewBox={COORDS[size].viewBox}>
+              viewBox={BORDER_SIZES[size].viewBox}>
               <circle
                 className={getElement(`border`)}
-                cx={COORDS[size].cx}
-                cy={COORDS[size].cy}
-                r={COORDS[size].r}
+                cx={BORDER_SIZES[size].cx}
+                cy={BORDER_SIZES[size].cy}
+                r={BORDER_SIZES[size].r}
               />
             </svg>
           ))
-        );
-      })}
+      )}
       <div
-        className={`${getElement(`image`)} ${
-          props.sex !== `undisclosed`
-            ? getModifier(`${props.sex}-${randomise(1, 2)}`, `image`)
-            : getModifier(props.sex, `image`)
-        }`}
+        className={`${getElement(`image`)} ${getModifier(
+          `${props.sex}-${props.sex !== `undisclosed` ? randomise(1, 2) : ``}`,
+          `image`
+        )}`}
         style={
           props.image && {
             background: `url('${props.image}'), rgb(255, 255, 255)`,

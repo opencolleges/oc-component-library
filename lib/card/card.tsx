@@ -22,7 +22,7 @@ const Card: React.FC<Props> = (props: Props) => {
   const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
 
   addModifiers(props.modifiers);
-  addModifiers(props.href ? `clickable` : ``);
+  addModifiers(!!props.href ? `clickable` : ``);
   addClassNames(props.className);
 
   return (

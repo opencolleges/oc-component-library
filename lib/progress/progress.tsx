@@ -1,7 +1,8 @@
-import _ from 'lodash';
 import React from 'react';
 import Icon from '../icon';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 import isNotAlt from './utilities/is-not-alt';
 
 interface Props {
@@ -24,7 +25,7 @@ class Progress extends React.Component<Props> {
   };
 
   readonly state: Readonly<State> = {
-    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+    error: includes(itemise(this.props.modifiers), `error`),
     success: false
   };
 
@@ -32,14 +33,14 @@ class Progress extends React.Component<Props> {
     if (
       this.props.progress !== prevProps.progress &&
       this.props.progress === this.props.totalProgress &&
-      !_.includes(_.split(this.props.modifiers, ` `), `alt`)
+      !includes(itemise(this.props.modifiers), `alt`)
     ) {
       this.setState({ success: true });
     }
 
     if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `error`)
+        error: includes(itemise(this.props.modifiers), `error`)
       });
     }
   }
@@ -56,7 +57,7 @@ class Progress extends React.Component<Props> {
     }: BEMInterface = BEM_MODULE;
 
     addModifiers(props.modifiers);
-    addModifiers(state.success && isNotAlt(props.modifiers) ? `success` : ``);
+    addModifiers(!!state.success && isNotAlt(props.modifiers) ? `success` : ``);
     addClassNames(props.className);
 
     const width: string = `${(props.progress / props.totalProgress) * 100}%`;
@@ -86,11 +87,11 @@ class Progress extends React.Component<Props> {
           <React.Fragment>
             <Icon
               type="close-ring"
-              visible={state.error ? state.error : false}
+              visible={!!state.error ? state.error : false}
             />
             <Icon
               type="tick-ring"
-              visible={state.success ? state.success : false}
+              visible={!!state.success ? state.success : false}
             />
           </React.Fragment>
         )}

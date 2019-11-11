@@ -3,6 +3,8 @@ import React from 'react';
 import Icon from '../icon';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
 import getId from '../utilities/ts/get-id';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 import remove from '../utilities/ts/remove';
 import truncateString from '../utilities/ts/truncate-string';
 
@@ -127,9 +129,9 @@ class Text extends React.Component<Props> {
   id = this.props.id ? this.props.id : getId();
 
   readonly state: Readonly<State> = {
-    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+    error: includes(itemise(this.props.modifiers), `error`),
     keyStrokes: this.props.type === `password` ? false : null,
-    success: _.includes(_.split(this.props.modifiers, ` `), `success`),
+    success: includes(itemise(this.props.modifiers), `success`),
     value: truncateString(this.props.value, this.props.maxLength)
   };
 
@@ -143,8 +145,8 @@ class Text extends React.Component<Props> {
   componentDidUpdate(previousProps: Props, previousState: State): void {
     if (this.props.modifiers !== previousProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `error`),
-        success: _.includes(_.split(this.props.modifiers, ` `), `success`)
+        error: includes(itemise(this.props.modifiers), `error`),
+        success: includes(itemise(this.props.modifiers), `success`)
       });
     }
 

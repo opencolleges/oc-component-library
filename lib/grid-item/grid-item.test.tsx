@@ -69,6 +69,16 @@ describe(`<GridItem />`, () => {
     );
   });
 
+  it(`Handles props.tag`, () => {
+    expect(wrapper.getDOMNode().nodeName).toBe(`DIV`);
+
+    wrapper.setProps({ tag: `section` });
+    expect(wrapper.getDOMNode().nodeName).toBe(`SECTION`);
+
+    wrapper.setProps({ tag: `div` });
+    expect(wrapper.getDOMNode().nodeName).toBe(`DIV`);
+  });
+
   afterEach(() => {
     wrapper.unmount();
   });

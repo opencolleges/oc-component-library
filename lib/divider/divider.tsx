@@ -7,7 +7,7 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const Divider: React.FC<Props> = props => {
+const Divider: React.FC<Props> = (props: Props) => {
   const BEM_MODULE: BEMInterface = BEM(`divider`);
   const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
 

@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // * utility imports
-import namespace from '../utilities/ts/namespace';
+import addNamespace from '../utilities/ts/add-namespace';
 import randomise from '../utilities/ts/randomise';
 
 import _ from 'lodash';
@@ -39,9 +39,9 @@ const SortableContainer = (WrappedComponent, config = { withRef: false }) => {
       };
 
       this.eventClass = {
-        mouseDown: namespace('mouse-down'),
-        mouseMove: namespace('mouse-move'),
-        mouseUp: namespace('mouse-up')
+        mouseDown: addNamespace('mouse-down'),
+        mouseMove: addNamespace('mouse-move'),
+        mouseUp: addNamespace('mouse-up')
       };
 
       this.state = {

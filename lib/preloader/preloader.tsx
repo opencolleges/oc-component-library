@@ -16,7 +16,7 @@ const Preloader: React.FC<Props> = (props: Props) => {
     getResult
   }: BEMInterface = BEM_MODULE;
 
-  addClassNames(props.active ? `active` : ``);
+  addClassNames(!!props.active ? `active` : ``);
   addClassNames(props.className);
 
   return (
