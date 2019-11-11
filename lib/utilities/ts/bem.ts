@@ -7,6 +7,7 @@ import { ELEMENT_SEPARATOR, MODIFIER_SEPARATOR } from './constants';
 interface Bem {
   addClassNames: (classNames: string) => void;
   addModifiers: (modifiers: string, blockOrElement?: string) => void;
+  getBlock: () => string;
   getElement: (element: string) => string;
   getModifier: (modifier: string, blockOrElement?: string) => string;
   getResult: () => string;
@@ -62,6 +63,10 @@ const BEM = (block: string): Bem => {
     });
   };
 
+  const getBlock = (): string => {
+    return addNamespace(BLOCK);
+  };
+
   const getElement = (element: string): string => {
     element = _.trim(element);
 
@@ -89,6 +94,7 @@ const BEM = (block: string): Bem => {
   return {
     addClassNames,
     addModifiers,
+    getBlock,
     getElement,
     getModifier,
     getResult

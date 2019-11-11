@@ -55,33 +55,6 @@ describe(`<Accordion />`, () => {
     );
   });
 
-  it(`Handles props.expanded`, () => {
-    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
-      `${NAMESPACE}-accordion`
-    );
-    wrapper.unmount();
-
-    wrapper = mount(
-      <Accordion label="foo" expanded={true}>
-        <p>Bar</p>
-      </Accordion>
-    );
-    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
-      `${NAMESPACE}-accordion active`
-    );
-
-    wrapper.unmount();
-
-    wrapper = mount(
-      <Accordion label="foo" expanded={false}>
-        <p>Bar</p>
-      </Accordion>
-    );
-    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
-      `${NAMESPACE}-accordion`
-    );
-  });
-
   it(`Handles props.label`, () => {
     expect(wrapper.find(`button`).text()).toBe(`foo`);
 
@@ -103,6 +76,33 @@ describe(`<Accordion />`, () => {
     );
   });
 
+  it(`Handles props.open`, () => {
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-accordion`
+    );
+    wrapper.unmount();
+
+    wrapper = mount(
+      <Accordion label="foo" open={true}>
+        <p>Bar</p>
+      </Accordion>
+    );
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-accordion active`
+    );
+
+    wrapper.unmount();
+
+    wrapper = mount(
+      <Accordion label="foo" open={false}>
+        <p>Bar</p>
+      </Accordion>
+    );
+    expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
+      `${NAMESPACE}-accordion`
+    );
+  });
+
   it(`Handles props.style`, () => {
     expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(null);
 
@@ -115,17 +115,17 @@ describe(`<Accordion />`, () => {
     );
   });
 
-  it(`Handles state.expanded`, () => {
+  it(`Handles state.open`, () => {
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
       `${NAMESPACE}-accordion`
     );
 
-    wrapper.setState({ expanded: true });
+    wrapper.setState({ open: true });
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
       `${NAMESPACE}-accordion active`
     );
 
-    wrapper.setState({ expanded: false });
+    wrapper.setState({ open: false });
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
       `${NAMESPACE}-accordion`
     );
