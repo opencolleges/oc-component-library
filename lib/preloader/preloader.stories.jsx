@@ -1,12 +1,9 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
-
 import { boolean, withKnobs } from '@storybook/addon-knobs';
-
-import Uniform from '../uniform';
+import React from 'react';
 import Preloader from './preloader';
-
+import Uniform from '../uniform';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const preloaderActive = [`Loading`, true];

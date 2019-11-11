@@ -1,13 +1,10 @@
-import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import { text, withKnobs } from '@storybook/addon-knobs';
-
-import Uniform from '../uniform';
+import React from 'react';
 import Accordion from './accordion';
 import Copy from '../copy';
-
+import Uniform from '../uniform';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const accordionLabel = [`Label`, `Heading`];

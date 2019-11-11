@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import {
@@ -7,14 +5,13 @@ import {
   text,
   optionsKnob as options
 } from '@storybook/addon-knobs';
-
-import Uniform from '../uniform';
+import React from 'react';
 import Table from './table';
 import TableHead from '../table-head';
 import TableBody from '../table-body';
 import TableRow from '../table-row';
 import TableCell from '../table-cell';
-
+import Uniform from '../uniform';
 import uniformStyles from '../../.storybook/storybook';
 
 const tableRow1Cell1 = [`Row 1, cell 1`, `Height`];
