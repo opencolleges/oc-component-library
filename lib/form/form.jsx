@@ -1,10 +1,7 @@
-// * React imports
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import isUndefined from '../utilities/ts/is-undefined';
 
-// * React component
 class Form extends React.Component {
   constructor(props) {
     super(props);

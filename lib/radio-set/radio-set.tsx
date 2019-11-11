@@ -1,13 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
-
 import OptionalCard from '../_optional-card';
-
 import Grid from '../grid';
 import GridItem from '../grid-item';
 import Radio from '../radio';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 
 interface Radios {
   className?: string;
@@ -82,15 +79,22 @@ class RadioSet extends React.Component<Props, State> {
     const error: string = state.error ? `error` : ``;
     const success: string = state.success ? `success` : ``;
 
-    const bem = BEM(`radio-set`);
-    bem.addModifiers(error);
-    bem.addModifiers(success);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`radio-set`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(error);
+    addModifiers(success);
+    addClassNames(props.className);
 
     const modifiers: string = `${error}${success}`;
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <Grid modifiers="gutter-x-fixed">
           {props.radios.map((radio, index) => (
             <GridItem key={index} modifiers="s-12 m-6 align-end">
@@ -116,9 +120,9 @@ class RadioSet extends React.Component<Props, State> {
             </GridItem>
           ))}
         </Grid>
-        <div className={bem.getElement(`border`)} />
+        <div className={getElement(`border`)} />
         {(state.error || state.success) && props.message && (
-          <span className={bem.getElement(`message`)}>{props.message}</span>
+          <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );

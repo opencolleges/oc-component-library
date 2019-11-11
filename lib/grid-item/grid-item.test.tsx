@@ -1,10 +1,7 @@
-import React from 'react';
-
-import GridItem from './grid-item';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import GridItem from './grid-item';
 
 let wrapper;
 

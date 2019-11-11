@@ -1,7 +1,7 @@
 import truncateString from './truncate-string';
 
 describe(`truncateString()`, () => {
-  it(`Handles maxLength equals to 0`, () => {
+  it(`Handles maxLength equal to 0`, () => {
     expect(truncateString(`bar`, 0)).toBe(`bar`);
     expect(truncateString(`foo`, 0)).toBe(`foo`);
   });
@@ -11,7 +11,7 @@ describe(`truncateString()`, () => {
     expect(truncateString(`foo`, 2)).toBe(`fo`);
   });
 
-  it(`Handles value equals than maxLength`, () => {
+  it(`Handles value equal to maxLength`, () => {
     expect(truncateString(`bar`, 3)).toBe(`bar`);
     expect(truncateString(`foo`, 3)).toBe(`foo`);
   });

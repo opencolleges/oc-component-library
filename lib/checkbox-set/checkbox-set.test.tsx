@@ -1,10 +1,7 @@
-import React from 'react';
-
-import CheckboxSet from './checkbox-set';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import CheckboxSet from './checkbox-set';
 
 let wrapper;
 

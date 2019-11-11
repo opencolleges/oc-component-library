@@ -1,8 +1,7 @@
 import React from 'react';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 
-import BEM from '../utilities/ts/bem';
-
-type TTag = `div` | `section`;
+type TagTypes = `div` | `section`;
 
 interface Props {
   children: React.ReactNode;
@@ -10,19 +9,21 @@ interface Props {
   maxWidth?: boolean;
   modifiers?: string;
   style?: React.CSSProperties;
-  tag?: TTag;
+  tag?: TagTypes;
 }
 
-const Grid: React.FC<Props> = props => {
+const Grid: React.FC<Props> = (props: Props) => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
 
-  const bem = BEM(`grid`);
-  bem.addModifiers(props.modifiers);
-  bem.addClassNames(props.className);
+  const BEM_MODULE: BEMInterface = BEM(`grid`);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
+
+  addModifiers(props.modifiers);
+  addClassNames(props.className);
 
   return (
     <Tag
-      className={bem.getResult()}
+      className={getResult()}
       style={
         props.maxWidth ? props.style : { maxWidth: `100%`, ...props.style }
       }>

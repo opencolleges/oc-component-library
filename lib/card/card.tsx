@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import Icon from '../icon';
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 import isUndefined from '../utilities/ts/is-undefined';
 
 interface Props {
@@ -16,26 +16,26 @@ interface Props {
 const Card: React.FC<Props> = (props: Props) => {
   const Tag = (isUndefined(props.href) ? `div` : `a`) as `div` | `a`;
 
-  const bem = BEM(`card`);
-  bem.addModifiers(props.modifiers);
-  bem.addModifiers(props.href ? `clickable` : ``);
-  bem.addClassNames(props.className);
+  const BEM_MODULE: BEMInterface = BEM(`card`);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
 
-  const classNames: string = bem.getResult();
+  addModifiers(props.modifiers);
+  addModifiers(props.href ? `clickable` : ``);
+  addClassNames(props.className);
 
   return (
     <Tag
-      className={classNames}
+      className={getResult()}
       style={props.style}
       href={props.href}
       tabIndex={
-        (_.includes(classNames, `clickable`) ||
-          _.includes(classNames, `draggable`)) &&
+        (_.includes(getResult(), `clickable`) ||
+          _.includes(getResult(), `draggable`)) &&
         props.tabIndex
           ? 0
           : null
       }>
-      {_.includes(classNames, `draggable`) && <Icon type="draggable" />}
+      {_.includes(getResult(), `draggable`) && <Icon type="draggable" />}
       {props.children}
     </Tag>
   );

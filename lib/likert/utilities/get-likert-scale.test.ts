@@ -1,6 +1,5 @@
-import getLikertScale from './get-likert-scale';
-
 import { NAMESPACE } from '../../utilities/ts/constants';
+import getLikertScale from './get-likert-scale';
 
 describe(`getLikertScale()`, () => {
   it(`Handles an empty array argument`, () => {

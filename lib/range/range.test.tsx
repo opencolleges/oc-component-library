@@ -1,10 +1,7 @@
-import React from 'react';
-
-import Range from './range';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Range from './range';
 
 let wrapper;
 

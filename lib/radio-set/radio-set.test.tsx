@@ -1,10 +1,7 @@
-import React from 'react';
-
-import RadioSet from './radio-set';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import RadioSet from './radio-set';
 
 let wrapper;
 

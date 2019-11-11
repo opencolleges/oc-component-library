@@ -3,8 +3,8 @@ import BEM, { BEMInterface } from '../utilities/ts/bem';
 import getLabel from './utilities/get-label';
 
 interface Props {
-  modifiers?: string;
   className?: string;
+  modifiers?: string;
   style?: React.CSSProperties;
   value?: string | number;
 }

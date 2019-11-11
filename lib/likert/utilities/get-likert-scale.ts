@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import { NAMESPACE } from '../../utilities/ts/constants';
+import getId from '../../utilities/ts/get-id';
 
 const getLikertScale = (
   options: Array<{
@@ -17,9 +16,9 @@ const getLikertScale = (
     range = 11;
   }
 
-  for (let i = 0; i < range; i++) {
+  for (let i: number = 0; i < range; i++) {
     const OPTION: { id: string; label: string } = {
-      id: _.uniqueId(`${NAMESPACE}-`),
+      id: getId(),
       label: options[i] && options[i].label ? options[i].label : ``
     };
 

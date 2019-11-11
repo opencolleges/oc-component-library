@@ -1,10 +1,7 @@
-import React from 'react';
-
-import OptionalCard from './optional-card';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import OptionalCard from './optional-card';
 
 let wrapper;
 

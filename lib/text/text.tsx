@@ -1,15 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import BEM from '../utilities/ts/bem';
-import isUndefined from '../utilities/ts/is-undefined';
+import Icon from '../icon';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getId from '../utilities/ts/get-id';
 import remove from '../utilities/ts/remove';
 import truncateString from '../utilities/ts/truncate-string';
-
-// * child imports
-import Icon from '../icon';
 
 interface Props {
   autoComplete?:
@@ -129,7 +124,7 @@ class Text extends React.Component<Props> {
     return null;
   }
 
-  id = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
+  id = this.props.id ? this.props.id : getId();
 
   readonly state: Readonly<State> = {
     error: _.includes(_.split(this.props.modifiers, ` `), `error`),
@@ -263,19 +258,24 @@ class Text extends React.Component<Props> {
 
     const modifiers = remove([`error`, `success`], props.modifiers);
 
-    const bem = BEM(`text`);
-    bem.addModifiers(modifiers);
-    bem.addModifiers(state.error ? `error` : ``);
-    bem.addModifiers(state.success ? `success` : ``);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`text`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(modifiers);
+    addModifiers(state.error ? `error` : ``);
+    addModifiers(state.success ? `success` : ``);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <input
           id={id}
-          className={`${bem.getElement(`input`)}${
-            !isUndefined(state.value) ? ` active` : ``
-          }`}
+          className={`${getElement(`input`)}${state.value ? ` active` : ``}`}
           type={props.type}
           name={props.name}
           disabled={props.disabled}
@@ -296,7 +296,7 @@ class Text extends React.Component<Props> {
           onBlur={props.onBlur}
           onPaste={props.onPaste}
         />
-        <label className={bem.getElement(`label`)}>{props.label}</label>
+        <label className={getElement(`label`)}>{props.label}</label>
         {!props.readOnly && !props.disabled && (
           <Icon type="close" visible={state.error ? state.error : false} />
         )}
@@ -304,10 +304,10 @@ class Text extends React.Component<Props> {
           <Icon type="tick" visible={state.success ? state.success : false} />
         )}
         {!props.readOnly && !props.disabled && (
-          <div className={bem.getElement(`border`)} />
+          <div className={getElement(`border`)} />
         )}
         {!props.readOnly && !props.disabled && props.message && (
-          <span className={bem.getElement(`message`)}>{props.message}</span>
+          <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );

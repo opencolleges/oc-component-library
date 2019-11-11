@@ -1,16 +1,12 @@
-// * React imports
 import PropTypes from 'prop-types';
 import React from 'react';
-
-// * utility imports
+import Icon from '../icon';
+import BEM from '../utilities/ts/bem';
 import getRange from '../utilities/ts/getRange';
 import getWindowWidth from '../utilities/ts/get-window-width';
 import namespace from '../utilities/ts/namespace';
+import pxToRem from '../utilities/ts/px-to-rem';
 
-// * child imports
-import Icon from '../icon';
-
-// * React component
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -281,22 +277,24 @@ class Pagination extends React.Component {
 
     const pagination = this.fetchPagination();
 
-    let classNames = namespace(`pagination`);
-
-    state.mounted && (classNames += ` ${namespace(`mounted`)}`);
-
-    props.className && (classNames += ` ${props.className}`);
+    const bem = BEM(`pagination`);
+    bem.addClassNames(state.mounted ? `mounted` : ``);
+    bem.addClassNames(props.className);
 
     return (
-      <div className={classNames} style={props.style}>
-        <ul className={namespace(`pagination__list`)}>
+      <div className={bem.getResult()} style={props.style}>
+        <ul className={bem.getElement(`list`)}>
           <li
             className={
               !pagination.previousPage
-                ? namespace(`pagination__item pagination__item--previous`)
-                : namespace(
-                    `pagination__item pagination__item--previous pagination__item--selectable`
-                  )
+                ? `${bem.getElement(`item`)} ${bem.getModifier(
+                    `previous`,
+                    `item`
+                  )}`
+                : `${bem.getElement(`item`)} ${bem.getModifier(
+                    `previous`,
+                    `item`
+                  )} ${bem.getModifier(`selectable`, `item`)}`
             }
             tabIndex={-1}
             onClick={
@@ -304,17 +302,20 @@ class Pagination extends React.Component {
             }
             onKeyDown={handleKeyDown}>
             <Icon type="arrow-left" />
-            <span className={namespace(`pagination__label`)}>Prev</span>
+            <span className={bem.getElement(`label`)}>Prev</span>
           </li>
         </ul>
         <ul
           ref={paginationRef}
-          className={namespace(`pagination__list`)}
-          style={{ width: `${state.width / 16}rem` }}>
+          className={bem.getElement(`list`)}
+          style={{ width: pxToRem(state.width, `string`) }}>
           <div
-            className={namespace(`pagination__highlight`)}
+            className={bem.getElement(`highlight`)}
             style={{
-              transform: `translateX(${state.highlightCoords / 16}rem)`
+              transform: `translateX(${pxToRem(
+                state.highlightCoords,
+                `string`
+              )})`
             }}
             aria-hidden={true}
           />
@@ -338,7 +339,10 @@ class Pagination extends React.Component {
                         page
                       )}`
                     )
-                  : namespace(`pagination__item pagination__item--selectable`)
+                  : `${bem.getElement(`item`)} ${bem.getModifier(
+                      `selectable`,
+                      `item`
+                    )}`
               }
               tabIndex={state.currentPage === page ? 0 : -1}
               onClick={event => handleClick(event, page)}
@@ -346,30 +350,30 @@ class Pagination extends React.Component {
               {page}
             </li>
           ))}
-          <li className={namespace(`pagination__item`)}>of</li>
+          <li className={bem.getElement(`item`)}>of</li>
           <li
-            className={namespace(
-              `pagination__item pagination__item--selectable`
-            )}
+            className={`${bem.getElement(`item`)} ${bem.getModifier(
+              `selectable`,
+              `item`
+            )}`}
             onClick={event => handleClick(event, totalPages)}
             tabIndex={-1}>
             {totalPages}
           </li>
         </ul>
-        <ul className={namespace(`pagination__list`)}>
+        <ul className={bem.getElement(`list`)}>
           <li
-            className={
-              !pagination.nextPage
-                ? namespace(`pagination__item pagination__item--next`)
-                : namespace(
-                    `pagination__item pagination__item--next pagination__item--selectable`
-                  )
-            }
+            className={`${bem.getElement(`item`)} ${bem.getModifier(
+              `next`,
+              `item`
+            )} ${
+              pagination.nextPage ? bem.getModifier(`selectable`, `item`) : ``
+            }`}
             tabIndex={-1}
             onClick={pagination.nextPage ? event => handleNext(event) : null}
             onKeyDown={handleKeyDown}>
             <Icon type="arrow-right" />
-            <span className={namespace(`pagination__label`)}>Next</span>
+            <span className={bem.getElement(`label`)}>Next</span>
           </li>
         </ul>
       </div>

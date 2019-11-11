@@ -1,8 +1,6 @@
 import React from 'react';
-
-import BEM from '../utilities/ts/bem';
-
 import Icon from '../icon';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 
 interface Props {
   children: React.ReactNode;
@@ -14,8 +12,8 @@ interface Props {
 }
 
 interface State {
-  height?: number;
-  open?: boolean;
+  height: number;
+  open: boolean;
 }
 
 class Accordion extends React.Component<Props, State> {
@@ -53,16 +51,23 @@ class Accordion extends React.Component<Props, State> {
   render() {
     const { props, state, contentRef, handleClick } = this;
 
-    const bem = BEM(`accordion`);
-    bem.addModifiers(props.modifiers);
-    bem.addClassNames(state.open ? `active` : ``);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`accordion`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(props.modifiers);
+    addClassNames(state.open ? `active` : ``);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <button
           type={`button`}
-          className={bem.getElement(`button`)}
+          className={getElement(`button`)}
           title={state.open ? `Close` : `Open`}
           onClick={handleClick}>
           {props.label}
@@ -71,11 +76,11 @@ class Accordion extends React.Component<Props, State> {
         <Icon type="plus" visible={!state.open} />
         <div
           ref={contentRef}
-          className={bem.getElement(`outer`)}
+          className={getElement(`outer`)}
           style={{ height: state.open ? state.height : 0 }}>
           {props.children}
         </div>
-        <div className={bem.getElement(`border`)} />
+        <div className={getElement(`border`)} />
       </div>
     );
   }

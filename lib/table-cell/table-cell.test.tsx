@@ -1,10 +1,7 @@
-import React from 'react';
-
-import TableCell from './table-cell';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import TableCell from './table-cell';
 
 let wrapper;
 

@@ -1,11 +1,9 @@
 import React from 'react';
-
-import BEM from '../utilities/ts/bem';
-
 import Button from '../button';
 import Grid from '../grid';
 import GridItem from '../grid-item';
 import Heading from '../heading';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 import ModalImage from './modal-image';
 
 interface TButton {
@@ -64,21 +62,23 @@ class Modal extends React.Component<Props> {
   render() {
     const { props, state, closeModal } = this;
 
-    const bem = BEM(`modal`);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`modal`);
+    const { addClassNames, getElement, getResult }: BEMInterface = BEM_MODULE;
+
+    addClassNames(props.className);
 
     return (
       <div
-        className={`${bem.getResult()}${state.mounted ? ` mounted` : ``}`}
+        className={`${getResult()}${state.mounted ? ` mounted` : ``}`}
         style={props.style}>
-        <div className={bem.getElement(`outer`)}>
-          <ModalImage className={bem.getElement(`image`)} />
+        <div className={getElement(`outer`)}>
+          <ModalImage className={getElement(`image`)} />
           <Heading level={3} modifiers="center">
             {props.message}
           </Heading>
-          <div className={bem.getElement(`inner`)}>{props.children}</div>
+          <div className={getElement(`inner`)}>{props.children}</div>
 
-          <div className={bem.getElement(`actions`)}>
+          <div className={getElement(`actions`)}>
             <Grid modifiers="gutter-x-fixed">
               <GridItem
                 modifiers={

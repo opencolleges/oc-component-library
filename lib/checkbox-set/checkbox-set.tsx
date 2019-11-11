@@ -1,13 +1,9 @@
 import React from 'react';
-
 import OptionalCard from '../_optional-card';
-
 import Checkbox from '../checkbox';
 import Grid from '../grid';
 import GridItem from '../grid-item';
-
-import BEM from '../utilities/ts/bem';
-
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 import hasErrorOrSuccess from './utilities/has-error-or-success';
 import hasMessage from './utilities/has-message';
 
@@ -109,13 +105,20 @@ class CheckboxSet extends React.Component<Props, State> {
     const success: string =
       !state.error.length && state.success.length ? `success` : ``;
 
-    const bem = BEM(`checkbox-set`);
-    bem.addModifiers(error);
-    bem.addModifiers(success);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`checkbox-set`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(error);
+    addModifiers(success);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <Grid modifiers="gutter-x-fixed">
           {props.checkboxes.map((checkbox, index) => (
             <GridItem key={index} modifiers="s-12 m-6 align-end">
@@ -144,9 +147,9 @@ class CheckboxSet extends React.Component<Props, State> {
             </GridItem>
           ))}
         </Grid>
-        <div className={bem.getElement(`border`)} />
+        <div className={getElement(`border`)} />
         {hasMessage(state.error, state.success, props.message) && (
-          <span className={bem.getElement(`message`)}>{props.message}</span>
+          <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );

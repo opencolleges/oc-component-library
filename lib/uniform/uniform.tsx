@@ -1,20 +1,19 @@
 import _ from 'lodash';
 import React from 'react';
-
 import namespace from '../utilities/ts/namespace';
 import uniform from './utilities/uniform';
 
-type TTag = `div` | `main` | `section`;
+type TagTypes = `div` | `main` | `section`;
 
 interface Props {
   children: React.ReactNode;
   className?: string;
   mode?: string;
   style?: React.CSSProperties;
-  tag?: TTag;
+  tag?: TagTypes;
 }
 
-const Uniform: React.FC<Props> = props => {
+const Uniform: React.FC<Props> = (props: Props) => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
   const device: string = uniform.hasMouse() ? `no-touchevents` : ``;
   const mode: string = props.mode ? props.mode : uniform.getMode();

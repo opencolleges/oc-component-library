@@ -1,19 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
-
-import BEM from '../utilities/ts/bem';
+import Icon, { IconTypes } from '../icon';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 import getElemMiddle from './utilities/get-elem-middle';
 import getTimer from './utilities/get-timer';
-
-import Icon from '../icon';
-
-import { TIcon } from '../icon/icon';
 
 interface Props {
   className?: string;
   duration?: number;
   heading: string;
-  icon?: TIcon;
+  icon?: IconTypes;
   id: string;
   message: string;
   modifiers?: `error` | `success`;
@@ -28,7 +24,7 @@ interface State {
   top: number;
 }
 
-export default class Toast extends React.Component<Props, State> {
+class Toast extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     duration: 8000,
     onClick: () => {
@@ -210,26 +206,33 @@ export default class Toast extends React.Component<Props, State> {
       handleClick
     } = this;
 
-    const bem = BEM(`toast`);
-    bem.addModifiers(props.modifiers);
-    bem.addClassNames(state.mounted ? `mounted` : ``);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`toast`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(props.modifiers);
+    addClassNames(state.mounted ? `mounted` : ``);
+    addClassNames(props.className);
 
     return (
       <div
         ref={toastRef}
-        className={bem.getResult()}
+        className={getResult()}
         style={{ top: `${state.top}rem`, ...props.style }}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
-        <h6 className={bem.getElement(`heading`)}>{props.heading}</h6>
-        <p className={bem.getElement(`message`)}>{props.message}</p>
+        <h6 className={getElement(`heading`)}>{props.heading}</h6>
+        <p className={getElement(`message`)}>{props.message}</p>
         <button
           id={props.id}
-          className={bem.getElement(`button`)}
+          className={getElement(`button`)}
           tabIndex={0}
           title="Close"
           onClick={handleClick}>
@@ -252,3 +255,5 @@ export default class Toast extends React.Component<Props, State> {
     );
   }
 }
+
+export { Toast as default };

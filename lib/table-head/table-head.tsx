@@ -1,6 +1,5 @@
 import React from 'react';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 
 interface Props {
   children: React.ReactNode;
@@ -8,12 +7,14 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const TableHead: React.FC<Props> = props => {
-  const bem = BEM(`thead`);
-  bem.addClassNames(props.className);
+const TableHead: React.FC<Props> = (props: Props) => {
+  const BEM_MODULE: BEMInterface = BEM(`thead`);
+  const { addClassNames, getResult }: BEMInterface = BEM_MODULE;
+
+  addClassNames(props.className);
 
   return (
-    <thead className={bem.getResult()} style={props.style}>
+    <thead className={getResult()} style={props.style}>
       {props.children}
     </thead>
   );

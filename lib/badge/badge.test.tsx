@@ -1,10 +1,7 @@
-import React from 'react';
-
-import Badge from './badge';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Badge from './badge';
 
 let wrapper;
 

@@ -1,19 +1,18 @@
 import _ from 'lodash';
 import React from 'react';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 
-import BEM from '../utilities/ts/bem';
-
-type TLevel = 1 | 2 | 3 | 4 | 5 | 6;
+type LevelTypes = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface Props {
-  level?: TLevel;
+  level?: LevelTypes;
   modifiers?: string;
   className?: string;
   style?: React.CSSProperties;
   children: string;
 }
 
-const Heading: React.FC<Props> = props => {
+const Heading: React.FC<Props> = (props: Props) => {
   const Tag = `h${_.toString(props.level)}` as
     | `h1`
     | `h2`
@@ -22,12 +21,14 @@ const Heading: React.FC<Props> = props => {
     | `h5`
     | `h6`;
 
-  const bem = BEM(Tag);
-  bem.addModifiers(props.modifiers);
-  bem.addClassNames(props.className);
+  const BEM_MODULE: BEMInterface = BEM(Tag);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
+
+  addModifiers(props.modifiers);
+  addClassNames(props.className);
 
   return (
-    <Tag className={bem.getResult()} style={props.style}>
+    <Tag className={getResult()} style={props.style}>
       {props.children}
     </Tag>
   );

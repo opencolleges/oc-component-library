@@ -1,6 +1,5 @@
-import hasLikertLabel from './has-likert-label';
-
 import { NAMESPACE } from '../../utilities/ts/constants';
+import hasLikertLabel from './has-likert-label';
 
 describe(`hasLikertLabel()`, () => {
   it(`Handles an array with a length of three`, () => {

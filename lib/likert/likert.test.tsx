@@ -1,10 +1,7 @@
-import React from 'react';
-
-import Likert from './likert';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Likert from './likert';
 
 let wrapper;
 

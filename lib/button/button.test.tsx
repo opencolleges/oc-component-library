@@ -1,10 +1,7 @@
-import React from 'react';
-
-import Button from './button';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Button from './button';
 
 let wrapper;
 

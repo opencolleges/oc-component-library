@@ -1,5 +1,4 @@
 import dateTime from '../../utilities/ts/date-time';
-
 import uniform from './uniform';
 
 describe(`uniform.getMode()`, () => {

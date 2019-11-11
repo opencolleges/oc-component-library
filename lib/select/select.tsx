@@ -1,12 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import BEM from '../utilities/ts/bem';
-import namespace from '../utilities/ts/namespace';
-
 import Icon from '../icon';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getId from '../utilities/ts/get-id';
+import namespace from '../utilities/ts/namespace';
 
 interface Options {
   label: string;
@@ -47,7 +44,7 @@ class Select extends React.Component<Props> {
     required: false
   };
 
-  id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
+  id: string = this.props.id ? this.props.id : getId();
 
   selectRef = React.createRef<HTMLElement>();
   optionsRef = React.createRef<HTMLUListElement>();
@@ -251,21 +248,26 @@ class Select extends React.Component<Props> {
       getLabelFromValue
     } = this;
 
-    const bem = BEM(`select`);
-    bem.addModifiers(state.error ? `error` : ``);
-    bem.addModifiers(state.success ? `success` : ``);
-    bem.addClassNames(state.value ? `selected` : ``);
-    bem.addClassNames(state.active ? `active` : ``);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`select`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getModifier,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(state.error ? `error` : ``);
+    addModifiers(state.success ? `success` : ``);
+    addClassNames(state.value ? `selected` : ``);
+    addClassNames(state.active ? `active` : ``);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <input
           id={id}
-          className={`${bem.getElement(`input`)} ${bem.getModifier(
-            `hidden`,
-            `input`
-          )}`}
+          className={`${getElement(`input`)} ${getModifier(`hidden`, `input`)}`}
           type="hidden"
           name={props.name}
           disabled={props.disabled}
@@ -276,7 +278,7 @@ class Select extends React.Component<Props> {
         />
         <span
           ref={selectRef}
-          className={bem.getElement(`input`)}
+          className={getElement(`input`)}
           tabIndex={!props.readOnly && !props.disabled ? 0 : null}
           onKeyDown={!props.readOnly && !props.disabled ? handleKeyDown : null}
           onMouseDown={
@@ -291,23 +293,23 @@ class Select extends React.Component<Props> {
               } ${props.label.toLowerCase()}`
             : getLabelFromValue(state.value)}
         </span>
-        <label className={bem.getElement(`label`)}>{props.label}</label>
+        <label className={getElement(`label`)}>{props.label}</label>
         {!props.readOnly && <Icon type="chevron-down" />}
         {!props.readOnly && !props.disabled && (
-          <div className={bem.getElement(`border`)} />
+          <div className={getElement(`border`)} />
         )}
         {!props.readOnly && !props.disabled && (
           <div
-            className={bem.getElement(`list-outer`)}
+            className={getElement(`list-outer`)}
             tabIndex={-1}
             data-id={id}
             onBlur={handleBlur}>
-            <ul className={bem.getElement(`list`)} ref={optionsRef}>
+            <ul className={getElement(`list`)} ref={optionsRef}>
               {props.options.map((option, index) => {
                 return (
                   <li
                     key={index}
-                    className={bem.getElement(`item`)}
+                    className={getElement(`item`)}
                     tabIndex={-1}
                     data-id={id}
                     data-item={option.value}
@@ -328,7 +330,7 @@ class Select extends React.Component<Props> {
           </div>
         )}
         {!props.readOnly && !props.disabled && props.message && (
-          <span className={bem.getElement(`message`)}>{props.message}</span>
+          <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );

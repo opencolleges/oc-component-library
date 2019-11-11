@@ -1,7 +1,5 @@
 import _ from 'lodash';
-
 import addNamespace from './add-namespace';
-
 import { ELEMENT_SEPARATOR, MODIFIER_SEPARATOR } from './constants';
 
 interface BEMInterface {

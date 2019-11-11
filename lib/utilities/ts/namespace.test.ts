@@ -1,6 +1,5 @@
-import namespace from './namespace';
-
 import { NAMESPACE } from './constants';
+import namespace from './namespace';
 
 describe(`namespace()`, () => {
   it(`Handles a string argument`, () => {

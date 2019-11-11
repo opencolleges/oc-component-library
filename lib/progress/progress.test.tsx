@@ -1,10 +1,7 @@
-import React from 'react';
-
-import Progress from './progress';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Progress from './progress';
 
 let wrapper;
 

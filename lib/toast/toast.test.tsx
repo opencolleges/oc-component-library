@@ -1,10 +1,7 @@
-import React from 'react';
-
-import Toast from './toast';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Toast from './toast';
 
 let wrapper;
 

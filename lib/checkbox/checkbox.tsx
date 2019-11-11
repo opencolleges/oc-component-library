@@ -1,11 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
-
 import Icon from '../icon';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getId from '../utilities/ts/get-id';
 
 interface Props {
   checked?: boolean;
@@ -41,7 +38,7 @@ class Checkbox extends React.Component<Props, State> {
     checked: this.props.checked
   };
 
-  id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
+  id: string = this.props.id ? this.props.id : getId();
 
   componentDidUpdate(prevProps): void {
     if (prevProps.checked !== this.props.checked) {
@@ -62,15 +59,22 @@ class Checkbox extends React.Component<Props, State> {
   render() {
     const { props, state, id, handleChange } = this;
 
-    const bem = BEM(`checkbox`);
-    bem.addModifiers(props.modifiers);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`checkbox`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(props.modifiers);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <input
           id={id}
-          className={bem.getElement(`input`)}
+          className={getElement(`input`)}
           type="checkbox"
           name={props.name}
           value={props.value}
@@ -81,13 +85,13 @@ class Checkbox extends React.Component<Props, State> {
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           onChange={handleChange}
         />
-        <label htmlFor={id} className={bem.getElement(`label`)}>
+        <label htmlFor={id} className={getElement(`label`)}>
           {props.children}
         </label>
         {!props.readOnly && !props.disabled && (
-          <svg className={bem.getElement(`border-outer`)} viewBox="0 0 16 16">
+          <svg className={getElement(`border-outer`)} viewBox="0 0 16 16">
             <rect
-              className={bem.getElement(`border`)}
+              className={getElement(`border`)}
               x="0.5"
               y="0.5"
               width="15"

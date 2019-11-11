@@ -1,11 +1,8 @@
-import React from 'react';
-
-import Copy from '../copy';
-import Modal from './modal';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import Copy from '../copy';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Modal from './modal';
 
 let wrapper;
 

@@ -1,11 +1,7 @@
-import React from 'react';
-
-import Badge from '../badge';
-import Avatar from './avatar';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Avatar from './avatar';
 
 let wrapper;
 

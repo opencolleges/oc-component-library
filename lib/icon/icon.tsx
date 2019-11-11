@@ -1,6 +1,5 @@
 import React from 'react';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 import namespace from '../utilities/ts/namespace';
 
 type IconTypes =
@@ -69,14 +68,16 @@ const Icon: React.FC<Props> = (props: Props) => {
     'tick-ring': TickRing
   };
 
-  const bem = BEM(`icon`);
-  bem.addModifiers(props.type);
-  bem.addClassNames(props.visible ? `active` : ``);
-  bem.addClassNames(props.className);
+  const BEM_MODULE: BEMInterface = BEM(`icon`);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
+
+  addModifiers(props.type);
+  addClassNames(props.visible ? `active` : ``);
+  addClassNames(props.className);
 
   return (
     <svg
-      className={bem.getResult()}
+      className={getResult()}
       style={props.style}
       width={props.size}
       height={props.size}

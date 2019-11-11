@@ -1,10 +1,7 @@
-import React from 'react';
-
-import Preloader from './preloader';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Preloader from './preloader';
 
 let wrapper;
 

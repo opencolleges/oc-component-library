@@ -22,4 +22,4 @@ const getElemMiddle = (
   return Number(pxToRem(position));
 };
 
-export default getElemMiddle;
+export { getElemMiddle as default };

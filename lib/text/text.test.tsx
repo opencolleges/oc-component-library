@@ -1,10 +1,7 @@
-import React from 'react';
-
-import Text from './text';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Text from './text';
 
 let wrapper;
 

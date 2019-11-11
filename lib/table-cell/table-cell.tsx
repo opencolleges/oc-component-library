@@ -1,8 +1,7 @@
 import React from 'react';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 
-import BEM from '../utilities/ts/bem';
-
-type TTag = `td` | `th`;
+type TagTypes = `td` | `th`;
 
 interface Props {
   children?: React.ReactNode;
@@ -11,19 +10,21 @@ interface Props {
   modifiers?: string;
   rowSpan?: number;
   style?: React.CSSProperties;
-  tag?: TTag;
-  width?: string;
+  tag?: TagTypes;
 }
 
-const TableCell: React.FC<Props> = props => {
+const TableCell: React.FC<Props> = (props: Props) => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
-  const bem = BEM(Tag);
-  bem.addModifiers(props.modifiers);
-  bem.addClassNames(props.className);
+
+  const BEM_MODULE: BEMInterface = BEM(Tag);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
+
+  addModifiers(props.modifiers);
+  addClassNames(props.className);
 
   return (
     <Tag
-      className={bem.getResult()}
+      className={getResult()}
       style={props.style}
       colSpan={props.colSpan}
       rowSpan={props.rowSpan}>

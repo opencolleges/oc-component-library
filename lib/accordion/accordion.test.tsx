@@ -1,10 +1,7 @@
-import React from 'react';
-
-import Accordion from './accordion';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import Accordion from './accordion';
 
 let wrapper;
 

@@ -1,5 +1,4 @@
 import addNamespace from './add-namespace';
-
 import { NAMESPACE } from './constants';
 
 describe(`addNamespace()`, () => {

@@ -21,4 +21,4 @@ const pxToRem = (
   return remUnits;
 };
 
-export default pxToRem;
+export { pxToRem as default };

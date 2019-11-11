@@ -1,10 +1,7 @@
-import React from 'react';
-
-import TableRow from './table-row';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
 import { mount } from 'enzyme';
+import React from 'react';
+import { NAMESPACE } from '../utilities/ts/constants';
+import TableRow from './table-row';
 
 let wrapper;
 

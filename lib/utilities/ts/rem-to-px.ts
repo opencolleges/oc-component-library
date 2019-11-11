@@ -21,4 +21,4 @@ const remToPx = (
   return pixelUnits;
 };
 
-export default remToPx;
+export { remToPx as default };

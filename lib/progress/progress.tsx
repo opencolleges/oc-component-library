@@ -1,9 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
-
 import Icon from '../icon';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 import isNotAlt from './utilities/is-not-alt';
 
 interface Props {
@@ -49,12 +47,17 @@ class Progress extends React.Component<Props> {
   render() {
     const { props, state } = this;
 
-    const bem = BEM(`progress`);
-    bem.addModifiers(props.modifiers);
-    bem.addModifiers(
-      state.success && isNotAlt(props.modifiers) ? `success` : ``
-    );
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`progress`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(props.modifiers);
+    addModifiers(state.success && isNotAlt(props.modifiers) ? `success` : ``);
+    addClassNames(props.className);
 
     const width: string = `${(props.progress / props.totalProgress) * 100}%`;
 
@@ -69,16 +72,16 @@ class Progress extends React.Component<Props> {
     }
 
     return (
-      <div className={bem.getResult()} style={props.style}>
-        <div className={bem.getElement(`bar-outer`)}>
+      <div className={getResult()} style={props.style}>
+        <div className={getElement(`bar-outer`)}>
           <div
-            className={bem.getElement(`bar`)}
+            className={getElement(`bar`)}
             style={{
               width
             }}
           />
         </div>
-        <div className={bem.getElement(`label`)}>{label}</div>
+        <div className={getElement(`label`)}>{label}</div>
         {isNotAlt(props.modifiers) && (
           <React.Fragment>
             <Icon
