@@ -1,9 +1,9 @@
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
 import Select from './select';
 
-let wrapper;
+let wrapper: ReactWrapper = null;
 
 describe(`<Select />`, () => {
   beforeEach(() => {
@@ -287,7 +287,12 @@ describe(`<Select />`, () => {
         .getDOMNode()
         .getAttribute(`class`)
     ).toBe(`${NAMESPACE}-icon ${NAMESPACE}-icon--tick active`);
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(`bar`);
+    expect(
+      wrapper
+        .find(`input`)
+        .getDOMNode()
+        .getAttribute(`value`)
+    ).toBe(`bar`);
   });
 
   it(`Handles onKeyDown`, () => {
@@ -353,7 +358,12 @@ describe(`<Select />`, () => {
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
       `${NAMESPACE}-select selected`
     );
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(`bar`);
+    expect(
+      wrapper
+        .find(`input`)
+        .getDOMNode()
+        .getAttribute(`value`)
+    ).toBe(`bar`);
 
     // Enter key on option
     wrapper.setState({ active: true, value: `` });
@@ -368,7 +378,12 @@ describe(`<Select />`, () => {
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
       `${NAMESPACE}-select selected`
     );
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(`bar`);
+    expect(
+      wrapper
+        .find(`input`)
+        .getDOMNode()
+        .getAttribute(`value`)
+    ).toBe(`bar`);
 
     // Esc key to close select
     wrapper.setState({ active: true, value: `` });
@@ -431,7 +446,12 @@ describe(`<Select />`, () => {
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
       `${NAMESPACE}-select selected`
     );
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(`bar`);
+    expect(
+      wrapper
+        .find(`input`)
+        .getDOMNode()
+        .getAttribute(`value`)
+    ).toBe(`bar`);
   });
 
   it(`Handles onTouchEnd`, () => {
@@ -480,7 +500,12 @@ describe(`<Select />`, () => {
     expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
       `${NAMESPACE}-select selected`
     );
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(`bar`);
+    expect(
+      wrapper
+        .find(`input`)
+        .getDOMNode()
+        .getAttribute(`value`)
+    ).toBe(`bar`);
   });
 
   it(`Handles onBlur`, () => {

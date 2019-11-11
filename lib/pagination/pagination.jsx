@@ -90,7 +90,7 @@ class Pagination extends React.Component {
         else paginationWidth = 464;
       }
 
-      this.setState({ width: paginationWidth });
+      this.setState({ width: `${pxToRem(paginationWidth)}rem` });
 
       this.handleHighlight();
     });
@@ -197,57 +197,55 @@ class Pagination extends React.Component {
   handleHighlight = () => {
     const { state, totalPages, mobileSiblings, tabletSiblings } = this;
 
+    let coords = 0;
+
     if (state.siblings === mobileSiblings) {
-      if (state.currentPage === 1) {
-        this.setState({ highlightCoords: 0 });
-      } else if (state.currentPage === totalPages && totalPages >= 3) {
-        this.setState({ highlightCoords: 96 });
+      if (state.currentPage === totalPages && totalPages >= 3) {
+        coords = 96;
       } else {
-        this.setState({ highlightCoords: 48 });
+        coords = 48;
       }
     } else if (state.siblings === tabletSiblings) {
-      if (state.currentPage === 1) {
-        this.setState({ highlightCoords: 0 });
-      } else if (state.currentPage === 2) {
-        this.setState({ highlightCoords: 56 });
+      if (state.currentPage === 2) {
+        coords = 56;
       } else if (state.currentPage === totalPages - 1 && totalPages >= 5) {
-        this.setState({ highlightCoords: 168 });
+        coords = 168;
       } else if (state.currentPage === totalPages && totalPages >= 4) {
         if (totalPages >= 5) {
-          this.setState({ highlightCoords: 224 });
+          coords = 224;
         } else {
-          this.setState({ highlightCoords: 168 });
+          coords = 168;
         }
       } else {
-        this.setState({ highlightCoords: 112 });
+        coords = 112;
       }
     } else {
-      if (state.currentPage === 1) {
-        this.setState({ highlightCoords: 0 });
-      } else if (state.currentPage === 2) {
-        this.setState({ highlightCoords: 56 });
+      if (state.currentPage === 2) {
+        coords = 56;
       } else if (state.currentPage === 3) {
-        this.setState({ highlightCoords: 112 });
+        coords = 112;
       } else if (state.currentPage === totalPages - 2 && totalPages >= 7) {
-        this.setState({ highlightCoords: 224 });
+        coords = 224;
       } else if (state.currentPage === totalPages - 1 && totalPages >= 6) {
         if (totalPages >= 7) {
-          this.setState({ highlightCoords: 280 });
+          coords = 280;
         } else {
-          this.setState({ highlightCoords: 224 });
+          coords = 224;
         }
       } else if (state.currentPage === totalPages && totalPages >= 5) {
         if (totalPages >= 7) {
-          this.setState({ highlightCoords: 336 });
+          coords = 336;
         } else if (totalPages >= 6) {
-          this.setState({ highlightCoords: 280 });
+          coords = 280;
         } else {
-          this.setState({ highlightCoords: 224 });
+          coords = 224;
         }
       } else {
-        this.setState({ highlightCoords: 168 });
+        coords = 168;
       }
     }
+
+    this.setState({ highlightCoords: `${pxToRem(coords)}rem` });
   };
 
   getPageStatus = pageNumber => {
@@ -308,14 +306,11 @@ class Pagination extends React.Component {
         <ul
           ref={paginationRef}
           className={bem.getElement(`list`)}
-          style={{ width: pxToRem(state.width, `string`) }}>
+          style={{ width: state.width }}>
           <div
             className={bem.getElement(`highlight`)}
             style={{
-              transform: `translateX(${pxToRem(
-                state.highlightCoords,
-                `string`
-              )})`
+              transform: `translateX(${state.highlightCoords})`
             }}
             aria-hidden={true}
           />

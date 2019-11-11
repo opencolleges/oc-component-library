@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import Icon, { IconTypes } from '../icon';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
+import { TRANSITION_DURATION_x4 } from '../utilities/ts/constants';
 import getElemMiddle from './utilities/get-elem-middle';
 import getTimer from './utilities/get-timer';
 
@@ -61,7 +62,7 @@ class Toast extends React.Component<Props, State> {
     if (this.state.mounted === false) {
       setTimeout(() => {
         this.props.onClick(this.props.id);
-      }, 500);
+      }, TRANSITION_DURATION_x4);
     }
   }
 

@@ -1,9 +1,9 @@
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
-import { NAMESPACE } from '../utilities/ts/constants';
+import { NAMESPACE, TRANSITION_DURATION_x4 } from '../utilities/ts/constants';
 import Toast from './toast';
 
-let wrapper;
+let wrapper: ReactWrapper = null;
 
 describe(`<Toast />`, () => {
   beforeEach(() => {
@@ -29,27 +29,24 @@ describe(`<Toast />`, () => {
   });
 
   it(`Handles props.duration`, done => {
-    const TOAST_TRANSITION_DURATION: number = 500;
-    const TOAST_MOUNT_DURATION: number = 1000;
-
     setTimeout(() => {
       expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
         `${NAMESPACE}-toast mounted`
       );
-    }, TOAST_TRANSITION_DURATION);
+    }, TRANSITION_DURATION_x4);
 
     setTimeout(() => {
       expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
         `${NAMESPACE}-toast`
       );
-    }, TOAST_TRANSITION_DURATION + TOAST_MOUNT_DURATION);
+    }, TRANSITION_DURATION_x4 + 1000);
 
     setTimeout(() => {
       wrapper.update();
 
       expect(wrapper).toMatchObject({});
       done();
-    }, TOAST_TRANSITION_DURATION + TOAST_MOUNT_DURATION + TOAST_TRANSITION_DURATION);
+    }, TRANSITION_DURATION_x4 + 1000 + TRANSITION_DURATION_x4);
   });
 
   it(`Handles props.heading`, () => {

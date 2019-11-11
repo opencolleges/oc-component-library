@@ -11,7 +11,7 @@ interface Props {
 
 const Badge: React.FC<Props> = (props: Props) => {
   const BEM_MODULE: BEMInterface = BEM(`badge`);
-  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE; // ? Review type.
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
 
   addModifiers(props.modifiers);
   addClassNames(props.className);

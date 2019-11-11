@@ -27,7 +27,7 @@ const Button: React.FC<Props> = (props: Props) => {
   }
 
   const BEM_MODULE: BEMInterface = BEM(`button`);
-  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE; // ? Review type.
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
 
   addModifiers(props.modifiers);
   addModifiers(props.icon ? `icon` : ``);

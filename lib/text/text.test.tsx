@@ -1,9 +1,9 @@
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
 import Text from './text';
 
-let wrapper;
+let wrapper: ReactWrapper = null;
 
 describe(`<Text />`, () => {
   beforeEach(() => {
@@ -372,27 +372,47 @@ describe(`<Text />`, () => {
 
   it(`Handles props.value`, () => {
     wrapper = mount(<Text label="foo" />);
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(``);
+    expect(wrapper.find(`input`).text()).toBe(``);
 
     wrapper.unmount();
 
     wrapper = mount(<Text label="foo" maxLength={0} value="bar" />);
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(`bar`);
+    expect(
+      wrapper
+        .find(`input`)
+        .getDOMNode()
+        .getAttribute(`value`)
+    ).toBe(`bar`);
 
     wrapper.unmount();
 
     wrapper = mount(<Text label="foo" maxLength={1} value="bar" />);
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(`b`);
+    expect(
+      wrapper
+        .find(`input`)
+        .getDOMNode()
+        .getAttribute(`value`)
+    ).toBe(`b`);
 
     wrapper.unmount();
 
     wrapper = mount(<Text label="foo" maxLength={2} value="bar" />);
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(`ba`);
+    expect(
+      wrapper
+        .find(`input`)
+        .getDOMNode()
+        .getAttribute(`value`)
+    ).toBe(`ba`);
 
     wrapper.unmount();
 
     wrapper = mount(<Text label="foo" value="bar" />);
-    expect(wrapper.find(`input`).getDOMNode().value).toBe(`bar`);
+    expect(
+      wrapper
+        .find(`input`)
+        .getDOMNode()
+        .getAttribute(`value`)
+    ).toBe(`bar`);
   });
 
   it(`Handles tabIndex`, () => {

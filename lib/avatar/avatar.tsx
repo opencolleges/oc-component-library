@@ -1,8 +1,9 @@
-import _ from 'lodash';
 import React from 'react';
 import Badge from '../badge';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
+import includes from '../utilities/ts/includes';
 import isUndefined from '../utilities/ts/is-undefined';
+import itemise from '../utilities/ts/itemise';
 import randomise from '../utilities/ts/randomise';
 
 const COORDS = {
@@ -51,7 +52,7 @@ const Avatar: React.FC<Props> = (props: Props) => {
     getElement,
     getModifier,
     getResult
-  }: BEMInterface = BEM_MODULE; // ? Review type.
+  }: BEMInterface = BEM_MODULE;
 
   addModifiers(props.modifiers);
   addClassNames(props.className);
@@ -64,7 +65,7 @@ const Avatar: React.FC<Props> = (props: Props) => {
       title={props.firstName}>
       {Object.keys(COORDS).map((size, index) => {
         return (
-          _.includes(_.split(props.modifiers, ` `), size) &&
+          includes(itemise(props.modifiers), size) &&
           (!isUndefined(props.href) && (
             <svg
               key={index}
@@ -95,12 +96,12 @@ const Avatar: React.FC<Props> = (props: Props) => {
           }
         }
       />
-      {!_.includes(_.split(props.modifiers, ` `), `s`) && (
+      {!includes(itemise(props.modifiers), `s`) && (
         <React.Fragment>
-          {_.includes(_.split(props.modifiers, ` `), `error`) && (
+          {includes(itemise(props.modifiers), `error`) && (
             <Badge value={props.value} modifiers="error" />
           )}
-          {_.includes(_.split(props.modifiers, ` `), `success`) && (
+          {includes(itemise(props.modifiers), `success`) && (
             <Badge value={props.value} modifiers="success" />
           )}
         </React.Fragment>

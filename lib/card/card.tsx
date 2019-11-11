@@ -1,7 +1,7 @@
-import _ from 'lodash';
 import React from 'react';
 import Icon from '../icon';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
+import includes from '../utilities/ts/includes';
 import isUndefined from '../utilities/ts/is-undefined';
 
 interface Props {
@@ -14,7 +14,9 @@ interface Props {
 }
 
 const Card: React.FC<Props> = (props: Props) => {
-  const Tag = (isUndefined(props.href) ? `div` : `a`) as `div` | `a`;
+  const Tag: keyof JSX.IntrinsicElements = isUndefined(props.href)
+    ? `div`
+    : `a`;
 
   const BEM_MODULE: BEMInterface = BEM(`card`);
   const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
@@ -29,13 +31,11 @@ const Card: React.FC<Props> = (props: Props) => {
       style={props.style}
       href={props.href}
       tabIndex={
-        (_.includes(getResult(), `clickable`) ||
-          _.includes(getResult(), `draggable`)) &&
-        props.tabIndex
+        !!props.tabIndex && includes(getResult(), [`clickable`, `draggable`])
           ? 0
           : null
       }>
-      {_.includes(getResult(), `draggable`) && <Icon type="draggable" />}
+      {includes(getResult(), `draggable`) && <Icon type="draggable" />}
       {props.children}
     </Tag>
   );

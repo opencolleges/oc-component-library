@@ -1,9 +1,9 @@
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
 import Checkbox from './checkbox';
 
-let wrapper;
+let wrapper: ReactWrapper = null;
 
 describe(`<Checkbox />`, () => {
   beforeEach(() => {
