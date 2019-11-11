@@ -29,24 +29,27 @@ describe(`<Toast />`, () => {
   });
 
   it(`Handles props.duration`, done => {
+    const TOAST_TRANSITION_DURATION: number = 500;
+    const TOAST_MOUNT_DURATION: number = 1000;
+
     setTimeout(() => {
       expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
         `${NAMESPACE}-toast mounted`
       );
-    }, 500);
+    }, TOAST_TRANSITION_DURATION);
 
     setTimeout(() => {
       expect(wrapper.getDOMNode().getAttribute(`class`)).toBe(
         `${NAMESPACE}-toast`
       );
-    }, 1000);
+    }, TOAST_TRANSITION_DURATION + TOAST_MOUNT_DURATION);
 
     setTimeout(() => {
       wrapper.update();
 
       expect(wrapper).toMatchObject({});
       done();
-    }, 2000);
+    }, TOAST_TRANSITION_DURATION + TOAST_MOUNT_DURATION + TOAST_TRANSITION_DURATION);
   });
 
   it(`Handles props.heading`, () => {
