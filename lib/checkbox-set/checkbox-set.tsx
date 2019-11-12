@@ -7,7 +7,7 @@ import BEM, { BEMInterface } from '../utilities/ts/bem';
 import hasErrorOrSuccess from './utilities/has-error-or-success';
 import hasMessage from './utilities/has-message';
 
-interface Checkboxes {
+interface CheckboxesInterface {
   className?: string;
   id?: string;
   label: string;
@@ -17,7 +17,7 @@ interface Checkboxes {
 
 interface Props {
   cards?: boolean;
-  checkboxes: Checkboxes[];
+  checkboxes: CheckboxesInterface[];
   className?: string;
   disabled?: boolean;
   error?: string[];
@@ -34,6 +34,12 @@ interface State {
   error: string[];
   success: string[];
   value: string[];
+}
+
+interface RenderInterface {
+  handleChange: (value: string) => void;
+  props: Props;
+  state: State;
 }
 
 class CheckboxSet extends React.Component<Props, State> {
@@ -55,12 +61,12 @@ class CheckboxSet extends React.Component<Props, State> {
   );
 
   readonly state: Readonly<State> = {
-    error: this.props.error ? this.props.error : [],
-    success: this.props.success ? this.props.success : [],
+    error: !!this.props.error ? this.props.error : [],
+    success: !!this.props.success ? this.props.success : [],
     value: this.intersection.length !== 0 ? this.intersection : []
   };
 
-  componentDidUpdate(prevProps): void {
+  componentDidUpdate(prevProps: Props): void {
     if (prevProps.error !== this.props.error) {
       if (!this.props.error) {
         this.setState({ error: [] });
@@ -99,11 +105,11 @@ class CheckboxSet extends React.Component<Props, State> {
   };
 
   render() {
-    const { props, state, handleChange } = this;
+    const { props, state, handleChange }: RenderInterface = this;
 
-    const error: string = state.error.length ? `error` : ``;
+    const error: string = !!state.error.length ? `error` : ``;
     const success: string =
-      !state.error.length && state.success.length ? `success` : ``;
+      !state.error.length && !!state.success.length ? `success` : ``;
 
     const BEM_MODULE: BEMInterface = BEM(`checkbox-set`);
     const {
@@ -120,8 +126,8 @@ class CheckboxSet extends React.Component<Props, State> {
     return (
       <div className={getResult()} style={props.style}>
         <Grid modifiers="gutter-x-fixed">
-          {props.checkboxes.map((checkbox, index) => (
-            <GridItem key={index} modifiers="s-12 m-6 align-end">
+          {props.checkboxes.map((checkbox, i) => (
+            <GridItem key={i} modifiers="s-12 m-6 align-end">
               <OptionalCard
                 disabled={props.disabled}
                 readOnly={props.readOnly}

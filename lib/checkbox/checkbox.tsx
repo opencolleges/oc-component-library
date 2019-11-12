@@ -24,6 +24,13 @@ interface State {
   checked: boolean;
 }
 
+interface RenderInterface {
+  handleChange: () => void;
+  id: string;
+  props: Props;
+  state: State;
+}
+
 class Checkbox extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     checked: false,
@@ -39,9 +46,9 @@ class Checkbox extends React.Component<Props, State> {
     checked: this.props.checked
   };
 
-  id: string = this.props.id ? this.props.id : getId();
+  id: string = !!this.props.id ? this.props.id : getId();
 
-  componentDidUpdate(prevProps): void {
+  componentDidUpdate(prevProps: Props): void {
     if (prevProps.checked !== this.props.checked) {
       this.setState({ checked: this.props.checked });
     }
@@ -58,7 +65,7 @@ class Checkbox extends React.Component<Props, State> {
   };
 
   render() {
-    const { props, state, id, handleChange } = this;
+    const { props, state, id, handleChange }: RenderInterface = this;
 
     const BEM_MODULE: BEMInterface = BEM(`checkbox`);
     const {
@@ -93,11 +100,11 @@ class Checkbox extends React.Component<Props, State> {
           <svg className={getElement(`border-outer`)} viewBox="0 0 16 16">
             <rect
               className={getElement(`border`)}
+              rx="1.5"
               x="0.5"
               y="0.5"
               width="15"
               height="15"
-              rx="1.5"
             />
           </svg>
         )}

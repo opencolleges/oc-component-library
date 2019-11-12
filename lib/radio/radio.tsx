@@ -20,6 +20,12 @@ interface Props {
   value: string;
 }
 
+interface RenderInterface {
+  handleChange: () => void;
+  id: string;
+  props: Props;
+}
+
 class Radio extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     checked: false,
@@ -31,14 +37,14 @@ class Radio extends React.Component<Props> {
     required: false
   };
 
-  id: string = this.props.id ? this.props.id : getId();
+  id: string = !!this.props.id ? this.props.id : getId();
 
   handleChange = (): void => {
     this.props.onChange(this.props.value, this.props.name);
   };
 
   render() {
-    const { props, id, handleChange } = this;
+    const { props, id, handleChange }: RenderInterface = this;
 
     const BEM_MODULE: BEMInterface = BEM(`radio`);
     const {
@@ -71,7 +77,7 @@ class Radio extends React.Component<Props> {
         </label>
         {!props.readOnly && !props.disabled && (
           <svg className={getElement(`border-outer`)} viewBox="0 0 16 16">
-            <circle className={getElement(`border`)} cx="8" cy="8" r="7.5" />
+            <circle className={getElement(`border`)} r="7.5" cx="8" cy="8" />
           </svg>
         )}
         {!includes(itemise(props.modifiers), `right`) && (
