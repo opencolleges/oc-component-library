@@ -142,21 +142,21 @@ class Text extends React.Component<Props> {
     return true;
   }
 
-  componentDidUpdate(previousProps: Props, previousState: State): void {
-    if (this.props.modifiers !== previousProps.modifiers) {
+  componentDidUpdate(prevProps: Props, prevState: State): void {
+    if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
         error: includes(itemise(this.props.modifiers), `error`),
         success: includes(itemise(this.props.modifiers), `success`)
       });
     }
 
-    if (this.props.disabled !== previousProps.disabled) {
+    if (this.props.disabled !== prevProps.disabled) {
       this.setState({
         disabled: this.props.disabled
       });
     }
 
-    if (this.state.value !== previousState.value) {
+    if (this.state.value !== prevState.value) {
       this.setState({
         error: false,
         success: false
@@ -166,7 +166,7 @@ class Text extends React.Component<Props> {
       this.forceUpdate();
     }
 
-    if (this.props.value !== previousProps.value) {
+    if (this.props.value !== prevProps.value) {
       this.setState({
         value: truncateString(this.props.value, this.props.maxLength)
       });

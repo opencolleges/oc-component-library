@@ -31,15 +31,15 @@ class File extends React.Component {
     };
   }
 
-  componentDidUpdate(previousProps, previousState) {
-    if (this.props.modifiers !== previousProps.modifiers) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
         error: includes(itemise(this.props.modifiers), `file--error`),
         success: includes(itemise(this.props.modifiers), `file--success`)
       });
     }
 
-    if (this.state.files.length !== previousState.files.length) {
+    if (this.state.files.length !== prevState.files.length) {
       this.setState({
         error: false,
 
@@ -47,7 +47,7 @@ class File extends React.Component {
       });
     }
 
-    if (previousProps.files !== this.props.files) {
+    if (prevProps.files !== this.props.files) {
       const prevFiles = [...this.state.files];
 
       for (let i = 0; i < this.props.files.length; i++) {

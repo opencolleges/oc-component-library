@@ -79,20 +79,20 @@ class CheckboxSet extends React.Component<Props, State> {
   }
 
   handleChange = (value: string): void => {
-    const previousSelection: string[] = this.state.value;
+    const prevSelection: string[] = this.state.value;
 
     if (this.state.value.indexOf(value) === -1) {
-      previousSelection.push(value);
+      prevSelection.push(value);
     } else {
       const selectionIndex: number = this.state.value.indexOf(value);
 
-      previousSelection.splice(selectionIndex, 1);
+      prevSelection.splice(selectionIndex, 1);
     }
 
     this.setState({
       error: [],
       success: [],
-      value: previousSelection
+      value: prevSelection
     });
 
     this.props.onChange(value, this.props.name);
