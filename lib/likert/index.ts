@@ -1,3 +1,3 @@
-import Likert from './likert';
+import Likert, { LikertOptionInterface } from './likert';
 
-export { Likert as default };
+export { Likert as default, LikertOptionInterface };

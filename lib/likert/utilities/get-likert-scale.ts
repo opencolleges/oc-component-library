@@ -1,11 +1,10 @@
+import { LikertOptionInterface } from '../../likert';
 import getId from '../../utilities/ts/get-id';
 
 const getLikertScale = (
-  options: Array<{
-    label?: string;
-  }>
-): Array<{ id: string; label: string }> => {
-  const SCALE: Array<{ id: string; label: string }> = [];
+  options: LikertOptionInterface[]
+): LikertOptionInterface[] => {
+  const SCALE: LikertOptionInterface[] = [];
 
   let range: number = options.length;
 
@@ -17,7 +16,7 @@ const getLikertScale = (
   }
 
   for (let i: number = 0; i < range; i++) {
-    const OPTION: { id: string; label: string } = {
+    const OPTION: LikertOptionInterface = {
       id: getId(),
       label: options[i] && options[i].label ? options[i].label : ``
     };

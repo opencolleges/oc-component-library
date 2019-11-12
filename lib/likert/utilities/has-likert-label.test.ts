@@ -1,9 +1,10 @@
+import { LikertOptionInterface } from '../../likert';
 import { NAMESPACE } from '../../utilities/ts/constants';
 import hasLikertLabel from './has-likert-label';
 
 describe(`hasLikertLabel()`, () => {
   it(`Handles an array with a length of three`, () => {
-    const arr: Array<{ id: string; label?: string }> = [
+    const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
       { id: `${NAMESPACE}-2` },
       { id: `${NAMESPACE}-3` }
@@ -15,7 +16,7 @@ describe(`hasLikertLabel()`, () => {
   });
 
   it(`Handles an array with a length of four`, () => {
-    const arr: Array<{ id: string; label?: string }> = [
+    const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
       { id: `${NAMESPACE}-2` },
       { id: `${NAMESPACE}-3` },
@@ -29,7 +30,7 @@ describe(`hasLikertLabel()`, () => {
   });
 
   it(`Handles an array with a length of five`, () => {
-    const arr: Array<{ id: string; label?: string }> = [
+    const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
       { id: `${NAMESPACE}-2` },
       { id: `${NAMESPACE}-3` },
@@ -45,7 +46,7 @@ describe(`hasLikertLabel()`, () => {
   });
 
   it(`Handles an array with a length of six`, () => {
-    const arr: Array<{ id: string; label?: string }> = [
+    const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
       { id: `${NAMESPACE}-2` },
       { id: `${NAMESPACE}-3` },
@@ -63,7 +64,7 @@ describe(`hasLikertLabel()`, () => {
   });
 
   it(`Handles an array with a length of seven`, () => {
-    const arr: Array<{ id: string; label?: string }> = [
+    const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
       { id: `${NAMESPACE}-2` },
       { id: `${NAMESPACE}-3` },
@@ -83,7 +84,7 @@ describe(`hasLikertLabel()`, () => {
   });
 
   it(`Handles an array with a length of eight`, () => {
-    const arr: Array<{ id: string; label?: string }> = [
+    const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
       { id: `${NAMESPACE}-2` },
       { id: `${NAMESPACE}-3` },
@@ -105,7 +106,7 @@ describe(`hasLikertLabel()`, () => {
   });
 
   it(`Handles an array with a length of nine`, () => {
-    const arr: Array<{ id: string; label?: string }> = [
+    const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
       { id: `${NAMESPACE}-2` },
       { id: `${NAMESPACE}-3` },
@@ -129,7 +130,7 @@ describe(`hasLikertLabel()`, () => {
   });
 
   it(`Handles an array with a length of 10`, () => {
-    const arr: Array<{ id: string; label?: string }> = [
+    const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
       { id: `${NAMESPACE}-2` },
       { id: `${NAMESPACE}-3` },
@@ -155,7 +156,7 @@ describe(`hasLikertLabel()`, () => {
   });
 
   it(`Handles an array with a length of 11`, () => {
-    const arr: Array<{ id: string; label?: string }> = [
+    const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
       { id: `${NAMESPACE}-2` },
       { id: `${NAMESPACE}-3` },

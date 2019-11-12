@@ -1,8 +1,9 @@
+import { LikertOptionInterface } from '../../likert';
 import isFirstOrLastIndex from '../../utilities/ts/is-first-or-last-index';
 import isOdd from '../../utilities/ts/is-odd';
 
 const hasLikertLabel = (
-  arr: Array<{ id: string; label?: string }>,
+  arr: LikertOptionInterface[],
   index: number
 ): boolean => {
   return (

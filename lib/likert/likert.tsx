@@ -3,12 +3,17 @@ import BEM, { BEMInterface } from '../utilities/ts/bem';
 import getLikertScale from './utilities/get-likert-scale';
 import hasLikertLabel from './utilities/has-likert-label';
 
+interface LikertOptionInterface {
+  id?: string;
+  label?: string;
+}
+
 interface Props {
   className?: string;
   modifiers?: string;
   name?: string;
   onChange?: () => void;
-  options: Array<{ label?: string }>;
+  options: LikertOptionInterface[];
   style?: React.CSSProperties;
 }
 
@@ -27,9 +32,7 @@ class Likert extends React.Component<Props, State> {
     value: ``
   };
 
-  scale: Array<{ id: string; label: string }> = getLikertScale(
-    this.props.options
-  );
+  scale: LikertOptionInterface[] = getLikertScale(this.props.options);
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({
@@ -90,4 +93,4 @@ class Likert extends React.Component<Props, State> {
   }
 }
 
-export { Likert as default };
+export { Likert as default, LikertOptionInterface };
