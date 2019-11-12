@@ -1,14 +1,14 @@
-import _ from 'lodash';
+import includes from '../../utilities/ts/includes';
 
 const hasErrorOrSuccess = (
   errorArr: string[],
   successArr: string[],
   value: string
-): string | null => {
-  if (_.includes(errorArr, value)) {
+): string => {
+  if (includes(errorArr, value)) {
     return `error`;
   }
-  if (_.includes(successArr, value)) {
+  if (includes(successArr, value)) {
     return `success`;
   }
 

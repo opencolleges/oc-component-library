@@ -6,5 +6,11 @@ describe(`addNamespace()`, () => {
     expect(addNamespace(`foo`)).toBe(`${NAMESPACE}-foo`);
     expect(addNamespace(`              bar`)).toBe(`${NAMESPACE}-bar`);
     expect(addNamespace(` baz                `)).toBe(`${NAMESPACE}-baz`);
+    expect(addNamespace(`    qui     qux `)).toBe(
+      `${NAMESPACE}-qui ${NAMESPACE}-qux`
+    );
+    expect(addNamespace(`    corge     thud foo`)).toBe(
+      `${NAMESPACE}-corge ${NAMESPACE}-thud ${NAMESPACE}-foo`
+    );
   });
 });
