@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
 import getId from '../utilities/ts/get-id';

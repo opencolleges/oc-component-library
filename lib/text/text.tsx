@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import Icon from '../icon';
 import BEM, { BEMInterface } from '../utilities/ts/bem';

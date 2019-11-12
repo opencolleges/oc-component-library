@@ -1,8 +1,8 @@
 import { LikertOptionInterface } from '../../likert';
 import { NAMESPACE } from '../../utilities/ts/constants';
-import hasLikertLabel from './has-likert-label';
+import hasLabel from './has-label';
 
-describe(`hasLikertLabel()`, () => {
+describe(`hasLabel()`, () => {
   it(`Handles an array with a length of three`, () => {
     const arr: LikertOptionInterface[] = [
       { id: `${NAMESPACE}-1` },
@@ -10,9 +10,9 @@ describe(`hasLikertLabel()`, () => {
       { id: `${NAMESPACE}-3` }
     ];
 
-    expect(hasLikertLabel(arr, 0)).toBe(true);
-    expect(hasLikertLabel(arr, 1)).toBe(true);
-    expect(hasLikertLabel(arr, 2)).toBe(true);
+    expect(hasLabel(arr, 0)).toBe(true);
+    expect(hasLabel(arr, 1)).toBe(true);
+    expect(hasLabel(arr, 2)).toBe(true);
   });
 
   it(`Handles an array with a length of four`, () => {
@@ -23,10 +23,10 @@ describe(`hasLikertLabel()`, () => {
       { id: `${NAMESPACE}-4` }
     ];
 
-    expect(hasLikertLabel(arr, 0)).toBe(true);
-    expect(hasLikertLabel(arr, 1)).toBe(true);
-    expect(hasLikertLabel(arr, 2)).toBe(true);
-    expect(hasLikertLabel(arr, 3)).toBe(true);
+    expect(hasLabel(arr, 0)).toBe(true);
+    expect(hasLabel(arr, 1)).toBe(true);
+    expect(hasLabel(arr, 2)).toBe(true);
+    expect(hasLabel(arr, 3)).toBe(true);
   });
 
   it(`Handles an array with a length of five`, () => {
@@ -38,11 +38,11 @@ describe(`hasLikertLabel()`, () => {
       { id: `${NAMESPACE}-5` }
     ];
 
-    expect(hasLikertLabel(arr, 0)).toBe(true);
-    expect(hasLikertLabel(arr, 1)).toBe(true);
-    expect(hasLikertLabel(arr, 2)).toBe(true);
-    expect(hasLikertLabel(arr, 3)).toBe(true);
-    expect(hasLikertLabel(arr, 4)).toBe(true);
+    expect(hasLabel(arr, 0)).toBe(true);
+    expect(hasLabel(arr, 1)).toBe(true);
+    expect(hasLabel(arr, 2)).toBe(true);
+    expect(hasLabel(arr, 3)).toBe(true);
+    expect(hasLabel(arr, 4)).toBe(true);
   });
 
   it(`Handles an array with a length of six`, () => {
@@ -55,12 +55,12 @@ describe(`hasLikertLabel()`, () => {
       { id: `${NAMESPACE}-6` }
     ];
 
-    expect(hasLikertLabel(arr, 0)).toBe(true);
-    expect(hasLikertLabel(arr, 1)).toBe(false);
-    expect(hasLikertLabel(arr, 2)).toBe(false);
-    expect(hasLikertLabel(arr, 3)).toBe(false);
-    expect(hasLikertLabel(arr, 4)).toBe(false);
-    expect(hasLikertLabel(arr, 5)).toBe(true);
+    expect(hasLabel(arr, 0)).toBe(true);
+    expect(hasLabel(arr, 1)).toBe(false);
+    expect(hasLabel(arr, 2)).toBe(false);
+    expect(hasLabel(arr, 3)).toBe(false);
+    expect(hasLabel(arr, 4)).toBe(false);
+    expect(hasLabel(arr, 5)).toBe(true);
   });
 
   it(`Handles an array with a length of seven`, () => {
@@ -74,13 +74,13 @@ describe(`hasLikertLabel()`, () => {
       { id: `${NAMESPACE}-7` }
     ];
 
-    expect(hasLikertLabel(arr, 0)).toBe(true);
-    expect(hasLikertLabel(arr, 1)).toBe(false);
-    expect(hasLikertLabel(arr, 2)).toBe(false);
-    expect(hasLikertLabel(arr, 3)).toBe(true);
-    expect(hasLikertLabel(arr, 4)).toBe(false);
-    expect(hasLikertLabel(arr, 5)).toBe(false);
-    expect(hasLikertLabel(arr, 6)).toBe(true);
+    expect(hasLabel(arr, 0)).toBe(true);
+    expect(hasLabel(arr, 1)).toBe(false);
+    expect(hasLabel(arr, 2)).toBe(false);
+    expect(hasLabel(arr, 3)).toBe(true);
+    expect(hasLabel(arr, 4)).toBe(false);
+    expect(hasLabel(arr, 5)).toBe(false);
+    expect(hasLabel(arr, 6)).toBe(true);
   });
 
   it(`Handles an array with a length of eight`, () => {
@@ -95,14 +95,14 @@ describe(`hasLikertLabel()`, () => {
       { id: `${NAMESPACE}-8` }
     ];
 
-    expect(hasLikertLabel(arr, 0)).toBe(true);
-    expect(hasLikertLabel(arr, 1)).toBe(false);
-    expect(hasLikertLabel(arr, 2)).toBe(false);
-    expect(hasLikertLabel(arr, 3)).toBe(false);
-    expect(hasLikertLabel(arr, 4)).toBe(false);
-    expect(hasLikertLabel(arr, 5)).toBe(false);
-    expect(hasLikertLabel(arr, 6)).toBe(false);
-    expect(hasLikertLabel(arr, 7)).toBe(true);
+    expect(hasLabel(arr, 0)).toBe(true);
+    expect(hasLabel(arr, 1)).toBe(false);
+    expect(hasLabel(arr, 2)).toBe(false);
+    expect(hasLabel(arr, 3)).toBe(false);
+    expect(hasLabel(arr, 4)).toBe(false);
+    expect(hasLabel(arr, 5)).toBe(false);
+    expect(hasLabel(arr, 6)).toBe(false);
+    expect(hasLabel(arr, 7)).toBe(true);
   });
 
   it(`Handles an array with a length of nine`, () => {
@@ -118,15 +118,15 @@ describe(`hasLikertLabel()`, () => {
       { id: `${NAMESPACE}-9` }
     ];
 
-    expect(hasLikertLabel(arr, 0)).toBe(true);
-    expect(hasLikertLabel(arr, 1)).toBe(false);
-    expect(hasLikertLabel(arr, 2)).toBe(false);
-    expect(hasLikertLabel(arr, 3)).toBe(false);
-    expect(hasLikertLabel(arr, 4)).toBe(true);
-    expect(hasLikertLabel(arr, 5)).toBe(false);
-    expect(hasLikertLabel(arr, 6)).toBe(false);
-    expect(hasLikertLabel(arr, 7)).toBe(false);
-    expect(hasLikertLabel(arr, 8)).toBe(true);
+    expect(hasLabel(arr, 0)).toBe(true);
+    expect(hasLabel(arr, 1)).toBe(false);
+    expect(hasLabel(arr, 2)).toBe(false);
+    expect(hasLabel(arr, 3)).toBe(false);
+    expect(hasLabel(arr, 4)).toBe(true);
+    expect(hasLabel(arr, 5)).toBe(false);
+    expect(hasLabel(arr, 6)).toBe(false);
+    expect(hasLabel(arr, 7)).toBe(false);
+    expect(hasLabel(arr, 8)).toBe(true);
   });
 
   it(`Handles an array with a length of 10`, () => {
@@ -143,16 +143,16 @@ describe(`hasLikertLabel()`, () => {
       { id: `${NAMESPACE}-10` }
     ];
 
-    expect(hasLikertLabel(arr, 0)).toBe(true);
-    expect(hasLikertLabel(arr, 1)).toBe(false);
-    expect(hasLikertLabel(arr, 2)).toBe(false);
-    expect(hasLikertLabel(arr, 3)).toBe(false);
-    expect(hasLikertLabel(arr, 4)).toBe(false);
-    expect(hasLikertLabel(arr, 5)).toBe(false);
-    expect(hasLikertLabel(arr, 6)).toBe(false);
-    expect(hasLikertLabel(arr, 7)).toBe(false);
-    expect(hasLikertLabel(arr, 8)).toBe(false);
-    expect(hasLikertLabel(arr, 9)).toBe(true);
+    expect(hasLabel(arr, 0)).toBe(true);
+    expect(hasLabel(arr, 1)).toBe(false);
+    expect(hasLabel(arr, 2)).toBe(false);
+    expect(hasLabel(arr, 3)).toBe(false);
+    expect(hasLabel(arr, 4)).toBe(false);
+    expect(hasLabel(arr, 5)).toBe(false);
+    expect(hasLabel(arr, 6)).toBe(false);
+    expect(hasLabel(arr, 7)).toBe(false);
+    expect(hasLabel(arr, 8)).toBe(false);
+    expect(hasLabel(arr, 9)).toBe(true);
   });
 
   it(`Handles an array with a length of 11`, () => {
@@ -170,16 +170,16 @@ describe(`hasLikertLabel()`, () => {
       { id: `${NAMESPACE}-11` }
     ];
 
-    expect(hasLikertLabel(arr, 0)).toBe(true);
-    expect(hasLikertLabel(arr, 1)).toBe(false);
-    expect(hasLikertLabel(arr, 2)).toBe(false);
-    expect(hasLikertLabel(arr, 3)).toBe(false);
-    expect(hasLikertLabel(arr, 4)).toBe(false);
-    expect(hasLikertLabel(arr, 5)).toBe(true);
-    expect(hasLikertLabel(arr, 6)).toBe(false);
-    expect(hasLikertLabel(arr, 7)).toBe(false);
-    expect(hasLikertLabel(arr, 8)).toBe(false);
-    expect(hasLikertLabel(arr, 9)).toBe(false);
-    expect(hasLikertLabel(arr, 10)).toBe(true);
+    expect(hasLabel(arr, 0)).toBe(true);
+    expect(hasLabel(arr, 1)).toBe(false);
+    expect(hasLabel(arr, 2)).toBe(false);
+    expect(hasLabel(arr, 3)).toBe(false);
+    expect(hasLabel(arr, 4)).toBe(false);
+    expect(hasLabel(arr, 5)).toBe(true);
+    expect(hasLabel(arr, 6)).toBe(false);
+    expect(hasLabel(arr, 7)).toBe(false);
+    expect(hasLabel(arr, 8)).toBe(false);
+    expect(hasLabel(arr, 9)).toBe(false);
+    expect(hasLabel(arr, 10)).toBe(true);
   });
 });

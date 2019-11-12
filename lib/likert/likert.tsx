@@ -1,7 +1,7 @@
 import React from 'react';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
-import getLikertScale from './utilities/get-likert-scale';
-import hasLikertLabel from './utilities/has-likert-label';
+import getScale from './utilities/get-scale';
+import hasLabel from './utilities/has-label';
 
 interface LikertOptionInterface {
   id?: string;
@@ -32,7 +32,7 @@ class Likert extends React.Component<Props, State> {
     value: ``
   };
 
-  scale: LikertOptionInterface[] = getLikertScale(this.props.options);
+  scale: LikertOptionInterface[] = getScale(this.props.options);
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({
@@ -81,7 +81,7 @@ class Likert extends React.Component<Props, State> {
                 <label htmlFor={option.id} className={getElement(`button`)}>
                   {scale.length > 10 ? i : i + 1}
                 </label>
-                {hasLikertLabel(scale, i) && option.label && (
+                {hasLabel(scale, i) && option.label && (
                   <span className={getElement(`label`)}>{option.label}</span>
                 )}
               </div>

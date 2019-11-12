@@ -1,7 +1,7 @@
 import { LikertOptionInterface } from '../../likert';
 import getId from '../../utilities/ts/get-id';
 
-const getLikertScale = (
+const getScale = (
   options: LikertOptionInterface[]
 ): LikertOptionInterface[] => {
   const SCALE: LikertOptionInterface[] = [];
@@ -27,4 +27,4 @@ const getLikertScale = (
   return SCALE;
 };
 
-export { getLikertScale as default };
+export { getScale as default };

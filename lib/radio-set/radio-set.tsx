@@ -5,6 +5,7 @@ import Grid from '../grid';
 import GridItem from '../grid-item';
 import Radio from '../radio';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
+import includes from '../utilities/ts/includes';
 
 interface Radios {
   className?: string;
@@ -47,8 +48,8 @@ class RadioSet extends React.Component<Props, State> {
   };
 
   readonly state: Readonly<State> = {
-    error: _.includes(this.props.modifiers, `error`),
-    success: _.includes(this.props.modifiers, `success`),
+    error: includes(this.props.modifiers, `error`),
+    success: includes(this.props.modifiers, `success`),
     value: _.some(this.props.radios, [`value`, this.props.value])
       ? this.props.value
       : ``
@@ -57,8 +58,8 @@ class RadioSet extends React.Component<Props, State> {
   componentDidUpdate(prevProps): void {
     if (prevProps.modifiers !== this.props.modifiers) {
       this.setState({
-        error: _.includes(this.props.modifiers, `error`),
-        success: _.includes(this.props.modifiers, `success`)
+        error: includes(this.props.modifiers, `error`),
+        success: includes(this.props.modifiers, `success`)
       });
     }
   }
@@ -111,7 +112,7 @@ class RadioSet extends React.Component<Props, State> {
                   value={radio.value}
                   disabled={props.disabled}
                   readOnly={props.readOnly}
-                  required={props.required && index === 0}
+                  required={!!props.required && index === 0}
                   checked={state.value === radio.value}
                   onChange={handleChange}>
                   {radio.label}
@@ -121,7 +122,7 @@ class RadioSet extends React.Component<Props, State> {
           ))}
         </Grid>
         <div className={getElement(`border`)} />
-        {(state.error || state.success) && props.message && (
+        {(!!state.error || !!state.success) && !!props.message && (
           <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>
