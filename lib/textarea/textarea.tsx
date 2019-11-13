@@ -51,7 +51,7 @@ class Textarea extends React.Component<Props> {
   };
 
   id: string = this.props.id ? this.props.id : getId();
-  textareaRef = React.createRef<HTMLTextAreaElement>();
+  inputRef = React.createRef<HTMLTextAreaElement>();
 
   readonly state: Readonly<State> = {
     error: includes(itemise(this.props.modifiers), `error`),
@@ -111,7 +111,7 @@ class Textarea extends React.Component<Props> {
   };
 
   resize = (): void => {
-    const textarea: HTMLTextAreaElement = this.textareaRef.current;
+    const textarea: HTMLTextAreaElement = this.inputRef.current;
 
     this.setState(
       {
@@ -182,7 +182,7 @@ class Textarea extends React.Component<Props> {
   };
 
   render() {
-    const { props, state, id, textareaRef, handleChange } = this;
+    const { props, state, id, inputRef, handleChange } = this;
 
     const modifiers = remove([`error`, `success`], props.modifiers);
 
@@ -212,7 +212,7 @@ class Textarea extends React.Component<Props> {
             : props.style
         }>
         <textarea
-          ref={textareaRef}
+          ref={inputRef}
           id={id}
           className={
             !state.value ? getElement(`input`) : `${getElement(`input`)} active`

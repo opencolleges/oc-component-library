@@ -37,7 +37,7 @@ class Toast extends React.Component<Props, State> {
   };
 
   timer: any = null;
-  toastRef: any = React.createRef();
+  toastRef = React.createRef<HTMLDivElement>();
 
   readonly state: Readonly<State> = {
     focus: false,
@@ -76,7 +76,7 @@ class Toast extends React.Component<Props, State> {
   }
 
   handleClick = (): void => {
-    const toastRef: any = this.toastRef.current;
+    const toastRef: HTMLDivElement = this.toastRef.current;
 
     const nextToastRef: any = toastRef.nextSibling;
     const previousToastRef: any = toastRef.previousSibling;

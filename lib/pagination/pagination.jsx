@@ -11,7 +11,7 @@ class Pagination extends React.Component {
   constructor(props) {
     super(props);
 
-    this.paginationRef = React.createRef();
+    this.listRef = React.createRef();
 
     this.state = {
       pages: this.props.pages,
@@ -71,8 +71,8 @@ class Pagination extends React.Component {
     }
 
     this.setState({ siblings: siblings }, () => {
-      const paginationRef = this.paginationRef.current;
-      const paginationChildren = paginationRef.childNodes.length;
+      const listRef = this.listRef.current;
+      const paginationChildren = listRef.childNodes.length;
 
       let paginationWidth = null;
 
@@ -184,10 +184,10 @@ class Pagination extends React.Component {
   };
 
   goToPage = pageNumber => {
-    const paginationRef = this.paginationRef.current;
+    const listRef = this.listRef.current;
 
     this.setState({ currentPage: pageNumber }, () => {
-      paginationRef.getElementsByClassName(addNamespace(`active`))[0].focus();
+      listRef.getElementsByClassName(addNamespace(`active`))[0].focus();
       this.handleHighlight();
     });
 
@@ -262,7 +262,7 @@ class Pagination extends React.Component {
 
   render() {
     const {
-      paginationRef,
+      listRef,
       totalPages,
       props,
       state,
@@ -304,7 +304,7 @@ class Pagination extends React.Component {
           </li>
         </ul>
         <ul
-          ref={paginationRef}
+          ref={listRef}
           className={bem.getElement(`list`)}
           style={{ width: state.width }}>
           <div

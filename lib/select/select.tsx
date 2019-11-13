@@ -48,8 +48,8 @@ class Select extends React.Component<Props> {
 
   id: string = this.props.id ? this.props.id : getId();
 
-  selectRef = React.createRef<HTMLElement>();
-  optionsRef = React.createRef<HTMLUListElement>();
+  inputRef = React.createRef<HTMLSpanElement>();
+  listRef = React.createRef<HTMLUListElement>();
 
   readonly state: Readonly<State> = {
     active: false,
@@ -81,13 +81,13 @@ class Select extends React.Component<Props> {
   };
 
   handleKeyDown = (event: React.KeyboardEvent): void => {
-    const selectRef: HTMLElement = this.selectRef.current;
-    const optionsRef: HTMLUListElement = this.optionsRef.current;
+    const inputRef: HTMLElement = this.inputRef.current;
+    const listRef: HTMLUListElement = this.listRef.current;
 
     const target: HTMLElement = event.target as HTMLElement;
 
     // select
-    if (target.className === selectRef.className) {
+    if (target.className === inputRef.className) {
       // 'Space', 'ArrowUp', 'ArrowDown' keys
       if (
         event.keyCode === 32 ||
@@ -98,7 +98,7 @@ class Select extends React.Component<Props> {
         event.stopPropagation();
 
         this.setState({ active: true });
-        this.focusOptionByValue(optionsRef, this.state.value);
+        this.focusOptionByValue(listRef, this.state.value);
       }
 
       // options
@@ -119,7 +119,7 @@ class Select extends React.Component<Props> {
           value: target.getAttribute(`data-item`)
         });
 
-        selectRef.focus();
+        inputRef.focus();
       }
 
       // 'Esc' key
@@ -129,7 +129,7 @@ class Select extends React.Component<Props> {
 
         this.setState({ active: false });
 
-        selectRef.focus();
+        inputRef.focus();
       }
 
       // 'ArrowUp' key
@@ -154,19 +154,19 @@ class Select extends React.Component<Props> {
     event.preventDefault();
     event.stopPropagation();
 
-    const selectRef: HTMLElement = this.selectRef.current;
-    const optionsRef: HTMLUListElement = this.optionsRef.current;
+    const inputRef: HTMLElement = this.inputRef.current;
+    const listRef: HTMLUListElement = this.listRef.current;
 
     const target: HTMLElement = event.target as HTMLElement;
 
     // select
-    if (target.className === selectRef.className) {
+    if (target.className === inputRef.className) {
       if (this.state.active) {
         this.setState({ active: false });
         target.focus();
       } else {
         this.setState({ active: true });
-        this.focusOptionByValue(optionsRef, this.state.value);
+        this.focusOptionByValue(listRef, this.state.value);
       }
 
       // options
@@ -181,7 +181,7 @@ class Select extends React.Component<Props> {
         }
       );
 
-      selectRef.focus();
+      inputRef.focus();
     }
   };
 
@@ -241,8 +241,8 @@ class Select extends React.Component<Props> {
       props,
       state,
       id,
-      selectRef,
-      optionsRef,
+      inputRef,
+      listRef,
       handleChange,
       handleKeyDown,
       handleMouseDown,
@@ -279,7 +279,7 @@ class Select extends React.Component<Props> {
           onChange={handleChange}
         />
         <span
-          ref={selectRef}
+          ref={inputRef}
           className={getElement(`input`)}
           tabIndex={!props.readOnly && !props.disabled ? 0 : null}
           onKeyDown={!props.readOnly && !props.disabled ? handleKeyDown : null}
@@ -306,7 +306,7 @@ class Select extends React.Component<Props> {
             tabIndex={-1}
             data-id={id}
             onBlur={handleBlur}>
-            <ul className={getElement(`list`)} ref={optionsRef}>
+            <ul className={getElement(`list`)} ref={listRef}>
               {props.options.map((option, index) => {
                 return (
                   <li

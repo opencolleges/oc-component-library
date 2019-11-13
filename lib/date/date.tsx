@@ -52,8 +52,8 @@ class Date extends React.Component<Props, State> {
     this.props.value
   );
 
-  dateRef: any = React.createRef();
-  optionsRef: any = React.createRef();
+  inputRef = React.createRef<HTMLSpanElement>();
+  listRef = React.createRef<HTMLUListElement>();
 
   readonly state: Readonly<State> = {
     active: false,
@@ -94,29 +94,29 @@ class Date extends React.Component<Props, State> {
   };
 
   handleKeyDown = (event: any): void => {
-    const dateRef: any = this.dateRef.current;
-    const optionsRef: any = this.optionsRef.current;
+    const inputRef: HTMLSpanElement = this.inputRef.current;
+    const listRef: any = this.listRef.current;
 
     const target: any = event.target;
 
     const elementIndex: number = Array.prototype.indexOf.call(
-      optionsRef.childNodes,
+      listRef.childNodes,
       target
     );
 
     const topSibling: any = this.getTopSibling(
-      optionsRef.childNodes,
+      listRef.childNodes,
       elementIndex
     );
     const rightSibling: any = target.nextSibling;
     const bottomSibling: any = this.getBottomSibling(
-      optionsRef.childNodes,
+      listRef.childNodes,
       elementIndex
     );
     const leftSibling: any = target.previousSibling;
 
     // date
-    if (target.className === dateRef.className) {
+    if (target.className === inputRef.className) {
       // 'Space', 'ArrowUp', 'ArrowDown' keys
       if (
         event.keyCode === 32 ||
@@ -129,7 +129,7 @@ class Date extends React.Component<Props, State> {
         this.setState({ active: true });
 
         if (this.state.value) {
-          for (const childNode of optionsRef.childNodes) {
+          for (const childNode of listRef.childNodes) {
             if (
               childNode.hasAttribute(`tabindex`) &&
               childNode.getAttribute(`data-item`) === this.state.value
@@ -139,7 +139,7 @@ class Date extends React.Component<Props, State> {
             }
           }
         } else {
-          for (const childNode of optionsRef.childNodes) {
+          for (const childNode of listRef.childNodes) {
             if (
               childNode.hasAttribute(`tabindex`) &&
               childNode.getAttribute(`data-item`) === dateTime.now()
@@ -176,7 +176,7 @@ class Date extends React.Component<Props, State> {
           }
         );
 
-        dateRef.focus();
+        inputRef.focus();
       }
 
       // 'Esc' key
@@ -198,7 +198,7 @@ class Date extends React.Component<Props, State> {
           });
         }
 
-        dateRef.focus();
+        inputRef.focus();
       }
 
       // 'ArrowUp' key
@@ -227,7 +227,7 @@ class Date extends React.Component<Props, State> {
                 },
                 () => {
                   // prettier-ignore
-                  optionsRef.querySelector(`li[data-item='${nextMonthUpperDay}']`).focus();
+                  listRef.querySelector(`li[data-item='${nextMonthUpperDay}']`).focus();
                 }
               );
             }
@@ -241,7 +241,7 @@ class Date extends React.Component<Props, State> {
             },
             () => {
               // prettier-ignore
-              optionsRef.querySelectorAll(`li[tabindex="-1"]`)[optionsRef.querySelectorAll(`li[tabindex="-1"]`).length - 1].focus();
+              listRef.querySelectorAll(`li[tabindex="-1"]`)[listRef.querySelectorAll(`li[tabindex="-1"]`).length - 1].focus();
             }
           );
         }
@@ -273,7 +273,7 @@ class Date extends React.Component<Props, State> {
                 },
                 () => {
                   // prettier-ignore
-                  optionsRef.querySelector(`li[data-item='${nextMonthFirstDay}']`).focus();
+                  listRef.querySelector(`li[data-item='${nextMonthFirstDay}']`).focus();
                 }
               );
             }
@@ -286,7 +286,7 @@ class Date extends React.Component<Props, State> {
               )
             },
             () => {
-              optionsRef.firstChild.focus();
+              listRef.firstChild.focus();
             }
           );
         }
@@ -318,7 +318,7 @@ class Date extends React.Component<Props, State> {
                 },
                 () => {
                   // prettier-ignore
-                  optionsRef.querySelector(`li[data-item='${previousMonthLowerDay}']`).focus();
+                  listRef.querySelector(`li[data-item='${previousMonthLowerDay}']`).focus();
                 }
               );
             }
@@ -331,7 +331,7 @@ class Date extends React.Component<Props, State> {
               )
             },
             () => {
-              optionsRef.querySelector(`li[tabindex="-1"]`).focus();
+              listRef.querySelector(`li[tabindex="-1"]`).focus();
             }
           );
         }
@@ -363,7 +363,7 @@ class Date extends React.Component<Props, State> {
                 },
                 () => {
                   // prettier-ignore
-                  optionsRef.querySelector(`li[data-item='${previousMonthLastDay}']`).focus();
+                  listRef.querySelector(`li[data-item='${previousMonthLastDay}']`).focus();
                 }
               );
             }
@@ -376,7 +376,7 @@ class Date extends React.Component<Props, State> {
               )
             },
             () => {
-              optionsRef.lastChild.focus();
+              listRef.lastChild.focus();
             }
           );
         }
@@ -388,13 +388,13 @@ class Date extends React.Component<Props, State> {
     event.preventDefault();
     event.stopPropagation();
 
-    const dateRef: any = this.dateRef.current;
-    const optionsRef: any = this.optionsRef.current;
+    const inputRef: HTMLSpanElement = this.inputRef.current;
+    const listRef: any = this.listRef.current;
 
     const target: any = event.target;
 
     // date
-    if (target.className === dateRef.className) {
+    if (target.className === inputRef.className) {
       if (this.state.active) {
         if (this.state.value) {
           this.setState({ active: false }, () => {
@@ -410,12 +410,12 @@ class Date extends React.Component<Props, State> {
           });
         }
 
-        dateRef.focus();
+        inputRef.focus();
       } else {
         this.setState({ active: true });
 
         if (this.state.value) {
-          for (const childNode of optionsRef.childNodes) {
+          for (const childNode of listRef.childNodes) {
             if (
               childNode.hasAttribute(`tabindex`) &&
               childNode.getAttribute(`data-item`) === this.state.value
@@ -425,7 +425,7 @@ class Date extends React.Component<Props, State> {
             }
           }
         } else {
-          for (const childNode of optionsRef.childNodes) {
+          for (const childNode of listRef.childNodes) {
             if (
               childNode.hasAttribute(`tabindex`) &&
               childNode.getAttribute(`data-item`) === dateTime.now()
@@ -450,7 +450,7 @@ class Date extends React.Component<Props, State> {
         () => {
           if (!document.activeElement.hasAttribute(`tabindex`)) {
             // prettier-ignore
-            optionsRef.querySelectorAll(`li[tabindex="-1"]`)[optionsRef.querySelectorAll(`li[tabindex="-1"]`).length -1].focus();
+            listRef.querySelectorAll(`li[tabindex="-1"]`)[listRef.querySelectorAll(`li[tabindex="-1"]`).length -1].focus();
           }
         }
       );
@@ -468,7 +468,7 @@ class Date extends React.Component<Props, State> {
         () => {
           if (!document.activeElement.hasAttribute(`tabindex`)) {
             // prettier-ignore
-            optionsRef.querySelectorAll(`li[tabindex="-1"]`)[optionsRef.querySelectorAll(`li[tabindex="-1"]`).length -1].focus();
+            listRef.querySelectorAll(`li[tabindex="-1"]`)[listRef.querySelectorAll(`li[tabindex="-1"]`).length -1].focus();
           }
         }
       );
@@ -481,7 +481,7 @@ class Date extends React.Component<Props, State> {
           value: target.getAttribute(`data-item`)
         },
         () => {
-          dateRef.focus();
+          inputRef.focus();
           this.handleChange();
         }
       );
@@ -515,8 +515,8 @@ class Date extends React.Component<Props, State> {
     const {
       props,
       state,
-      dateRef,
-      optionsRef,
+      inputRef,
+      listRef,
       id,
       handleChange,
       handleKeyDown,
@@ -556,7 +556,7 @@ class Date extends React.Component<Props, State> {
           onChange={handleChange}
         />
         <span
-          ref={dateRef}
+          ref={inputRef}
           className={getElement(`input`)}
           tabIndex={!props.readOnly && !props.disabled ? 0 : null}
           onKeyDown={!props.readOnly && !props.disabled ? handleKeyDown : null}
@@ -693,7 +693,7 @@ class Date extends React.Component<Props, State> {
                 Sa
               </li>
             </ul>
-            <ul className={addNamespace(`date__list`)} ref={optionsRef}>
+            <ul className={addNamespace(`date__list`)} ref={listRef}>
               {state.calendar.months.map((month, monthIndex) => {
                 return month.days.map((day, dayIndex) => {
                   if (

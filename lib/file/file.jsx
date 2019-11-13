@@ -20,7 +20,7 @@ class File extends React.Component {
   constructor(props) {
     super(props);
 
-    this.fileRef = React.createRef();
+    this.inputRef = React.createRef();
     this.id = props.id ? props.id : getId();
 
     this.state = {
@@ -101,12 +101,12 @@ class File extends React.Component {
     // e.stopPropagation();
 
     let newFiles;
-    const fileRef = this.fileRef.current;
+    const inputRef = this.inputRef.current;
 
     if (isUndefined(e.dataTransfer)) {
       newFiles = e.dataTransfer.files;
     } else {
-      newFiles = fileRef.files;
+      newFiles = inputRef.files;
     }
 
     const files = [...this.state.files];
@@ -166,7 +166,7 @@ class File extends React.Component {
 
     // * Manually empty the FileList object to force the onChange() method to
     // *  fire if the same file has been uploaded a second time.
-    fileRef.value = ``;
+    inputRef.value = ``;
   };
 
   handleClick = (e, fileName) => {
@@ -193,7 +193,7 @@ class File extends React.Component {
     const {
       props,
       state,
-      fileRef,
+      inputRef,
       id,
       handleDragEnter,
       handleChange,
@@ -213,7 +213,7 @@ class File extends React.Component {
       <div className={bem.getResult()} style={props.style}>
         <div className={bem.getElement(`outer`)} onDragEnter={handleDragEnter}>
           <input
-            ref={fileRef}
+            ref={inputRef}
             id={id}
             className={`${bem.getElement(`input`)}${
               state.active ? ` active` : ``
