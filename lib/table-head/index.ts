@@ -1,3 +1,3 @@
 import TableHead from './table-head';
 
-export default TableHead;
+export { TableHead as default };

@@ -1,15 +1,14 @@
 import _ from 'lodash';
 import React from 'react';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import BEM from '../utilities/ts/bem';
-import { CalendarMonth } from '../utilities/ts/date-time';
-import dateTime from '../utilities/ts/date-time';
-import namespace from '../utilities/ts/namespace';
-import remove from '../utilities/ts/remove';
-
 import Icon from '../icon';
+import addNamespace from '../utilities/ts/add-namespace';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import dateTime from '../utilities/ts/date-time';
+import { CalendarMonth } from '../utilities/ts/date-time';
+import getId from '../utilities/ts/get-id';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
+import remove from '../utilities/ts/remove';
 
 interface Props {
   className?: string;
@@ -36,7 +35,7 @@ interface State {
   value: string;
 }
 
-export default class Date extends React.Component<Props, State> {
+class Date extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     onChange: () => {
@@ -46,31 +45,31 @@ export default class Date extends React.Component<Props, State> {
     required: false
   };
 
-  id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
+  id: string = this.props.id ? this.props.id : getId();
   inRange: boolean = dateTime.isInRange(
     this.props.minDate,
     this.props.maxDate,
     this.props.value
   );
 
-  dateRef: any = React.createRef();
-  optionsRef: any = React.createRef();
+  inputRef = React.createRef<HTMLSpanElement>();
+  listRef = React.createRef<HTMLUListElement>();
 
   readonly state: Readonly<State> = {
     active: false,
     calendar: dateTime.getCalendarMonth(
       this.props.value && this.inRange ? this.props.value : ``
     ),
-    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
-    success: _.includes(_.split(this.props.modifiers, ` `), `success`),
+    error: includes(itemise(this.props.modifiers), `error`),
+    success: includes(itemise(this.props.modifiers), `success`),
     value: this.props.value && this.inRange ? this.props.value : ``
   };
 
   componentDidUpdate(prevProps: Props, prevState: State): void {
     if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `error`),
-        success: _.includes(_.split(this.props.modifiers, ` `), `success`)
+        error: includes(itemise(this.props.modifiers), `error`),
+        success: includes(itemise(this.props.modifiers), `success`)
       });
     }
 
@@ -95,29 +94,29 @@ export default class Date extends React.Component<Props, State> {
   };
 
   handleKeyDown = (event: any): void => {
-    const dateRef: any = this.dateRef.current;
-    const optionsRef: any = this.optionsRef.current;
+    const inputRef: HTMLSpanElement = this.inputRef.current;
+    const listRef: any = this.listRef.current;
 
     const target: any = event.target;
 
     const elementIndex: number = Array.prototype.indexOf.call(
-      optionsRef.childNodes,
+      listRef.childNodes,
       target
     );
 
     const topSibling: any = this.getTopSibling(
-      optionsRef.childNodes,
+      listRef.childNodes,
       elementIndex
     );
     const rightSibling: any = target.nextSibling;
     const bottomSibling: any = this.getBottomSibling(
-      optionsRef.childNodes,
+      listRef.childNodes,
       elementIndex
     );
     const leftSibling: any = target.previousSibling;
 
     // date
-    if (target.className === dateRef.className) {
+    if (target.className === inputRef.className) {
       // 'Space', 'ArrowUp', 'ArrowDown' keys
       if (
         event.keyCode === 32 ||
@@ -130,7 +129,7 @@ export default class Date extends React.Component<Props, State> {
         this.setState({ active: true });
 
         if (this.state.value) {
-          for (const childNode of optionsRef.childNodes) {
+          for (const childNode of listRef.childNodes) {
             if (
               childNode.hasAttribute(`tabindex`) &&
               childNode.getAttribute(`data-item`) === this.state.value
@@ -140,7 +139,7 @@ export default class Date extends React.Component<Props, State> {
             }
           }
         } else {
-          for (const childNode of optionsRef.childNodes) {
+          for (const childNode of listRef.childNodes) {
             if (
               childNode.hasAttribute(`tabindex`) &&
               childNode.getAttribute(`data-item`) === dateTime.now()
@@ -177,7 +176,7 @@ export default class Date extends React.Component<Props, State> {
           }
         );
 
-        dateRef.focus();
+        inputRef.focus();
       }
 
       // 'Esc' key
@@ -199,7 +198,7 @@ export default class Date extends React.Component<Props, State> {
           });
         }
 
-        dateRef.focus();
+        inputRef.focus();
       }
 
       // 'ArrowUp' key
@@ -228,7 +227,7 @@ export default class Date extends React.Component<Props, State> {
                 },
                 () => {
                   // prettier-ignore
-                  optionsRef.querySelector(`li[data-item='${nextMonthUpperDay}']`).focus();
+                  listRef.querySelector(`li[data-item='${nextMonthUpperDay}']`).focus();
                 }
               );
             }
@@ -242,7 +241,7 @@ export default class Date extends React.Component<Props, State> {
             },
             () => {
               // prettier-ignore
-              optionsRef.querySelectorAll(`li[tabindex="-1"]`)[optionsRef.querySelectorAll(`li[tabindex="-1"]`).length - 1].focus();
+              listRef.querySelectorAll(`li[tabindex="-1"]`)[listRef.querySelectorAll(`li[tabindex="-1"]`).length - 1].focus();
             }
           );
         }
@@ -274,7 +273,7 @@ export default class Date extends React.Component<Props, State> {
                 },
                 () => {
                   // prettier-ignore
-                  optionsRef.querySelector(`li[data-item='${nextMonthFirstDay}']`).focus();
+                  listRef.querySelector(`li[data-item='${nextMonthFirstDay}']`).focus();
                 }
               );
             }
@@ -287,7 +286,7 @@ export default class Date extends React.Component<Props, State> {
               )
             },
             () => {
-              optionsRef.firstChild.focus();
+              listRef.firstChild.focus();
             }
           );
         }
@@ -319,7 +318,7 @@ export default class Date extends React.Component<Props, State> {
                 },
                 () => {
                   // prettier-ignore
-                  optionsRef.querySelector(`li[data-item='${previousMonthLowerDay}']`).focus();
+                  listRef.querySelector(`li[data-item='${previousMonthLowerDay}']`).focus();
                 }
               );
             }
@@ -332,7 +331,7 @@ export default class Date extends React.Component<Props, State> {
               )
             },
             () => {
-              optionsRef.querySelector(`li[tabindex="-1"]`).focus();
+              listRef.querySelector(`li[tabindex="-1"]`).focus();
             }
           );
         }
@@ -364,7 +363,7 @@ export default class Date extends React.Component<Props, State> {
                 },
                 () => {
                   // prettier-ignore
-                  optionsRef.querySelector(`li[data-item='${previousMonthLastDay}']`).focus();
+                  listRef.querySelector(`li[data-item='${previousMonthLastDay}']`).focus();
                 }
               );
             }
@@ -377,7 +376,7 @@ export default class Date extends React.Component<Props, State> {
               )
             },
             () => {
-              optionsRef.lastChild.focus();
+              listRef.lastChild.focus();
             }
           );
         }
@@ -389,13 +388,13 @@ export default class Date extends React.Component<Props, State> {
     event.preventDefault();
     event.stopPropagation();
 
-    const dateRef: any = this.dateRef.current;
-    const optionsRef: any = this.optionsRef.current;
+    const inputRef: HTMLSpanElement = this.inputRef.current;
+    const listRef: any = this.listRef.current;
 
     const target: any = event.target;
 
     // date
-    if (target.className === dateRef.className) {
+    if (target.className === inputRef.className) {
       if (this.state.active) {
         if (this.state.value) {
           this.setState({ active: false }, () => {
@@ -411,12 +410,12 @@ export default class Date extends React.Component<Props, State> {
           });
         }
 
-        dateRef.focus();
+        inputRef.focus();
       } else {
         this.setState({ active: true });
 
         if (this.state.value) {
-          for (const childNode of optionsRef.childNodes) {
+          for (const childNode of listRef.childNodes) {
             if (
               childNode.hasAttribute(`tabindex`) &&
               childNode.getAttribute(`data-item`) === this.state.value
@@ -426,7 +425,7 @@ export default class Date extends React.Component<Props, State> {
             }
           }
         } else {
-          for (const childNode of optionsRef.childNodes) {
+          for (const childNode of listRef.childNodes) {
             if (
               childNode.hasAttribute(`tabindex`) &&
               childNode.getAttribute(`data-item`) === dateTime.now()
@@ -440,7 +439,7 @@ export default class Date extends React.Component<Props, State> {
 
       // previous
     } else if (
-      target.className === namespace(`date__item date__item--previous`)
+      target.className === addNamespace(`date__item date__item--previous`)
     ) {
       this.setState(
         {
@@ -451,13 +450,15 @@ export default class Date extends React.Component<Props, State> {
         () => {
           if (!document.activeElement.hasAttribute(`tabindex`)) {
             // prettier-ignore
-            optionsRef.querySelectorAll(`li[tabindex="-1"]`)[optionsRef.querySelectorAll(`li[tabindex="-1"]`).length -1].focus();
+            listRef.querySelectorAll(`li[tabindex="-1"]`)[listRef.querySelectorAll(`li[tabindex="-1"]`).length -1].focus();
           }
         }
       );
 
       // next
-    } else if (target.className === namespace(`date__item date__item--next`)) {
+    } else if (
+      target.className === addNamespace(`date__item date__item--next`)
+    ) {
       this.setState(
         {
           calendar: dateTime.getCalendarMonth(
@@ -467,7 +468,7 @@ export default class Date extends React.Component<Props, State> {
         () => {
           if (!document.activeElement.hasAttribute(`tabindex`)) {
             // prettier-ignore
-            optionsRef.querySelectorAll(`li[tabindex="-1"]`)[optionsRef.querySelectorAll(`li[tabindex="-1"]`).length -1].focus();
+            listRef.querySelectorAll(`li[tabindex="-1"]`)[listRef.querySelectorAll(`li[tabindex="-1"]`).length -1].focus();
           }
         }
       );
@@ -480,7 +481,7 @@ export default class Date extends React.Component<Props, State> {
           value: target.getAttribute(`data-item`)
         },
         () => {
-          dateRef.focus();
+          inputRef.focus();
           this.handleChange();
         }
       );
@@ -514,8 +515,8 @@ export default class Date extends React.Component<Props, State> {
     const {
       props,
       state,
-      dateRef,
-      optionsRef,
+      inputRef,
+      listRef,
       id,
       handleChange,
       handleKeyDown,
@@ -525,22 +526,27 @@ export default class Date extends React.Component<Props, State> {
 
     const modifiers: string = remove([`error`, `success`], props.modifiers);
 
-    const bem = BEM(`date`);
-    bem.addModifiers(modifiers ? modifiers : ``);
-    bem.addModifiers(state.error ? `error` : ``);
-    bem.addModifiers(state.success ? `success` : ``);
-    bem.addClassNames(state.value ? `selected` : ``);
-    bem.addClassNames(state.active ? `active` : ``);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`date`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getModifier,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(modifiers ? modifiers : ``);
+    addModifiers(state.error ? `error` : ``);
+    addModifiers(state.success ? `success` : ``);
+    addClassNames(state.value ? `selected` : ``);
+    addClassNames(state.active ? `active` : ``);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <input
           id={id}
-          className={`${bem.getElement(`input`)} ${bem.getModifier(
-            `hidden`,
-            `input`
-          )}`}
+          className={`${getElement(`input`)} ${getModifier(`hidden`, `input`)}`}
           type="hidden"
           name={props.name}
           disabled={props.disabled}
@@ -550,8 +556,8 @@ export default class Date extends React.Component<Props, State> {
           onChange={handleChange}
         />
         <span
-          ref={dateRef}
-          className={bem.getElement(`input`)}
+          ref={inputRef}
+          className={getElement(`input`)}
           tabIndex={!props.readOnly && !props.disabled ? 0 : null}
           onKeyDown={!props.readOnly && !props.disabled ? handleKeyDown : null}
           onMouseDown={
@@ -566,21 +572,21 @@ export default class Date extends React.Component<Props, State> {
               } ${props.label.toLowerCase()}`
             : dateTime.getCustom(`Do MMM YYYY`, state.value)}
         </span>
-        <label className={bem.getElement(`label`)}>{props.label}</label>
+        <label className={getElement(`label`)}>{props.label}</label>
         {!props.readOnly && <Icon type="calendar" />}
         {!props.readOnly && !props.disabled && (
-          <div className={bem.getElement(`border`)} />
+          <div className={getElement(`border`)} />
         )}
         {!props.readOnly && !props.disabled && (
-          <div className={bem.getElement(`list-outer`)}>
-            <ul className={bem.getElement(`list`)}>
+          <div className={getElement(`list-outer`)}>
+            <ul className={getElement(`list`)}>
               {dateTime.isInRange(
                 props.minDate,
                 props.maxDate,
                 dateTime.getMonthEnd(state.calendar.months[0].date)
               ) ? (
                 <li
-                  className={`${bem.getElement(`item`)} ${bem.getModifier(
+                  className={`${getElement(`item`)} ${getModifier(
                     `previous`,
                     `item`
                   )}`}
@@ -592,15 +598,15 @@ export default class Date extends React.Component<Props, State> {
                 </li>
               ) : (
                 <li
-                  className={`${bem.getElement(`item`)} ${bem.getModifier(
+                  className={`${getElement(`item`)} ${getModifier(
                     `previous`,
                     `item`
-                  )} ${bem.getModifier(`disabled`, `item`)}`}>
+                  )} ${getModifier(`disabled`, `item`)}`}>
                   <Icon type="chevron-left" visible={false} />
                 </li>
               )}
               <li
-                className={`${bem.getElement(`item`)} ${bem.getModifier(
+                className={`${getElement(`item`)} ${getModifier(
                   `month`,
                   `item`
                 )}`}>
@@ -618,7 +624,7 @@ export default class Date extends React.Component<Props, State> {
                 dateTime.getMonthStart(state.calendar.months[2].date)
               ) ? (
                 <li
-                  className={`${bem.getElement(`item`)} ${bem.getModifier(
+                  className={`${getElement(`item`)} ${getModifier(
                     `next`,
                     `item`
                   )}`}
@@ -630,64 +636,64 @@ export default class Date extends React.Component<Props, State> {
                 </li>
               ) : (
                 <li
-                  className={`${bem.getElement(`item`)} ${bem.getModifier(
+                  className={`${getElement(`item`)} ${getModifier(
                     `next`,
                     `item`
-                  )} ${bem.getModifier(`disabled`, `item`)}`}>
+                  )} ${getModifier(`disabled`, `item`)}`}>
                   <Icon type="chevron-right" visible={false} />
                 </li>
               )}
               <li
-                className={`${bem.getElement(`item`)} ${bem.getModifier(
+                className={`${getElement(`item`)} ${getModifier(
                   `weekend`,
                   `item`
                 )}`}>
                 Su
               </li>
               <li
-                className={`${bem.getElement(`item`)} ${bem.getModifier(
+                className={`${getElement(`item`)} ${getModifier(
                   `weekday`,
                   `item`
                 )}`}>
                 Mo
               </li>
               <li
-                className={`${bem.getElement(`item`)} ${bem.getModifier(
+                className={`${getElement(`item`)} ${getModifier(
                   `weekday`,
                   `item`
                 )}`}>
                 Tu
               </li>
               <li
-                className={`${bem.getElement(`item`)} ${bem.getModifier(
+                className={`${getElement(`item`)} ${getModifier(
                   `weekday`,
                   `item`
                 )}`}>
                 We
               </li>
               <li
-                className={`${bem.getElement(`item`)} ${bem.getModifier(
+                className={`${getElement(`item`)} ${getModifier(
                   `weekday`,
                   `item`
                 )}`}>
                 Th
               </li>
               <li
-                className={`${bem.getElement(`item`)} ${bem.getModifier(
+                className={`${getElement(`item`)} ${getModifier(
                   `weekday`,
                   `item`
                 )}`}>
                 Fr
               </li>
               <li
-                className={`${bem.getElement(`item`)} ${bem.getModifier(
+                className={`${getElement(`item`)} ${getModifier(
                   `weekend`,
                   `item`
                 )}`}>
                 Sa
               </li>
             </ul>
-            <ul className={namespace(`date__list`)} ref={optionsRef}>
+            <ul className={addNamespace(`date__list`)} ref={listRef}>
               {state.calendar.months.map((month, monthIndex) => {
                 return month.days.map((day, dayIndex) => {
                   if (
@@ -697,12 +703,12 @@ export default class Date extends React.Component<Props, State> {
                     return (
                       <li
                         key={dayIndex}
-                        className={`${bem.getElement(`item`)} ${bem.getModifier(
+                        className={`${getElement(`item`)} ${getModifier(
                           `selectable`,
                           `item`
                         )}${
                           dateTime.now() === day
-                            ? ` ${bem.getModifier(`current`, `item`)}`
+                            ? ` ${getModifier(`current`, `item`)}`
                             : ``
                         }`}
                         tabIndex={-1}
@@ -719,7 +725,7 @@ export default class Date extends React.Component<Props, State> {
                     return (
                       <li
                         key={dayIndex}
-                        className={bem.getElement(`item`)}
+                        className={getElement(`item`)}
                         data-item={day}>
                         {dateTime.getCustom(`D`, day)}
                       </li>
@@ -731,9 +737,11 @@ export default class Date extends React.Component<Props, State> {
           </div>
         )}
         {!props.readOnly && !props.disabled && props.message && (
-          <span className={bem.getElement(`message`)}>{props.message}</span>
+          <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );
   }
 }
+
+export { Date as default };

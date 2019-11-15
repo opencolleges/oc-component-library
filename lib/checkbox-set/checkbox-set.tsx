@@ -1,17 +1,13 @@
 import React from 'react';
-
 import OptionalCard from '../_optional-card';
-
 import Checkbox from '../checkbox';
 import Grid from '../grid';
 import GridItem from '../grid-item';
-
-import BEM from '../utilities/ts/bem';
-
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 import hasErrorOrSuccess from './utilities/has-error-or-success';
 import hasMessage from './utilities/has-message';
 
-interface Checkboxes {
+interface CheckboxesInterface {
   className?: string;
   id?: string;
   label: string;
@@ -21,7 +17,7 @@ interface Checkboxes {
 
 interface Props {
   cards?: boolean;
-  checkboxes: Checkboxes[];
+  checkboxes: CheckboxesInterface[];
   className?: string;
   disabled?: boolean;
   error?: string[];
@@ -40,7 +36,13 @@ interface State {
   value: string[];
 }
 
-export default class CheckboxSet extends React.Component<Props, State> {
+interface RenderInterface {
+  handleChange: (value: string) => void;
+  props: Props;
+  state: State;
+}
+
+class CheckboxSet extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     cards: false,
     disabled: false,
@@ -59,12 +61,12 @@ export default class CheckboxSet extends React.Component<Props, State> {
   );
 
   readonly state: Readonly<State> = {
-    error: this.props.error ? this.props.error : [],
-    success: this.props.success ? this.props.success : [],
+    error: !!this.props.error ? this.props.error : [],
+    success: !!this.props.success ? this.props.success : [],
     value: this.intersection.length !== 0 ? this.intersection : []
   };
 
-  componentDidUpdate(prevProps): void {
+  componentDidUpdate(prevProps: Props): void {
     if (prevProps.error !== this.props.error) {
       if (!this.props.error) {
         this.setState({ error: [] });
@@ -83,42 +85,49 @@ export default class CheckboxSet extends React.Component<Props, State> {
   }
 
   handleChange = (value: string): void => {
-    const previousSelection: string[] = this.state.value;
+    const prevSelection: string[] = this.state.value;
 
     if (this.state.value.indexOf(value) === -1) {
-      previousSelection.push(value);
+      prevSelection.push(value);
     } else {
       const selectionIndex: number = this.state.value.indexOf(value);
 
-      previousSelection.splice(selectionIndex, 1);
+      prevSelection.splice(selectionIndex, 1);
     }
 
     this.setState({
       error: [],
       success: [],
-      value: previousSelection
+      value: prevSelection
     });
 
     this.props.onChange(value, this.props.name);
   };
 
   render() {
-    const { props, state, handleChange } = this;
+    const { props, state, handleChange }: RenderInterface = this;
 
-    const error: string = state.error.length ? `error` : ``;
+    const error: string = !!state.error.length ? `error` : ``;
     const success: string =
-      !state.error.length && state.success.length ? `success` : ``;
+      !state.error.length && !!state.success.length ? `success` : ``;
 
-    const bem = BEM(`checkbox-set`);
-    bem.addModifiers(error);
-    bem.addModifiers(success);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`checkbox-set`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(error);
+    addModifiers(success);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <Grid modifiers="gutter-x-fixed">
-          {props.checkboxes.map((checkbox, index) => (
-            <GridItem key={index} modifiers="s-12 m-6 align-end">
+          {props.checkboxes.map((checkbox, i) => (
+            <GridItem key={i} modifiers="s-12 m-6 align-end">
               <OptionalCard
                 disabled={props.disabled}
                 readOnly={props.readOnly}
@@ -144,11 +153,13 @@ export default class CheckboxSet extends React.Component<Props, State> {
             </GridItem>
           ))}
         </Grid>
-        <div className={bem.getElement(`border`)} />
+        <div className={getElement(`border`)} />
         {hasMessage(state.error, state.success, props.message) && (
-          <span className={bem.getElement(`message`)}>{props.message}</span>
+          <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );
   }
 }
+
+export { CheckboxSet as default };

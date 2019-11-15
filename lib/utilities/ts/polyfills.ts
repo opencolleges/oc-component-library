@@ -1,5 +1,7 @@
+import _ from 'lodash';
+
 // Number.isInteger polyfill for IE11
-if (typeof Number.isInteger === `undefined`) {
+if (_.isUndefined(Number.isInteger)) {
   Number.isInteger = (value: number): boolean => {
     return (
       typeof value === `number` &&

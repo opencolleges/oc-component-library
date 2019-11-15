@@ -92,4 +92,4 @@ const SortableElement = (WrappedComponent, config = { withRef: false }) => {
   return drag;
 };
 
-export default SortableElement;
+export { SortableElement as default };

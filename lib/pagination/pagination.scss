@@ -46,7 +46,7 @@
   transition: bottom $transition-duration-x4 $transition-timing-bounce-out;
 }
 
-.#{$pre}-pagination.#{$pre}-mounted {
+.#{$pre}-pagination.mounted {
   bottom: rem(16px);
 }
 
@@ -210,7 +210,7 @@
     padding: rem(12px) rem(56px);
   }
 
-  .#{$pre}-pagination.#{$pre}-mounted {
+  .#{$pre}-pagination.mounted {
     bottom: rem(16px);
   }
 
@@ -248,7 +248,7 @@
     padding: rem(12px) rem(96px);
   }
 
-  .#{$pre}-pagination.#{$pre}-mounted {
+  .#{$pre}-pagination.mounted {
     bottom: rem(88px);
   }
 

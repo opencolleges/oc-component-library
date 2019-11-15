@@ -5,7 +5,7 @@ interface Month {
   days: string[];
 }
 
-export interface CalendarMonth {
+interface CalendarMonth {
   initialDate: string;
   months: Month[];
 }
@@ -275,4 +275,4 @@ const dateTime: DateTime = {
   }
 };
 
-export default dateTime;
+export { CalendarMonth, dateTime as default };

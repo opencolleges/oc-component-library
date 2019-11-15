@@ -1,11 +1,9 @@
-import _ from 'lodash';
 import React from 'react';
-
 import Icon from '../icon';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getId from '../utilities/ts/get-id';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 
 interface Props {
   checked?: boolean;
@@ -26,7 +24,14 @@ interface State {
   checked: boolean;
 }
 
-export default class Checkbox extends React.Component<Props, State> {
+interface RenderInterface {
+  handleChange: () => void;
+  id: string;
+  props: Props;
+  state: State;
+}
+
+class Checkbox extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     checked: false,
     disabled: false,
@@ -41,9 +46,9 @@ export default class Checkbox extends React.Component<Props, State> {
     checked: this.props.checked
   };
 
-  id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
+  id: string = !!this.props.id ? this.props.id : getId();
 
-  componentDidUpdate(prevProps): void {
+  componentDidUpdate(prevProps: Props): void {
     if (prevProps.checked !== this.props.checked) {
       this.setState({ checked: this.props.checked });
     }
@@ -60,17 +65,24 @@ export default class Checkbox extends React.Component<Props, State> {
   };
 
   render() {
-    const { props, state, id, handleChange } = this;
+    const { props, state, id, handleChange }: RenderInterface = this;
 
-    const bem = BEM(`checkbox`);
-    bem.addModifiers(props.modifiers);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`checkbox`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(props.modifiers);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <input
           id={id}
-          className={bem.getElement(`input`)}
+          className={getElement(`input`)}
           type="checkbox"
           name={props.name}
           value={props.value}
@@ -81,30 +93,30 @@ export default class Checkbox extends React.Component<Props, State> {
           tabIndex={!props.readOnly && !props.disabled ? 0 : -1}
           onChange={handleChange}
         />
-        <label htmlFor={id} className={bem.getElement(`label`)}>
+        <label htmlFor={id} className={getElement(`label`)}>
           {props.children}
         </label>
         {!props.readOnly && !props.disabled && (
-          <svg className={bem.getElement(`border-outer`)} viewBox="0 0 16 16">
+          <svg className={getElement(`border-outer`)} viewBox="0 0 16 16">
             <rect
-              className={bem.getElement(`border`)}
+              className={getElement(`border`)}
+              rx="1.5"
               x="0.5"
               y="0.5"
               width="15"
               height="15"
-              rx="1.5"
             />
           </svg>
         )}
-        {!_.includes(_.split(props.modifiers, ` `), `right`) && (
+        {!includes(itemise(props.modifiers), `right`) && (
           <React.Fragment>
             <Icon
               type="close"
-              visible={_.includes(_.split(props.modifiers, ` `), `error`)}
+              visible={includes(itemise(props.modifiers), `error`)}
             />
             <Icon
               type="tick"
-              visible={_.includes(_.split(props.modifiers, ` `), `success`)}
+              visible={includes(itemise(props.modifiers), `success`)}
             />
           </React.Fragment>
         )}
@@ -113,3 +125,5 @@ export default class Checkbox extends React.Component<Props, State> {
     );
   }
 }
+
+export { Checkbox as default };

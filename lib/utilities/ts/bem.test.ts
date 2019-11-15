@@ -1,5 +1,4 @@
 import BEM from './bem';
-
 import { NAMESPACE } from './constants';
 
 describe(`BEM`, () => {

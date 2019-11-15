@@ -1,33 +1,31 @@
-import _ from 'lodash';
 import React from 'react';
-
 import Badge from '../badge';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import includes from '../utilities/ts/includes';
+import isUndefined from '../utilities/ts/is-undefined';
+import itemise from '../utilities/ts/itemise';
+import randomise from '../utilities/ts/randomise';
 
-import BEM from '../utilities/ts/bem';
-import namespace from '../utilities/ts/namespace';
+interface BorderSizeInterface {
+  cx: string;
+  cy: string;
+  r: string;
+  viewBox: string;
+}
 
-const COORDS = {
-  l: {
-    cx: `24`,
-    cy: `24`,
-    r: `23.5`,
-    viewBox: `0 0 48 48`
-  },
-  m: {
-    cx: `20`,
-    cy: `20`,
-    r: `19.5`,
-    viewBox: `0 0 40 40`
-  },
-  s: {
-    cx: `16`,
-    cy: `16`,
-    r: `15.5`,
-    viewBox: `0 0 32 32`
-  }
+interface BorderSizesInterface {
+  l: BorderSizeInterface;
+  m: BorderSizeInterface;
+  s: BorderSizeInterface;
+}
+
+const BORDER_SIZES: BorderSizesInterface = {
+  l: { cx: `24`, cy: `24`, r: `23.5`, viewBox: `0 0 48 48` },
+  m: { cx: `20`, cy: `20`, r: `19.5`, viewBox: `0 0 40 40` },
+  s: { cx: `16`, cy: `16`, r: `15.5`, viewBox: `0 0 32 32` }
 };
 
-type TSex = `female` | `male` | `undisclosed`;
+type SexTypes = `female` | `male` | `undisclosed`;
 
 interface Props {
   className?: string;
@@ -35,55 +33,56 @@ interface Props {
   href?: string;
   image?: string;
   modifiers?: string;
-  sex: TSex;
+  sex: SexTypes;
   style?: React.CSSProperties;
   value?: number;
 }
 
-const Avatar: React.FC<Props> = props => {
-  const Tag: keyof JSX.IntrinsicElements = _.isUndefined(props.href)
+const Avatar: React.FC<Props> = (props: Props) => {
+  const Tag: keyof JSX.IntrinsicElements = isUndefined(props.href)
     ? `div`
     : `a`;
 
-  const bem = BEM(`avatar`);
-  bem.addModifiers(props.modifiers);
-  bem.addClassNames(props.className);
+  const BEM_MODULE: BEMInterface = BEM(`avatar`);
+  const {
+    addClassNames,
+    addModifiers,
+    getElement,
+    getModifier,
+    getResult
+  }: BEMInterface = BEM_MODULE;
+
+  addModifiers(props.modifiers);
+  addClassNames(props.className);
 
   return (
     <Tag
-      className={bem.getResult()}
+      className={getResult()}
       style={props.style}
       href={props.href}
       title={props.firstName}>
-      {Object.keys(COORDS).map((size, index) => {
-        return (
-          _.includes(_.split(props.modifiers, ` `), size) &&
-          (!_.isUndefined(props.href) && (
+      {Object.keys(BORDER_SIZES).map(
+        (size, i) =>
+          includes(itemise(props.modifiers), size) &&
+          (!isUndefined(props.href) && (
             <svg
-              key={index}
-              className={bem.getElement(`border-outer`)}
-              viewBox={COORDS[size].viewBox}>
+              key={i}
+              className={getElement(`border-outer`)}
+              viewBox={BORDER_SIZES[size].viewBox}>
               <circle
-                className={bem.getElement(`border`)}
-                cx={COORDS[size].cx}
-                cy={COORDS[size].cy}
-                r={COORDS[size].r}
+                className={getElement(`border`)}
+                cx={BORDER_SIZES[size].cx}
+                cy={BORDER_SIZES[size].cy}
+                r={BORDER_SIZES[size].r}
               />
             </svg>
           ))
-        );
-      })}
-      {/* FIX THIS */}
+      )}
       <div
-        className={namespace(
-          `avatar__image avatar__image--${
-            props.sex === `female`
-              ? `female-${_.random(1, 2)}`
-              : props.sex === `male`
-              ? `male-${_.random(1, 2)}`
-              : `undisclosed-${_.random(1, 2)}`
-          }`
-        )}
+        className={`${getElement(`image`)} ${getModifier(
+          `${props.sex}-${props.sex !== `undisclosed` ? randomise(1, 2) : ``}`,
+          `image`
+        )}`}
         style={
           props.image && {
             background: `url('${props.image}'), rgb(255, 255, 255)`,
@@ -93,12 +92,12 @@ const Avatar: React.FC<Props> = props => {
           }
         }
       />
-      {!_.includes(_.split(props.modifiers, ` `), `s`) && (
+      {!includes(itemise(props.modifiers), `s`) && (
         <React.Fragment>
-          {_.includes(_.split(props.modifiers, ` `), `error`) && (
+          {includes(itemise(props.modifiers), `error`) && (
             <Badge value={props.value} modifiers="error" />
           )}
-          {_.includes(_.split(props.modifiers, ` `), `success`) && (
+          {includes(itemise(props.modifiers), `success`) && (
             <Badge value={props.value} modifiers="success" />
           )}
         </React.Fragment>
@@ -112,4 +111,4 @@ Avatar.defaultProps = {
   sex: `undisclosed`
 };
 
-export default Avatar;
+export { Avatar as default };

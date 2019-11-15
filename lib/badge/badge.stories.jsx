@@ -1,16 +1,13 @@
-import React from 'react';
-
+import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import {
   optionsKnob as options,
   text,
   withKnobs
 } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-
-import Uniform from '../uniform';
+import React from 'react';
 import Badge from './badge';
-
+import Uniform from '../uniform';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const BADGE_VALUE = [`Label`, 1000];

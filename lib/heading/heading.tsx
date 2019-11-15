@@ -1,20 +1,18 @@
-import _ from 'lodash';
 import React from 'react';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 
-import BEM from '../utilities/ts/bem';
-
-type TLevel = 1 | 2 | 3 | 4 | 5 | 6;
+type LevelTypes = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface Props {
-  level?: TLevel;
-  modifiers?: string;
-  className?: string;
-  style?: React.CSSProperties;
   children: string;
+  className?: string;
+  level?: LevelTypes;
+  modifiers?: string;
+  style?: React.CSSProperties;
 }
 
-const Heading: React.FC<Props> = props => {
-  const Tag = `h${_.toString(props.level)}` as
+const Heading: React.FC<Props> = (props: Props) => {
+  const Tag: keyof JSX.IntrinsicElements = `h${props.level}` as
     | `h1`
     | `h2`
     | `h3`
@@ -22,12 +20,14 @@ const Heading: React.FC<Props> = props => {
     | `h5`
     | `h6`;
 
-  const bem = BEM(Tag);
-  bem.addModifiers(props.modifiers);
-  bem.addClassNames(props.className);
+  const BEM_MODULE: BEMInterface = BEM(Tag);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
+
+  addModifiers(props.modifiers);
+  addClassNames(props.className);
 
   return (
-    <Tag className={bem.getResult()} style={props.style}>
+    <Tag className={getResult()} style={props.style}>
       {props.children}
     </Tag>
   );
@@ -37,4 +37,4 @@ Heading.defaultProps = {
   level: 1
 };
 
-export default Heading;
+export { Heading as default };

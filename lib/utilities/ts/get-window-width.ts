@@ -12,4 +12,4 @@ const getWindowWidth = (): string => {
   return context;
 };
 
-export default getWindowWidth;
+export { getWindowWidth as default };

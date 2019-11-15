@@ -21,4 +21,4 @@ function getTimer(delay: number, callback: any): void {
   this.resume();
 }
 
-export default getTimer;
+export { getTimer as default };

@@ -1,15 +1,19 @@
 import React from 'react';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getScale from './utilities/get-scale';
+import hasLabel from './utilities/has-label';
 
-import BEM from '../utilities/ts/bem';
-import getLikertScale from './utilities/get-likert-scale';
-import hasLikertLabel from './utilities/has-likert-label';
+interface LikertOptionInterface {
+  id?: string;
+  label?: string;
+}
 
 interface Props {
   className?: string;
   modifiers?: string;
   name?: string;
   onChange?: () => void;
-  options: Array<{ label?: string }>;
+  options: LikertOptionInterface[];
   style?: React.CSSProperties;
 }
 
@@ -17,7 +21,7 @@ interface State {
   value?: string;
 }
 
-export default class Likert extends React.Component<Props, State> {
+class Likert extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     onChange: () => {
       return;
@@ -28,9 +32,7 @@ export default class Likert extends React.Component<Props, State> {
     value: ``
   };
 
-  scale: Array<{ id: string; label: string }> = getLikertScale(
-    this.props.options
-  );
+  scale: LikertOptionInterface[] = getScale(this.props.options);
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({
@@ -41,40 +43,46 @@ export default class Likert extends React.Component<Props, State> {
   render() {
     const { props, state, scale, handleChange } = this;
 
-    const bem = BEM(`likert`);
-    bem.addModifiers(props.modifiers);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`likert`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getModifier,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(props.modifiers);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <div
-          className={`${bem.getElement(`list`)} ${bem.getModifier(
+          className={`${getElement(`list`)} ${getModifier(
             `${scale.length}`,
             `list`
           )}`}>
           {scale.map((option, i) => (
             <div
               key={i}
-              className={`${bem.getElement(`item`)}${
+              className={`${getElement(`item`)}${
                 i + 1 !== Number(state.value) ? `` : ` active`
               }`}>
               <input
                 id={option.id}
-                className={bem.getElement(`input`)}
+                className={getElement(`input`)}
                 type="radio"
                 name={props.name}
                 value={i + 1}
                 tabIndex={0}
                 onChange={handleChange}
               />
-              <div className={bem.getElement(`label-outer`)}>
-                <label htmlFor={option.id} className={bem.getElement(`button`)}>
+              <div className={getElement(`label-outer`)}>
+                <label htmlFor={option.id} className={getElement(`button`)}>
                   {scale.length > 10 ? i : i + 1}
                 </label>
-                {hasLikertLabel(scale, i) && option.label && (
-                  <span className={bem.getElement(`label`)}>
-                    {option.label}
-                  </span>
+                {hasLabel(scale, i) && option.label && (
+                  <span className={getElement(`label`)}>{option.label}</span>
                 )}
               </div>
             </div>
@@ -84,3 +92,5 @@ export default class Likert extends React.Component<Props, State> {
     );
   }
 }
+
+export { Likert as default, LikertOptionInterface };

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import {
@@ -8,10 +6,9 @@ import {
   text,
   withKnobs
 } from '@storybook/addon-knobs';
-
-import Uniform from '../uniform';
+import React from 'react';
 import Checkbox from './checkbox';
-
+import Uniform from '../uniform';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const checkboxChildren = [`Label`, `Yes, this assessment is my own work.`];

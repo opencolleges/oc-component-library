@@ -1,10 +1,8 @@
 import _ from 'lodash';
-
 import addNamespace from './add-namespace';
-
 import { ELEMENT_SEPARATOR, MODIFIER_SEPARATOR } from './constants';
 
-interface Bem {
+interface BEMInterface {
   addClassNames: (classNames: string) => void;
   addModifiers: (modifiers: string, blockOrElement?: string) => void;
   getBlock: () => string;
@@ -13,7 +11,7 @@ interface Bem {
   getResult: () => string;
 }
 
-const BEM = (block: string): Bem => {
+const BEM = (block: string): BEMInterface => {
   const BLOCK: string = block;
   let result: string = addNamespace(BLOCK);
 
@@ -101,4 +99,4 @@ const BEM = (block: string): Bem => {
   };
 };
 
-export default BEM;
+export { BEM as default, BEMInterface };

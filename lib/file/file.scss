@@ -249,7 +249,7 @@
 // =============================================================================
 
 @include device(mouse-driven) {
-  .#{$pre}-file__input.#{$pre}-active {
+  .#{$pre}-file__input.active {
     z-index: 1;
     pointer-events: auto;
   }
@@ -277,9 +277,7 @@
     color: $fossil;
   }
 
-  .#{$pre}-file__input.#{$pre}-active
-    ~ .#{$pre}-file__inner
-    > .#{$pre}-file__label {
+  .#{$pre}-file__input.active ~ .#{$pre}-file__inner > .#{$pre}-file__label {
     border: rem(1px) solid $viking;
     background-color: $viking;
     color: $blizzard;

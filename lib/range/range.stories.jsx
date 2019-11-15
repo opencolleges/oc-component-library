@@ -1,12 +1,9 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
-
 import { number, text, withKnobs } from '@storybook/addon-knobs';
-
-import Uniform from '../uniform';
+import React from 'react';
 import Range from './range';
-
+import Uniform from '../uniform';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const rangeLabel = [`Label`, `Pick a number between 0 and 100`];

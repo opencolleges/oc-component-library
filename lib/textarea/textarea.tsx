@@ -1,14 +1,12 @@
-import _ from 'lodash';
+import BrowserDetect from 'browser-detect';
 import React from 'react';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getId from '../utilities/ts/get-id';
 import getWindowWidth from '../utilities/ts/get-window-width';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 import remove from '../utilities/ts/remove';
 import truncateString from '../utilities/ts/truncate-string';
-
-import BrowserDetect from 'browser-detect';
 
 interface Props {
   autoComplete?: string;
@@ -40,7 +38,7 @@ interface State {
   value: string;
 }
 
-export default class Textarea extends React.Component<Props> {
+class Textarea extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     grammarly: true,
@@ -52,15 +50,15 @@ export default class Textarea extends React.Component<Props> {
     spellCheck: true
   };
 
-  id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
-  textareaRef = React.createRef<HTMLTextAreaElement>();
+  id: string = this.props.id ? this.props.id : getId();
+  inputRef = React.createRef<HTMLTextAreaElement>();
 
   readonly state: Readonly<State> = {
-    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+    error: includes(itemise(this.props.modifiers), `error`),
     height: null,
     overflow: `hidden`,
     remaining: 0,
-    success: _.includes(_.split(this.props.modifiers, ` `), `success`),
+    success: includes(itemise(this.props.modifiers), `success`),
     value: truncateString(this.props.value, this.props.maxLength)
   };
 
@@ -75,9 +73,9 @@ export default class Textarea extends React.Component<Props> {
   componentDidUpdate(prevProps: Props, prevState: State): void {
     if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+        error: includes(itemise(this.props.modifiers), `error`),
         message: this.props.message ? this.props.message : ``,
-        success: _.includes(_.split(this.props.modifiers, ` `), `success`)
+        success: includes(itemise(this.props.modifiers), `success`)
       });
     }
 
@@ -113,13 +111,13 @@ export default class Textarea extends React.Component<Props> {
   };
 
   resize = (): void => {
-    const textarea: HTMLTextAreaElement = this.textareaRef.current;
+    const textarea: HTMLTextAreaElement = this.inputRef.current;
 
     this.setState(
       {
         height: null
       },
-      function() {
+      () => {
         const windowWidth: string = getWindowWidth();
 
         let maxHeight: number = null;
@@ -184,15 +182,22 @@ export default class Textarea extends React.Component<Props> {
   };
 
   render() {
-    const { props, state, id, textareaRef, handleChange } = this;
+    const { props, state, id, inputRef, handleChange } = this;
 
     const modifiers = remove([`error`, `success`], props.modifiers);
 
-    const bem = BEM(`textarea`);
-    bem.addModifiers(modifiers);
-    bem.addModifiers(state.error ? `error` : ``);
-    bem.addModifiers(state.success ? `success` : ``);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`textarea`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(modifiers);
+    addModifiers(state.error ? `error` : ``);
+    addModifiers(state.success ? `success` : ``);
+    addClassNames(props.className);
 
     const browser = BrowserDetect();
 
@@ -200,19 +205,17 @@ export default class Textarea extends React.Component<Props> {
 
     return (
       <div
-        className={bem.getResult()}
+        className={getResult()}
         style={
           state.height
             ? { height: `${state.height + 40}px`, ...props.style }
             : props.style
         }>
         <textarea
-          ref={textareaRef}
+          ref={inputRef}
           id={id}
           className={
-            !state.value
-              ? bem.getElement(`input`)
-              : `${bem.getElement(`input`)} active`
+            !state.value ? getElement(`input`) : `${getElement(`input`)} active`
           }
           name={props.name}
           disabled={props.disabled}
@@ -236,10 +239,10 @@ export default class Textarea extends React.Component<Props> {
           data-gramm={!props.grammarly ? false : null}
           onChange={handleChange}
         />
-        <label className={bem.getElement(`label`)}>{props.label}</label>
+        <label className={getElement(`label`)}>{props.label}</label>
         {!props.readOnly && !props.disabled && (
           <div
-            className={bem.getElement(`border`)}
+            className={getElement(`border`)}
             style={
               state.height
                 ? { top: `${state.height + (16 - borderHeight)}px` }
@@ -248,7 +251,7 @@ export default class Textarea extends React.Component<Props> {
           />
         )}
         {!props.readOnly && !props.disabled && (
-          <span className={bem.getElement(`message`)}>
+          <span className={getElement(`message`)}>
             {this.showMessage(props.message, props.maxLength, state.remaining)}
           </span>
         )}
@@ -256,3 +259,5 @@ export default class Textarea extends React.Component<Props> {
     );
   }
 }
+
+export { Textarea as default };

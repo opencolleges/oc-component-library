@@ -1,21 +1,17 @@
-// * React imports
 import PropTypes from 'prop-types';
 import React from 'react';
-
-// * utility imports
+import Icon from '../icon';
+import BEM from '../utilities/ts/bem';
 import getRange from '../utilities/ts/getRange';
 import getWindowWidth from '../utilities/ts/get-window-width';
-import namespace from '../utilities/ts/namespace';
+import addNamespace from '../utilities/ts/add-namespace';
+import pxToRem from '../utilities/ts/px-to-rem';
 
-// * child imports
-import Icon from '../icon';
-
-// * React component
-export default class Pagination extends React.Component {
+class Pagination extends React.Component {
   constructor(props) {
     super(props);
 
-    this.paginationRef = React.createRef();
+    this.listRef = React.createRef();
 
     this.state = {
       pages: this.props.pages,
@@ -74,9 +70,9 @@ export default class Pagination extends React.Component {
       siblings = this.desktopSiblings;
     }
 
-    this.setState({ siblings: siblings }, function() {
-      const paginationRef = this.paginationRef.current;
-      const paginationChildren = paginationRef.childNodes.length;
+    this.setState({ siblings: siblings }, () => {
+      const listRef = this.listRef.current;
+      const paginationChildren = listRef.childNodes.length;
 
       let paginationWidth = null;
 
@@ -94,7 +90,7 @@ export default class Pagination extends React.Component {
         else paginationWidth = 464;
       }
 
-      this.setState({ width: paginationWidth });
+      this.setState({ width: `${pxToRem(paginationWidth)}rem` });
 
       this.handleHighlight();
     });
@@ -188,10 +184,10 @@ export default class Pagination extends React.Component {
   };
 
   goToPage = pageNumber => {
-    const paginationRef = this.paginationRef.current;
+    const listRef = this.listRef.current;
 
-    this.setState({ currentPage: pageNumber }, function() {
-      paginationRef.getElementsByClassName(namespace(`active`))[0].focus();
+    this.setState({ currentPage: pageNumber }, () => {
+      listRef.getElementsByClassName(addNamespace(`active`))[0].focus();
       this.handleHighlight();
     });
 
@@ -201,57 +197,55 @@ export default class Pagination extends React.Component {
   handleHighlight = () => {
     const { state, totalPages, mobileSiblings, tabletSiblings } = this;
 
+    let coords = 0;
+
     if (state.siblings === mobileSiblings) {
-      if (state.currentPage === 1) {
-        this.setState({ highlightCoords: 0 });
-      } else if (state.currentPage === totalPages && totalPages >= 3) {
-        this.setState({ highlightCoords: 96 });
+      if (state.currentPage === totalPages && totalPages >= 3) {
+        coords = 96;
       } else {
-        this.setState({ highlightCoords: 48 });
+        coords = 48;
       }
     } else if (state.siblings === tabletSiblings) {
-      if (state.currentPage === 1) {
-        this.setState({ highlightCoords: 0 });
-      } else if (state.currentPage === 2) {
-        this.setState({ highlightCoords: 56 });
+      if (state.currentPage === 2) {
+        coords = 56;
       } else if (state.currentPage === totalPages - 1 && totalPages >= 5) {
-        this.setState({ highlightCoords: 168 });
+        coords = 168;
       } else if (state.currentPage === totalPages && totalPages >= 4) {
         if (totalPages >= 5) {
-          this.setState({ highlightCoords: 224 });
+          coords = 224;
         } else {
-          this.setState({ highlightCoords: 168 });
+          coords = 168;
         }
       } else {
-        this.setState({ highlightCoords: 112 });
+        coords = 112;
       }
     } else {
-      if (state.currentPage === 1) {
-        this.setState({ highlightCoords: 0 });
-      } else if (state.currentPage === 2) {
-        this.setState({ highlightCoords: 56 });
+      if (state.currentPage === 2) {
+        coords = 56;
       } else if (state.currentPage === 3) {
-        this.setState({ highlightCoords: 112 });
+        coords = 112;
       } else if (state.currentPage === totalPages - 2 && totalPages >= 7) {
-        this.setState({ highlightCoords: 224 });
+        coords = 224;
       } else if (state.currentPage === totalPages - 1 && totalPages >= 6) {
         if (totalPages >= 7) {
-          this.setState({ highlightCoords: 280 });
+          coords = 280;
         } else {
-          this.setState({ highlightCoords: 224 });
+          coords = 224;
         }
       } else if (state.currentPage === totalPages && totalPages >= 5) {
         if (totalPages >= 7) {
-          this.setState({ highlightCoords: 336 });
+          coords = 336;
         } else if (totalPages >= 6) {
-          this.setState({ highlightCoords: 280 });
+          coords = 280;
         } else {
-          this.setState({ highlightCoords: 224 });
+          coords = 224;
         }
       } else {
-        this.setState({ highlightCoords: 168 });
+        coords = 168;
       }
     }
+
+    this.setState({ highlightCoords: `${pxToRem(coords)}rem` });
   };
 
   getPageStatus = pageNumber => {
@@ -268,7 +262,7 @@ export default class Pagination extends React.Component {
 
   render() {
     const {
-      paginationRef,
+      listRef,
       totalPages,
       props,
       state,
@@ -281,22 +275,24 @@ export default class Pagination extends React.Component {
 
     const pagination = this.fetchPagination();
 
-    let classNames = namespace(`pagination`);
-
-    state.mounted && (classNames += ` ${namespace(`mounted`)}`);
-
-    props.className && (classNames += ` ${props.className}`);
+    const bem = BEM(`pagination`);
+    bem.addClassNames(state.mounted ? `mounted` : ``);
+    bem.addClassNames(props.className);
 
     return (
-      <div className={classNames} style={props.style}>
-        <ul className={namespace(`pagination__list`)}>
+      <div className={bem.getResult()} style={props.style}>
+        <ul className={bem.getElement(`list`)}>
           <li
             className={
               !pagination.previousPage
-                ? namespace(`pagination__item pagination__item--previous`)
-                : namespace(
-                    `pagination__item pagination__item--previous pagination__item--selectable`
-                  )
+                ? `${bem.getElement(`item`)} ${bem.getModifier(
+                    `previous`,
+                    `item`
+                  )}`
+                : `${bem.getElement(`item`)} ${bem.getModifier(
+                    `previous`,
+                    `item`
+                  )} ${bem.getModifier(`selectable`, `item`)}`
             }
             tabIndex={-1}
             onClick={
@@ -304,17 +300,17 @@ export default class Pagination extends React.Component {
             }
             onKeyDown={handleKeyDown}>
             <Icon type="arrow-left" />
-            <span className={namespace(`pagination__label`)}>Prev</span>
+            <span className={bem.getElement(`label`)}>Prev</span>
           </li>
         </ul>
         <ul
-          ref={paginationRef}
-          className={namespace(`pagination__list`)}
-          style={{ width: `${state.width / 16}rem` }}>
+          ref={listRef}
+          className={bem.getElement(`list`)}
+          style={{ width: state.width }}>
           <div
-            className={namespace(`pagination__highlight`)}
+            className={bem.getElement(`highlight`)}
             style={{
-              transform: `translateX(${state.highlightCoords / 16}rem)`
+              transform: `translateX(${state.highlightCoords})`
             }}
             aria-hidden={true}
           />
@@ -324,21 +320,24 @@ export default class Pagination extends React.Component {
               className={
                 state.currentPage === page
                   ? getPageStatus(page)
-                    ? namespace(
+                    ? addNamespace(
                         `pagination__item pagination__item--selectable ${getPageStatus(
                           page
                         )} active`
                       )
-                    : namespace(
+                    : addNamespace(
                         `pagination__item pagination__item--selectable active`
                       )
                   : getPageStatus(page)
-                  ? namespace(
+                  ? addNamespace(
                       `pagination__item pagination__item--selectable ${getPageStatus(
                         page
                       )}`
                     )
-                  : namespace(`pagination__item pagination__item--selectable`)
+                  : `${bem.getElement(`item`)} ${bem.getModifier(
+                      `selectable`,
+                      `item`
+                    )}`
               }
               tabIndex={state.currentPage === page ? 0 : -1}
               onClick={event => handleClick(event, page)}
@@ -346,30 +345,30 @@ export default class Pagination extends React.Component {
               {page}
             </li>
           ))}
-          <li className={namespace(`pagination__item`)}>of</li>
+          <li className={bem.getElement(`item`)}>of</li>
           <li
-            className={namespace(
-              `pagination__item pagination__item--selectable`
-            )}
+            className={`${bem.getElement(`item`)} ${bem.getModifier(
+              `selectable`,
+              `item`
+            )}`}
             onClick={event => handleClick(event, totalPages)}
             tabIndex={-1}>
             {totalPages}
           </li>
         </ul>
-        <ul className={namespace(`pagination__list`)}>
+        <ul className={bem.getElement(`list`)}>
           <li
-            className={
-              !pagination.nextPage
-                ? namespace(`pagination__item pagination__item--next`)
-                : namespace(
-                    `pagination__item pagination__item--next pagination__item--selectable`
-                  )
-            }
+            className={`${bem.getElement(`item`)} ${bem.getModifier(
+              `next`,
+              `item`
+            )} ${
+              pagination.nextPage ? bem.getModifier(`selectable`, `item`) : ``
+            }`}
             tabIndex={-1}
             onClick={pagination.nextPage ? event => handleNext(event) : null}
             onKeyDown={handleKeyDown}>
             <Icon type="arrow-right" />
-            <span className={namespace(`pagination__label`)}>Next</span>
+            <span className={bem.getElement(`label`)}>Next</span>
           </li>
         </ul>
       </div>
@@ -389,3 +388,5 @@ Pagination.defaultProps = {
   currentPage: 0,
   onChange: () => {}
 };
+
+export { Pagination as default };

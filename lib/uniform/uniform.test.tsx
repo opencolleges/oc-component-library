@@ -1,14 +1,10 @@
+import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
-
-import Uniform from './uniform';
-
 import { NAMESPACE } from '../utilities/ts/constants';
-
+import Uniform from './uniform';
 import uniform from './utilities/uniform';
 
-import { mount } from 'enzyme';
-
-let wrapper;
+let wrapper: ReactWrapper = null;
 
 describe(`<Uniform />`, () => {
   it(`Handles no-touchevents`, () => {

@@ -1,10 +1,9 @@
-import getLikertScale from './get-likert-scale';
-
 import { NAMESPACE } from '../../utilities/ts/constants';
+import getScale from './get-scale';
 
-describe(`getLikertScale()`, () => {
+describe(`getScale()`, () => {
   it(`Handles an empty array argument`, () => {
-    expect(getLikertScale([])).toMatchObject([
+    expect(getScale([])).toMatchObject([
       { id: `${NAMESPACE}-1`, label: `` },
       { id: `${NAMESPACE}-2`, label: `` },
       { id: `${NAMESPACE}-3`, label: `` }
@@ -13,13 +12,7 @@ describe(`getLikertScale()`, () => {
 
   it(`Handles an array argument w/ five indexes`, () => {
     expect(
-      getLikertScale([
-        { label: `Foo` },
-        {},
-        { label: `Bar` },
-        { label: `Baz` },
-        {}
-      ])
+      getScale([{ label: `Foo` }, {}, { label: `Bar` }, { label: `Baz` }, {}])
     ).toMatchObject([
       { id: `${NAMESPACE}-4`, label: `Foo` },
       { id: `${NAMESPACE}-5`, label: `` },
@@ -31,7 +24,7 @@ describe(`getLikertScale()`, () => {
 
   it(`Handles an array argument w/ six indexes`, () => {
     expect(
-      getLikertScale([
+      getScale([
         { label: `Foo` },
         { label: `Bar` },
         {},
@@ -51,7 +44,7 @@ describe(`getLikertScale()`, () => {
 
   it(`Handles an array argument w/ 12 indexes`, () => {
     expect(
-      getLikertScale([
+      getScale([
         { label: `Foo` },
         {},
         {},

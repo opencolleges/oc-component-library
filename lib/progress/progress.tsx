@@ -1,9 +1,8 @@
-import _ from 'lodash';
 import React from 'react';
-
 import Icon from '../icon';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 import isNotAlt from './utilities/is-not-alt';
 
 interface Props {
@@ -20,13 +19,13 @@ interface State {
   success: boolean;
 }
 
-export default class Progress extends React.Component<Props> {
+class Progress extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     totalProgress: 100
   };
 
   readonly state: Readonly<State> = {
-    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+    error: includes(itemise(this.props.modifiers), `error`),
     success: false
   };
 
@@ -34,14 +33,14 @@ export default class Progress extends React.Component<Props> {
     if (
       this.props.progress !== prevProps.progress &&
       this.props.progress === this.props.totalProgress &&
-      !_.includes(_.split(this.props.modifiers, ` `), `alt`)
+      !includes(itemise(this.props.modifiers), `alt`)
     ) {
       this.setState({ success: true });
     }
 
     if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `error`)
+        error: includes(itemise(this.props.modifiers), `error`)
       });
     }
   }
@@ -49,12 +48,17 @@ export default class Progress extends React.Component<Props> {
   render() {
     const { props, state } = this;
 
-    const bem = BEM(`progress`);
-    bem.addModifiers(props.modifiers);
-    bem.addModifiers(
-      state.success && isNotAlt(props.modifiers) ? `success` : ``
-    );
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`progress`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(props.modifiers);
+    addModifiers(!!state.success && isNotAlt(props.modifiers) ? `success` : ``);
+    addClassNames(props.className);
 
     const width: string = `${(props.progress / props.totalProgress) * 100}%`;
 
@@ -69,25 +73,25 @@ export default class Progress extends React.Component<Props> {
     }
 
     return (
-      <div className={bem.getResult()} style={props.style}>
-        <div className={bem.getElement(`bar-outer`)}>
+      <div className={getResult()} style={props.style}>
+        <div className={getElement(`bar-outer`)}>
           <div
-            className={bem.getElement(`bar`)}
+            className={getElement(`bar`)}
             style={{
               width
             }}
           />
         </div>
-        <div className={bem.getElement(`label`)}>{label}</div>
+        <div className={getElement(`label`)}>{label}</div>
         {isNotAlt(props.modifiers) && (
           <React.Fragment>
             <Icon
               type="close-ring"
-              visible={state.error ? state.error : false}
+              visible={!!state.error ? state.error : false}
             />
             <Icon
               type="tick-ring"
-              visible={state.success ? state.success : false}
+              visible={!!state.success ? state.success : false}
             />
           </React.Fragment>
         )}
@@ -95,3 +99,5 @@ export default class Progress extends React.Component<Props> {
     );
   }
 }
+
+export { Progress as default };

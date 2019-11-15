@@ -1,12 +1,9 @@
+import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
-
+import { NAMESPACE } from '../utilities/ts/constants';
 import Card from './card';
 
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import { mount } from 'enzyme';
-
-let wrapper;
+let wrapper: ReactWrapper = null;
 
 describe(`<Card />`, () => {
   beforeEach(() => {
@@ -103,16 +100,16 @@ describe(`<Card />`, () => {
   it(`Handles props.tabIndex`, () => {
     expect(wrapper.getDOMNode().getAttribute(`tabIndex`)).toBe(null);
 
-    wrapper.setProps({ modifiers: `card--clickable` });
+    wrapper.setProps({ modifiers: `clickable` });
     expect(wrapper.getDOMNode().getAttribute(`tabIndex`)).toBe(`0`);
 
-    wrapper.setProps({ modifiers: `card--draggable` });
+    wrapper.setProps({ modifiers: `draggable` });
     expect(wrapper.getDOMNode().getAttribute(`tabIndex`)).toBe(`0`);
 
-    wrapper.setProps({ modifiers: `card--clickable`, tabIndex: false });
+    wrapper.setProps({ modifiers: `clickable`, tabIndex: false });
     expect(wrapper.getDOMNode().getAttribute(`tabIndex`)).toBe(null);
 
-    wrapper.setProps({ modifiers: `card--draggable`, tabIndex: false });
+    wrapper.setProps({ modifiers: `draggable`, tabIndex: false });
     expect(wrapper.getDOMNode().getAttribute(`tabIndex`)).toBe(null);
   });
 

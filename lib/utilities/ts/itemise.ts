@@ -1,7 +1,10 @@
 import _ from 'lodash';
 
-function itemise(str: string, separator: RegExp | string = /\s+/g): string[] {
+const itemise = (
+  str: string,
+  separator: RegExp | string = /\s+/g
+): string[] => {
   return _.split(_.trim(str), separator);
-}
+};
 
-export default itemise;
+export { itemise as default };

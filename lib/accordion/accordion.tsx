@@ -1,8 +1,7 @@
 import React from 'react';
-
 import Icon from '../icon';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import pxToRem from '../utilities/ts/px-to-rem';
 
 interface Props {
   children: React.ReactNode;
@@ -14,11 +13,18 @@ interface Props {
 }
 
 interface State {
-  height?: number;
-  open?: boolean;
+  height: string;
+  open: boolean;
 }
 
-export default class Accordion extends React.Component<Props, State> {
+interface RenderInterface {
+  outerRef: React.RefObject<HTMLDivElement>;
+  handleClick: () => void;
+  props: Props;
+  state: State;
+}
+
+class Accordion extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     open: false
   };
@@ -28,55 +34,68 @@ export default class Accordion extends React.Component<Props, State> {
     open: this.props.open
   };
 
-  contentRef = React.createRef<HTMLDivElement>();
+  outerRef = React.createRef<HTMLDivElement>();
 
   componentDidMount(): void {
-    this.setContentHeight();
+    this.setAccordionHeight();
 
-    window.addEventListener(`resize`, this.setContentHeight);
+    window.addEventListener(`resize`, this.setAccordionHeight);
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener(`resize`, this.setContentHeight);
+    window.removeEventListener(`resize`, this.setAccordionHeight);
   }
-
-  setContentHeight = (): void => {
-    this.setState({ height: null }, () => {
-      this.setState({ height: this.contentRef.current.scrollHeight - 1 });
-    });
-  };
 
   handleClick = (): void => {
     this.setState({ open: !this.state.open });
   };
 
+  setAccordionHeight = (): void => {
+    const height: string = `${pxToRem(
+      this.outerRef.current.scrollHeight - 1
+    )}rem`;
+
+    this.setState({ height: null }, () => {
+      this.setState({ height });
+    });
+  };
+
   render() {
-    const { props, state, contentRef, handleClick } = this;
+    const { props, state, outerRef, handleClick }: RenderInterface = this;
 
-    const bem = BEM(`accordion`);
-    bem.addModifiers(props.modifiers);
-    bem.addClassNames(state.open ? `active` : ``);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`accordion`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
 
+    addModifiers(props.modifiers);
+    addClassNames(!!state.open ? `active` : ``);
+    addClassNames(props.className);
+        
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <button
           type={`button`}
-          className={bem.getElement(`button`)}
-          title={state.open ? `Close` : `Open`}
+          className={getElement(`button`)}
+          title={!!state.open ? `Close` : `Open`}
           onClick={handleClick}>
           {props.label}
         </button>
         <Icon type="minus" />
         <Icon type="plus" visible={!state.open} />
         <div
-          ref={contentRef}
-          className={bem.getElement(`outer`)}
-          style={{ height: state.open ? state.height : 0 }}>
+          ref={outerRef}
+          className={getElement(`outer`)}
+          style={{ height: !!state.open ? state.height : 0 }}>
           {props.children}
         </div>
-        <div className={bem.getElement(`border`)} />
+        <div className={getElement(`border`)} />
       </div>
     );
   }
 }
+
+export { Accordion as default };

@@ -43,4 +43,4 @@ const uniform: Uniform = {
   }
 };
 
-export default uniform;
+export { uniform as default };
