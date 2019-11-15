@@ -1,8 +1,7 @@
 import React from 'react';
 
-import OptionalCard from './optional-card';
-
 import { NAMESPACE } from '../utilities/ts/constants';
+import OptionalCard from './_optional-card';
 
 import { mount } from 'enzyme';
 

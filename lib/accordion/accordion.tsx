@@ -18,7 +18,7 @@ interface State {
   open?: boolean;
 }
 
-export default class Accordion extends React.Component<Props, State> {
+class Accordion extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     open: false
   };
@@ -80,3 +80,5 @@ export default class Accordion extends React.Component<Props, State> {
     );
   }
 }
+
+export { Accordion as default };
