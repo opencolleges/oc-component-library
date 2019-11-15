@@ -1,3 +1,3 @@
 import TableCell from './table-cell';
 
-export default TableCell;
+export { TableCell as default };

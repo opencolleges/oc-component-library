@@ -1,3 +1,3 @@
 import Date from './date';
 
-export default Date;
+export { Date as default };

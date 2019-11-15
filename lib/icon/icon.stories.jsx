@@ -1,12 +1,9 @@
-import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import { withKnobs, boolean, number, select } from '@storybook/addon-knobs';
-
-import Uniform from '../uniform';
+import React from 'react';
 import Icon from './icon';
-
+import Uniform from '../uniform';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const IconIcon = [

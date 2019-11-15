@@ -2,10 +2,17 @@ import _ from 'lodash';
 
 import { NAMESPACE } from './constants';
 
-const addNamespace = (className: string): string => {
-  className = _.trim(className);
+const addNamespace = (classNames: string): string => {
+  const ARR: string[] = [];
+  const CLASS_NAMES: string[] = _.split(_.trim(classNames), /\s+/g);
 
-  return `${NAMESPACE}-${className}`;
+  _.forEach(CLASS_NAMES, CLASS_NAME => {
+    if (!!CLASS_NAME) {
+      ARR.push(`${NAMESPACE}-${CLASS_NAME}`);
+    }
+  });
+
+  return _.join(ARR, ` `);
 };
 
-export default addNamespace;
+export { addNamespace as default };

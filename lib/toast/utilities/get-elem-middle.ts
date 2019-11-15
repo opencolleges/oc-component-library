@@ -6,8 +6,8 @@ const getElemMiddle = (
   offset: number = 1,
   gutter: number = 1
 ): number => {
-  offset = Number(remToPx(offset));
-  gutter = Number(remToPx(gutter));
+  offset = remToPx(offset);
+  gutter = remToPx(gutter);
 
   let position: number = offset;
 
@@ -19,7 +19,7 @@ const getElemMiddle = (
     position += gutter + element.clientHeight;
   }
 
-  return Number(pxToRem(position));
+  return pxToRem(position);
 };
 
-export default getElemMiddle;
+export { getElemMiddle as default };

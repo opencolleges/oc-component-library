@@ -1,6 +1,5 @@
 import React from 'react';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 
 interface Props {
   className?: string;
@@ -8,18 +7,18 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const Divider: React.FC<Props> = props => {
-  const bem = BEM(`divider`);
-  bem.addModifiers(props.modifiers);
-  bem.addClassNames(props.className);
+const Divider: React.FC<Props> = (props: Props) => {
+  const BEM_MODULE: BEMInterface = BEM(`divider`);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
 
-  return (
-    <div className={bem.getResult()} style={props.style} aria-hidden="true" />
-  );
+  addModifiers(props.modifiers);
+  addClassNames(props.className);
+
+  return <div className={getResult()} style={props.style} aria-hidden="true" />;
 };
 
 Divider.defaultProps = {
   modifiers: `s`
 };
 
-export default Divider;
+export { Divider as default };

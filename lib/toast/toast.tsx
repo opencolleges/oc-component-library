@@ -1,22 +1,22 @@
-import _ from 'lodash';
 import React from 'react';
-
-import BEM from '../utilities/ts/bem';
+import Icon, { IconTypes } from '../icon';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import { TRANSITION_DURATION_x4 } from '../utilities/ts/constants';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 import getElemMiddle from './utilities/get-elem-middle';
 import getTimer from './utilities/get-timer';
 
-import Icon from '../icon';
-
-import { TIcon } from '../icon/icon';
+type ModifiersTypes = `error` | `success`;
 
 interface Props {
   className?: string;
   duration?: number;
   heading: string;
-  icon?: TIcon;
+  icon?: IconTypes;
   id: string;
   message: string;
-  modifiers?: `error` | `success`;
+  modifiers?: ModifiersTypes;
   onClick?: (id: string) => void;
   style?: React.CSSProperties;
 }
@@ -28,7 +28,7 @@ interface State {
   top: number;
 }
 
-export default class Toast extends React.Component<Props, State> {
+class Toast extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     duration: 8000,
     onClick: () => {
@@ -37,7 +37,7 @@ export default class Toast extends React.Component<Props, State> {
   };
 
   timer: any = null;
-  toastRef: any = React.createRef();
+  toastRef = React.createRef<HTMLDivElement>();
 
   readonly state: Readonly<State> = {
     focus: false,
@@ -65,7 +65,7 @@ export default class Toast extends React.Component<Props, State> {
     if (this.state.mounted === false) {
       setTimeout(() => {
         this.props.onClick(this.props.id);
-      }, 500);
+      }, TRANSITION_DURATION_x4);
     }
   }
 
@@ -76,7 +76,7 @@ export default class Toast extends React.Component<Props, State> {
   }
 
   handleClick = (): void => {
-    const toastRef: any = this.toastRef.current;
+    const toastRef: HTMLDivElement = this.toastRef.current;
 
     const nextToastRef: any = toastRef.nextSibling;
     const previousToastRef: any = toastRef.previousSibling;
@@ -210,26 +210,33 @@ export default class Toast extends React.Component<Props, State> {
       handleClick
     } = this;
 
-    const bem = BEM(`toast`);
-    bem.addModifiers(props.modifiers);
-    bem.addClassNames(state.mounted ? `mounted` : ``);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`toast`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(props.modifiers);
+    addClassNames(!!state.mounted ? `mounted` : ``);
+    addClassNames(props.className);
 
     return (
       <div
         ref={toastRef}
-        className={bem.getResult()}
+        className={getResult()}
         style={{ top: `${state.top}rem`, ...props.style }}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
-        <h6 className={bem.getElement(`heading`)}>{props.heading}</h6>
-        <p className={bem.getElement(`message`)}>{props.message}</p>
+        <h6 className={getElement(`heading`)}>{props.heading}</h6>
+        <p className={getElement(`message`)}>{props.message}</p>
         <button
           id={props.id}
-          className={bem.getElement(`button`)}
+          className={getElement(`button`)}
           tabIndex={0}
           title="Close"
           onClick={handleClick}>
@@ -237,18 +244,20 @@ export default class Toast extends React.Component<Props, State> {
         </button>
         <Icon
           type="close-ring"
-          visible={_.includes(_.split(props.modifiers, ` `), `error`)}
+          visible={includes(itemise(props.modifiers), `error`)}
         />
         <Icon
           type="tick-ring"
-          visible={_.includes(_.split(props.modifiers, ` `), `success`)}
+          visible={includes(itemise(props.modifiers), `success`)}
         />
-        {props.icon &&
-          (!_.includes(_.split(props.modifiers, ` `), `error`) &&
-            !_.includes(_.split(props.modifiers, ` `), `success`)) && (
+        {!!props.icon &&
+          (!includes(itemise(props.modifiers), `error`) &&
+            !includes(itemise(props.modifiers), `success`)) && (
             <Icon type={props.icon} visible={true} />
           )}
       </div>
     );
   }
 }
+
+export { Toast as default };

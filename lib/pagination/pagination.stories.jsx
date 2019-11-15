@@ -1,11 +1,9 @@
-import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import { optionsKnob as options, withKnobs } from '@storybook/addon-knobs';
-
-import Uniform from '../uniform';
+import React from 'react';
 import Pagination from './pagination';
+import Uniform from '../uniform';
 
 const paginationNumOfPages = [
   `No of pages`,

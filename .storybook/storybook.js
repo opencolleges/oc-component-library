@@ -5,4 +5,4 @@ const UNIFORM_STYLES = {
   transform: 'translate(-50%, -50%)'
 };
 
-export default UNIFORM_STYLES;
+export { UNIFORM_STYLES as default };

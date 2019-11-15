@@ -1,3 +1,3 @@
 import Textarea from './textarea';
 
-export default Textarea;
+export { Textarea as default };

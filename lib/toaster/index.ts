@@ -1,3 +1,3 @@
 import Toaster from './toaster';
 
-export default Toaster;
+export { Toaster as default };

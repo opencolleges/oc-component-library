@@ -1,13 +1,11 @@
 import _ from 'lodash';
 import React from 'react';
-
 import OptionalCard from '../_optional-card';
-
 import Grid from '../grid';
 import GridItem from '../grid-item';
 import Radio from '../radio';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import includes from '../utilities/ts/includes';
 
 interface Radios {
   className?: string;
@@ -38,7 +36,7 @@ interface State {
   value: string;
 }
 
-export default class RadioSet extends React.Component<Props, State> {
+class RadioSet extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     cards: false,
     disabled: false,
@@ -50,8 +48,8 @@ export default class RadioSet extends React.Component<Props, State> {
   };
 
   readonly state: Readonly<State> = {
-    error: _.includes(this.props.modifiers, `error`),
-    success: _.includes(this.props.modifiers, `success`),
+    error: includes(this.props.modifiers, `error`),
+    success: includes(this.props.modifiers, `success`),
     value: _.some(this.props.radios, [`value`, this.props.value])
       ? this.props.value
       : ``
@@ -60,8 +58,8 @@ export default class RadioSet extends React.Component<Props, State> {
   componentDidUpdate(prevProps): void {
     if (prevProps.modifiers !== this.props.modifiers) {
       this.setState({
-        error: _.includes(this.props.modifiers, `error`),
-        success: _.includes(this.props.modifiers, `success`)
+        error: includes(this.props.modifiers, `error`),
+        success: includes(this.props.modifiers, `success`)
       });
     }
   }
@@ -82,15 +80,22 @@ export default class RadioSet extends React.Component<Props, State> {
     const error: string = state.error ? `error` : ``;
     const success: string = state.success ? `success` : ``;
 
-    const bem = BEM(`radio-set`);
-    bem.addModifiers(error);
-    bem.addModifiers(success);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`radio-set`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(error);
+    addModifiers(success);
+    addClassNames(props.className);
 
     const modifiers: string = `${error}${success}`;
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <Grid modifiers="gutter-x-fixed">
           {props.radios.map((radio, index) => (
             <GridItem key={index} modifiers="s-12 m-6 align-end">
@@ -107,7 +112,7 @@ export default class RadioSet extends React.Component<Props, State> {
                   value={radio.value}
                   disabled={props.disabled}
                   readOnly={props.readOnly}
-                  required={props.required && index === 0}
+                  required={!!props.required && index === 0}
                   checked={state.value === radio.value}
                   onChange={handleChange}>
                   {radio.label}
@@ -116,11 +121,13 @@ export default class RadioSet extends React.Component<Props, State> {
             </GridItem>
           ))}
         </Grid>
-        <div className={bem.getElement(`border`)} />
-        {(state.error || state.success) && props.message && (
-          <span className={bem.getElement(`message`)}>{props.message}</span>
+        <div className={getElement(`border`)} />
+        {(!!state.error || !!state.success) && !!props.message && (
+          <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );
   }
 }
+
+export { RadioSet as default };

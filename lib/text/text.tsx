@@ -1,14 +1,11 @@
-import _ from 'lodash';
 import React from 'react';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import BEM from '../utilities/ts/bem';
+import Icon from '../icon';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getId from '../utilities/ts/get-id';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
 import remove from '../utilities/ts/remove';
 import truncateString from '../utilities/ts/truncate-string';
-
-// * child imports
-import Icon from '../icon';
 
 interface Props {
   autoComplete?:
@@ -95,7 +92,7 @@ interface State {
   value: string;
 }
 
-export default class Text extends React.Component<Props> {
+class Text extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     onBlur: () => {
@@ -128,12 +125,12 @@ export default class Text extends React.Component<Props> {
     return null;
   }
 
-  id = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
+  id = this.props.id ? this.props.id : getId();
 
   readonly state: Readonly<State> = {
-    error: _.includes(_.split(this.props.modifiers, ` `), `error`),
+    error: includes(itemise(this.props.modifiers), `error`),
     keyStrokes: this.props.type === `password` ? false : null,
-    success: _.includes(_.split(this.props.modifiers, ` `), `success`),
+    success: includes(itemise(this.props.modifiers), `success`),
     value: truncateString(this.props.value, this.props.maxLength)
   };
 
@@ -144,21 +141,21 @@ export default class Text extends React.Component<Props> {
     return true;
   }
 
-  componentDidUpdate(previousProps: Props, previousState: State): void {
-    if (this.props.modifiers !== previousProps.modifiers) {
+  componentDidUpdate(prevProps: Props, prevState: State): void {
+    if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `error`),
-        success: _.includes(_.split(this.props.modifiers, ` `), `success`)
+        error: includes(itemise(this.props.modifiers), `error`),
+        success: includes(itemise(this.props.modifiers), `success`)
       });
     }
 
-    if (this.props.disabled !== previousProps.disabled) {
+    if (this.props.disabled !== prevProps.disabled) {
       this.setState({
         disabled: this.props.disabled
       });
     }
 
-    if (this.state.value !== previousState.value) {
+    if (this.state.value !== prevState.value) {
       this.setState({
         error: false,
         success: false
@@ -168,7 +165,7 @@ export default class Text extends React.Component<Props> {
       this.forceUpdate();
     }
 
-    if (this.props.value !== previousProps.value) {
+    if (this.props.value !== prevProps.value) {
       this.setState({
         value: truncateString(this.props.value, this.props.maxLength)
       });
@@ -262,19 +259,24 @@ export default class Text extends React.Component<Props> {
 
     const modifiers = remove([`error`, `success`], props.modifiers);
 
-    const bem = BEM(`text`);
-    bem.addModifiers(modifiers);
-    bem.addModifiers(state.error ? `error` : ``);
-    bem.addModifiers(state.success ? `success` : ``);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`text`);
+    const {
+      addClassNames,
+      addModifiers,
+      getElement,
+      getResult
+    }: BEMInterface = BEM_MODULE;
+
+    addModifiers(modifiers);
+    addModifiers(state.error ? `error` : ``);
+    addModifiers(state.success ? `success` : ``);
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <input
           id={id}
-          className={`${bem.getElement(`input`)}${
-            typeof state.value !== `undefined` ? ` active` : ``
-          }`}
+          className={`${getElement(`input`)}${state.value ? ` active` : ``}`}
           type={props.type}
           name={props.name}
           disabled={props.disabled}
@@ -295,7 +297,7 @@ export default class Text extends React.Component<Props> {
           onBlur={props.onBlur}
           onPaste={props.onPaste}
         />
-        <label className={bem.getElement(`label`)}>{props.label}</label>
+        <label className={getElement(`label`)}>{props.label}</label>
         {!props.readOnly && !props.disabled && (
           <Icon type="close" visible={state.error ? state.error : false} />
         )}
@@ -303,12 +305,14 @@ export default class Text extends React.Component<Props> {
           <Icon type="tick" visible={state.success ? state.success : false} />
         )}
         {!props.readOnly && !props.disabled && (
-          <div className={bem.getElement(`border`)} />
+          <div className={getElement(`border`)} />
         )}
         {!props.readOnly && !props.disabled && props.message && (
-          <span className={bem.getElement(`message`)}>{props.message}</span>
+          <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>
     );
   }
 }
+
+export { Text as default };

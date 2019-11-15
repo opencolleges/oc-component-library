@@ -1,13 +1,9 @@
-const truncateString = (value: string, maxLength: number): string => {
-  if (!value) {
-    return ``;
+const truncateString = (str: string = ``, maxLength: number): string => {
+  if (maxLength && str.length >= maxLength) {
+    return str.substring(0, maxLength);
   }
 
-  if (maxLength && maxLength > 0 && value.length >= maxLength) {
-    return value.substring(0, maxLength);
-  }
-
-  return value;
+  return str;
 };
 
-export default truncateString;
+export { truncateString as default };

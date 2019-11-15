@@ -1,12 +1,9 @@
+import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
-
+import { NAMESPACE } from '../utilities/ts/constants';
 import RadioSet from './radio-set';
 
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import { mount } from 'enzyme';
-
-let wrapper;
+let wrapper: ReactWrapper = null;
 
 describe(`<RadioSet />`, () => {
   beforeEach(() => {

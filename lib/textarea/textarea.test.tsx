@@ -1,12 +1,9 @@
+import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
-
+import { NAMESPACE } from '../utilities/ts/constants';
 import Textarea from './textarea';
 
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import { mount } from 'enzyme';
-
-let wrapper;
+let wrapper: ReactWrapper = null;
 
 describe(`<Textarea />`, () => {
   beforeEach(() => {
@@ -376,27 +373,27 @@ describe(`<Textarea />`, () => {
 
   it(`Handles props.value`, () => {
     wrapper = mount(<Textarea label="foo" />);
-    expect(wrapper.find(`textarea`).getDOMNode().value).toBe(``);
+    expect(wrapper.find(`textarea`).text()).toBe(``);
 
     wrapper.unmount();
 
     wrapper = mount(<Textarea label="foo" maxLength={0} value="bar" />);
-    expect(wrapper.find(`textarea`).getDOMNode().value).toBe(`bar`);
+    expect(wrapper.find(`textarea`).text()).toBe(`bar`);
 
     wrapper.unmount();
 
     wrapper = mount(<Textarea label="foo" maxLength={1} value="bar" />);
-    expect(wrapper.find(`textarea`).getDOMNode().value).toBe(`b`);
+    expect(wrapper.find(`textarea`).text()).toBe(`b`);
 
     wrapper.unmount();
 
     wrapper = mount(<Textarea label="foo" maxLength={2} value="bar" />);
-    expect(wrapper.find(`textarea`).getDOMNode().value).toBe(`ba`);
+    expect(wrapper.find(`textarea`).text()).toBe(`ba`);
 
     wrapper.unmount();
 
     wrapper = mount(<Textarea label="foo" value="bar" />);
-    expect(wrapper.find(`textarea`).getDOMNode().value).toBe(`bar`);
+    expect(wrapper.find(`textarea`).text()).toBe(`bar`);
   });
 
   afterEach(() => {

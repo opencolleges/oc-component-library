@@ -1,3 +1,3 @@
 import TableBody from './table-body';
 
-export default TableBody;
+export { TableBody as default };

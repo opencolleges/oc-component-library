@@ -1,21 +1,19 @@
 import React from 'react';
-
+import { IconTypes } from '../icon';
+import Toast from '../toast';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 import addId from './utilities/add-id';
 
-import BEM from '../utilities/ts/bem';
-
-import Toast from '../toast';
-
-import { TIcon } from '../icon/icon';
+type ModifiersTypes = `error` | `success`;
 
 export interface ToastProps {
   className?: string;
   duration?: number;
   heading: string;
-  icon?: TIcon;
+  icon?: IconTypes;
   id?: string;
   message: string;
-  modifiers?: `error` | `success`;
+  modifiers?: ModifiersTypes;
   onClick?: (id: string) => void;
   style?: React.CSSProperties;
 }
@@ -30,7 +28,7 @@ interface State {
   toasts: ToastProps[];
 }
 
-export default class Toaster extends React.Component<Props, State> {
+class Toaster extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     toasts: []
   };
@@ -64,11 +62,13 @@ export default class Toaster extends React.Component<Props, State> {
   render() {
     const { props, state, handleClick } = this;
 
-    const bem = BEM(`toaster`);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`toaster`);
+    const { addClassNames, getResult }: BEMInterface = BEM_MODULE;
+
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         {state.toasts.map(toast => (
           <Toast key={toast.id} {...toast} onClick={handleClick} />
         ))}
@@ -76,3 +76,5 @@ export default class Toaster extends React.Component<Props, State> {
     );
   }
 }
+
+export { Toaster as default };

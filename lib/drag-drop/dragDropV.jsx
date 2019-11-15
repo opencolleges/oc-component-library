@@ -3,7 +3,7 @@ import React from 'react';
 
 // * utility imports
 import { SortableContainer, SortableElement, arrayMove } from './index';
-import namespace from '../utilities/ts/namespace';
+import addNamespace from '../utilities/ts/add-namespace';
 
 // * child imports
 import Card from '../card';
@@ -11,16 +11,16 @@ import list from './data/lists';
 
 // * React component
 const SortableItem = SortableElement(({ value }) => (
-  <div className={namespace(`grid__item grid__item--s-12`)}>
+  <div className={addNamespace(`grid__item grid__item--s-12`)}>
     <Card modifiers="card--draggable">
-      <p className={namespace(`p`)}>{value.label}</p>
+      <p className={addNamespace(`p`)}>{value.label}</p>
     </Card>
   </div>
 ));
 
 const SortableList = SortableContainer(({ items }) => {
   return (
-    <section className={namespace(`grid grid--gutter-fixed`)}>
+    <section className={addNamespace(`grid grid--gutter-fixed`)}>
       {items.map((value, index) => (
         <SortableItem key={index} index={index} value={value} />
       ))}
@@ -28,7 +28,7 @@ const SortableList = SortableContainer(({ items }) => {
   );
 });
 
-export default class SortableComponent extends React.Component {
+class SortableComponent extends React.Component {
   state = {
     items: list.items
   };
@@ -46,8 +46,10 @@ export default class SortableComponent extends React.Component {
         items={state.items}
         axis="y"
         onSortEnd={onSortEnd}
-        animateClass={namespace(`foo`)}
+        animateClass={addNamespace(`foo`)}
       />
     );
   }
 }
+
+export { SortableComponent as default };

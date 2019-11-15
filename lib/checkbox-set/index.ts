@@ -1,3 +1,3 @@
 import CheckboxSet from './checkbox-set';
 
-export default CheckboxSet;
+export { CheckboxSet as default };

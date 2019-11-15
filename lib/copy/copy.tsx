@@ -1,8 +1,7 @@
 import React from 'react';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 
-import BEM from '../utilities/ts/bem';
-
-type TTag =
+type TagTypes =
   | `a`
   | `abbr`
   | `blockquote`
@@ -27,21 +26,23 @@ interface Props {
   href?: string;
   modifiers?: string;
   style?: React.CSSProperties;
-  tag?: TTag;
+  tag?: TagTypes;
   target?: string;
   title?: string;
 }
 
-const Copy: React.FC<Props> = props => {
+const Copy: React.FC<Props> = (props: Props) => {
   const Tag: keyof JSX.IntrinsicElements = props.tag;
 
-  const bem = BEM(Tag);
-  bem.addModifiers(props.modifiers);
-  bem.addClassNames(props.className);
+  const BEM_MODULE: BEMInterface = BEM(Tag);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
+
+  addModifiers(props.modifiers);
+  addClassNames(props.className);
 
   return (
     <Tag
-      className={bem.getResult()}
+      className={getResult()}
       style={props.style}
       href={Tag === `a` ? props.href : null}
       target={props.target}
@@ -56,4 +57,4 @@ Copy.defaultProps = {
   tag: `p`
 };
 
-export default Copy;
+export { Copy as default };

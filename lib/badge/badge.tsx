@@ -1,23 +1,24 @@
 import React from 'react';
-
-import BEM from '../utilities/ts/bem';
-import getBadgeLabel from './utilities/get-badge-label';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getLabel from './utilities/get-label';
 
 interface Props {
-  modifiers?: string;
   className?: string;
+  modifiers?: string;
   style?: React.CSSProperties;
   value?: string | number;
 }
 
-const Badge: React.FC<Props> = props => {
-  const bem = BEM(`badge`);
-  bem.addModifiers(props.modifiers);
-  bem.addClassNames(props.className);
+const Badge: React.FC<Props> = (props: Props) => {
+  const BEM_MODULE: BEMInterface = BEM(`badge`);
+  const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
+
+  addModifiers(props.modifiers);
+  addClassNames(props.className);
 
   return (
-    <span className={bem.getResult()} style={props.style} unselectable="on">
-      {getBadgeLabel(props.value)}
+    <span className={getResult()} style={props.style} unselectable="on">
+      {getLabel(props.value)}
     </span>
   );
 };
@@ -26,4 +27,4 @@ Badge.defaultProps = {
   value: 0
 };
 
-export default Badge;
+export { Badge as default };

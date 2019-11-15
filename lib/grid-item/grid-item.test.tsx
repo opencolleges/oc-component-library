@@ -1,12 +1,9 @@
+import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
-
+import { NAMESPACE } from '../utilities/ts/constants';
 import GridItem from './grid-item';
 
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import { mount } from 'enzyme';
-
-let wrapper;
+let wrapper: ReactWrapper = null;
 
 describe(`<GridItem />`, () => {
   beforeEach(() => {
@@ -70,6 +67,16 @@ describe(`<GridItem />`, () => {
     expect(wrapper.getDOMNode().getAttribute(`style`)).toBe(
       `z-index: 1; opacity: 0;`
     );
+  });
+
+  it(`Handles props.tag`, () => {
+    expect(wrapper.getDOMNode().nodeName).toBe(`DIV`);
+
+    wrapper.setProps({ tag: `section` });
+    expect(wrapper.getDOMNode().nodeName).toBe(`SECTION`);
+
+    wrapper.setProps({ tag: `div` });
+    expect(wrapper.getDOMNode().nodeName).toBe(`DIV`);
   });
 
   afterEach(() => {

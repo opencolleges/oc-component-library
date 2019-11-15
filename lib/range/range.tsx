@@ -1,9 +1,6 @@
-import _ from 'lodash';
 import React from 'react';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import BEM from '../utilities/ts/bem';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getId from '../utilities/ts/get-id';
 
 interface Props {
   className?: string;
@@ -21,7 +18,7 @@ interface State {
   value: number;
 }
 
-export default class Range extends React.Component<Props> {
+class Range extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     max: 100,
     min: 0,
@@ -37,7 +34,7 @@ export default class Range extends React.Component<Props> {
         Number(this.props.min)
   };
 
-  id: string = this.props.id ? this.props.id : _.uniqueId(`${NAMESPACE}-`);
+  id: string = this.props.id ? this.props.id : getId();
 
   componentDidUpdate(prevProps): void {
     if (this.props.value !== prevProps.value) {
@@ -56,14 +53,16 @@ export default class Range extends React.Component<Props> {
   render() {
     const { props, state, id, handleChange } = this;
 
-    const bem = BEM(`range`);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`range`);
+    const { addClassNames, getElement, getResult }: BEMInterface = BEM_MODULE;
+
+    addClassNames(props.className);
 
     return (
-      <div className={bem.getResult()} style={props.style}>
+      <div className={getResult()} style={props.style}>
         <input
           id={id}
-          className={bem.getElement(`input`)}
+          className={getElement(`input`)}
           type="range"
           name={props.name}
           value={state.value}
@@ -71,11 +70,11 @@ export default class Range extends React.Component<Props> {
           max={props.max}
           onChange={handleChange}
         />
-        <label htmlFor={id} className={bem.getElement(`label`)}>
+        <label htmlFor={id} className={getElement(`label`)}>
           {props.label}
         </label>
         <div
-          className={bem.getElement(`track`)}
+          className={getElement(`track`)}
           style={{
             width: `${((state.value - props.min) /
               (Number(props.max) - Number(props.min))) *
@@ -84,7 +83,7 @@ export default class Range extends React.Component<Props> {
           aria-hidden="true"
         />
         <div
-          className={bem.getElement(`thumb`)}
+          className={getElement(`thumb`)}
           style={{
             left: `${((state.value - props.min) /
               (Number(props.max) - Number(props.min))) *
@@ -95,8 +94,10 @@ export default class Range extends React.Component<Props> {
           }}
           aria-hidden="true"
         />
-        <span className={bem.getElement(`value`)}>{state.value}</span>
+        <span className={getElement(`value`)}>{state.value}</span>
       </div>
     );
   }
 }
+
+export { Range as default };

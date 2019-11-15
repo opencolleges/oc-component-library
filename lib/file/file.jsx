@@ -1,48 +1,45 @@
-// * React imports
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import _ from 'lodash';
-
-import { NAMESPACE } from '../utilities/ts/constants';
-
-import getBytes from '../utilities/ts/getBytes';
-import getExtension from '../utilities/ts/getExtension';
-import namespace from '../utilities/ts/namespace';
-import toModifier from '../utilities/ts/to-modifier';
-import remove from '../utilities/ts/remove';
-
 import Icon from '../icon';
+import Progress from '../progress';
 import Table from '../table';
 import TableBody from '../table-body';
 import TableRow from '../table-row';
 import TableCell from '../table-cell';
-import Progress from '../progress';
+import BEM from '../utilities/ts/bem';
+import getBytes from '../utilities/ts/getBytes';
+import getExtension from '../utilities/ts/getExtension';
+import getId from '../utilities/ts/get-id';
+import includes from '../utilities/ts/includes';
+import itemise from '../utilities/ts/itemise';
+import addNamespace from '../utilities/ts/add-namespace';
+import remove from '../utilities/ts/remove';
+import isUndefined from '../utilities/ts/is-undefined';
 
-export default class File extends React.Component {
+class File extends React.Component {
   constructor(props) {
     super(props);
 
-    this.fileRef = React.createRef();
-    this.id = props.id ? props.id : _.uniqueId(`${NAMESPACE}-`);
+    this.inputRef = React.createRef();
+    this.id = props.id ? props.id : getId();
 
     this.state = {
       active: false,
       files: props.files.length > 0 ? props.files : [],
-      error: _.includes(_.split(this.props.modifiers, ` `), `file--error`),
-      success: _.includes(_.split(this.props.modifiers, ` `), `file--success`)
+      error: includes(itemise(this.props.modifiers), `file--error`),
+      success: includes(itemise(this.props.modifiers), `file--success`)
     };
   }
 
-  componentDidUpdate(previousProps, previousState) {
-    if (this.props.modifiers !== previousProps.modifiers) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
-        error: _.includes(_.split(this.props.modifiers, ` `), `file--error`),
-        success: _.includes(_.split(this.props.modifiers, ` `), `file--success`)
+        error: includes(itemise(this.props.modifiers), `file--error`),
+        success: includes(itemise(this.props.modifiers), `file--success`)
       });
     }
 
-    if (this.state.files.length !== previousState.files.length) {
+    if (this.state.files.length !== prevState.files.length) {
       this.setState({
         error: false,
 
@@ -50,7 +47,7 @@ export default class File extends React.Component {
       });
     }
 
-    if (previousProps.files !== this.props.files) {
+    if (prevProps.files !== this.props.files) {
       const prevFiles = [...this.state.files];
 
       for (let i = 0; i < this.props.files.length; i++) {
@@ -104,12 +101,12 @@ export default class File extends React.Component {
     // e.stopPropagation();
 
     let newFiles;
-    const fileRef = this.fileRef.current;
+    const inputRef = this.inputRef.current;
 
-    if (typeof e.dataTransfer !== `undefined`) {
+    if (isUndefined(e.dataTransfer)) {
       newFiles = e.dataTransfer.files;
     } else {
-      newFiles = fileRef.files;
+      newFiles = inputRef.files;
     }
 
     const files = [...this.state.files];
@@ -169,7 +166,7 @@ export default class File extends React.Component {
 
     // * Manually empty the FileList object to force the onChange() method to
     // *  fire if the same file has been uploaded a second time.
-    fileRef.value = ``;
+    inputRef.value = ``;
   };
 
   handleClick = (e, fileName) => {
@@ -196,7 +193,7 @@ export default class File extends React.Component {
     const {
       props,
       state,
-      fileRef,
+      inputRef,
       id,
       handleDragEnter,
       handleChange,
@@ -204,93 +201,87 @@ export default class File extends React.Component {
       handleClick
     } = this;
 
-    const modifiers = remove([`file--error`, `file--success`], props.modifiers);
+    const modifiers = remove([`error`, `success`], props.modifiers);
 
-    let classNames = namespace(`file`);
-
-    modifiers && (classNames += ` ${namespace(toModifier(modifiers, `file`))}`);
-
-    state.error && (classNames += ` ${namespace(toModifier(`error`, `file`))}`);
-    state.success &&
-      (classNames += ` ${namespace(toModifier(`success`, `file`))}`);
-
-    props.className && (classNames += ` ${props.className}`);
+    const bem = BEM(`file`);
+    bem.addModifiers(modifiers);
+    bem.addModifiers(state.error ? `error` : ``);
+    bem.addModifiers(state.success ? `success` : ``);
+    bem.addClassNames(props.className);
 
     return (
-      <div className={classNames} style={props.style}>
-        <div className={namespace(`file__outer`)} onDragEnter={handleDragEnter}>
+      <div className={bem.getResult()} style={props.style}>
+        <div className={bem.getElement(`outer`)} onDragEnter={handleDragEnter}>
           <input
-            ref={fileRef}
+            ref={inputRef}
             id={id}
-            className={
-              !state.active
-                ? namespace(`file__input`)
-                : namespace(`file__input active`)
-            }
+            className={`${bem.getElement(`input`)}${
+              state.active ? ` active` : ``
+            }`}
             type="file"
             multiple={props.multiple}
             onDragLeave={handleDragLeave}
             onDrop={handleChange}
             name={props.name}
             onChange={handleChange}
-            onDragEnter={event => event.preventDefault()}
-            onDragOver={event => event.preventDefault()}
+            onDragEnter={e => e.preventDefault()}
+            onDragOver={e => e.preventDefault()}
           />
-          <div className={namespace(`file__inner`)}>
-            <div className={namespace(`file__image`)}>
+          <div className={bem.getElement(`inner`)}>
+            <div className={bem.getElement(`image`)}>
               <Icon type="cloud-upload" />
             </div>
-            <span className={namespace(`file__description`)}>
-              <strong className={namespace(`strong`)}>
-                {`Drag and drop ${!props.multiple ? `a file` : `files`}`}
+            <span className={bem.getElement(`description`)}>
+              <strong className={addNamespace(`strong`)}>
+                {`Drag and drop ${props.multiple ? `files` : `a file`}`}
               </strong>
               <br />
               or
             </span>
-            <label htmlFor={id} className={namespace(`file__label`)}>
-              {`Select ${!props.multiple ? `a file` : `files`}`}
+            <label htmlFor={id} className={bem.getElement(`label`)}>
+              {`Select ${props.multiple ? `files` : `a file`}`}
             </label>
-            <span className={namespace(`file__types`)}>{`${
-              !state.selected
-                ? props.fileTypes.join(`, `)
-                : `${state.files.length} ${
+            <span className={bem.getElement(`types`)}>{`${
+              state.selected
+                ? `${state.files.length} ${
                     state.files.length > 1 ? `files` : `file`
                   } added`
+                : props.fileTypes.join(`, `)
             }`}</span>
           </div>
         </div>
         {(state.error || state.success) && props.message && (
-          <span className={namespace(`file__message`)}>{props.message}</span>
+          <span className={bem.getElement(`message`)}>{props.message}</span>
         )}
         {state.files.length !== 0 && (
-          <div className={namespace(`file__list`)}>
+          <div className={bem.getElement(`list`)}>
             <Table>
               <TableBody>
                 {state.files.map(file => (
-                  <TableRow key={file.name} modifiers="file__item">
+                  <TableRow key={file.name} modifiers={bem.getElement(`item`)}>
                     <TableCell>
-                      <span className={namespace(`file__name`)}>
+                      <span className={bem.getElement(`name`)}>
                         {file.name}
                         {` `}
                       </span>
-                      <span className={namespace(`file__size`)}>
+                      <span className={bem.getElement(`size`)}>
                         {getBytes(file.size)}
                       </span>
                     </TableCell>
-                    <TableCell modifiers="td--middle" width="33.333%">
+                    <TableCell modifiers="middle" style={{ width: `33.333%` }}>
                       <Progress
                         progress={file.progress}
                         message={file.message}
                         modifiers={
-                          !file.modifiers
-                            ? `progress--compact`
-                            : `progress--compact ${file.modifiers}`
+                          file.modifiers
+                            ? `compact ${file.modifiers}`
+                            : `compact`
                         }
                       />
                     </TableCell>
-                    <TableCell modifiers="td--middle" width={40}>
+                    <TableCell modifiers="middle" width={40}>
                       <button
-                        className={namespace(`file__button`)}
+                        className={bem.getElement(`button`)}
                         title="Remove"
                         onClick={e => handleClick(e, file.name)}>
                         <Icon type="close" />
@@ -311,6 +302,7 @@ File.propTypes = {
   name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.string,
   modifiers: PropTypes.string,
+  message: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.object,
   files: PropTypes.arrayOf(
@@ -336,3 +328,5 @@ File.defaultProps = {
   onChange: () => {},
   onRemove: () => {}
 };
+
+export { File as default };

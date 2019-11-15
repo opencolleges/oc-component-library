@@ -1,17 +1,14 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
-
 import {
   number,
   optionsKnob as options,
   text,
   withKnobs
 } from '@storybook/addon-knobs';
-
-import Uniform from '../uniform';
+import React from 'react';
 import Progress from './progress';
-
+import Uniform from '../uniform';
 import UNIFORM_STYLES from '../../.storybook/storybook';
 
 const progressProgress = [

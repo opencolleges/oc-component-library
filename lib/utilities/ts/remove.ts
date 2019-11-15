@@ -16,4 +16,4 @@ const remove = (modifier: string | string[], modifiers: string): string => {
   return modifiers;
 };
 
-export default remove;
+export { remove as default };
