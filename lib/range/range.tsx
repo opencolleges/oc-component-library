@@ -9,13 +9,20 @@ interface Props {
   max?: number;
   min?: number;
   name?: string;
-  onChange?: (event: any) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   style?: React.CSSProperties;
   value?: number;
 }
 
 interface State {
   value: number;
+}
+
+interface RenderInterface {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  id: string;
+  props: Props;
+  state: State;
 }
 
 class Range extends React.Component<Props> {
@@ -30,13 +37,12 @@ class Range extends React.Component<Props> {
   readonly state: Readonly<State> = {
     value: this.props.value
       ? this.props.value
-      : (Number(this.props.max) - Number(this.props.min)) / 2 +
-        Number(this.props.min)
+      : (this.props.max - this.props.min) / 2 + this.props.min
   };
 
   id: string = this.props.id ? this.props.id : getId();
 
-  componentDidUpdate(prevProps): void {
+  componentDidUpdate(prevProps: Props): void {
     if (this.props.value !== prevProps.value) {
       this.setState({
         value: this.props.value
@@ -44,14 +50,13 @@ class Range extends React.Component<Props> {
     }
   }
 
-  handleChange = (e): void => {
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({ value: e.target.value });
-
     this.props.onChange(e);
   };
 
   render() {
-    const { props, state, id, handleChange } = this;
+    const { props, state, id, handleChange }: RenderInterface = this;
 
     const BEM_MODULE: BEMInterface = BEM(`range`);
     const { addClassNames, getElement, getResult }: BEMInterface = BEM_MODULE;
@@ -76,8 +81,7 @@ class Range extends React.Component<Props> {
         <div
           className={getElement(`track`)}
           style={{
-            width: `${((state.value - props.min) /
-              (Number(props.max) - Number(props.min))) *
+            width: `${((state.value - props.min) / (props.max - props.min)) *
               100}%`
           }}
           aria-hidden="true"
@@ -85,11 +89,10 @@ class Range extends React.Component<Props> {
         <div
           className={getElement(`thumb`)}
           style={{
-            left: `${((state.value - props.min) /
-              (Number(props.max) - Number(props.min))) *
+            left: `${((state.value - props.min) / (props.max - props.min)) *
               100}%`,
             transform: `translateX(-${((state.value - props.min) /
-              (Number(props.max) - Number(props.min))) *
+              (props.max - props.min)) *
               100}%)`
           }}
           aria-hidden="true"

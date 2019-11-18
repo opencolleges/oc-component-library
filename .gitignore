@@ -1,19 +1,22 @@
-# Dependencies.
+# Dependencies
 /node_modules
 
-# Production.
+# Production
 /build
 
-# Distributed version.
+# Distributed version
 /dist
 
-# Storybook UI.
+# Documentation
+/docs
+
+# Storybook UI
 /storybook
 
-# Unit testing.
+# Unit testing
 /coverage
 
-# Misc.
+# Misc
 .idea
 .DS_Store
 .env.local

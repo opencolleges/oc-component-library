@@ -19,6 +19,11 @@ interface State {
   success: boolean;
 }
 
+interface RenderInterface {
+  props: Props;
+  state: State;
+}
+
 class Progress extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     totalProgress: 100
@@ -29,7 +34,7 @@ class Progress extends React.Component<Props> {
     success: false
   };
 
-  componentDidUpdate(prevProps): void {
+  componentDidUpdate(prevProps: Props): void {
     if (
       this.props.progress !== prevProps.progress &&
       this.props.progress === this.props.totalProgress &&
@@ -46,7 +51,7 @@ class Progress extends React.Component<Props> {
   }
 
   render() {
-    const { props, state } = this;
+    const { props, state }: RenderInterface = this;
 
     const BEM_MODULE: BEMInterface = BEM(`progress`);
     const {
@@ -75,12 +80,7 @@ class Progress extends React.Component<Props> {
     return (
       <div className={getResult()} style={props.style}>
         <div className={getElement(`bar-outer`)}>
-          <div
-            className={getElement(`bar`)}
-            style={{
-              width
-            }}
-          />
+          <div className={getElement(`bar`)} style={{ width }} />
         </div>
         <div className={getElement(`label`)}>{label}</div>
         {isNotAlt(props.modifiers) && (

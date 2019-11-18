@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import getId from '../../utilities/ts/get-id';
+import { NAMESPACE } from '../../utilities/ts/constants';
 import { ToastProps } from '../toaster';
 
 const addId = (initialToasts: ToastProps[]): ToastProps[] => {
@@ -7,7 +7,7 @@ const addId = (initialToasts: ToastProps[]): ToastProps[] => {
 
   for (const toast of toasts) {
     if (!toast.id) {
-      toast.id = getId();
+      toast.id = _.uniqueId(`${NAMESPACE}-`);
     }
   }
 
