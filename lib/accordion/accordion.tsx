@@ -74,7 +74,7 @@ class Accordion extends React.Component<Props, State> {
     addModifiers(props.modifiers);
     addClassNames(!!state.open ? `active` : ``);
     addClassNames(props.className);
-        
+
     return (
       <div className={getResult()} style={props.style}>
         <button

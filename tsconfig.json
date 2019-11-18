@@ -6,6 +6,14 @@
     "sourceMap": true,
     "target": "es5"
   },
+  "typedocOptions": {
+    "mode": "modules",
+    "includeDeclarations": true,
+    "disableOutputCheck": true,
+    "exclude": "lib/**/_*,lib/**/*index*,lib/**/*stories*,lib/**/*test*",
+    "excludeExternals": true,
+    "out": "docs"
+  },
   "include": ["./lib/**/*"],
   "plugins": [{ "name": "typescript-tslint-plugin" }]
 }
