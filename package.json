@@ -4,11 +4,13 @@
   "description": "React Component",
   "main": "dist/index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-cli --config='webpack.config.js' --mode='development' --watch",
     "build": "NODE_ENV=production webpack-cli --config='webpack.config.js' --mode='production' && npm run build_css",
-    "build_css": "NODE_ENV=production entry=css webpack-cli --config='webpack.config.js' --mode='production'",
-    "storybook": "start-storybook",
+    "build-css": "NODE_ENV=production entry=css webpack-cli --config='webpack.config.js' --mode='production'",
+    "build-docs": "typedoc lib/**/*.{ts,tsx}",
     "build-storybook": "build-storybook -o storybook",
+    "deploy-docs": "gh-pages -d docs -t",
+    "start": "NODE_ENV=development webpack-cli --config='webpack.config.js' --mode='development' --watch",
+    "storybook": "start-storybook",
     "test": "jest --coverage --verbose",
     "test:watch": "jest --watch-all"
   },
@@ -21,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/opencolleges/Uniform/issues"
   },
-  "homepage": "https://github.com/opencolleges/Uniform#readme",
+  "homepage": "https://opencolleges.github.io/Uniform",
   "peerDependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
@@ -62,6 +64,7 @@
     "eslint-watch": "^4.0.2",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
+    "gh-pages": "^2.1.1",
     "husky": "^2.7.0",
     "ignore-loader": "^0.1.2",
     "jest": "^24.9.0",
@@ -84,6 +87,7 @@
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.1.0",
+    "typedoc": "^0.15.1",
     "typescript": "^3.7.2",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^1.1.2",

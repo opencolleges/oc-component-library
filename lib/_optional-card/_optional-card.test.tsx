@@ -1,7 +1,7 @@
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
-import OptionalCard from './optional-card';
+import OptionalCard from './_optional-card';
 
 let wrapper: ReactWrapper = null;
 

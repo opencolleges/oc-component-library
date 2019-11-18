@@ -7,6 +7,9 @@
 # Distributed version.
 /dist
 
+# Documentation
+/docs
+
 # Storybook UI.
 /storybook
 
