@@ -47,6 +47,7 @@ interface Props {
  * ```
  *
  */
+
 const Badge: React.FC<Props> = (props: Props) => {
   const BEM_MODULE: BEMInterface = BEM(`badge`);
   const { addClassNames, addModifiers, getResult }: BEMInterface = BEM_MODULE;
