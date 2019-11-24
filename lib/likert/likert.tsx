@@ -21,6 +21,13 @@ interface State {
   value?: string;
 }
 
+interface RenderInterface {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  props: Props;
+  scale: LikertOptionInterface[];
+  state: State;
+}
+
 class Likert extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     onChange: () => {
@@ -34,14 +41,14 @@ class Likert extends React.Component<Props, State> {
 
   scale: LikertOptionInterface[] = getScale(this.props.options);
 
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({
-      value: event.target.value
+      value: e.target.value
     });
   };
 
   render() {
-    const { props, state, scale, handleChange } = this;
+    const { props, state, scale, handleChange }: RenderInterface = this;
 
     const BEM_MODULE: BEMInterface = BEM(`likert`);
     const {

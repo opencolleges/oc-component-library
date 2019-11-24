@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import Icon from '../icon';
 import addNamespace from '../utilities/ts/add-namespace';
@@ -6,6 +5,7 @@ import BEM, { BEMInterface } from '../utilities/ts/bem';
 import getId from '../utilities/ts/get-id';
 import includes from '../utilities/ts/includes';
 import itemise from '../utilities/ts/itemise';
+import startsWith from '../utilities/ts/starts-with';
 
 interface Options {
   label: string;
@@ -55,7 +55,7 @@ class Select extends React.Component<Props> {
     active: false,
     error: includes(itemise(this.props.modifiers), `error`),
     success: includes(itemise(this.props.modifiers), `success`),
-    value: _.find(this.props.options, { value: this.props.value })
+    value: includes(this.props.options, { value: this.props.value })
       ? this.props.value
       : ``
   };
@@ -291,7 +291,7 @@ class Select extends React.Component<Props> {
           }>
           {!state.value
             ? `Pick ${
-                _.startsWith(`aeiou`, props.label) ? `an` : `a`
+                startsWith(props.label, [`a`, `e`, `i`, `o`, `u`]) ? `an` : `a`
               } ${props.label.toLowerCase()}`
             : getLabelFromValue(state.value)}
         </span>
@@ -331,7 +331,7 @@ class Select extends React.Component<Props> {
             </ul>
           </div>
         )}
-        {!props.readOnly && !props.disabled && props.message && (
+        {!props.readOnly && !props.disabled && !!props.message && (
           <span className={getElement(`message`)}>{props.message}</span>
         )}
       </div>

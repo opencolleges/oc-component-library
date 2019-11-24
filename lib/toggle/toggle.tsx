@@ -20,6 +20,13 @@ interface State {
   checked?: boolean;
 }
 
+interface RenderInterface {
+  handleChange: () => void;
+  id: string;
+  props: Props;
+  state: State;
+}
+
 class Toggle extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     checked: false,
@@ -41,7 +48,7 @@ class Toggle extends React.Component<Props, State> {
   };
 
   render() {
-    const { props, state, id, handleChange } = this;
+    const { props, state, id, handleChange }: RenderInterface = this;
 
     const BEM_MODULE: BEMInterface = BEM(`toggle`);
     const {

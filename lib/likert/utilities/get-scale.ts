@@ -4,7 +4,7 @@ import getId from '../../utilities/ts/get-id';
 const getScale = (
   options: LikertOptionInterface[]
 ): LikertOptionInterface[] => {
-  const SCALE: LikertOptionInterface[] = [];
+  const OPTIONS: LikertOptionInterface[] = [];
 
   let range: number = options.length;
 
@@ -18,13 +18,13 @@ const getScale = (
   for (let i: number = 0; i < range; i++) {
     const OPTION: LikertOptionInterface = {
       id: getId(),
-      label: options[i] && options[i].label ? options[i].label : ``
+      label: !!options[i] && !!options[i].label ? options[i].label : ``
     };
 
-    SCALE.push(OPTION);
+    OPTIONS.push(OPTION);
   }
 
-  return SCALE;
+  return OPTIONS;
 };
 
 export { getScale as default };

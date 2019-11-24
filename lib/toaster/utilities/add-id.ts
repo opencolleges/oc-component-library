@@ -1,17 +1,17 @@
 import _ from 'lodash';
-import { NAMESPACE } from '../../utilities/ts/constants';
-import { ToastProps } from '../toaster';
+import getId from '../../utilities/ts/get-id';
+import isObj from '../../utilities/ts/is-obj';
 
-const addId = (initialToasts: ToastProps[]): ToastProps[] => {
-  const toasts: ToastProps[] = _.cloneDeep(initialToasts);
+const addId = (collection: any[]): any[] => {
+  const COLLECTION: any[] = _.cloneDeep(collection);
 
-  for (const toast of toasts) {
-    if (!toast.id) {
-      toast.id = _.uniqueId(`${NAMESPACE}-`);
+  for (const i of COLLECTION) {
+    if (isObj(i) && !i.id) {
+      i.id = getId();
     }
   }
 
-  return toasts;
+  return COLLECTION;
 };
 
 export { addId as default };

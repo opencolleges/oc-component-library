@@ -6,7 +6,7 @@ import addId from './utilities/add-id';
 
 type ModifiersTypes = `error` | `success`;
 
-export interface ToastProps {
+interface Toasts {
   className?: string;
   duration?: number;
   heading: string;
@@ -21,11 +21,11 @@ export interface ToastProps {
 interface Props {
   className?: string;
   style?: React.CSSProperties;
-  toasts?: ToastProps[];
+  toasts?: Toasts[];
 }
 
 interface State {
-  toasts: ToastProps[];
+  toasts: Toasts[];
 }
 
 interface RenderInterface {
@@ -52,7 +52,7 @@ class Toaster extends React.Component<Props, State> {
   }
 
   handleClick = (id: string): void => {
-    const toasts: ToastProps[] = [...this.state.toasts];
+    const toasts: Toasts[] = [...this.state.toasts];
 
     for (let i: number = 0; i < toasts.length; i++) {
       if (toasts[i].id === id) {

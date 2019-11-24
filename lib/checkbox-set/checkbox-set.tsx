@@ -57,7 +57,7 @@ class CheckboxSet extends React.Component<Props, State> {
   });
 
   intersection: string[] = this.checkboxesArray.filter(
-    value => this.props.value && this.props.value.indexOf(value) !== -1
+    value => !!this.props.value && this.props.value.indexOf(value) !== -1
   );
 
   readonly state: Readonly<State> = {

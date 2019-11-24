@@ -46,7 +46,8 @@ class Date extends React.Component<Props, State> {
   };
 
   id: string = this.props.id ? this.props.id : getId();
-  inRange: boolean = dateTime.isInRange(
+
+  isInRange: boolean = dateTime.isInRange(
     this.props.minDate,
     this.props.maxDate,
     this.props.value
@@ -58,11 +59,11 @@ class Date extends React.Component<Props, State> {
   readonly state: Readonly<State> = {
     active: false,
     calendar: dateTime.getCalendarMonth(
-      this.props.value && this.inRange ? this.props.value : ``
+      this.props.value && this.isInRange ? this.props.value : ``
     ),
     error: includes(itemise(this.props.modifiers), `error`),
     success: includes(itemise(this.props.modifiers), `success`),
-    value: this.props.value && this.inRange ? this.props.value : ``
+    value: this.props.value && this.isInRange ? this.props.value : ``
   };
 
   componentDidUpdate(prevProps: Props, prevState: State): void {

@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import OptionalCard from '../_optional-card';
 import Grid from '../grid';
@@ -36,6 +35,12 @@ interface State {
   value: string;
 }
 
+interface RenderInterface {
+  handleChange: (value: string) => void;
+  props: Props;
+  state: State;
+}
+
 class RadioSet extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     cards: false,
@@ -50,12 +55,12 @@ class RadioSet extends React.Component<Props, State> {
   readonly state: Readonly<State> = {
     error: includes(this.props.modifiers, `error`),
     success: includes(this.props.modifiers, `success`),
-    value: _.some(this.props.radios, [`value`, this.props.value])
+    value: includes(this.props.radios, { value: this.props.value })
       ? this.props.value
       : ``
   };
 
-  componentDidUpdate(prevProps): void {
+  componentDidUpdate(prevProps: Props): void {
     if (prevProps.modifiers !== this.props.modifiers) {
       this.setState({
         error: includes(this.props.modifiers, `error`),
@@ -75,10 +80,11 @@ class RadioSet extends React.Component<Props, State> {
   };
 
   render() {
-    const { props, state, handleChange } = this;
+    const { props, state, handleChange }: RenderInterface = this;
 
-    const error: string = state.error ? `error` : ``;
-    const success: string = state.success ? `success` : ``;
+    const modifiers: string = `${state.error ? `error` : ``} ${
+      state.success ? `success` : ``
+    }`;
 
     const BEM_MODULE: BEMInterface = BEM(`radio-set`);
     const {
@@ -88,17 +94,14 @@ class RadioSet extends React.Component<Props, State> {
       getResult
     }: BEMInterface = BEM_MODULE;
 
-    addModifiers(error);
-    addModifiers(success);
+    addModifiers(modifiers);
     addClassNames(props.className);
-
-    const modifiers: string = `${error}${success}`;
 
     return (
       <div className={getResult()} style={props.style}>
         <Grid modifiers="gutter-x-fixed">
-          {props.radios.map((radio, index) => (
-            <GridItem key={index} modifiers="s-12 m-6 align-end">
+          {props.radios.map((radio, i) => (
+            <GridItem key={i} modifiers="s-12 m-6 align-end">
               <OptionalCard
                 disabled={props.disabled}
                 readOnly={props.readOnly}
@@ -112,7 +115,7 @@ class RadioSet extends React.Component<Props, State> {
                   value={radio.value}
                   disabled={props.disabled}
                   readOnly={props.readOnly}
-                  required={!!props.required && index === 0}
+                  required={!!props.required && i === 0}
                   checked={state.value === radio.value}
                   onChange={handleChange}>
                   {radio.label}
