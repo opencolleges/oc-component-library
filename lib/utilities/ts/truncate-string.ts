@@ -1,5 +1,5 @@
 const truncateString = (str: string = ``, maxLength: number): string => {
-  if (maxLength && str.length >= maxLength) {
+  if (maxLength && maxLength < str.length) {
     return str.substring(0, maxLength);
   }
 

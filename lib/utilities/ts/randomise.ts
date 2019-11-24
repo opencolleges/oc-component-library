@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const randomise = (min, max) => {
+const randomise = (min: number, max: number): number => {
   return _.random(min, max);
 };
 

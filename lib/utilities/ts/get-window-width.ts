@@ -1,13 +1,20 @@
+import {
+  MEDIUM_BREAKPOINT,
+  SMALL_BREAKPOINT
+} from '../../utilities/ts/constants';
+
 const getWindowWidth = (): string => {
-  const windowWidth: number = window.innerWidth;
+  const WINDOW_WIDTH: number = window.innerWidth;
 
-  let context: string;
+  let context: string = `small`;
 
-  windowWidth <= 480
-    ? (context = `small`)
-    : windowWidth <= 768
-    ? (context = `medium`)
-    : (context = `large`);
+  if (WINDOW_WIDTH > SMALL_BREAKPOINT) {
+    context = `medium`;
+  }
+
+  if (WINDOW_WIDTH > MEDIUM_BREAKPOINT) {
+    context = `large`;
+  }
 
   return context;
 };
