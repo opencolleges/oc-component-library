@@ -28,6 +28,18 @@ interface State {
   top: number;
 }
 
+interface RenderInterface {
+  handleBlur: () => void;
+  handleClick: () => void;
+  handleFocus: () => void;
+  handleKeyDown: (e: React.KeyboardEvent) => void;
+  handleMouseEnter: () => void;
+  handleMouseLeave: () => void;
+  props: Props;
+  state: State;
+  toastRef: React.RefObject<HTMLDivElement>;
+}
+
 class Toast extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     duration: 8000,
@@ -78,17 +90,21 @@ class Toast extends React.Component<Props, State> {
   handleClick = (): void => {
     const toastRef: HTMLDivElement = this.toastRef.current;
 
-    const nextToastRef: any = toastRef.nextSibling;
-    const previousToastRef: any = toastRef.previousSibling;
+    const nextToastRef: Node = toastRef.nextSibling;
+    const previousToastRef: Node = toastRef.previousSibling;
 
     if (nextToastRef) {
-      for (const childNode of nextToastRef.childNodes) {
+      for (const childNode of Array.from(
+        nextToastRef.childNodes
+      ) as HTMLDivElement[]) {
         if (childNode.hasAttribute(`tabindex`)) {
           childNode.focus();
         }
       }
     } else if (previousToastRef) {
-      for (const childNode of previousToastRef.childNodes) {
+      for (const childNode of Array.from(
+        previousToastRef.childNodes
+      ) as HTMLDivElement[]) {
         if (childNode.hasAttribute(`tabindex`)) {
           childNode.focus();
         }
@@ -133,16 +149,18 @@ class Toast extends React.Component<Props, State> {
   // This method is triggered onKeyDown, because the default scroll behaviour
   // fires before onKeyUp.
 
-  handleKeyDown = (event: any): void => {
-    const toastRef: any = this.toastRef.current;
+  handleKeyDown = (e: React.KeyboardEvent): void => {
+    const toastRef: HTMLDivElement = this.toastRef.current;
 
     // 'ArrowLeft' key
-    if (event.keyCode === 37) {
-      event.preventDefault();
-      event.stopPropagation();
+    if (e.keyCode === 37) {
+      e.preventDefault();
+      e.stopPropagation();
 
       if (toastRef.previousSibling) {
-        for (const childNode of toastRef.previousSibling.childNodes) {
+        for (const childNode of Array.from(
+          toastRef.previousSibling.childNodes
+        ) as HTMLDivElement[]) {
           if (childNode.hasAttribute(`tabindex`)) {
             childNode.focus();
             break;
@@ -152,12 +170,14 @@ class Toast extends React.Component<Props, State> {
     }
 
     // 'ArrowUp' key
-    if (event.keyCode === 38) {
-      event.preventDefault();
-      event.stopPropagation();
+    if (e.keyCode === 38) {
+      e.preventDefault();
+      e.stopPropagation();
 
       if (toastRef.previousSibling) {
-        for (const childNode of toastRef.previousSibling.childNodes) {
+        for (const childNode of Array.from(
+          toastRef.previousSibling.childNodes
+        ) as HTMLDivElement[]) {
           if (childNode.hasAttribute(`tabindex`)) {
             childNode.focus();
             break;
@@ -167,12 +187,14 @@ class Toast extends React.Component<Props, State> {
     }
 
     // 'ArrowRight' key
-    if (event.keyCode === 39) {
-      event.preventDefault();
-      event.stopPropagation();
+    if (e.keyCode === 39) {
+      e.preventDefault();
+      e.stopPropagation();
 
       if (toastRef.nextSibling) {
-        for (const childNode of toastRef.nextSibling.childNodes) {
+        for (const childNode of Array.from(
+          toastRef.nextSibling.childNodes
+        ) as HTMLDivElement[]) {
           if (childNode.hasAttribute(`tabindex`)) {
             childNode.focus();
             break;
@@ -182,12 +204,14 @@ class Toast extends React.Component<Props, State> {
     }
 
     // 'ArrowDown' key
-    if (event.keyCode === 40) {
-      event.preventDefault();
-      event.stopPropagation();
+    if (e.keyCode === 40) {
+      e.preventDefault();
+      e.stopPropagation();
 
       if (toastRef.nextSibling) {
-        for (const childNode of toastRef.nextSibling.childNodes) {
+        for (const childNode of Array.from(
+          toastRef.nextSibling.childNodes
+        ) as HTMLDivElement[]) {
           if (childNode.hasAttribute(`tabindex`)) {
             childNode.focus();
             break;
@@ -208,7 +232,7 @@ class Toast extends React.Component<Props, State> {
       handleMouseEnter,
       handleMouseLeave,
       handleClick
-    } = this;
+    }: RenderInterface = this;
 
     const BEM_MODULE: BEMInterface = BEM(`toast`);
     const {

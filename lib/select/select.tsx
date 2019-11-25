@@ -185,13 +185,13 @@ class Select extends React.Component<Props> {
     }
   };
 
-  handleBlur = (event: React.FocusEvent): void => {
-    event.preventDefault();
-    event.stopPropagation();
+  handleBlur = (e: React.FocusEvent): void => {
+    e.preventDefault();
+    e.stopPropagation();
 
-    const target: HTMLElement = event.target as HTMLElement;
+    const target: HTMLElement = e.target as HTMLElement;
     const relatedTarget: HTMLElement =
-      (event.relatedTarget as HTMLElement) ||
+      (e.relatedTarget as HTMLElement) ||
       (document.activeElement as HTMLElement);
 
     if (
@@ -207,7 +207,7 @@ class Select extends React.Component<Props> {
   };
 
   getLabelFromValue = (value: string): string => {
-    const { options } = this.props;
+    const { options }: Props = this.props;
 
     let label: string = ``;
 
