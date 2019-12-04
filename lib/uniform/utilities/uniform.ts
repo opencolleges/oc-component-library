@@ -1,5 +1,4 @@
 import detectIt from 'detect-it';
-// import addNamespace from '../../utilities/ts/add-namespace';
 import dateTime from '../../utilities/ts/date-time';
 
 interface Uniform {
@@ -35,7 +34,6 @@ const uniform: Uniform = {
       }
     }
 
-    // return addNamespace(theme);
     return theme;
   },
 

@@ -60,6 +60,7 @@ const dateTime: DateTime = {
     { index: 3, name: `Spring` },
     { index: 3, name: `Spring` },
     { index: 3, name: `Spring` },
+    { index: 0, name: `Summer` },
     { index: 0, name: `Summer` }
   ],
 
