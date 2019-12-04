@@ -38,7 +38,7 @@ interface State {
   value: string;
 }
 
-class Textarea extends React.Component<Props> {
+class Textarea extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     grammarly: true,
@@ -74,21 +74,13 @@ class Textarea extends React.Component<Props> {
     if (this.props.modifiers !== prevProps.modifiers) {
       this.setState({
         error: includes(itemise(this.props.modifiers), `error`),
-        message: this.props.message ? this.props.message : ``,
         success: includes(itemise(this.props.modifiers), `success`)
-      });
-    }
-
-    if (this.props.disabled !== prevProps.disabled) {
-      this.setState({
-        disabled: this.props.disabled
       });
     }
 
     if (this.state.value !== prevState.value) {
       this.setState({
         error: false,
-        message: ``,
         success: false
       });
     }
@@ -169,7 +161,7 @@ class Textarea extends React.Component<Props> {
     return ``;
   };
 
-  handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const target: HTMLTextAreaElement = event.target;
 
     this.setState({

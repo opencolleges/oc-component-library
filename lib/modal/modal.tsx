@@ -29,7 +29,7 @@ interface State {
   mounted: boolean;
 }
 
-class Modal extends React.Component<Props> {
+class Modal extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     active: false,
     buttons: [],

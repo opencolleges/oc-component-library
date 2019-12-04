@@ -92,7 +92,7 @@ interface State {
   value: string;
 }
 
-class Text extends React.Component<Props> {
+class Text extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     onBlur: () => {
@@ -146,12 +146,6 @@ class Text extends React.Component<Props> {
       this.setState({
         error: includes(itemise(this.props.modifiers), `error`),
         success: includes(itemise(this.props.modifiers), `success`)
-      });
-    }
-
-    if (this.props.disabled !== prevProps.disabled) {
-      this.setState({
-        disabled: this.props.disabled
       });
     }
 
@@ -241,7 +235,7 @@ class Text extends React.Component<Props> {
     }
   };
 
-  handleChange = (event: React.ChangeEvent) => {
+  handleChange = (event: React.ChangeEvent): void => {
     const target: HTMLInputElement = event.target as HTMLInputElement;
 
     this.setState({ value: target.value });
