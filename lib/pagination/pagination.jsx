@@ -202,7 +202,7 @@ class Pagination extends React.Component {
     if (state.siblings === mobileSiblings) {
       if (state.currentPage === totalPages && totalPages >= 3) {
         coords = 96;
-      } else {
+      } else if (state.currentPage !== 1) {
         coords = 48;
       }
     } else if (state.siblings === tabletSiblings) {
@@ -213,10 +213,10 @@ class Pagination extends React.Component {
       } else if (state.currentPage === totalPages && totalPages >= 4) {
         if (totalPages >= 5) {
           coords = 224;
-        } else {
+        } else if (state.currentPage !== 1) {
           coords = 168;
         }
-      } else {
+      } else if (state.currentPage !== 1) {
         coords = 112;
       }
     } else {
@@ -229,7 +229,7 @@ class Pagination extends React.Component {
       } else if (state.currentPage === totalPages - 1 && totalPages >= 6) {
         if (totalPages >= 7) {
           coords = 280;
-        } else {
+        } else if (state.currentPage !== 1) {
           coords = 224;
         }
       } else if (state.currentPage === totalPages && totalPages >= 5) {
@@ -237,10 +237,10 @@ class Pagination extends React.Component {
           coords = 336;
         } else if (totalPages >= 6) {
           coords = 280;
-        } else {
+        } else if (state.currentPage !== 1) {
           coords = 224;
         }
-      } else {
+      } else if (state.currentPage !== 1) {
         coords = 168;
       }
     }
