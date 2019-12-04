@@ -50,6 +50,8 @@ class Pagination extends React.Component<Props, State> {
   tabletSiblings: number = 2;
   desktopSiblings: number = 3;
 
+  buttonWidth: number = 48;
+
   readonly state: Readonly<State> = {
     currentPage: this.props.currentPage === 0 ? 1 : this.props.currentPage,
     highlightCoords: 0,
@@ -90,14 +92,14 @@ class Pagination extends React.Component<Props, State> {
   updateDimensions = (): void => {
     const windowWidth: string = getWindowWidth();
 
-    let siblings: number;
+    let siblings: number = this.desktopSiblings;
 
     if (windowWidth === `small`) {
       siblings = this.mobileSiblings;
-    } else if (windowWidth === `medium`) {
+    }
+
+    if (windowWidth === `medium`) {
       siblings = this.tabletSiblings;
-    } else {
-      siblings = this.desktopSiblings;
     }
 
     this.setState({ siblings }, () => {
@@ -107,28 +109,24 @@ class Pagination extends React.Component<Props, State> {
       let paginationWidth = null;
 
       if (windowWidth === `small`) {
-        if (paginationChildren === 4) {
-          paginationWidth = 112;
-        } else if (paginationChildren === 5) {
-          paginationWidth = 160;
-        } else {
-          paginationWidth = 208;
+        paginationWidth =
+          this.buttonWidth * (paginationChildren - 2) +
+          (this.buttonWidth / 6) * 2;
+
+        if (paginationChildren > 5) {
+          paginationWidth = this.buttonWidth * 4 + (this.buttonWidth / 6) * 2;
         }
-      } else {
-        if (paginationChildren === 4) {
-          paginationWidth = 128;
-        } else if (paginationChildren === 5) {
-          paginationWidth = 184;
-        } else if (paginationChildren === 6) {
-          paginationWidth = 240;
-        } else if (paginationChildren === 7) {
-          paginationWidth = 296;
-        } else if (paginationChildren === 8) {
-          paginationWidth = 352;
-        } else if (paginationChildren === 9) {
-          paginationWidth = 408;
-        } else {
-          paginationWidth = 464;
+      }
+
+      if (windowWidth !== `small`) {
+        paginationWidth =
+          (this.buttonWidth + this.buttonWidth / 6) * (paginationChildren - 2) +
+          (this.buttonWidth / 6) * 2;
+
+        if (paginationChildren > 9) {
+          paginationWidth =
+            (this.buttonWidth + this.buttonWidth / 6) * 8 +
+            (this.buttonWidth / 6) * 2;
         }
       }
 
@@ -190,7 +188,7 @@ class Pagination extends React.Component<Props, State> {
     event.stopPropagation();
 
     const element = event.target as HTMLElement;
-    const pageNumber = parseInt(element.dataset.pageNumber, 10);
+    const pageNumber: number = parseInt(element.dataset.pageNumber, 10);
 
     this.goToPage(pageNumber);
   };
@@ -254,53 +252,100 @@ class Pagination extends React.Component<Props, State> {
   };
 
   handleHighlight = (): void => {
-    const { state, totalPages, mobileSiblings, tabletSiblings } = this;
+    const {
+      state,
+      totalPages,
+      mobileSiblings,
+      tabletSiblings,
+      buttonWidth
+    } = this;
 
     let coords: number = 0;
 
     if (state.siblings === mobileSiblings) {
+      // Middle positioned if not first or last
+      if (state.currentPage !== 1) {
+        coords = buttonWidth;
+      }
+      // Right positioned if last
       if (state.currentPage === totalPages && totalPages >= 3) {
-        coords = 96;
-      } else if (state.currentPage !== 1) {
-        coords = 48;
+        coords = buttonWidth * 2;
       }
-    } else if (state.siblings === tabletSiblings) {
+    }
+
+    if (state.siblings === tabletSiblings) {
+      // Middle positioned if current page not first or last
+      if (state.currentPage !== 1) {
+        coords = (buttonWidth + buttonWidth / 6) * 2;
+      }
+
+      // If current page equals to 2
       if (state.currentPage === 2) {
-        coords = 56;
-      } else if (state.currentPage === totalPages - 1 && totalPages >= 5) {
-        coords = 168;
-      } else if (state.currentPage === totalPages && totalPages >= 4) {
+        coords = buttonWidth + buttonWidth / 6;
+      }
+
+      // If current page is second to last
+      if (state.currentPage === totalPages - 1 && totalPages >= 5) {
+        coords = (buttonWidth + buttonWidth / 6) * 3;
+      }
+
+      // If current page is last one
+      if (state.currentPage === totalPages) {
         if (totalPages >= 5) {
-          coords = 224;
-        } else if (state.currentPage !== 1) {
-          coords = 168;
+          coords = (buttonWidth + buttonWidth / 6) * 4;
         }
-      } else if (state.currentPage !== 1) {
-        coords = 112;
+        if (totalPages < 5) {
+          coords = (buttonWidth + buttonWidth / 6) * 3;
+        }
       }
-    } else {
+    }
+
+    if (
+      state.siblings !== tabletSiblings &&
+      state.siblings !== mobileSiblings
+    ) {
+      // Middle positioned if current page not first or last
+      if (state.currentPage !== 1) {
+        coords = (buttonWidth + buttonWidth / 6) * 3;
+      }
+
+      // If current page equals to 2
       if (state.currentPage === 2) {
-        coords = 56;
-      } else if (state.currentPage === 3) {
-        coords = 112;
-      } else if (state.currentPage === totalPages - 2 && totalPages >= 7) {
-        coords = 224;
-      } else if (state.currentPage === totalPages - 1 && totalPages >= 6) {
-        if (totalPages >= 7) {
-          coords = 280;
-        } else if (state.currentPage !== 1) {
-          coords = 224;
+        coords = buttonWidth + buttonWidth / 6;
+      }
+
+      // If current page equals to 3
+      if (state.currentPage === 3) {
+        coords = (buttonWidth + buttonWidth / 6) * 2;
+      }
+
+      // If current page is third to last
+      if (state.currentPage === totalPages - 2 && totalPages >= 7) {
+        coords = (buttonWidth + buttonWidth / 6) * 4;
+      }
+
+      // If current page is second to last
+      if (state.currentPage === totalPages - 1) {
+        if (totalPages >= 6) {
+          coords = (buttonWidth + buttonWidth / 6) * 5;
         }
-      } else if (state.currentPage === totalPages && totalPages >= 5) {
-        if (totalPages >= 7) {
-          coords = 336;
-        } else if (totalPages >= 6) {
-          coords = 280;
-        } else if (state.currentPage !== 1) {
-          coords = 224;
+
+        if (totalPages < 6) {
+          coords = (buttonWidth + buttonWidth / 6) * 4;
         }
-      } else if (state.currentPage !== 1) {
-        coords = 168;
+      }
+
+      // If current page is last one
+      if (state.currentPage === totalPages) {
+        if (totalPages >= 7) {
+          coords = (buttonWidth + buttonWidth / 6) * 6;
+        }
+        if (totalPages >= 6 && totalPages < 7) {
+          coords = (buttonWidth + buttonWidth / 6) * 5;
+        }
+        if (totalPages < 6) {
+          coords = (buttonWidth + buttonWidth / 6) * 4;
+        }
       }
     }
 
