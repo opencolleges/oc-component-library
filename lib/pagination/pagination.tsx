@@ -2,12 +2,12 @@ import React from 'react';
 import Icon from '../icon';
 import addNamespace from '../utilities/ts/add-namespace';
 import BEM, { BEMInterface } from '../utilities/ts/bem';
+import getRange from '../utilities/ts/get-range';
 import getWindowWidth from '../utilities/ts/get-window-width';
-import getRange from '../utilities/ts/getRange';
 import pxToRem from '../utilities/ts/px-to-rem';
 
 interface Page {
-  modifiers: string;
+  modifiers?: string;
   number: number;
 }
 
@@ -402,9 +402,7 @@ class Pagination extends React.Component<Props, State> {
                   )} ${getModifier(`selectable`, `item`)}`
             }
             tabIndex={-1}
-            onClick={
-              pagination.previousPage ? event => handlePrevious(event) : null
-            }
+            onClick={pagination.previousPage ? handlePrevious : null}
             onKeyDown={handleKeyDown}>
             <Icon type="arrow-left" />
             <span className={getElement(`label`)}>Prev</span>
@@ -457,7 +455,7 @@ class Pagination extends React.Component<Props, State> {
               pagination.nextPage ? getModifier(`selectable`, `item`) : ``
             }`}
             tabIndex={-1}
-            onClick={pagination.nextPage ? event => handleNext(event) : null}
+            onClick={pagination.nextPage ? handleNext : null}
             onKeyDown={handleKeyDown}>
             <Icon type="arrow-right" />
             <span className={getElement(`label`)}>Next</span>
@@ -468,4 +466,4 @@ class Pagination extends React.Component<Props, State> {
   }
 }
 
-export { Pagination as default };
+export { Pagination as default, Page };
