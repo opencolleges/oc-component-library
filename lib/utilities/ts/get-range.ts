@@ -1,5 +1,5 @@
 const getRange = (startIndex: number, endIndex: number): number[] => {
-  const range = [];
+  const range: number[] = [];
   let start: number = startIndex;
 
   while (start <= endIndex) {

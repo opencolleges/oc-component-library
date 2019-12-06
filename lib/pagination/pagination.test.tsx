@@ -1,7 +1,7 @@
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { NAMESPACE } from '../utilities/ts/constants';
-import Pagination, { Page } from './pagination';
+import Pagination, { PageInterface } from './pagination';
 
 let wrapper: ReactWrapper = null;
 
@@ -178,7 +178,7 @@ describe(`<Pagination />`, () => {
   });
 
   it(`Handles props.pages`, () => {
-    let pages: Page[] = [];
+    let pages: PageInterface[] = [];
 
     pages = wrapper.state(`pages`);
     expect(pages.length).toBe(13);

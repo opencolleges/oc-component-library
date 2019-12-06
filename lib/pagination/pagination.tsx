@@ -6,12 +6,12 @@ import getRange from '../utilities/ts/get-range';
 import getWindowWidth from '../utilities/ts/get-window-width';
 import pxToRem from '../utilities/ts/px-to-rem';
 
-interface Page {
+interface PageInterface {
   modifiers?: string;
   number: number;
 }
 
-interface TPagination {
+interface PaginationInterface {
   nextPage: boolean;
   pages: number[];
   previousPage: boolean;
@@ -21,7 +21,7 @@ interface Props {
   className?: string;
   currentPage?: number;
   onChange: (page: number) => void;
-  pages: Page[];
+  pages: PageInterface[];
   style?: React.CSSProperties;
 }
 
@@ -29,7 +29,7 @@ interface State {
   currentPage: number;
   highlightCoords: number | string;
   mounted: boolean;
-  pages: Page[];
+  pages: PageInterface[];
   siblings: number;
   width: string;
 }
@@ -136,7 +136,7 @@ class Pagination extends React.Component<Props, State> {
     });
   };
 
-  fetchPagination = (): TPagination => {
+  fetchPagination = (): PaginationInterface => {
     const totalDisplayNumbers: number =
       this.state.currentPage + this.state.siblings;
     let startPage: number;
@@ -194,7 +194,7 @@ class Pagination extends React.Component<Props, State> {
   };
 
   handleKeyDown = (event: React.KeyboardEvent): void => {
-    const pagination: TPagination = this.fetchPagination();
+    const pagination: PaginationInterface = this.fetchPagination();
 
     // 'ArrowLeft' key
     if (event.keyCode === 37) {
@@ -354,7 +354,7 @@ class Pagination extends React.Component<Props, State> {
 
   getPageStatus = (pageNumber: number): string => {
     let status: string = ``;
-    const pages: Page[] = this.state.pages;
+    const pages: PageInterface[] = this.state.pages;
     for (const page of pages) {
       if (page.number === pageNumber) {
         status = page.modifiers;
@@ -377,7 +377,7 @@ class Pagination extends React.Component<Props, State> {
       getPageStatus
     } = this;
 
-    const pagination: TPagination = this.fetchPagination();
+    const pagination: PaginationInterface = this.fetchPagination();
 
     const BEM_MODULE: BEMInterface = BEM(`pagination`);
     const {
@@ -466,4 +466,4 @@ class Pagination extends React.Component<Props, State> {
   }
 }
 
-export { Pagination as default, Page };
+export { Pagination as default, PageInterface };
