@@ -149,19 +149,9 @@ class Text extends React.Component<Props, State> {
       });
     }
 
-    if (this.state.value !== prevState.value) {
+    if (this.props.disabled !== prevProps.disabled) {
       this.setState({
-        error: false,
-        success: false
-      });
-
-      // ! Not ideal.
-      this.forceUpdate();
-    }
-
-    if (this.props.value !== prevProps.value) {
-      this.setState({
-        value: truncateString(this.props.value, this.props.maxLength)
+        disabled: this.props.disabled
       });
     }
   }
