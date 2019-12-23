@@ -50,7 +50,11 @@ class Pagination extends React.Component<Props, State> {
   tabletSiblings: number = 2;
   desktopSiblings: number = 3;
 
-  buttonWidth: number = 48;
+  mobileButtonWidth: number = 48;
+  tabletButtonWidth: number =
+    this.mobileButtonWidth + this.mobileButtonWidth / 6;
+  desktopButtonWidth: number = this.tabletButtonWidth;
+  paginationLabel: number = this.mobileButtonWidth / 6;
 
   readonly state: Readonly<State> = {
     currentPage: this.props.currentPage === 0 ? 1 : this.props.currentPage,
@@ -110,23 +114,23 @@ class Pagination extends React.Component<Props, State> {
 
       if (windowWidth === `small`) {
         paginationWidth =
-          this.buttonWidth * (paginationChildren - 2) +
-          (this.buttonWidth / 6) * 2;
+          this.mobileButtonWidth * (paginationChildren - 2) +
+          this.paginationLabel * 2;
 
         if (paginationChildren > 5) {
-          paginationWidth = this.buttonWidth * 4 + (this.buttonWidth / 6) * 2;
+          paginationWidth =
+            this.mobileButtonWidth * 4 + this.paginationLabel * 2;
         }
       }
 
       if (windowWidth !== `small`) {
         paginationWidth =
-          (this.buttonWidth + this.buttonWidth / 6) * (paginationChildren - 2) +
-          (this.buttonWidth / 6) * 2;
+          this.desktopButtonWidth * (paginationChildren - 2) +
+          this.paginationLabel * 2;
 
         if (paginationChildren > 9) {
           paginationWidth =
-            (this.buttonWidth + this.buttonWidth / 6) * 8 +
-            (this.buttonWidth / 6) * 2;
+            this.desktopButtonWidth * 8 + this.paginationLabel * 2;
         }
       }
 
@@ -257,45 +261,48 @@ class Pagination extends React.Component<Props, State> {
       totalPages,
       mobileSiblings,
       tabletSiblings,
-      buttonWidth
+      mobileButtonWidth,
+      tabletButtonWidth,
+      desktopButtonWidth
     } = this;
 
     let coords: number = 0;
+    const totalSiblings: number = state.siblings * 2 + 1;
 
     if (state.siblings === mobileSiblings) {
       // Middle positioned if not first or last
       if (state.currentPage !== 1) {
-        coords = buttonWidth;
+        coords = mobileButtonWidth;
       }
       // Right positioned if last
       if (state.currentPage === totalPages && totalPages >= 3) {
-        coords = buttonWidth * 2;
+        coords = mobileButtonWidth * (totalSiblings - 1);
       }
     }
 
     if (state.siblings === tabletSiblings) {
       // Middle positioned if current page not first or last
       if (state.currentPage !== 1) {
-        coords = (buttonWidth + buttonWidth / 6) * 2;
+        coords = tabletButtonWidth * (totalSiblings - 3);
       }
 
       // If current page equals to 2
       if (state.currentPage === 2) {
-        coords = buttonWidth + buttonWidth / 6;
+        coords = tabletButtonWidth;
       }
 
       // If current page is second to last
       if (state.currentPage === totalPages - 1 && totalPages >= 5) {
-        coords = (buttonWidth + buttonWidth / 6) * 3;
+        coords = tabletButtonWidth * (totalSiblings - 2);
       }
 
       // If current page is last one
       if (state.currentPage === totalPages) {
         if (totalPages >= 5) {
-          coords = (buttonWidth + buttonWidth / 6) * 4;
+          coords = tabletButtonWidth * (totalSiblings - 1);
         }
         if (totalPages < 5) {
-          coords = (buttonWidth + buttonWidth / 6) * 3;
+          coords = tabletButtonWidth * (totalSiblings - 2);
         }
       }
     }
@@ -306,45 +313,45 @@ class Pagination extends React.Component<Props, State> {
     ) {
       // Middle positioned if current page not first or last
       if (state.currentPage !== 1) {
-        coords = (buttonWidth + buttonWidth / 6) * 3;
+        coords = desktopButtonWidth * (totalSiblings - 4);
       }
 
       // If current page equals to 2
       if (state.currentPage === 2) {
-        coords = buttonWidth + buttonWidth / 6;
+        coords = desktopButtonWidth;
       }
 
       // If current page equals to 3
       if (state.currentPage === 3) {
-        coords = (buttonWidth + buttonWidth / 6) * 2;
+        coords = desktopButtonWidth * (totalSiblings - 5);
       }
 
       // If current page is third to last
       if (state.currentPage === totalPages - 2 && totalPages >= 7) {
-        coords = (buttonWidth + buttonWidth / 6) * 4;
+        coords = desktopButtonWidth * (totalSiblings - 3);
       }
 
       // If current page is second to last
       if (state.currentPage === totalPages - 1) {
         if (totalPages >= 6) {
-          coords = (buttonWidth + buttonWidth / 6) * 5;
+          coords = desktopButtonWidth * (totalSiblings - 2);
         }
 
         if (totalPages < 6) {
-          coords = (buttonWidth + buttonWidth / 6) * 4;
+          coords = desktopButtonWidth * (totalSiblings - 3);
         }
       }
 
       // If current page is last one
       if (state.currentPage === totalPages) {
         if (totalPages >= 7) {
-          coords = (buttonWidth + buttonWidth / 6) * 6;
+          coords = desktopButtonWidth * (totalSiblings - 1);
         }
-        if (totalPages >= 6 && totalPages < 7) {
-          coords = (buttonWidth + buttonWidth / 6) * 5;
+        if (totalPages === 6) {
+          coords = desktopButtonWidth * (totalSiblings - 2);
         }
         if (totalPages < 6) {
-          coords = (buttonWidth + buttonWidth / 6) * 4;
+          coords = desktopButtonWidth * (totalSiblings - 3);
         }
       }
     }

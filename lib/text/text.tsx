@@ -86,6 +86,7 @@ interface Props {
 }
 
 interface State {
+  disabled: boolean;
   error: boolean;
   keyStrokes: boolean;
   success: boolean;
@@ -128,6 +129,7 @@ class Text extends React.Component<Props, State> {
   id = this.props.id ? this.props.id : getId();
 
   readonly state: Readonly<State> = {
+    disabled: false,
     error: includes(itemise(this.props.modifiers), `error`),
     keyStrokes: this.props.type === `password` ? false : null,
     success: includes(itemise(this.props.modifiers), `success`),
