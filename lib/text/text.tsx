@@ -86,13 +86,14 @@ interface Props {
 }
 
 interface State {
+  disabled: boolean;
   error: boolean;
   keyStrokes: boolean;
   success: boolean;
   value: string;
 }
 
-class Text extends React.Component<Props> {
+class Text extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     disabled: false,
     onBlur: () => {
@@ -128,6 +129,7 @@ class Text extends React.Component<Props> {
   id = this.props.id ? this.props.id : getId();
 
   readonly state: Readonly<State> = {
+    disabled: false,
     error: includes(itemise(this.props.modifiers), `error`),
     keyStrokes: this.props.type === `password` ? false : null,
     success: includes(itemise(this.props.modifiers), `success`),
@@ -152,22 +154,6 @@ class Text extends React.Component<Props> {
     if (this.props.disabled !== prevProps.disabled) {
       this.setState({
         disabled: this.props.disabled
-      });
-    }
-
-    if (this.state.value !== prevState.value) {
-      this.setState({
-        error: false,
-        success: false
-      });
-
-      // ! Not ideal.
-      this.forceUpdate();
-    }
-
-    if (this.props.value !== prevProps.value) {
-      this.setState({
-        value: truncateString(this.props.value, this.props.maxLength)
       });
     }
   }
@@ -241,7 +227,7 @@ class Text extends React.Component<Props> {
     }
   };
 
-  handleChange = (event: React.ChangeEvent) => {
+  handleChange = (event: React.ChangeEvent): void => {
     const target: HTMLInputElement = event.target as HTMLInputElement;
 
     this.setState({ value: target.value });

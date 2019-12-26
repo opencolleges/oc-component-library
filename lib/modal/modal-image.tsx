@@ -1,8 +1,6 @@
-import _ from 'lodash';
 import React from 'react';
 
-import BEM from '../utilities/ts/bem';
-import { NAMESPACE } from '../utilities/ts/constants';
+import BEM, { BEMInterface } from '../utilities/ts/bem';
 import randomise from '../utilities/ts/randomise';
 
 interface Skintone {
@@ -47,12 +45,19 @@ class ModalImage extends React.Component<Props> {
   render() {
     const { props, skinTone } = this;
 
-    const bem = BEM(`humanoid`);
-    bem.addClassNames(props.className);
+    const BEM_MODULE: BEMInterface = BEM(`humanoid`);
+    const {
+      addClassNames,
+      getElement,
+      getResult,
+      getBlock
+    }: BEMInterface = BEM_MODULE;
+
+    addClassNames(props.className);
 
     return (
       <svg
-        className={bem.getResult()}
+        className={getResult()}
         width="256"
         height="168"
         viewBox="0 0 256 168"
@@ -119,18 +124,12 @@ class ModalImage extends React.Component<Props> {
             </g>
           </g>
           <g mask="url(#prototype-b)">
-            <g
-              className={`${NAMESPACE}-humanoid`}
-              transform="translate(-12, 1)">
+            <g className={getBlock()} transform="translate(-12, 1)">
               <rect width="280" height="361.348" y=".652" />
-              <g
-                className={bem.getElement(`head`)}
-                transform="translate(104.533)">
+              <g className={getElement(`head`)} transform="translate(104.533)">
                 <rect width="71" height="205" />
                 <rect width="71" height="205" />
-                <g
-                  className={bem.getElement(`bun`)}
-                  transform="translate(13.079)">
+                <g className={getElement(`bun`)} transform="translate(13.079)">
                   <rect width="44.842" height="67.1" />
                   <ellipse
                     cx="16.816"
@@ -180,7 +179,7 @@ class ModalImage extends React.Component<Props> {
                       d="M30,65.462963 L30,65.462963 C25.875,65.462963 22.5,62.0962963 22.5,57.9814815 C22.5,53.8666667 25.875,50.5 30,50.5 C34.125,50.5 37.5,53.8666667 37.5,57.9814815 C37.5,62.0962963 34.125,65.462963 30,65.462963"
                     />
                     <g
-                      className={bem.getElement(`right-ear`)}
+                      className={getElement(`right-ear`)}
                       transform="translate(45 28.056)">
                       <rect width="15" height="7.481" />
                       <path
@@ -190,7 +189,7 @@ class ModalImage extends React.Component<Props> {
                       />
                     </g>
                     <g
-                      className={bem.getElement(`left-ear`)}
+                      className={getElement(`left-ear`)}
                       transform="translate(0 28.056)">
                       <rect width="15" height="7.481" />
                       <path
@@ -217,7 +216,7 @@ class ModalImage extends React.Component<Props> {
                       data-fill="#532626"
                     />
                     <path
-                      className={bem.getElement(`right-eyebrow`)}
+                      className={getElement(`right-eyebrow`)}
                       stroke="var(--saddle, #532626)"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -276,7 +275,7 @@ class ModalImage extends React.Component<Props> {
                 </g>
               </g>
               <g
-                className={bem.getElement(`left-arm`)}
+                className={getElement(`left-arm`)}
                 transform="rotate(-64 195.804 48.642)">
                 <rect width="213" height="19" />
                 <rect width="123.316" height="19" />
@@ -325,7 +324,7 @@ class ModalImage extends React.Component<Props> {
                 />
               </g>
               <g
-                className={bem.getElement(`right-arm`)}
+                className={getElement(`right-arm`)}
                 transform="scale(-1 1) rotate(-73 43.054 239.69)">
                 <rect width="213" height="19" />
                 <rect width="123.316" height="19" />
