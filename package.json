@@ -1,6 +1,6 @@
 {
   "name": "oc-uniform",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "React Component",
   "main": "dist/index.js",
   "scripts": {
